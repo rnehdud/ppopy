@@ -12,7 +12,7 @@ The broader knowledge base (KB) is planned around three areas: cleansing, moistu
 | --- | --- | --- |
 | Doyeong Koo | Department of Information Systems | koody1125@hanyang.ac.kr |
 | Takgeon Kang | Department of Information Systems | mms123601@gmail.com |
-| Geonil Won | Department of Information Systems | To be added |
+| Geonil Won | Department of Information Systems | lingsinsillicon12097@gmail.com |
 | Junhyeong Kim | Department of Information Systems | humbahumba605@gmail.com |
 
 ### Research Idea
