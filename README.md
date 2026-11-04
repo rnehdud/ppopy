@@ -1,6 +1,6 @@
-# Poppy: Skincare Routine Support
+# Ppopy: Skincare Routine Support
 
-Poppy explores how product information, user-reported context, and reviewed evidence can support decisions about an existing skincare routine. The project is shared across two courses: **ITE 351: AI & Applications** and **CSE 406: Software Engineering**.
+Ppopy explores how product information, user-reported context, and reviewed evidence can support decisions about an existing skincare routine. The project is shared across two courses: **ITE 351: AI & Applications** and **CSE 406: Software Engineering**.
 
 The broader knowledge base (KB) is planned around three areas: cleansing, moisturizing, and sun protection. The initial AI research prototype focuses on facial cleansers. The three-area KB is under development; candidate evidence and AI outputs require review before they can become application rules.
 
@@ -21,7 +21,7 @@ The broader knowledge base (KB) is planned around three areas: cleansing, moistu
 
 Consumers may encounter cosmetic advice that overlooks their current routine or goes beyond available evidence. We propose an AI agent that uses a curated knowledge base, product information, and user context to support skincare routine decisions.
 
-The broader Poppy knowledge base is planned around cleansing, moisturizing, and sun protection. Our initial research prototype focuses on facial cleansers. It will retrieve relevant evidence, identify information missing for a decision, and ask follow-up questions when needed. It may suggest maintaining or adjusting the current routine or considering an alternative product, while explaining the evidence and uncertainty.
+The broader Ppopy knowledge base is planned around cleansing, moisturizing, and sun protection. Our initial research prototype focuses on facial cleansers. It will retrieve relevant evidence, identify information missing for a decision, and ask follow-up questions when needed. It may suggest maintaining or adjusting the current routine or considering an alternative product, while explaining the evidence and uncertainty.
 
 We plan to compare the agent with a general-purpose language model using the same product and user scenarios. Evaluation will examine question relevance, the appropriateness of suggestions, unsupported claims, and agreement with domain-informed reference judgments. The topic, methods, and evaluation design are preliminary. AI outputs and unreviewed evidence will not automatically become approved recommendations.
 
@@ -47,4 +47,4 @@ Project planning and evidence collection are in progress. Planned updates will d
 
 ## Scope and Limitations
 
-Poppy is intended to support informed routine decisions. It does not diagnose skin conditions, automatically judge skin improvement, or establish clinical effectiveness. Missing evidence and uncertainty should remain visible. Ingredient lists alone do not establish undisclosed concentrations or finished-product performance.
+Ppopy is intended to support informed routine decisions. It does not diagnose skin conditions, automatically judge skin improvement, or establish clinical effectiveness. Missing evidence and uncertainty should remain visible. Ingredient lists alone do not establish undisclosed concentrations or finished-product performance.
