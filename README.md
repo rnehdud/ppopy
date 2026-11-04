@@ -6,10 +6,12 @@ ITE 351: AI & Applications — Group Project Proposal
 
 | Name | Organization | Email |
 | --- | --- | --- |
-| 구도영 | Department of Information Systems | koody1125@hanyang.ac.kr |
-| 강탁건 | Department of Information Systems | mms123601@gmail.com |
-| 원건일 | Department of Information Systems | To be added |
-| 김준형 | Department of Information Systems | To be added |
+| Doyeong Koo | Department of Information Systems | koody1125@hanyang.ac.kr |
+| Takgeon Kang* | Department of Information Systems | mms123601@gmail.com |
+| Geonil Won* | Department of Information Systems | To be added |
+| Junhyeong Kim* | Department of Information Systems | To be added |
+
+\* English spellings are provisional and will be confirmed by each team member.
 
 ## Proposal
 
