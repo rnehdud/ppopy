@@ -7,11 +7,9 @@ ITE 351: AI & Applications — Group Project Proposal
 | Name | Organization | Email |
 | --- | --- | --- |
 | Doyeong Koo | Department of Information Systems | koody1125@hanyang.ac.kr |
-| Takgeon Kang* | Department of Information Systems | mms123601@gmail.com |
-| Geonil Won* | Department of Information Systems | To be added |
-| Junhyeong Kim* | Department of Information Systems | To be added |
-
-\* English spellings are provisional and will be confirmed by each team member.
+| Takgeon Kang | Department of Information Systems | mms123601@gmail.com |
+| Geonil Won | Department of Information Systems | To be added |
+| Junhyeong Kim | Department of Information Systems | To be added |
 
 ## Proposal
 
