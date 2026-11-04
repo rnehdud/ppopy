@@ -6,14 +6,16 @@ ITE 351: AI & Applications — Group Project Proposal
 
 | Name | Organization | Email |
 | --- | --- | --- |
-| To be added | To be added | To be added |
-| To be added | To be added | To be added |
-| To be added | To be added | To be added |
-| To be added | To be added | To be added |
+| 구도영 | Department of Information Systems | koody1125@hanyang.ac.kr |
+| 강탁건 | Department of Information Systems | mms123601@gmail.com |
+| 원건일 | Department of Information Systems | To be added |
+| 김준형 | Department of Information Systems | To be added |
 
 ## Proposal
 
 Consumers often encounter cosmetic advice that overlooks their current routine or makes claims that go beyond the available product evidence. We propose an AI agent that uses a curated skincare knowledge base, product information, and user context to support personalized cosmetic-use decisions.
+
+This project shares the same topic as our Software Engineering course project, Poppy. The AI & Applications project focuses on the agent's evidence retrieval, question selection, and evaluation.
 
 Our initial prototype will focus on facial cleansers. It will retrieve relevant evidence, identify information that is missing for a decision, and ask follow-up questions when needed. Based on the available information, it will suggest whether to maintain or adjust the current routine, and may suggest alternative products when appropriate. The agent will communicate supporting evidence and uncertainty.
 
