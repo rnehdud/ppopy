@@ -1,38 +1,33 @@
 # CSE 406 — Software Engineering
 
-Poppy and the proposed Smart Mirror interface share the product topic described in the root README. This repository supplies a reusable knowledge specification and local preview; the existing production application remains in SkinAnalysis.
+Team CosMate's Ppopy project combines product confirmation, routine records and contextual KB review with proactive guidance on an authorized smart mirror.
 
-## System responsibilities
+## Phase 2 submissions
+
+The [latest Revised LaTeX package](submissions/phase2/2026-11-06/README.md) contains two independently buildable main documents:
+
+- [Submission A](submissions/phase2/2026-11-06/Ppopy_Submission_A.tex): proposal and functional/quality requirements.
+- [Submission B](submissions/phase2/2026-11-06/Ppopy_Submission_B.tex): A plus the development environment, itemized budget, processing specifications and verification plans.
+
+The initial presence-triggered concept remains in the [root proposal history](../../README.md#initial-proposal-concept). The latest specification estimates the next routine start from user-confirmed actual-use times and checks the upcoming routine before that start. KB findings and user intent determine whether to show guidance, ask a useful question in the app, or take no new action.
+
+## Proposed workflow
 
 ```mermaid
-flowchart LR
-    Input[Product confirmation and structured user context] --> App[Application and API boundary]
-    Evidence[Reviewed product and knowledge evidence] --> App
-    App --> Safety[Safety and authorization checks]
-    Safety --> Plan[Existing care plan and product matching]
-    Plan --> Results[Guidance, missing information and limitations]
-    Results -. proposed authorized display .-> Mirror[Smart mirror]
-    KB[Inactive KB and local preview in this repository] -. reviewed future integration .-> App
+flowchart TD
+    Inputs[Confirmed products, routine plan, user intent and actual-use records] --> Review[Contextual KB review and relevant app questions]
+    Inputs --> Timing[Estimate the next routine start]
+    Review --> Choice[Select guidance or no new intervention]
+    Timing --> Checks[Check timing, approval, revisions and duplicate commands]
+    Choice --> Checks
+    Checks --> Mirror[Authorized output-only smart mirror]
+    Mirror --> Events[Record receipt and first-display acknowledgement]
 ```
 
-The broader application's existing stack is React/TypeScript/Vite, Capacitor/iOS, Python, and AWS/PostgreSQL services. Those deployable application sources are not bundled here. The imported local preview is Python and JSON, and runs without cloud access.
+The app handles product photos/screenshots, product confirmation, questions, edits and display approval. The mirror shows selected guidance before the estimated start and otherwise uses its time/weather screen. A review result, display command, acknowledged display and actual-use report are separate records. R1–R10 and Q1–Q3 in the submissions define account controls, evidence checks, history-based timing, expiry, failure handling and traceability.
 
-## Course requirements to specify
+## Implementation available here
 
-| Area | Behavior and acceptance evidence to define |
-| --- | --- |
-| Product input | Confirm the product, option, market and formulation version; keep unresolved identity visible |
-| User context | Reuse known information; distinguish unknown, declined, conflicting and not applicable inputs |
-| Routine review | Explain the evidence and scope; keep the six-ingredient application plan distinct from product availability and the KB preview |
-| Safety | Apply safety before adherence and effect; do not infer strength from severity, diagnose, or claim automatic improvement |
-| Smart mirror | Show time/weather by default; presence may trigger a generic display, but personal guidance needs an authorized user context |
-| Failure handling | Define offline, stale evidence, unavailable API, missing identity, session expiry and unauthorized display behavior |
-| Verification | Separate synthetic preview tests, integration tests, user understanding, and release approval |
+The broader application uses React/TypeScript/Vite, Capacitor/iOS, Python and AWS/PostgreSQL services. Those deployable application sources are not bundled in this public course repository. The imported [local preview](../../skin_engine/kb_preview/README.md) uses Python and JSON without cloud access; its [KB](../../KB/README.md) remains an inactive development snapshot.
 
-The mirror requirements above remain a proposal. Presence detection is not identity verification. A working mirror integration, hardware validation, and study outcomes have not been established by this export.
-
-## Runnable starting point
-
-Run the [local preview](../../skin_engine/kb_preview/README.md), inspect the [KB](../../KB/README.md), and use [verification](../../docs/verification.md) to distinguish implementation checks from open acceptance gaps. The fixture is synthetic and does not collect user information.
-
-Course deliverables should record requirements, architecture decisions, interface contracts, failure cases and validation results. Team roles remain those already listed in the root README; no new allocation or completion approval is inferred here.
+Real account authentication, cloud storage, timing/delivery integration and the physical mirror are integration targets in the submissions. For executed snapshot checks and the five open original acceptance mismatches, see [verification](../../docs/verification.md). Synthetic preview tests do not establish working mirror integration or production approval. Team roles remain those listed in the root README.
