@@ -1,0 +1,4041 @@
+{
+  "B-C01": [
+    {
+      "when": {
+        "method.water_temperature": [
+          "cold"
+        ]
+      },
+      "status": "unknown",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "method.water_temperature_cold",
+      "branch_id": "B-C01:1",
+      "kb_clause": "unknown_when",
+      "kb_text": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다."
+    },
+    {
+      "when": {
+        "method.water_temperature": [
+          "lukewarm"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C01:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "뜨겁지 않은 미온수를 사용한다고 보고함."
+    },
+    {
+      "when": {
+        "method.water_temperature": [
+          "hot"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음."
+    }
+  ],
+  "B-C02": [
+    {
+      "when": {
+        "method.tools": [
+          "scrub_brush",
+          "washcloth",
+          "sponge"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "method.tools_scrub_brush_washcloth_sponge",
+      "branch_id": "B-C02:1",
+      "kb_clause": "difference_when",
+      "kb_text": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분."
+    },
+    {
+      "when": {
+        "method.drying": [
+          "rubbing_strongly"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "method.drying_rubbing_strongly",
+      "branch_id": "B-C02:2",
+      "kb_clause": "difference_when",
+      "kb_text": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분."
+    },
+    {
+      "when": {
+        "method.friction": [
+          "strong"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C02:3",
+      "kb_clause": "difference_when",
+      "kb_text": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분."
+    },
+    {
+      "when": {
+        "method.tools": [
+          "hands"
+        ],
+        "method.friction": [
+          "gentle"
+        ],
+        "method.drying": [
+          "pat_gently"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C02:4",
+      "kb_clause": "aligned_when",
+      "kb_text": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음."
+    }
+  ],
+  "B-C03": [
+    {
+      "when": {
+        "product.instructions": [
+          "specific_contact_time"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C03:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제품별 별도 접촉시간 지시",
+        "의료진 지시",
+        "대략적 응답이 60초 경계를 걸치는 경우는 미확인/경계 사례로 취급"
+      ]
+    }
+  ],
+  "B-G03": [
+    {
+      "when": {
+        "method.current_routine": [
+          "cleanser_minute_rule_applied_to_special_product",
+          "known_instructions_ignored"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "method.current_routine_cleanser_minute_rule_applied_to_special_product_known_instructions_ignored",
+      "branch_id": "B-G03:1",
+      "kb_clause": "difference_when",
+      "kb_text": "일반 세안 1분 기준을 팩·필링·의약품에 그대로 적용하거나 알려진 별도 지시를 무시함."
+    },
+    {
+      "when": {
+        "method.current_routine": [
+          "matches_confirmed_product_instructions"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "method.current_routine_matches_confirmed_product_instructions",
+      "branch_id": "B-G03:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "제품 유형·확인된 지시와 일반 기준이 모순되지 않음."
+    },
+    {
+      "when": {
+        "product.instructions": [
+          "specific_contact_time"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G03:3",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "자료 충돌·버전 불명확",
+        "개별 의료진 계획"
+      ]
+    }
+  ],
+  "B-C04": [
+    {
+      "when": {
+        "product.ph": [
+          "confirmed_other_than_mildly_acidic"
+        ],
+        "skin.current_discomfort": [
+          "none"
+        ],
+        "constraints.decision_context": [
+          "current_routine_review",
+          "current_product"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "maintain",
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C04:1",
+      "kb_clause": "difference_when",
+      "kb_text": "약산성 기본 선호와 다른 pH 특성이 확인됨. pH 미확인은 차이가 아니라 unknown."
+    },
+    {
+      "when": {
+        "product.ph": [
+          "confirmed_other_than_mildly_acidic"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C04:2",
+      "kb_clause": "difference_when",
+      "kb_text": "약산성 기본 선호와 다른 pH 특성이 확인됨. pH 미확인은 차이가 아니라 unknown."
+    },
+    {
+      "when": {
+        "product.ph": [
+          "confirmed_mildly_acidic"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C04:3",
+      "kb_clause": "aligned_when",
+      "kb_text": "약산성이라는 제품 근거가 있고 목적에 맞는 후보임. pH만으로 순함은 확정하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-C04:4",
+      "kb_clause": "unknown_when",
+      "kb_text": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다."
+    }
+  ],
+  "B-G01": [
+    {
+      "when": {
+        "product.essential_oils": [
+          "declared_present"
+        ],
+        "skin.current_discomfort": [
+          "none"
+        ],
+        "constraints.decision_context": [
+          "current_routine_review",
+          "current_product"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "maintain",
+        "inform_next_selection"
+      ],
+      "reason": "product.essential_oils_declared_present",
+      "branch_id": "B-G01:1",
+      "kb_clause": "difference_when",
+      "kb_text": "향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님."
+    },
+    {
+      "when": {
+        "product.essential_oils": [
+          "declared_present"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_next_selection"
+      ],
+      "reason": "product.essential_oils_declared_present",
+      "branch_id": "B-G01:2",
+      "kb_clause": "difference_when",
+      "kb_text": "향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님."
+    },
+    {
+      "when": {
+        "product.fragrance": [
+          "declared_present",
+          "present"
+        ],
+        "skin.current_discomfort": [
+          "none"
+        ],
+        "constraints.decision_context": [
+          "current_routine_review",
+          "current_product"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "maintain",
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님."
+    },
+    {
+      "when": {
+        "product.fragrance": [
+          "declared_present",
+          "present"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G01:4",
+      "kb_clause": "difference_when",
+      "kb_text": "향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님."
+    },
+    {
+      "when": {
+        "product.fragrance": [
+          "fragrance_free"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G01:5",
+      "kb_clause": "aligned_when",
+      "kb_text": "근거가 있는 무향료 후보가 선택됨. 개인 무반응을 보증하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G01:6",
+      "kb_clause": "unknown_when",
+      "kb_text": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다."
+    }
+  ],
+  "B-M01": [
+    {
+      "when": {
+        "method.current_routine": [
+          "moisturizing_not_needed_no_discomfort"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "method.current_routine_moisturizing_not_needed_no_discomfort",
+      "branch_id": "B-M01:1",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "건조감이 있거나 기존에 보습제를 사용하는 일상 관리.",
+        "population": "일반 성인",
+        "body_site": "일상 얼굴 관리 및 관련 보유 제품",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "moisturizing.after_wash_delay": [
+          "prompt_while_slightly_damp"
+        ],
+        "method.current_routine": [
+          "moisturizing_function_used"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "moisturizing.after_wash_delay_prompt_while_slightly_damp",
+      "branch_id": "B-M01:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 맥락에서 세정 후 피부가 아직 약간 촉촉할 때 보습함."
+    },
+    {
+      "when": {
+        "moisturizing.after_wash_delay": [
+          "until_completely_dry"
+        ],
+        "method.current_routine": [
+          "moisturizing_needed"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "moisturizing.after_wash_delay_until_completely_dry",
+      "branch_id": "B-M01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "보습이 필요한 맥락인데 세정 후 오래 방치하고 완전히 마른 뒤에만 도포함."
+    },
+    {
+      "when": {
+        "product.instructions": [
+          "apply_to_dry_skin"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M01:4",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "건조한 피부에 바르라는 특정 제품·의약품 지시",
+        "다른 의료진 관리 계획",
+        "별도 보습 제품이 불필요하고 불편감도 없는 경우"
+      ]
+    },
+    {
+      "when": {
+        "method.skin_wetness": [
+          "slightly_damp"
+        ],
+        "method.current_routine": [
+          "moisturizing_function_used"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M01:5",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 맥락에서 세정 후 피부가 아직 약간 촉촉할 때 보습함."
+    }
+  ],
+  "B-M03": [
+    {
+      "when": {
+        "sun.coverage_gaps": [
+          "moisturizing_amount_insufficient_for_protection"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception",
+        "inform_general_practice"
+      ],
+      "reason": "protection_amount_separate_from_moisturizing",
+      "branch_id": "B-M03-protection_amount_separate_from_moisturizing",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "실제 건조 불편이 남음",
+        "의료진이 별도 보습을 지시함",
+        "광보호를 위한 도포 요건을 보습량과 별도로 확보해야 함"
+      ]
+    },
+    {
+      "when": {
+        "skin.dryness": [
+          "persistent"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "ask_targeted_question",
+        "review_exception"
+      ],
+      "reason": "skin.dryness_persistent",
+      "branch_id": "B-M03:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "실제 건조 불편이 남음",
+        "의료진이 별도 보습을 지시함",
+        "광보호를 위한 도포 요건을 보습량과 별도로 확보해야 함"
+      ]
+    },
+    {
+      "when": {
+        "constraints.goals": [
+          "separate_product_for_each_moisturizing_function"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "constraints.goals_separate_product_for_each_moisturizing_function",
+      "branch_id": "B-M03:2",
+      "kb_clause": "difference_when",
+      "kb_text": "수분공급·차폐·장벽개선 각각을 반드시 별도 제품으로 채우려 함."
+    },
+    {
+      "when": {
+        "method.current_routine": [
+          "moisturizing_function_used"
+        ],
+        "skin.dryness": [
+          "none"
+        ],
+        "moisturizing.comfort": [
+          "comfortable"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M03:3",
+      "kb_clause": "aligned_when",
+      "kb_text": "보유 제품의 실제 사용으로 보습 목표가 충족되어 불필요한 추가 단계가 없음."
+    }
+  ],
+  "B-M02": [
+    {
+      "when": {
+        "moisturizing.comfort": [
+          "persistent_pain",
+          "persistent_stinging"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception",
+        "refer_for_professional_review"
+      ],
+      "reason": "moisturizing.comfort_persistent_pain_persistent_stinging",
+      "branch_id": "B-M02:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진 계획",
+        "바를 때 지속되는 통증·따가움",
+        "건조가 지속되거나 일반 화장품 범위를 벗어나는 문제"
+      ]
+    },
+    {
+      "when": {
+        "skin.dryness": [
+          "none"
+        ],
+        "moisturizing.comfort": [
+          "comfortable"
+        ],
+        "method.current_routine": [
+          "moisturizing_function_used"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "skin.dryness_none",
+      "branch_id": "B-M02:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "현재 보습 루틴으로 일상적인 건조 불편이 관리되고 새로운 불편감이 없음."
+    },
+    {
+      "when": {
+        "skin.dryness": [
+          "persistent"
+        ],
+        "dose.proxy_amount": [
+          "reduced_all_products"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "ask_targeted_question",
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M02:3",
+      "kb_clause": "difference_when",
+      "kb_text": "건조감이 있는데 무조건 감량하거나, 현재 사용 후 불편감이 계속되는데 방법을 검토하지 않음."
+    }
+  ],
+  "B-G02": [
+    {
+      "when": {
+        "product.concentrations": [
+          "undisclosed"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "defer_specific_recommendation",
+        "inform_general_practice"
+      ],
+      "reason": "product.concentrations_undisclosed",
+      "branch_id": "B-G02:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "개별 치료·제품 지시",
+        "농도가 미공개인 경우 수치 비교 보류"
+      ]
+    },
+    {
+      "when": {
+        "dose.proxy_amount": [
+          "product_specific_label_matched"
+        ],
+        "dose.frequency": [
+          "product_specific_label_matched"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "dose.proxy_amount_product_specific_label_matched",
+      "branch_id": "B-G02:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "목적과 지침에 맞추어 양·빈도를 사용하며 농도와 사용량을 별개로 취급함."
+    },
+    {
+      "when": {
+        "dose.proxy_amount": [
+          "all_products_reduced",
+          "all_products_increased"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "dose.proxy_amount_all_products_reduced_all_products_increased",
+      "branch_id": "B-G02:3",
+      "kb_clause": "difference_when",
+      "kb_text": "모든 제품을 동일하게 감량하거나 많이 바르면 좋다는 이유만으로 임의 증량함."
+    },
+    {
+      "when": {
+        "skin.dryness": [
+          "persistent"
+        ],
+        "dose.proxy_amount": [
+          "reduced_all_products"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "ask_targeted_question",
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G02:4",
+      "kb_clause": "difference_when",
+      "kb_text": "모든 제품을 동일하게 감량하거나 많이 바르면 좋다는 이유만으로 임의 증량함."
+    }
+  ],
+  "B-P02": [
+    {
+      "when": {
+        "skin.eye_stinging": [
+          "recurrent"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception",
+        "suggest_behavior_change"
+      ],
+      "reason": "skin.eye_stinging_recurrent",
+      "branch_id": "B-P02:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "용법과 충돌하는 부위",
+        "의료진 개별 지시",
+        "얼굴 크기·토출량 등 자료 부족으로 손가락 길이를 정확 g로 바꿀 수 없는 경우",
+        "해당 제품이 반복 눈시림을 유발하면 B-P06으로 눈가 사용을 조정하고 대체 광보호를 확보함."
+      ]
+    },
+    {
+      "when": {
+        "sun.coverage_gaps": [
+          "none"
+        ],
+        "dose.proxy_amount": [
+          "according_to_label"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "sun.coverage_gaps_none",
+      "branch_id": "B-P02:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "적용 부위 누락이 없고 지침과 맞는 충분한 도포를 수행한다고 보고함. 보호 수준은 미측정."
+    },
+    {
+      "when": {
+        "sun.coverage_gaps": [
+          "intentional_exposed_gaps"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "sun.coverage_gaps_intentional_exposed_gaps",
+      "branch_id": "B-P02:3",
+      "kb_clause": "difference_when",
+      "kb_text": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨."
+    },
+    {
+      "when": {
+        "dose.proxy_amount": [
+          "deliberately_minimal"
+        ],
+        "sun.outdoor_time": [
+          "prolonged"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P02:4",
+      "kb_clause": "difference_when",
+      "kb_text": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨."
+    }
+  ],
+  "B-I01": [
+    {
+      "when": {
+        "product.instructions": [
+          "specific_tested_removal_method"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "product.instructions_specific_tested_removal_method",
+      "branch_id": "B-I01:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "해당 제품 조합에 구체적인 제거 지시·시험 근거가 있음",
+        "의료진 계획"
+      ]
+    },
+    {
+      "when": {
+        "cleansing.steps": [
+          "repeated_only_because_water_resistant"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "cleansing.steps_repeated_only_because_water_resistant",
+      "branch_id": "B-I01:2",
+      "kb_clause": "difference_when",
+      "kb_text": "세안이 힘들다는 이유로 선크림을 극소량만 바르거나 내수성 표시만 보고 무조건 반복 세안함."
+    },
+    {
+      "when": {
+        "dose.proxy_amount": [
+          "according_to_label"
+        ],
+        "cleansing.steps": [
+          "according_to_product_removal_instructions"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "dose.proxy_amount_according_to_label",
+      "branch_id": "B-I01:3",
+      "kb_clause": "aligned_when",
+      "kb_text": "광보호 사용을 유지하면서 해당 제품의 제거법을 검토함."
+    },
+    {
+      "when": {
+        "dose.proxy_amount": [
+          "deliberately_minimal"
+        ],
+        "sun.outdoor_time": [
+          "prolonged"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-I01:4",
+      "kb_clause": "difference_when",
+      "kb_text": "세안이 힘들다는 이유로 선크림을 극소량만 바르거나 내수성 표시만 보고 무조건 반복 세안함."
+    }
+  ],
+  "B-P03": [
+    {
+      "when": {
+        "sun.reapplication": [
+          "matched_to_exposure_and_label"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "sun.reapplication_matched_to_exposure_and_label",
+      "branch_id": "B-P03:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "지속 노출과 손실 계기에 맞추어 재도포함."
+    },
+    {
+      "when": {
+        "sun.outdoor_time": [
+          "prolonged"
+        ],
+        "sun.reapplication": [
+          "none"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "sun.outdoor_time_prolonged",
+      "branch_id": "B-P03:2",
+      "kb_clause": "difference_when",
+      "kb_text": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨."
+    },
+    {
+      "when": {
+        "sun.towel_contact": [
+          "yes"
+        ],
+        "sun.reapplication": [
+          "none"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "sun.towel_contact_yes",
+      "branch_id": "B-P03:3",
+      "kb_clause": "difference_when",
+      "kb_text": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨."
+    },
+    {
+      "when": {
+        "sun.sweat": [
+          "yes"
+        ],
+        "sun.reapplication": [
+          "none"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "sun.sweat_yes",
+      "branch_id": "B-P03:4",
+      "kb_clause": "difference_when",
+      "kb_text": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨."
+    },
+    {
+      "when": {
+        "sun.water_contact": [
+          "yes"
+        ],
+        "sun.reapplication": [
+          "none"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "sun.water_contact_yes",
+      "branch_id": "B-P03:5",
+      "kb_clause": "difference_when",
+      "kb_text": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨."
+    },
+    {
+      "when": {
+        "sun.outdoor_time": [
+          "none"
+        ],
+        "sun.window_context": [
+          "none_reported"
+        ],
+        "sun.water_contact": [
+          "none"
+        ],
+        "sun.sweat": [
+          "none"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P03:6",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "광보호가 필요한 야외 노출이 이어지거나 물·땀·수건 접촉이 있는 경우.",
+        "population": "일반 성인",
+        "body_site": "일상 얼굴 관리 및 관련 보유 제품",
+        "symptoms_required": false
+      }
+    }
+  ],
+  "B-S01": [
+    {
+      "when": {
+        "product.instructions": [
+          "specific_storage_conditions"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "specific_storage_label",
+      "branch_id": "B-S01-specific_storage_label",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제품에 별도로 명시된 온도·보관방법",
+        "기간·온도를 모르는 과거 노출"
+      ]
+    },
+    {
+      "when": {
+        "storage.temperature_history": [
+          "label_compliant"
+        ],
+        "storage.light_air": [
+          "protected"
+        ],
+        "storage.seal_integrity": [
+          "intact"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "storage.temperature_history_label_compliant",
+      "branch_id": "B-S01:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함."
+    },
+    {
+      "when": {
+        "storage.seal_integrity": [
+          "persistently_open"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "storage.seal_integrity_persistently_open",
+      "branch_id": "B-S01:2",
+      "kb_clause": "difference_when",
+      "kb_text": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠."
+    },
+    {
+      "when": {
+        "storage.light_air": [
+          "direct_sunlight"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "storage.light_air_direct_sunlight",
+      "branch_id": "B-S01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠."
+    },
+    {
+      "when": {
+        "storage.temperature_history": [
+          "hot_car"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-S01:4",
+      "kb_clause": "difference_when",
+      "kb_text": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠."
+    }
+  ],
+  "B-P08": [
+    {
+      "when": {
+        "storage.expiry": [
+          "confirmed_in_date"
+        ],
+        "storage.pao": [
+          "confirmed_within_label"
+        ],
+        "storage.temperature_history": [
+          "label_compliant"
+        ],
+        "storage.sensory_change": [
+          "none"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "storage.expiry_confirmed_in_date",
+      "branch_id": "B-P08:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "알려진 기간·보관 이력이 제품 지침과 맞고 비정상적인 변화가 보고되지 않음. 실제 SPF나 내부 안정성 인증은 아님."
+    },
+    {
+      "when": {
+        "storage.sensory_change": [
+          "new_separation",
+          "new_color",
+          "new_texture"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "contact_seller_or_brand"
+      ],
+      "reason": "storage.sensory_change_new_separation_new_color_new_texture",
+      "branch_id": "B-P08:2",
+      "kb_clause": "difference_when",
+      "kb_text": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음."
+    },
+    {
+      "when": {
+        "storage.sensory_change": [
+          "expected_two_phase"
+        ],
+        "product.instructions": [
+          "shake_before_use"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "maintain",
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P08:3",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "원래 흔들어 쓰는 제품의 정상 분리",
+        "구매일·개봉일을 모르는 경우는 unknown이지 즉시 기한 경과가 아님",
+        "제품의 별도 보관 지시"
+      ]
+    },
+    {
+      "when": {
+        "storage.expiry": [
+          "confirmed_expired"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P08:4",
+      "kb_clause": "difference_when",
+      "kb_text": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음."
+    },
+    {
+      "when": {
+        "storage.sensory_change": [
+          "new_odor_and_texture"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P08:5",
+      "kb_clause": "difference_when",
+      "kb_text": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "ask_targeted_question"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P08:6",
+      "kb_clause": "unknown_when",
+      "kb_text": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님."
+    }
+  ],
+  "B-S04": [
+    {
+      "when": {
+        "storage.sensory_change": [
+          "none"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "storage.sensory_change_none",
+      "branch_id": "B-S04:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음."
+    },
+    {
+      "when": {
+        "storage.sensory_change": [
+          "new_separation",
+          "new_color",
+          "new_texture"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "contact_seller_or_brand"
+      ],
+      "reason": "storage.sensory_change_new_separation_new_color_new_texture",
+      "branch_id": "B-S04:2",
+      "kb_clause": "difference_when",
+      "kb_text": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함."
+    },
+    {
+      "when": {
+        "storage.sensory_change": [
+          "expected_two_phase"
+        ],
+        "product.instructions": [
+          "shake_before_use"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "maintain",
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-S04:3",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+        "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+      ]
+    },
+    {
+      "when": {
+        "storage.expiry": [
+          "confirmed_expired"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-S04:4",
+      "kb_clause": "difference_when",
+      "kb_text": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함."
+    },
+    {
+      "when": {
+        "storage.sensory_change": [
+          "new_odor_and_texture"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "inform_next_selection"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-S04:5",
+      "kb_clause": "difference_when",
+      "kb_text": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-S04:6",
+      "kb_clause": "unknown_when",
+      "kb_text": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다."
+    }
+  ],
+  "B-P06": [
+    {
+      "when": {
+        "product.label_warnings": [
+          "avoid_periocular_use"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_current_label_scope",
+        "suggest_behavior_change"
+      ],
+      "reason": "periocular_label_restriction",
+      "branch_id": "B-P06-periocular_label_restriction",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제품의 눈 주변 사용 제한",
+        "개별 의료진 지시",
+        "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
+      ]
+    },
+    {
+      "when": {
+        "skin.eye_stinging": [
+          "severe_persistent"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "refer_for_professional_review"
+      ],
+      "reason": "skin.eye_stinging_severe_persistent",
+      "branch_id": "B-P06:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제품의 눈 주변 사용 제한",
+        "개별 의료진 지시",
+        "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
+      ]
+    },
+    {
+      "when": {
+        "sun.periocular_application": [
+          "uncomfortable_product_avoided"
+        ],
+        "sun.shade_clothing": [
+          "alternative_protection_secured"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "sun.periocular_application_uncomfortable_product_avoided",
+      "branch_id": "B-P06:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함."
+    },
+    {
+      "when": {
+        "skin.eye_stinging": [
+          "recurrent"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P06:3",
+      "kb_clause": "difference_when",
+      "kb_text": "같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐."
+    },
+    {
+      "when": {
+        "skin.eye_stinging": [
+          "none"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P06:4",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함."
+    }
+  ],
+  "B-P04": [
+    {
+      "when": {
+        "constraints.burden": [
+          "protective_clothing_not_feasible"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "constraints.burden_protective_clothing_not_feasible",
+      "branch_id": "B-P04:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "작업·복장 등 제약으로 특정 수단이 불가능",
+        "의료진 개별 계획"
+      ]
+    },
+    {
+      "when": {
+        "sun.shade_clothing": [
+          "rejected_sunscreen_is_enough"
+        ],
+        "sun.outdoor_time": [
+          "prolonged"
+        ],
+        "constraints.burden": [
+          "alternatives_feasible"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "sun.shade_clothing_rejected_sunscreen_is_enough",
+      "branch_id": "B-P04:2",
+      "kb_clause": "difference_when",
+      "kb_text": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함."
+    },
+    {
+      "when": {
+        "sun.shade_clothing": [
+          "feasible_measures_used"
+        ],
+        "sun.outdoor_time": [
+          "prolonged"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "sun.shade_clothing_feasible_measures_used",
+      "branch_id": "B-P04:3",
+      "kb_clause": "aligned_when",
+      "kb_text": "노출 상황에서 가능한 보완 수단을 활용함."
+    },
+    {
+      "when": {
+        "sun.periocular_application": [
+          "avoided"
+        ],
+        "sun.shade_clothing": [
+          "none"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P04:4",
+      "kb_clause": "difference_when",
+      "kb_text": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함."
+    }
+  ],
+  "B-M04": [
+    {
+      "when": {
+        "skin.hand_observation": [
+          "severe_pain",
+          "oozing",
+          "severe_cracking",
+          "persistent_problem"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "refer_for_professional_review"
+      ],
+      "reason": "hand_problem_requires_individual_review",
+      "branch_id": "B-M04-hand_problem_requires_individual_review",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "개별 진료 지시가 우선",
+        "무향료여도 본인에게 반응하면 그 제품을 고집하지 않음",
+        "심한 통증·진물·갈라짐·지속 문제는 일반 제품 최적화보다 진료 확인",
+        "이미 견딜 수 있는 제품에 대한 유지 판단은 개별 지시와 함께"
+      ]
+    },
+    {
+      "when": {
+        "hand.moisturizing_pattern": [
+          "kept_dry_despite_discomfort"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "maintain_moisturizing_with_tolerated_alternative"
+      ],
+      "reason": "hand.moisturizing_pattern_kept_dry_despite_discomfort",
+      "branch_id": "B-M04:1",
+      "kb_clause": "difference_when",
+      "kb_text": "습진이니 보습을 모두 끊거나 손을 계속 건조하게 둠. 또는 특정 제품으로 불편이 반복되는데도 계속 사용함."
+    },
+    {
+      "when": {
+        "hand.moisturizing_pattern": [
+          "tolerated_moisturizing_maintained"
+        ],
+        "hand.product_reaction": [
+          "none"
+        ],
+        "hand.protection_hygiene": [
+          "appropriate"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "hand.moisturizing_pattern_tolerated_moisturizing_maintained",
+      "branch_id": "B-M04:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "필요한 보습을 유지하고 제품 선택·습식작업 맥락을 각각 검토함."
+    },
+    {
+      "when": {
+        "hand.product_reaction": [
+          "worsening"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_cosmetic_due_to_discomfort",
+        "refer_for_professional_review"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M04:3",
+      "kb_clause": "difference_when",
+      "kb_text": "습진이니 보습을 모두 끊거나 손을 계속 건조하게 둠. 또는 특정 제품으로 불편이 반복되는데도 계속 사용함."
+    },
+    {
+      "when": {
+        "hand.product_reaction": [
+          "recurrent_stinging"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_cosmetic_due_to_discomfort",
+        "maintain_moisturizing_with_tolerated_alternative"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M04:4",
+      "kb_clause": "difference_when",
+      "kb_text": "습진이니 보습을 모두 끊거나 손을 계속 건조하게 둠. 또는 특정 제품으로 불편이 반복되는데도 계속 사용함."
+    },
+    {
+      "when": {
+        "hand.moisturizing_pattern": [
+          "all_moisturizers_stopped_because_eczema"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice",
+        "maintain_moisturizing_with_tolerated_alternative"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M04:5",
+      "kb_clause": "difference_when",
+      "kb_text": "습진이니 보습을 모두 끊거나 손을 계속 건조하게 둠. 또는 특정 제품으로 불편이 반복되는데도 계속 사용함."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "ask_targeted_question",
+        "inform_general_practice",
+        "defer_specific_recommendation"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M04:6",
+      "kb_clause": "unknown_when",
+      "kb_text": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음."
+    }
+  ],
+  "B-S06": [
+    {
+      "when": {
+        "shaving.care": [
+          "manual_count_applied_to_electric"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "shaving.care_manual_count_applied_to_electric",
+      "branch_id": "B-S06:1",
+      "kb_clause": "difference_when",
+      "kb_text": "수동 날 교체 참고 횟수를 지나 교체 점검 없이 계속 사용하거나, 횟수와 관계없이 당김·손상·반복 불편을 무시함. 전기헤드에 수동 기준을 그대로 적용하는 경우도 별도 차이."
+    },
+    {
+      "when": {
+        "shaving.blade_condition": [
+          "good"
+        ],
+        "shaving.care": [
+          "replacement_reviewed_against_instructions"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "shaving.blade_condition_good",
+      "branch_id": "B-S06:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 도구의 지침과 사용횟수·상태를 확인해 관리함."
+    },
+    {
+      "when": {
+        "shaving.blade_condition": [
+          "damaged",
+          "repeated_discomfort"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "shaving.blade_condition_damaged_repeated_discomfort",
+      "branch_id": "B-S06:3",
+      "kb_clause": "difference_when",
+      "kb_text": "수동 날 교체 참고 횟수를 지나 교체 점검 없이 계속 사용하거나, 횟수와 관계없이 당김·손상·반복 불편을 무시함. 전기헤드에 수동 기준을 그대로 적용하는 경우도 별도 차이."
+    },
+    {
+      "when": {
+        "shaving.method": [
+          "manual"
+        ],
+        "shaving.blade_condition": [
+          "pulling"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-S06:4",
+      "kb_clause": "difference_when",
+      "kb_text": "수동 날 교체 참고 횟수를 지나 교체 점검 없이 계속 사용하거나, 횟수와 관계없이 당김·손상·반복 불편을 무시함. 전기헤드에 수동 기준을 그대로 적용하는 경우도 별도 차이."
+    }
+  ],
+  "B-G09": [
+    {
+      "when": {
+        "shaving.preparation": [
+          "water_or_cream"
+        ],
+        "shaving.method": [
+          "electric_dry_only"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "shaving.preparation_water_or_cream",
+      "branch_id": "B-G09:1",
+      "kb_clause": "difference_when",
+      "kb_text": "습식 날면도에서 준비 없이 강행하거나 건식 전용 전기면도기에 임의로 물·크림을 사용함."
+    },
+    {
+      "when": {
+        "shaving.preparation": [
+          "none"
+        ],
+        "shaving.method": [
+          "manual_wet"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "shaving.preparation_none",
+      "branch_id": "B-G09:2",
+      "kb_clause": "difference_when",
+      "kb_text": "습식 날면도에서 준비 없이 강행하거나 건식 전용 전기면도기에 임의로 물·크림을 사용함."
+    },
+    {
+      "when": {
+        "shaving.method": [
+          "electric_dry_only"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G09:3",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+      ]
+    },
+    {
+      "when": {
+        "shaving.preparation": [
+          "label_compliant"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G09:4",
+      "kb_clause": "aligned_when",
+      "kb_text": "면도 방식에 맞게 준비하고 윤활제품 지시를 따름."
+    }
+  ],
+  "B-M05": [
+    {
+      "when": {
+        "shaving.aftercare": [
+          "all_moisturizing_stopped"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "maintain_moisturizing_with_tolerated_alternative"
+      ],
+      "reason": "shaving.aftercare_all_moisturizing_stopped",
+      "branch_id": "B-M05:1",
+      "kb_clause": "difference_when",
+      "kb_text": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함."
+    },
+    {
+      "when": {
+        "shaving.aftercare": [
+          "tolerated_moisturizer"
+        ],
+        "shaving.reaction": [
+          "none"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "shaving.aftercare_tolerated_moisturizer",
+      "branch_id": "B-M05:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함."
+    },
+    {
+      "when": {
+        "shaving.reaction": [
+          "aftershave_stings"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_cosmetic_due_to_discomfort",
+        "maintain_moisturizing_with_tolerated_alternative"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-M05:3",
+      "kb_clause": "difference_when",
+      "kb_text": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함."
+    }
+  ],
+  "B-H01": [
+    {
+      "when": {
+        "skin.current_discomfort": [
+          "unusual_persistent_change"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "refer_for_professional_review"
+      ],
+      "reason": "unusual_persistent_cycle_change",
+      "branch_id": "B-H01-unusual_persistent_cycle_change",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "동의 거부/해당 없음이면 질문 생략",
+        "주기가 불규칙하거나 약물 변화가 있으면 단계 추정 금지",
+        "평소와 다른 심한/지속 변화는 별도 검토"
+      ]
+    },
+    {
+      "when": {
+        "cycle.relative_timing": [
+          "irregular_or_medication_change"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "cycle.relative_timing_irregular_or_medication_change",
+      "branch_id": "B-H01:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "동의 거부/해당 없음이면 질문 생략",
+        "주기가 불규칙하거나 약물 변화가 있으면 단계 추정 금지",
+        "평소와 다른 심한/지속 변화는 별도 검토"
+      ]
+    },
+    {
+      "when": {
+        "cycle.observation_consent": [
+          "accepted"
+        ],
+        "cycle.recurrent_skin_pattern": [
+          "observed_with_current_state"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "optional_pattern_tracking"
+      ],
+      "reason": "cycle.observation_consent_accepted",
+      "branch_id": "B-H01:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "본인의 반복 패턴과 실제 현재 변화를 함께 기록함. 기록하지 않는 선택도 허용."
+    },
+    {
+      "when": {
+        "cycle.recurrent_skin_pattern": [
+          "cause_assumed_from_phase_only"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "optional_pattern_tracking",
+        "inform_general_practice"
+      ],
+      "reason": "cycle.recurrent_skin_pattern_cause_assumed_from_phase_only",
+      "branch_id": "B-H01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "주기 단계만으로 제품 실패/원인을 단정하거나 모든 사람에게 동일한 증량·감량을 적용함."
+    },
+    {
+      "when": {
+        "cycle.observation_consent": [
+          "declined"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-H01:4",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "월경 관련 피부 변화를 본인이 보고하거나 자발적으로 기록에 동의한 경우.",
+        "population": "해당 행위·맥락이 있는 성인",
+        "body_site": "사용자가 기록하기 원하는 부위",
+        "symptoms_required": false
+      }
+    }
+  ],
+  "B-S05": [
+    {
+      "when": {
+        "storage.water_ingress": [
+          "added_to_product"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "storage.water_ingress_added_to_product",
+      "branch_id": "B-S05:1",
+      "kb_clause": "difference_when",
+      "kb_text": "세척·건조 없이 젖고 오염된 상태로 계속 사용하거나 원제품에 물을 넣음."
+    },
+    {
+      "when": {
+        "tool.care_state": [
+          "clean_dried_per_instructions"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "tool.care_state_clean_dried_per_instructions",
+      "branch_id": "B-S05:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "도구 종류에 맞는 관리가 이루어지고 재사용/물 첨가를 구분함."
+    },
+    {
+      "when": {
+        "tool.care_state": [
+          "wet_unwashed_repeated"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-S05:3",
+      "kb_clause": "difference_when",
+      "kb_text": "세척·건조 없이 젖고 오염된 상태로 계속 사용하거나 원제품에 물을 넣음."
+    }
+  ],
+  "B-G05": [
+    {
+      "when": {
+        "skin.current_discomfort": [
+          "during_mask"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_cosmetic_due_to_discomfort"
+      ],
+      "reason": "skin.current_discomfort_during_mask",
+      "branch_id": "B-G05:1",
+      "kb_clause": "difference_when",
+      "kb_text": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함."
+    },
+    {
+      "when": {
+        "adjunct.care_events": [
+          "label_matched_with_known_purpose"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "adjunct.care_events_label_matched_with_known_purpose",
+      "branch_id": "B-G05:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 제품 지침과 사용 방식이 맞고 중복 목적이 확인됨."
+    },
+    {
+      "when": {
+        "adjunct.care_events": [
+          "unnecessary_exfoliant_stacking"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "adjunct.care_events_unnecessary_exfoliant_stacking",
+      "branch_id": "B-G05:3",
+      "kb_clause": "difference_when",
+      "kb_text": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함."
+    },
+    {
+      "when": {
+        "adjunct.care_events": [
+          "repeated_wiping_outside_purpose"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "adjunct.care_events_repeated_wiping_outside_purpose",
+      "branch_id": "B-G05:4",
+      "kb_clause": "difference_when",
+      "kb_text": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함."
+    },
+    {
+      "when": {
+        "adjunct.care_events": [
+          "exceeded_label_time"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "adjunct.care_events_exceeded_label_time",
+      "branch_id": "B-G05:5",
+      "kb_clause": "difference_when",
+      "kb_text": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함."
+    },
+    {
+      "when": {
+        "adjunct.care_events": [
+          "overnight_against_label"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G05:6",
+      "kb_clause": "difference_when",
+      "kb_text": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함."
+    }
+  ],
+  "B-G06": [
+    {
+      "when": {
+        "adjunct.device_use": [
+          "none"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "adjunct.device_use_none",
+      "branch_id": "B-G06:1",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "미용기기 병용을 보고했을 때만.",
+        "population": "해당 행위·맥락이 있는 성인",
+        "body_site": "성인 얼굴",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "adjunct.device_use": [
+          "device_and_combination_label_matched"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "adjunct.device_use_device_and_combination_label_matched",
+      "branch_id": "B-G06:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "기기별 사용 지침과 실제 병용을 확인할 수 있음."
+    },
+    {
+      "when": {
+        "adjunct.device_use": [
+          "outside_instructions",
+          "increased_despite_discomfort"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "adjunct.device_use_outside_instructions_increased_despite_discomfort",
+      "branch_id": "B-G06:3",
+      "kb_clause": "difference_when",
+      "kb_text": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "ask_targeted_question",
+        "defer_specific_recommendation"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G06:4",
+      "kb_clause": "unknown_when",
+      "kb_text": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음."
+    }
+  ],
+  "B-Q02": [
+    {
+      "when": {
+        "commerce.authorized_path": [
+          "seller_claim_assumed_verified"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "retrieve_product_evidence",
+        "prefer_traceable_purchase_route"
+      ],
+      "reason": "commerce.authorized_path_seller_claim_assumed_verified",
+      "branch_id": "B-Q02:1",
+      "kb_clause": "difference_when",
+      "kb_text": "판매자 주장만으로 공식 경로로 취급하거나 실제 판매자를 확인할 수 없는 경로를 확인된 경로와 동일하게 취급함."
+    },
+    {
+      "when": {
+        "commerce.authorized_path": [
+          "confirmed"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "prefer_traceable_purchase_route"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-Q02:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "retrieve_product_evidence",
+        "prefer_traceable_purchase_route"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-Q02:3",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-Q06": [
+    {
+      "when": {
+        "commerce.end_of_use": [
+          "official_immediate_disposal_instruction"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "commerce.end_of_use_official_immediate_disposal_instruction",
+      "branch_id": "B-Q06:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "공식 지시가 즉시 안전한 폐기를 요구함",
+        "응급 반응이면 문의/기록보다 전문 도움 우선"
+      ]
+    },
+    {
+      "when": {
+        "commerce.end_of_use": [
+          "discard_before_recording"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "preserve_available_records",
+        "contact_seller_or_brand"
+      ],
+      "reason": "commerce.end_of_use_discard_before_recording",
+      "branch_id": "B-Q06:2",
+      "kb_clause": "difference_when",
+      "kb_text": "가품/변질 의심 제품을 국소 테스트로 검증하거나 문의에 필요한 정보를 남기지 않고 무조건 폐기하려 함."
+    },
+    {
+      "when": {
+        "commerce.end_of_use": [
+          "paused_contacted_records_preserved"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "preserve_available_records"
+      ],
+      "reason": "commerce.end_of_use_paused_contacted_records_preserved",
+      "branch_id": "B-Q06:3",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "commerce.authenticity_concern": [
+          "specific_concern"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "contact_seller_or_brand"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-Q06:4",
+      "kb_clause": "difference_when",
+      "kb_text": "가품/변질 의심 제품을 국소 테스트로 검증하거나 문의에 필요한 정보를 남기지 않고 무조건 폐기하려 함."
+    }
+  ],
+  "B-Q05": [
+    {
+      "when": {
+        "commerce.recall_check": [
+          "same_name_assumed_all_batches"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "check_product_batch_and_recall_scope"
+      ],
+      "reason": "commerce.recall_check_same_name_assumed_all_batches",
+      "branch_id": "B-Q05:1",
+      "kb_clause": "difference_when",
+      "kb_text": "대상 일치 공지를 무시하거나 제품명만 같은 다른 제조번호를 회수 대상이라 확정함."
+    },
+    {
+      "when": {
+        "commerce.recall_check": [
+          "confirmed_outside_notice_scope"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "commerce.recall_check_confirmed_outside_notice_scope",
+      "branch_id": "B-Q05:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "commerce.recall_check": [
+          "confirmed_in_notice_scope"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "check_product_batch_and_recall_scope",
+        "pause_specific_product_pending_quality_check",
+        "contact_seller_or_brand"
+      ],
+      "reason": "commerce.recall_check_confirmed_in_notice_scope",
+      "branch_id": "B-Q05:3",
+      "kb_clause": "difference_when",
+      "kb_text": "대상 일치 공지를 무시하거나 제품명만 같은 다른 제조번호를 회수 대상이라 확정함."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "check_product_batch_and_recall_scope",
+        "retrieve_product_evidence"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-Q05:4",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-G11": [
+    {
+      "when": {
+        "product.regulatory_type": [
+          "hair_dye_with_specific_instructions"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "specific_trial_instructions",
+      "branch_id": "B-G11-specific_trial_instructions",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "과거 심한 반응·확인 알레르겐",
+        "의약품/염모제 등 별도 지침",
+        "기한/가품/변질 의심"
+      ]
+    },
+    {
+      "when": {
+        "product.medication_status": [
+          "medication"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "product.medication_status_medication",
+      "branch_id": "B-G11:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "과거 심한 반응·확인 알레르겐",
+        "의약품/염모제 등 별도 지침",
+        "기한/가품/변질 의심"
+      ]
+    },
+    {
+      "when": {
+        "person.known_allergies": [
+          "confirmed_product_allergen",
+          "previous_severe_reaction"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "defer_specific_recommendation",
+        "refer_for_professional_review"
+      ],
+      "reason": "person.known_allergies_confirmed_product_allergen_previous_severe_reaction",
+      "branch_id": "B-G11:2",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "과거 심한 반응·확인 알레르겐",
+        "의약품/염모제 등 별도 지침",
+        "기한/가품/변질 의심"
+      ]
+    },
+    {
+      "when": {
+        "introduction.local_trial": [
+          "many_new_products_widely",
+          "no_reaction_assumed_permanent_safety"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "introduction.local_trial_many_new_products_widely_no_reaction_assumed_permanent_safety",
+      "branch_id": "B-G11:3",
+      "kb_clause": "difference_when",
+      "kb_text": "여러 새 제품을 바로 넓게 사용하거나 국소 무반응을 영구 안전으로 해석함."
+    },
+    {
+      "when": {
+        "introduction.local_trial": [
+          "performed_per_label_no_reaction"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "introduction.local_trial_performed_per_label_no_reaction",
+      "branch_id": "B-G11:4",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "defer_specific_recommendation"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G11:5",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-G13": [
+    {
+      "when": {
+        "product.medication_status": [
+          "medication"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_product_specific_combination"
+      ],
+      "reason": "product.medication_status_medication",
+      "branch_id": "B-G13:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+        "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+        "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+        "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+      ]
+    },
+    {
+      "when": {
+        "routine.co_use_context": [
+          "no_overlapping_use"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "routine.co_use_context_no_overlapping_use",
+      "branch_id": "B-G13:2",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "명확한 관리 목적의 별도 제품들이 같은 부위·루틴 또는 겹치는 사용기간에 함께 사용될 때",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "routine.co_use_context": [
+          "different_sites"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G13:3",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "명확한 관리 목적의 별도 제품들이 같은 부위·루틴 또는 겹치는 사용기간에 함께 사용될 때",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "product.combination_design": [
+          "single_finished_product"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_product_specific_combination"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G13:4",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+        "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+        "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+        "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+      ]
+    },
+    {
+      "when": {
+        "product.active_care_roles": [
+          "reviewed_pair"
+        ],
+        "product.combination_design": [
+          "separate_products"
+        ],
+        "routine.co_use_context": [
+          "same_area_same_session",
+          "same_day_split",
+          "overlapping_period_different_days"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "avoid_unnecessary_active_stacking"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G13:5",
+      "kb_clause": "difference_when",
+      "kb_text": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G13:6",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-G14": [
+    {
+      "when": {
+        "product.medication_status": [
+          "medication"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_product_specific_combination"
+      ],
+      "reason": "product.medication_status_medication",
+      "branch_id": "B-G14:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+        "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+        "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+        "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+      ]
+    },
+    {
+      "when": {
+        "routine.co_use_context": [
+          "no_overlapping_use"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "routine.co_use_context_no_overlapping_use",
+      "branch_id": "B-G14:2",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "명확한 관리 목적의 별도 제품들이 같은 부위·루틴 또는 겹치는 사용기간에 함께 사용될 때",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "routine.co_use_context": [
+          "different_sites"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G14:3",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "명확한 관리 목적의 별도 제품들이 같은 부위·루틴 또는 겹치는 사용기간에 함께 사용될 때",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "product.combination_design": [
+          "single_finished_product"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_product_specific_combination"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G14:4",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+        "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+        "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+        "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+      ]
+    },
+    {
+      "when": {
+        "product.active_care_roles": [
+          "reviewed_pair"
+        ],
+        "product.combination_design": [
+          "separate_products"
+        ],
+        "routine.co_use_context": [
+          "same_area_same_session",
+          "same_day_split",
+          "overlapping_period_different_days"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "avoid_unnecessary_active_stacking"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G14:5",
+      "kb_clause": "difference_when",
+      "kb_text": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G14:6",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-G15": [
+    {
+      "when": {
+        "product.medication_status": [
+          "medication"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_product_specific_combination"
+      ],
+      "reason": "product.medication_status_medication",
+      "branch_id": "B-G15:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+        "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+        "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+        "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+      ]
+    },
+    {
+      "when": {
+        "routine.co_use_context": [
+          "no_overlapping_use"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "routine.co_use_context_no_overlapping_use",
+      "branch_id": "B-G15:2",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "명확한 관리 목적의 별도 제품들이 같은 부위·루틴 또는 겹치는 사용기간에 함께 사용될 때",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "routine.co_use_context": [
+          "different_sites"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G15:3",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "명확한 관리 목적의 별도 제품들이 같은 부위·루틴 또는 겹치는 사용기간에 함께 사용될 때",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "product.combination_design": [
+          "single_finished_product"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_product_specific_combination"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G15:4",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+        "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+        "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+        "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+      ]
+    },
+    {
+      "when": {
+        "product.active_care_roles": [
+          "reviewed_pair"
+        ],
+        "product.combination_design": [
+          "separate_products"
+        ],
+        "routine.co_use_context": [
+          "same_area_same_session",
+          "same_day_split",
+          "overlapping_period_different_days"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "avoid_unnecessary_active_stacking"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G15:5",
+      "kb_clause": "difference_when",
+      "kb_text": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G15:6",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-G16": [
+    {
+      "when": {
+        "product.instructions": [
+          "current_label_type_site_time_matched"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "product.instructions_current_label_type_site_time_matched",
+      "branch_id": "B-G16:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "product.label_warnings": [
+          "generalized_outside_type_site_time"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "product.label_warnings_generalized_outside_type_site_time",
+      "branch_id": "B-G16:2",
+      "kb_clause": "difference_when",
+      "kb_text": "세안 1분을 제모제에 적용하거나, 특정 제모제의 간격/월경 문구를 모든 관리에 확대함."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-G16:3",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-P09": [
+    {
+      "when": {
+        "product.application_form": [
+          "cream",
+          "lotion",
+          "stick"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "non_spray_product",
+      "branch_id": "B-P09-non_spray_product",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "다른 제품 유형이면 해당 사용법 확인"
+      ]
+    },
+    {
+      "when": {
+        "product.application_form": [
+          "nongas_spray",
+          "aerosol"
+        ],
+        "sun.application_method": [
+          "direct_face_spray"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P09:1",
+      "kb_clause": "difference_when",
+      "kb_text": "눈을 감거나 숨을 참는 방식으로 얼굴 직접 분사를 대체하고 있음."
+    },
+    {
+      "when": {
+        "product.application_form": [
+          "nongas_spray",
+          "aerosol"
+        ],
+        "sun.application_method": [
+          "hands_then_face"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P09:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {},
+      "status": "unknown",
+      "actions": [
+        "ask_targeted_question"
+      ],
+      "reason": "explicit_KB_condition",
+      "branch_id": "B-P09:3",
+      "kb_clause": "unknown_when",
+      "kb_text": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다."
+    }
+  ],
+  "B-C05": [
+    {
+      "when": {
+        "cleansing.target_load": [
+          "heavy_sweat",
+          "heavy_soiling",
+          "makeup_requires_removal"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "cleansing.target_load_heavy_sweat_heavy_soiling_makeup_requires_removal",
+      "branch_id": "B-C05:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "심한 발한·오염·메이크업 등 추가 세정 목적",
+        "해당 제품 사용법·의료진 지시"
+      ]
+    },
+    {
+      "when": {
+        "cleansing.repeat_wash": [
+          "purpose_matched"
+        ],
+        "cleansing.target_load": [
+          "confirmed_removal_need"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "cleansing.repeat_wash_purpose_matched",
+      "branch_id": "B-C05:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "반복의 목적이 설명되고 제거 필요·활동과 모순되지 않음."
+    },
+    {
+      "when": {
+        "cleansing.repeat_wash": [
+          "habitual_without_reason"
+        ],
+        "cleansing.target_load": [
+          "no_additional_removal_need"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "cleansing.repeat_wash_habitual_without_reason",
+      "branch_id": "B-C05:3",
+      "kb_clause": "difference_when",
+      "kb_text": "메이크업·땀·표시 사용법 등 추가 이유 없이 습관적으로 반복 세안을 함."
+    }
+  ],
+  "B-C06": [
+    {
+      "when": {
+        "product.type": [
+          "leave_on",
+          "wipe_off"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "product.type_leave_on_wipe_off",
+      "branch_id": "B-C06:1",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "rinse-off 세정제 사용. 닦아내는 제품·leave-on 제품은 별도.",
+        "population": "일반 성인",
+        "body_site": "일상 얼굴 관리 및 관련 보유 제품",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "product.instructions": [
+          "no_water_rinse_required"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "product.instructions_no_water_rinse_required",
+      "branch_id": "B-C06:2",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "물세안이 필요 없는 제품의 별도 사용법",
+        "의료진 지시"
+      ]
+    },
+    {
+      "when": {
+        "method.rinse": [
+          "according_to_label"
+        ],
+        "product.type": [
+          "ordinary_rinse_off_cleanser"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "method.rinse_according_to_label",
+      "branch_id": "B-C06:3",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 제품이 요구하는 헹굼을 수행함."
+    },
+    {
+      "when": {
+        "method.rinse": [
+          "omitted",
+          "omitted_to_meet_time"
+        ],
+        "product.type": [
+          "ordinary_rinse_off_cleanser"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "method.rinse_omitted_omitted_to_meet_time",
+      "branch_id": "B-C06:4",
+      "kb_clause": "difference_when",
+      "kb_text": "씻어내는 제품을 헹구지 않거나 1분을 맞추기 위해 헹굼을 생략함."
+    }
+  ],
+  "B-G04": [
+    {
+      "when": {
+        "method.mixing": [
+          "unreviewed_dilution",
+          "converted_to_spray"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "method.mixing_unreviewed_dilution_converted_to_spray",
+      "branch_id": "B-G04:1",
+      "kb_clause": "difference_when",
+      "kb_text": "사용 근거 없이 사전 혼합·희석하거나 바르는 제품을 분사형으로 전환함."
+    },
+    {
+      "when": {
+        "method.mixing": [
+          "none"
+        ],
+        "method.sequence": [
+          "label_compliant"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "method.mixing_none",
+      "branch_id": "B-G04:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "각 제품을 지시에 맞게 사용하고 확인되지 않은 형태 변경을 하지 않음."
+    },
+    {
+      "when": {
+        "product.instructions": [
+          "explicitly_allows_mixing",
+          "explicitly_allows_dilution",
+          "explicitly_allows_decanting"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "product.instructions_explicitly_allows_mixing_explicitly_allows_dilution_explicitly_allows_decanting",
+      "branch_id": "B-G04:3",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제조사가 명시적으로 안내한 혼합·희석 사용법",
+        "관련 의료진 지시"
+      ]
+    },
+    {
+      "when": {
+        "method.mixing": [
+          "without_instructions",
+          "unreviewed"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "method.mixing_without_instructions_unreviewed",
+      "branch_id": "B-G04:4",
+      "kb_clause": "difference_when",
+      "kb_text": "사용 근거 없이 사전 혼합·희석하거나 바르는 제품을 분사형으로 전환함."
+    }
+  ],
+  "B-S03": [
+    {
+      "when": {
+        "storage.container": [
+          "reviewed_special_container_and_care"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "reviewed_special_storage_context",
+      "branch_id": "B-S03-reviewed_special_storage_context",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제조사 지시에 따른 리필·소분·희석",
+        "적합한 용기와 관리방법이 확인된 특수 상황"
+      ]
+    },
+    {
+      "when": {
+        "storage.container": [
+          "original"
+        ],
+        "storage.handling": [
+          "hygienic"
+        ],
+        "storage.water_ingress": [
+          "none"
+        ],
+        "storage.decanting": [
+          "none"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "storage.container_original",
+      "branch_id": "B-S03:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "용도에 맞는 용기·취급을 유지하고 임의 혼입이 없음."
+    },
+    {
+      "when": {
+        "storage.handling": [
+          "contaminating_contact"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "storage.handling_contaminating_contact",
+      "branch_id": "B-S03:2",
+      "kb_clause": "difference_when",
+      "kb_text": "근거 없이 다른 용기에 옮기거나 물을 섞고 오염 우려가 있는 취급을 함."
+    },
+    {
+      "when": {
+        "storage.water_ingress": [
+          "added_without_instructions"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "storage.water_ingress_added_without_instructions",
+      "branch_id": "B-S03:3",
+      "kb_clause": "difference_when",
+      "kb_text": "근거 없이 다른 용기에 옮기거나 물을 섞고 오염 우려가 있는 취급을 함."
+    },
+    {
+      "when": {
+        "product.instructions": [
+          "explicitly_allows_mixing",
+          "explicitly_allows_dilution",
+          "explicitly_allows_decanting"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "product.instructions_explicitly_allows_mixing_explicitly_allows_dilution_explicitly_allows_decanting",
+      "branch_id": "B-S03:4",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제조사 지시에 따른 리필·소분·희석",
+        "적합한 용기와 관리방법이 확인된 특수 상황"
+      ]
+    },
+    {
+      "when": {
+        "storage.decanting": [
+          "without_instructions",
+          "unreviewed"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "storage.decanting_without_instructions_unreviewed",
+      "branch_id": "B-S03:5",
+      "kb_clause": "difference_when",
+      "kb_text": "근거 없이 다른 용기에 옮기거나 물을 섞고 오염 우려가 있는 취급을 함."
+    }
+  ],
+  "B-B01": [
+    {
+      "when": {
+        "person.clinician_plan": [
+          "none"
+        ],
+        "skin.current_discomfort": [
+          "none"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "person.clinician_plan_none",
+      "branch_id": "B-B01:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨."
+    },
+    {
+      "when": {
+        "skin.current_discomfort": [
+          "persistent",
+          "repeated"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "refer_for_professional_review"
+      ],
+      "reason": "skin.current_discomfort_persistent_repeated",
+      "branch_id": "B-B01:2",
+      "kb_clause": "difference_when",
+      "kb_text": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함."
+    },
+    {
+      "when": {
+        "person.clinician_plan": [
+          "replaced_by_general_rule"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "defer_specific_recommendation",
+        "refer_for_professional_review"
+      ],
+      "reason": "person.clinician_plan_replaced_by_general_rule",
+      "branch_id": "B-B01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함."
+    }
+  ],
+  "B-S02": [
+    {
+      "when": {
+        "storage.expiry": [
+          "confirmed_in_date"
+        ],
+        "storage.pao": [
+          "confirmed_within_label"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "storage.expiry_confirmed_in_date",
+      "branch_id": "B-S02:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음."
+    },
+    {
+      "when": {
+        "storage.pao": [
+          "confirmed_exceeded"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "storage.pao_confirmed_exceeded",
+      "branch_id": "B-S02:2",
+      "kb_clause": "difference_when",
+      "kb_text": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함."
+    },
+    {
+      "when": {
+        "storage.expiry": [
+          "confirmed_expired"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "storage.expiry_confirmed_expired",
+      "branch_id": "B-S02:3",
+      "kb_clause": "difference_when",
+      "kb_text": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함."
+    }
+  ],
+  "B-I02": [
+    {
+      "when": {
+        "sun.pilling": [
+          "present"
+        ],
+        "sun.reapplication": [
+          "matched_to_exposure_and_label"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "sun.pilling_present",
+      "branch_id": "B-I02:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제품별 특수 도포 지시",
+        "새 불편감으로 별도 검토 필요",
+        "실제 행동 변화 없이 밀림만 있는 경우 일반 사용성 검토"
+      ]
+    },
+    {
+      "when": {
+        "sun.pilling": [
+          "none"
+        ],
+        "sun.reapplication": [
+          "matched_to_exposure_and_label"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "sun.pilling_none",
+      "branch_id": "B-I02:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "중첩 사용이 불편하지 않고 필요한 광보호 행동이 유지됨."
+    },
+    {
+      "when": {
+        "sun.pilling": [
+          "present"
+        ],
+        "sun.reapplication": [
+          "reduced_due_to_layering"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "sun.pilling_present",
+      "branch_id": "B-I02:3",
+      "kb_clause": "difference_when",
+      "kb_text": "중첩 불편 때문에 실제 선크림 사용·재도포를 줄이거나 생략한다고 확인됨."
+    }
+  ],
+  "B-G07": [
+    {
+      "when": {
+        "routine.change_log": [
+          "reviewed_against_onset"
+        ],
+        "routine.tolerated_core": [
+          "identified"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "routine.change_log_reviewed_against_onset",
+      "branch_id": "B-G07:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "반응·최근 변화와 유지할 기본 기능을 구분해 검토함."
+    },
+    {
+      "when": {
+        "routine.change_log": [
+          "adding_care_to_mask_discomfort",
+          "stopping_all_core_and_prescriptions"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "review_exception",
+        "maintain_moisturizing_with_tolerated_alternative"
+      ],
+      "reason": "routine.change_log_adding_care_to_mask_discomfort_stopping_all_core_and_prescriptions",
+      "branch_id": "B-G07:2",
+      "kb_clause": "difference_when",
+      "kb_text": "불편을 덮기 위해 추가 관리를 계속 늘리거나 모든 보습·광보호·처방을 일괄 중단하려 함."
+    }
+  ],
+  "B-G08": [
+    {
+      "when": {
+        "product.dispensing_unit_context": [
+          "product_specific_known"
+        ],
+        "product.instructions": [
+          "confirmed_usage"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "product.dispensing_unit_context_product_specific_known",
+      "branch_id": "B-G08:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "제품·용기 단위의 사용량과 용도를 구분함."
+    },
+    {
+      "when": {
+        "product.form_descriptor": [
+          "function_assumed_from_name"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "product.form_descriptor_function_assumed_from_name",
+      "branch_id": "B-G08:2",
+      "kb_clause": "difference_when",
+      "kb_text": "다른 용기 한 펌프를 같은 g으로 계산하거나 상품명만으로 사용 순서·기능을 결정함."
+    },
+    {
+      "when": {
+        "product.dispensing_unit_context": [
+          "equal_grams_assumed_across_pumps"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "product.dispensing_unit_context_equal_grams_assumed_across_pumps",
+      "branch_id": "B-G08:3",
+      "kb_clause": "difference_when",
+      "kb_text": "다른 용기 한 펌프를 같은 g으로 계산하거나 상품명만으로 사용 순서·기능을 결정함."
+    }
+  ],
+  "B-G10": [
+    {
+      "when": {
+        "shaving.technique": [
+          "gentle_with_grain_limited_passes"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "shaving.technique_gentle_with_grain_limited_passes",
+      "branch_id": "B-G10:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "강하게 누르지 않고 털 방향·반복 통과를 관리함."
+    },
+    {
+      "when": {
+        "shaving.technique": [
+          "strong_pressure",
+          "repeated_against_grain"
+        ],
+        "shaving.reaction": [
+          "discomfort"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "shaving.technique_strong_pressure_repeated_against_grain",
+      "branch_id": "B-G10:2",
+      "kb_clause": "difference_when",
+      "kb_text": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함."
+    }
+  ],
+  "B-I03": [
+    {
+      "when": {
+        "skin.post_use_timing": [
+          "immediate_and_delayed_distinguished"
+        ],
+        "routine.change_log": [
+          "reviewed_against_onset"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "skin.post_use_timing_immediate_and_delayed_distinguished",
+      "branch_id": "B-I03:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "도포 직후 사용감과 이후 건조·반응, 최근 동시 변화를 구분함."
+    },
+    {
+      "when": {
+        "moisturizing.comfort": [
+          "sensory_feel_interpreted_as_absorption"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "moisturizing.comfort_sensory_feel_interpreted_as_absorption",
+      "branch_id": "B-I03:2",
+      "kb_clause": "difference_when",
+      "kb_text": "변화 시점 없이 특정 성분을 원인으로 확정하거나 주관적 사용감을 실제 흡수/잔류 측정으로 환산함."
+    },
+    {
+      "when": {
+        "skin.post_use_timing": [
+          "cause_assumed_without_timing"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "skin.post_use_timing_cause_assumed_without_timing",
+      "branch_id": "B-I03:3",
+      "kb_clause": "difference_when",
+      "kb_text": "변화 시점 없이 특정 성분을 원인으로 확정하거나 주관적 사용감을 실제 흡수/잔류 측정으로 환산함."
+    }
+  ],
+  "B-Q01": [
+    {
+      "when": {
+        "constraints.decision_context": [
+          "already_owned_unverified_purchase_path"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "retrieve_product_evidence",
+        "inform_general_practice"
+      ],
+      "reason": "owned_unknown_path_not_counterfeit_verdict",
+      "branch_id": "B-Q01-owned_unknown_path_not_counterfeit_verdict",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "다른 부위/가족/직장/여행 등 별도 사용 목적",
+        "기존 제품에 품질/불편 문제가 있어 대체 필요"
+      ]
+    },
+    {
+      "when": {
+        "commerce.purchase_purpose": [
+          "different_site",
+          "different_household_member",
+          "replacement_for_quality_or_discomfort"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "commerce.purchase_purpose_different_site_different_household_member_replacement_for_quality_or_discomfort",
+      "branch_id": "B-Q01:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "다른 부위/가족/직장/여행 등 별도 사용 목적",
+        "기존 제품에 품질/불편 문제가 있어 대체 필요"
+      ]
+    },
+    {
+      "when": {
+        "commerce.purchase_purpose": [
+          "unmet_role"
+        ],
+        "commerce.inventory": [
+          "reviewed"
+        ],
+        "commerce.planned_start": [
+          "known"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "commerce.purchase_purpose_unmet_role",
+      "branch_id": "B-Q01:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "commerce.purchase_purpose": [
+          "duplicate_fulfilled_role",
+          "excess_without_plan"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_next_selection"
+      ],
+      "reason": "commerce.purchase_purpose_duplicate_fulfilled_role_excess_without_plan",
+      "branch_id": "B-Q01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "충족된 기능을 이유 없이 중복 구매하거나 사용할 계획 없이 과량 구매하려 함. 제품 수만으로 판정하지 않음."
+    }
+  ],
+  "B-Q03": [
+    {
+      "when": {
+        "product.version": [
+          "renewal_assumed_identical",
+          "market_data_overwritten"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "product.version_renewal_assumed_identical_market_data_overwritten",
+      "branch_id": "B-Q03:1",
+      "kb_clause": "difference_when",
+      "kb_text": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀."
+    },
+    {
+      "when": {
+        "product.version": [
+          "identity_inci_instructions_match"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "product.version_identity_inci_instructions_match",
+      "branch_id": "B-Q03:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    }
+  ],
+  "B-Q04": [
+    {
+      "when": {
+        "storage.sensory_change": [
+          "expected_two_phase"
+        ],
+        "product.instructions": [
+          "shake_before_use"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "normal_labelled_two_phase",
+      "branch_id": "B-Q04-normal_labelled_two_phase",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "원래 밀봉씰이 없는 정상 포장",
+        "원래 흔들어 쓰는 제품의 안내된 정상 상태"
+      ]
+    },
+    {
+      "when": {
+        "storage.seal_integrity": [
+          "normal_packaging_without_seal"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "storage.seal_integrity_normal_packaging_without_seal",
+      "branch_id": "B-Q04:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "원래 밀봉씰이 없는 정상 포장",
+        "원래 흔들어 쓰는 제품의 안내된 정상 상태"
+      ]
+    },
+    {
+      "when": {
+        "commerce.received_condition": [
+          "checked_matches_label_and_packaging"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "commerce.received_condition_checked_matches_label_and_packaging",
+      "branch_id": "B-Q04:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "storage.expiry": [
+          "confirmed_expired"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "contact_seller_or_brand"
+      ],
+      "reason": "storage.expiry_confirmed_expired",
+      "branch_id": "B-Q04:3",
+      "kb_clause": "difference_when",
+      "kb_text": "명백한 누출·파손·제품 불일치·기한 경과를 인지했지만 확인 없이 사용함."
+    },
+    {
+      "when": {
+        "commerce.received_condition": [
+          "leaking",
+          "damaged",
+          "wrong_product"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "pause_specific_product_pending_quality_check",
+        "contact_seller_or_brand"
+      ],
+      "reason": "commerce.received_condition_leaking_damaged_wrong_product",
+      "branch_id": "B-Q04:4",
+      "kb_clause": "difference_when",
+      "kb_text": "명백한 누출·파손·제품 불일치·기한 경과를 인지했지만 확인 없이 사용함."
+    }
+  ],
+  "B-G12": [
+    {
+      "when": {
+        "introduction.change_scope": [
+          "multiple_quality_problems"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "introduction.change_scope_multiple_quality_problems",
+      "branch_id": "B-G12:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "의료진의 동시 치료 계획",
+        "여러 제품이 동시에 품질/반응 문제"
+      ]
+    },
+    {
+      "when": {
+        "introduction.change_scope": [
+          "many_changes_single_cause_claimed"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "introduction.change_scope_many_changes_single_cause_claimed",
+      "branch_id": "B-G12:2",
+      "kb_clause": "difference_when",
+      "kb_text": "동시에 많은 변경을 하고 이후 변화를 특정 한 제품/성분 탓으로 확정함."
+    },
+    {
+      "when": {
+        "introduction.change_scope": [
+          "one_identifiable_change"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "introduction.change_scope_one_identifiable_change",
+      "branch_id": "B-G12:3",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    }
+  ],
+  "B-G17": [
+    {
+      "when": {
+        "product.label_warnings": [
+          "regulatory_version_not_verified"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "reason": "allergen_label_version_unverified",
+      "branch_id": "B-G17-allergen_label_version_unverified",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "알레르겐 정체가 불명확",
+        "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+      ]
+    },
+    {
+      "when": {
+        "person.known_allergies": [
+          "identity_uncertain"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "reason": "person.known_allergies_identity_uncertain",
+      "branch_id": "B-G17:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "알레르겐 정체가 불명확",
+        "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+      ]
+    },
+    {
+      "when": {
+        "person.known_allergies": [
+          "identity_matched_to_label"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "person.known_allergies_identity_matched_to_label",
+      "branch_id": "B-G17:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "product.label_warnings": [
+          "listed_means_banned_for_everyone",
+          "unlisted_means_absent"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "inform_general_practice",
+        "retrieve_product_evidence"
+      ],
+      "reason": "product.label_warnings_listed_means_banned_for_everyone_unlisted_means_absent",
+      "branch_id": "B-G17:3",
+      "kb_clause": "difference_when",
+      "kb_text": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함."
+    }
+  ],
+  "B-I04": [
+    {
+      "when": {
+        "product.active_care_roles": [
+          "reviewed_no_aha_exfoliating"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "product.active_care_roles_reviewed_no_aha_exfoliating",
+      "branch_id": "B-I04:1",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "AHA 각질관리 또는 병용 조정",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "method.current_routine": [
+          "needed_moisturizing_and_protection_maintained"
+        ],
+        "product.active_care_roles": [
+          "reviewed_aha_exfoliating"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "method.current_routine_needed_moisturizing_and_protection_maintained",
+      "branch_id": "B-I04:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "method.current_routine": [
+          "aha_strengthened_protection_omitted",
+          "core_stopped_due_to_combination"
+        ],
+        "product.active_care_roles": [
+          "reviewed_aha_exfoliating"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "method.current_routine_aha_strengthened_protection_omitted_core_stopped_due_to_combination",
+      "branch_id": "B-I04:3",
+      "kb_clause": "difference_when",
+      "kb_text": "AHA 관리만 강화하면서 표시 광보호를 누락하거나 병용 회피를 이유로 보습/광보호를 일괄 중단함."
+    }
+  ],
+  "B-S07": [
+    {
+      "when": {
+        "storage.sharing_refill": [
+          "manufacturer_permitted_refill",
+          "no_contact_path"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "storage.sharing_refill_manufacturer_permitted_refill_no_contact_path",
+      "branch_id": "B-S07:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "제품이 허용한 리필 방법",
+        "접촉 경로가 없는 가정 내 사용 등은 실제 사용방법을 구분"
+      ]
+    },
+    {
+      "when": {
+        "storage.sharing_refill": [
+          "no_sharing_or_refill"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "storage.sharing_refill_no_sharing_or_refill",
+      "branch_id": "B-S07:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "storage.sharing_refill": [
+          "skin_contact_shared",
+          "topping_up_without_instructions"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "storage.sharing_refill_skin_contact_shared_topping_up_without_instructions",
+      "branch_id": "B-S07:3",
+      "kb_clause": "difference_when",
+      "kb_text": "직접 피부에 닿은 제품/도구를 공유하거나 원래 지침 없는 용기·잔량 위 덧붓기를 함."
+    }
+  ],
+  "B-L01": [
+    {
+      "when": {
+        "environment.indirect_products": [
+          "no_contact_path"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "environment.indirect_products_no_contact_path",
+      "branch_id": "B-L01:1",
+      "kb_clause": "scope",
+      "kb_text": {
+        "applies_when": "특정 부위 반복 반응 또는 최근 비얼굴제품 변경",
+        "population": "일반 성인 중심; 별도 대상·법정 유형은 각 근거의 범위에 한정",
+        "body_site": "해당 제품의 표시 사용부위 및 확인된 실제 접촉 부위",
+        "symptoms_required": false
+      }
+    },
+    {
+      "when": {
+        "environment.indirect_products": [
+          "contact_paths_reviewed_with_timing"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "environment.indirect_products_contact_paths_reviewed_with_timing",
+      "branch_id": "B-L01:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "environment.indirect_products": [
+          "known_contact_ignored",
+          "contact_assumed_cause"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "ask_targeted_question",
+        "inform_general_practice"
+      ],
+      "reason": "environment.indirect_products_known_contact_ignored_contact_assumed_cause",
+      "branch_id": "B-L01:3",
+      "kb_clause": "difference_when",
+      "kb_text": "얼굴용 제품만 보고 다른 확인된 접촉 경로를 제외하거나 반대로 접촉만으로 원인을 확정함."
+    }
+  ],
+  "B-L02": [
+    {
+      "when": {
+        "hand.protection_hygiene": [
+          "mandatory_work_hygiene"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception",
+        "inform_general_practice"
+      ],
+      "reason": "hand.protection_hygiene_mandatory_work_hygiene",
+      "branch_id": "B-L02:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "필수 위생·작업 보호 지침",
+        "확인된 개별 알레르기/의료진 지시"
+      ]
+    },
+    {
+      "when": {
+        "hand.protection_hygiene": [
+          "exposure_and_protection_reviewed"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "hand.protection_hygiene_exposure_and_protection_reviewed",
+      "branch_id": "B-L02:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "hand.protection_hygiene": [
+          "wet_inside_gloves_ignored",
+          "repeated_exposure_ignored"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "hand.protection_hygiene_wet_inside_gloves_ignored_repeated_exposure_ignored",
+      "branch_id": "B-L02:3",
+      "kb_clause": "difference_when",
+      "kb_text": "보습제만 계속 교체하고 확인된 반복 노출·안쪽이 젖은 보호장갑 등을 전혀 고려하지 않음."
+    }
+  ],
+  "B-L03": [
+    {
+      "when": {
+        "environment.friction_gear": [
+          "certified_fit_requirement"
+        ]
+      },
+      "status": "exception",
+      "actions": [
+        "review_exception"
+      ],
+      "reason": "environment.friction_gear_certified_fit_requirement",
+      "branch_id": "B-L03:1",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "보호장비의 공인 착용 기준이 우선"
+      ]
+    },
+    {
+      "when": {
+        "environment.friction_gear": [
+          "fit_and_wetness_managed"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "environment.friction_gear_fit_and_wetness_managed",
+      "branch_id": "B-L03:2",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "environment.friction_gear": [
+          "confirmed_wet_friction_ignored",
+          "protective_gear_abandoned"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "reason": "environment.friction_gear_confirmed_wet_friction_ignored_protective_gear_abandoned",
+      "branch_id": "B-L03:3",
+      "kb_clause": "difference_when",
+      "kb_text": "지속 마찰·젖음을 확인했는데도 제품 성분만 바꾸거나 보호장비를 아예 포기함."
+    }
+  ],
+  "B-H02": [
+    {
+      "when": {
+        "routine.change_log": [
+          "no_related_changes",
+          "declined_recent_changes"
+        ]
+      },
+      "status": "not_applicable",
+      "actions": [
+        "inform_general_practice"
+      ],
+      "reason": "optional_changes_not_reported",
+      "branch_id": "B-H02-optional_changes_not_reported",
+      "kb_clause": "exception_when",
+      "kb_text": [
+        "답변 거부/관련 변화 없음은 일반 안내 계속"
+      ]
+    },
+    {
+      "when": {
+        "routine.change_log": [
+          "health_events_reviewed_without_causal_claim"
+        ]
+      },
+      "status": "aligned",
+      "actions": [
+        "maintain"
+      ],
+      "reason": "routine.change_log_health_events_reviewed_without_causal_claim",
+      "branch_id": "B-H02:1",
+      "kb_clause": "aligned_when",
+      "kb_text": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음."
+    },
+    {
+      "when": {
+        "skin.onset": [
+          "recent_events_ignored_cause_claimed",
+          "medication_cause_assumed"
+        ]
+      },
+      "status": "difference",
+      "actions": [
+        "ask_targeted_question",
+        "inform_general_practice"
+      ],
+      "reason": "skin.onset_recent_events_ignored_cause_claimed_medication_cause_assumed",
+      "branch_id": "B-H02:2",
+      "kb_clause": "difference_when",
+      "kb_text": "최근 사건을 전혀 보지 않고 화장품 원인을 확정하거나 반대로 약물/호르몬 때문이라고 단정함."
+    }
+  ],
+  "B-P01": [],
+  "B-P05": [],
+  "B-P07": []
+}

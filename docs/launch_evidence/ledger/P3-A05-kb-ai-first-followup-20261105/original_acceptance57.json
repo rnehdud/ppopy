@@ -1,0 +1,2418 @@
+{
+  "kb_sha256": "10e054a8f6f2b363a4a991a3adc096604a11ad115c0ddd01f51789f75b5529dd",
+  "original_count": 57,
+  "summary": {
+    "expected_satisfied": 52,
+    "input_spec_conflict": 2,
+    "policy_isolated": 1,
+    "expectation_conflict": 2
+  },
+  "scenarios": [
+    {
+      "id": "T01",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "inform_general_practice"
+        ]
+      },
+      "original_facts": {
+        "method.water_temperature": "hot",
+        "skin.current_discomfort": "none"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C01": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C01": [
+          "S03"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T02",
+      "original_expectation": {
+        "expected_comparison": "mixed_by_card",
+        "expected_action_types": [
+          "maintain",
+          "retrieve_product_evidence"
+        ]
+      },
+      "original_facts": {
+        "method.water_temperature": "lukewarm",
+        "method.tools": "hands",
+        "method.friction": "gentle",
+        "product.ph": null
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C01": "aligned",
+        "B-C02": "unknown",
+        "B-C04": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C01": [
+          "S03"
+        ],
+        "B-C02": [
+          "S03"
+        ],
+        "B-C04": [
+          "U02",
+          "S07"
+        ]
+      },
+      "questions": [
+        {
+          "field": "method.drying",
+          "text": "물기를 닦을 때 수건으로 문지르나요, 가볍게 눌러 닦나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-C02"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "maintain",
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T03",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "product.type": "ordinary_rinse_off_cleanser",
+        "dose.contact_time": {
+          "range_seconds": [
+            180,
+            300
+          ],
+          "phase": "before_rinsing"
+        },
+        "product.instructions": "no_special_duration"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C03": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C03": [
+          "U01"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T04",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "inform_general_practice"
+        ]
+      },
+      "original_facts": {
+        "dose.contact_time": {
+          "range_seconds": [
+            50,
+            80
+          ],
+          "confidence": "approximate"
+        }
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C03": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C03": [
+          "U01"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T05",
+      "original_expectation": {
+        "expected_comparison": "exception",
+        "expected_action_types": [
+          "review_exception"
+        ]
+      },
+      "original_facts": {
+        "product.type": "special_use_product",
+        "product.instructions": "specific_contact_time"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C03": "exception",
+        "B-G03": "exception"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C03": [
+          "U01"
+        ],
+        "B-G03": [
+          "D01",
+          "S15"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "review_exception"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T06",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "inform_next_selection",
+          "maintain"
+        ]
+      },
+      "original_facts": {
+        "product.fragrance": "declared_present",
+        "skin.current_discomfort": "none",
+        "person.known_allergies": "none_reported",
+        "constraints.decision_context": "current_routine_review"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G01": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G01": [
+          "U02",
+          "S04",
+          "S15",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection",
+        "maintain"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T07",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "constraints.decision_context": "new_product_selection",
+        "product.fragrance": "declared_present"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G01": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G01": [
+          "U02",
+          "S04",
+          "S15",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T08",
+      "original_expectation": {
+        "expected_comparison": "mixed_by_card",
+        "expected_action_types": [
+          "inform_general_practice"
+        ]
+      },
+      "original_facts": {
+        "method.water_temperature": "hot",
+        "measure.tewl": null,
+        "measure.surface_ph": null
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C01": "difference",
+        "B-M01": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C01": [
+          "S03"
+        ],
+        "B-M01": [
+          "S04"
+        ]
+      },
+      "questions": [
+        {
+          "field": "method.current_routine",
+          "text": "실제로 사용하는 제품·시간대·빈도·단계의 기본 루틴에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M01"
+          ]
+        },
+        {
+          "field": "method.skin_wetness",
+          "text": "보습제를 바를 때 피부가 조금 촉촉한가요, 완전히 마른 상태인가요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M01"
+          ]
+        },
+        {
+          "field": "moisturizing.after_wash_delay",
+          "text": "세안 후 보습제를 바르기까지 보통 어느 정도 간격이 있나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M01"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "inform_general_practice",
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T09",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "maintain",
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.ph": "confirmed_other_than_mildly_acidic",
+        "skin.current_discomfort": "none",
+        "constraints.decision_context": "current_routine_review"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C04": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C04": [
+          "U02",
+          "S07"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection",
+        "maintain"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T10",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "dose.proxy_amount": "deliberately_minimal",
+        "cleansing.steps": "burdensome",
+        "sun.outdoor_time": "prolonged"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P02": "difference",
+        "B-I01": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P02": [
+          "S05",
+          "S16"
+        ],
+        "B-I01": [
+          "D01",
+          "S05",
+          "S08"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T11",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "ask_targeted_question",
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "skin.dryness": "persistent",
+        "dose.proxy_amount": "reduced_all_products"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M02": "difference",
+        "B-G02": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M02": [
+          "S04",
+          "D01"
+        ],
+        "B-G02": [
+          "D01",
+          "S01"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "ask_targeted_question",
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T12",
+      "original_expectation": {
+        "expected_comparison": "not_applicable",
+        "expected_action_types": [
+          "maintain"
+        ]
+      },
+      "original_facts": {
+        "sun.outdoor_time": "none",
+        "sun.window_context": "none_reported",
+        "sun.water_contact": "none",
+        "sun.sweat": "none"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P03": "not_applicable"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P03": [
+          "S16",
+          "S05"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "maintain"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T13",
+      "original_expectation": {
+        "expected_comparison": "mixed_by_card",
+        "expected_action_types": [
+          "inform_general_practice",
+          "retrieve_product_evidence"
+        ]
+      },
+      "original_facts": {
+        "storage.temperature_history": "hot_car",
+        "storage.sensory_change": "none_reported"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-S01": "difference",
+        "B-S04": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-S01": [
+          "S06",
+          "S05"
+        ],
+        "B-S04": [
+          "D01",
+          "S06"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice",
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T14",
+      "original_expectation": {
+        "expected_comparison": "conflicting",
+        "expected_action_types": [
+          "retrieve_product_evidence"
+        ]
+      },
+      "original_facts": {
+        "product.fragrance": "conflicting"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G01": "conflicting"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G01": [
+          "U02",
+          "S04",
+          "S15",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T15",
+      "original_expectation": {
+        "expected_comparison": "not_applicable",
+        "expected_action_types": [
+          "ask_targeted_question"
+        ]
+      },
+      "original_facts": {
+        "lifestyle.sleep_duration": "shorter_than_usual"
+      },
+      "facts_unchanged": true,
+      "statuses": {},
+      "context_result": {
+        "comparison_status": "not_applicable",
+        "action_types": [
+          "ask_targeted_question"
+        ],
+        "reason": "no_supported_baseline_selected"
+      },
+      "evidence_by_card": {},
+      "questions": [
+        {
+          "field": "skin.current_discomfort",
+          "text": "현재 불편감 유무에 대한 간단한 자기보고에 대해 알려주세요.",
+          "card_ids": [],
+          "wording_status": "development_draft"
+        },
+        {
+          "field": "method.current_routine",
+          "text": "실제로 사용하는 제품·시간대·빈도·단계의 기본 루틴에 대해 알려주세요.",
+          "card_ids": [],
+          "wording_status": "development_draft"
+        }
+      ],
+      "actions": [
+        "ask_targeted_question"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T16",
+      "original_expectation": {
+        "expected_comparison": "aligned",
+        "expected_action_types": [
+          "maintain"
+        ]
+      },
+      "original_facts": {
+        "method.current_routine": "moisturizing_function_used",
+        "skin.dryness": "none",
+        "moisturizing.comfort": "comfortable"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M03": "aligned"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M03": [
+          "D01"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "maintain"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T17",
+      "original_expectation": {
+        "expected_comparison": "aligned",
+        "expected_action_types": [
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.uv_filter_preference_profile": "matches_reviewed_preference",
+        "product.private_formulation": null,
+        "constraints.decision_context": "new_selection"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P01": "unknown",
+        "B-P05": "aligned"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P01": [
+          "S16",
+          "U03",
+          "D02"
+        ],
+        "B-P05": [
+          "U03",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection",
+        "retrieve_product_evidence"
+      ],
+      "failures": [
+        "expected_comparison"
+      ],
+      "category": "input_spec_conflict",
+      "reason": "Description asserts basic protection; facts omit SPF/UVA and exposure. P01 must remain unknown."
+    },
+    {
+      "id": "T18",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "maintain",
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.uv_filter_preference_profile": "mixed_profile",
+        "skin.eye_stinging": "none",
+        "sun.prior_tolerated_products": "current_product"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P05": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P05": [
+          "U03",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection",
+        "maintain"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T19",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "product.uv_filter_preference_profile": "matches_reviewed_preference",
+        "product.manufacturer_preference": "qualitative_favorable_tiebreaker",
+        "skin.eye_stinging": "recurrent"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P05": "exception",
+        "B-P06": "difference",
+        "B-P07": "exception"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P05": [
+          "U03",
+          "D02"
+        ],
+        "B-P06": [
+          "U05",
+          "S17",
+          "S05",
+          "D02"
+        ],
+        "B-P07": [
+          "U04",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "review_exception",
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T20",
+      "original_expectation": {
+        "expected_comparison": "aligned",
+        "expected_action_types": [
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.manufacturer": "한국콜마",
+        "product.manufacturer_preference": "qualitative_favorable_tiebreaker",
+        "constraints.decision_context": "new_selection"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P07": "aligned"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P07": [
+          "U04",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection"
+      ],
+      "failures": [],
+      "category": "policy_isolated",
+      "reason": "MP-01 opinion comparison works; using it as a candidate tiebreaker conflicts with production manufacturer_name_weight=0/prohibited name bonus. No ranking activated."
+    },
+    {
+      "id": "T21",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.manufacturer": null,
+        "product.identity": "brand_known"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P07": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P07": [
+          "U04",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T22",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "pause_specific_product_pending_quality_check",
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.uv_filter_preference_profile": "matches_reviewed_preference",
+        "storage.expiry": "confirmed_expired"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P05": "aligned",
+        "B-P08": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P05": [
+          "U03",
+          "D02"
+        ],
+        "B-P08": [
+          "S05",
+          "S18",
+          "U05",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "defer_specific_recommendation",
+        "inform_next_selection",
+        "pause_specific_product_pending_quality_check"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T23",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "ask_targeted_question"
+        ]
+      },
+      "original_facts": {
+        "storage.purchased_at": "long_ago_approximate",
+        "storage.expiry": null,
+        "storage.opened_at": null
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P08": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P08": [
+          "S05",
+          "S18",
+          "U05",
+          "D02"
+        ]
+      },
+      "questions": [
+        {
+          "field": "storage.expiry",
+          "text": "용기에 표시된 사용기한을 확인할 수 있나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-P08"
+          ]
+        },
+        {
+          "field": "storage.light_air",
+          "text": "보관할 때 직사광선에 노출되거나 뚜껑을 열어두는 일이 있나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-P08"
+          ]
+        },
+        {
+          "field": "storage.opened_at",
+          "text": "대략 언제 개봉했나요? 기억이 정확하지 않으면 그렇게 표시합니다.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-P08"
+          ]
+        },
+        {
+          "field": "storage.pao",
+          "text": "제품에 개봉 후 사용기간 안내가 적혀 있나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-P08"
+          ]
+        },
+        {
+          "field": "storage.seal_integrity",
+          "text": "용기나 뚜껑에 누수·손상이 있나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-P08"
+          ]
+        },
+        {
+          "field": "storage.sensory_change",
+          "text": "처음과 다르게 냄새·색·분리·질감이 변했나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-P08"
+          ]
+        },
+        {
+          "field": "storage.temperature_history",
+          "text": "보유 제품을 뜨거운 차 안처럼 열이 많이 나는 곳에 둔 적이 있나요?",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-P08"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T24",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "skin.eye_stinging": "recurrent",
+        "sun.periocular_application": "avoided",
+        "sun.shade_clothing": "none"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P06": "difference",
+        "B-P04": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P06": [
+          "U05",
+          "S17",
+          "S05",
+          "D02"
+        ],
+        "B-P04": [
+          "S05",
+          "S16"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T25",
+      "original_expectation": {
+        "expected_comparison": "exception",
+        "expected_action_types": [
+          "maintain",
+          "review_exception"
+        ]
+      },
+      "original_facts": {
+        "storage.sensory_change": "expected_two_phase",
+        "product.instructions": "shake_before_use"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P08": "exception",
+        "B-S04": "exception"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P08": [
+          "S05",
+          "S18",
+          "U05",
+          "D02"
+        ],
+        "B-S04": [
+          "D01",
+          "S06"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "maintain",
+        "review_exception"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T26",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.uv_filters": {
+          "delivery_form": "aqueous_dispersion",
+          "molecular_solubility": "unknown"
+        },
+        "product.uv_filter_preference_profile": "unclassified"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P05": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P05": [
+          "U03",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice",
+        "inform_next_selection"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T27",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "inform_general_practice"
+        ]
+      },
+      "original_facts": {
+        "product.uv_filters": {
+          "relative_size_tag": "unclassified"
+        },
+        "product.uv_filter_preference_profile": "unclassified"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P05": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P05": [
+          "U03",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice",
+        "inform_next_selection"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T28",
+      "original_expectation": {
+        "expected_comparison": "exception",
+        "expected_action_types": [
+          "maintain",
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.uv_filter_preference_profile": "does_not_match_reviewed_preference",
+        "sun.prior_tolerated_products": "available_product"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P01": "unknown",
+        "B-P05": "exception"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P01": [
+          "S16",
+          "U03",
+          "D02"
+        ],
+        "B-P05": [
+          "U03",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection",
+        "maintain",
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T29",
+      "original_expectation": {
+        "expected_comparison": "mixed_by_card",
+        "expected_action_types": [
+          "maintain",
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "product.private_formulation": null,
+        "skin.eye_stinging": "none"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P05": "unknown",
+        "B-P06": "aligned"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P05": [
+          "U03",
+          "D02"
+        ],
+        "B-P06": [
+          "U05",
+          "S17",
+          "S05",
+          "D02"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice",
+        "inform_next_selection",
+        "maintain"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T30",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "pause_specific_product_pending_quality_check",
+          "inform_next_selection"
+        ]
+      },
+      "original_facts": {
+        "storage.temperature_history": "hot_car",
+        "storage.sensory_change": "new_odor_and_texture"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P08": "difference",
+        "B-S04": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P08": [
+          "S05",
+          "S18",
+          "U05",
+          "D02"
+        ],
+        "B-S04": [
+          "D01",
+          "S06"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_next_selection",
+        "pause_specific_product_pending_quality_check"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T31",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "inform_general_practice",
+          "maintain_moisturizing_with_tolerated_alternative"
+        ]
+      },
+      "original_facts": {
+        "hand.moisturizing_pattern": "all_moisturizers_stopped_because_eczema"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M04": "difference",
+        "B-G01": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M04": [
+          "F01",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29",
+          "D03"
+        ],
+        "B-G01": [
+          "U02",
+          "S04",
+          "S15",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice",
+        "maintain_moisturizing_with_tolerated_alternative",
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T32",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "pause_specific_cosmetic_due_to_discomfort",
+          "maintain_moisturizing_with_tolerated_alternative"
+        ]
+      },
+      "original_facts": {
+        "product.fragrance": "present",
+        "hand.product_reaction": "recurrent_stinging"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M04": "difference",
+        "B-G01": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M04": [
+          "F01",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29",
+          "D03"
+        ],
+        "B-G01": [
+          "U02",
+          "S04",
+          "S15",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "defer_specific_recommendation",
+        "maintain_moisturizing_with_tolerated_alternative",
+        "pause_specific_cosmetic_due_to_discomfort"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T33",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "ask_targeted_question",
+          "inform_general_practice"
+        ]
+      },
+      "original_facts": {
+        "product.essential_oils": "none_confirmed",
+        "product.occlusives": "mineral_oil_present"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M04": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M04": [
+          "F01",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29",
+          "D03"
+        ]
+      },
+      "questions": [
+        {
+          "field": "hand.moisturizing_pattern",
+          "text": "손 보습 제품·시점·사용 중단 이유에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.product_reaction",
+          "text": "손 보습제품 사용 후 반응·반복·강도에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.protection_hygiene",
+          "text": "손 건조·장갑 사용과 안쪽 젖음에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.wet_work",
+          "text": "손 씻기·세제·습식작업의 패턴에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "person.diagnosed_conditions",
+          "text": "전문가에게 진단받은 피부질환에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "person.known_allergies",
+          "text": "확인된 알레르기와 확인 근거에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "skin.hand_observation",
+          "text": "손의 건조·가려움·따가움·갈라짐 및 시점에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "defer_specific_recommendation",
+        "inform_general_practice"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T34",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "pause_specific_cosmetic_due_to_discomfort",
+          "refer_for_professional_review"
+        ]
+      },
+      "original_facts": {
+        "product.fragrance": "fragrance_free",
+        "hand.product_reaction": "worsening"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M04": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M04": [
+          "F01",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29",
+          "D03"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "pause_specific_cosmetic_due_to_discomfort",
+        "refer_for_professional_review"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T35",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "shaving.method": "manual",
+        "shaving.blade_use_history": {
+          "uses": 7
+        },
+        "shaving.blade_condition": "pulling"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-S06": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-S06": [
+          "U07",
+          "S23",
+          "S24",
+          "D03"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T36",
+      "original_expectation": {
+        "expected_comparison": "exception",
+        "expected_action_types": [
+          "review_exception"
+        ],
+        "expected_by_card": {
+          "B-G09": "exception",
+          "B-S06": "unknown"
+        }
+      },
+      "original_facts": {
+        "shaving.method": "electric_dry_only"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G09": "exception",
+        "B-S06": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G09": [
+          "U07",
+          "S23",
+          "S24",
+          "D03"
+        ],
+        "B-S06": [
+          "U07",
+          "S23",
+          "S24",
+          "D03"
+        ]
+      },
+      "questions": [
+        {
+          "field": "shaving.blade_condition",
+          "text": "날/헤드의 당김·손상·부식·변화에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-S06"
+          ]
+        },
+        {
+          "field": "shaving.blade_use_history",
+          "text": "마지막 교체 시점과 교체 후 면도 횟수에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-S06"
+          ]
+        },
+        {
+          "field": "shaving.care",
+          "text": "면도기 사용 후 헹굼·세척·건조·보관에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-S06"
+          ]
+        },
+        {
+          "field": "shaving.method",
+          "text": "수동 날/전기·건식/습식·기기 지침에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-S06"
+          ]
+        },
+        {
+          "field": "shaving.reaction",
+          "text": "면도 전후 따가움·붉어짐·상처·돌기에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-S06"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "retrieve_product_evidence",
+        "review_exception"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T37",
+      "original_expectation": {
+        "expected_comparison": "exception",
+        "expected_action_types": [
+          "maintain"
+        ],
+        "expected_by_card": {
+          "B-G09": "aligned",
+          "B-C03": "not_applicable"
+        }
+      },
+      "original_facts": {
+        "shaving.preparation": "label_compliant"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G09": "aligned",
+        "B-C03": "not_applicable"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G09": [
+          "U07",
+          "S23",
+          "S24",
+          "D03"
+        ],
+        "B-C03": [
+          "U01"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "maintain",
+        "review_current_label_scope"
+      ],
+      "failures": [
+        "expected_comparison"
+      ],
+      "category": "expectation_conflict",
+      "reason": "expected_comparison=exception conflicts with expected_by_card={B-G09:aligned,B-C03:not_applicable}. Both are preserved."
+    },
+    {
+      "id": "T38",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "pause_specific_cosmetic_due_to_discomfort",
+          "maintain_moisturizing_with_tolerated_alternative"
+        ]
+      },
+      "original_facts": {
+        "shaving.reaction": "aftershave_stings"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M05": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M05": [
+          "U07",
+          "S24",
+          "S25",
+          "D03"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "maintain_moisturizing_with_tolerated_alternative",
+        "pause_specific_cosmetic_due_to_discomfort"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T39",
+      "original_expectation": {
+        "expected_comparison": "not_applicable",
+        "expected_action_types": [
+          "inform_general_practice"
+        ]
+      },
+      "original_facts": {
+        "cycle.observation_consent": "declined"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-H01": "not_applicable"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-H01": [
+          "F01",
+          "U07",
+          "S28",
+          "D03"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "inform_general_practice"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T40",
+      "original_expectation": {
+        "expected_comparison": "exception",
+        "expected_action_types": [
+          "refer_for_professional_review"
+        ]
+      },
+      "original_facts": {
+        "cycle.relative_timing": "before",
+        "skin.pain": "new_severe"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-H01": "exception",
+        "B-B01": "exception"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-H01": [
+          "F01",
+          "U07",
+          "S28",
+          "D03"
+        ],
+        "B-B01": [
+          "D01",
+          "S04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "refer_for_professional_review"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T41",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "defer_specific_recommendation"
+        ]
+      },
+      "original_facts": {},
+      "facts_unchanged": true,
+      "statuses": {
+        "B-M04": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-M04": [
+          "F01",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29",
+          "D03"
+        ]
+      },
+      "questions": [
+        {
+          "field": "hand.moisturizing_pattern",
+          "text": "손 보습 제품·시점·사용 중단 이유에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.product_reaction",
+          "text": "손 보습제품 사용 후 반응·반복·강도에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.protection_hygiene",
+          "text": "손 건조·장갑 사용과 안쪽 젖음에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.wet_work",
+          "text": "손 씻기·세제·습식작업의 패턴에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "person.diagnosed_conditions",
+          "text": "전문가에게 진단받은 피부질환에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "person.known_allergies",
+          "text": "확인된 알레르기와 확인 근거에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "skin.hand_observation",
+          "text": "손의 건조·가려움·따가움·갈라짐 및 시점에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "defer_specific_recommendation",
+        "inform_general_practice"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T42",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "tool.care_state": "wet_unwashed_repeated"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-S05": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-S05": [
+          "F01",
+          "S23",
+          "S27",
+          "D03"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T43",
+      "original_expectation": {
+        "expected_comparison": "unknown",
+        "expected_action_types": [
+          "ask_targeted_question",
+          "defer_specific_recommendation"
+        ]
+      },
+      "original_facts": {
+        "adjunct.device_use": "unspecified"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G06": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G06": [
+          "F01",
+          "D03"
+        ]
+      },
+      "questions": [
+        {
+          "field": "skin.current_discomfort",
+          "text": "현재 불편감 유무에 대한 간단한 자기보고에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-G06"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "defer_specific_recommendation"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T44",
+      "original_expectation": {
+        "expected_comparison": "difference",
+        "expected_action_types": [
+          "suggest_behavior_change"
+        ]
+      },
+      "original_facts": {
+        "adjunct.care_events": "overnight_against_label"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G05": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G05": [
+          "F01",
+          "S26",
+          "D03"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "suggest_behavior_change"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "T45",
+      "original_expectation": {
+        "expected_comparison": "not_applicable",
+        "expected_action_types": [
+          "review_exception"
+        ],
+        "expected_by_card": {
+          "B-C03": "not_applicable",
+          "B-M04": "unknown"
+        }
+      },
+      "original_facts": {
+        "method.body_site": "hands"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-C03": "not_applicable",
+        "B-M04": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-C03": [
+          "U01"
+        ],
+        "B-M04": [
+          "F01",
+          "U06",
+          "S20",
+          "S21",
+          "S22",
+          "S29",
+          "D03"
+        ]
+      },
+      "questions": [
+        {
+          "field": "hand.moisturizing_pattern",
+          "text": "손 보습 제품·시점·사용 중단 이유에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.product_reaction",
+          "text": "손 보습제품 사용 후 반응·반복·강도에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.protection_hygiene",
+          "text": "손 건조·장갑 사용과 안쪽 젖음에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "hand.wet_work",
+          "text": "손 씻기·세제·습식작업의 패턴에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "person.diagnosed_conditions",
+          "text": "전문가에게 진단받은 피부질환에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "person.known_allergies",
+          "text": "확인된 알레르기와 확인 근거에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        },
+        {
+          "field": "skin.hand_observation",
+          "text": "손의 건조·가려움·따가움·갈라짐 및 시점에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-M04"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "defer_specific_recommendation",
+        "inform_general_practice",
+        "review_exception"
+      ],
+      "failures": [
+        "expected_comparison"
+      ],
+      "category": "expectation_conflict",
+      "reason": "expected_comparison=not_applicable conflicts with expected_by_card including B-M04:unknown. Both are preserved."
+    },
+    {
+      "id": "V06-T01",
+      "original_expectation": {
+        "expected_behavior": "구매경로 양호와 불편 대응을 분리"
+      },
+      "original_facts": {
+        "commerce.authorized_path": "confirmed",
+        "skin.current_discomfort": "repeated"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-Q02": "aligned",
+        "B-B01": "difference"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-Q02": [
+          "U08",
+          "S36",
+          "D04"
+        ],
+        "B-B01": [
+          "D01",
+          "S04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "prefer_traceable_purchase_route",
+        "refer_for_professional_review"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T02",
+      "original_expectation": {
+        "expected_behavior": "실제 판매자 확인; 정품 보증 금지"
+      },
+      "original_facts": {
+        "commerce.channel": "marketplace",
+        "commerce.authorized_path": "claimed_only"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-Q02": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-Q02": [
+          "U08",
+          "S36",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "prefer_traceable_purchase_route",
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T03",
+      "original_expectation": {
+        "expected_behavior": "국소 테스트 대신 사용 보류/문의"
+      },
+      "original_facts": {
+        "commerce.authenticity_concern": "specific_concern"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-Q06": "difference",
+        "B-G11": "exception"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-Q06": [
+          "S36",
+          "D04"
+        ],
+        "B-G11": [
+          "S35",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "contact_seller_or_brand",
+        "defer_specific_recommendation",
+        "pause_specific_product_pending_quality_check"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T04",
+      "original_expectation": {
+        "expected_behavior": "기본 병용 비권장"
+      },
+      "original_facts": {
+        "routine.co_use_context": "same_area_same_session"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G13": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G13": [
+          "S32",
+          "S33",
+          "U09",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "failures": [
+        "expected_behavior"
+      ],
+      "category": "input_spec_conflict",
+      "reason": "Description says retinol+AHA; supplied facts only identify same-area timing. Reviewed roles and separate-product identity are absent."
+    },
+    {
+      "id": "V06-T05",
+      "original_expectation": {
+        "expected_behavior": "별도제품 중첩으로 자동금지하지 않음"
+      },
+      "original_facts": {
+        "product.combination_design": "single_finished_product"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G15": "exception"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G15": [
+          "S32",
+          "U09",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "review_product_specific_combination"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T06",
+      "original_expectation": {
+        "expected_behavior": "각질관리 제품으로 자동분류하지 않음"
+      },
+      "original_facts": {
+        "product.active_care_roles": "ingredient_only_unclassified"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G13": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G13": [
+          "S32",
+          "S33",
+          "U09",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T07",
+      "original_expectation": {
+        "expected_behavior": "같은 부위 충돌로 계산하지 않음"
+      },
+      "original_facts": {
+        "routine.co_use_context": "different_sites"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G13": "not_applicable"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G13": [
+          "S32",
+          "S33",
+          "U09",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "review_exception"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T08",
+      "original_expectation": {
+        "expected_behavior": "시간 분리만으로 안전 확정하지 않음"
+      },
+      "original_facts": {
+        "routine.co_use_context": "same_day_split"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G15": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G15": [
+          "S32",
+          "U09",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T09",
+      "original_expectation": {
+        "expected_behavior": "해당 제품 유형/표시로 분기"
+      },
+      "original_facts": {
+        "product.regulatory_type": "chemical_depilatory"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G16": "unknown",
+        "B-C03": "not_applicable"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G16": [
+          "F02",
+          "D04"
+        ],
+        "B-C03": [
+          "U01"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "review_current_label_scope"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T10",
+      "original_expectation": {
+        "expected_behavior": "특정 유형의 원문과 일반 루틴을 분리"
+      },
+      "original_facts": {},
+      "facts_unchanged": true,
+      "statuses": {
+        "B-G16": "unknown",
+        "B-H01": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-G16": [
+          "F02",
+          "D04"
+        ],
+        "B-H01": [
+          "F01",
+          "U07",
+          "S28",
+          "D03"
+        ]
+      },
+      "questions": [
+        {
+          "field": "cycle.observation_consent",
+          "text": "월경 관련 기록의 관련성·선택 동의에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-H01"
+          ]
+        },
+        {
+          "field": "routine.change_log",
+          "text": "최근 제품·용량·방법·환경의 변경 이력에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-H01"
+          ]
+        },
+        {
+          "field": "skin.baseline_change",
+          "text": "평소 대비 변화에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-H01"
+          ]
+        },
+        {
+          "field": "skin.current_discomfort",
+          "text": "현재 불편감 유무에 대한 간단한 자기보고에 대해 알려주세요.",
+          "wording_status": "development_draft",
+          "card_ids": [
+            "B-H01"
+          ]
+        }
+      ],
+      "actions": [
+        "ask_targeted_question",
+        "retrieve_product_evidence",
+        "review_current_label_scope"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T11",
+      "original_expectation": {
+        "expected_behavior": "추가 확인. 브랜드 전체 회수 단정 금지"
+      },
+      "original_facts": {
+        "commerce.recall_check": "possible_match"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-Q05": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-Q05": [
+          "S37",
+          "S27",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "check_product_batch_and_recall_scope",
+        "retrieve_product_evidence"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    },
+    {
+      "id": "V06-T12",
+      "original_expectation": {
+        "expected_behavior": "손에 덜어 도포 안내와 충분한 도포 유지"
+      },
+      "original_facts": {
+        "product.application_form": "nongas_spray"
+      },
+      "facts_unchanged": true,
+      "statuses": {
+        "B-P09": "unknown"
+      },
+      "context_result": null,
+      "evidence_by_card": {
+        "B-P09": [
+          "F02",
+          "D04"
+        ]
+      },
+      "questions": [],
+      "actions": [
+        "ask_targeted_question",
+        "inform_general_practice"
+      ],
+      "failures": [],
+      "category": "expected_satisfied",
+      "reason": null
+    }
+  ]
+}

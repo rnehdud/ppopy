@@ -1,0 +1,641 @@
+{
+  "kb_file": "Poppy_KB_seed_v0.6.json",
+  "kb_sha256": "10e054a8f6f2b363a4a991a3adc096604a11ad115c0ddd01f51789f75b5529dd",
+  "generated_at_utc": "2026-11-04T16:31:15.951109+00:00",
+  "basis_date": "2026-11-05",
+  "checks_total": 95,
+  "passed": 95,
+  "failed": 0,
+  "counts": {
+    "baseline_cards": 60,
+    "variables": 234,
+    "domains": 9,
+    "lifecycle_stages": 7,
+    "selected_historical_regulatory_records": 25,
+    "historical_allergen_rows": 25
+  },
+  "snapshot_condition_cases": 29,
+  "combination_reference_cases": 17,
+  "limitations": [
+    "실제 앱·LLM 추천엔진·제품성분 파서의 실행 테스트가 아님.",
+    "명시적으로 부여한 역할/부위/조건을 처리하는 참고함수 테스트.",
+    "2024 원문 조건식의 참조 구현 검증이며 2026 현행법 판정 검증이 아님.",
+    "임상 효능·위험확률·정품·회수 대상 확인·새 가설 검증을 수행하지 않음.",
+    "57개 acceptance_scenarios는 별도 설계 명세이며 엔진에서 통과한 것으로 집계하지 않음."
+  ],
+  "checks": [
+    {
+      "name": "unique:baseline_cards",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unique:variables",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unique:source_registry",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unique:regulatory_rules",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unique:relations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unique:variable_groups",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unique:taxonomy",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "release_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "axes_still_C_M_P",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "domain_and_stage_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "variable_group_references",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_card_inputs_resolve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_card_sources_resolve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_card_links_resolve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "taxonomy_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "each_rule_one_primary_owner",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary_classification_matches",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "cross_references_bidirectional",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "taxonomy_rule_refs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "taxonomy_variable_refs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "taxonomy_relation_refs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "card_lifecycle_tags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "lifecycle_views_inverse",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "category_views_refs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "acquisition_refs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "input_question_not_all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_measurements_or_latent_inputs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_required_unobservable_variables",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_unjustified_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_card_execution_disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "metadata_production_disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "regulatory_execution_disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current_regulatory_gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "regulatory_source_and_links",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "regulatory_page_refs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_pages_complete",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "allergen_snapshot25",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "allergen_cas_unique",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "allergen_cas_checksums",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_40_core_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exactly_20_new_cards",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "severe_source_wording_not_autoquoted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "documented_scenarios_are_spec_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "scenario_card_refs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "regulatory_export_matches",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_boundary:aha_half_excluded",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_above_half",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_unknown",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_unknown_string",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_bool_invalid",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_nan_invalid",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_sun_leave",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_rinse_sun_exempt",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_rinse_trial_not_exempt",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_hair_sun_exempt",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_sun_type_unknown",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_consult_exact_boundaries",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_consult_high",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_consult_low_ph",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_below_parent_excluded",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_parent_unknown",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_low_unknown_ph",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:aha_hair_consult_not_exempt",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:allergen_leave_boundary",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:allergen_leave_above",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:allergen_rinse_boundary",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:allergen_rinse_above",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:allergen_unknown_amount",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:not_fragrance_condition",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:specific_retinamide_boundary",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:not_all_retinoids",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "snapshot_boundary:arbutin_boundary",
+      "passed": true,
+      "detail": {
+        "actual": true,
+        "expected": true
+      }
+    },
+    {
+      "name": "snapshot_boundary:salicylic_immediate_rinse_exception",
+      "passed": true,
+      "detail": {
+        "actual": false,
+        "expected": false
+      }
+    },
+    {
+      "name": "snapshot_boundary:salicylic_unknown_rinse",
+      "passed": true,
+      "detail": {
+        "actual": null,
+        "expected": null
+      }
+    },
+    {
+      "name": "default_mode_blocks_current_application",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "explicit_snapshot_mode_required",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reference_branch:retinoid_aha",
+      "passed": true,
+      "detail": {
+        "actual": "default_avoid_separate_product_stacking",
+        "expected": "default_avoid_separate_product_stacking"
+      }
+    },
+    {
+      "name": "reference_branch:retinoid_sa",
+      "passed": true,
+      "detail": {
+        "actual": "default_avoid_separate_product_stacking",
+        "expected": "default_avoid_separate_product_stacking"
+      }
+    },
+    {
+      "name": "reference_branch:aha_sa",
+      "passed": true,
+      "detail": {
+        "actual": "default_avoid_separate_product_stacking",
+        "expected": "default_avoid_separate_product_stacking"
+      }
+    },
+    {
+      "name": "reference_branch:reverse_pair",
+      "passed": true,
+      "detail": {
+        "actual": "default_avoid_separate_product_stacking",
+        "expected": "default_avoid_separate_product_stacking"
+      }
+    },
+    {
+      "name": "reference_branch:different_sites",
+      "passed": true,
+      "detail": {
+        "actual": "not_same_site_stacking",
+        "expected": "not_same_site_stacking"
+      }
+    },
+    {
+      "name": "reference_branch:unknown_site",
+      "passed": true,
+      "detail": {
+        "actual": "site_unknown",
+        "expected": "site_unknown"
+      }
+    },
+    {
+      "name": "reference_branch:fixed_combination",
+      "passed": true,
+      "detail": {
+        "actual": "finished_product_specific_review",
+        "expected": "finished_product_specific_review"
+      }
+    },
+    {
+      "name": "reference_branch:unknown_product_relation",
+      "passed": true,
+      "detail": {
+        "actual": "product_relationship_unknown",
+        "expected": "product_relationship_unknown"
+      }
+    },
+    {
+      "name": "reference_branch:citric_only_no_role_mapping",
+      "passed": true,
+      "detail": {
+        "actual": "role_unknown",
+        "expected": "role_unknown"
+      }
+    },
+    {
+      "name": "reference_branch:unknown_role",
+      "passed": true,
+      "detail": {
+        "actual": "role_unknown",
+        "expected": "role_unknown"
+      }
+    },
+    {
+      "name": "reference_branch:not_every_salicylate",
+      "passed": true,
+      "detail": {
+        "actual": "no_listed_pair_not_safety_certificate",
+        "expected": "no_listed_pair_not_safety_certificate"
+      }
+    },
+    {
+      "name": "reference_branch:not_bha_preservative",
+      "passed": true,
+      "detail": {
+        "actual": "no_listed_pair_not_safety_certificate",
+        "expected": "no_listed_pair_not_safety_certificate"
+      }
+    },
+    {
+      "name": "reference_branch:morning_evening",
+      "passed": true,
+      "detail": {
+        "actual": "default_avoid_no_time_gap_safety_guarantee",
+        "expected": "default_avoid_no_time_gap_safety_guarantee"
+      }
+    },
+    {
+      "name": "reference_branch:different_days",
+      "passed": true,
+      "detail": {
+        "actual": "review_pattern_not_automatically_safe",
+        "expected": "review_pattern_not_automatically_safe"
+      }
+    },
+    {
+      "name": "reference_branch:unknown_time",
+      "passed": true,
+      "detail": {
+        "actual": "timing_unknown_general_avoidance_guidance",
+        "expected": "timing_unknown_general_avoidance_guidance"
+      }
+    },
+    {
+      "name": "reference_branch:medical_plan",
+      "passed": true,
+      "detail": {
+        "actual": "individual_plan_review_no_automatic_medication_change",
+        "expected": "individual_plan_review_no_automatic_medication_change"
+      }
+    },
+    {
+      "name": "reference_branch:adverse_reaction",
+      "passed": true,
+      "detail": {
+        "actual": "reaction_review_first",
+        "expected": "reaction_review_first"
+      }
+    },
+    {
+      "name": "main_document_each_card_once",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "main_document_all_desirable_states",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

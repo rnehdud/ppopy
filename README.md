@@ -48,3 +48,30 @@ Project planning and evidence collection are in progress. Planned updates will d
 ## Scope and Limitations
 
 Ppopy is intended to support informed routine decisions. It does not diagnose skin conditions, automatically judge skin improvement, or establish clinical effectiveness. Missing evidence and uncertainty should remain visible. Ingredient lists alone do not establish undisclosed concentrations or finished-product performance.
+
+## Course Materials and Runnable Snapshot
+
+The 2026-11-05 import reuses selected KB and development-preview files from the existing SkinAnalysis project. This public repository is the course workspace; the operational application remains separate. Team information and proposals above are retained.
+
+| Start here | Contents |
+| --- | --- |
+| [Software Engineering](courses/software-engineering/README.md) | System responsibilities, smart mirror requirements and verification scope |
+| [AI & Applications](courses/ai-applications/README.md) | Cleanser-agent research question, available assets and proposed evaluation |
+| [Knowledge base](KB/README.md) | Inactive v0.6 draft: cleansing, moisturizing and sun protection |
+| [Local preview](skin_engine/kb_preview/README.md) | Runnable structured rule engine, source tracing and follow-up handling |
+| [Repository scope](docs/repository-scope.md) | Reuse policy, export boundaries and future integration |
+| [Verification](docs/verification.md) | Reproduction commands, observed results and five open acceptance mismatches |
+| [Source manifest](docs/source-manifest.json) | Exact provenance and hashes for 27 imported files |
+
+### Quick Start
+
+Python 3.10+ is required. The preview and KB validator use only the standard library. Run from the repository root:
+
+```bash
+python3 -m skin_engine.kb_preview tests/fixtures/kb_preview/hot_water.json
+mkdir -p outputs
+python3 KB/Poppy_KB_v0.6/validate_poppy_kb_v0_6.py --report outputs/kb-structure.json
+python3 tools/verify_source_manifest.py
+```
+
+The snapshot's KB structure checks pass, but its original 57-case acceptance audit retains five documented mismatches. It is a development preview, not a trained AI agent or a production release. See the verification page before reporting test results.
