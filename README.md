@@ -25,7 +25,13 @@ The broader Ppopy knowledge base is planned around cleansing, moisturizing, and 
 
 We plan to compare the agent with a general-purpose language model using the same product and user scenarios. Evaluation will examine question relevance, the appropriateness of suggestions, unsupported claims, and agreement with domain-informed reference judgments. The topic, methods, and evaluation design are preliminary. AI outputs and unreviewed evidence will not automatically become approved recommendations.
 
-## CSE 406: Software Engineering — Poppy and Smart Mirror
+## CSE 406: Software Engineering — Ppopy and Smart Mirror
+
+### Latest Phase 2 submissions — 2026-11-06
+
+The [Revised A and B LaTeX sources](courses/software-engineering/submissions/phase2/2026-11-06/README.md) specify history-based routine timing, context-dependent KB review and advance guidance on one authorized, output-only mirror. Questions, settings and plan approval remain in the app. This revision uses confirmed actual-use times for proactive delivery rather than a presence sensor.
+
+### Initial proposal concept
 
 Team CosMate's software engineering project extends the existing Poppy application with a proposed smart mirror interface. The application is intended to support product search and confirmation, structured user input, routine review, and access to authorized results. The mirror is planned to show time and weather by default and present morning or evening skincare guidance when presence is detected.
 

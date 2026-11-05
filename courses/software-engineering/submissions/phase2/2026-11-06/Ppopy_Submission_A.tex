@@ -1,0 +1,120 @@
+% Ppopy Phase 2 Submission A
+% Reconstructed from the latest Revised PDF, with the title spelling Ppopy.
+% This file contains the complete document; IEEEtran.cls is included alongside it.
+\documentclass[conference,letterpaper]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{courier}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array,tabularx,cite,url,listings,xcolor,tikz}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\hypersetup{pdftitle={Ppopy: Proactive Skincare Decision Support with a Smart Mirror},pdfauthor={Doyeong Koo; Kang Takgeon; Won Konil}}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,frame=single,rulecolor=\color{gray},aboveskip=5pt,belowskip=5pt,xleftmargin=2pt,xrightmargin=2pt}
+\title{Ppopy: Proactive Skincare Decision Support with a Smart Mirror}
+\author{\IEEEauthorblockN{Doyeong Koo, Kang Takgeon, Won Konil}\IEEEauthorblockA{Hanyang University\\Team CosMate -- CSE406 Software Engineering}}
+\begin{document}
+\maketitle
+\pagestyle{plain}
+\thispagestyle{plain}
+\begin{abstract}
+Team CosMate proposes ppopy to help users decide what to maintain, adjust or check before their skincare routine. The system compares confirmed product information, planned routines and reported use with a knowledge base (KB), and requests only information that can change a decision. For proactive guidance, it estimates the next routine start from user-confirmed use times, selects any needed guidance and displays it on a previously authorized smart mirror before that start. The mirror provides an overview at the washbasin or vanity; users answer questions and approve routine changes in the app. The prototype combines context-sensitive decisions with advance delivery on one home display.
+\end{abstract}
+\begin{IEEEkeywords}skincare decision support, knowledge base, proactive guidance, smart mirror\end{IEEEkeywords}
+\section*{Role Assignments}
+{\centering\footnotesize
+\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}\toprule
+\textbf{Role} & \textbf{Members} & \textbf{Responsibility}\\\midrule
+User & Kang Takgeon & Review everyday use and interaction\\
+Customer & Kang Takgeon, Won Konil & Define needs and priorities\\
+Software developer & Doyeong Koo, Won Konil & Implement and test\\
+Development manager & Doyeong Koo, Kang Takgeon & Coordinate tasks and integration\\
+\bottomrule
+\end{tabularx}
+}
+
+\section{Introduction}
+
+\subsection{Problem and Objective}
+
+The project addresses a practical need: deciding how to carry out a skincare routine and what to check before starting it. A product list alone does not explain which part of a user's planned routine needs attention. ppopy combines confirmed products, actual-use reports, user goals and KB criteria to select relevant guidance. A mirror at the washbasin or vanity makes that guidance available while the user prepares for the routine.
+
+\subsection{User Workflow and Example}
+
+Users register products by name, photo or screenshot, confirm the product and variant, and record their plan and actual use. They set a goal such as ``show what I need to check before starting.'' The system reviews the plan and context, asks decision-changing questions in the app, and updates its findings after answers.
+
+For example, three confirmed evening starts at 20:56, 21:00 and 21:04 produce an estimated start of 21:00. At 20:50, the system reviews the upcoming routine. It may select an adjustment, request a missing fact, or find no need for new guidance. With valid prior display approval, needed guidance appears on the mirror before 21:00. The estimated time determines when to review; the KB and user context determine what to do.
+
+\subsection{Related Software}
+
+SkinSort's routine creator supports routine organization \cite{ref1}; INKEEDecoder explains ingredient lists \cite{ref2}. These functions inform ppopy's product and routine presentation. The proposed workflow connects use-context comparison, decision-dependent questions and advance guidance on a home display.
+
+\subsection{Prototype Scope and Current Status}
+
+Development work includes product-input components, a local React/Python KB review, follow-up questions and account-separated JSON records \cite{ref3}. The course prototype will integrate these components with history-based timing, automatic delivery, real account authentication, cloud storage and one output-only mirror. Questions, settings and plan approval remain in the app. Time and weather form the mirror's default screen; broader appliance orchestration is future work. The timing estimate concerns the next routine start, not future skin condition.
+
+\section{Requirements}
+
+\subsection{Functional Requirements}
+
+\subsubsection*{R1. Sign-in and consent}
+
+Require sign-in and appropriate consent for personal routine records; restrict each record to its owner.
+
+\subsubsection*{R2. Product registration and ingredients}
+
+Confirm products and variants from names, photos or screenshots. Verify ingredient sources, product versions and standard-name matches before using them as facts.
+
+\subsubsection*{R3. Plans, actual use and user intent}
+
+Keep confirmed plans separate from actual-use reports. Allow edits to the time, products, use details and reported discomfort, and let users set guidance goals and preferences.
+
+\subsubsection*{R4. Contextual KB review}
+
+Review current and planned routines against applicable KB criteria and exceptions. Distinguish confirmed facts from unknown or conflicting information.
+
+\subsubsection*{R5. Decision-dependent questions}
+
+Ask only for unknown information that can change a decision. Update related findings after answers; preserve skipped or declined answers as unknown without repeating a question in unchanged context.
+
+\subsubsection*{R6. Decision and guidance selection}
+
+Select maintain, adjust, check or defer with linked reasons and evidence. Preserve the decision when no new user-facing intervention is needed. A suggestion changes the confirmed plan only after explicit app acceptance.
+
+\subsubsection*{R7. Separate records and outcomes}
+
+Store plans, suggestions, actual-use reports, time estimates, decisions and delivery/display outcomes separately, with their revisions and origins.
+
+\subsubsection*{R8. Mirror pairing and display approval}
+
+Pair one output-only mirror. Configure its room, timezone, default screen, allowed display periods and approval expiry in the app.
+
+\subsubsection*{R9. Next-time estimation and proactive guidance}
+
+Estimate the next routine start from valid actual-use times and review the latest context beforehand. Display needed, current guidance before that start within prior approval; prevent duplicates and invalidate outdated decisions or commands.
+
+\subsubsection*{R10. Account and display controls}
+
+Provide logout, consent/display-approval withdrawal and account deletion. End personal access and expire displayed content when authority ends; distinguish a deletion request from completed cleanup.
+
+% Start the quality requirements in the final right column, as in the Revised PDF.
+\newpage
+\subsection{Quality Requirements}
+
+\subsubsection*{Q1. Personal information protection}
+
+Protect transmission and storage. Authorize personal mirror content by account, paired device and valid display approval, without inferring who is viewing the mirror.
+
+\subsubsection*{Q2. Reliable execution and accessibility}
+
+Discard stale guidance, prevent duplicate interventions and record only acknowledged delivery stages. Show errors clearly and support readable Korean controls, enlarged text and VoiceOver.
+
+\subsubsection*{Q3. Traceability and verification}
+
+Link estimates and decisions to inputs, parameters, KB sources and execution outcomes. Map R1--R10/Q1--Q3 to reproducible tests and distinguish planned tests from executed evidence.
+\begin{thebibliography}{00}
+\bibitem{ref1} SkinSort, ``Routine creator.'' [Online]. Available: \url{https://skinsort.com/support/the-routine-creator}. Accessed: Nov. 6, 2026.
+\bibitem{ref2} INKEEDecoder, ``About INKEEDecoder.'' [Online]. Available: \url{https://inkeedecoder.com/about}. Accessed: Nov. 6, 2026.
+\bibitem{ref3} Team CosMate, ``ppopy / SkinAnalysis, project repository,'' 2026. [Online]. Available: \url{https://github.com/rnehdud/SkinAnalysis}. Accessed: Nov. 6, 2026.
+\end{thebibliography}
+\end{document}
