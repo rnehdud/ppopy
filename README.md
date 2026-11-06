@@ -41,11 +41,11 @@ The mirror's detailed display behavior, setup, failure handling, and authorizati
 
 ### Software Engineering Team
 
-| Name | Course roles in the Phase 2 proposal |
-| --- | --- |
-| Doyeong Koo | Software developer; development manager |
-| Kang Takgeon | User; customer; development manager |
-| Won Konil | Customer; software developer |
+| Name | Course roles | Development responsibilities |
+| --- | --- | --- |
+| Doyeong Koo | Software developer; development manager | App and backend, KB construction, system integration and test coordination |
+| Takgeon Kang | User; customer; software developer | Agent workflow, contextual follow-up questions and guidance selection |
+| Geonil Won | Customer; software developer | Smart mirror hardware, display client and app–device integration |
 
 ## Project Progress
 
