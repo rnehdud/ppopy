@@ -41,12 +41,12 @@ The mirror's detailed display behavior, setup, failure handling, and authorizati
 
 ### Software Engineering Team
 
-| Member(s) | Responsibilities |
-| --- | --- |
-| All members | Data collection; user workflow and usability review; review of requirements, priorities, budget and acceptance criteria; joint schedule planning, progress review, integration testing and project decisions |
-| Doyeong Koo | App and backend development, KB construction and system integration |
-| Takgeon Kang | Agent workflow, contextual follow-up questions and guidance selection |
-| Geonil Won | Smart mirror hardware, display client and app–device integration |
+| Roles | Name | Task description |
+| --- | --- | --- |
+| User | Takgeon Kang | Review routine workflows, app questions and mirror usability. |
+| Customer | Geonil Won | Review needs, priorities, budget and acceptance criteria. |
+| Software developer | All members | Koo: app/backend, KB and integration; Kang: agent questions and guidance; Won: mirror hardware and display. All: data collection and testing. |
+| Development manager | All members (joint) | Share schedule planning, progress review, scope decisions and integration testing. |
 
 ## Project Progress
 
