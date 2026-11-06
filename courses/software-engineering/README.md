@@ -7,7 +7,7 @@ Team CosMate's Ppopy project combines product confirmation, routine records and 
 The [latest Revised LaTeX package](submissions/phase2/2026-11-06/README.md) contains two independently buildable main documents:
 
 - [Submission A](submissions/phase2/2026-11-06/Ppopy_Submission_A.tex): proposal and functional/quality requirements.
-- [Submission B](submissions/phase2/2026-11-06/Ppopy_Submission_B.tex): A plus the development environment, itemized budget, processing specifications and verification plans.
+- [Submission B](submissions/phase2/2026-11-06/Ppopy_Submission_B.tex): A plus the platform choices and reasons, development environment, itemized budget, software in use, task distribution, processing specifications and verification plans.
 
 The initial presence-triggered concept remains in the [root proposal history](../../README.md#initial-proposal-concept). The latest specification estimates the next routine start from user-confirmed actual-use times and checks the upcoming routine before that start. KB findings and user intent determine whether to show guidance, ask a useful question in the app, or take no new action.
 
