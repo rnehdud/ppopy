@@ -43,10 +43,10 @@ The mirror's detailed display behavior, setup, failure handling, and authorizati
 
 | Roles | Name | Task description |
 | --- | --- | --- |
-| User | Takgeon Kang | Review routine workflows, app questions and mirror usability. |
-| Customer | Geonil Won | Review needs, priorities, budget and acceptance criteria. |
+| User | Takgeon Kang, Geonil Won | Review routine workflows, app questions and mirror usability. |
+| Customer | Doyeong Koo | Define requirements, feature priorities, budget and acceptance criteria. |
 | Software developer | All members | Koo: app/backend, KB and integration; Kang: agent questions and guidance; Won: mirror hardware and display. All: data collection and testing. |
-| Development manager | All members (joint) | Share schedule planning, progress review, scope decisions and integration testing. |
+| Development manager | All members (joint) | Share schedule and progress updates, agree on changes and review system integration. |
 
 ## Project Progress
 
