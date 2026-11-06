@@ -1,5 +1,5 @@
 % Ppopy Phase 2 Submission B
-% Reconstructed from the latest Revised PDF, with the title spelling Ppopy.
+% Revised from the submitted PDF and aligned with the Phase 2 notice.
 % This file contains the complete document; IEEEtran.cls is included alongside it.
 \documentclass[conference,letterpaper]{IEEEtran}
 \usepackage[T1]{fontenc}
@@ -52,6 +52,8 @@ SkinSort's routine creator supports routine organization \cite{ref1}; INKEEDecod
 \subsection{Prototype Scope and Current Status}
 
 Development work includes product-input components, a local React/Python KB review, follow-up questions and account-separated JSON records \cite{ref3}. The course prototype will integrate these components with history-based timing, automatic delivery, real account authentication, cloud storage and one output-only mirror. Questions, settings and plan approval remain in the app. Time and weather form the mirror's default screen; broader appliance orchestration is future work. The timing estimate concerns the next routine start, not future skin condition.
+
+Course code and the A/B LaTeX sources are available at \url{https://github.com/rnehdud/ppopy}.
 
 \section{Requirements}
 
@@ -112,13 +114,15 @@ Discard stale guidance, prevent duplicate interventions and record only acknowle
 Link estimates and decisions to inputs, parameters, KB sources and execution outcomes. Map R1--R10/Q1--Q3 to reproducible tests and distinguish planned tests from executed evidence.
 \section{Development Environment}
 
-\subsection{Platforms, Languages and Versions}
+\subsection{Choice of Software Development Platform}
 
-React and TypeScript provide the app's editable routines, questions and guidance views. Typed request/response structures help distinguish missing information from confirmed answers \cite{ref4}. Capacitor packages the interface for iOS and connects the product-image bridge \cite{ref5}; Vite supports development and builds. Python implements source verification, explicit KB rules and time estimation without a trained prediction model. The cloud target uses API Gateway/Lambda for the service and Aurora PostgreSQL for account-linked storage.
+We choose React and TypeScript for a web interface shared by the iOS app and browser-based mirror. React components support editable routines, question views and guidance displays \cite{ref4}, while TypeScript makes confirmed and missing fields explicit in request/response types. Capacitor packages this interface for iOS and connects native product-image access \cite{ref5}; Vite supports development and builds.
+
+Python is selected for JSON handling and standard date/time tools that fit product records, explicit KB rules and routine-time calculations. The logic is organized as functions that can be tested with pytest. A shared HTTP/JSON API keeps account checks and decisions consistent between the mobile app and mirror. The cloud target uses API Gateway/Lambda for this API and Aurora PostgreSQL for linked account, plan and history records.
 
 Table I separates the recorded development environment from deployment targets. The local KB service uses Python 3.9.6 and account-separated JSON storage. Compatibility with Python 3.9 and the Lambda 3.12 target will be checked using the same decision and timing fixtures. Standard-library IANA timezone support provides local/UTC conversion \cite{ref6}.
 
-The mirror target is a full-screen React view on a Raspberry Pi connected to a monitor over HDMI \cite{ref7}. Pi 5 2GB is the initial sizing and cost reference. Power, microSD storage, cooling, cabling and mounting are included in the procurement scope; final compatibility depends on the selected board.
+We target a Raspberry Pi with HDMI and Wi-Fi so the mirror has a dedicated controller for its full-screen browser display \cite{ref7}. Pi 5 2GB is the initial sizing and cost reference. Power, microSD storage, cooling, cabling and mounting are included in the procurement scope; final compatibility depends on the selected board.
 
 \begin{table}[!t]
 \caption{Development Environment and Deployment Targets}\label{tab:env}
@@ -137,11 +141,7 @@ Mirror target & Raspberry Pi, full-screen browser, Wi-Fi/HDMI; model and OS/brow
 \end{tabularx}
 \end{table}
 
-\subsection{Software and Integration Scope}
-
-The product-input pipeline uses an LLM to extract visible identity clues and obtain source-linked ingredient drafts when catalog data are missing. Product confirmation, source checks and dictionary matching determine which facts are usable. KB decisions use explicit Python conditions. The timing component uses statistics over user-confirmed actual-use records, while a periodic service check and mirror polling support automatic delivery. Integration with real account authentication and cloud storage is planned alongside the mirror functions described in Section I-D.
-
-\subsection{Cost Estimate}
+\subsubsection*{Cost Estimate}
 
 Table II covers one development month, one annual Apple Developer payment and one mirror. Subscription amounts are project-reported charges; hardware amounts are reference estimates. The listed controller, power supply and cooler are priced separately \cite{ref8}, \cite{ref9}, \cite{ref10}. The recorded board listing was sold out, so final availability and model selection remain procurement tasks.
 
@@ -180,6 +180,26 @@ Case/mounting/frame; additional delivery & Pending\\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\subsection{Software in Use}
+
+React supplies the interface component/state model \cite{ref4}; Capacitor supplies iOS packaging and native image access \cite{ref5}. The product-input pipeline uses an LLM to extract visible identity clues and obtain source-linked ingredient drafts when catalog data are missing. Product confirmation, source checks and dictionary matching determine which facts are usable \cite{ref3}.
+
+Routine review applies ppopy's explicit Python KB rules. The next-start estimator uses a circular sample median over user-confirmed actual-use times, with minimum-history and dispersion checks as specified in Section IV-C. A periodic service check and mirror polling support automatic delivery. Real account authentication and cloud storage are integration targets described in Section I-D.
+
+\subsection{Task Distribution}
+
+{\centering\footnotesize
+\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}>{\hsize=.70\hsize\raggedright\arraybackslash}X>{\hsize=1.30\hsize\raggedright\arraybackslash}X@{}}\toprule
+\textbf{Member(s)} & \textbf{Development tasks}\\\midrule
+Doyeong Koo & App/backend development, KB construction and system integration.\\
+Takgeon Kang & Agent question flow and guidance selection.\\
+Geonil Won & Mirror hardware, display client and app--device integration.\\
+All members & Data collection and testing; schedule/progress updates, agreed changes and integration checks.\\
+\bottomrule
+\end{tabularx}
+}
 
 \section{Specifications}
 

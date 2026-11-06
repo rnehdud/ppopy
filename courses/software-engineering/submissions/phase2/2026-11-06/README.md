@@ -1,11 +1,11 @@
 # Ppopy — Phase 2 LaTeX submissions
 
-These editable sources are based on the latest Revised A and B PDFs, with **Ppopy** in the title. Role Assignments uses the four course roles: User (Takgeon Kang and Geonil Won), Customer (Doyeong Koo), Software developer (all members) and Development manager (all members jointly). Data collection and testing are shared. Development areas are Doyeong Koo (app/backend, KB and integration), Takgeon Kang (agent) and Geonil Won (smart mirror). The proposal, requirements and specifications are otherwise unchanged. Line breaks, table placement and pagination can differ from the PDF originals.
+These editable sources are based on the latest Revised A and B PDFs, with **Ppopy** in the title. Role Assignments uses the four course roles: User (Takgeon Kang and Geonil Won), Customer (Doyeong Koo), Software developer (all members) and Development manager (all members jointly). Data collection and testing are shared. Development areas are Doyeong Koo (app/backend, KB and integration), Takgeon Kang (agent) and Geonil Won (smart mirror). The proposal and all requirement-level specifications are preserved. Section III now follows the notice: platform choice and cost, software in use, and task distribution. The public course URL is stated in both documents. Line breaks, table placement and pagination can differ from the PDF originals.
 
 | Main file | Contents |
 | --- | --- |
 | [Ppopy_Submission_A.tex](Ppopy_Submission_A.tex) | Proposal and requirements, R1–R10 and Q1–Q3 |
-| [Ppopy_Submission_B.tex](Ppopy_Submission_B.tex) | A plus the development environment, budget, specifications and planned verification |
+| [Ppopy_Submission_B.tex](Ppopy_Submission_B.tex) | A plus platform/language choices, environment, budget, software, task distribution, specifications and planned verification |
 
 Each `.tex` file contains its complete document. The included `IEEEtran.cls` supplies the IEEE conference class and retains its original license notice. Other packages are standard TeX packages, including `listings`, `tabularx`, `tikz`, `amsmath` and `hyperref`.
 
