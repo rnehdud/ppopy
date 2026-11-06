@@ -1,6 +1,6 @@
 # Ppopy — Phase 2 LaTeX submissions
 
-These editable sources are based on the latest Revised A and B PDFs, with **Ppopy** in the title. Team names and role assignments have been updated to the current allocation: Doyeong Koo (app/backend, KB and integration), Takgeon Kang (agent) and Geonil Won (smart mirror). The proposal, requirements and specifications are otherwise unchanged. Line breaks, table placement and pagination can differ from the PDF originals.
+These editable sources are based on the latest Revised A and B PDFs, with **Ppopy** in the title. All members share data collection, user needs review, development planning, integration testing and project decisions. Development areas are Doyeong Koo (app/backend, KB and integration), Takgeon Kang (agent) and Geonil Won (smart mirror). The proposal, requirements and specifications are otherwise unchanged. Line breaks, table placement and pagination can differ from the PDF originals.
 
 | Main file | Contents |
 | --- | --- |
@@ -19,6 +19,8 @@ tectonic Ppopy_Submission_B.tex
 ```
 
 In Overleaf, upload both `.tex` files and `IEEEtran.cls`, then choose the desired submission as the main document. Alternatively, use a full TeX Live installation and run `pdflatex` twice on each main file.
+
+The B document already contains the A proposal and requirements followed by the B environment and specifications. Its compiled PDF is the complete A+B report; no second copy of A is needed.
 
 ## Verification
 
