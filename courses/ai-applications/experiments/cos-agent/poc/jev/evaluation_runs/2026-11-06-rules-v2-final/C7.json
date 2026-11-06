@@ -1,0 +1,100 @@
+{
+  "input": "어제 일리윤 크림을 발랐는데 정확한 제품명은 모르겠어. 몇 시에 발랐는지도 기억 안 나고, 피부 증상은 말하고 싶지 않아.",
+  "features": {
+    "schema_version": "relations-0.2",
+    "source_text": "어제 일리윤 크림을 발랐는데 정확한 제품명은 모르겠어. 몇 시에 발랐는지도 기억 안 나고, 피부 증상은 말하고 싶지 않아.",
+    "text_revision": "d1f67dcce656e4f0c12693f0966d77bbc909b64426b1a3bacdf177fa9c78681f",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "일리윤 크림",
+        "start": 3,
+        "end": 9,
+        "value": "일리윤 크림",
+        "score": 0.73,
+        "mode": "제품명 선택 점수",
+        "context": "어제 일리윤 크림을 발랐는데 정확한 제품명은 모르겠어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "어제",
+              "start": 0,
+              "end": 2
+            },
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "unknown",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_usage_time_unknown",
+            "model_prediction": {
+              "value": "not_mentioned",
+              "score": 0.49,
+              "status": "uncertain"
+            }
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "incomplete",
+        "name_model_prediction": {
+          "text": "일리윤",
+          "value": "일리윤",
+          "start": 3,
+          "end": 6
+        },
+        "name_rule": "preserve_adjacent_category",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "product_name",
+        "reason": "incomplete_name"
+      },
+      {
+        "target": "p0",
+        "field": "usage_time",
+        "reason": "rule_candidate"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "declined",
+        "method": "explicit_global_refusal",
+        "evidence": {
+          "text": "피부 증상은 말하고 싶지 않",
+          "start": 51,
+          "end": 66
+        }
+      }
+    }
+  }
+}

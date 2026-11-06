@@ -64,6 +64,7 @@ The 2026-11-05 import reuses selected KB and development-preview files from the 
 | --- | --- |
 | [Software Engineering](courses/software-engineering/README.md) | System responsibilities, smart mirror requirements and verification scope |
 | [AI & Applications](courses/ai-applications/README.md) | Cleanser-agent research question, available assets and proposed evaluation |
+| [Natural-language feature extraction PoC](courses/ai-applications/experiments/cos-agent/README.md) | Isolated Jev experiments, synthetic cases, regression tests and exploratory evaluation |
 | [Knowledge base](KB/README.md) | Inactive v0.6 draft: cleansing, moisturizing and sun protection |
 | [Local preview](skin_engine/kb_preview/README.md) | Runnable structured rule engine, source tracing and follow-up handling |
 | [Repository scope](docs/repository-scope.md) | Reuse policy, export boundaries and future integration |

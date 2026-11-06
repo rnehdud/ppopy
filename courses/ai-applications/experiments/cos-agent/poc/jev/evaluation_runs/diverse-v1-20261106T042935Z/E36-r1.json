@@ -1,0 +1,66 @@
+{
+  "case": {
+    "id": "E36",
+    "group": "noisy_input",
+    "input": "오늘은 화장품 이야기는 안 할게. 날씨 이야기만 하자.",
+    "expected": {
+      "products": [],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "오늘은 화장품 이야기는 안 할게. 날씨 이야기만 하자.",
+    "text_revision": "c17edaf7d9d1a8b73ff4369f628463d79c58a0b7124d8e070caa2d321a3f7e4a",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.2836142999585718,
+  "requests": [
+    {
+      "questions": 2,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1190,
+        "output_tokens": 272
+      },
+      "elapsed_s": 0.28313039999920875
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "case": {
+    "id": "E28",
+    "group": "refusal",
+    "input": "피부 증상은 말하고 싶지 않아.",
+    "expected": {
+      "intake": "declined",
+      "products": [],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "피부 증상은 말하고 싶지 않아.",
+    "text_revision": "6aeb76da1019b5c7e86b7c63be36c0070759947a8794f02a48f1babea68372e6",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "declined",
+        "method": "explicit_global_refusal",
+        "evidence": {
+          "text": "피부 증상은 말하고 싶지 않",
+          "start": 0,
+          "end": 15
+        }
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "intake.symptoms",
+      "expected": "declined",
+      "actual": "declined",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.30648030003067106,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 838,
+        "output_tokens": 195
+      },
+      "elapsed_s": 0.30608990002656356
+    }
+  ]
+}

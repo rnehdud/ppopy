@@ -1,0 +1,333 @@
+{
+  "case_id": "C5",
+  "title": "증상 강도와 발견 시간",
+  "input": "어제 저녁에 일리윤 세라마이드 아토 집중 크림을 발랐어. 오늘 아침에 일어나니 피부가 조금 건조하고 가려움은 심했어. 정확히 언제부터 그랬는지는 모르겠어.",
+  "classification": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "skin_condition.dryness": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "skin_condition.breakout": {
+        "type": "noul",
+        "noul": 0.56
+      },
+      "skin_condition.redness": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.stinging": {
+        "type": "noul",
+        "noul": 0.07
+      },
+      "skin_condition.itching": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "severity": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.65,
+        "probabilities": {
+          "mild": 0.0,
+          "moderate": 0.0,
+          "severe": 0.26,
+          "unknown": 0.74
+        }
+      },
+      "usage_time": {
+        "type": "choice",
+        "choice": "evening",
+        "confidence": 0.99,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.99,
+          "unknown": 0.01
+        }
+      },
+      "product_used": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "symptom_onset": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.95,
+        "probabilities": {
+          "today": 0.04,
+          "yesterday": 0.0,
+          "recent": 0.0,
+          "unknown": 0.96
+        }
+      },
+      "event_recognition_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.47,
+        "probabilities": {
+          "morning": 0.4,
+          "afternoon": 0.0,
+          "evening": 0.0,
+          "unknown": 0.6
+        }
+      },
+      "routine_change_requested": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_name_mentioned": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "product_planned": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_use_denied": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "symptom_denied": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "information_refused": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 4369,
+      "output_tokens": 423
+    }
+  },
+  "features": {
+    "schema_version": "relations-0.1",
+    "source_text": "어제 저녁에 일리윤 세라마이드 아토 집중 크림을 발랐어. 오늘 아침에 일어나니 피부가 조금 건조하고 가려움은 심했어. 정확히 언제부터 그랬는지는 모르겠어.",
+    "text_revision": "00c635d87f5fad25a6b03ab4b08629b49b0a0562b727d54c34046712c80ad884",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "일리윤 세라마이드 아토 집중 크림",
+        "start": 7,
+        "end": 25,
+        "value": "일리윤 세라마이드 아토 집중 크림",
+        "score": 0.88,
+        "mode": "제품명 선택 점수",
+        "context": "어제 저녁에 일리윤 세라마이드 아토 집중 크림을 발랐어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "어제",
+              "start": 0,
+              "end": 2
+            },
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "저녁",
+              "start": 3,
+              "end": 5
+            },
+            "score": 1.0,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "dryness",
+        "label": "건조함",
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "mild",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "조금 건조하고",
+              "start": 48,
+              "end": 55
+            },
+            "score": 0.41,
+            "status": "uncertain"
+          },
+          "onset_date": {
+            "value": "unknown",
+            "score": 0.44,
+            "status": "uncertain"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.62,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": {
+              "text": "아침",
+              "start": 35,
+              "end": 37
+            },
+            "score": 0.83,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "itching",
+        "label": "가려움",
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "severe",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "가려움은 심했어.",
+              "start": 56,
+              "end": 65
+            },
+            "score": 0.86,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "unknown",
+            "score": 0.49,
+            "status": "uncertain"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.48,
+            "status": "uncertain"
+          },
+          "recognition_time": {
+            "value": {
+              "text": "아침",
+              "start": 35,
+              "end": 37
+            },
+            "score": 0.62,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "dryness",
+        "field": "evidence",
+        "reason": "uncertain"
+      },
+      {
+        "target": "dryness",
+        "field": "onset_date",
+        "reason": "uncertain"
+      },
+      {
+        "target": "itching",
+        "field": "onset_date",
+        "reason": "uncertain"
+      },
+      {
+        "target": "itching",
+        "field": "onset_time",
+        "reason": "uncertain"
+      }
+    ]
+  },
+  "elapsed_s": 1.208,
+  "requests": [
+    {
+      "elapsed_s": 0.286,
+      "http_status": 200,
+      "questions": 16,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4369,
+        "output_tokens": 423
+      }
+    },
+    {
+      "elapsed_s": 0.304,
+      "http_status": 200,
+      "questions": 3,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3166,
+        "output_tokens": 950
+      }
+    },
+    {
+      "elapsed_s": 0.307,
+      "http_status": 200,
+      "questions": 1,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 616,
+        "output_tokens": 57
+      }
+    },
+    {
+      "elapsed_s": 0.298,
+      "http_status": 200,
+      "questions": 19,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 5660,
+        "output_tokens": 1213
+      }
+    }
+  ]
+}

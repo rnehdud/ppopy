@@ -1,0 +1,215 @@
+{
+  "case_id": "C7",
+  "title": "불명확한 이름과 거절",
+  "input": "어제 일리윤 크림을 발랐는데 정확한 제품명은 모르겠어. 몇 시에 발랐는지도 기억 안 나고, 피부 증상은 말하고 싶지 않아.",
+  "classification": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "skin_condition.dryness": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "skin_condition.breakout": {
+        "type": "noul",
+        "noul": 0.1
+      },
+      "skin_condition.redness": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.stinging": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.itching": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "severity": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 1.0,
+        "probabilities": {
+          "mild": 0.0,
+          "moderate": 0.0,
+          "severe": 0.0,
+          "unknown": 1.0
+        }
+      },
+      "usage_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 1.0,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.0,
+          "unknown": 1.0
+        }
+      },
+      "product_used": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "symptom_onset": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.85,
+        "probabilities": {
+          "today": 0.0,
+          "yesterday": 0.11,
+          "recent": 0.0,
+          "unknown": 0.89
+        }
+      },
+      "event_recognition_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 1.0,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.0,
+          "unknown": 1.0
+        }
+      },
+      "routine_change_requested": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_name_mentioned": {
+        "type": "noul",
+        "noul": 0.35
+      },
+      "product_planned": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_use_denied": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "symptom_denied": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "information_refused": {
+        "type": "noul",
+        "noul": 0.84
+      }
+    },
+    "usage": {
+      "input_tokens": 4353,
+      "output_tokens": 422
+    }
+  },
+  "features": {
+    "schema_version": "relations-0.1",
+    "source_text": "어제 일리윤 크림을 발랐는데 정확한 제품명은 모르겠어. 몇 시에 발랐는지도 기억 안 나고, 피부 증상은 말하고 싶지 않아.",
+    "text_revision": "d1f67dcce656e4f0c12693f0966d77bbc909b64426b1a3bacdf177fa9c78681f",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "일리윤",
+        "start": 3,
+        "end": 6,
+        "value": "일리윤",
+        "score": 0.68,
+        "mode": "제품명 선택 점수",
+        "context": "어제 일리윤 크림을 발랐는데 정확한 제품명은 모르겠어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.93,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "어제",
+              "start": 0,
+              "end": 2
+            },
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "unknown",
+            "score": 0.48,
+            "status": "uncertain"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "usage_time",
+        "reason": "uncertain"
+      }
+    ]
+  },
+  "elapsed_s": 1.137,
+  "requests": [
+    {
+      "elapsed_s": 0.306,
+      "http_status": 200,
+      "questions": 16,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4353,
+        "output_tokens": 422
+      }
+    },
+    {
+      "elapsed_s": 0.23,
+      "http_status": 200,
+      "questions": 3,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2590,
+        "output_tokens": 760
+      }
+    },
+    {
+      "elapsed_s": 0.28,
+      "http_status": 200,
+      "questions": 1,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 974,
+        "output_tokens": 204
+      }
+    },
+    {
+      "elapsed_s": 0.319,
+      "http_status": 200,
+      "questions": 5,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1610,
+        "output_tokens": 268
+      }
+    }
+  ]
+}

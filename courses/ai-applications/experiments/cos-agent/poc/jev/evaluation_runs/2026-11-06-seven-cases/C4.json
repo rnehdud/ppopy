@@ -1,0 +1,308 @@
+{
+  "case_id": "C4",
+  "title": "타인과 본인",
+  "input": "친구는 라운드랩 1025 독도 토너를 쓰고 피부가 따갑다고 했어. 나는 일리윤 세라마이드 아토 집중 크림을 어제 저녁에 발랐는데 따갑지는 않았어.",
+  "classification": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "skin_condition.dryness": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "skin_condition.breakout": {
+        "type": "noul",
+        "noul": 0.07
+      },
+      "skin_condition.redness": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.stinging": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "skin_condition.itching": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "severity": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.91,
+        "probabilities": {
+          "mild": 0.06,
+          "moderate": 0.01,
+          "severe": 0.0,
+          "unknown": 0.93
+        }
+      },
+      "usage_time": {
+        "type": "choice",
+        "choice": "evening",
+        "confidence": 0.85,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.89,
+          "unknown": 0.11
+        }
+      },
+      "product_used": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "symptom_onset": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.89,
+        "probabilities": {
+          "today": 0.01,
+          "yesterday": 0.06,
+          "recent": 0.01,
+          "unknown": 0.92
+        }
+      },
+      "event_recognition_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.85,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.11,
+          "unknown": 0.89
+        }
+      },
+      "routine_change_requested": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_name_mentioned": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "product_planned": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "product_use_denied": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "symptom_denied": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "information_refused": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 4366,
+      "output_tokens": 423
+    }
+  },
+  "features": {
+    "schema_version": "relations-0.1",
+    "source_text": "친구는 라운드랩 1025 독도 토너를 쓰고 피부가 따갑다고 했어. 나는 일리윤 세라마이드 아토 집중 크림을 어제 저녁에 발랐는데 따갑지는 않았어.",
+    "text_revision": "f92d95136f09382e51cb0ef4006ddf9f2b27bf8230855d514c12f5f30cb83e2c",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 4,
+        "end": 19,
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.96,
+        "mode": "제품명 선택 점수",
+        "context": "친구는 라운드랩 1025 독도 토너를 쓰고 피부가 따갑다고 했어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "time_applicability": "affirmed"
+      },
+      {
+        "text": "일리윤 세라마이드 아토 집중 크림",
+        "start": 40,
+        "end": 58,
+        "value": "일리윤 세라마이드 아토 집중 크림",
+        "score": 0.9,
+        "mode": "제품명 선택 점수",
+        "context": "나는 일리윤 세라마이드 아토 집중 크림을 어제 저녁에 발랐는데 따갑지는 않았어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p1",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "어제",
+              "start": 60,
+              "end": 62
+            },
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "저녁",
+              "start": 63,
+              "end": 65
+            },
+            "score": 1.0,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "label": "따가움",
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": 0.44,
+            "status": "uncertain"
+          },
+          "subject": {
+            "value": "other",
+            "score": 0.87,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "따갑지는 않았어.",
+              "start": 72,
+              "end": 81
+            },
+            "score": 0.85,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.73,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.79,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.77,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "stinging",
+        "field": "state",
+        "reason": "uncertain"
+      }
+    ]
+  },
+  "elapsed_s": 1.33,
+  "requests": [
+    {
+      "elapsed_s": 0.397,
+      "http_status": 200,
+      "questions": 16,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4366,
+        "output_tokens": 423
+      }
+    },
+    {
+      "elapsed_s": 0.307,
+      "http_status": 200,
+      "questions": 2,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3414,
+        "output_tokens": 1102
+      }
+    },
+    {
+      "elapsed_s": 0.308,
+      "http_status": 200,
+      "questions": 2,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1461,
+        "output_tokens": 342
+      }
+    },
+    {
+      "elapsed_s": 0.314,
+      "http_status": 200,
+      "questions": 17,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 5150,
+        "output_tokens": 1040
+      }
+    }
+  ]
+}

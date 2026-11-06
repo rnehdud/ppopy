@@ -1,0 +1,216 @@
+{
+  "case": {
+    "id": "E33",
+    "group": "hypothetical",
+    "input": "친구가 A로션을 쓰라고 권했지만 나는 아직 안 썼어.",
+    "expected": {
+      "products": [
+        {
+          "name": "A로션",
+          "usage_state": "denied",
+          "subject": "self",
+          "eligible": false
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "친구가 A로션을 쓰라고 권했지만 나는 아직 안 썼어.",
+    "text_revision": "2fa7cd15fe1bdd58cfe19838ab42654ba86a50dfbb2ff327b68d48a125f993ac",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "A로션",
+        "start": 4,
+        "end": 7,
+        "value": "A로션",
+        "score": 0.84,
+        "mode": "제품명 선택 점수",
+        "context": "친구가 A로션을 쓰라고 권했지만 나는 아직 안 썼어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "denied",
+            "score": 0.92,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.6,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.7,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "denied"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "symptom_id": "s0",
+        "label": "따가움",
+        "source_scope": {
+          "text": "친구가 A로션을 쓰라고 권했지만 나는 아직 안 썼어.",
+          "start": 0,
+          "end": 29
+        },
+        "relations": {
+          "state": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "unknown",
+              "score": 0.8,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": "none",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.91,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.93,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "products[0].subject",
+      "expected": "self",
+      "actual": "self",
+      "passed": true
+    },
+    {
+      "field": "products[0].eligible",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 1,
+      "passed": false
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": false,
+  "elapsed_s": 0.8744556999881752,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1431,
+        "output_tokens": 422
+      },
+      "elapsed_s": 0.25781079998705536
+    },
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1017,
+        "output_tokens": 267
+      },
+      "elapsed_s": 0.28780019999248907
+    },
+    {
+      "questions": 12,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3769,
+        "output_tokens": 678
+      },
+      "elapsed_s": 0.3275641000363976
+    }
+  ]
+}

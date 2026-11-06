@@ -1,0 +1,296 @@
+{
+  "case": {
+    "id": "E15",
+    "group": "subject",
+    "input": "엄마는 B크림을 썼고 피부가 따갑대. 나는 건조해.",
+    "expected": {
+      "products": [
+        {
+          "name": "B크림",
+          "subject": "other"
+        }
+      ],
+      "symptoms": [
+        {
+          "type": "stinging",
+          "subject": "other"
+        },
+        {
+          "type": "dryness",
+          "subject": "self"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "엄마는 B크림을 썼고 피부가 따갑대. 나는 건조해.",
+    "text_revision": "d65f90ca3b1cb35c839a0abb033e6d319a243b135b2e1356b153550dd9d30a51",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "B크림",
+        "start": 4,
+        "end": 7,
+        "value": "B크림",
+        "score": 0.97,
+        "mode": "제품명 선택 점수",
+        "context": "엄마는 B크림을 썼고 피부가 따갑대.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "symptom_id": "s0",
+        "label": "따가움",
+        "source_scope": {
+          "text": "엄마는 B크림을 썼고 피부가 따갑대.",
+          "start": 0,
+          "end": 20
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "other",
+              "score": 0.94,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "피부가 따갑대.",
+              "start": 12,
+              "end": 20
+            },
+            "score": 0.55,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "dryness",
+        "symptom_id": "s1",
+        "label": "건조함",
+        "source_scope": {
+          "text": "나는 건조해.",
+          "start": 21,
+          "end": 28
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "self",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "나는 건조해.",
+              "start": 21,
+              "end": 28
+            },
+            "score": 0.79,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].subject",
+      "expected": "other",
+      "actual": "other",
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].subject",
+      "expected": "other",
+      "actual": "other",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].subject",
+      "expected": "self",
+      "actual": "self",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.7317578000365756,
+  "requests": [
+    {
+      "questions": 2,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1195,
+        "output_tokens": 268
+      },
+      "elapsed_s": 0.2534377999836579
+    },
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 664,
+        "output_tokens": 105
+      },
+      "elapsed_s": 0.24111770000308752
+    },
+    {
+      "questions": 19,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 5673,
+        "output_tokens": 1048
+      },
+      "elapsed_s": 0.23502939997706562
+    }
+  ]
+}

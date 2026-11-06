@@ -1,0 +1,591 @@
+{
+  "version": "diverse-v1",
+  "review_status": "agent_authored_unreviewed",
+  "purpose": "exploratory_development_evaluation_not_holdout",
+  "cases": [
+    {
+      "id": "E01",
+      "group": "basic",
+      "input": "A로션을 오늘 아침에 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_state": "affirmed",
+            "subject": "self",
+            "usage_time": "아침"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E02",
+      "group": "basic",
+      "input": "B크림을 어제 밤에 발랐어.",
+      "expected": {
+        "products": [
+          {
+            "name": "B크림",
+            "usage_state": "affirmed",
+            "usage_date": "어제",
+            "usage_time": "밤"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E03",
+      "group": "basic",
+      "input": "라운드랩 1025 독도 토너를 오늘 저녁에 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "라운드랩 1025 독도 토너",
+            "usage_time": "저녁"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E04",
+      "group": "plan_negation",
+      "input": "A로션은 안 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_state": "denied",
+            "eligible": false
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E05",
+      "group": "plan_negation",
+      "input": "B크림은 내일 밤에 바를 예정이야.",
+      "expected": {
+        "products": [
+          {
+            "name": "B크림",
+            "usage_state": "planned",
+            "usage_date": "내일",
+            "usage_time": "밤",
+            "eligible": false
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E06",
+      "group": "plan_negation",
+      "input": "A로션은 안 쓰고 B크림은 내일 쓸 거야.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_state": "denied"
+          },
+          {
+            "name": "B크림",
+            "usage_state": "planned"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E07",
+      "group": "correction",
+      "input": "A로션이 아니라 B크림을 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "correction": "superseded",
+            "eligible": false
+          },
+          {
+            "name": "B크림",
+            "correction": "current"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E08",
+      "group": "correction",
+      "input": "A로션 말고 B크림을 오늘 아침에 발랐어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "correction": "superseded"
+          },
+          {
+            "name": "B크림",
+            "usage_time": "아침",
+            "correction": "current"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E09",
+      "group": "correction",
+      "input": "A로션을 썼다고 했는데 잘못 말했어. 실제로는 B크림만 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "correction": "superseded",
+            "eligible": false
+          },
+          {
+            "name": "B크림",
+            "correction": "current"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E10",
+      "group": "product_time",
+      "input": "A로션은 아침에, B크림은 저녁에 발랐어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_time": "아침"
+          },
+          {
+            "name": "B크림",
+            "usage_time": "저녁"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E11",
+      "group": "product_time",
+      "input": "A로션을 어제 아침과 오늘 밤에 썼어.",
+      "expected": {
+        "event_pairs": [
+          [
+            "어제",
+            "아침"
+          ],
+          [
+            "오늘",
+            "밤"
+          ]
+        ],
+        "products": [
+          {
+            "name": "A로션",
+            "usage_time": "multiple_events"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E12",
+      "group": "product_time",
+      "input": "A로션을 오늘 아침에는 쓰고 오늘 저녁에는 안 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_state": "conflict",
+            "eligible": false
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E13",
+      "group": "subject",
+      "input": "친구가 A로션을 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "subject": "other",
+            "eligible": false
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E14",
+      "group": "subject",
+      "input": "친구는 피부가 가렵대. 나는 가렵지 않아.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "itching",
+            "subject": "other",
+            "state": "affirmed",
+            "scope_contains": "친구"
+          },
+          {
+            "type": "itching",
+            "subject": "self",
+            "state": "denied",
+            "scope_contains": "나는"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E15",
+      "group": "subject",
+      "input": "엄마는 B크림을 썼고 피부가 따갑대. 나는 건조해.",
+      "expected": {
+        "products": [
+          {
+            "name": "B크림",
+            "subject": "other"
+          }
+        ],
+        "symptoms": [
+          {
+            "type": "stinging",
+            "subject": "other"
+          },
+          {
+            "type": "dryness",
+            "subject": "self"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E16",
+      "group": "symptom_state",
+      "input": "건조하지만 가렵지는 않아.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "dryness",
+            "state": "affirmed"
+          },
+          {
+            "type": "itching",
+            "state": "denied"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E17",
+      "group": "symptom_state",
+      "input": "트러블은 없고 얼굴은 붉어.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "breakout",
+            "state": "denied"
+          },
+          {
+            "type": "redness",
+            "state": "affirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E18",
+      "group": "symptom_state",
+      "input": "따갑지는 않은데 건조함은 심해.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "stinging",
+            "state": "denied"
+          },
+          {
+            "type": "dryness",
+            "state": "affirmed",
+            "severity": "severe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E19",
+      "group": "severity",
+      "input": "건조함은 약간이고 가려움은 심해.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "dryness",
+            "severity": "mild"
+          },
+          {
+            "type": "itching",
+            "severity": "severe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E20",
+      "group": "severity",
+      "input": "피부가 가려워. 얼마나 심한지는 모르겠어.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "itching",
+            "severity": "unknown"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E21",
+      "group": "severity",
+      "input": "피부가 따가워.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "stinging",
+            "severity": "not_mentioned"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E22",
+      "group": "temporal_symptom",
+      "input": "오늘 아침에 일어나니 피부가 건조했어.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "dryness",
+            "recognition_time": "아침"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E23",
+      "group": "temporal_symptom",
+      "input": "어제 밤부터 가려움이 시작됐어.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "itching",
+            "onset_date": "어제",
+            "onset_time": "밤"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E24",
+      "group": "temporal_symptom",
+      "input": "피부가 건조해. 언제부터인지는 모르겠어.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "dryness",
+            "onset_date": "unknown",
+            "onset_time": "unknown"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E25",
+      "group": "ambiguity",
+      "input": "그냥 로션 발랐어.",
+      "expected": {
+        "products": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E26",
+      "group": "ambiguity",
+      "input": "일리윤 크림을 발랐는데 정확한 제품명은 몰라.",
+      "expected": {
+        "products": [
+          {
+            "name": "일리윤 크림",
+            "identification": "incomplete",
+            "eligible": false
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E27",
+      "group": "ambiguity",
+      "input": "A로션은 썼는데 몇 시에 발랐는지 기억 안 나.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_time": "unknown"
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E28",
+      "group": "refusal",
+      "input": "피부 증상은 말하고 싶지 않아.",
+      "expected": {
+        "intake": "declined",
+        "products": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E29",
+      "group": "refusal",
+      "input": "피부 증상에 대한 답변은 거절할게.",
+      "expected": {
+        "intake": "declined",
+        "products": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E30",
+      "group": "refusal",
+      "input": "가려운지는 말하기 싫어.",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "itching",
+            "state": "declined"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E31",
+      "group": "hypothetical",
+      "input": "A로션을 쓰면 가려울 수도 있어?",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_state": "hypothetical",
+            "eligible": false
+          }
+        ],
+        "symptoms": [
+          {
+            "type": "itching",
+            "state": "hypothetical"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E32",
+      "group": "hypothetical",
+      "input": "혹시 따갑지 않을까?",
+      "expected": {
+        "products": [],
+        "symptoms": [
+          {
+            "type": "stinging",
+            "state": "hypothetical"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E33",
+      "group": "hypothetical",
+      "input": "친구가 A로션을 쓰라고 권했지만 나는 아직 안 썼어.",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_state": "denied",
+            "subject": "self",
+            "eligible": false
+          }
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "E34",
+      "group": "noisy_input",
+      "input": "A로션썼어 피부건조해",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_state": "affirmed"
+          }
+        ],
+        "symptoms": [
+          {
+            "type": "dryness",
+            "state": "affirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E35",
+      "group": "noisy_input",
+      "input": "어.. A로션은요 어제 밤에 발랐구요 ㅠㅠ 피부가 좀 가려워요",
+      "expected": {
+        "products": [
+          {
+            "name": "A로션",
+            "usage_time": "밤"
+          }
+        ],
+        "symptoms": [
+          {
+            "type": "itching",
+            "state": "affirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E36",
+      "group": "noisy_input",
+      "input": "오늘은 화장품 이야기는 안 할게. 날씨 이야기만 하자.",
+      "expected": {
+        "products": [],
+        "symptoms": []
+      }
+    }
+  ]
+}

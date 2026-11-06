@@ -1,0 +1,244 @@
+{
+  "case": {
+    "id": "E16",
+    "group": "symptom_state",
+    "input": "건조하지만 가렵지는 않아.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "dryness",
+          "state": "affirmed"
+        },
+        {
+          "type": "itching",
+          "state": "denied"
+        }
+      ]
+    }
+  },
+  "run": 2,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "건조하지만 가렵지는 않아.",
+    "text_revision": "52d49eaf541e6d414103c5e3c47d474d3896b6781dee9123d7d5b097ab0c1207",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "dryness",
+        "symptom_id": "s0",
+        "label": "건조함",
+        "source_scope": {
+          "text": "건조하지만 가렵지는 않아.",
+          "start": 0,
+          "end": 14
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_symptom_negation",
+            "model_prediction": {
+              "value": "affirmed",
+              "score": 0.99,
+              "status": "candidate"
+            }
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.84,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "건조하지만 가렵지는 않아.",
+              "start": 0,
+              "end": 14
+            },
+            "score": null,
+            "status": "rule_candidate",
+            "method": "scope_negation_evidence",
+            "model_prediction": {
+              "value": {
+                "text": "건조하지만",
+                "start": 0,
+                "end": 5
+              },
+              "score": 0.88,
+              "status": "candidate"
+            }
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "itching",
+        "symptom_id": "s1",
+        "label": "가려움",
+        "source_scope": {
+          "text": "건조하지만 가렵지는 않아.",
+          "start": 0,
+          "end": 14
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_symptom_negation",
+            "model_prediction": {
+              "value": "denied",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.86,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.88,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "건조하지만 가렵지는 않아.",
+              "start": 0,
+              "end": 14
+            },
+            "score": null,
+            "status": "rule_candidate",
+            "method": "scope_negation_evidence",
+            "model_prediction": {
+              "value": {
+                "text": "가렵지는 않아.",
+                "start": 6,
+                "end": 14
+              },
+              "score": 0.96,
+              "status": "candidate"
+            }
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.92,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "affirmed",
+      "actual": "denied",
+      "passed": false
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": false,
+  "elapsed_s": 0.5305885000270791,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 644,
+        "output_tokens": 97
+      },
+      "elapsed_s": 0.27768589998595417
+    },
+    {
+      "questions": 14,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4373,
+        "output_tokens": 758
+      },
+      "elapsed_s": 0.25218220002716407
+    }
+  ]
+}

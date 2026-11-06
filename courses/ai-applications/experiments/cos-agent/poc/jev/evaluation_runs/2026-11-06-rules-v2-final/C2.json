@@ -1,0 +1,130 @@
+{
+  "input": "일리윤 세라마이드 아토 집중 크림은 오늘 안 발랐어. 라운드랩 1025 독도 토너는 내일 아침에 써볼 생각이야.",
+  "features": {
+    "schema_version": "relations-0.2",
+    "source_text": "일리윤 세라마이드 아토 집중 크림은 오늘 안 발랐어. 라운드랩 1025 독도 토너는 내일 아침에 써볼 생각이야.",
+    "text_revision": "9f36ff1adfba25f122428d07e0a6caec330db9e6bedd31814d0e2acdfb3545ed",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "일리윤 세라마이드 아토 집중 크림",
+        "start": 0,
+        "end": 18,
+        "value": "일리윤 세라마이드 아토 집중 크림",
+        "score": 0.92,
+        "mode": "제품명 선택 점수",
+        "context": "일리윤 세라마이드 아토 집중 크림은 오늘 안 발랐어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "denied",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.87,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "오늘",
+              "start": 20,
+              "end": 22
+            },
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.41,
+            "status": "uncertain"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "denied"
+      },
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 30,
+        "end": 45,
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.97,
+        "mode": "제품명 선택 점수",
+        "context": "라운드랩 1025 독도 토너는 내일 아침에 써볼 생각이야.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p1",
+        "relations": {
+          "usage_state": {
+            "value": "planned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "내일",
+              "start": 47,
+              "end": 49
+            },
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "아침",
+              "start": 50,
+              "end": 52
+            },
+            "score": 0.98,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "planned"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "usage_time",
+        "reason": "uncertain"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  }
+}

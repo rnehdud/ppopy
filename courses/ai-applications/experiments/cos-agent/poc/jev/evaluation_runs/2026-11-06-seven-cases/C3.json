@@ -1,0 +1,286 @@
+{
+  "case_id": "C3",
+  "title": "제품명 정정",
+  "input": "어제 밤에 라운드랩 1025 독도 토너가 아니라 일리윤 세라마이드 아토 집중 크림을 썼어. 제품명을 잘못 말했네.",
+  "classification": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "skin_condition.dryness": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "skin_condition.breakout": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.redness": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.stinging": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.itching": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "severity": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 1.0,
+        "probabilities": {
+          "mild": 0.0,
+          "moderate": 0.0,
+          "severe": 0.0,
+          "unknown": 1.0
+        }
+      },
+      "usage_time": {
+        "type": "choice",
+        "choice": "evening",
+        "confidence": 0.99,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.99,
+          "unknown": 0.01
+        }
+      },
+      "product_used": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "symptom_onset": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.61,
+        "probabilities": {
+          "today": 0.0,
+          "yesterday": 0.29,
+          "recent": 0.0,
+          "unknown": 0.71
+        }
+      },
+      "event_recognition_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.99,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.01,
+          "unknown": 0.99
+        }
+      },
+      "routine_change_requested": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_name_mentioned": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "product_planned": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_use_denied": {
+        "type": "noul",
+        "noul": 0.27
+      },
+      "symptom_denied": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "information_refused": {
+        "type": "noul",
+        "noul": 0.04
+      }
+    },
+    "usage": {
+      "input_tokens": 4351,
+      "output_tokens": 423
+    }
+  },
+  "features": {
+    "schema_version": "relations-0.1",
+    "source_text": "어제 밤에 라운드랩 1025 독도 토너가 아니라 일리윤 세라마이드 아토 집중 크림을 썼어. 제품명을 잘못 말했네.",
+    "text_revision": "391c2c92fc278e1a11ad59a3837508733fc0bb397185e00ab5952c186088cdf6",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 6,
+        "end": 21,
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.68,
+        "mode": "제품명 선택 점수",
+        "context": "어제 밤에 라운드랩 1025 독도 토너가 아니라 일리윤 세라마이드 아토 집중 크림을 썼어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "denied",
+            "score": 0.87,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "superseded",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_correction",
+            "model_prediction": {
+              "value": "superseded",
+              "score": 0.99,
+              "status": "candidate"
+            }
+          },
+          "usage_date": {
+            "value": {
+              "text": "어제",
+              "start": 0,
+              "end": 2
+            },
+            "score": 0.68,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "밤",
+              "start": 3,
+              "end": 4
+            },
+            "score": 0.73,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "time_applicability": "superseded"
+      },
+      {
+        "text": "일리윤 세라마이드 아토 집중 크림",
+        "start": 27,
+        "end": 45,
+        "value": "일리윤 세라마이드 아토 집중 크림",
+        "score": 0.7,
+        "mode": "제품명 선택 점수",
+        "context": "어제 밤에 라운드랩 1025 독도 토너가 아니라 일리윤 세라마이드 아토 집중 크림을 썼어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p1",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_correction",
+            "model_prediction": {
+              "value": "superseded",
+              "score": 0.93,
+              "status": "candidate"
+            }
+          },
+          "usage_date": {
+            "value": {
+              "text": "어제",
+              "start": 0,
+              "end": 2
+            },
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "밤",
+              "start": 3,
+              "end": 4
+            },
+            "score": 0.99,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": []
+  },
+  "elapsed_s": 1.328,
+  "requests": [
+    {
+      "elapsed_s": 0.304,
+      "http_status": 200,
+      "questions": 16,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4351,
+        "output_tokens": 423
+      }
+    },
+    {
+      "elapsed_s": 0.24,
+      "http_status": 200,
+      "questions": 2,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2664,
+        "output_tokens": 815
+      }
+    },
+    {
+      "elapsed_s": 0.204,
+      "http_status": 200,
+      "questions": 1,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1285,
+        "output_tokens": 341
+      }
+    },
+    {
+      "elapsed_s": 0.28,
+      "http_status": 200,
+      "questions": 1,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 624,
+        "output_tokens": 65
+      }
+    },
+    {
+      "elapsed_s": 0.296,
+      "http_status": 200,
+      "questions": 10,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3201,
+        "output_tokens": 554
+      }
+    }
+  ]
+}
