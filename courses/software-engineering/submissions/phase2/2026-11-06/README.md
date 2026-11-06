@@ -1,6 +1,6 @@
 # Ppopy — Phase 2 LaTeX submissions
 
-These editable sources are based on the latest Revised A and B PDFs, with **Ppopy** in the title. All members share data collection, user needs review, development planning, integration testing and project decisions. Development areas are Doyeong Koo (app/backend, KB and integration), Takgeon Kang (agent) and Geonil Won (smart mirror). The proposal, requirements and specifications are otherwise unchanged. Line breaks, table placement and pagination can differ from the PDF originals.
+These editable sources are based on the latest Revised A and B PDFs, with **Ppopy** in the title. All members share data collection, user workflow and usability review, requirements and budget review, acceptance criteria, schedule planning, progress review, integration testing and project decisions. Development areas are Doyeong Koo (app/backend, KB and integration), Takgeon Kang (agent) and Geonil Won (smart mirror). The proposal, requirements and specifications are otherwise unchanged. Line breaks, table placement and pagination can differ from the PDF originals.
 
 | Main file | Contents |
 | --- | --- |

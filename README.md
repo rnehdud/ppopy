@@ -43,7 +43,7 @@ The mirror's detailed display behavior, setup, failure handling, and authorizati
 
 | Member(s) | Responsibilities |
 | --- | --- |
-| All members | Data collection, user needs review, development planning, integration testing and project decisions |
+| All members | Data collection; user workflow and usability review; review of requirements, priorities, budget and acceptance criteria; joint schedule planning, progress review, integration testing and project decisions |
 | Doyeong Koo | App and backend development, KB construction and system integration |
 | Takgeon Kang | Agent workflow, contextual follow-up questions and guidance selection |
 | Geonil Won | Smart mirror hardware, display client and app–device integration |
