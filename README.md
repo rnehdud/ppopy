@@ -41,11 +41,12 @@ The mirror's detailed display behavior, setup, failure handling, and authorizati
 
 ### Software Engineering Team
 
-| Name | Course roles | Development responsibilities |
-| --- | --- | --- |
-| Doyeong Koo | Software developer; development manager | App and backend, KB construction, system integration and test coordination |
-| Takgeon Kang | User; customer; software developer | Agent workflow, contextual follow-up questions and guidance selection |
-| Geonil Won | Customer; software developer | Smart mirror hardware, display client and app–device integration |
+| Member(s) | Responsibilities |
+| --- | --- |
+| All members | Data collection, user needs review, development planning, integration testing and project decisions |
+| Doyeong Koo | App and backend development, KB construction and system integration |
+| Takgeon Kang | Agent workflow, contextual follow-up questions and guidance selection |
+| Geonil Won | Smart mirror hardware, display client and app–device integration |
 
 ## Project Progress
 
