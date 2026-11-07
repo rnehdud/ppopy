@@ -1,0 +1,402 @@
+{
+  "case": {
+    "id": "E14",
+    "group": "subject",
+    "input": "친구는 피부가 가렵대. 나는 가렵지 않아.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "itching",
+          "subject": "other",
+          "state": "affirmed",
+          "scope_contains": "친구"
+        },
+        {
+          "type": "itching",
+          "subject": "self",
+          "state": "denied",
+          "scope_contains": "나는"
+        }
+      ]
+    }
+  },
+  "run": 2,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "친구는 피부가 가렵대. 나는 가렵지 않아.",
+    "text_revision": "d7a9bad2152ee53511a054c461cf63fdfd789924eda0e3a00bf5f56a5074e610",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 12,
+        "text": "친구는 피부가 가렵대."
+      },
+      {
+        "unit_id": "u1",
+        "start": 13,
+        "end": 23,
+        "text": "나는 가렵지 않아."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "itching",
+        "symptom_id": "s0",
+        "label": "가려움",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 12,
+          "text": "친구는 피부가 가렵대.",
+          "tokens": [
+            [
+              "친구",
+              "NNG",
+              0,
+              2
+            ],
+            [
+              "는",
+              "JX",
+              2,
+              3
+            ],
+            [
+              "피부",
+              "NNG",
+              4,
+              6
+            ],
+            [
+              "가",
+              "JKS",
+              6,
+              7
+            ],
+            [
+              "가렵",
+              "VA",
+              8,
+              10
+            ],
+            [
+              "대",
+              "EF",
+              10,
+              11
+            ],
+            [
+              ".",
+              "SF",
+              11,
+              12
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "other",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "가렵대.",
+              "start": 8,
+              "end": 12
+            },
+            "score": 0.41,
+            "status": "uncertain"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "itching",
+        "symptom_id": "s1",
+        "label": "가려움",
+        "source_scope": {
+          "unit_id": "u1",
+          "start": 13,
+          "end": 23,
+          "text": "나는 가렵지 않아.",
+          "tokens": [
+            [
+              "나",
+              "NP",
+              13,
+              14
+            ],
+            [
+              "는",
+              "JX",
+              14,
+              15
+            ],
+            [
+              "가렵",
+              "VA",
+              16,
+              18
+            ],
+            [
+              "지",
+              "EC",
+              18,
+              19
+            ],
+            [
+              "않",
+              "VX",
+              20,
+              21
+            ],
+            [
+              "어",
+              "EF",
+              21,
+              22
+            ],
+            [
+              ".",
+              "SF",
+              22,
+              23
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_symptom_negation",
+            "model_prediction": {
+              "value": "denied",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "subject": {
+            "value": "self",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "self",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "unit_id": "u1",
+              "start": 13,
+              "end": 23,
+              "text": "나는 가렵지 않아.",
+              "tokens": [
+                [
+                  "나",
+                  "NP",
+                  13,
+                  14
+                ],
+                [
+                  "는",
+                  "JX",
+                  14,
+                  15
+                ],
+                [
+                  "가렵",
+                  "VA",
+                  16,
+                  18
+                ],
+                [
+                  "지",
+                  "EC",
+                  18,
+                  19
+                ],
+                [
+                  "않",
+                  "VX",
+                  20,
+                  21
+                ],
+                [
+                  "어",
+                  "EF",
+                  21,
+                  22
+                ],
+                [
+                  ".",
+                  "SF",
+                  22,
+                  23
+                ]
+              ]
+            },
+            "score": null,
+            "status": "rule_candidate",
+            "method": "scope_negation_evidence",
+            "model_prediction": {
+              "value": {
+                "text": "나는 가렵지 않아.",
+                "start": 13,
+                "end": 23
+              },
+              "score": 0.87,
+              "status": "candidate"
+            }
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.93,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "evidence",
+        "reason": "uncertain"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].subject",
+      "expected": "other",
+      "actual": "other",
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "affirmed",
+      "actual": "affirmed",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].subject",
+      "expected": "self",
+      "actual": "self",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.22209390002535656,
+  "requests": [
+    {
+      "questions": 14,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4416,
+        "output_tokens": 791
+      },
+      "elapsed_s": 0.22128400002839044
+    }
+  ]
+}

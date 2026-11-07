@@ -1,0 +1,70 @@
+{
+  "case": {
+    "id": "E36",
+    "group": "noisy_input",
+    "input": "오늘은 화장품 이야기는 안 할게. 날씨 이야기만 하자.",
+    "expected": {
+      "products": [],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "오늘은 화장품 이야기는 안 할게. 날씨 이야기만 하자.",
+    "text_revision": "c17edaf7d9d1a8b73ff4369f628463d79c58a0b7124d8e070caa2d321a3f7e4a",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 18,
+        "text": "오늘은 화장품 이야기는 안 할게."
+      },
+      {
+        "unit_id": "u1",
+        "start": 19,
+        "end": 30,
+        "text": "날씨 이야기만 하자."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.0019214999629184604,
+  "requests": []
+}

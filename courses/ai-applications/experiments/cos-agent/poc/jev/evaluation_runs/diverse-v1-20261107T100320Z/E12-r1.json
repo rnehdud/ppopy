@@ -1,0 +1,169 @@
+{
+  "case": {
+    "id": "E12",
+    "group": "product_time",
+    "input": "A로션을 오늘 아침에는 쓰고 오늘 저녁에는 안 썼어.",
+    "expected": {
+      "products": [
+        {
+          "name": "A로션",
+          "usage_state": "conflict",
+          "eligible": false
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "A로션을 오늘 아침에는 쓰고 오늘 저녁에는 안 썼어.",
+    "text_revision": "d9f89a699f0c72ee53cdb3c1acf53c6f7dd43bc74670eb59379f71f6d24b020c",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 15,
+        "text": "A로션을 오늘 아침에는 쓰고"
+      },
+      {
+        "unit_id": "u1",
+        "start": 16,
+        "end": 29,
+        "text": "오늘 저녁에는 안 썼어."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "A로션",
+        "start": 0,
+        "end": 3,
+        "candidate_method": "morpheme",
+        "value": "A로션",
+        "score": 0.68,
+        "mode": "제품명 선택 점수",
+        "context": "A로션을 오늘 아침에는 쓰고",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.88,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.79,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "오늘",
+              "start": 5,
+              "end": 7
+            },
+            "score": 0.87,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "아침",
+              "start": 8,
+              "end": 10
+            },
+            "score": 0.93,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_state",
+      "expected": "conflict",
+      "actual": "affirmed",
+      "passed": false
+    },
+    {
+      "field": "products[0].eligible",
+      "expected": false,
+      "actual": true,
+      "passed": false
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": false,
+  "elapsed_s": 0.5173728999798186,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 512,
+        "output_tokens": 34
+      },
+      "elapsed_s": 0.20883109996793792
+    },
+    {
+      "questions": 5,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1585,
+        "output_tokens": 293
+      },
+      "elapsed_s": 0.30695979995653033
+    }
+  ]
+}

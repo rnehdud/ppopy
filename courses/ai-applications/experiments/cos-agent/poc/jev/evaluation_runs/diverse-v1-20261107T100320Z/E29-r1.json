@@ -1,0 +1,75 @@
+{
+  "case": {
+    "id": "E29",
+    "group": "refusal",
+    "input": "피부 증상에 대한 답변은 거절할게.",
+    "expected": {
+      "intake": "declined",
+      "products": [],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "피부 증상에 대한 답변은 거절할게.",
+    "text_revision": "f654ed77232d28c6343a1e0077973e1b63c51f1cee7396d366c4d3ed4fe9221b",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 19,
+        "text": "피부 증상에 대한 답변은 거절할게."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "declined",
+        "method": "explicit_global_refusal",
+        "evidence": {
+          "text": "피부 증상에 대한 답변은 거절",
+          "start": 0,
+          "end": 16
+        }
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "intake.symptoms",
+      "expected": "declined",
+      "actual": "declined",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.0011455999920144677,
+  "requests": []
+}

@@ -1,0 +1,219 @@
+{
+  "case": {
+    "id": "E24",
+    "group": "temporal_symptom",
+    "input": "피부가 건조해. 언제부터인지는 모르겠어.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "dryness",
+          "onset_date": "unknown",
+          "onset_time": "unknown"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "피부가 건조해. 언제부터인지는 모르겠어.",
+    "text_revision": "36bb1d778d64f46b9c19e9c9b3a1b15d9a431c3cb60dc4a57d9aad32d3f50b5c",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 8,
+        "text": "피부가 건조해."
+      },
+      {
+        "unit_id": "u1",
+        "start": 9,
+        "end": 22,
+        "text": "언제부터인지는 모르겠어."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "dryness",
+        "symptom_id": "s0",
+        "label": "건조함",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 8,
+          "text": "피부가 건조해.",
+          "tokens": [
+            [
+              "피부",
+              "NNG",
+              0,
+              2
+            ],
+            [
+              "가",
+              "JKS",
+              2,
+              3
+            ],
+            [
+              "건조",
+              "NNG",
+              4,
+              6
+            ],
+            [
+              "하",
+              "XSA",
+              6,
+              7
+            ],
+            [
+              "어",
+              "EF",
+              6,
+              7
+            ],
+            [
+              ".",
+              "SF",
+              7,
+              8
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.91,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "피부가 건조해.",
+              "start": 0,
+              "end": 8
+            },
+            "score": 0.78,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "unknown",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_following_onset_unknown",
+            "model_prediction": {
+              "value": "not_mentioned",
+              "score": 0.78,
+              "status": "candidate"
+            }
+          },
+          "onset_time": {
+            "value": "unknown",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_following_onset_unknown",
+            "model_prediction": {
+              "value": "not_mentioned",
+              "score": 0.9,
+              "status": "candidate"
+            }
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.95,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "onset_date",
+        "reason": "rule_candidate"
+      },
+      {
+        "target": "s0",
+        "field": "onset_time",
+        "reason": "rule_candidate"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].onset_date",
+      "expected": "unknown",
+      "actual": "unknown",
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].onset_time",
+      "expected": "unknown",
+      "actual": "unknown",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.2148592000012286,
+  "requests": [
+    {
+      "questions": 7,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2304,
+        "output_tokens": 383
+      },
+      "elapsed_s": 0.21311809995677322
+    }
+  ]
+}

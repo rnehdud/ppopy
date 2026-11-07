@@ -1,0 +1,225 @@
+{
+  "case": {
+    "id": "E06",
+    "group": "plan_negation",
+    "input": "A로션은 안 쓰고 B크림은 내일 쓸 거야.",
+    "expected": {
+      "products": [
+        {
+          "name": "A로션",
+          "usage_state": "denied"
+        },
+        {
+          "name": "B크림",
+          "usage_state": "planned"
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 2,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "A로션은 안 쓰고 B크림은 내일 쓸 거야.",
+    "text_revision": "6af799aaebd894c79178bc4c3d016dcaca304c3451a7a2b110d1dda2c21871d7",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 9,
+        "text": "A로션은 안 쓰고"
+      },
+      {
+        "unit_id": "u1",
+        "start": 10,
+        "end": 23,
+        "text": "B크림은 내일 쓸 거야."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "A로션",
+        "start": 0,
+        "end": 3,
+        "candidate_method": "morpheme",
+        "value": "A로션",
+        "score": 0.68,
+        "mode": "제품명 선택 점수",
+        "context": "A로션은 안 쓰고",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "denied",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.73,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.69,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.9,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.79,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "denied"
+      },
+      {
+        "text": "B크림",
+        "start": 10,
+        "end": 13,
+        "candidate_method": "morpheme",
+        "value": "B크림",
+        "score": 0.74,
+        "mode": "제품명 선택 점수",
+        "context": "B크림은 내일 쓸 거야.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p1",
+        "relations": {
+          "usage_state": {
+            "value": "planned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.83,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "내일",
+              "start": 15,
+              "end": 17
+            },
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "unknown",
+            "score": 0.67,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "planned"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p1",
+        "field": "usage_time",
+        "reason": "unknown"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "products[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[1].usage_state",
+      "expected": "planned",
+      "actual": "planned",
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.41300679999403656,
+  "requests": [
+    {
+      "questions": 2,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 736,
+        "output_tokens": 65
+      },
+      "elapsed_s": 0.19973379996372387
+    },
+    {
+      "questions": 10,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2738,
+        "output_tokens": 537
+      },
+      "elapsed_s": 0.2124467000248842
+    }
+  ]
+}

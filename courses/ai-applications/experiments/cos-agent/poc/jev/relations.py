@@ -7,11 +7,15 @@ import httpx
 
 try:
     from .context_evidence import candidate_spans, clause_spans
+    from .jev_client import ask
     from .product_mentions import extract_products
+    from .segmenter import noun_candidates, segmentation_method, units
     from .semantic_rules import apply_rules, symptom_scopes
 except ImportError:
     from context_evidence import candidate_spans, clause_spans
+    from jev_client import ask
     from product_mentions import extract_products
+    from segmenter import noun_candidates, segmentation_method, units
     from semantic_rules import apply_rules, symptom_scopes
 
 SUBJECT = {'self': '사용자 본인', 'other': '타인의 경험 또는 인용', 'unknown': '누구인지 불명확'}
@@ -35,11 +39,14 @@ def time_spans(text, date=False):
 
 
 def extract_features(text, key):
-    products, product_warning = extract_products(text, key, clause_spans(text), include_non_usage=True)
+    units_list = units(text)
+    products, product_warning = extract_products(text, key, units_list, include_non_usage=True, candidate_fn=noun_candidates)
     products.sort(key=lambda p: (p['start'], p['end']))
-    result = {'schema_version': 'relations-0.2', 'source_text': text,
+    result = {'schema_version': 'relations-0.3', 'source_text': text,
               'text_revision': hashlib.sha256(text.encode('utf-8')).hexdigest(),
               'offset_unit': 'unicode_codepoint', 'review_status': 'candidate',
+              'segmentation_method': segmentation_method(),
+              'units': [{'unit_id': u['unit_id'], 'start': u['start'], 'end': u['end'], 'text': u['text']} for u in units_list],
               'symptom_detection': 'lexicon_gated',
               'products': [], 'symptoms': [], 'warnings': [], 'clarifications': []}
     if product_warning:
@@ -70,7 +77,7 @@ def extract_features(text, key):
         temporal(record, 'usage_time', scope + '이 제품을 실제 사용/사용 부정/사용 계획한 하루 중 시간은?')
 
     spans = {f's{i}': span for i, span in enumerate(candidate_spans(text))}
-    for name, source_scope in symptom_scopes(text, clause_spans(text), SYMPTOM_ANCHORS):
+    for name, source_scope in symptom_scopes(text, units_list, SYMPTOM_ANCHORS):
         label = SYMPTOMS[name]
         anchors = [a for a in re.finditer(SYMPTOM_ANCHORS[name], text)
                    if source_scope['start'] <= a.start() < source_scope['end']]
@@ -107,14 +114,7 @@ def extract_features(text, key):
         batch = tasks[offset:offset + 20]
         questions = {f'q{i}': task[2] for i, task in enumerate(batch)}
         try:
-            response = httpx.post('https://api.typesafe.ai/v1/systemone',
-                headers={'Authorization': f'Bearer {key}'},
-                json={'model': 'jev-latest', 'state': text, 'questions': questions}, timeout=60.0)
-            response.raise_for_status()
-            payload = response.json()
-            answers = payload['answers']
-            if set(answers) != set(questions):
-                raise ValueError('질문 불일치')
+            answers = ask(text, questions, key)
             validated = []
             for i, (record, attr, q, options) in enumerate(batch):
                 answer = answers[f'q{i}']
@@ -131,16 +131,16 @@ def extract_features(text, key):
             result['warnings'].append(f'관계 질문 {offset + 1}~{offset + len(batch)} 실패 · 해당 필드는 미평가')
             for record, attr, _, _ in batch:
                 record['relations'][attr] = {'value': None, 'score': None, 'status': 'unassessed'}
-    apply_rules(result, SYMPTOM_ANCHORS, clause_spans(text), time_spans)
+    apply_rules(result, SYMPTOM_ANCHORS, units_list, time_spans)
     finalize(result)
     return result
 
 
 def finalize(result):
-    # Exact, adjacent "A(이/가) 아니라 B" correction has an auditable boundary.
+    # Exact adjacent correction ("A가 아니라 B") or explicit speech correction ("A... 잘못 말했어. 실제로는 B").
     for left, right in zip(result['products'], result['products'][1:]):
         between = result['source_text'][left['end']:right['start']]
-        if re.fullmatch(r'(?:이|가)?\s*(?:아니라|말고)\s*', between):
+        if re.fullmatch(r'(?:이|가)?\s*(?:아니라|말고)\s*', between) or re.search(r'(?:잘못\s*말했|착각했).{0,30}(?:실제로|사실)', between):
             for record, value in [(left, 'superseded'), (right, 'current')]:
                 previous = record['relations'].get('correction')
                 record['relations']['correction'] = {'value': value, 'score': None,

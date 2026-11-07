@@ -1,9 +1,16 @@
 """Conservative source-grounded rules; preserve replaced model predictions."""
 import re
 
+try:
+    from .segmenter import lexicon_hits, anchor_negated, interrogative
+except ImportError:
+    from segmenter import lexicon_hits, anchor_negated, interrogative
+
 
 def set_rule(record, field, value, method, uncertain=False):
     previous = record['relations'].get(field)
+    if previous and previous.get('status') == 'unassessed':
+        return
     record['relations'][field] = {'value': value, 'score': None,
         'status': 'uncertain' if uncertain else 'rule_candidate', 'method': method,
         'model_prediction': previous}
@@ -11,9 +18,8 @@ def set_rule(record, field, value, method, uncertain=False):
 
 def symptom_scopes(text, clauses, patterns):
     for clause in clauses:
-        for name, pattern in patterns.items():
-            if re.search(pattern, clause['text']):
-                yield name, clause
+        for name in lexicon_hits(text, clause, patterns):
+            yield name, clause
 
 
 def apply_rules(result, patterns, clauses, time_spans):
@@ -72,10 +78,16 @@ def apply_rules(result, patterns, clauses, time_spans):
             continue
         local = scope['text']
         anchor = patterns[symptom['symptom']]
-        negative = re.search(r'(?:' + anchor + r')[^,.!?]{0,10}?(?:지(?:는|도)?\s*않(?:아|았|습니다)|없(?:어|었|습니다))', local)
-        if negative and not re.search(r'혹시|만약|까\?|다면|수\s*있', local):
-            set_rule(symptom, 'state', 'denied', 'explicit_symptom_negation')
-            set_rule(symptom, 'evidence', dict(scope), 'scope_negation_evidence')
+        negated = anchor_negated(text, scope, anchor)
+        if negated is True:
+            if not interrogative(text, scope):
+                set_rule(symptom, 'state', 'denied', 'explicit_symptom_negation')
+                set_rule(symptom, 'evidence', dict(scope), 'scope_negation_evidence')
+        elif negated is None:
+            negative = re.search(r'(?:' + anchor + r')[^,.!?]{0,10}?(?:지(?:는|도)?\s*않(?:아|았|습니다)|없(?:어|었|습니다))', local)
+            if negative and not re.search(r'혹시|만약|까\?|다면|수\s*있', local):
+                set_rule(symptom, 'state', 'denied', 'explicit_symptom_negation')
+                set_rule(symptom, 'evidence', dict(scope), 'scope_negation_evidence')
         # Restrict local identity rules to an explicit sentence subject.
         if re.match(r'\s*(?:나는|난|저는|전)\s', local):
             set_rule(symptom, 'subject', 'self', 'explicit_scope_subject')
@@ -83,9 +95,13 @@ def apply_rules(result, patterns, clauses, time_spans):
             set_rule(symptom, 'subject', 'other', 'explicit_scope_subject')
         following = text[scope['end']:]
         next_clause = re.match(r'\s*([^.!?\n]+)', following)
-        if next_clause and re.search(r'언제부터.{0,20}(?:모르|몰라)', next_clause[1]):
-            for field in ('onset_date', 'onset_time'):
-                set_rule(symptom, field, 'unknown', 'explicit_following_onset_unknown')
+        if next_clause:
+            next_text = next_clause[1]
+            if re.search(r'언제부터.{0,20}(?:모르|몰라)', next_text):
+                for field in ('onset_date', 'onset_time'):
+                    set_rule(symptom, field, 'unknown', 'explicit_following_onset_unknown')
+            if re.search(r'(?:얼마나\s*심한지|심한지|강도.{0,6}|정도.{0,6}).{0,16}(?:모르|몰라)', next_text):
+                set_rule(symptom, 'severity', 'unknown', 'explicit_following_severity_unknown')
         recognition = symptom['relations'].get('recognition_time', {})
         if isinstance(recognition.get('value'), dict) and not re.search(r'일어나|알아|발견|느꼈|느끼|확인|눈떴', local):
             set_rule(symptom, 'recognition_time', 'unknown', 'no_local_recognition_anchor', uncertain=True)

@@ -4,6 +4,11 @@ import re
 
 import httpx
 
+try:
+    from .jev_client import ask
+except ImportError:
+    from jev_client import ask
+
 
 def name_candidates(text, event):
     words = list(re.finditer(r'\S+', text[event['start']:event['end']]))
@@ -24,9 +29,18 @@ def name_candidates(text, event):
     return list(spans.values())
 
 
-def extract_products(text, key, events, max_rounds=8, include_non_usage=False):
-    """Choose multiple nonoverlapping names within affirmed use events."""
-    active = {f'e{i}': (event, name_candidates(text, event)) for i, event in enumerate(events)}
+def extract_products(text, key, events, max_rounds=8, include_non_usage=False, candidate_fn=None):
+    """Choose multiple nonoverlapping names within affirmed use events.
+
+    `candidate_fn(text, event)` defaults to eojeol candidates; relations passes
+    the morpheme-based generator. Events without any candidate are not asked.
+    """
+    candidate_fn = candidate_fn or name_candidates
+    active = {}
+    for i, event in enumerate(events):
+        spans = candidate_fn(text, event)
+        if spans:
+            active[f'e{i}'] = (event, spans)
     products = []
     for _ in range(max_rounds):
         questions = {}
@@ -56,13 +70,7 @@ def extract_products(text, key, events, max_rounds=8, include_non_usage=False):
         if not questions:
             return products, None
         try:
-            response = httpx.post('https://api.typesafe.ai/v1/systemone',
-                headers={'Authorization': f'Bearer {key}'},
-                json={'model': 'jev-latest', 'state': text, 'questions': questions}, timeout=60.0)
-            response.raise_for_status()
-            answers = response.json()['answers']
-            if not isinstance(answers, dict) or set(answers) != set(questions):
-                raise ValueError('응답 질문 불일치')
+            answers = ask(text, questions, key)
             next_active, selected = {}, []
             for qid, (event, spans) in active.items():
                 answer = answers[qid]

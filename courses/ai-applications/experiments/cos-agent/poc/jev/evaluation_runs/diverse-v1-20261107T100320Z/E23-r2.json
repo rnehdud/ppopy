@@ -1,0 +1,244 @@
+{
+  "case": {
+    "id": "E23",
+    "group": "temporal_symptom",
+    "input": "어제 밤부터 가려움이 시작됐어.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "itching",
+          "onset_date": "어제",
+          "onset_time": "밤"
+        }
+      ]
+    }
+  },
+  "run": 2,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "어제 밤부터 가려움이 시작됐어.",
+    "text_revision": "374c662131cbe4ce87f3d029920c240e276f8db20fde873b65fc60aee18c50a4",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 17,
+        "text": "어제 밤부터 가려움이 시작됐어."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "itching",
+        "symptom_id": "s0",
+        "label": "가려움",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 17,
+          "text": "어제 밤부터 가려움이 시작됐어.",
+          "tokens": [
+            [
+              "어제",
+              "NNG",
+              0,
+              2
+            ],
+            [
+              "밤",
+              "NNG",
+              3,
+              4
+            ],
+            [
+              "부터",
+              "JX",
+              4,
+              6
+            ],
+            [
+              "가렵",
+              "VA",
+              7,
+              10
+            ],
+            [
+              "음",
+              "ETN",
+              9,
+              10
+            ],
+            [
+              "이",
+              "JKS",
+              10,
+              11
+            ],
+            [
+              "시작",
+              "NNG",
+              12,
+              14
+            ],
+            [
+              "되",
+              "XSV",
+              14,
+              15
+            ],
+            [
+              "었",
+              "EP",
+              14,
+              15
+            ],
+            [
+              "어",
+              "EF",
+              15,
+              16
+            ],
+            [
+              ".",
+              "SF",
+              16,
+              17
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "가려움이 시작됐어.",
+              "start": 7,
+              "end": 17
+            },
+            "score": 0.67,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": {
+              "text": "어제",
+              "start": 0,
+              "end": 2
+            },
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": {
+              "text": "밤",
+              "start": 3,
+              "end": 4
+            },
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "unknown",
+            "score": null,
+            "status": "uncertain",
+            "method": "no_local_recognition_anchor",
+            "model_prediction": {
+              "value": {
+                "text": "밤",
+                "start": 3,
+                "end": 4
+              },
+              "score": 0.54,
+              "status": "candidate"
+            }
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "recognition_time",
+        "reason": "uncertain"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].onset_date",
+      "expected": "어제",
+      "actual": "어제",
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].onset_time",
+      "expected": "밤",
+      "actual": "밤",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.2401534999953583,
+  "requests": [
+    {
+      "questions": 7,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2485,
+        "output_tokens": 425
+      },
+      "elapsed_s": 0.2393255999777466
+    }
+  ]
+}

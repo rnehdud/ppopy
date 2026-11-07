@@ -1,0 +1,374 @@
+{
+  "case": {
+    "id": "E15",
+    "group": "subject",
+    "input": "엄마는 B크림을 썼고 피부가 따갑대. 나는 건조해.",
+    "expected": {
+      "products": [
+        {
+          "name": "B크림",
+          "subject": "other"
+        }
+      ],
+      "symptoms": [
+        {
+          "type": "stinging",
+          "subject": "other"
+        },
+        {
+          "type": "dryness",
+          "subject": "self"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "엄마는 B크림을 썼고 피부가 따갑대. 나는 건조해.",
+    "text_revision": "d65f90ca3b1cb35c839a0abb033e6d319a243b135b2e1356b153550dd9d30a51",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 11,
+        "text": "엄마는 B크림을 썼고"
+      },
+      {
+        "unit_id": "u1",
+        "start": 12,
+        "end": 20,
+        "text": "피부가 따갑대."
+      },
+      {
+        "unit_id": "u2",
+        "start": 21,
+        "end": 28,
+        "text": "나는 건조해."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "B크림",
+        "start": 4,
+        "end": 7,
+        "candidate_method": "morpheme",
+        "value": "B크림",
+        "score": 0.93,
+        "mode": "제품명 선택 점수",
+        "context": "엄마는 B크림을 썼고",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "symptom_id": "s0",
+        "label": "따가움",
+        "source_scope": {
+          "unit_id": "u1",
+          "start": 12,
+          "end": 20,
+          "text": "피부가 따갑대.",
+          "tokens": [
+            [
+              "피부",
+              "NNG",
+              12,
+              14
+            ],
+            [
+              "가",
+              "JKS",
+              14,
+              15
+            ],
+            [
+              "따갑",
+              "VA",
+              16,
+              18
+            ],
+            [
+              "대",
+              "EF",
+              18,
+              19
+            ],
+            [
+              ".",
+              "SF",
+              19,
+              20
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": 0.89,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "피부가 따갑대.",
+              "start": 12,
+              "end": 20
+            },
+            "score": 0.59,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "dryness",
+        "symptom_id": "s1",
+        "label": "건조함",
+        "source_scope": {
+          "unit_id": "u2",
+          "start": 21,
+          "end": 28,
+          "text": "나는 건조해.",
+          "tokens": [
+            [
+              "나",
+              "NP",
+              21,
+              22
+            ],
+            [
+              "는",
+              "JX",
+              22,
+              23
+            ],
+            [
+              "건조",
+              "NNG",
+              24,
+              26
+            ],
+            [
+              "하",
+              "XSA",
+              26,
+              27
+            ],
+            [
+              "어",
+              "EF",
+              26,
+              27
+            ],
+            [
+              ".",
+              "SF",
+              27,
+              28
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "self",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "나는 건조해.",
+              "start": 21,
+              "end": 28
+            },
+            "score": 0.73,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].subject",
+      "expected": "other",
+      "actual": "other",
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].subject",
+      "expected": "other",
+      "actual": "other",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].subject",
+      "expected": "self",
+      "actual": "self",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.5133588999742642,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 512,
+        "output_tokens": 34
+      },
+      "elapsed_s": 0.26304170000366867
+    },
+    {
+      "questions": 19,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 5558,
+        "output_tokens": 1040
+      },
+      "elapsed_s": 0.24827659997390583
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "case": {
+    "id": "E31",
+    "group": "hypothetical",
+    "input": "A로션을 쓰면 가려울 수도 있어?",
+    "expected": {
+      "products": [
+        {
+          "name": "A로션",
+          "usage_state": "hypothetical",
+          "eligible": false
+        }
+      ],
+      "symptoms": [
+        {
+          "type": "itching",
+          "state": "hypothetical"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "A로션을 쓰면 가려울 수도 있어?",
+    "text_revision": "d9d0924aa89f50fb9cef3d4e7c7374e0f44b57ddf9d85c263e8580d93d48ac9d",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 18,
+        "text": "A로션을 쓰면 가려울 수도 있어?"
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "A로션",
+        "start": 0,
+        "end": 3,
+        "candidate_method": "morpheme",
+        "value": "A로션",
+        "score": 0.8,
+        "mode": "제품명 선택 점수",
+        "context": "A로션을 쓰면 가려울 수도 있어?",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "hypothetical",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "unknown",
+            "score": 0.66,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.64,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "hypothetical"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "itching",
+        "symptom_id": "s0",
+        "label": "가려움",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 18,
+          "text": "A로션을 쓰면 가려울 수도 있어?",
+          "tokens": [
+            [
+              "A",
+              "SL",
+              0,
+              1
+            ],
+            [
+              "로션",
+              "NNG",
+              1,
+              3
+            ],
+            [
+              "을",
+              "JKO",
+              3,
+              4
+            ],
+            [
+              "쓰",
+              "VV",
+              5,
+              6
+            ],
+            [
+              "면",
+              "EC",
+              6,
+              7
+            ],
+            [
+              "가렵",
+              "VA",
+              8,
+              11
+            ],
+            [
+              "을",
+              "ETM",
+              10,
+              11
+            ],
+            [
+              "수",
+              "NNB",
+              12,
+              13
+            ],
+            [
+              "도",
+              "JX",
+              13,
+              14
+            ],
+            [
+              "있",
+              "VA",
+              15,
+              16
+            ],
+            [
+              "어",
+              "EF",
+              16,
+              17
+            ],
+            [
+              "?",
+              "SF",
+              17,
+              18
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "hypothetical",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.55,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "가려울 수도 있어?",
+              "start": 8,
+              "end": 18
+            },
+            "score": 0.68,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "subject",
+        "reason": "unknown"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_state",
+      "expected": "hypothetical",
+      "actual": "hypothetical",
+      "passed": true
+    },
+    {
+      "field": "products[0].eligible",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "hypothetical",
+      "actual": "hypothetical",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.39997859997674823,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 503,
+        "output_tokens": 34
+      },
+      "elapsed_s": 0.19237379997503012
+    },
+    {
+      "questions": 12,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3628,
+        "output_tokens": 681
+      },
+      "elapsed_s": 0.20591769996099174
+    }
+  ]
+}
