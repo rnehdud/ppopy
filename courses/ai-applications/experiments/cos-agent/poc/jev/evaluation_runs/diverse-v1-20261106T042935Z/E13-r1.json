@@ -1,0 +1,155 @@
+{
+  "case": {
+    "id": "E13",
+    "group": "subject",
+    "input": "친구가 A로션을 썼어.",
+    "expected": {
+      "products": [
+        {
+          "name": "A로션",
+          "subject": "other",
+          "eligible": false
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "친구가 A로션을 썼어.",
+    "text_revision": "4b2dd37a53af504199e446c80b5da510dd5abb63f83b575eadcec33ea89313a1",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "A로션",
+        "start": 4,
+        "end": 7,
+        "value": "A로션",
+        "score": 0.88,
+        "mode": "제품명 선택 점수",
+        "context": "친구가 A로션을 썼어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.91,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.92,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.9,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].subject",
+      "expected": "other",
+      "actual": "other",
+      "passed": true
+    },
+    {
+      "field": "products[0].eligible",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.7465210999944247,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 639,
+        "output_tokens": 98
+      },
+      "elapsed_s": 0.2101058000116609
+    },
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 530,
+        "output_tokens": 49
+      },
+      "elapsed_s": 0.2875660000136122
+    },
+    {
+      "questions": 5,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1479,
+        "output_tokens": 265
+      },
+      "elapsed_s": 0.24824879999505356
+    }
+  ]
+}

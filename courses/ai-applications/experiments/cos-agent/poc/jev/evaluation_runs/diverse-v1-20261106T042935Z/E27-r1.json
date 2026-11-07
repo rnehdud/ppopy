@@ -1,0 +1,160 @@
+{
+  "case": {
+    "id": "E27",
+    "group": "ambiguity",
+    "input": "A로션은 썼는데 몇 시에 발랐는지 기억 안 나.",
+    "expected": {
+      "products": [
+        {
+          "name": "A로션",
+          "usage_time": "unknown"
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "A로션은 썼는데 몇 시에 발랐는지 기억 안 나.",
+    "text_revision": "79e5b85b4e19ac336b1d356fc6df9390b7f8fe06f5a30dbb80046ab420857ed1",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "A로션",
+        "start": 0,
+        "end": 3,
+        "value": "A로션",
+        "score": 0.92,
+        "mode": "제품명 선택 점수",
+        "context": "A로션은 썼는데 몇 시에 발랐는지 기억 안 나.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.92,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.68,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "unknown",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_usage_time_unknown",
+            "model_prediction": {
+              "value": "unknown",
+              "score": 0.55,
+              "status": "candidate"
+            }
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "usage_time",
+        "reason": "rule_candidate"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_time",
+      "expected": "unknown",
+      "actual": "unknown",
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.7966319000115618,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1171,
+        "output_tokens": 322
+      },
+      "elapsed_s": 0.20987100002821535
+    },
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1012,
+        "output_tokens": 258
+      },
+      "elapsed_s": 0.278713500010781
+    },
+    {
+      "questions": 5,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1533,
+        "output_tokens": 262
+      },
+      "elapsed_s": 0.3072072999784723
+    }
+  ]
+}

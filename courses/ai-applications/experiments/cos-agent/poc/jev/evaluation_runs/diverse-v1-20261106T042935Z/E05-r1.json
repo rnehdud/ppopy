@@ -1,0 +1,177 @@
+{
+  "case": {
+    "id": "E05",
+    "group": "plan_negation",
+    "input": "B크림은 내일 밤에 바를 예정이야.",
+    "expected": {
+      "products": [
+        {
+          "name": "B크림",
+          "usage_state": "planned",
+          "usage_date": "내일",
+          "usage_time": "밤",
+          "eligible": false
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "B크림은 내일 밤에 바를 예정이야.",
+    "text_revision": "81fe57fc64a5d0ff8995a2adc6c015cc12412ed3baeea690b284018f12771698",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "B크림",
+        "start": 0,
+        "end": 3,
+        "value": "B크림",
+        "score": 0.96,
+        "mode": "제품명 선택 점수",
+        "context": "B크림은 내일 밤에 바를 예정이야.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "planned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.87,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "내일",
+              "start": 5,
+              "end": 7
+            },
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "밤",
+              "start": 8,
+              "end": 9
+            },
+            "score": 1.0,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "unverified",
+        "time_applicability": "planned"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_state",
+      "expected": "planned",
+      "actual": "planned",
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_date",
+      "expected": "내일",
+      "actual": "내일",
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_time",
+      "expected": "밤",
+      "actual": "밤",
+      "passed": true
+    },
+    {
+      "field": "products[0].eligible",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.6915847000200301,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 855,
+        "output_tokens": 196
+      },
+      "elapsed_s": 0.19962490000762045
+    },
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 710,
+        "output_tokens": 132
+      },
+      "elapsed_s": 0.2703476000460796
+    },
+    {
+      "questions": 5,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1546,
+        "output_tokens": 277
+      },
+      "elapsed_s": 0.2208709999686107
+    }
+  ]
+}

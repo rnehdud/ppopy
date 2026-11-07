@@ -1,0 +1,145 @@
+{
+  "case": {
+    "id": "E21",
+    "group": "severity",
+    "input": "피부가 따가워.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "stinging",
+          "severity": "not_mentioned"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "피부가 따가워.",
+    "text_revision": "a45e7895a39c0a007115d67b71ac720d846427f67166dd8a169205580ddf4803",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "symptom_id": "s0",
+        "label": "따가움",
+        "source_scope": {
+          "text": "피부가 따가워.",
+          "start": 0,
+          "end": 8
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.86,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "피부가 따가워.",
+              "start": 0,
+              "end": 8
+            },
+            "score": 0.74,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].severity",
+      "expected": "not_mentioned",
+      "actual": "not_mentioned",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.430488099984359,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 540,
+        "output_tokens": 57
+      },
+      "elapsed_s": 0.21577939996495843
+    },
+    {
+      "questions": 7,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2292,
+        "output_tokens": 383
+      },
+      "elapsed_s": 0.2142837000428699
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "case_id": "C6",
+  "title": "반복 사용과 증상 변화",
+  "input": "라운드랩 1025 독도 토너를 어제 아침이랑 오늘 저녁에 썼어. 어제는 괜찮았는데 오늘은 바른 뒤 볼이 따가웠어. 지금은 따갑지 않아.",
+  "classification": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "skin_condition.dryness": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "skin_condition.breakout": {
+        "type": "noul",
+        "noul": 0.14
+      },
+      "skin_condition.redness": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "skin_condition.stinging": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "skin_condition.itching": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "severity": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.92,
+        "probabilities": {
+          "mild": 0.04,
+          "moderate": 0.02,
+          "severe": 0.0,
+          "unknown": 0.94
+        }
+      },
+      "usage_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.89,
+        "probabilities": {
+          "morning": 0.02,
+          "afternoon": 0.0,
+          "evening": 0.06,
+          "unknown": 0.92
+        }
+      },
+      "product_used": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "symptom_onset": {
+        "type": "choice",
+        "choice": "today",
+        "confidence": 0.97,
+        "probabilities": {
+          "today": 0.98,
+          "yesterday": 0.0,
+          "recent": 0.0,
+          "unknown": 0.02
+        }
+      },
+      "event_recognition_time": {
+        "type": "choice",
+        "choice": "evening",
+        "confidence": 0.69,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.77,
+          "unknown": 0.23
+        }
+      },
+      "routine_change_requested": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_name_mentioned": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "product_planned": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "product_use_denied": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "symptom_denied": {
+        "type": "noul",
+        "noul": 0.43
+      },
+      "information_refused": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 4362,
+      "output_tokens": 423
+    }
+  },
+  "features": {
+    "schema_version": "relations-0.1",
+    "source_text": "라운드랩 1025 독도 토너를 어제 아침이랑 오늘 저녁에 썼어. 어제는 괜찮았는데 오늘은 바른 뒤 볼이 따가웠어. 지금은 따갑지 않아.",
+    "text_revision": "2410bf5bce567ae9bec94bf1b8b54961f2a7575b672719ab51185b37d0734e52",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 0,
+        "end": 15,
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.97,
+        "mode": "제품명 선택 점수",
+        "context": "라운드랩 1025 독도 토너를 어제 아침이랑 오늘 저녁에 썼어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "conflict",
+            "score": 0.83,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "conflict",
+            "score": 0.89,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "label": "따가움",
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 0.82,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "지금은 따갑지 않아.",
+              "start": 64,
+              "end": 75
+            },
+            "score": 0.86,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "unknown",
+            "score": null,
+            "status": "uncertain",
+            "method": "no_explicit_onset_anchor",
+            "model_prediction": {
+              "value": {
+                "text": "오늘",
+                "start": 25,
+                "end": 27
+              },
+              "score": 0.58,
+              "status": "candidate"
+            }
+          },
+          "onset_time": {
+            "value": "unknown",
+            "score": null,
+            "status": "uncertain",
+            "method": "no_explicit_onset_anchor",
+            "model_prediction": {
+              "value": {
+                "text": "저녁",
+                "start": 28,
+                "end": 30
+              },
+              "score": 0.88,
+              "status": "candidate"
+            }
+          },
+          "recognition_time": {
+            "value": {
+              "text": "저녁",
+              "start": 28,
+              "end": 30
+            },
+            "score": 0.84,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "usage_date",
+        "reason": "conflict"
+      },
+      {
+        "target": "p0",
+        "field": "usage_time",
+        "reason": "conflict"
+      },
+      {
+        "target": "stinging",
+        "field": "onset_date",
+        "reason": "uncertain"
+      },
+      {
+        "target": "stinging",
+        "field": "onset_time",
+        "reason": "uncertain"
+      }
+    ]
+  },
+  "elapsed_s": 1.123,
+  "requests": [
+    {
+      "elapsed_s": 0.224,
+      "http_status": 200,
+      "questions": 16,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4362,
+        "output_tokens": 423
+      }
+    },
+    {
+      "elapsed_s": 0.288,
+      "http_status": 200,
+      "questions": 3,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2966,
+        "output_tokens": 907
+      }
+    },
+    {
+      "elapsed_s": 0.315,
+      "http_status": 200,
+      "questions": 1,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 859,
+        "output_tokens": 168
+      }
+    },
+    {
+      "elapsed_s": 0.293,
+      "http_status": 200,
+      "questions": 12,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3846,
+        "output_tokens": 797
+      }
+    }
+  ]
+}

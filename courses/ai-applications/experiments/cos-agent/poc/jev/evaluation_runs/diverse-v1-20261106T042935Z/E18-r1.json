@@ -1,0 +1,225 @@
+{
+  "case": {
+    "id": "E18",
+    "group": "symptom_state",
+    "input": "따갑지는 않은데 건조함은 심해.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "stinging",
+          "state": "denied"
+        },
+        {
+          "type": "dryness",
+          "state": "affirmed",
+          "severity": "severe"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "따갑지는 않은데 건조함은 심해.",
+    "text_revision": "ddc5b302fd6cb2f31c834aca4afd8c527312ef221646295c86a18a17db106968",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "dryness",
+        "symptom_id": "s0",
+        "label": "건조함",
+        "source_scope": {
+          "text": "따갑지는 않은데 건조함은 심해.",
+          "start": 0,
+          "end": 17
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.76,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "severe",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "않은데 건조함은 심해.",
+              "start": 5,
+              "end": 17
+            },
+            "score": 0.44,
+            "status": "uncertain"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "stinging",
+        "symptom_id": "s1",
+        "label": "따가움",
+        "source_scope": {
+          "text": "따갑지는 않은데 건조함은 심해.",
+          "start": 0,
+          "end": 17
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.72,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.7,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "따갑지는 않은데",
+              "start": 0,
+              "end": 8
+            },
+            "score": 0.74,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "evidence",
+        "reason": "uncertain"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].state",
+      "expected": "affirmed",
+      "actual": "affirmed",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].severity",
+      "expected": "severe",
+      "actual": "severe",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.5907936000148766,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 752,
+        "output_tokens": 141
+      },
+      "elapsed_s": 0.32010440004523844
+    },
+    {
+      "questions": 14,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4478,
+        "output_tokens": 780
+      },
+      "elapsed_s": 0.26996130001498386
+    }
+  ]
+}

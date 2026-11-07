@@ -1,0 +1,262 @@
+{
+  "case": {
+    "id": "E14",
+    "group": "subject",
+    "input": "친구는 피부가 가렵대. 나는 가렵지 않아.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "itching",
+          "subject": "other",
+          "state": "affirmed",
+          "scope_contains": "친구"
+        },
+        {
+          "type": "itching",
+          "subject": "self",
+          "state": "denied",
+          "scope_contains": "나는"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "친구는 피부가 가렵대. 나는 가렵지 않아.",
+    "text_revision": "d7a9bad2152ee53511a054c461cf63fdfd789924eda0e3a00bf5f56a5074e610",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "itching",
+        "symptom_id": "s0",
+        "label": "가려움",
+        "source_scope": {
+          "text": "친구는 피부가 가렵대.",
+          "start": 0,
+          "end": 12
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "other",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "other",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "피부가 가렵대.",
+              "start": 4,
+              "end": 12
+            },
+            "score": 0.46,
+            "status": "uncertain"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "itching",
+        "symptom_id": "s1",
+        "label": "가려움",
+        "source_scope": {
+          "text": "나는 가렵지 않아.",
+          "start": 13,
+          "end": 23
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_symptom_negation",
+            "model_prediction": {
+              "value": "denied",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "subject": {
+            "value": "self",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_scope_subject",
+            "model_prediction": {
+              "value": "self",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "나는 가렵지 않아.",
+              "start": 13,
+              "end": 23
+            },
+            "score": null,
+            "status": "rule_candidate",
+            "method": "scope_negation_evidence",
+            "model_prediction": {
+              "value": {
+                "text": "나는 가렵지 않아.",
+                "start": 13,
+                "end": 23
+              },
+              "score": 0.88,
+              "status": "candidate"
+            }
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.91,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "evidence",
+        "reason": "uncertain"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].subject",
+      "expected": "other",
+      "actual": "other",
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "affirmed",
+      "actual": "affirmed",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].subject",
+      "expected": "self",
+      "actual": "self",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.5022546999971382,
+  "requests": [
+    {
+      "questions": 2,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 951,
+        "output_tokens": 175
+      },
+      "elapsed_s": 0.253457399958279
+    },
+    {
+      "questions": 14,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4416,
+        "output_tokens": 791
+      },
+      "elapsed_s": 0.2460537999868393
+    }
+  ]
+}

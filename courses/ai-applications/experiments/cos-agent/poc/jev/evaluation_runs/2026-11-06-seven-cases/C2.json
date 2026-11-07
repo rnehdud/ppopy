@@ -1,0 +1,266 @@
+{
+  "case_id": "C2",
+  "title": "사용 부정과 계획",
+  "input": "일리윤 세라마이드 아토 집중 크림은 오늘 안 발랐어. 라운드랩 1025 독도 토너는 내일 아침에 써볼 생각이야.",
+  "classification": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "skin_condition.dryness": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "skin_condition.breakout": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.redness": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.stinging": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.itching": {
+        "type": "noul",
+        "noul": 0.01
+      },
+      "severity": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 1.0,
+        "probabilities": {
+          "mild": 0.0,
+          "moderate": 0.0,
+          "severe": 0.0,
+          "unknown": 1.0
+        }
+      },
+      "usage_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.96,
+        "probabilities": {
+          "morning": 0.01,
+          "afternoon": 0.0,
+          "evening": 0.02,
+          "unknown": 0.97
+        }
+      },
+      "product_used": {
+        "type": "noul",
+        "noul": 0.11
+      },
+      "symptom_onset": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.97,
+        "probabilities": {
+          "today": 0.02,
+          "yesterday": 0.0,
+          "recent": 0.0,
+          "unknown": 0.98
+        }
+      },
+      "event_recognition_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 1.0,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.0,
+          "unknown": 1.0
+        }
+      },
+      "routine_change_requested": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_name_mentioned": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "product_planned": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "product_use_denied": {
+        "type": "noul",
+        "noul": 0.74
+      },
+      "symptom_denied": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "information_refused": {
+        "type": "noul",
+        "noul": 0.03
+      }
+    },
+    "usage": {
+      "input_tokens": 4352,
+      "output_tokens": 422
+    }
+  },
+  "features": {
+    "schema_version": "relations-0.1",
+    "source_text": "일리윤 세라마이드 아토 집중 크림은 오늘 안 발랐어. 라운드랩 1025 독도 토너는 내일 아침에 써볼 생각이야.",
+    "text_revision": "9f36ff1adfba25f122428d07e0a6caec330db9e6bedd31814d0e2acdfb3545ed",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "일리윤 세라마이드 아토 집중 크림",
+        "start": 0,
+        "end": 18,
+        "value": "일리윤 세라마이드 아토 집중 크림",
+        "score": 0.94,
+        "mode": "제품명 선택 점수",
+        "context": "일리윤 세라마이드 아토 집중 크림은 오늘 안 발랐어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "denied",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.88,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "오늘",
+              "start": 20,
+              "end": 22
+            },
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "unknown",
+            "score": 0.4,
+            "status": "uncertain"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "time_applicability": "denied"
+      },
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 30,
+        "end": 45,
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.97,
+        "mode": "제품명 선택 점수",
+        "context": "라운드랩 1025 독도 토너는 내일 아침에 써볼 생각이야.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p1",
+        "relations": {
+          "usage_state": {
+            "value": "planned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "내일",
+              "start": 47,
+              "end": 49
+            },
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "아침",
+              "start": 50,
+              "end": 52
+            },
+            "score": 1.0,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "time_applicability": "planned"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "usage_time",
+        "reason": "uncertain"
+      }
+    ]
+  },
+  "elapsed_s": 1.227,
+  "requests": [
+    {
+      "elapsed_s": 0.303,
+      "http_status": 200,
+      "questions": 16,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4352,
+        "output_tokens": 422
+      }
+    },
+    {
+      "elapsed_s": 0.306,
+      "http_status": 200,
+      "questions": 2,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2369,
+        "output_tokens": 731
+      }
+    },
+    {
+      "elapsed_s": 0.28,
+      "http_status": 200,
+      "questions": 2,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1038,
+        "output_tokens": 175
+      }
+    },
+    {
+      "elapsed_s": 0.336,
+      "http_status": 200,
+      "questions": 10,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3123,
+        "output_tokens": 565
+      }
+    }
+  ]
+}

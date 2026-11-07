@@ -2,6 +2,8 @@
 
 Read the root README, `docs/repository-scope.md`, and the relevant course README before changing this repository.
 
+- Make every commit and push on a separate task branch. Never commit, push, or merge directly to `main`; the developer decides whether to merge.
+
 - This public repository serves CSE 406 and ITE 351. Preserve the existing team information and proposal history.
 - The imported KB and engine are a dated development snapshot. `docs/source-manifest.json` records the original file hashes, including files that were uncommitted in SkinAnalysis. Do not describe them as a historical release.
 - Keep `development_preview` and `production_enabled=false`. Do not enable real-user collection, production, payment, face analysis, or automatic improvement judgments.

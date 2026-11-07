@@ -1,0 +1,168 @@
+{
+  "case": {
+    "id": "E26",
+    "group": "ambiguity",
+    "input": "일리윤 크림을 발랐는데 정확한 제품명은 몰라.",
+    "expected": {
+      "products": [
+        {
+          "name": "일리윤 크림",
+          "identification": "incomplete",
+          "eligible": false
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 2,
+  "result": {
+    "schema_version": "relations-0.2",
+    "source_text": "일리윤 크림을 발랐는데 정확한 제품명은 몰라.",
+    "text_revision": "8513e33de0ad5e0939d153e431f2f1eac2c0a2ddfc7470d421710cc7f25471aa",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "일리윤 크림",
+        "start": 0,
+        "end": 6,
+        "value": "일리윤 크림",
+        "score": 0.71,
+        "mode": "제품명 선택 점수",
+        "context": "일리윤 크림을 발랐는데 정확한 제품명은 몰라.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.92,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.93,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": false,
+        "identification_status": "incomplete",
+        "name_model_prediction": {
+          "text": "일리윤",
+          "value": "일리윤",
+          "start": 0,
+          "end": 3
+        },
+        "name_rule": "preserve_adjacent_category",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "p0",
+        "field": "product_name",
+        "reason": "incomplete_name"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].identification",
+      "expected": "incomplete",
+      "actual": "incomplete",
+      "passed": true
+    },
+    {
+      "field": "products[0].eligible",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.9100066000246443,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1114,
+        "output_tokens": 268
+      },
+      "elapsed_s": 0.29381639999337494
+    },
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 916,
+        "output_tokens": 195
+      },
+      "elapsed_s": 0.30618980003055185
+    },
+    {
+      "questions": 5,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1539,
+        "output_tokens": 265
+      },
+      "elapsed_s": 0.30911420000484213
+    }
+  ]
+}

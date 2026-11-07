@@ -1,0 +1,310 @@
+{
+  "case_id": "C1",
+  "title": "제품별 사용 시간",
+  "input": "오늘 아침에는 라운드랩 1025 독도 토너를 썼고, 저녁에는 일리윤 세라마이드 아토 집중 크림을 발랐어. 지금 피부가 약간 건조해.",
+  "classification": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "skin_condition.dryness": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "skin_condition.breakout": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "skin_condition.redness": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.stinging": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "skin_condition.itching": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "severity": {
+        "type": "choice",
+        "choice": "mild",
+        "confidence": 1.0,
+        "probabilities": {
+          "mild": 1.0,
+          "moderate": 0.0,
+          "severe": 0.0,
+          "unknown": 0.0
+        }
+      },
+      "usage_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.84,
+        "probabilities": {
+          "morning": 0.02,
+          "afternoon": 0.0,
+          "evening": 0.1,
+          "unknown": 0.88
+        }
+      },
+      "product_used": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "symptom_onset": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.85,
+        "probabilities": {
+          "today": 0.11,
+          "yesterday": 0.0,
+          "recent": 0.0,
+          "unknown": 0.89
+        }
+      },
+      "event_recognition_time": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.92,
+        "probabilities": {
+          "morning": 0.0,
+          "afternoon": 0.0,
+          "evening": 0.06,
+          "unknown": 0.94
+        }
+      },
+      "routine_change_requested": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "product_name_mentioned": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "product_planned": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "product_use_denied": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "symptom_denied": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "information_refused": {
+        "type": "noul",
+        "noul": 0.02
+      }
+    },
+    "usage": {
+      "input_tokens": 4360,
+      "output_tokens": 423
+    }
+  },
+  "features": {
+    "schema_version": "relations-0.1",
+    "source_text": "오늘 아침에는 라운드랩 1025 독도 토너를 썼고, 저녁에는 일리윤 세라마이드 아토 집중 크림을 발랐어. 지금 피부가 약간 건조해.",
+    "text_revision": "2f3364821927df7764ddc0054ab4ac4c5da7fc356882d22152097f2dd6f99fc0",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 8,
+        "end": 23,
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.95,
+        "mode": "제품명 선택 점수",
+        "context": "오늘 아침에는 라운드랩 1025 독도 토너를 썼고,",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "오늘",
+              "start": 0,
+              "end": 2
+            },
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "아침",
+              "start": 3,
+              "end": 5
+            },
+            "score": 1.0,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "time_applicability": "affirmed"
+      },
+      {
+        "text": "일리윤 세라마이드 아토 집중 크림",
+        "start": 34,
+        "end": 52,
+        "value": "일리윤 세라마이드 아토 집중 크림",
+        "score": 0.86,
+        "mode": "제품명 선택 점수",
+        "context": "저녁에는 일리윤 세라마이드 아토 집중 크림을 발랐어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p1",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "오늘",
+              "start": 0,
+              "end": 2
+            },
+            "score": 0.9,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "저녁",
+              "start": 29,
+              "end": 31
+            },
+            "score": 1.0,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "dryness",
+        "label": "건조함",
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "mild",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "피부가 약간 건조해.",
+              "start": 62,
+              "end": 73
+            },
+            "score": 0.67,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.75,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.86,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.79,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": []
+  },
+  "elapsed_s": 1.848,
+  "requests": [
+    {
+      "elapsed_s": 0.514,
+      "http_status": 200,
+      "questions": 16,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4360,
+        "output_tokens": 423
+      }
+    },
+    {
+      "elapsed_s": 0.715,
+      "http_status": 200,
+      "questions": 3,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2801,
+        "output_tokens": 817
+      }
+    },
+    {
+      "elapsed_s": 0.307,
+      "http_status": 200,
+      "questions": 2,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 912,
+        "output_tokens": 119
+      }
+    },
+    {
+      "elapsed_s": 0.302,
+      "http_status": 200,
+      "questions": 17,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4988,
+        "output_tokens": 1004
+      }
+    }
+  ]
+}

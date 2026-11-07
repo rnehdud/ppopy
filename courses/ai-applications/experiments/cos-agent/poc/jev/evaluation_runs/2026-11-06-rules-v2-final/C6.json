@@ -1,0 +1,280 @@
+{
+  "input": "라운드랩 1025 독도 토너를 어제 아침이랑 오늘 저녁에 썼어. 어제는 괜찮았는데 오늘은 바른 뒤 볼이 따가웠어. 지금은 따갑지 않아.",
+  "features": {
+    "schema_version": "relations-0.2",
+    "source_text": "라운드랩 1025 독도 토너를 어제 아침이랑 오늘 저녁에 썼어. 어제는 괜찮았는데 오늘은 바른 뒤 볼이 따가웠어. 지금은 따갑지 않아.",
+    "text_revision": "2410bf5bce567ae9bec94bf1b8b54961f2a7575b672719ab51185b37d0734e52",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 0,
+        "end": 15,
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.96,
+        "mode": "제품명 선택 점수",
+        "context": "라운드랩 1025 독도 토너를 어제 아침이랑 오늘 저녁에 썼어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "multiple_events",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_repeated_date_time",
+            "model_prediction": {
+              "value": "conflict",
+              "score": 0.87,
+              "status": "candidate"
+            }
+          },
+          "usage_time": {
+            "value": "multiple_events",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_repeated_date_time",
+            "model_prediction": {
+              "value": "conflict",
+              "score": 0.94,
+              "status": "candidate"
+            }
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "symptom_id": "s0",
+        "label": "따가움",
+        "source_scope": {
+          "text": "어제는 괜찮았는데 오늘은 바른 뒤 볼이 따가웠어.",
+          "start": 36,
+          "end": 63
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "볼이 따가웠어.",
+              "start": 55,
+              "end": 63
+            },
+            "score": 0.51,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "unknown",
+            "score": null,
+            "status": "uncertain",
+            "method": "no_explicit_onset_anchor",
+            "model_prediction": {
+              "value": {
+                "text": "오늘",
+                "start": 25,
+                "end": 27
+              },
+              "score": 0.69,
+              "status": "candidate"
+            }
+          },
+          "onset_time": {
+            "value": "unknown",
+            "score": null,
+            "status": "uncertain",
+            "method": "no_explicit_onset_anchor",
+            "model_prediction": {
+              "value": {
+                "text": "저녁",
+                "start": 28,
+                "end": 30
+              },
+              "score": 0.91,
+              "status": "candidate"
+            }
+          },
+          "recognition_time": {
+            "value": "unknown",
+            "score": null,
+            "status": "uncertain",
+            "method": "no_local_recognition_anchor",
+            "model_prediction": {
+              "value": {
+                "text": "저녁",
+                "start": 28,
+                "end": 30
+              },
+              "score": 0.82,
+              "status": "candidate"
+            }
+          }
+        }
+      },
+      {
+        "symptom": "stinging",
+        "symptom_id": "s1",
+        "label": "따가움",
+        "source_scope": {
+          "text": "지금은 따갑지 않아.",
+          "start": 64,
+          "end": 75
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_symptom_negation",
+            "model_prediction": {
+              "value": "denied",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "지금은 따갑지 않아.",
+              "start": 64,
+              "end": 75
+            },
+            "score": null,
+            "status": "rule_candidate",
+            "method": "scope_negation_evidence",
+            "model_prediction": {
+              "value": {
+                "text": "지금은 따갑지 않아.",
+                "start": 64,
+                "end": 75
+              },
+              "score": 0.88,
+              "status": "candidate"
+            }
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.66,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.74,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.82,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "onset_date",
+        "reason": "uncertain"
+      },
+      {
+        "target": "s0",
+        "field": "onset_time",
+        "reason": "uncertain"
+      },
+      {
+        "target": "s0",
+        "field": "recognition_time",
+        "reason": "uncertain"
+      }
+    ],
+    "usage_events": [
+      {
+        "event_id": "e0",
+        "product_mention_id": "p0",
+        "usage_date": {
+          "text": "어제",
+          "start": 17,
+          "end": 19
+        },
+        "usage_time": {
+          "text": "아침",
+          "start": 20,
+          "end": 22
+        },
+        "status": "rule_candidate",
+        "method": "explicit_repeated_date_time",
+        "subject": "self"
+      },
+      {
+        "event_id": "e1",
+        "product_mention_id": "p0",
+        "usage_date": {
+          "text": "오늘",
+          "start": 25,
+          "end": 27
+        },
+        "usage_time": {
+          "text": "저녁",
+          "start": 28,
+          "end": 30
+        },
+        "status": "rule_candidate",
+        "method": "explicit_repeated_date_time",
+        "subject": "self"
+      }
+    ],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  }
+}
