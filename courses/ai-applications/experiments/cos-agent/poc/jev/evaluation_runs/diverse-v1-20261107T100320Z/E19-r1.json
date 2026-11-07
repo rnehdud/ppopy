@@ -1,0 +1,301 @@
+{
+  "case": {
+    "id": "E19",
+    "group": "severity",
+    "input": "건조함은 약간이고 가려움은 심해.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "dryness",
+          "severity": "mild"
+        },
+        {
+          "type": "itching",
+          "severity": "severe"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "건조함은 약간이고 가려움은 심해.",
+    "text_revision": "ff2767972f8b88c55a1e2c78732681b5adcaf7a8a27ae4ae616d08bc9b12042a",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 9,
+        "text": "건조함은 약간이고"
+      },
+      {
+        "unit_id": "u1",
+        "start": 10,
+        "end": 18,
+        "text": "가려움은 심해."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "dryness",
+        "symptom_id": "s0",
+        "label": "건조함",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 9,
+          "text": "건조함은 약간이고",
+          "tokens": [
+            [
+              "건조",
+              "NNG",
+              0,
+              2
+            ],
+            [
+              "하",
+              "XSA",
+              2,
+              3
+            ],
+            [
+              "ᆷ",
+              "ETN",
+              2,
+              3
+            ],
+            [
+              "은",
+              "JX",
+              3,
+              4
+            ],
+            [
+              "약간",
+              "NNG",
+              5,
+              7
+            ],
+            [
+              "이",
+              "VCP",
+              7,
+              8
+            ],
+            [
+              "고",
+              "EC",
+              8,
+              9
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.62,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "mild",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "건조함은 약간이고",
+              "start": 0,
+              "end": 9
+            },
+            "score": 0.92,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 1.0,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "itching",
+        "symptom_id": "s1",
+        "label": "가려움",
+        "source_scope": {
+          "unit_id": "u1",
+          "start": 10,
+          "end": 18,
+          "text": "가려움은 심해.",
+          "tokens": [
+            [
+              "가렵",
+              "VA",
+              10,
+              13
+            ],
+            [
+              "음",
+              "ETN",
+              12,
+              13
+            ],
+            [
+              "은",
+              "JX",
+              13,
+              14
+            ],
+            [
+              "심하",
+              "VA",
+              15,
+              17
+            ],
+            [
+              "어",
+              "EF",
+              16,
+              17
+            ],
+            [
+              ".",
+              "SF",
+              17,
+              18
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.58,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "severe",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "가려움은 심해.",
+              "start": 10,
+              "end": 18
+            },
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].severity",
+      "expected": "mild",
+      "actual": "mild",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].severity",
+      "expected": "severe",
+      "actual": "severe",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.2665017999825068,
+  "requests": [
+    {
+      "questions": 14,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4355,
+        "output_tokens": 763
+      },
+      "elapsed_s": 0.26255440001841635
+    }
+  ]
+}

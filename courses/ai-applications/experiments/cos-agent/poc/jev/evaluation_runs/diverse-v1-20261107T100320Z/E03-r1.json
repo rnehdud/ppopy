@@ -1,0 +1,156 @@
+{
+  "case": {
+    "id": "E03",
+    "group": "basic",
+    "input": "라운드랩 1025 독도 토너를 오늘 저녁에 썼어.",
+    "expected": {
+      "products": [
+        {
+          "name": "라운드랩 1025 독도 토너",
+          "usage_time": "저녁"
+        }
+      ],
+      "symptoms": []
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "라운드랩 1025 독도 토너를 오늘 저녁에 썼어.",
+    "text_revision": "9d19a4e3fa1f2331df9d735af47f087911b0589eab8a170446b69d4aa4d9c096",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 27,
+        "text": "라운드랩 1025 독도 토너를 오늘 저녁에 썼어."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "라운드랩 1025 독도 토너",
+        "start": 0,
+        "end": 15,
+        "candidate_method": "morpheme",
+        "value": "라운드랩 1025 독도 토너",
+        "score": 0.91,
+        "mode": "제품명 선택 점수",
+        "context": "라운드랩 1025 독도 토너를 오늘 저녁에 썼어.",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": {
+              "text": "오늘",
+              "start": 17,
+              "end": 19
+            },
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": {
+              "text": "저녁",
+              "start": 20,
+              "end": 22
+            },
+            "score": 1.0,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_time",
+      "expected": "저녁",
+      "actual": "저녁",
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.6180508000543341,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 696,
+        "output_tokens": 106
+      },
+      "elapsed_s": 0.32032950001303107
+    },
+    {
+      "questions": 5,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 1658,
+        "output_tokens": 277
+      },
+      "elapsed_s": 0.2962949000066146
+    }
+  ]
+}

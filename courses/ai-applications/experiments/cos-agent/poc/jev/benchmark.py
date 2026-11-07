@@ -64,7 +64,8 @@ def main():
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     output = ROOT / 'evaluation_runs' / ('diverse-v1-' + stamp)
     output.mkdir(parents=True)
-    files = [ROOT / name for name in ('relations.py', 'semantic_rules.py', 'product_mentions.py', 'context_evidence.py', 'benchmark.py')]
+    files = [ROOT / name for name in ('relations.py', 'semantic_rules.py', 'product_mentions.py',
+                                      'context_evidence.py', 'segmenter.py', 'jev_client.py', 'benchmark.py')]
     hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files + [dataset_path]}
     manifest = {'started_at': stamp, 'python': platform.python_version(), 'httpx': httpx.__version__,
         'review_status': dataset['review_status'], 'scope': 'relation_extraction_only_no_STT_or_DB', 'code_and_data_sha256': hashes}

@@ -1,0 +1,331 @@
+{
+  "case": {
+    "id": "E17",
+    "group": "symptom_state",
+    "input": "트러블은 없고 얼굴은 붉어.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "breakout",
+          "state": "denied"
+        },
+        {
+          "type": "redness",
+          "state": "affirmed"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "트러블은 없고 얼굴은 붉어.",
+    "text_revision": "355260ad385b4e816df03dea7d72e4c10fbb00e18b2ac78938e2021dfe8e9f57",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 7,
+        "text": "트러블은 없고"
+      },
+      {
+        "unit_id": "u1",
+        "start": 8,
+        "end": 15,
+        "text": "얼굴은 붉어."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "breakout",
+        "symptom_id": "s0",
+        "label": "트러블",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 7,
+          "text": "트러블은 없고",
+          "tokens": [
+            [
+              "트러블",
+              "NNG",
+              0,
+              3
+            ],
+            [
+              "은",
+              "JX",
+              3,
+              4
+            ],
+            [
+              "없",
+              "VA",
+              5,
+              6
+            ],
+            [
+              "고",
+              "EC",
+              6,
+              7
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_symptom_negation",
+            "model_prediction": {
+              "value": "denied",
+              "score": 0.99,
+              "status": "candidate"
+            }
+          },
+          "subject": {
+            "value": "unknown",
+            "score": 0.67,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.86,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "unit_id": "u0",
+              "start": 0,
+              "end": 7,
+              "text": "트러블은 없고",
+              "tokens": [
+                [
+                  "트러블",
+                  "NNG",
+                  0,
+                  3
+                ],
+                [
+                  "은",
+                  "JX",
+                  3,
+                  4
+                ],
+                [
+                  "없",
+                  "VA",
+                  5,
+                  6
+                ],
+                [
+                  "고",
+                  "EC",
+                  6,
+                  7
+                ]
+              ]
+            },
+            "score": null,
+            "status": "rule_candidate",
+            "method": "scope_negation_evidence",
+            "model_prediction": {
+              "value": {
+                "text": "트러블은 없고",
+                "start": 0,
+                "end": 7
+              },
+              "score": 0.95,
+              "status": "candidate"
+            }
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "redness",
+        "symptom_id": "s1",
+        "label": "붉어짐",
+        "source_scope": {
+          "unit_id": "u1",
+          "start": 8,
+          "end": 15,
+          "text": "얼굴은 붉어.",
+          "tokens": [
+            [
+              "얼굴",
+              "NNG",
+              8,
+              10
+            ],
+            [
+              "은",
+              "JX",
+              10,
+              11
+            ],
+            [
+              "붉",
+              "VA",
+              12,
+              13
+            ],
+            [
+              "어",
+              "EF",
+              13,
+              14
+            ],
+            [
+              ".",
+              "SF",
+              14,
+              15
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "unknown",
+            "score": 0.61,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "얼굴은 붉어.",
+              "start": 8,
+              "end": 15
+            },
+            "score": 0.69,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.97,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "subject",
+        "reason": "unknown"
+      },
+      {
+        "target": "s1",
+        "field": "subject",
+        "reason": "unknown"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].state",
+      "expected": "affirmed",
+      "actual": "affirmed",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.30591190000995994,
+  "requests": [
+    {
+      "questions": 14,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4351,
+        "output_tokens": 766
+      },
+      "elapsed_s": 0.30474059999687597
+    }
+  ]
+}

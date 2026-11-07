@@ -1,0 +1,351 @@
+{
+  "case": {
+    "id": "E18",
+    "group": "symptom_state",
+    "input": "따갑지는 않은데 건조함은 심해.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "stinging",
+          "state": "denied"
+        },
+        {
+          "type": "dryness",
+          "state": "affirmed",
+          "severity": "severe"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "따갑지는 않은데 건조함은 심해.",
+    "text_revision": "ddc5b302fd6cb2f31c834aca4afd8c527312ef221646295c86a18a17db106968",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 8,
+        "text": "따갑지는 않은데"
+      },
+      {
+        "unit_id": "u1",
+        "start": 9,
+        "end": 17,
+        "text": "건조함은 심해."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "stinging",
+        "symptom_id": "s0",
+        "label": "따가움",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 8,
+          "text": "따갑지는 않은데",
+          "tokens": [
+            [
+              "따갑",
+              "VA",
+              0,
+              2
+            ],
+            [
+              "지",
+              "EC",
+              2,
+              3
+            ],
+            [
+              "는",
+              "JX",
+              3,
+              4
+            ],
+            [
+              "않",
+              "VX",
+              5,
+              6
+            ],
+            [
+              "은데",
+              "EC",
+              6,
+              8
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "denied",
+            "score": null,
+            "status": "rule_candidate",
+            "method": "explicit_symptom_negation",
+            "model_prediction": {
+              "value": "denied",
+              "score": 1.0,
+              "status": "candidate"
+            }
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.67,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.78,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "unit_id": "u0",
+              "start": 0,
+              "end": 8,
+              "text": "따갑지는 않은데",
+              "tokens": [
+                [
+                  "따갑",
+                  "VA",
+                  0,
+                  2
+                ],
+                [
+                  "지",
+                  "EC",
+                  2,
+                  3
+                ],
+                [
+                  "는",
+                  "JX",
+                  3,
+                  4
+                ],
+                [
+                  "않",
+                  "VX",
+                  5,
+                  6
+                ],
+                [
+                  "은데",
+                  "EC",
+                  6,
+                  8
+                ]
+              ]
+            },
+            "score": null,
+            "status": "rule_candidate",
+            "method": "scope_negation_evidence",
+            "model_prediction": {
+              "value": {
+                "text": "따갑지는 않은데",
+                "start": 0,
+                "end": 8
+              },
+              "score": 0.87,
+              "status": "candidate"
+            }
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      },
+      {
+        "symptom": "dryness",
+        "symptom_id": "s1",
+        "label": "건조함",
+        "source_scope": {
+          "unit_id": "u1",
+          "start": 9,
+          "end": 17,
+          "text": "건조함은 심해.",
+          "tokens": [
+            [
+              "건조",
+              "NNG",
+              9,
+              11
+            ],
+            [
+              "하",
+              "XSA",
+              11,
+              12
+            ],
+            [
+              "ᆷ",
+              "ETN",
+              11,
+              12
+            ],
+            [
+              "은",
+              "JX",
+              12,
+              13
+            ],
+            [
+              "심하",
+              "VA",
+              14,
+              16
+            ],
+            [
+              "어",
+              "EF",
+              15,
+              16
+            ],
+            [
+              ".",
+              "SF",
+              16,
+              17
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.69,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "severe",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "건조함은 심해.",
+              "start": 9,
+              "end": 17
+            },
+            "score": 0.94,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].state",
+      "expected": "affirmed",
+      "actual": "affirmed",
+      "passed": true
+    },
+    {
+      "field": "symptoms[1].severity",
+      "expected": "severe",
+      "actual": "severe",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.30567719996906817,
+  "requests": [
+    {
+      "questions": 14,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 4339,
+        "output_tokens": 764
+      },
+      "elapsed_s": 0.30376340000657365
+    }
+  ]
+}

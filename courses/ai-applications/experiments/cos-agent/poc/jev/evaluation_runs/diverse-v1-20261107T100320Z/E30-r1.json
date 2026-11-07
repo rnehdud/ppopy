@@ -1,0 +1,207 @@
+{
+  "case": {
+    "id": "E30",
+    "group": "refusal",
+    "input": "가려운지는 말하기 싫어.",
+    "expected": {
+      "products": [],
+      "symptoms": [
+        {
+          "type": "itching",
+          "state": "declined"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "가려운지는 말하기 싫어.",
+    "text_revision": "3c466137815c96a6dc8ddcaf4f927f3b39507c8c230fafd36d7ac83f01e06662",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 13,
+        "text": "가려운지는 말하기 싫어."
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [],
+    "symptoms": [
+      {
+        "symptom": "itching",
+        "symptom_id": "s0",
+        "label": "가려움",
+        "source_scope": {
+          "unit_id": "u0",
+          "start": 0,
+          "end": 13,
+          "text": "가려운지는 말하기 싫어.",
+          "tokens": [
+            [
+              "가렵",
+              "VA",
+              0,
+              3
+            ],
+            [
+              "은지",
+              "EF",
+              2,
+              4
+            ],
+            [
+              "는",
+              "JX",
+              4,
+              5
+            ],
+            [
+              "말",
+              "NNG",
+              6,
+              7
+            ],
+            [
+              "하",
+              "XSV",
+              7,
+              8
+            ],
+            [
+              "기",
+              "ETN",
+              8,
+              9
+            ],
+            [
+              "싫",
+              "VA",
+              10,
+              11
+            ],
+            [
+              "어",
+              "EF",
+              11,
+              12
+            ],
+            [
+              ".",
+              "SF",
+              12,
+              13
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "declined",
+            "score": 0.78,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.64,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.58,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "가려운지는",
+              "start": 0,
+              "end": 5
+            },
+            "score": 0.4,
+            "status": "uncertain"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.88,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.93,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.94,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [
+      {
+        "target": "s0",
+        "field": "evidence",
+        "reason": "uncertain"
+      }
+    ],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "declined",
+      "actual": "declined",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.24433929997030646,
+  "requests": [
+    {
+      "questions": 7,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 2365,
+        "output_tokens": 390
+      },
+      "elapsed_s": 0.24284239998087287
+    }
+  ]
+}

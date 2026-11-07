@@ -1,0 +1,250 @@
+{
+  "case": {
+    "id": "E34",
+    "group": "noisy_input",
+    "input": "A로션썼어 피부건조해",
+    "expected": {
+      "products": [
+        {
+          "name": "A로션",
+          "usage_state": "affirmed"
+        }
+      ],
+      "symptoms": [
+        {
+          "type": "dryness",
+          "state": "affirmed"
+        }
+      ]
+    }
+  },
+  "run": 1,
+  "result": {
+    "schema_version": "relations-0.3",
+    "source_text": "A로션썼어 피부건조해",
+    "text_revision": "4f7c4d921a7b7ee36f5eefe2dc3fe650c637f3d4341ae5f2730b809881a68ef0",
+    "offset_unit": "unicode_codepoint",
+    "review_status": "candidate",
+    "segmentation_method": "kiwi_morpheme",
+    "units": [
+      {
+        "unit_id": "u0",
+        "start": 0,
+        "end": 5,
+        "text": "A로션썼어"
+      },
+      {
+        "unit_id": "u1",
+        "start": 6,
+        "end": 11,
+        "text": "피부건조해"
+      }
+    ],
+    "symptom_detection": "lexicon_gated",
+    "products": [
+      {
+        "text": "A로션",
+        "start": 0,
+        "end": 3,
+        "candidate_method": "morpheme",
+        "value": "A로션",
+        "score": 0.75,
+        "mode": "제품명 선택 점수",
+        "context": "A로션썼어",
+        "status": "candidate",
+        "product_id": null,
+        "product_version": null,
+        "match_status": "not_attempted",
+        "mention_id": "p0",
+        "relations": {
+          "usage_state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.95,
+            "status": "candidate"
+          },
+          "correction": {
+            "value": "current",
+            "score": 0.9,
+            "status": "candidate"
+          },
+          "usage_date": {
+            "value": "not_mentioned",
+            "score": 0.85,
+            "status": "candidate"
+          },
+          "usage_time": {
+            "value": "not_mentioned",
+            "score": 0.92,
+            "status": "candidate"
+          }
+        },
+        "eligible_for_usage_candidate": true,
+        "identification_status": "unverified",
+        "time_applicability": "affirmed"
+      }
+    ],
+    "symptoms": [
+      {
+        "symptom": "dryness",
+        "symptom_id": "s0",
+        "label": "건조함",
+        "source_scope": {
+          "unit_id": "u1",
+          "start": 6,
+          "end": 11,
+          "text": "피부건조해",
+          "tokens": [
+            [
+              "피부",
+              "NNG",
+              6,
+              8
+            ],
+            [
+              "건조",
+              "NNG",
+              8,
+              10
+            ],
+            [
+              "하",
+              "XSA",
+              10,
+              11
+            ],
+            [
+              "어",
+              "EF",
+              10,
+              11
+            ]
+          ]
+        },
+        "relations": {
+          "state": {
+            "value": "affirmed",
+            "score": 1.0,
+            "status": "candidate"
+          },
+          "subject": {
+            "value": "self",
+            "score": 0.87,
+            "status": "candidate"
+          },
+          "severity": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "evidence": {
+            "value": {
+              "text": "피부건조해",
+              "start": 6,
+              "end": 11
+            },
+            "score": 0.98,
+            "status": "candidate"
+          },
+          "onset_date": {
+            "value": "not_mentioned",
+            "score": 0.96,
+            "status": "candidate"
+          },
+          "onset_time": {
+            "value": "not_mentioned",
+            "score": 0.99,
+            "status": "candidate"
+          },
+          "recognition_time": {
+            "value": "not_mentioned",
+            "score": 0.98,
+            "status": "candidate"
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "clarifications": [],
+    "usage_events": [],
+    "intake_status": {
+      "symptoms": {
+        "value": "not_assessed",
+        "method": null,
+        "evidence": null
+      }
+    }
+  },
+  "checks": [
+    {
+      "field": "products.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "products[0].usage_state",
+      "expected": "affirmed",
+      "actual": "affirmed",
+      "passed": true
+    },
+    {
+      "field": "symptoms.count",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].unique_match",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "field": "symptoms[0].state",
+      "expected": "affirmed",
+      "actual": "affirmed",
+      "passed": true
+    },
+    {
+      "field": "api_warnings",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_s": 0.5090890999999829,
+  "requests": [
+    {
+      "questions": 1,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 497,
+        "output_tokens": 34
+      },
+      "elapsed_s": 0.1953691000235267
+    },
+    {
+      "questions": 12,
+      "http_status": 200,
+      "model": "jev-1.14.0",
+      "usage": {
+        "input_tokens": 3467,
+        "output_tokens": 639
+      },
+      "elapsed_s": 0.3125094000133686
+    }
+  ]
+}
