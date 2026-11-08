@@ -188,7 +188,7 @@ def print_input_mapping(utterance, candidates, spans, warning=None, verbose=Fals
 
 
 def run_input(utterance, key, config, verbose=False, as_json=False, app_json=False,
-              confirmed_state=None, confirmation=None):
+              confirmed_state=None, confirmation=None, app_cards=False):
     if app_json:
         features = extract_features(utterance, key)
         try:
@@ -196,7 +196,14 @@ def run_input(utterance, key, config, verbose=False, as_json=False, app_json=Fal
         except ImportError:
             from mapping_review.backend import prepare_handoff
         handoff = prepare_handoff(features, confirmed_state, confirmation)
-        print(json.dumps(handoff, ensure_ascii=False, indent=2))
+        if app_cards:
+            try:
+                from .mapping_review.display import print_handoff
+            except ImportError:
+                from mapping_review.display import print_handoff
+            print_handoff(handoff)
+        else:
+            print(json.dumps(handoff, ensure_ascii=False, indent=2))
         return 1 if handoff['status'] in ('invalid_input', 'blocked') else 0
     result = classify(utterance, key, config, verbose=verbose and not as_json)
     if not isinstance(result, dict):
@@ -250,7 +257,8 @@ def main():
         if not args.text.strip():
             parser.error('빈 텍스트는 사용할 수 없습니다.')
         return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json,
-                         app_json=app_mode, confirmed_state=confirmed_state, confirmation=confirmation)
+                         app_json=app_mode, confirmed_state=confirmed_state, confirmation=confirmation,
+                         app_cards=app_mode and not args.app_json)
     print('Jev 매핑 테스트: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.' if app_mode else
           'Jev 추출 디버그: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.')
     print('입력은 TypeSafe API로 전송됩니다. 개인정보 없는 합성 문장을 사용하세요.')
@@ -267,7 +275,8 @@ def main():
             print('문장을 입력하세요.')
             continue
         print('\n분류 중...')
-        run_input(utterance, key, config, verbose=args.verbose, as_json=args.json, app_json=app_mode)
+        run_input(utterance, key, config, verbose=args.verbose, as_json=args.json, app_json=app_mode,
+                  app_cards=app_mode and not args.app_json)
 
 
 if __name__ == '__main__':

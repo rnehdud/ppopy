@@ -16,7 +16,7 @@
 ..\..\.venv\Scripts\python.exe .\test_jev_text.py
 ```
 
-기본 화면은 앱용 매핑 결과를 JSON으로 표시합니다. 기존 INPUT / PRODUCTS / SYMPTOMS 카드와 최초 분류·상세 추출 결과는 `--verbose`로 볼 수 있습니다. 카드의 [review]는 확인 필요, [rule]은 원문 규칙 적용을 뜻합니다. `/quit`으로 종료합니다. `--json`은 내부 추출 JSON이며 백엔드 요청 본문이 아닙니다.
+기본 화면은 한글 카드로 매핑 후보·추가 입력·미대응 정보·검증 문제를 나눠 표시합니다. 앱용 전체 JSON은 `--app-json`, 기존 INPUT / PRODUCTS / SYMPTOMS 카드와 상세 추출 결과는 `--verbose`로 볼 수 있습니다. 디버그 카드의 [review]는 확인 필요, [rule]은 원문 규칙 적용을 뜻합니다. `/quit`으로 종료합니다. `--json`은 내부 추출 JSON이며 백엔드 요청 본문이 아닙니다. 표시만 바뀌며 실제 매핑 값과 검증·저장 비활성 상태는 동일합니다.
 
 ```powershell
 python .\test_jev_text.py "A로션은 아침에 썼고 B크림은 저녁에 쓸 예정이야." --json
