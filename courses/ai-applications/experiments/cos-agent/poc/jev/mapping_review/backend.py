@@ -38,7 +38,7 @@ def payload_digest(payload):
 
 
 def prepare_handoff(features, confirmed_state=None, confirmation=None):
-    if features.get('schema_version') == 'skin-state-extraction-1.0':
+    if features.get('schema_version') in ('skin-state-extraction-1.0', 'skin-state-extraction-1.1'):
         if features.get('backend_contract_version') != CONTRACT['version']:
             raise ValueError('backend contract version mismatch')
         patch = features.get('candidate_skin_state', {})

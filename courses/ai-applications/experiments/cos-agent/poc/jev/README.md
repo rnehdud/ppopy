@@ -8,7 +8,7 @@ From `cos-agent/`:
 uv run python poc/jev/test_jev_text.py
 ```
 
-Enter synthetic text at `Text>`. Each result shows the selected source phrase followed by backend field/value assignments in English. `/quit` exits.
+Enter synthetic text at `Text>`. Each result shows every source chunk in order, with its own Jev-assigned backend field/value rows. Chunks without assignments are shown explicitly. `/quit` exits.
 
 The six Jev fields are `concern_presence`, `persistence`, `recent_change`, `discomfort_presence`, `discomfort_types`, and `sensitivity_history`. `kind` and `observed_at` come from explicit app input; `version` comes from the backend contract. Missing evidence withholds a field instead of inventing a value.
 
