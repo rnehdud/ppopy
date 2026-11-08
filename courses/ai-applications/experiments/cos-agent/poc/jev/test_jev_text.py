@@ -187,7 +187,17 @@ def print_input_mapping(utterance, candidates, spans, warning=None, verbose=Fals
     print('\n※ 별도 Jev 질문으로 연결한 후보입니다. 전체 점수는 --verbose로 확인하세요.')
 
 
-def run_input(utterance, key, config, verbose=False, as_json=False):
+def run_input(utterance, key, config, verbose=False, as_json=False, app_json=False,
+              confirmed_state=None, confirmation=None):
+    if app_json:
+        features = extract_features(utterance, key)
+        try:
+            from .mapping_review.backend import prepare_handoff
+        except ImportError:
+            from mapping_review.backend import prepare_handoff
+        handoff = prepare_handoff(features, confirmed_state, confirmation)
+        print(json.dumps(handoff, ensure_ascii=False, indent=2))
+        return 1 if handoff['status'] in ('invalid_input', 'blocked') else 0
     result = classify(utterance, key, config, verbose=verbose and not as_json)
     if not isinstance(result, dict):
         return 1
@@ -213,8 +223,24 @@ def main():
     parser = argparse.ArgumentParser(description='Jev 한국어 텍스트 분류 실험 (합성 입력 권장)')
     parser.add_argument('text', nargs='?', help='분류할 텍스트; 생략하면 반복 입력')
     parser.add_argument('--verbose', action='store_true', help='원시 응답과 전체 필드 확률 표시')
-    parser.add_argument('--json', action='store_true', help='구조화된 추출 후보를 JSON으로 출력')
+    output = parser.add_mutually_exclusive_group()
+    output.add_argument('--json', action='store_true', help='내부 디버그용 추출 후보 JSON (앱 요청 본문 아님)')
+    output.add_argument('--app-json', action='store_true', help='백엔드 계약 기준 앱 전달 후보만 출력 (저장 비활성)')
+    parser.add_argument('--confirmed-state', type=Path, help='합성 사용자 확인 입력 JSON 파일')
+    parser.add_argument('--confirmation', type=Path, help='합성 UI 확인 바인딩 JSON 파일; 서버 권한 아님')
     args = parser.parse_args()
+    if args.app_json and args.text is None:
+        parser.error('--app-json에는 입력 문장이 필요합니다.')
+    if (args.confirmed_state or args.confirmation) and not args.app_json:
+        parser.error('확인 입력 파일은 --app-json과 함께 사용하세요.')
+    confirmed_state = confirmation = None
+    try:
+        if args.confirmed_state:
+            confirmed_state = json.loads(args.confirmed_state.read_text(encoding='utf-8-sig'))
+        if args.confirmation:
+            confirmation = json.loads(args.confirmation.read_text(encoding='utf-8-sig'))
+    except (OSError, ValueError):
+        parser.error('확인 입력 파일을 읽을 수 없거나 JSON 형식이 아닙니다. 입력 내용은 출력하지 않습니다.')
     key = get_api_key()
     if not key:
         print(f'API 키가 없습니다. {ENV_FILE} 또는 {PROJECT_ENV_FILE}에 jev-key를 설정하거나 '
@@ -224,7 +250,8 @@ def main():
     if args.text is not None:
         if not args.text.strip():
             parser.error('빈 텍스트는 사용할 수 없습니다.')
-        return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json)
+        return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json,
+                         app_json=args.app_json, confirmed_state=confirmed_state, confirmation=confirmation)
     print('Jev 텍스트 분류 실험: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.')
     print('입력은 TypeSafe API로 전송됩니다. 개인정보 없는 합성 문장을 사용하세요.')
     while True:

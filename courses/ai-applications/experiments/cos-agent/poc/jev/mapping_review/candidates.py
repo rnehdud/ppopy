@@ -8,7 +8,11 @@ def map_candidates(features):
     blockers = []
     if features.get('warnings'):
         blockers.append('extraction_warnings_require_review')
-    intake = features.get('intake_status', {}).get('symptoms', {})
+    intake_root = features.get('intake_status', {})
+    intake = intake_root.get('symptoms', {}) if isinstance(intake_root, dict) else None
+    if not isinstance(intake, dict):
+        blockers.append('malformed_intake_status')
+        intake = {}
     if intake.get('value') == 'declined':
         blockers.append('symptom_information_declined')
     if features['schema_version'] == 'relations-0.2':

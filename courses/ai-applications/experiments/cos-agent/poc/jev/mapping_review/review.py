@@ -77,8 +77,9 @@ def symptom_findings(features, proposed=None):
             item['issue'] = 'unassessed_or_uncertain_symptom_do_not_map'
         elif isinstance(correction, dict) and correction.get('value') == 'superseded':
             item['issue'] = 'superseded_symptom_do_not_map'
-        elif isinstance(correction, dict) and correction and (
-                correction.get('value') != 'current' or not usable(correction, legacy)):
+        elif 'correction' in relations and (
+                not isinstance(correction, dict) or correction.get('value') != 'current'
+                or not usable(correction, legacy)):
             item['issue'] = 'uncertain_correction_do_not_map'
         elif state == 'affirmed' and subject == 'self' and name in DIRECT:
             target = DIRECT[name]
