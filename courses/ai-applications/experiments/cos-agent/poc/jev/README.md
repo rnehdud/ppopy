@@ -12,6 +12,8 @@ Enter synthetic text at `Text>`. Each result shows every source chunk in order, 
 
 The six Jev fields are `concern_presence`, `persistence`, `recent_change`, `discomfort_presence`, `discomfort_types`, and `sensitivity_history`. `kind` and `observed_at` come from explicit app input; `version` comes from the backend contract. Missing evidence withholds a field instead of inventing a value.
 
+Product mentions are also extracted per chunk as `product_name` and mapped to the existing product-search query contract. Catalog lookup uses an offline `fallback_pending` placeholder by default; product IDs/versions and ownership remain unconfirmed. See [product fields and catalog connection seam](PRODUCT_FIELDS.md).
+
 - `--json`: direct backend-field extraction and evidence metadata.
 - `--app-json`: app handoff, missing backend inputs and confirmation state.
 - `--verbose`: readable field output plus detailed extraction JSON.

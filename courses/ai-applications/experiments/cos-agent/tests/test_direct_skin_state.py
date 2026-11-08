@@ -84,7 +84,7 @@ def test_default_cli_never_calls_legacy_extractors(monkeypatch, capsys):
     monkeypatch.setattr(cli, 'extract_features', forbidden)
     assert cli.run_input('나는 따가워.', 'synthetic', {}, as_json=True) == 0
     result = json.loads(capsys.readouterr().out)
-    assert result['schema_version'] == 'skin-state-extraction-1.1'
+    assert result['schema_version'] == 'skin-state-extraction-1.2'
     assert set(result['candidate_skin_state']) <= set(s.CONTRACT['fields'])
 
 

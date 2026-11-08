@@ -188,7 +188,7 @@ def print_input_mapping(utterance, candidates, spans, warning=None, verbose=Fals
 
 
 def run_input(utterance, key, config, verbose=False, as_json=False, app_json=False,
-              confirmed_state=None, confirmation=None, app_cards=False, legacy=False):
+              confirmed_state=None, confirmation=None, app_cards=False, legacy=False, product_lookup=None):
     if not legacy:
         try:
             from .skin_state import extract_skin_state, print_skin_state
@@ -197,7 +197,7 @@ def run_input(utterance, key, config, verbose=False, as_json=False, app_json=Fal
             from skin_state import extract_skin_state, print_skin_state
             from mapping_review.backend import prepare_handoff
         try:
-            extraction = extract_skin_state(utterance, key)
+            extraction = extract_skin_state(utterance, key, product_lookup=product_lookup)
         except ValueError:
             print('Input must contain 1 to 2000 characters.', file=sys.stderr)
             return 1
@@ -258,7 +258,20 @@ def main():
     parser.add_argument('--confirmed-state', type=Path, help='합성 사용자 확인 입력 JSON 파일')
     parser.add_argument('--confirmation', type=Path, help='합성 UI 확인 바인딩 JSON 파일; 서버 권한 아님')
     parser.add_argument('--legacy-poc', action='store_true', help='과거 임시 필드 기반 PoC 재현 전용')
+    parser.add_argument('--product-api-base', help='읽기 전용 제품 검색을 연결할 명시적 HTTPS 백엔드 origin')
     args = parser.parse_args()
+    product_lookup = None
+    if args.product_api_base:
+        if args.legacy_poc:
+            parser.error('--product-api-base is supported by the current engine only.')
+        try:
+            try:
+                from .product_queries import ProductSearchClient
+            except ImportError:
+                from product_queries import ProductSearchClient
+            product_lookup = ProductSearchClient(args.product_api_base)
+        except ValueError:
+            parser.error('Product API must be an explicit HTTPS origin without credentials, path or query.')
     app_mode = args.app_json or not (args.json or args.verbose)
     if (args.confirmed_state or args.confirmation) and (not app_mode or args.text is None):
         parser.error('확인 입력 파일은 앱 출력 모드에서 입력 문장과 함께 사용하세요.')
@@ -281,7 +294,8 @@ def main():
             parser.error('빈 텍스트는 사용할 수 없습니다.')
         return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json,
                          app_json=app_mode, confirmed_state=confirmed_state, confirmation=confirmation,
-                         app_cards=app_mode and not args.app_json, legacy=args.legacy_poc)
+                         app_cards=app_mode and not args.app_json, legacy=args.legacy_poc,
+                         product_lookup=product_lookup)
     print('Jev mapping test: enter a sentence. Type /quit to exit.' if app_mode else
           'Jev extraction debug: enter a sentence. Type /quit to exit.')
     print('Inputs are sent to TypeSafe API. Use synthetic text without personal information.')
@@ -299,7 +313,7 @@ def main():
             continue
         print('\nExtracting and mapping...')
         run_input(utterance, key, config, verbose=args.verbose, as_json=args.json, app_json=app_mode,
-                  app_cards=app_mode and not args.app_json, legacy=args.legacy_poc)
+                  app_cards=app_mode and not args.app_json, legacy=args.legacy_poc, product_lookup=product_lookup)
 
 
 if __name__ == '__main__':

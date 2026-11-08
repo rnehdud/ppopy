@@ -1,5 +1,7 @@
 # 현재 Jev 엔진: 백엔드 필드 직접 추출
 
+제품도 [기존 제품 검색 계약](PRODUCT_FIELDS.md)으로 별도 처리한다. 최신 추출 메타데이터는 1.2이며, 아래 1.1의 chunk별 피부 상태 필드에 product_queries를 추가한 것이다. 피부 상태 6개 필드는 그대로이고 제품을 이 필드에 넣지 않는다. 카탈로그는 기본 offline fallback_pending 상태다.
+
 현재 기본 실행은 `skin_state.py`의 `extract_skin_state`다. 기존 `relations.py`, 임시 STT 필드 설정, 증상 5종/제품 사건 중간 스키마를 호출하거나 읽지 않는다. Jev에 백엔드 `skin_state` 필드를 직접 질문하고 백엔드의 허용값을 후보로 받는다. 앱 계약은 `mapping_review/contract.json`의 SkinAnalysis 1.0.0이다.
 
 | 백엔드 필드 | 값의 출처 |

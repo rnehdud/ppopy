@@ -38,7 +38,7 @@ def payload_digest(payload):
 
 
 def prepare_handoff(features, confirmed_state=None, confirmation=None):
-    if features.get('schema_version') in ('skin-state-extraction-1.0', 'skin-state-extraction-1.1'):
+    if features.get('schema_version') in ('skin-state-extraction-1.0', 'skin-state-extraction-1.1', 'skin-state-extraction-1.2'):
         if features.get('backend_contract_version') != CONTRACT['version']:
             raise ValueError('backend contract version mismatch')
         patch = features.get('candidate_skin_state', {})
@@ -95,6 +95,12 @@ def prepare_handoff(features, confirmed_state=None, confirmation=None):
         'backend_route_enabled': False,
         'authorized_for_storage': False,
     }
+    if 'product_queries' in features:
+        result['product_queries'] = [{k: deepcopy(p[k]) for k in
+            ('product_name', 'status', 'search_request', 'lookup_status', 'candidates', 'product_id',
+             'product_version', 'auto_confirmed', 'requires_user_confirmation')}
+            for p in features['product_queries']]
+        result['product_errors'] = list(features.get('product_warnings', []))
     if blockers:
         result['status'] = 'blocked'
         return result

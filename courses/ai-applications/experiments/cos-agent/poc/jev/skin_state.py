@@ -9,10 +9,12 @@ try:
     from .jev_client import ask
     from .mapping_review.review import CONTRACT
     from .segmenter import units
+    from .product_queries import extract_product_queries
 except ImportError:
     from jev_client import ask
     from mapping_review.review import CONTRACT
     from segmenter import units
+    from product_queries import extract_product_queries
 
 DEFINITIONS = {
     'concern_presence': '사용자가 본인의 현재 피부 고민 유무를 직접 보고했는가? 단순 제품 사용은 고민 보고가 아니다.',
@@ -76,11 +78,11 @@ def _answer(answer, choices):
     return value, score
 
 
-def extract_skin_state(text, key):
+def extract_skin_state(text, key, product_lookup=None):
     if not isinstance(text, str) or not text.strip() or len(text) > 2000:
         raise ValueError('non-empty synthetic input up to 2000 characters required')
     chunks = chunk_text(text)
-    result = {'schema_version': 'skin-state-extraction-1.1', 'backend_contract_version': CONTRACT['version'],
+    result = {'schema_version': 'skin-state-extraction-1.2', 'backend_contract_version': CONTRACT['version'],
               'source_text': text, 'text_revision': hashlib.sha256(text.encode()).hexdigest(),
               'chunks': chunks, 'candidate_skin_state': {}, 'assignments': [], 'warnings': []}
     if len(chunks) > 16:
@@ -143,6 +145,7 @@ def extract_skin_state(text, key):
                 if assignment['field'] in conflicting:
                     assignment['aggregate_status'] = 'not_merged_cross_field_conflict'
     result['warnings'] = list(dict.fromkeys(result['warnings']))
+    result['product_queries'], result['product_warnings'] = extract_product_queries(text, chunks, key, ask, product_lookup)
     return result
 
 
@@ -158,11 +161,24 @@ def print_skin_state(extraction, handoff):
             note = (' [not merged]' if assignment.get('aggregate_status') else
                     ' [withheld: low confidence]' if assignment['status'] == 'withheld' else '')
             print(f"    {assignment['field']:<24} = {value or '[]'}{note}")
-        if not assignments:
+        products = [p for p in extraction.get('product_queries', []) if p['chunk_id'] == chunk['chunk_id']]
+        for product in products:
+            note = ' [withheld: low confidence]' if product['status'] == 'withheld' else ''
+            print(f"    {'product_name':<24} = {product['product_name']}{note}")
+            if product['search_request'] is not None:
+                print(f"    {'catalog_search.query':<24} = {product['product_name']}")
+            print(f"    {'catalog_match':<24} = {product['lookup_status']}")
+            for candidate in product['candidates']:
+                print(f"      Candidate: {candidate['product_id']} | {candidate['brand']} {candidate['name']} | {candidate['option']}")
+        if not assignments and not products:
             failed = any(a['chunk_id'] == chunk['chunk_id'] and a['status'] == 'unassessed' for a in extraction['assignments'])
             print('    Unassessed - Jev request failed.' if failed else
                   '    No backend field assigned.' if extraction['assignments'] else '    Unassessed - chunk limit exceeded.')
     print('\n  Missing: ' + ', '.join(q['field'] for q in handoff['questions']))
     for error in handoff['errors']:
         print('  Review: ' + error)
+    for error in extraction.get('product_warnings', []):
+        print('  Product review: ' + error)
+    if extraction.get('product_queries'):
+        print('  Products: candidates only; ID/version and ownership are unconfirmed.')
     print('  Status: ' + handoff['status'] + ' | Storage disabled')
