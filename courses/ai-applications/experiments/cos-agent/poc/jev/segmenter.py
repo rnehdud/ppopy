@@ -23,7 +23,8 @@ except ImportError:  # pragma: no cover - exercised only without the dependency
 Token = namedtuple('Token', 'form tag start end')
 
 # Connective endings that join two predicates describing separate states/events.
-SPLIT_EC = {'지만', '는데', '은데', '\u11ab데', '던데', '고', '어서', '아서', '여서', '다가', '면서', '으면서'}
+SPLIT_EC = {'지만', '는데', '은데', '\u11ab데', '던데', '고', '어서', '아서', '여서', '다가', '면서', '으면서',
+            '니까', '으니까', '\u11ab니까', '더니', '길래'}
 # Without punctuation Kiwi often reads a final -어/-아 as a connective (E20/E24 STT form).
 RUNON_EC = {'어', '아', '여'}
 NOUNISH = {'NNG', 'NNP', 'SL', 'SN', 'SH', 'XR', 'XPN', 'XSN'}
@@ -31,8 +32,19 @@ NOUNISH = {'NNG', 'NNP', 'SL', 'SN', 'SH', 'XR', 'XPN', 'XSN'}
 TIME_WORDS = {'오늘', '어제', '그저께', '내일', '모레', '아침', '오전', '점심', '낮', '오후', '저녁', '밤', '새벽', '최근', '요즘', '지금'}
 STOP_NOUNS = {'피부', '얼굴', '증상', '제품', '제품명', '화장품', '이야기', '날씨', '답변', '거절', '기억', '정도',
               '예정', '실제', '정확', '시작', '약간', '친구', '엄마', '아빠', '동생', '언니', '오빠', '형', '누나',
-              '건조', '트러블', '여드름', '뾰루지', '좁쌀', '홍조', '말'}
+              '건조', '트러블', '여드름', '뾰루지', '좁쌀', '홍조', '말', '세안', '세수', '이중세안'}
 NEGATORS = (('VX', '않'), ('VX', '못하'), ('VA', '없'))
+
+COSMETIC_WORDS = (
+    # Categories / Types
+    ('클렌징밤', 'NNG'), ('클렌징오일', 'NNG'), ('클렌징워터', 'NNG'), ('클렌징폼', 'NNG'),
+    ('선세럼', 'NNG'), ('선크림', 'NNG'), ('선스틱', 'NNG'), ('선젤', 'NNG'), ('선베이스', 'NNG'),
+    ('수딩젤', 'NNG'), ('토너패드', 'NNG'), ('수분크림', 'NNG'), ('시카크림', 'NNG'),
+    ('세럼', 'NNG'), ('앰플', 'NNG'), ('미스트', 'NNG'), ('토너', 'NNG'), ('에센스', 'NNG'),
+    ('패드', 'NNG'), ('아이크림', 'NNG'), ('나이트크림', 'NNG'),
+    # Domain modifiers / features
+    ('약산성', 'NNG'), ('여드름성', 'NNG'), ('화농성', 'NNG'), ('붉은기', 'NNG'),
+)
 
 
 def available():
@@ -45,7 +57,10 @@ def segmentation_method():
 
 @lru_cache(maxsize=1)
 def _kiwi():
-    return Kiwi()
+    k = Kiwi()
+    for word, tag in COSMETIC_WORDS:
+        k.add_user_word(word, tag)
+    return k
 
 
 def _base(tag):
@@ -182,6 +197,9 @@ def noun_candidates(text, event, max_tokens=6):
     Adjacent morphemes without whitespace (e.g. A/SL + 로션/NNG) form atomic chunks,
     so particles/endings without spaces are stripped while compound names stay intact
     (E34 A로션썼어 -> A로션, E35 A로션은요 -> A로션).
+
+    Stop nouns and time words are preserved within compound candidate spans but
+    pruned when an entire candidate consists solely of them.
     """
     if not available():
         try:
@@ -192,24 +210,27 @@ def noun_candidates(text, event, max_tokens=6):
     toks = [t for t in tokens(text) if event['start'] <= t.start < event['end']]
     chunks, cur = [], []
     for tok in toks:
-        usable = tok.tag in NOUNISH and tok.form not in STOP_NOUNS and tok.form not in TIME_WORDS
+        usable = tok.tag in NOUNISH
         if usable:
             if not cur or cur[-1].end == tok.start:
                 cur.append(tok)
             else:
-                chunks.append((cur[0].start, cur[-1].end))
+                chunks.append((cur[0].start, cur[-1].end, cur))
                 cur = [tok]
         else:
             if cur:
-                chunks.append((cur[0].start, cur[-1].end))
+                chunks.append((cur[0].start, cur[-1].end, cur))
                 cur = []
     if cur:
-        chunks.append((cur[0].start, cur[-1].end))
+        chunks.append((cur[0].start, cur[-1].end, cur))
 
     spans = {}
     for i in range(len(chunks)):
         for j in range(i, min(i + max_tokens, len(chunks))):
             if all(not text[chunks[k][1]:chunks[k + 1][0]].strip() for k in range(i, j)):
+                span_toks = [t for k in range(i, j + 1) for t in chunks[k][2]]
+                if all(t.form in STOP_NOUNS or t.form in TIME_WORDS for t in span_toks):
+                    continue
                 start = chunks[i][0]
                 end = chunks[j][1]
                 spans[start, end] = {'text': text[start:end], 'start': start, 'end': end,

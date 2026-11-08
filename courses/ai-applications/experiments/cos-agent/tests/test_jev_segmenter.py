@@ -75,3 +75,28 @@ def test_e09_discourse_correction():
     assert p1['relations']['correction']['value'] == 'superseded'
     assert p2['relations']['correction']['value'] == 'current'
     assert p2['eligible_for_usage_candidate'] is True
+
+
+def test_compound_product_containing_stop_noun():
+    text = '노스카나인 트러블 세럼을 썼어'
+    units = s.units(text)
+    cands = s.noun_candidates(text, units[0])
+    cand_texts = {c['text'] for c in cands}
+    assert '노스카나인 트러블 세럼' in cand_texts
+    assert '트러블' not in cand_texts
+
+
+def test_cosmetic_user_words_registered():
+    text = '클렌징밤과 선세럼을 쓰고 수딩젤을 발랐어'
+    toks = [t.form for t in s.tokens(text)]
+    assert '클렌징밤' in toks
+    assert '선세럼' in toks
+    assert '수딩젤' in toks
+
+
+def test_cause_connective_endings_split():
+    text = '아침에 일어나니까 건조해'
+    units = s.units(text)
+    assert len(units) == 2
+    assert units[0]['text'] == '아침에 일어나니까'
+    assert units[1]['text'] == '건조해'

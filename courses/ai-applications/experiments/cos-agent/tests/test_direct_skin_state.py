@@ -152,3 +152,49 @@ def test_contradictory_chunk_values_are_not_silently_merged(monkeypatch):
     result = s.extract_skin_state('고민이 있지만 고민이 없어.', 'synthetic')
     assert 'concern_presence' not in result['candidate_skin_state']
     assert 'conflicting_chunks:concern_presence' in result['warnings']
+
+
+def test_auxiliary_verb_not_split_when_kiwi_available():
+    chunks = s.chunk_text('A클렌저로 세안을 하고 있어')
+    assert len(chunks) == 1
+    assert chunks[0]['text'] == 'A클렌저로 세안을 하고 있어'
+
+
+def test_partial_negation_chunk_withheld_and_does_not_block_positive_discomfort(monkeypatch):
+    def ask(text, questions, key):
+        answers = {}
+        for qid in questions:
+            if qid == 'c0.discomfort_presence':
+                choice = 'none_reported'
+            elif qid == 'c0.discomfort_types':
+                choice = 'set0'
+            elif qid == 'c1.discomfort_presence':
+                choice = 'reported'
+            elif qid == 'c1.discomfort_types':
+                choice = 'set4'  # itching
+            else:
+                choice = 'omit'
+            answers[qid] = {'type': 'choice', 'choice': choice, 'probabilities': {choice: .95}}
+        return answers
+    monkeypatch.setattr(s, 'ask', ask)
+    result = s.extract_skin_state('따갑지는 않은데 피부가 가려워.', 'synthetic')
+    assert result['candidate_skin_state'] == {'discomfort_presence': 'reported', 'discomfort_types': ['itching']}
+    assert 'conflicting_chunks:discomfort_presence' not in result['warnings']
+    assert 'conflicting_chunks:discomfort_types' not in result['warnings']
+
+
+def test_explicit_global_denial_retains_none_reported_candidate(monkeypatch):
+    def ask(text, questions, key):
+        answers = {}
+        for qid in questions:
+            if qid.endswith('.discomfort_presence'):
+                choice = 'none_reported'
+            elif qid.endswith('.discomfort_types'):
+                choice = 'set0'
+            else:
+                choice = 'omit'
+            answers[qid] = {'type': 'choice', 'choice': choice, 'probabilities': {choice: .95}}
+        return answers
+    monkeypatch.setattr(s, 'ask', ask)
+    result = s.extract_skin_state('피부에 아무런 이상이나 불편한 증상은 전혀 없어.', 'synthetic')
+    assert result['candidate_skin_state'] == {'discomfort_presence': 'none_reported', 'discomfort_types': []}

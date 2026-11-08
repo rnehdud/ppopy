@@ -8,32 +8,35 @@ import httpx
 try:
     from .jev_client import ask
     from .mapping_review.review import CONTRACT
-    from .segmenter import units
+    from .segmenter import units, anchor_negated
     from .product_queries import extract_product_queries
 except ImportError:
     from jev_client import ask
     from mapping_review.review import CONTRACT
-    from segmenter import units
+    from segmenter import units, anchor_negated
     from product_queries import extract_product_queries
 
 DEFINITIONS = {
     'concern_presence': '사용자가 본인의 현재 피부 고민 유무를 직접 보고했는가? 단순 제품 사용은 고민 보고가 아니다.',
     'persistence': '대상은 오직 본인 피부 고민의 지속 양상. recent=최근, recurring=반복, persistent=지속. 민감 이력이나 증상 유무를 모른다는 말은 이 필드 근거가 아니다. 지속 양상 언급이 없으면 omit. 날짜만으로 지속 양상을 추정하지 말라.',
     'recent_change': '대상은 오직 본인 피부 상태의 시간에 따른 변화. better/worse/unchanged/fluctuating은 직접 보고에만 적용. 과거 이력을 모르거나 현재 증상이 있다는 말만으로 변화를 판단하지 말라. 변화 언급이 없으면 omit.',
-    'discomfort_presence': '대상은 본인의 현재 따가움/가려움/당김 등 구체적 불편 반응 또는 명시적 불편 유무 보고. 피부 상태가 나빠졌다는 일반 변화나 과거 민감 이력 언급만으로 현재 불편을 추론하지 말라. 그 경우 omit. 특정 하나 부정은 전체 불편 없음이 아니다.',
-    'discomfort_types': '본인의 긍정된 불편 반응만 복수 선택. stinging=따가움, burning=화끈거림, itching=가려움, tightness=당김, increased_scaling=각질 증가, redness_tendency=붉어짐 경향. 단순 건조함을 당김으로 바꾸지 말라. 부정·타인·가정·과거 반응을 현재 불편으로 넣지 말라.',
+    'discomfort_presence': '대상은 본인의 현재 따가움/가려움/당김 등 구체적 불편 반응 또는 명시적 불편 유무 보고. 피부 상태가 나빠졌다는 일반 변화나 과거 민감 이력 언급만으로 현재 불편을 추론하지 말라. 그 경우 omit. 특정 증상 하나만 부정한 것(예: 따갑지는 않다)은 전체 불편 없음(none_reported)이 아니므로 반드시 omit. 본인에게 어떠한 불편/이상 반응도 전혀 없다고 보고했을 때만 none_reported.',
+    'discomfort_types': '본인의 긍정된 불편 반응만 복수 선택. stinging=따가움, burning=화끈거림, itching=가려움, tightness=당김, increased_scaling=각질 증가, redness_tendency=붉어짐 경향. 단순 건조함을 당김으로 바꾸지 말라. 특정 증상 하나만 부정한 경우(따갑지는 않다 등)는 빈 목록이 아닌 omit. 부정·타인·가정·과거 반응을 현재 불편으로 넣지 말라.',
     'sensitivity_history': '대상은 오직 본인이 명시한 과거/이전 민감 반응 이력. 현재 불편이 없다는 말은 과거 이력 없음이 아니다. 현재 따가움도 과거 이력 보고가 아니다. 과거 이력이 언급되지 않으면 반드시 omit.',
 }
 ABSTAIN = 'omit'
+DISCOMFORT_ANCHORS = (r'따가|따갑|따끔|화끈|쓰라', r'가려|가렵|간지', r'당기|땅기', r'붉|빨개|빨갛|홍조', r'각질')
 
 
 def chunk_text(text):
     boundaries = {0, len(text)}
-    boundaries.update(u['end'] for u in units(text))
-    # Also works when plain `python` has no Kiwi installation. Avoid splitting
-    # arbitrary words ending in 고; only supported predicate endings are added.
-    boundary = r'(?:하고|했고|했는데|했지만|는데|니까|지만|(?:썼|발랐|따갑|가렵|건조하|당기)고)(?=\s|$)|(?<!\d)\.|\.(?!\d)|[!?。！？;；,，\n]'
-    boundaries.update(m.end() for m in re.finditer(boundary, text))
+    u_list = units(text)
+    boundaries.update(u['end'] for u in u_list)
+    # When Kiwi morpheme segmentation is not available (e.g. plain python fallback or
+    # mock), split predicate endings and punctuation with conservative regex rules.
+    if not any(u.get('tokens') for u in u_list):
+        boundary = r'(?:하고|했고|했는데|했지만|는데|니까|지만|(?:썼|발랐|따갑|가렵|건조하|당기)고)(?=\s|$)|(?<!\d)\.|\.(?!\d)|[!?。！？;；,，\n]'
+        boundaries.update(m.end() for m in re.finditer(boundary, text))
     points = sorted(boundaries)
     chunks = []
     for start, end in zip(points, points[1:]):
@@ -56,7 +59,7 @@ def build_questions(chunk):
         if field == 'discomfort_types':
             choices = {f'set{bits}': [v for i, v in enumerate(allowed) if bits & (1 << i)]
                        for bits in range(1 << len(allowed))}
-            criteria = {k: ', '.join(v) if v else '명시적으로 불편 반응이 없다고 보고' for k, v in choices.items()}
+            criteria = {k: ', '.join(v) if v else '명시적으로 어떠한 불편 반응도 전혀 없다고 전체 부정 보고(특정 하나만 부정은 omit)' for k, v in choices.items()}
         else:
             choices = {v: v for v in allowed}
             criteria = {v: f'{field}: {v} — 이 필드에 대해 직접 확인된 보고만 해당. 다른 필드의 모름/거절/부정을 복사하지 않음.' for v in allowed}
@@ -108,8 +111,16 @@ def extract_skin_state(text, key, product_lookup=None):
             continue
         for chunk, field, _, options in batch:
             choice, score = validated[chunk['chunk_id'] + '.' + field]
+            is_partial_negation = False
+            if field in ('discomfort_presence', 'discomfort_types') and (choice == 'none_reported' or choice == 'set0'):
+                has_negated_anchor = any(anchor_negated(text, chunk, pat) is True for pat in DISCOMFORT_ANCHORS) or bool(
+                    re.search(r'(?:' + '|'.join(DISCOMFORT_ANCHORS) + r')[^,.!?]{0,10}?(?:지(?:는|도)?\s*않|없)', chunk['text']))
+                has_global_denial = bool(re.search(r'(?:전혀|아무런|어떠한).{0,10}(?:불편|이상).{0,6}없', chunk['text']))
+                if has_negated_anchor and not has_global_denial:
+                    is_partial_negation = True
+            is_candidate = choice != ABSTAIN and score > .5 and not is_partial_negation
             result['assignments'].append({'chunk_id': chunk['chunk_id'], 'field': field,
-                'value': options.get(choice), 'status': 'candidate' if choice != ABSTAIN and score > .5 else 'withheld',
+                'value': options.get(choice), 'status': 'candidate' if is_candidate else 'withheld',
                 'score': score, 'source': chunk})
     for field in CONTRACT['fields']:
         assignments = [a for a in result['assignments'] if a['field'] == field and a['status'] == 'candidate']
