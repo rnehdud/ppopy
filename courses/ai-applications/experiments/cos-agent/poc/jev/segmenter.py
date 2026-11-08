@@ -33,6 +33,12 @@ TIME_WORDS = {'오늘', '어제', '그저께', '내일', '모레', '아침', '�
 STOP_NOUNS = {'피부', '얼굴', '증상', '제품', '제품명', '화장품', '이야기', '날씨', '답변', '거절', '기억', '정도',
               '예정', '실제', '정확', '시작', '약간', '친구', '엄마', '아빠', '동생', '언니', '오빠', '형', '누나',
               '건조', '트러블', '여드름', '뾰루지', '좁쌀', '홍조', '말', '세안', '세수', '이중세안'}
+GENERIC_CATEGORIES = {
+    '크림', '로션', '토너', '세럼', '앰플', '에센스', '미스트', '오일', '폼',
+    '클렌징', '클렌저', '클렌징폼', '클렌징오일', '클렌징워터', '선크림', '선세럼',
+    '선스틱', '선젤', '패드', '팩', '마스크', '마스크팩', '젤', '수딩젤', '밤', '워시',
+    '스킨', '필링', '스크럽', '아이크림', '수분크림', '시카크림', '겔크림'
+}
 NEGATORS = (('VX', '않'), ('VX', '못하'), ('VA', '없'))
 
 COSMETIC_WORDS = (
@@ -41,8 +47,11 @@ COSMETIC_WORDS = (
     ('선세럼', 'NNG'), ('선크림', 'NNG'), ('선스틱', 'NNG'), ('선젤', 'NNG'), ('선베이스', 'NNG'),
     ('수딩젤', 'NNG'), ('토너패드', 'NNG'), ('수분크림', 'NNG'), ('시카크림', 'NNG'),
     ('세럼', 'NNG'), ('앰플', 'NNG'), ('미스트', 'NNG'), ('토너', 'NNG'), ('에센스', 'NNG'),
-    ('패드', 'NNG'), ('아이크림', 'NNG'), ('나이트크림', 'NNG'),
-    # Domain modifiers / features
+    ('패드', 'NNG'), ('아이크림', 'NNG'), ('나이트크림', 'NNG'), ('겔크림', 'NNG'),
+    # Ingredients / Brand roots / Modifiers
+    ('수딩', 'NNG'), ('블레미쉬', 'NNG'), ('어니언', 'NNG'), ('다이브인', 'NNP'),
+    ('노스카나인', 'NNP'), ('어성초', 'NNG'), ('시카', 'NNP'), ('판테놀', 'NNG'),
+    ('히알루론산', 'NNG'), ('나이아신아마이드', 'NNG'), ('레티놀', 'NNG'), ('세라마이드', 'NNG'),
     ('약산성', 'NNG'), ('여드름성', 'NNG'), ('화농성', 'NNG'), ('붉은기', 'NNG'),
 )
 
@@ -96,6 +105,10 @@ def splits_after(toks, i):
     prev = toks[i - 1] if i else None
     if tok.form == '고' and prev is not None and prev.form == '말' and prev.tag == 'VV':
         return False  # "A 말고 B" correction stays one unit
+    if prev is not None and prev.form == '들' and tok.form == '어':
+        return False  # "요즘 들어", "최근 들어" temporal phrase stays in unit
+    if i >= 2 and toks[i - 2].form in ('반복', '계속', '더', '비') and toks[i - 1].form == '하' and tok.form in ('어서', '여서'):
+        return False  # "반복해서 나다", "계속해서 생기다" adverbial stays in unit
     if tok.form in SPLIT_EC:
         return True
     return tok.form in RUNON_EC and nxt.tag not in ('VV', 'VA', 'VX')
@@ -194,11 +207,11 @@ def interrogative(text, scope):
 def noun_candidates(text, event, max_tokens=6):
     """Product-name spans built from noun-like morpheme chunks inside an event.
 
-    Adjacent morphemes without whitespace (e.g. A/SL + 로션/NNG) form atomic chunks,
-    so particles/endings without spaces are stripped while compound names stay intact
-    (E34 A로션썼어 -> A로션, E35 A로션은요 -> A로션).
+    Adjacent morphemes without whitespace or connected by symbols (e.g. A-시카 5.5 클렌징폼)
+    form candidate spans, while particles/endings without spaces are stripped and
+    compound names stay intact.
 
-    Stop nouns and time words are preserved within compound candidate spans but
+    Stop nouns, time words, generic categories, and standalone symbols/digits are
     pruned when an entire candidate consists solely of them.
     """
     if not available():
@@ -227,12 +240,15 @@ def noun_candidates(text, event, max_tokens=6):
     spans = {}
     for i in range(len(chunks)):
         for j in range(i, min(i + max_tokens, len(chunks))):
-            if all(not text[chunks[k][1]:chunks[k + 1][0]].strip() for k in range(i, j)):
-                span_toks = [t for k in range(i, j + 1) for t in chunks[k][2]]
-                if all(t.form in STOP_NOUNS or t.form in TIME_WORDS for t in span_toks):
-                    continue
+            if all(re.fullmatch(r'[\s\-+./]*', text[chunks[k][1]:chunks[k + 1][0]]) for k in range(i, j)):
                 start = chunks[i][0]
                 end = chunks[j][1]
+                cand_text = text[start:end].strip()
+                if len(cand_text) <= 1 or re.fullmatch(r'[\d\s\-+./]+', cand_text):
+                    continue
+                span_toks = [t for k in range(i, j + 1) for t in chunks[k][2]]
+                if all(t.form in STOP_NOUNS or t.form in TIME_WORDS or t.form in GENERIC_CATEGORIES for t in span_toks):
+                    continue
                 spans[start, end] = {'text': text[start:end], 'start': start, 'end': end,
                                      'candidate_method': 'morpheme'}
     return list(spans.values())

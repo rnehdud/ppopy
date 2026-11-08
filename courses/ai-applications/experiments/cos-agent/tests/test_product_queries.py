@@ -119,3 +119,38 @@ def test_read_only_client_uses_exact_backend_path_and_query():
 def test_endpoint_is_explicit_configuration_not_model_output(url):
     with pytest.raises(ValueError):
         p.ProductSearchClient(url)
+
+
+def test_adjacent_fragment_pruned_in_multi_round(monkeypatch):
+    text = 'A-시카 5.5 클렌징폼 쓰고 나서 B로션을 발랐어.'
+    chunks = [{'chunk_id': 'c0', 'start': 0, 'end': len(text), 'text': text}]
+    # Candidate spans including adjacent single char 'A', compound, and second product
+    sp1 = 'A'
+    sp2 = '시카 5.5 클렌징폼'
+    sp3 = 'B로션'
+    spans = [
+        {'text': sp1, 'start': text.index(sp1), 'end': text.index(sp1) + len(sp1)},
+        {'text': sp2, 'start': text.index(sp2), 'end': text.index(sp2) + len(sp2)},
+        {'text': sp3, 'start': text.index(sp3), 'end': text.index(sp3) + len(sp3)},
+    ]
+    monkeypatch.setattr(p, 'noun_candidates', lambda t, c: spans)
+    rounds_called = []
+    def ask(t, questions, key):
+        rounds_called.append(questions)
+        qid = 'c0.product_name'
+        criteria = questions[qid]['criteria']
+        # Round 1: chooses '시카 5.5 클렌징폼'
+        if len(rounds_called) == 1:
+            choice = [k for k, v in criteria.items() if v == sp2][0]
+        elif len(rounds_called) == 2:
+            # Round 2: 'A' should be pruned from criteria! Only 'B로션' and 'omit'
+            assert sp1 not in criteria.values()
+            assert sp3 in criteria.values()
+            choice = [k for k, v in criteria.items() if v == sp3][0]
+        else:
+            choice = 'omit'
+        return {qid: {'type': 'choice', 'choice': choice, 'probabilities': {choice: .95}}}
+
+    rows, errors = p.extract_product_queries(text, chunks, 'synthetic', ask)
+    assert not errors
+    assert [r['product_name'] for r in rows] == [sp2, sp3]

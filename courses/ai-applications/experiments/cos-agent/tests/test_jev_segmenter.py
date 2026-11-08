@@ -100,3 +100,40 @@ def test_cause_connective_endings_split():
     assert len(units) == 2
     assert units[0]['text'] == '아침에 일어나니까'
     assert units[1]['text'] == '건조해'
+
+
+def test_temporal_phrase_and_adverbial_split_prevention():
+    text1 = '요즘 들어 피부가 건조해'
+    units1 = s.units(text1)
+    assert len(units1) == 1
+    assert units1[0]['text'] == '요즘 들어 피부가 건조해'
+
+    text2 = '트러블이 반복해서 나'
+    units2 = s.units(text2)
+    assert len(units2) == 1
+    assert units2[0]['text'] == '트러블이 반복해서 나'
+
+
+def test_product_candidates_across_hyphens_and_symbols():
+    text = 'A-시카 5.5 클렌징폼 쓰고 나서 피부가 따가워'
+    units = s.units(text)
+    cands = s.noun_candidates(text, units[0])
+    cand_texts = {c['text'] for c in cands}
+    assert 'A-시카 5.5 클렌징폼' in cand_texts
+    assert 'A' not in cand_texts
+    assert '5.5' not in cand_texts
+    assert '클렌징폼' not in cand_texts
+
+
+def test_generic_categories_pruned_when_isolated():
+    text = '크림과 로션을 발랐어'
+    units = s.units(text)
+    cands = s.noun_candidates(text, units[0])
+    assert len(cands) == 0
+
+    text2 = '어성초 토너를 발랐어'
+    units2 = s.units(text2)
+    cands2 = s.noun_candidates(text2, units2[0])
+    cand_texts2 = {c['text'] for c in cands2}
+    assert '어성초 토너' in cand_texts2
+    assert '토너' not in cand_texts2

@@ -198,3 +198,69 @@ def test_explicit_global_denial_retains_none_reported_candidate(monkeypatch):
     monkeypatch.setattr(s, 'ask', ask)
     result = s.extract_skin_state('피부에 아무런 이상이나 불편한 증상은 전혀 없어.', 'synthetic')
     assert result['candidate_skin_state'] == {'discomfort_presence': 'none_reported', 'discomfort_types': []}
+
+
+def test_reverse_order_global_denial_retains_none_reported(monkeypatch):
+    def ask(text, questions, key):
+        answers = {}
+        for qid in questions:
+            if qid.endswith('.discomfort_presence'):
+                choice = 'none_reported'
+            elif qid.endswith('.discomfort_types'):
+                choice = 'set0'
+            else:
+                choice = 'omit'
+            answers[qid] = {'type': 'choice', 'choice': choice, 'probabilities': {choice: .95}}
+        return answers
+    monkeypatch.setattr(s, 'ask', ask)
+    result = s.extract_skin_state('불편감이나 이상 반응은 전혀 없어.', 'synthetic')
+    assert result['candidate_skin_state'] == {'discomfort_presence': 'none_reported', 'discomfort_types': []}
+
+
+def test_other_subject_chunk_withheld(monkeypatch):
+    def ask(text, questions, key):
+        answers = {}
+        for qid in questions:
+            choice = 'reported' if 'discomfort_presence' in qid else 'omit'
+            answers[qid] = {'type': 'choice', 'choice': choice, 'probabilities': {choice: .95}}
+        return answers
+    monkeypatch.setattr(s, 'ask', ask)
+    result = s.extract_skin_state('친구는 피부가 뒤집어졌대.', 'synthetic')
+    assert result['candidate_skin_state'] == {}
+    assert all(a['status'] == 'withheld' for a in result['assignments'] if a['field'] == 'discomfort_presence')
+
+
+def test_past_history_chunk_does_not_fabricate_concern_presence(monkeypatch):
+    def ask(text, questions, key):
+        answers = {}
+        for qid in questions:
+            if 'concern_presence' in qid:
+                choice = 'reported'
+            elif 'sensitivity_history' in qid:
+                choice = 'reported'
+            else:
+                choice = 'omit'
+            answers[qid] = {'type': 'choice', 'choice': choice, 'probabilities': {choice: .95}}
+        return answers
+    monkeypatch.setattr(s, 'ask', ask)
+    result = s.extract_skin_state('예전에 민감했던 적은 있었어.', 'synthetic')
+    assert result['candidate_skin_state'].get('sensitivity_history') == 'reported'
+    assert 'concern_presence' not in result['candidate_skin_state']
+
+
+def test_cross_field_refusal_bleed_prevented(monkeypatch):
+    def ask(text, questions, key):
+        answers = {}
+        for qid in questions:
+            # Simulate Jev returning user_refused on multiple fields
+            if any(f in qid for f in ('sensitivity_history', 'persistence', 'recent_change')):
+                choice = 'user_refused'
+            else:
+                choice = 'omit'
+            answers[qid] = {'type': 'choice', 'choice': choice, 'probabilities': {choice: .95}}
+        return answers
+    monkeypatch.setattr(s, 'ask', ask)
+    result = s.extract_skin_state('과거 민감 이력은 말하고 싶지 않아.', 'synthetic')
+    assert result['candidate_skin_state'].get('sensitivity_history') == 'user_refused'
+    assert 'persistence' not in result['candidate_skin_state']
+    assert 'recent_change' not in result['candidate_skin_state']

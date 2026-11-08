@@ -1,12 +1,13 @@
 """Verbatim product_name -> existing backend search contract, never ownership."""
 import math
+import re
 
 import httpx
 
 try:
-    from .segmenter import noun_candidates
+    from .segmenter import noun_candidates, GENERIC_CATEGORIES
 except ImportError:
-    from segmenter import noun_candidates
+    from segmenter import noun_candidates, GENERIC_CATEGORIES
 
 
 def extract_product_queries(text, chunks, key, ask, lookup=None):
@@ -32,7 +33,7 @@ def extract_product_queries(text, chunks, key, ask, lookup=None):
                 '브랜드와 제품 종류를 포함한 원문 이름을 그대로 고르고 조사/사용동사/시간은 제외하라. '
                 'A클렌저/B로션 같은 합성 이름도 허용한다. 세안/이중세안/클렌징폼/로션 같은 일반 행동·종류만 있으면 omit. '
                 '사용 여부와 무관하게 부정/계획/타인/정정 속 이름도 검색 후보로 추출하되 실제 사용이나 보유로 확정하지 않는다. '
-                '정식 제품명/ID/버전은 추정하지 말라. 이미 고른 범위는 제외됐다. 남은 이름이 없으면 omit. '
+                '정식 제품명/ID/버전은 추정하지 말라. 이미 고른 제품의 잔여 파편(단독 문자, 일반 종류 조각)은 별도 제품이 아니므로 남은 이름이 없으면 omit. '
                 f"지정 chunk {cid}: {chunk['text']!r}"),
                 'criteria': {**{k: v['text'] for k, v in choices[qid].items()}, 'omit': '특정 제품명 없음'}}
         try:
@@ -74,7 +75,19 @@ def extract_product_queries(text, chunks, key, ask, lookup=None):
                     record['lookup_status'] = 'failed'
                     warnings.append('product_search_failed')
             queries.append(record)
-            remaining = [s for s in spans if s['end'] <= span['start'] or s['start'] >= span['end']]
+            remaining = []
+            for s in spans:
+                if s['end'] <= span['start']:
+                    gap = text[s['end']:span['start']]
+                elif s['start'] >= span['end']:
+                    gap = text[span['end']:s['start']]
+                else:
+                    continue
+                if s['text'] in GENERIC_CATEGORIES or len(s['text'].strip()) <= 1:
+                    continue
+                if gap == '' or (re.fullmatch(r'[\s\-+.]*', gap) and ('-' in gap or '.' in gap)):
+                    continue
+                remaining.append(s)
             if remaining:
                 following[cid] = (chunk, remaining)
         active = following

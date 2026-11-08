@@ -26,6 +26,17 @@ DEFINITIONS = {
 }
 ABSTAIN = 'omit'
 DISCOMFORT_ANCHORS = (r'따가|따갑|따끔|화끈|쓰라', r'가려|가렵|간지', r'당기|땅기', r'붉|빨개|빨갛|홍조', r'각질')
+FIELD_TOPIC_PATTERNS = {
+    'sensitivity_history': r'과거|이전|예전|이력|민감|히스토리|경험',
+    'persistence': r'지속|반복|최근|언제부터|기간|얼마나|계속|항상|가끔|자주',
+    'recent_change': r'변화|나아|심해|악화|호전|그대로|심해졌|좋아졌|나빠졌|더\s*|전보다|달라',
+    'discomfort_presence': r'불편|이상|증상|따가|가려|당기|화끈|각질|붉|빨개|간지|쓰라|자극',
+    'concern_presence': r'고민|문제|상태|트러블|여드름|피부|건조|홍조',
+}
+OTHER_SUBJECT_PAT = r'(?:친구|엄마|아빠|동생|언니|오빠|형|누나|남편|아내|지인)(?:가|는|은|도|한테|에게|께서)'
+SELF_SUBJECT_PAT = r'(?:내(?:가|는|도|에|의)?|나(?:는|도|를|에게)?|저(?:는|도|의)?|제(?:가|는)?|본인)'
+PAST_HISTORY_PAT = r'(?:예전|과거|이전|전에|예전에|예전엔)\b|적(?:이|은|도)?\s*있(?:었|었는|던)'
+PRESENT_PAT = r'지금|현재|요즘|최근|오늘'
 
 
 def chunk_text(text):
@@ -62,7 +73,18 @@ def build_questions(chunk):
             criteria = {k: ', '.join(v) if v else '명시적으로 어떠한 불편 반응도 전혀 없다고 전체 부정 보고(특정 하나만 부정은 omit)' for k, v in choices.items()}
         else:
             choices = {v: v for v in allowed}
-            criteria = {v: f'{field}: {v} — 이 필드에 대해 직접 확인된 보고만 해당. 다른 필드의 모름/거절/부정을 복사하지 않음.' for v in allowed}
+            criteria = {}
+            for v in allowed:
+                if v == 'user_refused':
+                    criteria[v] = f'{field}: 사용자가 이 {field} 정보에 대해 직접 답변/제공을 거절했을 때만 선택. 다른 주제의 거절은 omit.'
+                elif v == 'unknown':
+                    criteria[v] = f'{field}: 사용자가 이 {field} 내용에 대해 직접 모른다고 밝혔을 때만 선택. 다른 주제의 모름은 omit.'
+                elif v == 'not_asked':
+                    criteria[v] = f'{field}: 이 {field}에 대해 아직 묻지 않았다고 사용자가 직접 언급했을 때만 선택.'
+                elif v == 'not_applicable':
+                    criteria[v] = f'{field}: 이 {field}가 적용 대상이 아니라고 확인되었을 때만 선택.'
+                else:
+                    criteria[v] = f'{field}: {v} — 이 필드에 대해 직접 확인된 보고만 해당. 다른 필드의 모름/거절/부정을 복사하지 않음.'
         options[field] = choices
         questions[field] = {'type': 'choice', 'instructions': shared + DEFINITIONS[field],
                             'criteria': {**criteria, ABSTAIN: '언급 없음/근거 불충분/충돌 — 필드 반환 보류'}}
@@ -115,10 +137,21 @@ def extract_skin_state(text, key, product_lookup=None):
             if field in ('discomfort_presence', 'discomfort_types') and (choice == 'none_reported' or choice == 'set0'):
                 has_negated_anchor = any(anchor_negated(text, chunk, pat) is True for pat in DISCOMFORT_ANCHORS) or bool(
                     re.search(r'(?:' + '|'.join(DISCOMFORT_ANCHORS) + r')[^,.!?]{0,10}?(?:지(?:는|도)?\s*않|없)', chunk['text']))
-                has_global_denial = bool(re.search(r'(?:전혀|아무런|어떠한).{0,10}(?:불편|이상).{0,6}없', chunk['text']))
+                has_global_denial = bool(
+                    re.search(r'(?:전혀|아무런|어떠한)\s*(?:이상|불편|증상|자극|문제).*?(?:없|않)', chunk['text'])
+                    or re.search(r'(?:이상|불편|증상|자극|문제).*?(?:전혀|아무런|하나도)\s*(?:없|않)', chunk['text'])
+                )
                 if has_negated_anchor and not has_global_denial:
                     is_partial_negation = True
-            is_candidate = choice != ABSTAIN and score > .5 and not is_partial_negation
+            is_other_subject = bool(re.search(OTHER_SUBJECT_PAT, chunk['text'])) and not bool(re.search(SELF_SUBJECT_PAT, chunk['text']))
+            is_past_concern = (field == 'concern_presence' and choice == 'reported'
+                               and bool(re.search(PAST_HISTORY_PAT, chunk['text']))
+                               and not bool(re.search(PRESENT_PAT, chunk['text'])))
+            is_topic_mismatch = (choice in ('unknown', 'user_refused', 'not_asked')
+                                 and field in FIELD_TOPIC_PATTERNS
+                                 and not bool(re.search(FIELD_TOPIC_PATTERNS[field], text)))
+            is_candidate = (choice != ABSTAIN and score > .5 and not is_partial_negation
+                            and not is_other_subject and not is_past_concern and not is_topic_mismatch)
             result['assignments'].append({'chunk_id': chunk['chunk_id'], 'field': field,
                 'value': options.get(choice), 'status': 'candidate' if is_candidate else 'withheld',
                 'score': score, 'source': chunk})
