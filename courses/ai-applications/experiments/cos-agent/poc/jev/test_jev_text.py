@@ -10,7 +10,11 @@ import httpx
 
 POC_DIR = Path(__file__).resolve().parent
 CONFIG = POC_DIR / 'stt_jev_test_fields.json'
-ENV_FILE = POC_DIR.parents[1] / '.env'
+PROJECT_ENV_FILE = POC_DIR.parents[1] / '.env'
+REPOSITORY_ROOT = next((p for p in POC_DIR.parents
+                        if (p / 'docs' / 'repository-scope.md').is_file()),
+                       POC_DIR.parents[1])
+ENV_FILE = REPOSITORY_ROOT / '.env'
 # Exploratory routing threshold; not a validated probability cutoff.
 ROUTING_THRESHOLD = 0.5
 EXTRA_QUESTIONS = {
@@ -23,17 +27,20 @@ EXTRA_QUESTIONS = {
 
 
 def get_api_key():
-    key = os.environ.get('TYPESAFE_API_KEY')
+    key = os.environ.get('TYPESAFE_API_KEY', '').strip()
     if key:
         return key
-    if ENV_FILE.exists():
-        for line in ENV_FILE.read_text(encoding='utf-8-sig').splitlines():
+    for path in dict.fromkeys((ENV_FILE, PROJECT_ENV_FILE)):
+        if not path.is_file():
+            continue
+        for line in path.read_text(encoding='utf-8-sig').splitlines():
             name, sep, value = line.partition('=')
-            if sep and name.strip() == 'jev-key':
+            if sep and name.strip() in ('jev-key', 'TYPESAFE_API_KEY'):
                 value = value.strip()
                 if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
                     value = value[1:-1]
-                return value
+                if value.strip():
+                    return value.strip()
     return None
 
 
@@ -205,7 +212,8 @@ def main():
     args = parser.parse_args()
     key = get_api_key()
     if not key:
-        print('.env에 jev-key를 설정하거나 TYPESAFE_API_KEY 환경변수를 설정하세요.', file=sys.stderr)
+        print(f'API 키가 없습니다. {ENV_FILE} 또는 {PROJECT_ENV_FILE}에 jev-key를 설정하거나 '
+              'TYPESAFE_API_KEY 환경변수를 설정하세요.', file=sys.stderr)
         return 1
     config = json.loads(CONFIG.read_text(encoding='utf-8'))
     if args.text is not None:

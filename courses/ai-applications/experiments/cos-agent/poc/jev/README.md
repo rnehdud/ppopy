@@ -1,5 +1,7 @@
 # Jev 텍스트 분류·관계 추출 PoC
 
+현재 출력은 `relations-0.5`입니다. [사용 사건 후보 계약](usage-events.md)에 사건별 사용·미사용·계획 분리를 정리했습니다. [DB 매핑 전 필드 검토](../../docs/agent-field-review.md)의 나머지 미구현 필드는 `agent_fields`에서 `unassessed`로 유지합니다. 사용자 확인·DB 저장·권한 검사는 구현하지 않았으며 기존 평가 산출물의 스키마와 수치는 그대로 보존합니다. 아래 v0.2와 평가 기록은 당시 구현 이력입니다.
+
 메인 `beauty_agent`와 별개의 합성 실험입니다. 별도 LLM 없이 TypeSafe Jev만 사용합니다. 실제 iOS STT·DB·외부 제품 조회·저장은 연결하지 않았습니다.
 
 ## 실행
@@ -16,7 +18,7 @@
 python .\test_jev_text.py "A로션은 아침에 썼고 B크림은 저녁에 쓸 예정이야." --json
 ```
 
-루트 `.env`의 `jev-key` 또는 우선 적용되는 `TYPESAFE_API_KEY`를 사용합니다. 입력은 외부 API에 전달되므로 합성 문장으로 시험하세요.
+키 검색 순서는 `TYPESAFE_API_KEY` 환경변수 → ppopy 저장소 루트 `.env` → 기존 `cos-agent/.env`입니다. 파일에서는 `jev-key=...` 또는 `TYPESAFE_API_KEY=...`를 지원하며 실행 폴더와 무관하게 찾습니다. 입력은 외부 API에 전달되므로 합성 문장으로 시험하세요.
 
 ## 현재 처리 순서
 
