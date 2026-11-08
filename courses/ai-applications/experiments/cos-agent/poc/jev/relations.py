@@ -7,6 +7,7 @@ import httpx
 
 try:
     from .agent_fields import build_agent_fields
+    from .mapping_review.candidates import map_candidates
     from .usage_events import event_candidates, finish_events
     from .context_evidence import candidate_spans, clause_spans
     from .jev_client import ask
@@ -15,6 +16,7 @@ try:
     from .semantic_rules import apply_rules, symptom_scopes
 except ImportError:
     from agent_fields import build_agent_fields
+    from mapping_review.candidates import map_candidates
     from usage_events import event_candidates, finish_events
     from context_evidence import candidate_spans, clause_spans
     from jev_client import ask
@@ -162,6 +164,7 @@ def extract_features(text, key):
     finalize(result)
     finish_events(result, events)
     result['agent_fields'] = build_agent_fields(result)
+    result['skin_state_mapping'] = map_candidates(result)
     return result
 
 

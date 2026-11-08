@@ -199,6 +199,11 @@ def run_input(utterance, key, config, verbose=False, as_json=False):
         if verbose:
             print_summary(result)
         print_features(features)
+        try:
+            from .mapping_review.candidates import print_mapping
+        except ImportError:
+            from mapping_review.candidates import print_mapping
+        print_mapping(features['skin_state_mapping'])
         if verbose:
             print(json.dumps(features, ensure_ascii=False, indent=2))
     return 0 if not features['warnings'] else 1

@@ -66,7 +66,9 @@ def main():
     output.mkdir(parents=True)
     files = [ROOT / name for name in ('relations.py', 'semantic_rules.py', 'product_mentions.py',
                                       'context_evidence.py', 'segmenter.py', 'jev_client.py',
-                                      'agent_fields.py', 'usage_events.py', 'benchmark.py')]
+                                      'agent_fields.py', 'usage_events.py', 'mapping_review/candidates.py',
+                                      'mapping_review/review.py', 'mapping_review/event_review.py',
+                                      'mapping_review/contract.json', 'benchmark.py')]
     hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files + [dataset_path]}
     manifest = {'started_at': stamp, 'python': platform.python_version(), 'httpx': httpx.__version__,
         'review_status': dataset['review_status'], 'scope': 'relation_extraction_only_no_STT_or_DB', 'code_and_data_sha256': hashes}

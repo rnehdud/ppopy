@@ -49,14 +49,13 @@ def validate_snapshot(value):
     return errors
 
 
-def review(features, proposed):
+def symptom_findings(features, proposed=None):
     if not isinstance(features, dict) or features.get('schema_version') not in SUPPORTED_SCHEMAS:
         raise ValueError('supported relations-0.2 through relations-0.5 features required')
     legacy = features['schema_version'] == 'relations-0.2'
     symptoms = features.get('symptoms')
     if not isinstance(symptoms, list):
         raise ValueError('symptoms list required')
-    errors = validate_snapshot(proposed)
     findings = []
     for index, symptom in enumerate(symptoms):
         if not isinstance(symptom, dict) or not isinstance(symptom.get('relations'), dict):
@@ -94,6 +93,14 @@ def review(features, proposed):
         if extra:
             item['no_direct_skin_state_field'] = extra
         findings.append(item)
+    return findings
+
+
+def review(features, proposed):
+    findings = symptom_findings(features, proposed)
+    legacy = features['schema_version'] == 'relations-0.2'
+    symptoms = features['symptoms']
+    errors = validate_snapshot(proposed)
     warnings = []
     if legacy:
         warnings.append('legacy_assessment_metadata_may_be_missing')

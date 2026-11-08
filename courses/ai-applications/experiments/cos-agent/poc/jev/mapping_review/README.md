@@ -17,7 +17,41 @@ python -m pytest -q tests/test_jev_mapping_review.py
 - 증상별 강도·시작 날짜/시간·인지 시간은 현재 `skin_state`에 직접 대응하지 않아 표시만 합니다. 사용 사건도 피부 상태 필드로 변환하지 않습니다. 사용자 확인 UI, 세션·동의, 저장·복호화는 범위 밖입니다.
 - 구조화 입력에 없는 정보는 임의로 채우지 않습니다. `not_asked`, `unknown`, `user_refused`는 각 실제 상황에 맞게 작성합니다. 현재 계약은 자유 텍스트를 허용하지 않습니다.
 
-## 사용 사건 검토
+## PoC 자동 후보 매핑
+
+`test_jev_text.py`의 기존 실행에 매핑이 연결돼 있다. 추가 Jev 호출 없이 `extract_features()`가 `skin_state_mapping`을 생성하고, 기본 화면에는 SKIN STATE MAPPING 카드, `--json`에는 전체 후보 객체가 표시된다. 독립 검토 CLI도 그대로 사용할 수 있다.
+
+`cos-agent/`에서:
+
+```powershell
+uv run python poc/jev/test_jev_text.py "나는 피부가 따갑고 가려워." --json
+```
+
+예시 출력의 추가 블록(일부):
+
+```json
+{
+  "skin_state_mapping": {
+    "skin_state_patch": {
+      "discomfort_presence": "reported",
+      "discomfort_types": ["stinging", "itching"]
+    },
+    "confirmation_status": "pending",
+    "complete_payload": false,
+    "authorized_for_storage": false
+  }
+}
+```
+
+- `skin_state_patch`는 완전한 skin_state 객체가 아닌 **부분 후보**다. version은 target_version에 별도로 기록한다. kind·observed_at·지속성·변화·민감 이력 등은 원문에서 구현된 추출이 없으므로 자동으로 채우지 않고 missing_fields에 남긴다. 현재 시각을 관찰 시각으로 넣거나 not_asked를 임의 부여하지 않는다.
+- candidates의 symptom_index는 원본 symptoms 배열을 가리키며 확인 전까지 원문 revision과 함께 관리한다. 같은 discomfort 종류는 patch에서 중복 제거하되 후보 근거 인덱스는 모두 남긴다. reported는 해당 후보 목록에서 파생된 제안값이다.
+- 기존 검토 규칙을 공유해 따가움/가려움/붉어짐의 유효한 본인 긍정 보고만 제안한다. 건조함·트러블·강도 등은 대응 가능한 피부 상태 값으로 추정하지 않고 findings에 남긴다. 빈 patch는 무증상이 아니다.
+- 추출 warning, 전역 증상 정보 거절, 판정 메타데이터가 부족한 이전 0.2 입력은 blockers로 표시하고 patch를 생성하지 않는다. 같은 종류의 유효한 긍정/부정·미상·충돌 보고가 공존하면 시간과 상태 확인 전 해당 종류를 제안하지 않는다.
+- 사용 사건은 usage_event_findings로 분리한다. 제품 사용으로 피부 불편이나 개선 상태를 생성하지 않는다. patch를 DB에 직접 전달하지 않고, 앱에서 후보와 관찰 문맥을 확인하고 빠진 필드를 보완한 뒤 완성된 객체를 기존 서버 validate_skin_state로 검증해야 한다. 확인 UI·서버 저장 연결은 미구현이다.
+
+2026-11-08 검증: 실험 전체 122 passed. 기존 CLI를 실제 Jev로 합성 입력 3개에 실행하여 (1) 따가움+가려움 후보와 아침 사용/저녁 미사용 분리, (2) 따가움 부정의 빈 patch, (3) 건조함의 빈 patch를 확인했다. 산출물은 ignored `outputs/poc-skin-state-mapping/`에 있다. 모두 authorized_for_storage=false이며 DB 쓰기나 실제 사용자 데이터는 사용하지 않았다. 외부 모델의 일반 정확도를 검증한 결과는 아니다.
+
+## 사용 사건 검토 출력
 
 출력은 `mapping-review-0.2`이며 `source_schema_version`을 기록합니다. 증상 결과 `findings`와 사건 결과 `usage_event_findings`는 서로 별도입니다.
 
