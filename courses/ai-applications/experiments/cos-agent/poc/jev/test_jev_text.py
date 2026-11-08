@@ -198,10 +198,10 @@ def run_input(utterance, key, config, verbose=False, as_json=False, app_json=Fal
         handoff = prepare_handoff(features, confirmed_state, confirmation)
         if app_cards:
             try:
-                from .mapping_review.display import print_handoff
+                from .mapping_review.display_trace import print_handoff
             except ImportError:
-                from mapping_review.display import print_handoff
-            print_handoff(handoff)
+                from mapping_review.display_trace import print_handoff
+            print_handoff(handoff, features)
         else:
             print(json.dumps(handoff, ensure_ascii=False, indent=2))
         return 1 if handoff['status'] in ('invalid_input', 'blocked') else 0
@@ -259,22 +259,22 @@ def main():
         return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json,
                          app_json=app_mode, confirmed_state=confirmed_state, confirmation=confirmation,
                          app_cards=app_mode and not args.app_json)
-    print('Jev 매핑 테스트: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.' if app_mode else
-          'Jev 추출 디버그: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.')
-    print('입력은 TypeSafe API로 전송됩니다. 개인정보 없는 합성 문장을 사용하세요.')
+    print('Jev mapping test: enter a sentence. Type /quit to exit.' if app_mode else
+          'Jev extraction debug: enter a sentence. Type /quit to exit.')
+    print('Inputs are sent to TypeSafe API. Use synthetic text without personal information.')
     while True:
         try:
-            utterance = input('\n텍스트> ').strip()
+            utterance = input('\nText> ').strip()
         except (EOFError, KeyboardInterrupt):
-            print('\n종료합니다.')
+            print('\nSession ended.')
             return 0
         if utterance.lower() == '/quit':
-            print('종료합니다.')
+            print('Session ended.')
             return 0
         if not utterance:
-            print('문장을 입력하세요.')
+            print('Enter a non-empty sentence.')
             continue
-        print('\n분류 중...')
+        print('\nExtracting and mapping...')
         run_input(utterance, key, config, verbose=args.verbose, as_json=args.json, app_json=app_mode,
                   app_cards=app_mode and not args.app_json)
 
