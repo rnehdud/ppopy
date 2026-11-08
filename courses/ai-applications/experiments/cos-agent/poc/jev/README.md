@@ -1,5 +1,7 @@
 # Jev 텍스트 분류·관계 추출 PoC
 
+옵션 없이 `uv run python poc/jev/test_jev_text.py`를 실행하면 입력 프롬프트가 열립니다. 문장마다 백엔드 기준 매핑 후보·필요한 입력·검증 상태를 출력하고 다음 문장을 받습니다. `/quit` 또는 Ctrl+C로 종료합니다. 문장을 명령 인자로 넣어도 기본 출력은 앱용 매핑입니다. `--json`은 내부 추출 JSON, `--verbose`는 기존 추출 카드와 상세 디버그입니다. `--app-json`도 반복 입력을 지원합니다. 확인 파일은 확인 내용이 다른 문장에 재사용되지 않도록 단일 입력 문장과 함께 사용합니다.
+
 앱 통합을 위한 출력은 `--app-json`을 사용합니다. [백엔드 기준 전달 계약·필드 제안](../../docs/backend-contract-review.md)에 실제 소스 확인 결과, 9개 백엔드 필드의 처리 기준과 확장 제안을 정리했습니다. 기존 `--json`은 내부 디버그·평가용입니다. 앱용 payload는 필드 검증과 명시적 확인을 통과한 경우에만 생성하며 서버 HTTP 경로·저장은 비활성입니다.
 
 현재 출력은 `relations-0.5`입니다. [사용 사건 후보 계약](usage-events.md)에 사건별 사용·미사용·계획 분리를 정리했습니다. [DB 매핑 전 필드 검토](../../docs/agent-field-review.md)의 나머지 미구현 필드는 `agent_fields`에서 `unassessed`로 유지합니다. 사용자 확인·DB 저장·권한 검사는 구현하지 않았으며 기존 평가 산출물의 스키마와 수치는 그대로 보존합니다. 아래 v0.2와 평가 기록은 당시 구현 이력입니다.
@@ -14,7 +16,7 @@
 ..\..\.venv\Scripts\python.exe .\test_jev_text.py
 ```
 
-기본 화면은 INPUT / PRODUCTS / SYMPTOMS 순서의 카드로 표시합니다. 제품별 usage_state·subject·correction·usage_date·usage_time과 증상별 state·severity·onset_date·onset_time·recognition_time을 영어 필드명과 enum 값으로 표시하고, 원문 제품명·구절·시간 표현은 그대로 유지합니다. [review]는 확인 필요, [rule]은 원문 규칙 적용을 뜻합니다. 좁은 터미널에서는 긴 값을 줄바꿈합니다. `/quit`으로 종료합니다. `--verbose`는 최초 분류와 상세 JSON을 표시합니다. 한 문장과 `--json`을 함께 전달하면 백엔드 전달 후보 JSON만 출력합니다.
+기본 화면은 앱용 매핑 결과를 JSON으로 표시합니다. 기존 INPUT / PRODUCTS / SYMPTOMS 카드와 최초 분류·상세 추출 결과는 `--verbose`로 볼 수 있습니다. 카드의 [review]는 확인 필요, [rule]은 원문 규칙 적용을 뜻합니다. `/quit`으로 종료합니다. `--json`은 내부 추출 JSON이며 백엔드 요청 본문이 아닙니다.
 
 ```powershell
 python .\test_jev_text.py "A로션은 아침에 썼고 B크림은 저녁에 쓸 예정이야." --json
@@ -76,4 +78,4 @@ python .\test_jev_text.py "A로션은 아침에 썼고 B크림은 저녁에 쓸 
 
 합성 Jev 결과와 앱 피부 상태 입력 후보를 저장 전 형식과 의미 측면에서 비교하는 오프라인 도구는 [매핑 검토 도구](mapping_review/README.md)를 참고하세요. 실제 저장·사용자 확인·앱 연동은 포함하지 않습니다.
 
-현재 PoC 실행은 `skin_state_mapping`도 생성합니다. 유효한 본인 증상 보고의 피부 상태 부분 후보, 원본 증상 인덱스, 미대응 항목과 빠진 필드를 출력합니다. 기본 화면과 `--json` 모두에서 확인할 수 있으며 추가 모델 호출은 없습니다. 빈 후보를 무증상으로 해석하지 않고, 관찰 시각·종류를 임의 생성하지 않습니다. 완전한 저장 payload가 아니며 확인 UI와 암호화·DB 저장은 연결하지 않았습니다.
+내부 추출 결과에는 `skin_state_mapping`도 생성합니다. 원본 증상 인덱스와 상세 검토는 `--json`/`--verbose`로 확인합니다. 기본 앱 출력은 이를 백엔드 기준 후보·질문·검증 상태로 정리하며 추가 모델 호출은 없습니다. 빈 후보를 무증상으로 해석하지 않고, 관찰 시각·종류를 임의 생성하지 않습니다. 확인 UI와 암호화·DB 저장은 연결하지 않았습니다.

@@ -222,17 +222,16 @@ def run_input(utterance, key, config, verbose=False, as_json=False, app_json=Fal
 def main():
     parser = argparse.ArgumentParser(description='Jev 한국어 텍스트 분류 실험 (합성 입력 권장)')
     parser.add_argument('text', nargs='?', help='분류할 텍스트; 생략하면 반복 입력')
-    parser.add_argument('--verbose', action='store_true', help='원시 응답과 전체 필드 확률 표시')
+    parser.add_argument('--verbose', action='store_true', help='기존 추출 카드·원시 응답·전체 필드 확률 표시 (디버그)')
     output = parser.add_mutually_exclusive_group()
     output.add_argument('--json', action='store_true', help='내부 디버그용 추출 후보 JSON (앱 요청 본문 아님)')
     output.add_argument('--app-json', action='store_true', help='백엔드 계약 기준 앱 전달 후보만 출력 (저장 비활성)')
     parser.add_argument('--confirmed-state', type=Path, help='합성 사용자 확인 입력 JSON 파일')
     parser.add_argument('--confirmation', type=Path, help='합성 UI 확인 바인딩 JSON 파일; 서버 권한 아님')
     args = parser.parse_args()
-    if args.app_json and args.text is None:
-        parser.error('--app-json에는 입력 문장이 필요합니다.')
-    if (args.confirmed_state or args.confirmation) and not args.app_json:
-        parser.error('확인 입력 파일은 --app-json과 함께 사용하세요.')
+    app_mode = args.app_json or not (args.json or args.verbose)
+    if (args.confirmed_state or args.confirmation) and (not app_mode or args.text is None):
+        parser.error('확인 입력 파일은 앱 출력 모드에서 입력 문장과 함께 사용하세요.')
     confirmed_state = confirmation = None
     try:
         if args.confirmed_state:
@@ -251,8 +250,9 @@ def main():
         if not args.text.strip():
             parser.error('빈 텍스트는 사용할 수 없습니다.')
         return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json,
-                         app_json=args.app_json, confirmed_state=confirmed_state, confirmation=confirmation)
-    print('Jev 텍스트 분류 실험: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.')
+                         app_json=app_mode, confirmed_state=confirmed_state, confirmation=confirmation)
+    print('Jev 매핑 테스트: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.' if app_mode else
+          'Jev 추출 디버그: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.')
     print('입력은 TypeSafe API로 전송됩니다. 개인정보 없는 합성 문장을 사용하세요.')
     while True:
         try:
@@ -267,7 +267,7 @@ def main():
             print('문장을 입력하세요.')
             continue
         print('\n분류 중...')
-        run_input(utterance, key, config, verbose=args.verbose, as_json=args.json)
+        run_input(utterance, key, config, verbose=args.verbose, as_json=args.json, app_json=app_mode)
 
 
 if __name__ == '__main__':
