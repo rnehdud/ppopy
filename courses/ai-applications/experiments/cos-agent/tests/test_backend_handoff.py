@@ -124,10 +124,10 @@ def test_app_mode_excludes_internal_fields_and_preserves_cli_debug_mode(monkeypa
         raise AssertionError('app path must not call the debug classifier')
     monkeypatch.setattr(cli, 'classify', unused)
     monkeypatch.setattr(cli, 'extract_features', lambda *a, **kw: deepcopy(features))
-    assert cli.run_input('synthetic', 'synthetic-key', {}, app_json=True) == 0
+    assert cli.run_input('synthetic', 'synthetic-key', {}, app_json=True, legacy=True) == 0
     app = json.loads(capsys.readouterr().out)
     assert 'PRIVATE-SENTINEL' not in json.dumps(app)
     assert 'classification' not in app and 'symptoms' not in app
     monkeypatch.setattr(cli, 'classify', lambda *a, **kw: {'answers': {}})
-    assert cli.run_input('synthetic', 'synthetic-key', {}, as_json=True) == 0
+    assert cli.run_input('synthetic', 'synthetic-key', {}, as_json=True, legacy=True) == 0
     assert json.loads(capsys.readouterr().out)['internal_debug'] == 'PRIVATE-SENTINEL'

@@ -1,81 +1,24 @@
-# Jev 텍스트 분류·관계 추출 PoC
+# Jev backend skin-state field extraction
 
-옵션 없이 `uv run python poc/jev/test_jev_text.py`를 실행하면 입력 프롬프트가 열립니다. 문장마다 백엔드 기준 매핑 후보·필요한 입력·검증 상태를 출력하고 다음 문장을 받습니다. `/quit` 또는 Ctrl+C로 종료합니다. 문장을 명령 인자로 넣어도 기본 출력은 앱용 매핑입니다. `--json`은 내부 추출 JSON, `--verbose`는 기존 추출 카드와 상세 디버그입니다. `--app-json`도 반복 입력을 지원합니다. 확인 파일은 확인 내용이 다른 문장에 재사용되지 않도록 단일 입력 문장과 함께 사용합니다.
+The default engine asks Jev for the **actual backend skin_state fields and allowed values**. It does not extract the old PoC symptom/product fields and map them afterward.
 
-앱 통합을 위한 출력은 `--app-json`을 사용합니다. [백엔드 기준 전달 계약·필드 제안](../../docs/backend-contract-review.md)에 실제 소스 확인 결과, 9개 백엔드 필드의 처리 기준과 확장 제안을 정리했습니다. 기존 `--json`은 내부 디버그·평가용입니다. 앱용 payload는 필드 검증과 명시적 확인을 통과한 경우에만 생성하며 서버 HTTP 경로·저장은 비활성입니다.
-
-현재 출력은 `relations-0.5`입니다. [사용 사건 후보 계약](usage-events.md)에 사건별 사용·미사용·계획 분리를 정리했습니다. [DB 매핑 전 필드 검토](../../docs/agent-field-review.md)의 나머지 미구현 필드는 `agent_fields`에서 `unassessed`로 유지합니다. 사용자 확인·DB 저장·권한 검사는 구현하지 않았으며 기존 평가 산출물의 스키마와 수치는 그대로 보존합니다. 아래 v0.2와 평가 기록은 당시 구현 이력입니다.
-
-메인 `beauty_agent`와 별개의 합성 실험입니다. 별도 LLM 없이 TypeSafe Jev만 사용합니다. 실제 iOS STT·DB·외부 제품 조회·저장은 연결하지 않았습니다.
-
-## 실행
-
-이 폴더에서:
+From `cos-agent/`:
 
 ```powershell
-..\..\.venv\Scripts\python.exe .\test_jev_text.py
+uv run python poc/jev/test_jev_text.py
 ```
 
-기본 화면은 원문 구절별로 `Jev` 필드/값, 값을 변경한 경우의 `Rule`, `Backend` 매핑만 짧게 보여줍니다. 점수·위치·미언급 관계·반복 안내는 숨기며 상세 정보는 `--verbose`/`--json`으로 확인합니다. 원문은 번역하지 않습니다. 제목의 증상 종류는 어휘 탐지 결과이고 Jev 줄은 모델 응답입니다. Rule 줄은 최종 보정값입니다. 구절은 문맥이며 모델 내부 토큰 기여도가 아닙니다. 원문을 포함하는 기본 화면은 로컬 합성 테스트용입니다. 원문 없는 앱용 JSON은 `--app-json`으로 확인합니다. `/quit`으로 종료합니다. 실제 매핑 값과 검증·저장 비활성 상태는 동일합니다.
+Enter synthetic text at `Text>`. Each result shows the selected source phrase followed by backend field/value assignments in English. `/quit` exits.
 
-```powershell
-python .\test_jev_text.py "A로션은 아침에 썼고 B크림은 저녁에 쓸 예정이야." --json
-```
+The six Jev fields are `concern_presence`, `persistence`, `recent_change`, `discomfort_presence`, `discomfort_types`, and `sensitivity_history`. `kind` and `observed_at` come from explicit app input; `version` comes from the backend contract. Missing evidence withholds a field instead of inventing a value.
 
-키 검색 순서는 `TYPESAFE_API_KEY` 환경변수 → ppopy 저장소 루트 `.env` → 기존 `cos-agent/.env`입니다. 파일에서는 `jev-key=...` 또는 `TYPESAFE_API_KEY=...`를 지원하며 실행 폴더와 무관하게 찾습니다. 입력은 외부 API에 전달되므로 합성 문장으로 시험하세요.
+- `--json`: direct backend-field extraction and evidence metadata.
+- `--app-json`: app handoff, missing backend inputs and confirmation state.
+- `--verbose`: readable field output plus detailed extraction JSON.
+- `--legacy-poc`: explicitly opt into the old experimental pipeline for historical reproduction only.
 
-## 현재 처리 순서
+The key is read from `TYPESAFE_API_KEY`, then repository-root `.env`, then `cos-agent/.env`. Files support `jev-key` or `TYPESAFE_API_KEY`. Input is sent to the external TypeSafe API; use synthetic data without personal information.
 
-1. 기존 전체 문장 분류를 실행합니다. 이 결과는 참고용이며 관계 추출의 관문으로 사용하지 않습니다. 따라서 부정·계획 문장 속 제품도 처리할 수 있습니다.
-2. 쉼표·문장부호 단위에서 1~6어절 제품명 후보와 조사 경계 대안을 만들고 Jev Choice로 이름을 반복 선택합니다. 사용 여부에 상관없이 이름을 수집합니다. 사건당 최대 8회이며 한도/실패를 표시합니다.
-3. 제품의 각 원문 등장 위치마다 실제 사용/부정/계획/가정/충돌/모름/거절/미언급, 본인/타인, 정정 상태를 각각 질문합니다.
-4. 코드가 날짜·시간 표현 후보를 만들고 Jev가 해당 제품과 연결되는 표현을 선택합니다. 관계 질문은 20개씩 묶습니다. 상대 날짜는 기준 발화 시각 없이 절대 날짜로 변환하지 않습니다.
-5. 증상은 지원 어휘(건조·당김, 트러블·여드름, 붉음·홍조, 따가움, 가려움 등)의 원문 표현으로 먼저 후보를 제한합니다. 언급된 증상에만 상태·대상·강도·근거·시작 날짜/시간·발견 시간을 묻습니다. 다른 증상의 부정을 미언급 증상에 잘못 연결하는 실제 오류 때문에 이 제한을 추가했습니다.
-6. 코드에서 명확한 인접 `A가 아니라 B`/`A 말고 B` 정정을 보완하고 원래 모델 판정도 보관합니다. 증상 구절에 시작을 나타내는 지원 표현이 없는데 시작 시점을 추정하면 미상·확인 대상으로 돌립니다. 이 규칙도 완전한 의미 분석은 아닙니다.
+[Current field definitions, behavior and verification](BACKEND_FIELDS.md) · [Backend contract and proposed extensions](../../docs/backend-contract-review.md) · [Historical PoC notes](LEGACY_POC.md)
 
-## 출력 의미
-
-`products`는 원문 위치별 제품 언급, `symptoms`는 지원 어휘로 탐지한 증상입니다. `relations`에 값·선택 점수·후보 상태를 보관합니다. 시간과 근거 구절은 원문에서 선택한 위치를 포함합니다.
-
-- `review_status=candidate`: 전체 결과는 사용자 확인 전 후보입니다.
-- `text_revision`: 원문 SHA-256. 위치 기준은 `source_text`이며 단위는 Unicode code point입니다. Swift UTF-16 인덱스로 사용할 때 변환이 필요합니다.
-- `eligible_for_usage_candidate`: 이름 선택과 본인의 실제 사용·유효 언급이 실험 기준을 만족한 경우만 true입니다. 사용자 승인이나 저장 권한을 의미하지 않습니다.
-- `product_id`, `product_version`: null. `match_status=not_attempted`. 추출 이름이 실제 제품으로 식별됐다는 뜻이 아닙니다.
-- `clarifications`: 불확실·미평가·충돌 등을 후속 확인 대상으로 기록합니다. 대화형 확인·답변 병합은 미구현입니다.
-- `warnings`: 호출 실패·추출 한도 등. 실패 시 빈 결과를 실제 부재로 확정하지 않습니다.
-
-정정 규칙 적용 시 점수를 임의로 100%로 만들지 않습니다. `method`, `model_prediction`으로 코드 규칙과 모델 결과를 구분합니다. 후보 선택 점수는 원래 분류 confidence와 다르며 내부 기여도가 아닙니다.
-
-## 확인한 결과와 한계
-
-2026-11-06 합성 문장 실행에서 제품별 아침/저녁, 사용 부정/내일 사용 계획, 증상별 약함/심함, 본인/타인 구분을 관찰했습니다. 정정 후 제품까지 취소되거나 발견 시간을 시작 시간으로 연결한 오류를 관찰해 제한된 규칙을 추가했습니다. 광범위한 정확도 검증이나 사람 정답 검토는 하지 않았습니다.
-
-제품명이 후보 범위 밖으로 길거나 대명사/별칭만 있는 경우, 지원 어휘 밖의 증상·시간, 한 제품의 여러 사용 사건, 한 증상의 복수 대상·서로 다른 강도/시점은 완전하게 표현하지 못합니다. 같은 증상은 문장부호로 나눈 구절별 레코드로 분리합니다. 한 구절 안의 복수 대상·시점은 아직 대표 관계로 압축될 수 있습니다. 이전 대화 문맥·지식 검색·원인 추론·사용자 확인·실제 앱 계약은 후속 작업입니다. API 호출 수와 비용은 제품명 반복 선택 및 관계 질문 수에 따라 증가합니다.
-
-
-## 규칙 고도화 v0.2 (2026-11-06)
-
-출력 스키마는 `relations-0.2`입니다. `semantic_rules.py`에 원문 기반 보완 규칙을 분리했습니다.
-
-- 증상은 종류별 하나가 아니라 `source_scope`별 `symptom_id`로 분리합니다. 동일 증상의 친구/본인, 과거/현재를 따로 질문합니다. 근거 후보도 지정 구절 안으로 제한하고 다른 증상 표현을 포함한 후보는 제외합니다.
-- 명확한 증상 부정, 명시적 문장 주어, 이어지는 시작 시점 모름을 처리합니다. 시작 시점 모름과 제품 사용 시간 모름은 구분합니다. 발견 표현 없이 사용 시간을 발견 시간으로 가져오면 확인 대상으로 전환합니다.
-- 한 구절에 특정 제품 하나와 복수의 명시적 날짜+시간 쌍이 있으면 `usage_events`에 분리합니다. 원래 대표 시간은 `multiple_events`로 표시하고 원래 모델 판정을 보존합니다. 여러 제품·불명확한 시간 연결에는 이 규칙을 적용하지 않습니다.
-- 브랜드 뒤의 제품 종류가 누락된 경우 원문 범위를 확장해 보존하며, 이름을 모른다고 명시한 단일 제품 또는 해당 확장 결과는 `identification_status=incomplete`로 표시하고 사용 후보에서 제외합니다. 이는 DB 제품 식별이 아닙니다.
-- 일반적인 “피부 증상은 말하고 싶지 않아”는 개별 증상 유무와 별개로 `intake_status.symptoms=declined`에 보관합니다.
-
-규칙은 `method`, `model_prediction`, `score=null`로 출처를 구분합니다. 원문 조건이 명확하지 않으면 모델 후보를 유지하거나 확인 대상으로 남깁니다. 임의 confidence를 만들지 않습니다.
-
-7개 개발 예시의 재실행 산출물은 `evaluation_runs/2026-11-06-rules-v2-final/`입니다. C4 대상 분리, C6 두 사용 사건 및 현재 부정, C7 부분 이름·전역 거절 보존을 관찰했습니다. C5는 사용 시간/시작 시점 모름 규칙을 분리한 뒤 다시 실행했습니다. 최종 테스트 결과는 20 passed입니다. 이 결과는 독립 평가셋 정확도나 실제 앱 연동 검증이 아닙니다.
-
-
-## 다양한 입력 성능 평가
-
-`python -m poc.jev.benchmark`로 `evaluation_data/diverse-v1.json`의 36개 합성 입력(12유형)을 관계 추출기로 실행합니다. 지정된 6개 입력은 한 번 더 반복합니다. 실행마다 새 결과 폴더에 입력·기대 조건·실제 결과·조건별 판정·지연·요청/질문/토큰 수·실제 응답 모델·코드/데이터 해시를 저장합니다. 외부 Jev 사용료가 발생합니다. 키는 결과에 기록하지 않습니다.
-
-2026-11-06 실행: 핵심 조건 전체 충족 29/36건, 6건 반복의 채점 값 동일. 보고서: [다양한 입력 평가](evaluation_runs/diverse-v1-20261106T042935Z/report.md). 이는 사람 미검토 합성 기대값에 대한 부분 조건 평가입니다. E12는 기대 사건 표현 자체의 재검토가 필요하고 E33은 not_mentioned 레코드 생성이라는 구조적 차이입니다. 보고서의 7개 미충족을 모두 같은 의미 오류로 취급하지 않습니다. 실행 중 추출 로직은 수정하지 않았습니다.
-
-## 피부 상태 매핑 검토
-
-합성 Jev 결과와 앱 피부 상태 입력 후보를 저장 전 형식과 의미 측면에서 비교하는 오프라인 도구는 [매핑 검토 도구](mapping_review/README.md)를 참고하세요. 실제 저장·사용자 확인·앱 연동은 포함하지 않습니다.
-
-내부 추출 결과에는 `skin_state_mapping`도 생성합니다. 원본 증상 인덱스와 상세 검토는 `--json`/`--verbose`로 확인합니다. 기본 앱 출력은 이를 백엔드 기준 후보·질문·검증 상태로 정리하며 추가 모델 호출은 없습니다. 빈 후보를 무증상으로 해석하지 않고, 관찰 시각·종류를 임의 생성하지 않습니다. 확인 UI와 암호화·DB 저장은 연결하지 않았습니다.
+All results require app confirmation and server authorization. HTTP transmission and DB storage remain disabled; development_preview and production_enabled=false are preserved.

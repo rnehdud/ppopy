@@ -38,7 +38,24 @@ def payload_digest(payload):
 
 
 def prepare_handoff(features, confirmed_state=None, confirmation=None):
-    mapping = map_candidates(features)
+    if features.get('schema_version') == 'skin-state-extraction-1.0':
+        if features.get('backend_contract_version') != CONTRACT['version']:
+            raise ValueError('backend contract version mismatch')
+        patch = features.get('candidate_skin_state', {})
+        if not isinstance(patch, dict) or not set(patch) <= set(CONTRACT['fields']):
+            raise ValueError('invalid backend candidate fields')
+        for field, value in patch.items():
+            allowed = CONTRACT['fields'][field]
+            if field == 'discomfort_types':
+                valid = (isinstance(value, list) and all(isinstance(v, str) and v in allowed for v in value)
+                         and len(set(value)) == len(value))
+            else:
+                valid = isinstance(value, str) and value in allowed
+            if not valid:
+                raise ValueError('invalid backend candidate value')
+        mapping = {'skin_state_patch': patch, 'blockers': list(features.get('warnings', [])), 'findings': []}
+    else:
+        mapping = map_candidates(features)  # historical evaluation only
     patch = mapping['skin_state_patch']
     revision = features.get('text_revision')
     valid_revision = isinstance(revision, str) and re.fullmatch('[0-9a-f]{64}', revision) is not None

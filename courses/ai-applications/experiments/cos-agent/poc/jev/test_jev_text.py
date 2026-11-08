@@ -188,7 +188,29 @@ def print_input_mapping(utterance, candidates, spans, warning=None, verbose=Fals
 
 
 def run_input(utterance, key, config, verbose=False, as_json=False, app_json=False,
-              confirmed_state=None, confirmation=None, app_cards=False):
+              confirmed_state=None, confirmation=None, app_cards=False, legacy=False):
+    if not legacy:
+        try:
+            from .skin_state import extract_skin_state, print_skin_state
+            from .mapping_review.backend import prepare_handoff
+        except ImportError:
+            from skin_state import extract_skin_state, print_skin_state
+            from mapping_review.backend import prepare_handoff
+        try:
+            extraction = extract_skin_state(utterance, key)
+        except ValueError:
+            print('Input must contain 1 to 2000 characters.', file=sys.stderr)
+            return 1
+        handoff = prepare_handoff(extraction, confirmed_state, confirmation)
+        if as_json:
+            print(json.dumps(extraction, ensure_ascii=False, indent=2))
+        elif app_json and not app_cards:
+            print(json.dumps(handoff, ensure_ascii=False, indent=2))
+        else:
+            print_skin_state(extraction, handoff)
+            if verbose:
+                print(json.dumps(extraction, ensure_ascii=False, indent=2))
+        return 1 if handoff['status'] in ('invalid_input', 'blocked') else 0
     if app_json:
         features = extract_features(utterance, key)
         try:
@@ -229,12 +251,13 @@ def run_input(utterance, key, config, verbose=False, as_json=False, app_json=Fal
 def main():
     parser = argparse.ArgumentParser(description='Jev 한국어 텍스트 분류 실험 (합성 입력 권장)')
     parser.add_argument('text', nargs='?', help='분류할 텍스트; 생략하면 반복 입력')
-    parser.add_argument('--verbose', action='store_true', help='기존 추출 카드·원시 응답·전체 필드 확률 표시 (디버그)')
+    parser.add_argument('--verbose', action='store_true', help='백엔드 필드 판정과 상세 추출 JSON 표시')
     output = parser.add_mutually_exclusive_group()
     output.add_argument('--json', action='store_true', help='내부 디버그용 추출 후보 JSON (앱 요청 본문 아님)')
     output.add_argument('--app-json', action='store_true', help='백엔드 계약 기준 앱 전달 후보만 출력 (저장 비활성)')
     parser.add_argument('--confirmed-state', type=Path, help='합성 사용자 확인 입력 JSON 파일')
     parser.add_argument('--confirmation', type=Path, help='합성 UI 확인 바인딩 JSON 파일; 서버 권한 아님')
+    parser.add_argument('--legacy-poc', action='store_true', help='과거 임시 필드 기반 PoC 재현 전용')
     args = parser.parse_args()
     app_mode = args.app_json or not (args.json or args.verbose)
     if (args.confirmed_state or args.confirmation) and (not app_mode or args.text is None):
@@ -252,13 +275,13 @@ def main():
         print(f'API 키가 없습니다. {ENV_FILE} 또는 {PROJECT_ENV_FILE}에 jev-key를 설정하거나 '
               'TYPESAFE_API_KEY 환경변수를 설정하세요.', file=sys.stderr)
         return 1
-    config = json.loads(CONFIG.read_text(encoding='utf-8'))
+    config = json.loads(CONFIG.read_text(encoding='utf-8')) if args.legacy_poc else {}
     if args.text is not None:
         if not args.text.strip():
             parser.error('빈 텍스트는 사용할 수 없습니다.')
         return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json,
                          app_json=app_mode, confirmed_state=confirmed_state, confirmation=confirmation,
-                         app_cards=app_mode and not args.app_json)
+                         app_cards=app_mode and not args.app_json, legacy=args.legacy_poc)
     print('Jev mapping test: enter a sentence. Type /quit to exit.' if app_mode else
           'Jev extraction debug: enter a sentence. Type /quit to exit.')
     print('Inputs are sent to TypeSafe API. Use synthetic text without personal information.')
@@ -276,7 +299,7 @@ def main():
             continue
         print('\nExtracting and mapping...')
         run_input(utterance, key, config, verbose=args.verbose, as_json=args.json, app_json=app_mode,
-                  app_cards=app_mode and not args.app_json)
+                  app_cards=app_mode and not args.app_json, legacy=args.legacy_poc)
 
 
 if __name__ == '__main__':

@@ -100,8 +100,8 @@ def test_existing_cli_shows_mapping_in_json_and_terminal(monkeypatch, capsys):
     monkeypatch.setattr(cli, 'classify', lambda *a, **kw: {'answers': {}})
     monkeypatch.setattr(cli, 'extract_features', lambda *a, **kw: deepcopy(extracted))
     monkeypatch.setattr(cli, 'print_features', lambda *a: None)
-    assert cli.run_input('synthetic', 'synthetic', {}, as_json=True) == 0
+    assert cli.run_input('synthetic', 'synthetic', {}, as_json=True, legacy=True) == 0
     assert json.loads(capsys.readouterr().out)['skin_state_mapping']['skin_state_patch']
-    assert cli.run_input('synthetic', 'synthetic', {}) == 0
+    assert cli.run_input('synthetic', 'synthetic', {}, legacy=True) == 0
     output = capsys.readouterr().out
     assert 'SKIN STATE MAPPING' in output and 'authorized_for_storage=false' in output

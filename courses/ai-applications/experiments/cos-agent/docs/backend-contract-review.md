@@ -1,5 +1,7 @@
 # 백엔드 기준 엔진 전달 계약과 필드 제안
 
+현재 기본 엔진은 [백엔드 필드 직접 추출](../poc/jev/BACKEND_FIELDS.md)로 전환했다. 아래 source 확인·백엔드 필드·확장 제안은 유효하지만, 중간 PoC 후보를 변환하는 설명은 과거 재현 경로다. 기본 경로에서는 map_candidates를 호출하지 않으며 6개 백엔드 필드를 Jev가 직접 판정한다. kind/observed_at은 앱 입력으로 남긴다.
+
 2026-11-08. 앱 전달 데이터의 정본은 SkinAnalysis의 `validate_skin_state`와 `miray_skin_state.json`이다. Jev 관계명은 추출 내부 계약이며 앱 요청 본문으로 전달하지 않는다. 기존 결과·평가 재현을 위한 `--json`은 디버그 출력으로 유지하고 앱용 경로는 `--app-json`으로 분리한다.
 
 ## 실제 소스 확인
