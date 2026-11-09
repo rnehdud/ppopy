@@ -96,6 +96,8 @@ async def run_pipeline_turn(request: TurnRequest, *, planner=None,
     trace.validation_results = decision.validation
     trace.fallback_reason = decision.fallback_reason
     trace.execution_status = outcome
+    trace.requested_planner = decision.requested_planner
+    trace.applied_planner = decision.applied_planner
     trace.selected_route = {"hold": "hold_or_escalate", "retrieve_evidence": "retrieve_product",
                             "request_draft": "ready_for_draft"}.get(decision.applied.action, "ask_user")
     return PipelineTurnResponse(**response.model_dump(), trace=trace)
@@ -135,10 +137,10 @@ class AgentSession:
                     slot = slot.model_copy(update={"state": "conflicting", "value": None})
             state.confirmed_observations[key] = slot.model_copy(deep=True)
         for key, confirmation in (confirmations or {}).items():
-            if key not in state.pending_clarifications:
-                raise ValueError("confirmation must match a pending clarification")
+            if key not in state.pending_clarifications and key not in state.confirmed_clarifications:
+                raise ValueError("confirmation must match a pending or previously answered clarification")
             state.confirmed_clarifications[key] = CandidateConfirmation.model_validate(confirmation)
-            state.pending_clarifications.pop(key)
+            state.pending_clarifications.pop(key, None)
         response = await run_pipeline_turn(
             request, planner=self.planner, extractor=self.extractor, mapping=self.mapping,
             kb=self.kb, observations=state.confirmed_observations,

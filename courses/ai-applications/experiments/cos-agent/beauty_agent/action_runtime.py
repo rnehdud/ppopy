@@ -7,8 +7,9 @@ import os
 from pydantic import ValidationError
 
 from .actions import ActionContext, ActionProposal
-from .action_planner import (OllamaActionPlanner, QuestionPlannerAdapter, RuleBasedActionPlanner)
-from .contracts import Question, TurnResponse
+from .action_planner import (OllamaActionPlanner, QuestionPlannerAdapter, RuleBasedActionPlanner,
+                             planner_metadata)
+from .contracts import PlannerMetadata, Question, TurnResponse
 
 
 @dataclass
@@ -19,6 +20,8 @@ class ActionDecision:
     fallback_reason: str | None
     provider: str
     model: str | None
+    requested_planner: PlannerMetadata
+    applied_planner: PlannerMetadata
 
 
 def validate_action(proposal, context):
@@ -47,13 +50,16 @@ async def decide_action(context, planner=None, *, timeout=20.0):
         if provider not in ("baseline", "ollama"):
             # Misconfiguration follows the same deterministic fallback path.
             planner = object()
-    if not hasattr(planner, "plan_action") and hasattr(planner, "plan"):
-        planner = QuestionPlannerAdapter(planner)
     proposed = None
     validation = []
     provider = "ollama" if isinstance(planner, OllamaActionPlanner) else "baseline"
     model = planner.model if isinstance(planner, OllamaActionPlanner) else None
+    requested = PlannerMetadata(provider="unknown")
     try:
+        if not hasattr(planner, "plan_action") and hasattr(planner, "plan"):
+            planner = QuestionPlannerAdapter(planner)
+        requested = (planner.requested_metadata.model_copy(deep=True)
+                     if isinstance(planner, QuestionPlannerAdapter) else planner_metadata(planner))
         # A custom planner can mutate its copy, never the gate's capability snapshot.
         output = await asyncio.wait_for(planner.plan_action(context.model_copy(deep=True)), timeout=timeout)
         if isinstance(output, ActionProposal):
@@ -74,8 +80,11 @@ async def decide_action(context, planner=None, *, timeout=20.0):
             validation.append("unverified_question_replaced_with_reviewed_wording")
         if isinstance(planner, QuestionPlannerAdapter):
             provider, model = planner.provider, planner.model
+        applied_metadata = (planner.applied_metadata.model_copy(deep=True)
+                            if isinstance(planner, QuestionPlannerAdapter) else requested.model_copy(deep=True))
         return ActionDecision(proposed, applied, validation,
-            "unverified_question_wording" if replaced else None, provider, model)
+            "unverified_question_wording" if replaced else None, provider, model,
+            requested, applied_metadata)
     except asyncio.TimeoutError:
         reason = "planner_timeout"
     except (ValidationError, json.JSONDecodeError):
@@ -92,7 +101,8 @@ async def decide_action(context, planner=None, *, timeout=20.0):
     proposal = await RuleBasedActionPlanner().plan_action(context)
     applied, _ = validate_action(proposal, context)
     return ActionDecision(proposed, applied, ["rejected", "deterministic_baseline_applied"],
-                          reason, "baseline_fallback", model)
+                          reason, "baseline_fallback", model, requested,
+                          PlannerMetadata(provider="baseline"))
 
 
 async def dispatch_action(decision, context: ActionContext, request):
@@ -118,6 +128,7 @@ async def dispatch_action(decision, context: ActionContext, request):
         questions, outcome = [], "held"
     else:
         raise ValueError("no dispatcher for action")
-    questions.extend(q for q in context.blockers if q.id not in {item.id for item in questions})
+    if outcome == "awaiting_user":
+        questions.extend(q for q in context.blockers if q.id not in {item.id for item in questions})
     return TurnResponse(status="needs_information", message=applied.question_ko, questions=questions,
                         provider=decision.provider, model=decision.model), outcome

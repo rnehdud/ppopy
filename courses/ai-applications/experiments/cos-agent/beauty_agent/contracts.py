@@ -85,6 +85,14 @@ class ObservationSlot(Contract):
         return self
 
 
+class PlannerMetadata(Contract):
+    """Caller-configured execution identity, never supplied by model output."""
+    provider: Literal["baseline", "ollama", "sft", "custom", "unknown"]
+    model: str | None = None
+    revision: str | None = None
+    adapter_revision: str | None = None
+
+
 class PipelineTrace(Contract):
     mode: Literal["development_preview"] = "development_preview"
     production_enabled: Literal[False] = False
@@ -103,6 +111,8 @@ class PipelineTrace(Contract):
     applied_action: dict | None = None
     validation_results: list[str] = Field(default_factory=list)
     fallback_reason: str | None = None
+    requested_planner: PlannerMetadata | None = None
+    applied_planner: PlannerMetadata | None = None
     execution_status: Literal["awaiting_user", "awaiting_product_evidence", "held", "draft_generated"] | None = None
     selected_route: Literal["ask_user", "retrieve_product", "hold_or_escalate", "ready_for_draft"] = "ask_user"
 

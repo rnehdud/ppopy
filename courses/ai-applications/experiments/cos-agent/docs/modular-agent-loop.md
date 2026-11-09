@@ -87,9 +87,24 @@ JSON Schema로 자유 질문의 의미적 타당성을 보장할 수 없습니�
 
 “네”나 모델의 확인 주장은 사실 갱신이 아닙니다. 검토한 `Profile`/`OwnedProduct`, `confirmed_by_user=True`인 `ObservationSlot`은 호출자가 명시적으로 전달합니다. 관찰은 숫자·불리언·구조화 JSON을 보존합니다. 상충 값은 `conflicting`으로 남고 `resolve_conflicts`와 정형 관찰만 이를 해결합니다.
 
-`CandidateConfirmation(subject, state, observed_at)`은 pending ID별 정형 응답입니다. 긍정/부정 완료에는 명시적 대상과 UTC 시점이 필요합니다. `unknown`/`declined`는 시점 없이 기록할 수 있고 사실 확정으로 취급하지 않습니다. 후보 응답과 KB 관찰은 별개이며 모델의 확인 요청으로 pending/confirmed 관찰을 변경하지 않습니다.
+`CandidateConfirmation(subject, state, observed_at)`은 pending ID 또는 이전에 응답한 후보 ID별 정형 응답입니다. 긍정/부정 완료에는 명시적 대상과 UTC 시점이 필요합니다. `unknown`/`declined`는 시점 없이 기록할 수 있고 사실 확정으로 취급하지 않습니다. 자동 재질문은 하지 않지만 사용자가 나중에 명시적으로 정정하면 같은 ID의 응답을 갱신할 수 있습니다. 등록되지 않은 ID와 불완전한 정정은 거부하며 해당 턴 상태를 반영하지 않습니다. 후보 응답과 KB 관찰은 별개이며 모델의 확인 요청으로 pending/confirmed 관찰을 변경하지 않습니다.
 
 `PipelineTrace`는 `proposed_action`, `applied_action`, `validation_results`, `fallback_reason`, `execution_status`를 분리합니다. 잘못된 JSON은 구조화 제안이 없어 `proposed_action=None`이며 이유만 기록합니다. 조회 요청을 성공으로, 초안 요청을 생성 완료로 기록하지 않습니다. 기존 `selected_route`를 호환용으로 유지하고, 보류·조회 대기는 기존 응답 계약의 `needs_information`, `draft=None`입니다.
+
+보류(`held`)·조회 대기(`awaiting_product_evidence`) 응답은 `questions=[]`입니다. 프로필·제품 등 미해결 블로커는 세션 상태에 보존하고 후속 질문 액션에서 다시 제공합니다. 사용자 응답을 기다리는 액션에서만 기존 블로커 질문 목록을 덧붙입니다.
+
+`requested_planner`와 `applied_planner`는 시도한 플래너와 검증 후 적용된 선택의 제공자를 구분합니다. 각각 `PlannerMetadata(provider, model, revision, adapter_revision)`이며 미설정 값은 `null`입니다. SFT/사용자 정의 플래너는 코드 설정의 `.metadata`로 식별 정보를 제공할 수 있습니다. 미설정 시 SFT 클래스는 `sft`, 일반 주입 플래너는 `custom`으로 기록합니다. 모델 출력이 이 정보를 지정하지 않습니다. 잘못된 액션·시간 초과·추론 오류로 복귀하면 요청한 모델 정보는 보존하고 적용 제공자는 `baseline`으로 기록합니다. 문구만 검토 표현으로 대체한 경우 액션 선택 제공자는 유지합니다.
+
+기존 HTTP 응답의 `provider` enum은 확장하지 않았습니다. Python/CLI에서 SFT·사용자 정의 모델과 기준선을 비교할 때는 호환용 최상위 `provider` 대신 trace의 두 플래너 필드를 사용하세요. 예를 들어 SFT 구현체에 다음과 같이 설정합니다(아래 값은 합성 예시이며 실제 모델 실행 기록이 아닙니다).
+
+```python
+from beauty_agent.contracts import PlannerMetadata
+
+metadata = PlannerMetadata(
+    provider="sft", model="synthetic-qwen",
+    revision="synthetic-base-revision", adapter_revision="synthetic-adapter-revision",
+)
+```
 
 ## 모델 연결과 호환성
 
@@ -107,6 +122,8 @@ JSON Schema로 자유 질문의 의미적 타당성을 보장할 수 없습니�
 
 입력은 발화, 현재 정형 상태, 추출/매핑, 비활성 KB의 제공 근거, 액션·도구·조건, 이전 턴 이력입니다. 출력은 액션·대상·질문/인자·근거 참조·짧은 이유입니다. 합성 관찰, KB 출처 기록, 설계 목표를 provenance로 구분합니다. 모두 `human_review=unreviewed`, `approved_reference=false`이며 승인 정답·독립 평가셋이 아닙니다. 기준선 선택을 정답으로 복사하지 않았고 모델 판단 개선을 주장하지 않습니다.
 
+예제 생성기는 학습 모델이 아닌 작성된 목표를 반환하므로 실행 메타데이터를 `custom`으로 기록합니다.
+
 생성기는 네트워크/모델 없이 실제 루프에 합성 추출기와 작성한 목표 플래너를 주입합니다. 테스트는 재생성 일치와 모든 목표의 계약·실행 조건을 검사합니다. 향후 학습 전 사람의 독립 검토, 데이터 분할·라이선스·평가 기준이 필요합니다.
 
 ## 실행과 검증
@@ -122,7 +139,9 @@ uv run python -m scripts.build_action_examples
 
 CLI는 `/state`, `/quit`, `/update {JSON}`을 지원합니다. 정형 JSON은 `AgentSession.step()` 인자입니다. 고정 데모는 B-C01만 평가하며 미확정 상태와 정형 확인 후 초안 전이를 표시합니다.
 
-액션 경계는 `tests/test_action_planner.py`, 기존 루프 호환은 `tests/test_agent_loop.py`, HTTP 회귀는 기존 `tests/test_agent.py`에서 확인합니다. 모두 합성 플래너와 MockTransport로 실행하며 실제 모델은 필요 없습니다. 원본 검증은 루트 [docs/verification.md](../../../../../docs/verification.md)의 명령을 따릅니다. KB validator는 반드시 `--report outputs/kb-structure.json`으로 실행합니다. 원본 KB·source manifest·동결 감사는 수정하지 않습니다.
+액션 경계는 `tests/test_action_planner.py`, 명시적 후보 정정·보류/조회 응답·플래너 식별 회귀는 `tests/test_action_followups.py`, 기존 루프 호환은 `tests/test_agent_loop.py`, HTTP 회귀는 기존 `tests/test_agent.py`에서 확인합니다. 모두 합성 플래너와 MockTransport로 실행하며 실제 모델은 필요 없습니다. 원본 검증은 루트 [docs/verification.md](../../../../../docs/verification.md)의 명령을 따릅니다. KB validator는 반드시 `--report outputs/kb-structure.json`으로 실행합니다. 원본 KB·source manifest·동결 감사는 수정하지 않습니다.
+
+2026-11-10 후속 수정 검증: 실험 전체 296개 통과(새 회귀 15개), 기존 Starlette/httpx 경고 1건. 원본 해시 27/27, KB 구조 95/95, 경계·현재 명세 371개 통과. 엄격 원본은 62개 통과·기존 5개 실패, 동결 감사는 52/57 충족을 유지합니다. KB coverage(60카드·213조건 분기·180경계 사례), 합성 KB CLI와 고정 루프 CLI도 실행했습니다. 실제 모델 추론이나 QLoRA 학습은 수행하지 않았습니다.
 
 엄격 원본 테스트와 57 시나리오 감사의 기존 다섯 불일치는 별도 결과로 보고합니다. 현재 명세 테스트 통과를 원본 수용 성공으로 해석하지 않습니다. 실제 사용자 수집, 저장·승인, 결제, 얼굴 분석, 자동 개선 판정, 실제 DB/검색 연결은 이번 범위에 없습니다.
 
