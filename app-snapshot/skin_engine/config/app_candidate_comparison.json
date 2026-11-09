@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0-test-20260928",
+  "runtime_enabled": false,
+  "public_enabled": false,
+  "deployment_context": "synthetic_test",
+  "candidate_count": 2,
+  "request_fields": ["schema_version", "deployment_context", "candidates"],
+  "candidate_fields": ["product_id", "source_url", "provenance_hash"],
+  "http": {
+    "runtime_enabled": false,
+    "path": "/api/v1/app/candidate-comparison",
+    "method": "POST",
+    "authorization_scheme": "Bearer",
+    "max_request_bytes": 8192
+  },
+  "copy": {
+    "ready": "확인된 제품 버전의 성분 정보를 나란히 보여 드려요. 개인별 적합성이나 대체 여부는 판단하지 않아요.",
+    "unavailable": "제품 버전과 전성분을 다시 확인해야 해요. 확인 전에는 성분 비교를 표시하지 않아요.",
+    "presence_only": "포함 여부는 농도나 효과 크기를 뜻하지 않아요."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "scope": "isolated_local_review",
+  "runtime_registered": false,
+  "public_enabled": false,
+  "native_connection_enabled": false,
+  "operational_secure_store_authorized": false,
+  "operational_mac_authorized": false,
+  "automatic_poll_or_retry": false,
+  "record_namespace": "original_session_lookup_restart_intent",
+  "key_ref": "synthetic:lookup-restart-hmac-v1",
+  "maximum_record_bytes": 1024,
+  "retention": "original_session_expiry_no_extension",
+  "admission": "verified_write_ahead_atomic_compare_and_swap",
+  "missing_or_invalid": "hold_no_fresh_start_or_record_repair",
+  "fresh_installation": "separately_attested_signed_ready_record_required",
+  "retirement": "preserve_record_clear_live_ids_no_vault_write",
+  "recovery": "explicit_original_session_only_no_query_cache"
+}

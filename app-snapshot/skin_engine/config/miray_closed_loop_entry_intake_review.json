@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0-entry-intake-local-review",
+  "enabled": false,
+  "registered": false,
+  "deployment_context": "synthetic_test",
+  "purpose": "miray_explicit_entry_full_intake",
+  "category": "questionnaire",
+  "encryption_key_ref": "synthetic:local-review-entry-intake-aead-v1",
+  "max_answer_bytes": 32768,
+  "max_plaintext_bytes": 2097152,
+  "max_ciphertext_bytes": 2097216,
+  "max_metadata_rows": 256,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "fields": [
+    "product_context_status",
+    "care_priorities",
+    "aggravating_answers",
+    "irritation_history",
+    "current_actives",
+    "retinoid_in_use",
+    "dermatology_treatment_status",
+    "tightness_dryness_score"
+  ],
+  "answer_states": [
+    "reported",
+    "none_reported",
+    "unknown",
+    "user_refused",
+    "not_asked"
+  ],
+  "none_values": {
+    "care_priorities": [],
+    "current_actives": [],
+    "aggravating_answers": {}
+  },
+  "evaluation_scope": "synthetic_local_review_only"
+}

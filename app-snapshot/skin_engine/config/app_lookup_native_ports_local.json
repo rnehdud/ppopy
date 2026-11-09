@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "scope": "isolated_local_review",
+  "runtime_registered": false,
+  "public_enabled": false,
+  "native_plugin_registered": false,
+  "operational_secure_store_authorized": false,
+  "operational_mac_authorized": false,
+  "ready_provisioning_enabled": false,
+  "key_creation_rotation_deletion_enabled": false,
+  "namespace": "original_session_lookup_restart_intent",
+  "key_ref": "synthetic:lookup-restart-hmac-v1",
+  "maximum_message_bytes": 1024,
+  "record_contract": "app_lookup_resume_local",
+  "store_contract": "authoritative_durable_exact_atomic_cas_no_unattested_restore",
+  "admission": "existing_authenticated_slot_only_no_null_bootstrap",
+  "mac_contract": "canonical_original_session_and_exact_https_base",
+  "session_retirement": "clear_memory_only_no_native_remove",
+  "key_access": "existing_device_only_unlocked_key_no_fallback"
+}

@@ -1,0 +1,179 @@
+{
+  "version": "1.1.0-local-review-20260928",
+  "care_response_schema_version": "0.2.0",
+  "section_types": [
+    "aggravating_factors",
+    "ingredient_plan",
+    "routine",
+    "current_products",
+    "product_matches",
+    "unmet_gaps",
+    "disclaimers"
+  ],
+  "palette_fields": [
+    "ingredient",
+    "status",
+    "dose",
+    "reason"
+  ],
+  "palette_ingredients": [
+    "살리실릭애씨드",
+    "나이아신아마이드",
+    "AHA(글라이콜릭 또는 락틱, 택1)",
+    "병풀/시카(센텔라 유래)",
+    "판테놀",
+    "세라마이드(또는 유사 지질류)"
+  ],
+  "status_doses": {
+    "selected": [
+      "소량",
+      "중간",
+      "높음",
+      "고정"
+    ],
+    "support": [
+      "소량",
+      "중간",
+      "높음",
+      "고정"
+    ],
+    "excluded": [
+      "미포함"
+    ],
+    "not_prioritized": [
+      "미포함"
+    ]
+  },
+  "ingredient_doses": {
+    "살리실릭애씨드": [
+      "고정"
+    ],
+    "나이아신아마이드": [
+      "소량",
+      "중간",
+      "높음"
+    ],
+    "AHA(글라이콜릭 또는 락틱, 택1)": [
+      "소량",
+      "중간",
+      "높음"
+    ],
+    "병풀/시카(센텔라 유래)": [
+      "소량",
+      "중간",
+      "높음"
+    ],
+    "판테놀": [
+      "소량",
+      "중간",
+      "높음"
+    ],
+    "세라마이드(또는 유사 지질류)": [
+      "소량",
+      "중간",
+      "높음"
+    ]
+  },
+  "incompatible_groups": [
+    {
+      "ingredients": [
+        "살리실릭애씨드",
+        "AHA(글라이콜릭 또는 락틱, 택1)"
+      ],
+      "max_active": 1
+    }
+  ],
+  "routine": {
+    "fields": [
+      "slot",
+      "order",
+      "kind",
+      "ingredient",
+      "dose",
+      "frequency",
+      "gradual_introduction"
+    ],
+    "slots": [
+      "AM",
+      "PM"
+    ],
+    "kind_slots": {
+      "cleanser": [
+        "AM",
+        "PM"
+      ],
+      "active_serum": [
+        "PM"
+      ],
+      "barrier_support": [
+        "AM"
+      ],
+      "moisturizer": [
+        "AM",
+        "PM"
+      ],
+      "spf": [
+        "AM"
+      ]
+    },
+    "palette_kind_by_status": {
+      "selected": "active_serum",
+      "support": "barrier_support"
+    },
+    "frequency_gradual": {
+      "매일": false,
+      "격일로 시작해 내성 보며 매일": true,
+      "주 2회로 시작해 내성 보며 증량": true,
+      "격일": true,
+      "매일(초기 2주는 점진 도입)": true
+    },
+    "foundation_dose": "미포함",
+    "foundation_frequency": "매일",
+    "first_kind": "cleanser",
+    "end_kinds": {
+      "AM": [
+        "moisturizer",
+        "spf"
+      ],
+      "PM": [
+        "moisturizer"
+      ]
+    },
+    "foundation": [
+      {
+        "slot": "AM",
+        "kind": "cleanser",
+        "ingredient": "저자극 클렌저"
+      },
+      {
+        "slot": "PM",
+        "kind": "cleanser",
+        "ingredient": "저자극 클렌저"
+      },
+      {
+        "slot": "AM",
+        "kind": "moisturizer",
+        "ingredient": "보습 크림"
+      },
+      {
+        "slot": "AM",
+        "kind": "spf",
+        "ingredient": "자외선 차단제 SPF30+"
+      },
+      {
+        "slot": "PM",
+        "kind": "moisturizer",
+        "ingredient": "보습 크림"
+      }
+    ]
+  },
+  "prohibited_terms": [
+    "면포성",
+    "염증성",
+    "피지과다형",
+    "결절",
+    "낭포",
+    "여드름 등급",
+    "진단"
+  ]
+}

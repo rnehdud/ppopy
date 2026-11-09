@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-public-loop-worker-20261020",
+  "scope": "public_service_loop_worker_not_TEST_or_research",
+  "input_schema_version": "poppy-public-loop-worker-input-v1",
+  "legacy_input_schema_versions": [],
+  "catalog_encoding": "zlib-base64",
+  "catalog_compression_level": 9,
+  "result_schema_version": "poppy-public-loop-worker-result-v1",
+  "purpose": "poppy_public_loop_worker",
+  "max_input_bytes": 2097152,
+  "max_result_bytes": 65536,
+  "automatic_recompute": false,
+  "automatic_pending_refund": false,
+  "persistent_queue_enabled": false,
+  "completion_function": "service.complete_app_public_loop_operation"
+}

@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0-next-precheck-local-review",
+  "enabled": false,
+  "registered": false,
+  "real_user_question_exposure_enabled": false,
+  "deployment_context": "synthetic_test",
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "evaluation_scope": "synthetic_local_review_only",
+  "route": {"method": "GET", "path": "/app/review/loop-next/input-precheck"},
+  "max_response_bytes": 8192,
+  "core_fields_in_engine_order": ["discomfort_presence", "concern_presence"],
+  "missing_core_values": ["not_asked", "unknown", "user_refused"],
+  "allowed_reasons": [
+    "previous_episode:unexplained_portfolio_change",
+    "discomfort_presence:not_asked", "discomfort_presence:unknown", "discomfort_presence:user_refused",
+    "concern_presence:not_asked", "concern_presence:unknown", "concern_presence:user_refused",
+    "decision_abstained"
+  ],
+  "full_intake_still_required": true,
+  "precheck_creates_decision": false,
+  "automatic_question_dispatch": false,
+  "raw_state_exposure_enabled": false
+}

@@ -1,0 +1,28 @@
+.native-member-review-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .5rem;
+  padding: .75rem;
+  background: #fff;
+  border-bottom: 1px solid #dfe4ec;
+}
+.native-member-review-nav button {
+  min-height: 44px;
+  border: 1px solid #cad3e1;
+  border-radius: 10px;
+  background: #fff;
+  color: #25344d;
+  font: inherit;
+  cursor: pointer;
+}
+.native-member-review-nav button[aria-current="page"] {
+  background: #ecf1ff;
+  border-color: #2854d9;
+  color: #2048bf;
+  font-weight: 700;
+}
+.native-member-review-nav button:focus-visible {
+  outline: 3px solid #2854d9;
+  outline-offset: 2px;
+}
+.native-member-review-nav button:disabled { cursor: default; opacity: .6; }

@@ -1,0 +1,34 @@
+{
+  "_comment": "고정 성분 팔레트 (확정본, 트러블 단독 스코프). ROADMAP.md WP0.1 확정 팔레트 6종과 동기화. 두 축을 독립적으로 표현한다 — [배합 축] 'layer': fixed(이진 게이트, 비중 조절 불가, 채택 여부 bool) / variable(연속 비중 조절). [클레임 축] 'claim_flag'(표시·광고 경계의 단일 진실원, schema.ClaimFlag와 동기화) + 'surface_functional_claim'(기능성 인증을 현재 스코프 UI에 노출할지). 방향은 지배 기전이, 가변층 크기는 안전 게이트 상한이 결정. 신규 성분은 WP0.1 '성분 편입 전 검증 체크리스트'(의약품 겸용/기능성 고시원료/별표2 사용제한) 통과 후에만 추가. 기능성 성분은 'claim_domain'(승인 기능성 영역)도 명시. 규칙: functional_approved인데 surface_functional_claim=false면 클레임은 general_info로 낮춰 노출(배합은 fixed 유지). 스코프 확대 시 해당 성분의 surface_functional_claim만 true로 뒤집는다.",
+  "_layer_definition_2026_07_28": "⭐ layer 구분의 근거를 재정의했다(결정 ⑩). 이전 근거는 '기능성 고시원료라 자유 배합 불가'였으나, 결정 ⑥(성분 중심 매칭)으로 1단계 시중 제품 매칭에서는 우리가 배합하는 것이 아니라 그 근거가 적용되지 않는다. 새 근거는 **자극 리스크**다 — 상한을 넘기면 자극이 커지는 성분만 fixed로 두고 나머지는 안전 게이트 cap 내에서 조절한다. 결과: fixed 1종(살리실릭애씨드) + variable 5종. ※ 기존 근거(자유 배합 불가)는 2단계 자체 제품 배합에서 여전히 유효하므로 `own_formulation_restricted` 필드로 분리 보존한다.",
+  "version": "0.4.0-panthenol-hybrid",
+  "ingredients": {
+    "salicylic_acid": {"display": "살리실릭애씨드", "layer": "fixed", "layer_reason": "irritation_risk", "fixed_pct": "0.5%", "own_formulation_restricted": true, "catalog_grading_mode": "graded_if_concentration_else_presence", "grading_mode_note": "2026-08-11 결정. 순위만 있는 레코드는 present로 두고 functional_report 또는 manufacturer_declared 농도 근거가 있을 때만 0.2/0.5 경계로 등급을 유지한다. 순수 presence인 시카·세라마이드와 다르다.", "functional_notice": true, "claim_flag": "context_dependent", "claim_by_product_type": {"functional_rinse_off": {"claim_flag": "functional_approved", "condition": "인체세정용제품류(액제·로션제·크림제) + 여드름성 피부 완화 기능성 심사·보고", "allowed": "여드름성 피부를 완화하는 데 도움을 준다"}, "leave_on_preservative": {"claim_flag": "general_restrained", "condition": "그 외 제품(보존제 용도 0.5% 이하)", "allowed_style": "완곡 표현 또는 원료의 기능적 특성 서술만", "draft_expressions": ["BHA(베타하이드록시애씨드) 계열로 지용성 성질을 가진 성분입니다", "피부 표면 정돈에 흔히 사용되는 성분입니다", "유분과 잘 섞이는 성질이 있어 이런 방향의 제품에 자주 쓰입니다"], "forbidden": ["여드름 개선/완화/치료", "각질 제거", "모공 청소"]}}, "surface_functional_claim": true, "claim_domain": "여드름성 피부를 완화하는 데 도움을 주는 기능성", "potency": 0.6, "functions": ["comedolytic"], "kr_note": "layer=fixed는 서비스 루틴의 보수적 0.5% 기준이다. 규제상 한도는 용도·제품 유형별로 다르다: 보존제 용도는 0.5%, 기능성 주성분 용도는 일부 인체세정용 2%·두발세정용 3%까지 허용될 수 있고, 자료제출 생략 표준 여드름성 완화 세정 처방은 0.5%다. 전성분 순위만으로 용도·농도를 판별하지 않는다. 클레임은 제품 유형별 claim_by_product_type을 따른다."},
+    "niacinamide":    {"display": "나이아신아마이드", "layer": "variable", "layer_reason": "low_irritation_adjustable", "own_formulation_restricted": true, "catalog_grading_mode": "graded", "functional_notice": true, "claim_flag": "functional_approved", "surface_functional_claim": false, "claim_domain": "피부 미백에 도움을 주는 기능성", "claim_note": "고시 기능성은 '미백'(색소침착)으로 현재 트러블 스코프 밖 → 클레임 미노출(surface=false, general_info로 강등). 색소침착 스코프가 열리면 이 플래그만 true로. ✅ 미백 고시 2~5%는 「기능성화장품 심사에 관한 규정」[별표 4] 2항 원문으로 확인 완료(2026-07-28).", "potency": 0.3, "functions": ["sebum"], "kr_note": "**2026-07-28 fixed → variable 이동**(결정 ⑩). 자극 리스크가 낮아 상한을 고정할 근거가 없다 — 2%부터 유효하고 5%까지 자극 보고가 드물다. 안전 게이트 cap 내에서 2~5% 범위 조절. ※ own_formulation_restricted=true는 유지 — 2단계 자체 제품에서는 기능성 고시원료라 자유 배합 불가. 트러블 스코프에서는 피지과다형 대응 목적으로만 채택하고 미백 효과는 문구로 강조하지 않는다."},
+    "aha":            {"display": "AHA(글라이콜릭 또는 락틱, 택1)", "layer": "variable", "layer_reason": "gate_controlled", "own_formulation_restricted": false, "catalog_grading_mode": "graded", "claim_flag": "general_restrained", "potency": 0.6, "functions": ["texture"], "claim_note": "효능표현 금지 — '각질개선/제거' 대신 '피부 결 정돈에 도움' 수준 완곡 문구만(기능성 미고시, 표시광고 리스크)", "kr_note": "농도 level과 pH 의존 활성·자극 판단을 분리한다. pH 미상이어도 농도 level은 보존하되 activity=unknown, irritation_flag=conservative로 두고 매칭 강도(matching_level)는 한 단계 보수적으로 유지한다."},
+    "cica":           {"display": "병풀/시카(센텔라 유래)", "layer": "variable", "layer_reason": "low_irritation_adjustable", "own_formulation_restricted": false, "catalog_grading_mode": "presence", "claim_flag": "general_mild", "potency": 0.2, "functions": ["soothing"], "kr_note": "염증성 대응 진정. 자유 배합. **카탈로그에서는 포함 여부만 판정**(결정 ⑪) — 표기 농도가 대부분 추출물 기준이라 활성 기준 등급을 세울 수 없다."},
+    "panthenol":      {"display": "판테놀", "layer": "variable", "layer_reason": "low_irritation_adjustable", "own_formulation_restricted": false, "catalog_grading_mode": "graded_if_concentration_else_presence", "grading_mode_note": "P1-H02 2026-08-11 확정. 앵커 한도가 판테놀 등급 경계보다 높아 순위만으로 농도 등급을 가르지 않는다. functional_report 또는 manufacturer_declared 직접 농도만 기존 경계를 유지하고 나머지는 present다.", "claim_flag": "general_mild", "potency": 0.15, "functions": ["barrier_support"], "gate_linked": true, "kr_note": "안전 게이트 지지. 전 기전 공통, 내성 낮을수록 비중 상향."},
+    "ceramide":       {"display": "세라마이드(또는 유사 지질류)", "layer": "variable", "layer_reason": "low_irritation_adjustable", "own_formulation_restricted": false, "catalog_grading_mode": "presence", "claim_flag": "general_mild", "potency": 0.15, "functions": ["barrier_support"], "gate_linked": true, "kr_note": "안전 게이트 지지. 전 기전 공통, 내성 낮을수록 비중 상향. **카탈로그에서는 포함 여부만 판정**(결정 ⑪) — 통상 배합량이 0.01~1%로 매우 낮아 등급을 3단계로 가르는 것이 허수다."}
+  },
+  "mechanism_direction": {
+    "_comment": "기전별 방향. fixed 성분은 weight>0이면 '채택(adopt)' 신호(비중은 고정), variable 성분은 weight가 intensity=weight×cap 의 방향 가중치. ※ 2026-07-28 나이아신아마이드가 variable로 이동하면서 seborrheic 방향은 이제 연속 조절 대상이 되었다(2~5% 범위).",
+    "comedonal":    {"salicylic_acid": 1.0, "aha": 0.8},
+    "inflammatory": {"cica": 1.0},
+    "seborrheic":   {"niacinamide": 1.0},
+    "mixed":        {"cica": 0.7}
+  },
+  "care_priority_direction": {
+    "_comment": "P2-A04 소비자 경로의 중립 문진 방향. R&D Mechanism을 외부 입력으로 재사용하지 않는다. 복수 선택은 성분별 최댓값으로 합성한 뒤 병용 금지와 safety gate를 적용한다.",
+    "texture_congestion_tendency": {"salicylic_acid": 1.0, "aha": 0.8},
+    "redness_tendency": {"cica": 1.0},
+    "surface_oil_tendency": {"niacinamide": 1.0}
+  },
+  "gate_support": {
+    "_comment": "전 기전 공통 안전 게이트 지지층. cap 에 반비례(내성 낮을수록 상향). support_intensity = base + inverse_gain × (1 - cap).",
+    "panthenol": {"base": 0.4, "inverse_gain": 0.6},
+    "ceramide":  {"base": 0.4, "inverse_gain": 0.6}
+  },
+  "incompatibilities": [
+    {"group": ["salicylic_acid", "aha"], "rule": "BHA(고정 0.5% 베이스) + AHA 산 중복 금지", "policy": "keep_fixed"}
+  ]
+}

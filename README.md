@@ -63,6 +63,7 @@ The 2026-11-05 import reuses selected KB and development-preview files from the 
 | Start here | Contents |
 | --- | --- |
 | [Software Engineering](courses/software-engineering/README.md) | System responsibilities, smart mirror requirements and verification scope |
+| [iOS app source snapshot](app-snapshot/README.md) | Sanitized React and Capacitor/iOS source with a synthetic local preview |
 | [AI & Applications](courses/ai-applications/README.md) | Cleanser-agent research question, available assets and proposed evaluation |
 | [Natural-language feature extraction PoC](courses/ai-applications/experiments/cos-agent/README.md) | Isolated Jev experiments, synthetic cases, regression tests and exploratory evaluation |
 | [Knowledge base](KB/README.md) | Inactive v0.6 draft: cleansing, moisturizing and sun protection |

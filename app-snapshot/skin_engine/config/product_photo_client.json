@@ -1,0 +1,29 @@
+{
+  "version": "1.2.0-private-test-versioned-transfer-consent",
+  "enabled": false,
+  "environment": "test",
+  "api_base_url": "https://unconfigured.invalid",
+  "route": "/api/v1/products/test-photo-identity",
+  "maximum_image_bytes": 2097152,
+  "maximum_image_edge": 1600,
+  "maximum_response_bytes": 65536,
+  "timeout_milliseconds": 25000,
+  "token_key": "skinanalysis.app.product-photo-test.v1",
+  "provider": "OpenAI",
+  "disclosure": "확인한 제품 영역을 AWS TEST 서버를 거쳐 미국의 OpenAI, L.L.C.로 보내 제품명 후보를 찾습니다. 위치 정보는 제거하고 앱과 TEST 서버에 사진을 저장하지 않습니다. OpenAI에서는 승인된 더 엄격한 보관 통제가 적용되지 않는 한 오남용 방지 로그에 최대 30일 포함될 수 있습니다. 사람·얼굴·연락처가 보이지 않도록 잘라 주세요. 사진에서 전성분이나 피부 상태를 판단하지 않습니다. 동의하지 않으면 닫고 제품명 검색이나 DB 검색을 계속 이용할 수 있습니다.",
+  "disclosure_summary": "버튼을 누르면 표시한 제품 영역을 미국 OpenAI로 보내는 데 동의하고 제품명을 찾습니다. 동의하지 않아도 제품명·DB 검색을 계속 이용할 수 있어요.",
+  "overseas_transfer_consent": {
+    "version": "product-photo-openai-us-2026-09-16-v1",
+    "required": true,
+    "optional_feature": true,
+    "recipient": "OpenAI, L.L.C.",
+    "country": "United States",
+    "transferred_item": "cropped_product_photo",
+    "purpose": "product_name_candidate_identification",
+    "timing": "each_deliberate_photo_search",
+    "retention": "provider_abuse_monitoring_logs_up_to_30_days_unless_stricter_approved_controls_apply",
+    "refusal_effect": "manual_or_database_product_search_remains_available",
+    "separate_checkbox_required": false,
+    "affirmative_button_label": "동의하고 제품 찾기"
+  }
+}

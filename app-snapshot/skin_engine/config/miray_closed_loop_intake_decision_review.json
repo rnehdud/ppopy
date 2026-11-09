@@ -1,0 +1,87 @@
+{
+  "version": "1.0.0-intake-decision-local-review",
+  "enabled": false,
+  "registered": false,
+  "deployment_context": "synthetic_test",
+  "real_user_question_exposure_enabled": false,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "stop_on_unknown_or_refused": true,
+  "complete_engine_intake_required": true,
+  "core_state_questions": 2,
+  "conditional_discomfort_detail_questions": 1,
+  "evaluation_scope": "synthetic_local_review_only",
+  "decision_labels": {
+    "current_product_coverage": "등록 제품의 확인 범위",
+    "complete_palette_direction": "전체 성분 구성의 관리 방향",
+    "aggravating_factor_guidance": "세안·접촉 습관 안내",
+    "tolerance_cap": "자극 부담에 따른 안전 상한",
+    "ingredient_exclusion": "치료 여부에 따른 성분 제한"
+  },
+  "bindings": [
+    {
+      "step_id": "products",
+      "fields": [
+        "product_context_status"
+      ],
+      "decision_areas": [
+        "current_product_coverage"
+      ]
+    },
+    {
+      "step_id": "priorities",
+      "fields": [
+        "care_priorities"
+      ],
+      "decision_areas": [
+        "complete_palette_direction"
+      ]
+    },
+    {
+      "step_id": "habits",
+      "fields": [
+        "aggravating_answers"
+      ],
+      "decision_areas": [
+        "aggravating_factor_guidance"
+      ]
+    },
+    {
+      "step_id": "history",
+      "fields": [
+        "irritation_history"
+      ],
+      "decision_areas": [
+        "tolerance_cap"
+      ]
+    },
+    {
+      "step_id": "actives",
+      "fields": [
+        "current_actives",
+        "retinoid_in_use"
+      ],
+      "decision_areas": [
+        "tolerance_cap"
+      ]
+    },
+    {
+      "step_id": "treatment",
+      "fields": [
+        "dermatology_treatment_status"
+      ],
+      "decision_areas": [
+        "ingredient_exclusion"
+      ]
+    },
+    {
+      "step_id": "tightness",
+      "fields": [
+        "tightness_dryness_score"
+      ],
+      "decision_areas": [
+        "tolerance_cap"
+      ]
+    }
+  ]
+}

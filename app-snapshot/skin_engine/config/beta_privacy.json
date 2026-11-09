@@ -1,0 +1,122 @@
+{
+  "_comment": "P3-H02 외부 사실 확인 후 P3-A04 TEST-first 연결 중인 보호 경계. 프로덕션 공개는 별도 운영자 go/no-go 전까지 비활성이다.",
+  "version": "1.3.0-age14-public-draft",
+  "status": "p3_a04_in_progress_public_off",
+  "deployment": {
+    "default_mode": "disabled",
+    "allowed_modes": ["disabled", "staging"],
+    "staging_requires_explicit_activation": true,
+    "production_enabled": false,
+    "p3_h01_operator_approval_recorded": true,
+    "external_activation_gate": "P3-H02",
+    "persistent_adapter_task": "P3-A04"
+  },
+  "notices": {
+    "service_terms": {
+      "version": "terms-2026-09-03-v2",
+      "required_for_personalized_service": true
+    },
+    "general_personal_information": {
+      "version": "privacy-general-2026-09-03-v2",
+      "required_for_personalized_service": true
+    },
+    "sensitive_information": {
+      "version": "privacy-sensitive-2026-09-03-v2",
+      "required_for_personalized_service": true,
+      "separate_from_general": true,
+      "refusal_effect": "personalized_care_unavailable_general_search_available"
+    },
+    "beta_contact": {
+      "version": "privacy-contact-2026-09-03-v2",
+      "required_for_personalized_service": false,
+      "separate_from_sensitive": true
+    }
+  },
+  "public_copy": {
+    "service_terms": {
+      "title": "서비스 이용약관",
+      "summary": "화장품 루틴 점검·성분 중심 케어 정보를 제공하며 의료행위나 치료를 제공하지 않습니다."
+    },
+    "general_personal_information": {
+      "title": "일반 개인정보 수집·이용",
+      "summary": "무작위 참여자 식별자, 만 14세 이상 확인값, 동의 버전·시각, 확인 제품 목록을 세션 운영과 삭제 요청 처리에 사용합니다. 동의 철회·목적 달성·최초 수집일부터 56일 중 먼저 도래한 때 지체 없이 삭제합니다."
+    },
+    "sensitive_information": {
+      "title": "민감정보 수집·이용",
+      "summary": "피부 타입·고민, 화장품 자극·알레르기 경험, 피부과 치료 여부와 파생 안전·케어 결과를 개인화 케어에 사용합니다. 일반 개인정보와 별도로 동의받습니다."
+    },
+    "beta_contact": {
+      "title": "초기 사용자 연락처 수집·이용(선택)",
+      "summary": "선택한 연락처는 체크인 안내와 필수 운영 연락에만 사용하며 민감 문진과 분리합니다. 연락 목적 달성·동의 철회·최초 수집일부터 56일 중 먼저 도래한 때 삭제합니다. 이메일에는 피부 상태·알레르기·이상반응 상세를 적지 않습니다."
+    },
+    "processor_and_transfer": "TEST 단계에서는 합성 데이터만 사용합니다. 실제 사용자 단계의 인프라는 AWS 서울 리전, 국내 카드 결제는 NICEPAY를 사용하며 의료·민감정보를 결제사에 전달하지 않습니다. 일반 CS는 외부 이메일이 아닌 보호 인앱 채널을 사용합니다. 실제 사용자 모집과 프로덕션 공개는 별도 운영자 승인 전까지 열지 않습니다."
+  },
+  "age_gate": {
+    "minimum_age_years": 14,
+    "allowed_value": "over_or_equal_14",
+    "blocked_value": "under_14",
+    "birth_date_collection_allowed": false,
+    "delete_immediately_if_false_input_discovered": true
+  },
+  "storage_zones": {
+    "service": {
+      "allowed_roles": ["participant", "service_operator", "privacy_admin"],
+      "contact_value_allowed": false,
+      "sensitive_payload_allowed": false
+    },
+    "contact": {
+      "allowed_roles": ["contact_operator", "privacy_admin"],
+      "contact_value_allowed": true,
+      "sensitive_payload_allowed": false
+    },
+    "sensitive": {
+      "allowed_roles": ["sensitive_operator", "privacy_admin"],
+      "contact_value_allowed": false,
+      "sensitive_payload_allowed": true
+    },
+    "audit": {
+      "allowed_roles": ["privacy_admin"],
+      "contact_value_allowed": false,
+      "sensitive_payload_allowed": false
+    }
+  },
+  "retention": {
+    "service_data_retention_days": 56,
+    "service_contact_sensitive_delete_at_retention_end": true,
+    "delete_on_consent_withdrawal": true,
+    "delete_on_purpose_completion": true,
+    "backup_cleanup_required": true,
+    "statutory_transaction_records_separate": true,
+    "access_log_retention_days_min": 730
+  },
+  "security": {
+    "persistent_backend_encryption_required": true,
+    "transport_encryption_required_outside_loopback": true,
+    "least_privilege_required": true,
+    "shared_operator_accounts_allowed": false,
+    "request_or_response_payload_in_access_log_allowed": false,
+    "session_token_in_url_allowed": false,
+    "malware_protection_required": true
+  },
+  "external_processing": {
+    "active_processors": [],
+    "approved_test_processors": ["AWS", "NICEPAY"],
+    "active_third_party_provisions": [],
+    "overseas_transfer_active": false,
+    "activation_requires_processor_notice_and_contract": true,
+    "overseas_activation_requires_article_28_8_basis_and_notice": true
+  },
+  "http": {
+    "notices_path": "/api/v1/beta/notices",
+    "session_path": "/api/v1/beta/session",
+    "care_path": "/api/v1/beta/care",
+    "result_path": "/api/v1/beta/result",
+    "authorization_scheme": "Bearer",
+    "max_request_bytes": 32768
+  },
+  "identifiers": {
+    "participant_prefix": "pilot-",
+    "token_bytes": 32,
+    "audit_subject_salt_bytes": 32
+  }
+}

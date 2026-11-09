@@ -1,0 +1,14 @@
+/* Keep the WebView scroll viewport below the iOS status bar, including after scrolling. */
+@supports (font: -apple-system-body) {
+  html.poppy-native { font: -apple-system-body; }
+}
+body.poppy-native {overflow:hidden;height:100dvh;--poppy-safe-top:env(safe-area-inset-top,0px)}
+.poppy-native #root {position:fixed;top:var(--poppy-safe-top);bottom:0;left:0;right:0;overflow-y:auto;overscroll-behavior-y:contain}
+.poppy-native .app-prototype,.poppy-native .miray-workspace {min-height:100%}
+.poppy-native .app-topbar {padding-top:10px;position:sticky;top:0;z-index:12;background:#fff}
+.poppy-native .miray-header {padding-top:12px;position:sticky;top:0;z-index:12;background:#f7f8fa}
+/* #root already clears the status bar; the visual theme must not add it again. */
+.poppy-native .poppy-visual-theme .miray-header {padding-top:12px}
+.poppy-native .app-settings {padding-top:28px}
+.poppy-native .miray-workspace .app-settings-screen {padding-top:28px}
+.poppy-native .account-start-screen {min-height:100%;padding-top:24px}

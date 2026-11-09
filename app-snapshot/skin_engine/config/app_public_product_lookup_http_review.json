@@ -1,0 +1,18 @@
+{
+  "version": "1.2.0-public-product-lookup-20261021",
+  "scope": "public_product_candidates_not_verification_or_recommendation",
+  "routes": {
+    "search": {
+      "method": "POST",
+      "path": "/api/v1/app/products/web-candidates"
+    }
+  },
+  "max_request_bytes": 1024,
+  "max_response_bytes": 65536,
+  "maximum_query_characters": 200,
+  "maximum_candidates": 5,
+  "automatic_retry": false,
+  "automatic_confirmation": false,
+  "query_persistence": false,
+  "candidate_notice": "제품명·용량·옵션과 출처를 직접 확인해 주세요."
+}

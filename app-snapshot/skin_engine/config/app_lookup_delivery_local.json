@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "scope": "isolated_local_review",
+  "runtime_registered": false,
+  "public_enabled": false,
+  "operational_transport_authorized": false,
+  "provider_dispatch_enabled": false,
+  "native_connection_enabled": false,
+  "automatic_poll_or_retry": false,
+  "response_cache_enabled": false,
+  "http": {
+    "base_path": "/v1/app/product-lookup",
+    "start_method": "POST",
+    "read_method": "GET",
+    "cancel_method": "POST",
+    "cancel_suffix": "/cancel",
+    "maximum_request_bytes": 1024,
+    "maximum_response_bytes": 69632
+  },
+  "deadline": "explicit_server_deadline_not_after_origin_session_expiry",
+  "result_confirmation": "candidates_or_transcriptions_only",
+  "delivery_scope": "originating_member_session_only",
+  "unconfirmed_start": "hold_without_automatic_restart_or_quota_inference"
+}

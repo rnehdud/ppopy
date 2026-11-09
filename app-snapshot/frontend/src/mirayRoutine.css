@@ -1,0 +1,23 @@
+.miray-routine { min-width: 0; }
+.miray-main .miray-routine h1 { margin: 0 0 .75rem; font-size: 1.75rem; line-height: 1.35; }
+.miray-routine > p { margin: 0 0 1.5rem; font-size: .9375rem; line-height: 1.65; color: #596572; }
+.miray-routine .miray-card { margin: .875rem 0; padding: 18px 20px; border-radius: 18px; }
+.miray-routine-product-label { display: block; }
+.miray-routine-product-name { display: block; font-size: 1rem; line-height: 1.5; font-weight: 650; overflow-wrap: anywhere; }
+.miray-main .miray-routine select { margin-top: .75rem; height: 3rem; min-height: 3rem; box-sizing: border-box; font-size: 1rem; line-height: 1.5; border-radius: 12px; padding: .75rem; }
+.miray-routine .miray-sale-name { margin: .75rem 0 0; }
+.miray-routine .miray-sale-name summary { display: flex; align-items: center; min-height: 3rem; font-size: .875rem; line-height: 1.5; }
+.miray-routine .miray-sale-name p { font-size: .875rem; line-height: 1.6; }
+.miray-main .miray-routine-order h2 { margin: 0 0 .875rem; font-size: 1.25rem; line-height: 1.4; }
+.miray-routine .miray-routine-group + .miray-routine-group { margin-top: 1.25rem; padding-top: 1rem; }
+.miray-routine .miray-routine-group h3 { margin: 0 0 .625rem; font-size: .9375rem; line-height: 1.5; color: #526071; }
+.miray-routine .miray-order-help { margin: 0 0 .75rem; font-size: .875rem; line-height: 1.6; color: #596572; }
+.miray-routine .miray-order-row { min-height: 4rem; padding: .5rem 0; gap: .625rem; font-size: 1rem; line-height: 1.5; }
+.miray-routine .miray-order-number { font-size: .875rem; }
+.miray-routine .miray-order-handle { min-width: 48px; min-height: 48px; }
+.miray-routine .miray-routine-order > p { font-size: .9375rem; color: #596572; }
+.miray-main .miray-routine > button { display: block; width: 100%; min-height: 3rem; margin-top: 1.5rem; padding: .875rem 1rem; font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.miray-main .miray-routine > button:disabled { background: #edf0f5; color: #677383; cursor: default; opacity: 1; }
+.miray-routine [role="status"] p { font-size: .9375rem; line-height: 1.65; }
+.miray-routine button:focus-visible, .miray-routine select:focus-visible { outline: 3px solid #729dfa; outline-offset: 3px; }
+@media (max-width: 360px) { .miray-routine .miray-card { padding: 16px; } }
