@@ -10,7 +10,11 @@ import httpx
 
 POC_DIR = Path(__file__).resolve().parent
 CONFIG = POC_DIR / 'stt_jev_test_fields.json'
-ENV_FILE = POC_DIR.parents[1] / '.env'
+PROJECT_ENV_FILE = POC_DIR.parents[1] / '.env'
+REPOSITORY_ROOT = next((p for p in POC_DIR.parents
+                        if (p / 'docs' / 'repository-scope.md').is_file()),
+                       POC_DIR.parents[1])
+ENV_FILE = REPOSITORY_ROOT / '.env'
 # Exploratory routing threshold; not a validated probability cutoff.
 ROUTING_THRESHOLD = 0.5
 EXTRA_QUESTIONS = {
@@ -23,17 +27,20 @@ EXTRA_QUESTIONS = {
 
 
 def get_api_key():
-    key = os.environ.get('TYPESAFE_API_KEY')
+    key = os.environ.get('TYPESAFE_API_KEY', '').strip()
     if key:
         return key
-    if ENV_FILE.exists():
-        for line in ENV_FILE.read_text(encoding='utf-8-sig').splitlines():
+    for path in dict.fromkeys((ENV_FILE, PROJECT_ENV_FILE)):
+        if not path.is_file():
+            continue
+        for line in path.read_text(encoding='utf-8-sig').splitlines():
             name, sep, value = line.partition('=')
-            if sep and name.strip() == 'jev-key':
+            if sep and name.strip() in ('jev-key', 'TYPESAFE_API_KEY'):
                 value = value.strip()
                 if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
                     value = value[1:-1]
-                return value
+                if value.strip():
+                    return value.strip()
     return None
 
 
@@ -180,7 +187,46 @@ def print_input_mapping(utterance, candidates, spans, warning=None, verbose=Fals
     print('\n※ 별도 Jev 질문으로 연결한 후보입니다. 전체 점수는 --verbose로 확인하세요.')
 
 
-def run_input(utterance, key, config, verbose=False, as_json=False):
+def run_input(utterance, key, config, verbose=False, as_json=False, app_json=False,
+              confirmed_state=None, confirmation=None, app_cards=False, legacy=False, product_lookup=None):
+    if not legacy:
+        try:
+            from .skin_state import extract_skin_state, print_skin_state
+            from .mapping_review.backend import prepare_handoff
+        except ImportError:
+            from skin_state import extract_skin_state, print_skin_state
+            from mapping_review.backend import prepare_handoff
+        try:
+            extraction = extract_skin_state(utterance, key, product_lookup=product_lookup)
+        except ValueError:
+            print('Input must contain 1 to 2000 characters.', file=sys.stderr)
+            return 1
+        handoff = prepare_handoff(extraction, confirmed_state, confirmation)
+        if as_json:
+            print(json.dumps(extraction, ensure_ascii=False, indent=2))
+        elif app_json and not app_cards:
+            print(json.dumps(handoff, ensure_ascii=False, indent=2))
+        else:
+            print_skin_state(extraction, handoff)
+            if verbose:
+                print(json.dumps(extraction, ensure_ascii=False, indent=2))
+        return 1 if handoff['status'] in ('invalid_input', 'blocked') else 0
+    if app_json:
+        features = extract_features(utterance, key)
+        try:
+            from .mapping_review.backend import prepare_handoff
+        except ImportError:
+            from mapping_review.backend import prepare_handoff
+        handoff = prepare_handoff(features, confirmed_state, confirmation)
+        if app_cards:
+            try:
+                from .mapping_review.display_trace import print_handoff
+            except ImportError:
+                from mapping_review.display_trace import print_handoff
+            print_handoff(handoff, features)
+        else:
+            print(json.dumps(handoff, ensure_ascii=False, indent=2))
+        return 1 if handoff['status'] in ('invalid_input', 'blocked') else 0
     result = classify(utterance, key, config, verbose=verbose and not as_json)
     if not isinstance(result, dict):
         return 1
@@ -192,6 +238,11 @@ def run_input(utterance, key, config, verbose=False, as_json=False):
         if verbose:
             print_summary(result)
         print_features(features)
+        try:
+            from .mapping_review.candidates import print_mapping
+        except ImportError:
+            from mapping_review.candidates import print_mapping
+        print_mapping(features['skin_state_mapping'])
         if verbose:
             print(json.dumps(features, ensure_ascii=False, indent=2))
     return 0 if not features['warnings'] else 1
@@ -200,34 +251,69 @@ def run_input(utterance, key, config, verbose=False, as_json=False):
 def main():
     parser = argparse.ArgumentParser(description='Jev 한국어 텍스트 분류 실험 (합성 입력 권장)')
     parser.add_argument('text', nargs='?', help='분류할 텍스트; 생략하면 반복 입력')
-    parser.add_argument('--verbose', action='store_true', help='원시 응답과 전체 필드 확률 표시')
-    parser.add_argument('--json', action='store_true', help='구조화된 추출 후보를 JSON으로 출력')
+    parser.add_argument('--verbose', action='store_true', help='백엔드 필드 판정과 상세 추출 JSON 표시')
+    output = parser.add_mutually_exclusive_group()
+    output.add_argument('--json', action='store_true', help='내부 디버그용 추출 후보 JSON (앱 요청 본문 아님)')
+    output.add_argument('--app-json', action='store_true', help='백엔드 계약 기준 앱 전달 후보만 출력 (저장 비활성)')
+    parser.add_argument('--confirmed-state', type=Path, help='합성 사용자 확인 입력 JSON 파일')
+    parser.add_argument('--confirmation', type=Path, help='합성 UI 확인 바인딩 JSON 파일; 서버 권한 아님')
+    parser.add_argument('--legacy-poc', action='store_true', help='과거 임시 필드 기반 PoC 재현 전용')
+    parser.add_argument('--product-api-base', help='읽기 전용 제품 검색을 연결할 명시적 HTTPS 백엔드 origin')
     args = parser.parse_args()
+    product_lookup = None
+    if args.product_api_base:
+        if args.legacy_poc:
+            parser.error('--product-api-base is supported by the current engine only.')
+        try:
+            try:
+                from .product_queries import ProductSearchClient
+            except ImportError:
+                from product_queries import ProductSearchClient
+            product_lookup = ProductSearchClient(args.product_api_base)
+        except ValueError:
+            parser.error('Product API must be an explicit HTTPS origin without credentials, path or query.')
+    app_mode = args.app_json or not (args.json or args.verbose)
+    if (args.confirmed_state or args.confirmation) and (not app_mode or args.text is None):
+        parser.error('확인 입력 파일은 앱 출력 모드에서 입력 문장과 함께 사용하세요.')
+    confirmed_state = confirmation = None
+    try:
+        if args.confirmed_state:
+            confirmed_state = json.loads(args.confirmed_state.read_text(encoding='utf-8-sig'))
+        if args.confirmation:
+            confirmation = json.loads(args.confirmation.read_text(encoding='utf-8-sig'))
+    except (OSError, ValueError):
+        parser.error('확인 입력 파일을 읽을 수 없거나 JSON 형식이 아닙니다. 입력 내용은 출력하지 않습니다.')
     key = get_api_key()
     if not key:
-        print('.env에 jev-key를 설정하거나 TYPESAFE_API_KEY 환경변수를 설정하세요.', file=sys.stderr)
+        print(f'API 키가 없습니다. {ENV_FILE} 또는 {PROJECT_ENV_FILE}에 jev-key를 설정하거나 '
+              'TYPESAFE_API_KEY 환경변수를 설정하세요.', file=sys.stderr)
         return 1
-    config = json.loads(CONFIG.read_text(encoding='utf-8'))
+    config = json.loads(CONFIG.read_text(encoding='utf-8')) if args.legacy_poc else {}
     if args.text is not None:
         if not args.text.strip():
             parser.error('빈 텍스트는 사용할 수 없습니다.')
-        return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json)
-    print('Jev 텍스트 분류 실험: 문장을 입력하세요. 종료하려면 /quit을 입력하세요.')
-    print('입력은 TypeSafe API로 전송됩니다. 개인정보 없는 합성 문장을 사용하세요.')
+        return run_input(args.text, key, config, verbose=args.verbose, as_json=args.json,
+                         app_json=app_mode, confirmed_state=confirmed_state, confirmation=confirmation,
+                         app_cards=app_mode and not args.app_json, legacy=args.legacy_poc,
+                         product_lookup=product_lookup)
+    print('Jev mapping test: enter a sentence. Type /quit to exit.' if app_mode else
+          'Jev extraction debug: enter a sentence. Type /quit to exit.')
+    print('Inputs are sent to TypeSafe API. Use synthetic text without personal information.')
     while True:
         try:
-            utterance = input('\n텍스트> ').strip()
+            utterance = input('\nText> ').strip()
         except (EOFError, KeyboardInterrupt):
-            print('\n종료합니다.')
+            print('\nSession ended.')
             return 0
         if utterance.lower() == '/quit':
-            print('종료합니다.')
+            print('Session ended.')
             return 0
         if not utterance:
-            print('문장을 입력하세요.')
+            print('Enter a non-empty sentence.')
             continue
-        print('\n분류 중...')
-        run_input(utterance, key, config, verbose=args.verbose, as_json=args.json)
+        print('\nExtracting and mapping...')
+        run_input(utterance, key, config, verbose=args.verbose, as_json=args.json, app_json=app_mode,
+                  app_cards=app_mode and not args.app_json, legacy=args.legacy_poc, product_lookup=product_lookup)
 
 
 if __name__ == '__main__':
