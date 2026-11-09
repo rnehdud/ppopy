@@ -1,0 +1,1907 @@
+{
+  "schema_version": "synthetic-action-sft-0.1",
+  "human_review": "unreviewed",
+  "purpose": "runtime contract examples, not an approved training/evaluation dataset",
+  "claims_about_model_improvement": null,
+  "samples": [
+    {
+      "conversation_id": "symptom_to_draft",
+      "turn_index": 1,
+      "provenance": {
+        "input_kind": "synthetic_fixture",
+        "extraction": "synthetic_injected_features",
+        "evidence": "unchanged inactive KB source records; not user-specific clinical evidence",
+        "target_kind": "authored_design_target",
+        "human_review": "unreviewed",
+        "approved_reference": false
+      },
+      "user_updates": {},
+      "input": {
+        "schema_version": "action-context-0.1",
+        "mode": "development_preview",
+        "production_enabled": false,
+        "message": "어제 밤 세안 뒤 볼이 따가워",
+        "request_snapshot": {
+          "schema_version": "0.1.0",
+          "deployment_context": "synthetic_test",
+          "device": "ios",
+          "message": "어제 밤 세안 뒤 볼이 따가워",
+          "profile": {
+            "confirmed": true,
+            "concerns": [
+              "합성 고민"
+            ],
+            "excluded_product_ids": []
+          },
+          "products": [
+            {
+              "product_id": "demo-cleanser",
+              "version": "fixture-v1",
+              "confirmed": true
+            },
+            {
+              "product_id": "demo-moisturizer",
+              "version": "fixture-v1",
+              "confirmed": true
+            }
+          ]
+        },
+        "observations": {},
+        "confirmed_candidates": {},
+        "pending_clarifications": {
+          "clarify:turn1:0": "따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요."
+        },
+        "jev_summary": {
+          "schema_version": "relations-0.5",
+          "products": [],
+          "symptoms": [
+            {
+              "symptom": "stinging",
+              "relations": {
+                "state": {
+                  "value": "affirmed",
+                  "status": "candidate",
+                  "score": 0.9
+                },
+                "subject": {
+                  "value": "self",
+                  "status": "candidate",
+                  "score": 0.9
+                }
+              }
+            }
+          ],
+          "warnings": [
+            "synthetic_fixture_not_jev_inference"
+          ],
+          "clarifications": []
+        },
+        "mapping_findings": [
+          {
+            "index": 0,
+            "symptom": "stinging",
+            "state": "affirmed",
+            "subject": "self",
+            "issue": "candidate_requires_user_and_time_confirmation",
+            "target": "discomfort_types",
+            "suggested_value": "stinging",
+            "present_in_proposed": false
+          }
+        ],
+        "blockers": [],
+        "kb_ask_slots": {
+          "method.body_site": "사용 신체 부위에 대해 알려주세요."
+        },
+        "forbidden_retrieve_slots": [],
+        "hold_signals": [],
+        "evidence": {
+          "kb:B-C01": {
+            "kind": "inactive_kb_evaluation",
+            "card_id": "B-C01",
+            "comparison_status": "unknown",
+            "reason": "body_site_missing",
+            "evidence": {
+              "source_ids": [
+                "S03"
+              ],
+              "source_supported_content": "AAD는 미온수로 적시고 헹구는 방법을 권고한다.",
+              "service_interpretation": "사용자에게 온도계 측정을 요구하지 않는다. 30–35℃는 이번 버전의 확정 범위가 아니다.",
+              "basis_is_not_clinical_effect_probability": true
+            }
+          },
+          "source:S03": {
+            "kind": "source_record",
+            "record": {
+              "id": "S03",
+              "title": "Face washing 101",
+              "issuer": "American Academy of Dermatology",
+              "year": null,
+              "type": "professional_public_guidance",
+              "url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+              "locator": "세안 방법 권고",
+              "review_scope": "미온수·손가락·마찰 및 건조 시 보습",
+              "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님.",
+              "checked_on": "2026-11-04",
+              "status": "source_checked_claims_pending_domain_review",
+              "revision_provenance": "inherited_from_v0.1",
+              "reverified_in_v0_2": true,
+              "reverified_on": "2026-11-04",
+              "reviewed_sections_v0_2": "세안 안내 1–6항: 미온수·손가락·마찰·헹굼·건조 시 보습·빈도",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "candidate:clarify:turn1:0": {
+            "kind": "unconfirmed_extraction",
+            "target_id": "clarify:turn1:0"
+          }
+        },
+        "available_actions": [
+          {
+            "action": "confirm_candidate",
+            "target_id": "clarify:turn1:0",
+            "tool": "request_user_input",
+            "enabled": true,
+            "conditions": [
+              "request only; explicit subject, polarity and UTC observation time required"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요.",
+            "evidence_refs": [
+              "candidate:clarify:turn1:0"
+            ]
+          },
+          {
+            "action": "ask_user",
+            "target_id": "method.body_site",
+            "tool": "request_user_input",
+            "enabled": true,
+            "conditions": [
+              "consumer-observable slot; no answered/declined slot"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "사용 신체 부위에 대해 알려주세요.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "request_draft",
+            "target_id": "label_draft",
+            "tool": "generate_label_draft",
+            "enabled": false,
+            "conditions": [
+              "no holds, pending candidates, structural blockers, conflicts or unresolved KB comparisons"
+            ],
+            "blocked_by": [
+              "B-C01",
+              "clarify:turn1:0",
+              "method.body_site"
+            ],
+            "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "hold",
+            "target_id": "insufficient_information",
+            "tool": "hold_guidance",
+            "enabled": true,
+            "conditions": [
+              "no diagnosis, no automatic improvement judgment"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "정보가 충분하지 않거나 제공되지 않아 개별 권고를 보류합니다. 미상·거절 상태를 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          }
+        ],
+        "tools": {
+          "request_user_input": {
+            "effect": "awaiting_user; never confirms facts"
+          },
+          "await_product_evidence": {
+            "effect": "awaiting_product_evidence",
+            "implemented": false
+          },
+          "hold_guidance": {
+            "effect": "held; no recommendation execution"
+          },
+          "generate_label_draft": {
+            "effect": "draft_generated; unsaved, requires approval"
+          }
+        },
+        "history": [],
+        "design_defaults": {
+          "population": "adult",
+          "data_kind": "synthetic",
+          "note": "KB adapter design scope, not inferred user facts"
+        }
+      },
+      "output": {
+        "action": "confirm_candidate",
+        "target_id": "clarify:turn1:0",
+        "arguments": {
+          "wording": "contextual",
+          "confirmation_focus": "all"
+        },
+        "question_ko": "앞서 말씀하신 내용과 관련해, 따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요.",
+        "evidence_refs": [
+          "candidate:clarify:turn1:0"
+        ],
+        "reason_summary": "증상의 대상·실제 여부와 관찰 시점을 먼저 확인한다."
+      }
+    },
+    {
+      "conversation_id": "symptom_to_draft",
+      "turn_index": 2,
+      "provenance": {
+        "input_kind": "synthetic_fixture",
+        "extraction": "synthetic_injected_features",
+        "evidence": "unchanged inactive KB source records; not user-specific clinical evidence",
+        "target_kind": "authored_design_target",
+        "human_review": "unreviewed",
+        "approved_reference": false
+      },
+      "user_updates": {
+        "confirmations": {
+          "clarify:turn1:0": {
+            "subject": "self",
+            "state": "affirmed",
+            "observed_at": "2026-11-08T12:00:00Z"
+          }
+        },
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        }
+      },
+      "input": {
+        "schema_version": "action-context-0.1",
+        "mode": "development_preview",
+        "production_enabled": false,
+        "message": "본인 경험이며 어제 관찰한 내용입니다. 세안 부위는 얼굴입니다.",
+        "request_snapshot": {
+          "schema_version": "0.1.0",
+          "deployment_context": "synthetic_test",
+          "device": "ios",
+          "message": "본인 경험이며 어제 관찰한 내용입니다. 세안 부위는 얼굴입니다.",
+          "profile": {
+            "confirmed": true,
+            "concerns": [
+              "합성 고민"
+            ],
+            "excluded_product_ids": []
+          },
+          "products": [
+            {
+              "product_id": "demo-cleanser",
+              "version": "fixture-v1",
+              "confirmed": true
+            },
+            {
+              "product_id": "demo-moisturizer",
+              "version": "fixture-v1",
+              "confirmed": true
+            }
+          ]
+        },
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "confirmed_candidates": {
+          "clarify:turn1:0": {
+            "subject": "self",
+            "state": "affirmed",
+            "observed_at": "2026-11-08T12:00:00Z"
+          }
+        },
+        "pending_clarifications": {},
+        "jev_summary": {
+          "schema_version": "relations-0.5",
+          "products": [],
+          "symptoms": [],
+          "warnings": [
+            "synthetic_fixture_not_jev_inference"
+          ],
+          "clarifications": []
+        },
+        "mapping_findings": [],
+        "blockers": [],
+        "kb_ask_slots": {
+          "method.water_temperature": "세안할 때 물은 뜨겁게 느껴지나요, 미지근한가요, 차가운가요?"
+        },
+        "forbidden_retrieve_slots": [
+          "product.instructions"
+        ],
+        "hold_signals": [],
+        "evidence": {
+          "kb:B-C01": {
+            "kind": "inactive_kb_evaluation",
+            "card_id": "B-C01",
+            "comparison_status": "unknown",
+            "reason": "insufficient_observations",
+            "evidence": {
+              "source_ids": [
+                "S03"
+              ],
+              "source_supported_content": "AAD는 미온수로 적시고 헹구는 방법을 권고한다.",
+              "service_interpretation": "사용자에게 온도계 측정을 요구하지 않는다. 30–35℃는 이번 버전의 확정 범위가 아니다.",
+              "basis_is_not_clinical_effect_probability": true
+            }
+          },
+          "source:S03": {
+            "kind": "source_record",
+            "record": {
+              "id": "S03",
+              "title": "Face washing 101",
+              "issuer": "American Academy of Dermatology",
+              "year": null,
+              "type": "professional_public_guidance",
+              "url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+              "locator": "세안 방법 권고",
+              "review_scope": "미온수·손가락·마찰 및 건조 시 보습",
+              "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님.",
+              "checked_on": "2026-11-04",
+              "status": "source_checked_claims_pending_domain_review",
+              "revision_provenance": "inherited_from_v0.1",
+              "reverified_in_v0_2": true,
+              "reverified_on": "2026-11-04",
+              "reviewed_sections_v0_2": "세안 안내 1–6항: 미온수·손가락·마찰·헹굼·건조 시 보습·빈도",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "observation:method.body_site": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "available_actions": [
+          {
+            "action": "ask_user",
+            "target_id": "method.water_temperature",
+            "tool": "request_user_input",
+            "enabled": true,
+            "conditions": [
+              "consumer-observable slot; no answered/declined slot"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "세안할 때 물은 뜨겁게 느껴지나요, 미지근한가요, 차가운가요?",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "retrieve_evidence",
+            "target_id": "product.instructions",
+            "tool": "await_product_evidence",
+            "enabled": true,
+            "conditions": [
+              "request only; product retrieval is not implemented"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "request_draft",
+            "target_id": "label_draft",
+            "tool": "generate_label_draft",
+            "enabled": false,
+            "conditions": [
+              "no holds, pending candidates, structural blockers, conflicts or unresolved KB comparisons"
+            ],
+            "blocked_by": [
+              "B-C01",
+              "method.water_temperature",
+              "product.instructions"
+            ],
+            "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "hold",
+            "target_id": "insufficient_information",
+            "tool": "hold_guidance",
+            "enabled": true,
+            "conditions": [
+              "no diagnosis, no automatic improvement judgment"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "정보가 충분하지 않거나 제공되지 않아 개별 권고를 보류합니다. 미상·거절 상태를 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          }
+        ],
+        "tools": {
+          "request_user_input": {
+            "effect": "awaiting_user; never confirms facts"
+          },
+          "await_product_evidence": {
+            "effect": "awaiting_product_evidence",
+            "implemented": false
+          },
+          "hold_guidance": {
+            "effect": "held; no recommendation execution"
+          },
+          "generate_label_draft": {
+            "effect": "draft_generated; unsaved, requires approval"
+          }
+        },
+        "history": [
+          {
+            "message": "어제 밤 세안 뒤 볼이 따가워",
+            "questions": [
+              {
+                "id": "clarify:turn1:0",
+                "text": "앞서 말씀하신 내용과 관련해, 따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요."
+              }
+            ],
+            "trace": {
+              "mode": "development_preview",
+              "production_enabled": false,
+              "jev_products": [],
+              "jev_symptoms": [
+                {
+                  "symptom": "stinging",
+                  "relations": {
+                    "state": {
+                      "value": "affirmed",
+                      "status": "candidate",
+                      "score": 0.9
+                    },
+                    "subject": {
+                      "value": "self",
+                      "status": "candidate",
+                      "score": 0.9
+                    }
+                  }
+                }
+              ],
+              "jev_clarifications": [],
+              "jev_warnings": [
+                "synthetic_fixture_not_jev_inference"
+              ],
+              "mapping_findings": [
+                {
+                  "index": 0,
+                  "symptom": "stinging",
+                  "state": "affirmed",
+                  "subject": "self",
+                  "issue": "candidate_requires_user_and_time_confirmation",
+                  "target": "discomfort_types",
+                  "suggested_value": "stinging",
+                  "present_in_proposed": false
+                }
+              ],
+              "mapping_warnings": [
+                "jev_warnings_present"
+              ],
+              "kb_evaluated_cards": [
+                "B-C01"
+              ],
+              "kb_missing_ask_slots": [
+                "method.body_site"
+              ],
+              "kb_retrieve_slots": [],
+              "hold_signals": [],
+              "pending_clarifications": {
+                "clarify:turn1:0": "따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요."
+              },
+              "proposed_action": {
+                "action": "confirm_candidate",
+                "target_id": "clarify:turn1:0",
+                "arguments": {
+                  "wording": "contextual",
+                  "confirmation_focus": "all"
+                },
+                "question_ko": "앞서 말씀하신 내용과 관련해, 따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요.",
+                "evidence_refs": [
+                  "candidate:clarify:turn1:0"
+                ],
+                "reason_summary": "증상의 대상·실제 여부와 관찰 시점을 먼저 확인한다."
+              },
+              "applied_action": {
+                "action": "confirm_candidate",
+                "target_id": "clarify:turn1:0",
+                "arguments": {
+                  "wording": "contextual",
+                  "confirmation_focus": "all"
+                },
+                "question_ko": "앞서 말씀하신 내용과 관련해, 따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요.",
+                "evidence_refs": [
+                  "candidate:clarify:turn1:0"
+                ],
+                "reason_summary": "증상의 대상·실제 여부와 관찰 시점을 먼저 확인한다."
+              },
+              "validation_results": [
+                "contract_and_execution_conditions_valid"
+              ],
+              "fallback_reason": null,
+              "execution_status": "awaiting_user",
+              "selected_route": "ask_user"
+            }
+          }
+        ],
+        "design_defaults": {
+          "population": "adult",
+          "data_kind": "synthetic",
+          "note": "KB adapter design scope, not inferred user facts"
+        }
+      },
+      "output": {
+        "action": "ask_user",
+        "target_id": "method.water_temperature",
+        "arguments": {
+          "wording": "contextual",
+          "confirmation_focus": "all"
+        },
+        "question_ko": "앞서 말씀하신 내용과 관련해, 세안할 때 물은 뜨겁게 느껴지나요, 미지근한가요, 차가운가요?",
+        "evidence_refs": [
+          "kb:B-C01"
+        ],
+        "reason_summary": "대상과 시점 확인 후 누락된 물 온도 관찰을 질문한다."
+      }
+    },
+    {
+      "conversation_id": "symptom_to_draft",
+      "turn_index": 3,
+      "provenance": {
+        "input_kind": "synthetic_fixture",
+        "extraction": "synthetic_injected_features",
+        "evidence": "unchanged inactive KB source records; not user-specific clinical evidence",
+        "target_kind": "authored_design_target",
+        "human_review": "unreviewed",
+        "approved_reference": false
+      },
+      "user_updates": {
+        "observations": {
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": "lukewarm",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        }
+      },
+      "input": {
+        "schema_version": "action-context-0.1",
+        "mode": "development_preview",
+        "production_enabled": false,
+        "message": "미온수로 세안했습니다.",
+        "request_snapshot": {
+          "schema_version": "0.1.0",
+          "deployment_context": "synthetic_test",
+          "device": "ios",
+          "message": "미온수로 세안했습니다.",
+          "profile": {
+            "confirmed": true,
+            "concerns": [
+              "합성 고민"
+            ],
+            "excluded_product_ids": []
+          },
+          "products": [
+            {
+              "product_id": "demo-cleanser",
+              "version": "fixture-v1",
+              "confirmed": true
+            },
+            {
+              "product_id": "demo-moisturizer",
+              "version": "fixture-v1",
+              "confirmed": true
+            }
+          ]
+        },
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": "lukewarm",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "confirmed_candidates": {
+          "clarify:turn1:0": {
+            "subject": "self",
+            "state": "affirmed",
+            "observed_at": "2026-11-08T12:00:00Z"
+          }
+        },
+        "pending_clarifications": {},
+        "jev_summary": {
+          "schema_version": "relations-0.5",
+          "products": [],
+          "symptoms": [],
+          "warnings": [
+            "synthetic_fixture_not_jev_inference"
+          ],
+          "clarifications": []
+        },
+        "mapping_findings": [],
+        "blockers": [],
+        "kb_ask_slots": {},
+        "forbidden_retrieve_slots": [],
+        "hold_signals": [],
+        "evidence": {
+          "kb:B-C01": {
+            "kind": "inactive_kb_evaluation",
+            "card_id": "B-C01",
+            "comparison_status": "aligned",
+            "reason": "explicit_KB_condition",
+            "evidence": {
+              "source_ids": [
+                "S03"
+              ],
+              "source_supported_content": "AAD는 미온수로 적시고 헹구는 방법을 권고한다.",
+              "service_interpretation": "사용자에게 온도계 측정을 요구하지 않는다. 30–35℃는 이번 버전의 확정 범위가 아니다.",
+              "basis_is_not_clinical_effect_probability": true
+            }
+          },
+          "source:S03": {
+            "kind": "source_record",
+            "record": {
+              "id": "S03",
+              "title": "Face washing 101",
+              "issuer": "American Academy of Dermatology",
+              "year": null,
+              "type": "professional_public_guidance",
+              "url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+              "locator": "세안 방법 권고",
+              "review_scope": "미온수·손가락·마찰 및 건조 시 보습",
+              "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님.",
+              "checked_on": "2026-11-04",
+              "status": "source_checked_claims_pending_domain_review",
+              "revision_provenance": "inherited_from_v0.1",
+              "reverified_in_v0_2": true,
+              "reverified_on": "2026-11-04",
+              "reviewed_sections_v0_2": "세안 안내 1–6항: 미온수·손가락·마찰·헹굼·건조 시 보습·빈도",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "observation:method.body_site": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "observation:method.water_temperature": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": "lukewarm",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "available_actions": [
+          {
+            "action": "request_draft",
+            "target_id": "label_draft",
+            "tool": "generate_label_draft",
+            "enabled": true,
+            "conditions": [
+              "no holds, pending candidates, structural blockers, conflicts or unresolved KB comparisons"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "hold",
+            "target_id": "insufficient_information",
+            "tool": "hold_guidance",
+            "enabled": true,
+            "conditions": [
+              "no diagnosis, no automatic improvement judgment"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "정보가 충분하지 않거나 제공되지 않아 개별 권고를 보류합니다. 미상·거절 상태를 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          }
+        ],
+        "tools": {
+          "request_user_input": {
+            "effect": "awaiting_user; never confirms facts"
+          },
+          "await_product_evidence": {
+            "effect": "awaiting_product_evidence",
+            "implemented": false
+          },
+          "hold_guidance": {
+            "effect": "held; no recommendation execution"
+          },
+          "generate_label_draft": {
+            "effect": "draft_generated; unsaved, requires approval"
+          }
+        },
+        "history": [
+          {
+            "message": "어제 밤 세안 뒤 볼이 따가워",
+            "questions": [
+              {
+                "id": "clarify:turn1:0",
+                "text": "앞서 말씀하신 내용과 관련해, 따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요."
+              }
+            ],
+            "trace": {
+              "mode": "development_preview",
+              "production_enabled": false,
+              "jev_products": [],
+              "jev_symptoms": [
+                {
+                  "symptom": "stinging",
+                  "relations": {
+                    "state": {
+                      "value": "affirmed",
+                      "status": "candidate",
+                      "score": 0.9
+                    },
+                    "subject": {
+                      "value": "self",
+                      "status": "candidate",
+                      "score": 0.9
+                    }
+                  }
+                }
+              ],
+              "jev_clarifications": [],
+              "jev_warnings": [
+                "synthetic_fixture_not_jev_inference"
+              ],
+              "mapping_findings": [
+                {
+                  "index": 0,
+                  "symptom": "stinging",
+                  "state": "affirmed",
+                  "subject": "self",
+                  "issue": "candidate_requires_user_and_time_confirmation",
+                  "target": "discomfort_types",
+                  "suggested_value": "stinging",
+                  "present_in_proposed": false
+                }
+              ],
+              "mapping_warnings": [
+                "jev_warnings_present"
+              ],
+              "kb_evaluated_cards": [
+                "B-C01"
+              ],
+              "kb_missing_ask_slots": [
+                "method.body_site"
+              ],
+              "kb_retrieve_slots": [],
+              "hold_signals": [],
+              "pending_clarifications": {
+                "clarify:turn1:0": "따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요."
+              },
+              "proposed_action": {
+                "action": "confirm_candidate",
+                "target_id": "clarify:turn1:0",
+                "arguments": {
+                  "wording": "contextual",
+                  "confirmation_focus": "all"
+                },
+                "question_ko": "앞서 말씀하신 내용과 관련해, 따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요.",
+                "evidence_refs": [
+                  "candidate:clarify:turn1:0"
+                ],
+                "reason_summary": "증상의 대상·실제 여부와 관찰 시점을 먼저 확인한다."
+              },
+              "applied_action": {
+                "action": "confirm_candidate",
+                "target_id": "clarify:turn1:0",
+                "arguments": {
+                  "wording": "contextual",
+                  "confirmation_focus": "all"
+                },
+                "question_ko": "앞서 말씀하신 내용과 관련해, 따가움 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요.",
+                "evidence_refs": [
+                  "candidate:clarify:turn1:0"
+                ],
+                "reason_summary": "증상의 대상·실제 여부와 관찰 시점을 먼저 확인한다."
+              },
+              "validation_results": [
+                "contract_and_execution_conditions_valid"
+              ],
+              "fallback_reason": null,
+              "execution_status": "awaiting_user",
+              "selected_route": "ask_user"
+            }
+          },
+          {
+            "message": "본인 경험이며 어제 관찰한 내용입니다. 세안 부위는 얼굴입니다.",
+            "questions": [
+              {
+                "id": "kb:method.water_temperature",
+                "text": "앞서 말씀하신 내용과 관련해, 세안할 때 물은 뜨겁게 느껴지나요, 미지근한가요, 차가운가요?"
+              }
+            ],
+            "trace": {
+              "mode": "development_preview",
+              "production_enabled": false,
+              "jev_products": [],
+              "jev_symptoms": [],
+              "jev_clarifications": [],
+              "jev_warnings": [
+                "synthetic_fixture_not_jev_inference"
+              ],
+              "mapping_findings": [],
+              "mapping_warnings": [
+                "jev_warnings_present",
+                "no_detected_symptoms_does_not_mean_none"
+              ],
+              "kb_evaluated_cards": [
+                "B-C01"
+              ],
+              "kb_missing_ask_slots": [
+                "method.water_temperature"
+              ],
+              "kb_retrieve_slots": [
+                "product.instructions"
+              ],
+              "hold_signals": [],
+              "pending_clarifications": {},
+              "proposed_action": {
+                "action": "ask_user",
+                "target_id": "method.water_temperature",
+                "arguments": {
+                  "wording": "contextual",
+                  "confirmation_focus": "all"
+                },
+                "question_ko": "앞서 말씀하신 내용과 관련해, 세안할 때 물은 뜨겁게 느껴지나요, 미지근한가요, 차가운가요?",
+                "evidence_refs": [
+                  "kb:B-C01"
+                ],
+                "reason_summary": "대상과 시점 확인 후 누락된 물 온도 관찰을 질문한다."
+              },
+              "applied_action": {
+                "action": "ask_user",
+                "target_id": "method.water_temperature",
+                "arguments": {
+                  "wording": "contextual",
+                  "confirmation_focus": "all"
+                },
+                "question_ko": "앞서 말씀하신 내용과 관련해, 세안할 때 물은 뜨겁게 느껴지나요, 미지근한가요, 차가운가요?",
+                "evidence_refs": [
+                  "kb:B-C01"
+                ],
+                "reason_summary": "대상과 시점 확인 후 누락된 물 온도 관찰을 질문한다."
+              },
+              "validation_results": [
+                "contract_and_execution_conditions_valid"
+              ],
+              "fallback_reason": null,
+              "execution_status": "awaiting_user",
+              "selected_route": "ask_user"
+            }
+          }
+        ],
+        "design_defaults": {
+          "population": "adult",
+          "data_kind": "synthetic",
+          "note": "KB adapter design scope, not inferred user facts"
+        }
+      },
+      "output": {
+        "action": "request_draft",
+        "target_id": "label_draft",
+        "arguments": {
+          "wording": "contextual",
+          "confirmation_focus": "all"
+        },
+        "question_ko": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+        "evidence_refs": [
+          "kb:B-C01"
+        ],
+        "reason_summary": "확인과 해당 카드의 관찰 조건이 해소되어 표시 사용법 초안을 요청한다."
+      }
+    },
+    {
+      "conversation_id": "product_evidence",
+      "turn_index": 1,
+      "provenance": {
+        "input_kind": "synthetic_fixture",
+        "extraction": "synthetic_injected_features",
+        "evidence": "unchanged inactive KB source records; not user-specific clinical evidence",
+        "target_kind": "authored_design_target",
+        "human_review": "unreviewed",
+        "approved_reference": false
+      },
+      "user_updates": {
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        }
+      },
+      "input": {
+        "schema_version": "action-context-0.1",
+        "mode": "development_preview",
+        "production_enabled": false,
+        "message": "제품 자료를 먼저 확인하고 싶습니다. 비공개 제형 값은 모릅니다.",
+        "request_snapshot": {
+          "schema_version": "0.1.0",
+          "deployment_context": "synthetic_test",
+          "device": "ios",
+          "message": "제품 자료를 먼저 확인하고 싶습니다. 비공개 제형 값은 모릅니다.",
+          "profile": {
+            "confirmed": true,
+            "concerns": [
+              "합성 고민"
+            ],
+            "excluded_product_ids": []
+          },
+          "products": [
+            {
+              "product_id": "demo-cleanser",
+              "version": "fixture-v1",
+              "confirmed": true
+            },
+            {
+              "product_id": "demo-moisturizer",
+              "version": "fixture-v1",
+              "confirmed": true
+            }
+          ]
+        },
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "confirmed_candidates": {},
+        "pending_clarifications": {},
+        "jev_summary": {
+          "schema_version": "relations-0.5",
+          "products": [],
+          "symptoms": [],
+          "warnings": [
+            "synthetic_fixture_not_jev_inference"
+          ],
+          "clarifications": []
+        },
+        "mapping_findings": [],
+        "blockers": [],
+        "kb_ask_slots": {},
+        "forbidden_retrieve_slots": [
+          "product.instructions",
+          "product.ph",
+          "product.type"
+        ],
+        "hold_signals": [],
+        "evidence": {
+          "kb:B-C04": {
+            "kind": "inactive_kb_evaluation",
+            "card_id": "B-C04",
+            "comparison_status": "unknown",
+            "reason": "explicit_KB_condition",
+            "evidence": {
+              "source_ids": [
+                "U02",
+                "S07"
+              ],
+              "source_supported_content": "약산성 기본 선호는 사용자 제안. v0.1의 S07은 pH만으로 완제품의 순함을 단정할 수 없다는 제한을 제시한다.",
+              "service_interpretation": "pH 선호와 완제품 적합성/교체 결정을 분리한다. S07을 약산성 보편 우월성의 근거로 인용하지 않는다.",
+              "basis_is_not_clinical_effect_probability": true
+            }
+          },
+          "source:U02": {
+            "kind": "source_record",
+            "record": {
+              "id": "U02",
+              "title": "사용자가 제안한 약산성·무향료 기본 선택 방향",
+              "issuer": "사용자",
+              "type": "user_proposed_conservative_preference",
+              "url": null,
+              "locator": "현재 대화: 기본 권장 상태 예시와 후속 수정 요청",
+              "review_scope": "약산성 클렌저 및 향료 회피를 기본 선호로 표현",
+              "limitations": "기관의 보편적 필수 규칙으로 표시하지 않는다. 현재 제품 교체 여부·개별 알레르기는 별도 판단.",
+              "status": "design_direction_requested_rule_details_pending_review",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "source:S07": {
+            "kind": "source_record",
+            "record": {
+              "id": "S07",
+              "title": "Role of pH in skin cleansing",
+              "issuer": "Hawkins, Dasgupta & Ananthapadmanabhan; International Journal of Cosmetic Science",
+              "year": 2021,
+              "type": "primary_human_experimental_study",
+              "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/ics.12721",
+              "doi": "10.1111/ics.12721",
+              "locator": "Methods / Results / Discussion",
+              "review_scope": "원문: 특정 세정제의 반복 전완 세정시험과 pH·조성의 상호작용",
+              "limitations": "시험 제형·전완·강화된 세정 조건에 제한. 중성·약알칼리 제품의 일반적 우월성이나 모든 음이온 계면활성제의 서열을 뜻하지 않음. 산업체 소속/지원 맥락을 보존.",
+              "checked_on": "2026-11-04",
+              "status": "source_checked_claims_pending_domain_review",
+              "revision_provenance": "inherited_from_v0.1",
+              "reverified_in_v0_2": false,
+              "revision_note": "원본 v0.1의 출처·해석을 보존함. 이번 수정에서 원문을 재검증했다는 뜻은 아님.",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "observation:method.body_site": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "available_actions": [
+          {
+            "action": "retrieve_evidence",
+            "target_id": "product.instructions",
+            "tool": "await_product_evidence",
+            "enabled": true,
+            "conditions": [
+              "request only; product retrieval is not implemented"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C04"
+            ]
+          },
+          {
+            "action": "retrieve_evidence",
+            "target_id": "product.ph",
+            "tool": "await_product_evidence",
+            "enabled": true,
+            "conditions": [
+              "request only; product retrieval is not implemented"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C04"
+            ]
+          },
+          {
+            "action": "retrieve_evidence",
+            "target_id": "product.type",
+            "tool": "await_product_evidence",
+            "enabled": true,
+            "conditions": [
+              "request only; product retrieval is not implemented"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C04"
+            ]
+          },
+          {
+            "action": "request_draft",
+            "target_id": "label_draft",
+            "tool": "generate_label_draft",
+            "enabled": false,
+            "conditions": [
+              "no holds, pending candidates, structural blockers, conflicts or unresolved KB comparisons"
+            ],
+            "blocked_by": [
+              "B-C04",
+              "product.instructions",
+              "product.ph",
+              "product.type"
+            ],
+            "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+            "evidence_refs": [
+              "kb:B-C04"
+            ]
+          },
+          {
+            "action": "hold",
+            "target_id": "insufficient_information",
+            "tool": "hold_guidance",
+            "enabled": true,
+            "conditions": [
+              "no diagnosis, no automatic improvement judgment"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "정보가 충분하지 않거나 제공되지 않아 개별 권고를 보류합니다. 미상·거절 상태를 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C04"
+            ]
+          }
+        ],
+        "tools": {
+          "request_user_input": {
+            "effect": "awaiting_user; never confirms facts"
+          },
+          "await_product_evidence": {
+            "effect": "awaiting_product_evidence",
+            "implemented": false
+          },
+          "hold_guidance": {
+            "effect": "held; no recommendation execution"
+          },
+          "generate_label_draft": {
+            "effect": "draft_generated; unsaved, requires approval"
+          }
+        },
+        "history": [],
+        "design_defaults": {
+          "population": "adult",
+          "data_kind": "synthetic",
+          "note": "KB adapter design scope, not inferred user facts"
+        }
+      },
+      "output": {
+        "action": "retrieve_evidence",
+        "target_id": "product.instructions",
+        "arguments": {
+          "wording": "contextual",
+          "confirmation_focus": "all"
+        },
+        "question_ko": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+        "evidence_refs": [
+          "kb:B-C04"
+        ],
+        "reason_summary": "제품 자료 공백은 사용자 질문 대신 근거 조회 대기로 분리한다."
+      }
+    },
+    {
+      "conversation_id": "conflict",
+      "turn_index": 1,
+      "provenance": {
+        "input_kind": "synthetic_fixture",
+        "extraction": "synthetic_injected_features",
+        "evidence": "unchanged inactive KB source records; not user-specific clinical evidence",
+        "target_kind": "authored_design_target",
+        "human_review": "unreviewed",
+        "approved_reference": false
+      },
+      "user_updates": {
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "conflicting",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        }
+      },
+      "input": {
+        "schema_version": "action-context-0.1",
+        "mode": "development_preview",
+        "production_enabled": false,
+        "message": "이전 물 온도 기록과 지금 기록이 달라 확인이 필요합니다.",
+        "request_snapshot": {
+          "schema_version": "0.1.0",
+          "deployment_context": "synthetic_test",
+          "device": "ios",
+          "message": "이전 물 온도 기록과 지금 기록이 달라 확인이 필요합니다.",
+          "profile": {
+            "confirmed": true,
+            "concerns": [
+              "합성 고민"
+            ],
+            "excluded_product_ids": []
+          },
+          "products": [
+            {
+              "product_id": "demo-cleanser",
+              "version": "fixture-v1",
+              "confirmed": true
+            },
+            {
+              "product_id": "demo-moisturizer",
+              "version": "fixture-v1",
+              "confirmed": true
+            }
+          ]
+        },
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "conflicting",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "confirmed_candidates": {},
+        "pending_clarifications": {},
+        "jev_summary": {
+          "schema_version": "relations-0.5",
+          "products": [],
+          "symptoms": [],
+          "warnings": [
+            "synthetic_fixture_not_jev_inference"
+          ],
+          "clarifications": []
+        },
+        "mapping_findings": [],
+        "blockers": [],
+        "kb_ask_slots": {},
+        "forbidden_retrieve_slots": [
+          "product.instructions"
+        ],
+        "hold_signals": [],
+        "evidence": {
+          "kb:B-C01": {
+            "kind": "inactive_kb_evaluation",
+            "card_id": "B-C01",
+            "comparison_status": "conflicting",
+            "reason": "conflicting_observations",
+            "evidence": {
+              "source_ids": [
+                "S03"
+              ],
+              "source_supported_content": "AAD는 미온수로 적시고 헹구는 방법을 권고한다.",
+              "service_interpretation": "사용자에게 온도계 측정을 요구하지 않는다. 30–35℃는 이번 버전의 확정 범위가 아니다.",
+              "basis_is_not_clinical_effect_probability": true
+            }
+          },
+          "source:S03": {
+            "kind": "source_record",
+            "record": {
+              "id": "S03",
+              "title": "Face washing 101",
+              "issuer": "American Academy of Dermatology",
+              "year": null,
+              "type": "professional_public_guidance",
+              "url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+              "locator": "세안 방법 권고",
+              "review_scope": "미온수·손가락·마찰 및 건조 시 보습",
+              "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님.",
+              "checked_on": "2026-11-04",
+              "status": "source_checked_claims_pending_domain_review",
+              "revision_provenance": "inherited_from_v0.1",
+              "reverified_in_v0_2": true,
+              "reverified_on": "2026-11-04",
+              "reviewed_sections_v0_2": "세안 안내 1–6항: 미온수·손가락·마찰·헹굼·건조 시 보습·빈도",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "observation:method.body_site": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "observation:method.water_temperature": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.water_temperature",
+            "state": "conflicting",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "available_actions": [
+          {
+            "action": "resolve_conflict",
+            "target_id": "method.water_temperature",
+            "tool": "request_user_input",
+            "enabled": true,
+            "conditions": [
+              "explicit resolve_conflicts plus user-reviewed observation required"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "method.water_temperature에 서로 다른 정보가 있습니다. 현재 관찰을 확인하고 명시적으로 충돌을 해결해 주세요.",
+            "evidence_refs": [
+              "observation:method.water_temperature"
+            ]
+          },
+          {
+            "action": "retrieve_evidence",
+            "target_id": "product.instructions",
+            "tool": "await_product_evidence",
+            "enabled": true,
+            "conditions": [
+              "request only; product retrieval is not implemented"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "request_draft",
+            "target_id": "label_draft",
+            "tool": "generate_label_draft",
+            "enabled": false,
+            "conditions": [
+              "no holds, pending candidates, structural blockers, conflicts or unresolved KB comparisons"
+            ],
+            "blocked_by": [
+              "B-C01",
+              "method.water_temperature",
+              "product.instructions"
+            ],
+            "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "hold",
+            "target_id": "insufficient_information",
+            "tool": "hold_guidance",
+            "enabled": true,
+            "conditions": [
+              "no diagnosis, no automatic improvement judgment"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "정보가 충분하지 않거나 제공되지 않아 개별 권고를 보류합니다. 미상·거절 상태를 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          }
+        ],
+        "tools": {
+          "request_user_input": {
+            "effect": "awaiting_user; never confirms facts"
+          },
+          "await_product_evidence": {
+            "effect": "awaiting_product_evidence",
+            "implemented": false
+          },
+          "hold_guidance": {
+            "effect": "held; no recommendation execution"
+          },
+          "generate_label_draft": {
+            "effect": "draft_generated; unsaved, requires approval"
+          }
+        },
+        "history": [],
+        "design_defaults": {
+          "population": "adult",
+          "data_kind": "synthetic",
+          "note": "KB adapter design scope, not inferred user facts"
+        }
+      },
+      "output": {
+        "action": "resolve_conflict",
+        "target_id": "method.water_temperature",
+        "arguments": {
+          "wording": "contextual",
+          "confirmation_focus": "all"
+        },
+        "question_ko": "앞서 말씀하신 내용과 관련해, method.water_temperature에 서로 다른 정보가 있습니다. 현재 관찰을 확인하고 명시적으로 충돌을 해결해 주세요.",
+        "evidence_refs": [
+          "observation:method.water_temperature"
+        ],
+        "reason_summary": "상충하는 관찰은 명시적 충돌 해결 입력을 요청한다."
+      }
+    },
+    {
+      "conversation_id": "safety_hold",
+      "turn_index": 1,
+      "provenance": {
+        "input_kind": "synthetic_fixture",
+        "extraction": "synthetic_injected_features",
+        "evidence": "unchanged inactive KB source records; not user-specific clinical evidence",
+        "target_kind": "authored_design_target",
+        "human_review": "unreviewed",
+        "approved_reference": false
+      },
+      "user_updates": {
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "new_severe",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        }
+      },
+      "input": {
+        "schema_version": "action-context-0.1",
+        "mode": "development_preview",
+        "production_enabled": false,
+        "message": "합성 사례: 새로 심한 통증이 관찰됐습니다.",
+        "request_snapshot": {
+          "schema_version": "0.1.0",
+          "deployment_context": "synthetic_test",
+          "device": "ios",
+          "message": "합성 사례: 새로 심한 통증이 관찰됐습니다.",
+          "profile": {
+            "confirmed": true,
+            "concerns": [
+              "합성 고민"
+            ],
+            "excluded_product_ids": []
+          },
+          "products": [
+            {
+              "product_id": "demo-cleanser",
+              "version": "fixture-v1",
+              "confirmed": true
+            },
+            {
+              "product_id": "demo-moisturizer",
+              "version": "fixture-v1",
+              "confirmed": true
+            }
+          ]
+        },
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "new_severe",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "confirmed_candidates": {},
+        "pending_clarifications": {},
+        "jev_summary": {
+          "schema_version": "relations-0.5",
+          "products": [],
+          "symptoms": [],
+          "warnings": [
+            "synthetic_fixture_not_jev_inference"
+          ],
+          "clarifications": []
+        },
+        "mapping_findings": [],
+        "blockers": [],
+        "kb_ask_slots": {},
+        "forbidden_retrieve_slots": [],
+        "hold_signals": [
+          "refer_for_professional_review",
+          "unresolved_kb_comparison"
+        ],
+        "evidence": {
+          "kb:B-B01": {
+            "kind": "inactive_kb_evaluation",
+            "card_id": "B-B01",
+            "comparison_status": "exception",
+            "reason": "individual_review_required",
+            "evidence": {
+              "source_ids": [
+                "D01",
+                "S04"
+              ],
+              "source_supported_content": "AAD 건조 피부 안내는 지속 문제나 도포 시 불편에 대해 피부과 상담을 안내한다.",
+              "service_interpretation": "서비스 범위를 정한 카드이며 포괄적 응급 선별 프로토콜이 아니다.",
+              "basis_is_not_clinical_effect_probability": true
+            }
+          },
+          "source:D01": {
+            "kind": "source_record",
+            "record": {
+              "id": "D01",
+              "title": "기본 권장 상태 우선·최소 부담·교차 영역 보존 정책",
+              "issuer": "이 대화의 사용자 요구에 따른 설계 제안",
+              "type": "service_policy_design",
+              "url": null,
+              "locator": "KB v0.2 수정 설계",
+              "review_scope": "비교 상태·권고 강도·실행 범위·보류·제품 재사용·교차 영향",
+              "limitations": "서비스 정책이며 임상 효과나 인과적 개선 확률의 근거가 아님.",
+              "status": "design_specification_not_clinical_evidence",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "source:S04": {
+            "kind": "source_record",
+            "record": {
+              "id": "S04",
+              "title": "Dermatologists’ top tips for relieving dry skin",
+              "issuer": "American Academy of Dermatology",
+              "year": null,
+              "type": "professional_public_guidance",
+              "url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "review_scope": "세정–보습 연결·보습 사용·건조환경",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음.",
+              "checked_on": "2026-11-04",
+              "status": "source_checked_claims_pending_domain_review",
+              "revision_provenance": "inherited_from_v0.1",
+              "reverified_in_v0_2": true,
+              "reverified_on": "2026-11-04",
+              "reviewed_sections_v0_2": "건조 피부 관리의 보습 시점·재도포·무향료·제형·지속 증상 상담",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "observation:method.body_site": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "observation:skin.pain": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "new_severe",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "available_actions": [
+          {
+            "action": "request_draft",
+            "target_id": "label_draft",
+            "tool": "generate_label_draft",
+            "enabled": false,
+            "conditions": [
+              "no holds, pending candidates, structural blockers, conflicts or unresolved KB comparisons"
+            ],
+            "blocked_by": [
+              "B-B01",
+              "refer_for_professional_review"
+            ],
+            "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+            "evidence_refs": [
+              "kb:B-B01"
+            ]
+          },
+          {
+            "action": "hold",
+            "target_id": "safety",
+            "tool": "hold_guidance",
+            "enabled": true,
+            "conditions": [
+              "no diagnosis, no automatic improvement judgment"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "현재 개별 권고를 보류합니다. 심한 통증이나 불편은 전문가와 확인해 주세요.",
+            "evidence_refs": [
+              "kb:B-B01"
+            ]
+          }
+        ],
+        "tools": {
+          "request_user_input": {
+            "effect": "awaiting_user; never confirms facts"
+          },
+          "await_product_evidence": {
+            "effect": "awaiting_product_evidence",
+            "implemented": false
+          },
+          "hold_guidance": {
+            "effect": "held; no recommendation execution"
+          },
+          "generate_label_draft": {
+            "effect": "draft_generated; unsaved, requires approval"
+          }
+        },
+        "history": [],
+        "design_defaults": {
+          "population": "adult",
+          "data_kind": "synthetic",
+          "note": "KB adapter design scope, not inferred user facts"
+        }
+      },
+      "output": {
+        "action": "hold",
+        "target_id": "safety",
+        "arguments": {
+          "wording": "contextual",
+          "confirmation_focus": "all"
+        },
+        "question_ko": "현재 개별 권고를 보류합니다. 심한 통증이나 불편은 전문가와 확인해 주세요.",
+        "evidence_refs": [
+          "kb:B-B01"
+        ],
+        "reason_summary": "KB의 개별 검토 신호를 따라 권고를 보류한다."
+      }
+    },
+    {
+      "conversation_id": "declined_observation",
+      "turn_index": 1,
+      "provenance": {
+        "input_kind": "synthetic_fixture",
+        "extraction": "synthetic_injected_features",
+        "evidence": "unchanged inactive KB source records; not user-specific clinical evidence",
+        "target_kind": "authored_design_target",
+        "human_review": "unreviewed",
+        "approved_reference": false
+      },
+      "user_updates": {
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        }
+      },
+      "input": {
+        "schema_version": "action-context-0.1",
+        "mode": "development_preview",
+        "production_enabled": false,
+        "message": "세안 물 온도는 답변하지 않겠습니다.",
+        "request_snapshot": {
+          "schema_version": "0.1.0",
+          "deployment_context": "synthetic_test",
+          "device": "ios",
+          "message": "세안 물 온도는 답변하지 않겠습니다.",
+          "profile": {
+            "confirmed": true,
+            "concerns": [
+              "합성 고민"
+            ],
+            "excluded_product_ids": []
+          },
+          "products": [
+            {
+              "product_id": "demo-cleanser",
+              "version": "fixture-v1",
+              "confirmed": true
+            },
+            {
+              "product_id": "demo-moisturizer",
+              "version": "fixture-v1",
+              "confirmed": true
+            }
+          ]
+        },
+        "observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "confirmed_candidates": {},
+        "pending_clarifications": {},
+        "jev_summary": {
+          "schema_version": "relations-0.5",
+          "products": [],
+          "symptoms": [],
+          "warnings": [
+            "synthetic_fixture_not_jev_inference"
+          ],
+          "clarifications": []
+        },
+        "mapping_findings": [],
+        "blockers": [],
+        "kb_ask_slots": {},
+        "forbidden_retrieve_slots": [
+          "product.instructions"
+        ],
+        "hold_signals": [],
+        "evidence": {
+          "kb:B-C01": {
+            "kind": "inactive_kb_evaluation",
+            "card_id": "B-C01",
+            "comparison_status": "unknown",
+            "reason": "insufficient_observations",
+            "evidence": {
+              "source_ids": [
+                "S03"
+              ],
+              "source_supported_content": "AAD는 미온수로 적시고 헹구는 방법을 권고한다.",
+              "service_interpretation": "사용자에게 온도계 측정을 요구하지 않는다. 30–35℃는 이번 버전의 확정 범위가 아니다.",
+              "basis_is_not_clinical_effect_probability": true
+            }
+          },
+          "source:S03": {
+            "kind": "source_record",
+            "record": {
+              "id": "S03",
+              "title": "Face washing 101",
+              "issuer": "American Academy of Dermatology",
+              "year": null,
+              "type": "professional_public_guidance",
+              "url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+              "locator": "세안 방법 권고",
+              "review_scope": "미온수·손가락·마찰 및 건조 시 보습",
+              "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님.",
+              "checked_on": "2026-11-04",
+              "status": "source_checked_claims_pending_domain_review",
+              "revision_provenance": "inherited_from_v0.1",
+              "reverified_in_v0_2": true,
+              "reverified_on": "2026-11-04",
+              "reviewed_sections_v0_2": "세안 안내 1–6항: 미온수·손가락·마찰·헹굼·건조 시 보습·빈도",
+              "revision_provenance_v0_3": "inherited_from_v0.2",
+              "reverified_in_v0_3": false
+            }
+          },
+          "observation:method.body_site": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "observation:method.water_temperature": {
+            "kind": "synthetic_session_observation",
+            "variable_id": "method.water_temperature",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "available_actions": [
+          {
+            "action": "retrieve_evidence",
+            "target_id": "product.instructions",
+            "tool": "await_product_evidence",
+            "enabled": true,
+            "conditions": [
+              "request only; product retrieval is not implemented"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "request_draft",
+            "target_id": "label_draft",
+            "tool": "generate_label_draft",
+            "enabled": false,
+            "conditions": [
+              "no holds, pending candidates, structural blockers, conflicts or unresolved KB comparisons"
+            ],
+            "blocked_by": [
+              "B-C01",
+              "product.instructions"
+            ],
+            "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          },
+          {
+            "action": "hold",
+            "target_id": "insufficient_information",
+            "tool": "hold_guidance",
+            "enabled": true,
+            "conditions": [
+              "no diagnosis, no automatic improvement judgment"
+            ],
+            "blocked_by": [],
+            "reviewed_text": "정보가 충분하지 않거나 제공되지 않아 개별 권고를 보류합니다. 미상·거절 상태를 유지합니다.",
+            "evidence_refs": [
+              "kb:B-C01"
+            ]
+          }
+        ],
+        "tools": {
+          "request_user_input": {
+            "effect": "awaiting_user; never confirms facts"
+          },
+          "await_product_evidence": {
+            "effect": "awaiting_product_evidence",
+            "implemented": false
+          },
+          "hold_guidance": {
+            "effect": "held; no recommendation execution"
+          },
+          "generate_label_draft": {
+            "effect": "draft_generated; unsaved, requires approval"
+          }
+        },
+        "history": [],
+        "design_defaults": {
+          "population": "adult",
+          "data_kind": "synthetic",
+          "note": "KB adapter design scope, not inferred user facts"
+        }
+      },
+      "output": {
+        "action": "hold",
+        "target_id": "insufficient_information",
+        "arguments": {
+          "wording": "contextual",
+          "confirmation_focus": "all"
+        },
+        "question_ko": "정보가 충분하지 않거나 제공되지 않아 개별 권고를 보류합니다. 미상·거절 상태를 유지합니다.",
+        "evidence_refs": [
+          "kb:B-C01"
+        ],
+        "reason_summary": "거절한 관찰은 재질문하지 않고 판단 한계를 알린다."
+      }
+    }
+  ]
+}
