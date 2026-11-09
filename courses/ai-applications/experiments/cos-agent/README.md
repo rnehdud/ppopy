@@ -56,6 +56,7 @@ Ollama의 [JSON Schema 출력](https://docs.ollama.com/capabilities/structured-o
 
 ## 다음으로 읽을 문서
 
+- [모듈형 에이전트 루프](docs/modular-agent-loop.md) — 기존 API와 별도로 실행하는 합성 다중 턴 프리뷰, 어댑터 및 플래너 교체 계약
 - [STT → Jev 테스트 필드 명세](poc/jev/stt-jev-test-fields.md)
 - [전체 개발 마일스톤](docs/development-milestones.md)
 - [기존 프로젝트 분석과 연결 계획](docs/context-and-integration.md)

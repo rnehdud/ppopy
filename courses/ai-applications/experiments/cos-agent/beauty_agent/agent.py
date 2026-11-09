@@ -41,3 +41,9 @@ async def run_turn(request: TurnRequest) -> TurnResponse:
     digest = hashlib.sha256(json.dumps(content, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     return TurnResponse(status="draft", message="합성 제품의 표시 사용법에 따른 초안입니다. 저장·적용되지 않았습니다.",
                         questions=[], draft=Draft(draft_hash=digest, **content), provider="baseline")
+
+
+async def run_pipeline_turn(request: TurnRequest, **kwargs):
+    """Opt-in modular pipeline; legacy run_turn and HTTP API remain stable."""
+    from .loop import run_pipeline_turn as pipeline
+    return await pipeline(request, **kwargs)
