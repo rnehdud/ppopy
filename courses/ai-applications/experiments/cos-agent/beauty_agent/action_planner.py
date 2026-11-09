@@ -8,10 +8,32 @@ from typing import Protocol
 import httpx
 
 from .actions import ActionContext, ActionProposal
-from .planner import PlannerContext
+from .contracts import PlannerMetadata
+from .planner import (PlannerContext, OllamaContextualPlanner,
+                      RuleBasedContextualPlanner, SFTAdapterPlanner)
+
+
+def planner_metadata(planner):
+    """Read optional trusted configuration; unlabelled custom planners stay custom."""
+    configured = getattr(planner, "metadata", None)
+    if configured is not None:
+        return PlannerMetadata.model_validate(configured).model_copy(deep=True)
+    if isinstance(planner, (RuleBasedActionPlanner, RuleBasedContextualPlanner)):
+        provider = "baseline"
+    elif isinstance(planner, (OllamaActionPlanner, OllamaContextualPlanner)):
+        provider = "ollama"
+    elif isinstance(planner, (SFTActionPlanner, SFTAdapterPlanner)):
+        provider = "sft"
+    else:
+        provider = "custom"
+    model = getattr(planner, "model", None)
+    if isinstance(planner, OllamaContextualPlanner):
+        model = os.environ.get("OLLAMA_MODEL", "").strip() or None
+    return PlannerMetadata(provider=provider, model=model)
 
 
 class ActionPlanner(Protocol):
+    # Optional .metadata: PlannerMetadata supplies model/revision/adapter identity.
     # Typed proposals and serialized model JSON share one decoder/validator.
     async def plan_action(self, context: ActionContext) -> ActionProposal | dict | str: ...
 
@@ -28,7 +50,7 @@ class RuleBasedActionPlanner:
 
 
 class SFTActionPlanner(ABC):
-    """Future Qwen QLoRA implementation slot. No model, weights or download."""
+    """Future Qwen slot; set .metadata to record model and adapter revisions."""
     @abstractmethod
     async def plan_action(self, context: ActionContext) -> ActionProposal:
         raise NotImplementedError
@@ -39,15 +61,24 @@ class QuestionPlannerAdapter:
     def __init__(self, legacy):
         self.legacy = legacy
         self.provider, self.model = "baseline", None
+        self.requested_metadata = planner_metadata(legacy)
+        self.applied_metadata = self.requested_metadata.model_copy(deep=True)
 
     async def plan_action(self, context):
+        self.provider, self.model = "baseline", None
+        self.applied_metadata = self.requested_metadata.model_copy(deep=True)
         legacy = PlannerContext(context.message, context.jev_summary, context.mapping_findings,
             context.pending_clarifications, context.blockers, context.kb_ask_slots,
             context.forbidden_retrieve_slots, context.hold_signals)
         if not legacy.candidates():
+            self.applied_metadata = PlannerMetadata(provider="baseline")
             return await RuleBasedActionPlanner().plan_action(context)
         result = await self.legacy.plan(legacy)
         self.provider, self.model = result.provider, result.model
+        if result.provider == "baseline_fallback":
+            self.applied_metadata = PlannerMetadata(provider="baseline")
+        elif result.provider == "ollama":
+            self.applied_metadata = PlannerMetadata(provider="ollama", model=result.model)
         if result.route == "hold_or_escalate":
             action, target = "hold", next(item.target_id for item in context.enabled() if item.action == "hold")
         elif result.route == "retrieve_product":

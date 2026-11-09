@@ -9,7 +9,7 @@ from pathlib import Path
 
 from beauty_agent.actions import ActionArguments, ActionProposal
 from beauty_agent.action_planner import SFTActionPlanner
-from beauty_agent.contracts import ObservationSlot, TurnRequest
+from beauty_agent.contracts import ObservationSlot, PlannerMetadata, TurnRequest
 from beauty_agent.loop import AgentSession, CandidateConfirmation
 from beauty_agent.modules.jev_adapter import JevExtractorAdapter
 
@@ -31,6 +31,9 @@ def observation(key, value=None, state="known"):
 
 
 class CaptureTarget(SFTActionPlanner):
+    # Authored fixture generator, not a trained model execution.
+    metadata = PlannerMetadata(provider="custom")
+
     def __init__(self):
         self.samples = []
 
