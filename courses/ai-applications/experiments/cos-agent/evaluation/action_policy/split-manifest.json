@@ -1,0 +1,308 @@
+{
+  "schema_version": "action-policy-split-0.1",
+  "status": "draft_unreviewed_not_frozen",
+  "assignment_method": "authored origin-level assignment before any planner replay; no randomized turn split",
+  "holdout_independence": "candidate_only_not_certified",
+  "semantic_overlap_review": "pending",
+  "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rubric_version": "action-evaluation-rubric-0.1",
+    "approved_reference": false
+  },
+  "data_files_sha256": {
+    "cases.development.json": "06bb9dfc5d8a7a39004ca73491cc8a1efeca261f0e33a0f90e59e95a85339382",
+    "cases.holdout-candidate.json": "ad9a7b5b13c6da9924a08232dcd4ee58e08a9a9752089489b8b902fe5839b344"
+  },
+  "rubric_sha256": "f19a309715bd657eff584c4f55a79c0f299086c99cca8e01a232ad78185d93f7",
+  "existing_examples": {
+    "path": "examples/action_sft.synthetic.json",
+    "sha256": "b33fc500bf9f0088e176be82619d21aaa7c08a7fa48b87026b2449effacd77e0",
+    "use": "development contract examples only; not references"
+  },
+  "counts": {
+    "development_scenarios": 20,
+    "holdout_candidate_scenarios": 10,
+    "turns": 44,
+    "three_or_more_turn_groups": 6
+  },
+  "limitations": [
+    "Shared inactive KB cards and state primitives are intentional infrastructure, not proof of independence.",
+    "Distinct authored origin IDs do not prove absence of semantic/template leakage; manual comparison is pending.",
+    "Development uses existing demo catalog; holdout uses unresolved synthetic products and cannot measure successful draft generation.",
+    "Files are visible in this repository. This is not a sealed or approved final test set."
+  ],
+  "groups": [
+    {
+      "scenario_id": "D01",
+      "group_id": "origin-profile-to-water",
+      "scenario_family_id": "profile-to-water",
+      "conversation_id": "conversation-D01",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D02",
+      "group_id": "origin-declined-candidate-recovery",
+      "scenario_family_id": "declined-candidate-recovery",
+      "conversation_id": "conversation-D02",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D03",
+      "group_id": "origin-water-conflict-repair",
+      "scenario_family_id": "water-conflict-repair",
+      "conversation_id": "conversation-D03",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D04",
+      "group_id": "origin-unknown-observation-recovery",
+      "scenario_family_id": "unknown-observation-recovery",
+      "conversation_id": "conversation-D04",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D05",
+      "group_id": "origin-owned-product-confirmation",
+      "scenario_family_id": "owned-product-confirmation",
+      "conversation_id": "conversation-D05",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D06",
+      "group_id": "origin-empty-owned-list",
+      "scenario_family_id": "empty-owned-list",
+      "conversation_id": "conversation-D06",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D07",
+      "group_id": "origin-single-version-mismatch",
+      "scenario_family_id": "single-version-mismatch",
+      "conversation_id": "conversation-D07",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D08",
+      "group_id": "origin-all-known-products-excluded",
+      "scenario_family_id": "all-known-products-excluded",
+      "conversation_id": "conversation-D08",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D09",
+      "group_id": "origin-cleanser-evidence-gap",
+      "scenario_family_id": "cleanser-evidence-gap",
+      "conversation_id": "conversation-D09",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D10",
+      "group_id": "origin-new-severe-pain-hold",
+      "scenario_family_id": "new-severe-pain-hold",
+      "conversation_id": "conversation-D10",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D11",
+      "group_id": "origin-declined-water-slot",
+      "scenario_family_id": "declined-water-slot",
+      "conversation_id": "conversation-D11",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D12",
+      "group_id": "origin-unasked-water-slot",
+      "scenario_family_id": "unasked-water-slot",
+      "conversation_id": "conversation-D12",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D13",
+      "group_id": "origin-inapplicable-water-slot",
+      "scenario_family_id": "inapplicable-water-slot",
+      "conversation_id": "conversation-D13",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D14",
+      "group_id": "origin-denied-symptom-candidate",
+      "scenario_family_id": "denied-symptom-candidate",
+      "conversation_id": "conversation-D14",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D15",
+      "group_id": "origin-other-subject-candidate",
+      "scenario_family_id": "other-subject-candidate",
+      "conversation_id": "conversation-D15",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D16",
+      "group_id": "origin-recognition-versus-onset",
+      "scenario_family_id": "recognition-versus-onset",
+      "conversation_id": "conversation-D16",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D17",
+      "group_id": "origin-planned-use-hypothesis",
+      "scenario_family_id": "planned-use-hypothesis",
+      "conversation_id": "conversation-D17",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D18",
+      "group_id": "origin-parallel-acquisition",
+      "scenario_family_id": "parallel-acquisition",
+      "conversation_id": "conversation-D18",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D19",
+      "group_id": "origin-bare-yes-candidate",
+      "scenario_family_id": "bare-yes-candidate",
+      "conversation_id": "conversation-D19",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "D20",
+      "group_id": "origin-confirmation-bypass-instruction",
+      "scenario_family_id": "confirmation-bypass-instruction",
+      "conversation_id": "conversation-D20",
+      "variant_of": null,
+      "product_family_id": "development-demo-catalog",
+      "split": "development"
+    },
+    {
+      "scenario_id": "H01",
+      "group_id": "origin-two-relations-and-cold-product",
+      "scenario_family_id": "two-relations-and-cold-product",
+      "conversation_id": "conversation-H01",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H02",
+      "group_id": "origin-unknown-subject-with-product-block",
+      "scenario_family_id": "unknown-subject-with-product-block",
+      "conversation_id": "conversation-H02",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H03",
+      "group_id": "origin-conflict-plus-other-candidate",
+      "scenario_family_id": "conflict-plus-other-candidate",
+      "conversation_id": "conversation-H03",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H04",
+      "group_id": "origin-multi-product-profile-composition",
+      "scenario_family_id": "multi-product-profile-composition",
+      "conversation_id": "conversation-H04",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H05",
+      "group_id": "origin-mandatory-hold-over-composite-blockers",
+      "scenario_family_id": "mandatory-hold-over-composite-blockers",
+      "conversation_id": "conversation-H05",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H06",
+      "group_id": "origin-identity-and-source-gap-composition",
+      "scenario_family_id": "identity-and-source-gap-composition",
+      "conversation_id": "conversation-H06",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H07",
+      "group_id": "origin-fake-tool-success-without-source",
+      "scenario_family_id": "fake-tool-success-without-source",
+      "conversation_id": "conversation-H07",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H08",
+      "group_id": "origin-cold-product-and-exclusion",
+      "scenario_family_id": "cold-product-and-exclusion",
+      "conversation_id": "conversation-H08",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H09",
+      "group_id": "origin-extraction-failure-refusal-cold-product",
+      "scenario_family_id": "extraction-failure-refusal-cold-product",
+      "conversation_id": "conversation-H09",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    },
+    {
+      "scenario_id": "H10",
+      "group_id": "origin-repeated-events-with-cold-product",
+      "scenario_family_id": "repeated-events-with-cold-product",
+      "conversation_id": "conversation-H10",
+      "variant_of": null,
+      "product_family_id": "holdout-unresolved-catalog",
+      "split": "holdout-candidate"
+    }
+  ]
+}
