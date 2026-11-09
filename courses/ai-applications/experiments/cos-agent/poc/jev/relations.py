@@ -6,12 +6,18 @@ import re
 import httpx
 
 try:
+    from .agent_fields import build_agent_fields
+    from .mapping_review.candidates import map_candidates
+    from .usage_events import event_candidates, finish_events
     from .context_evidence import candidate_spans, clause_spans
     from .jev_client import ask
     from .product_mentions import extract_products
     from .segmenter import noun_candidates, segmentation_method, units
     from .semantic_rules import apply_rules, symptom_scopes
 except ImportError:
+    from agent_fields import build_agent_fields
+    from mapping_review.candidates import map_candidates
+    from usage_events import event_candidates, finish_events
     from context_evidence import candidate_spans, clause_spans
     from jev_client import ask
     from product_mentions import extract_products
@@ -42,7 +48,7 @@ def extract_features(text, key):
     units_list = units(text)
     products, product_warning = extract_products(text, key, units_list, include_non_usage=True, candidate_fn=noun_candidates)
     products.sort(key=lambda p: (p['start'], p['end']))
-    result = {'schema_version': 'relations-0.3', 'source_text': text,
+    result = {'schema_version': 'relations-0.5', 'source_text': text,
               'text_revision': hashlib.sha256(text.encode('utf-8')).hexdigest(),
               'offset_unit': 'unicode_codepoint', 'review_status': 'candidate',
               'segmentation_method': segmentation_method(),
@@ -110,6 +116,29 @@ def extract_features(text, key):
         temporal(record, 'onset_time', scope + '이 증상이 실제 시작했다고 명시한 하루 중 시간은?')
         temporal(record, 'recognition_time', scope + '이 증상을 발견하거나 알아차린 하루 중 시간은?')
 
+    events, event_warning = event_candidates(text, result['products'], units_list, time_spans)
+    if event_warning:
+        result['warnings'].append(event_warning)
+    for event in events:
+        product = next(p for p in result['products'] if p['mention_id'] == event['product_mention_id'])
+        scope = (f"사용 사건 {event['event_id']}. 제품 {product['text']!r} "
+                 f"언급 위치 {product['start']}:{product['end']}, 사건 구절 {event['source_scope']!r}, "
+                 f"지정 시간 {event['time_anchor']!r}. "
+                 '이 제품과 지정 시간에 해당하는 사건 하나만 판정하라. 다른 시간의 부정/계획을 섞지 말라. '
+                 '제품 생략과 주어 변경은 전체 문맥을 확인하되 연결 불명확하면 unknown. ')
+        question(event, 'product_link', scope + '이 사건이 지정 제품에 연결되는가?',
+                 {'linked': '지정 제품의 사건', 'unlinked': '다른 제품 또는 사용 사건 아님', 'unknown': '연결 불명확'})
+        question(event, 'usage_state', scope + '이 사건의 사용 상태는?', STATE)
+        question(event, 'subject', scope + '이 사건의 주체는?', SUBJECT)
+        question(event, 'correction', scope + '이 사건은 정정으로 취소되었는가?',
+                 {'current': '취소되지 않은 사건', 'superseded': '정정으로 취소됨', 'unknown': '불명확'})
+        temporal(event, 'usage_date', scope + '이 사건의 날짜는?', True)
+        # Keep model verification of the time link; a lexical clock may describe
+        # symptom recognition rather than product use.
+        options = {'anchor': event['time_anchor']} if event['time_anchor'] else {}
+        question(event, 'usage_time', scope + '지정 시간이 이 사용 사건의 시간인가? 없으면 not_mentioned.',
+                 {**({'anchor': event['time_anchor']['text']} if options else {}), **MISSING}, options)
+
     for offset in range(0, len(tasks), 20):
         batch = tasks[offset:offset + 20]
         questions = {f'q{i}': task[2] for i, task in enumerate(batch)}
@@ -133,6 +162,9 @@ def extract_features(text, key):
                 record['relations'][attr] = {'value': None, 'score': None, 'status': 'unassessed'}
     apply_rules(result, SYMPTOM_ANCHORS, units_list, time_spans)
     finalize(result)
+    finish_events(result, events)
+    result['agent_fields'] = build_agent_fields(result)
+    result['skin_state_mapping'] = map_candidates(result)
     return result
 
 
@@ -242,7 +274,11 @@ def print_features(result):
         row('db_match', product.get('match_status', 'not_attempted'))
         for event in result.get('usage_events', []):
             if event['product_mention_id'] == product['mention_id']:
-                row('usage_event', f"{event['usage_date']['text']} / {event['usage_time']['text']} [rule]")
+                def event_time(field):
+                    value = event.get(field)
+                    return value['text'] if isinstance(value, dict) else str(value or 'unassessed')
+                state = event.get('relations', {}).get('usage_state', {}).get('value')
+                row('usage_event', f"{event_time('usage_date')} / {event_time('usage_time')} / {state} [candidate]")
     print('\nSYMPTOMS')
     if not symptoms:
         print('  No supported symptom expressions detected.')
