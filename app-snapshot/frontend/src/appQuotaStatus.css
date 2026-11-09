@@ -1,0 +1,55 @@
+.app-quota-status {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.125rem;
+  border: 1px solid #dfe5ec;
+  border-radius: 1.25rem;
+  color: #202832;
+  background: #fff;
+  font-size: 1rem;
+}
+.app-quota-status > .app-quota-header { display: grid; gap: .375rem; }
+.app-quota-status > .app-quota-header h2,
+.app-quota-status.app-quota-state h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  line-height: 1.45;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.app-quota-status p { margin: 0; line-height: 1.65; overflow-wrap: anywhere; }
+.app-quota-status .app-quota-header p { color: #52606d; font-size: .9375rem; }
+.app-quota-status ul { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+.app-quota-status li.app-quota-feature {
+  display: grid;
+  gap: .625rem;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #f3f5f8;
+}
+.app-quota-status .app-quota-feature strong { font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.app-quota-status .app-quota-balance { color: #202832; font-size: 1.25rem; font-weight: 750; line-height: 1.5; }
+.app-quota-status .app-quota-pending { color: #394959; font-size: .9375rem; }
+.app-quota-status small { color: #52606d; font-size: .875rem; line-height: 1.6; overflow-wrap: anywhere; }
+.app-quota-status .app-quota-notes { display: grid; gap: .75rem; }
+.app-quota-status .app-quota-notes p { color: #52606d; font-size: .9375rem; }
+.app-quota-status button.app-quota-refresh {
+  min-height: 48px;
+  width: 100%;
+  padding: .875rem;
+  border: 1px solid #cad2dc;
+  border-radius: .875rem;
+  color: #2458e5;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.app-quota-status :focus-visible { outline: 3px solid #2458e5; outline-offset: 3px; }
+@media (max-width: 360px) {
+  .app-quota-status { padding: .75rem; }
+  .app-quota-status li.app-quota-feature { padding: .75rem; }
+}

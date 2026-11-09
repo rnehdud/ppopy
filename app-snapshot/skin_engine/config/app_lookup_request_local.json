@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "scope": "isolated_local_review",
+  "runtime_registered": false,
+  "public_enabled": false,
+  "operational_mac_authorized": false,
+  "operational_transport_authorized": false,
+  "provider_dispatch_enabled": false,
+  "native_connection_enabled": false,
+  "automatic_poll_or_retry": false,
+  "request_backfill_enabled": false,
+  "metadata_deletion_enabled": false,
+  "namespace": "lookup_accepted_request_binding",
+  "key_ref": "synthetic:lookup-request-hmac-v1",
+  "http": {
+    "base_path": "/v1/app/product-lookup",
+    "request_suffix": "/requests",
+    "maximum_request_bytes": 1024,
+    "maximum_response_bytes": 69632
+  },
+  "request_id": "canonical_random_uuid_v4_not_authority",
+  "retry": "explicit_same_key_and_same_normalized_query",
+  "recovery": "original_member_session_metadata_only",
+  "missing": "unconfirmed_not_zero_work",
+  "denial": "not_persisted_not_an_accepted_request",
+  "acknowledgement": "original_admission_not_current_outcome"
+}

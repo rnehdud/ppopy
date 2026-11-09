@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-dispatch-local-review",
+  "deployment_context": "synthetic_test",
+  "enabled": false,
+  "automatic_recompute": false,
+  "automatic_pending_refund": false,
+  "persistent_queue_enabled": false,
+  "max_input_bytes": 2097152,
+  "known_defer_quota_outcome": "failed",
+  "known_defer_reasons": [
+    "discomfort_presence:not_asked",
+    "discomfort_presence:unknown",
+    "discomfort_presence:user_refused",
+    "concern_presence:not_asked",
+    "concern_presence:unknown",
+    "concern_presence:user_refused",
+    "decision_abstained",
+    "previous_episode:unexplained_portfolio_change"
+  ]
+}

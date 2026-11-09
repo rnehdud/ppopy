@@ -1,0 +1,19 @@
+{
+  "version": "1.1.0-test-app-frequency-review-20261008",
+  "scope": "aws_test_candidate_not_applied",
+  "runtime_enabled": false,
+  "installed_factory": false,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "registration_confirms_actual_use": false,
+  "intake_review_dispatches_engine": false,
+  "state_profile": "routine_state_and_safety",
+  "required_ports": [
+    "miray_closed_loop_state_http_test",
+    "miray_closed_loop_worker_http_test",
+    "miray_closed_loop_frequency_test"
+  ],
+  "requires_current_member_and_separate_history_consent": true,
+  "requires_acknowledged_portfolio_revision": true,
+  "requires_canonical_portfolio_after_frequency_view": true
+}

@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0-public-loop-state-http-20261020",
+  "scope": "public_service_loop_state_http_not_TEST_or_research",
+  "purpose": "poppy_public_loop_state_http",
+  "routes": {
+    "read": {
+      "method": "GET",
+      "path": "/api/v1/app/loop/state"
+    },
+    "registration": {
+      "method": "POST",
+      "path": "/api/v1/app/loop/state/registration"
+    },
+    "actual": {
+      "method": "POST",
+      "path": "/api/v1/app/loop/state/actual"
+    },
+    "followup": {
+      "method": "POST",
+      "path": "/api/v1/app/loop/state/followup"
+    }
+  },
+  "max_request_bytes": 65536,
+  "max_response_bytes": 262144,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "registration_confirms_actual_use": false,
+  "portfolio_edit_confirms_actual_use": false,
+  "product_confirmation_modes": [
+    "newly_started",
+    "current_use"
+  ],
+  "current_use_action_type": "current_use_confirmed"
+}

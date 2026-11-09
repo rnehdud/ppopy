@@ -28,6 +28,6 @@ The app handles product photos/screenshots, product confirmation, questions, edi
 
 ## Implementation available here
 
-The broader application uses React/TypeScript/Vite, Capacitor/iOS, Python and AWS/PostgreSQL services. Those deployable application sources are not bundled in this public course repository. The imported [local preview](../../skin_engine/kb_preview/README.md) uses Python and JSON without cloud access; its [KB](../../KB/README.md) remains an inactive development snapshot.
+The broader application uses React/TypeScript/Vite, Capacitor/iOS, Python and AWS/PostgreSQL services. A sanitized [frontend and Capacitor/iOS snapshot](../../app-snapshot/README.md) is available for team review and a synthetic local preview; it is not a deployable production app. The operational backend and infrastructure are not included. The imported [local preview](../../skin_engine/kb_preview/README.md) uses Python and JSON without cloud access; its [KB](../../KB/README.md) remains an inactive development snapshot.
 
 Real account authentication, cloud storage, timing/delivery integration and the physical mirror are integration targets in the submissions. For executed snapshot checks and the five open original acceptance mismatches, see [verification](../../docs/verification.md). Synthetic preview tests do not establish working mirror integration or production approval. Team roles remain those listed in the root README.

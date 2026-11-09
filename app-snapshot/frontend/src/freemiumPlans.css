@@ -1,0 +1,15 @@
+.freemium-plans { display: grid; gap: 16px; min-width: 0; line-height: 1.6; }
+.freemium-plans h2, .freemium-plans h3, .freemium-plans p { margin: 0; }
+.freemium-plans > p, .freemium-plans article p { color: #4b5563; }
+.freemium-common { margin: 0; padding: 16px; background: #f4f6f8; border-radius: 16px; }
+.freemium-common dt { font-weight: 700; }
+.freemium-common dd { margin: 4px 0 12px; overflow-wrap: anywhere; }
+.freemium-common dd:last-child { margin-bottom: 0; }
+.freemium-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.freemium-grid article { padding: 16px; border: 1px solid #ccd3dd; border-radius: 16px; }
+.freemium-grid ul { padding-left: 20px; margin-bottom: 0; }
+.freemium-grid li { margin-top: 8px; }
+.freemium-plans summary { display: list-item; min-height: 48px; cursor: pointer; padding: 12px 0; font-weight: 700; }
+.freemium-plans summary:focus-visible { outline: 3px solid #245de8; outline-offset: 3px; }
+.freemium-plans details p { margin-top: 10px; }
+@media (max-width: 480px) { .freemium-grid { grid-template-columns: 1fr; } }

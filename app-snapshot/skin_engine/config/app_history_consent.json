@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-local-review",
+  "scope": "local_review_only",
+  "runtime_enabled": false,
+  "publication_review": {
+    "status": "PENDING",
+    "path": "/notices/optional-history-service-v2-20261005-draft.json",
+    "activation_requires": "Separate approval, publication and exact HTTPS notice readback before setting the trusted TEST publication attestation."
+  },
+  "notice": {
+    "version": "optional-history-service-v2-20261005-draft",
+    "published": false,
+    "title": "상태·루틴 이력 저장 (선택)",
+    "purpose": "이전 상태와 루틴 조정 내용을 다시 확인하고 다음 점검에 참고하기 위해 저장해요.",
+    "items": "문진 답변, 피부 고민·사용 후 불편감, 제품 사용 피드백과 개인화 루틴 결과를 저장해요.",
+    "retention": "서비스 이용이 끝날 때까지 보관해요. 동의 철회, 삭제 요청 또는 이용 목적이 끝나면 기록과 파생 결과를 파기하며, 백업은 최대 7일 안에 파기해요. 기존 기록의 더 이른 파기 기한은 늘리지 않아요.",
+    "choice": "동의하지 않아도 이력을 저장하지 않고 현재 상태 확인을 계속할 수 있어요. 저장한 이력을 이용한 기능은 제한돼요. 가입 때의 민감정보 동의와 별도로 선택하며, 설정에서 언제든 철회할 수 있어요.",
+    "withdrawal": "이력 저장 동의를 철회하면 저장된 상태·루틴 이력과 파생 결과를 더 이상 사용하지 않고 파기를 시작해요. 회원 탈퇴와 유료 구독 해지는 별도로 진행해 주세요."
+  },
+  "states": ["not_consented", "consented", "review_required"],
+  "http": {
+    "path": "/api/v1/app/history-consent",
+    "read_method": "GET",
+    "choice_method": "POST",
+    "max_request_bytes": 1024,
+    "authorization_scheme": "Bearer"
+  }
+}

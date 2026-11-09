@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0-entry-http-local-review",
+  "enabled": false,
+  "deployment_context": "synthetic_test",
+  "registered": false,
+  "max_request_bytes": 65536,
+  "max_response_bytes": 262144,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "routes": {
+    "read": {"method": "GET", "path": "/app/review/loop-entry"},
+    "recover": {"method": "POST", "path": "/app/review/loop-entry/recover"},
+    "resume": {"method": "POST", "path": "/app/review/loop-entry/resume"},
+    "fresh": {"method": "POST", "path": "/app/review/loop-entry/fresh"},
+    "submit": {"method": "POST", "path": "/app/review/loop-entry/submit"},
+    "episode": {"method": "GET", "path": "/app/review/loop-episode"}
+  }
+}

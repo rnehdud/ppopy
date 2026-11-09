@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0-public-loop-worker-http-20261020",
+  "scope": "public_service_loop_worker_http_not_TEST_or_research",
+  "purpose": "poppy_public_loop_worker_http",
+  "routes": {
+    "read": {
+      "method": "GET",
+      "path": "/api/v1/app/loop/review"
+    },
+    "submit": {
+      "method": "POST",
+      "path": "/api/v1/app/loop/review"
+    }
+  },
+  "max_request_bytes": 65536,
+  "max_response_bytes": 262144,
+  "max_target_events": 160,
+  "max_quota_rows": 160,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "registration_confirms_actual_use": false
+}

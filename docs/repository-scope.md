@@ -18,7 +18,7 @@ The export takes selected current working files, including uncommitted files. It
 - The standard-library v0.6 preview engine, rule branches, question handling, product-context adapter, coverage tools, and isolated comparison examples.
 - Existing strict tests, boundary tests, the frozen original 57-case audit, and a synthetic CLI input.
 
-The operational frontend/backend, infrastructure, catalog XLSX, Google Sheets snapshots, credentials, user records, feedback, raw posts, product images, third-party PDFs, and earlier private model experiments are not copied. The course overview and smart mirror/AI evaluation documents are newly written summaries, not claims of newly implemented features.
+A separate [sanitized app source snapshot](../app-snapshot/README.md) was added on 2026-11-09 for local UI and iOS project review. It does not replace the operational application. The operational backend, infrastructure, catalog XLSX, Google Sheets snapshots, credentials, user records, feedback, raw posts, product images, third-party PDFs, and earlier private model experiments are not copied. The course overview and smart mirror/AI evaluation documents are newly written summaries, not claims of newly implemented features.
 
 ## Continuing work
 
