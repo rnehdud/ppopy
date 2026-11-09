@@ -4,29 +4,33 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
-import os
 from datetime import datetime, timedelta
 from typing import Literal
 
 from pydantic import Field, model_validator
 
-from .agent import missing_information, run_turn
 from .contracts import (Contract, ObservationSlot, OwnedProduct, PipelineTrace,
-                        PipelineTurnResponse, Profile, Question, TurnRequest)
+                        PipelineTurnResponse, Profile, TurnRequest)
 from .modules.jev_adapter import JevExtractorAdapter
 from .modules.mapping_adapter import MappingReviewAdapter
 from .modules.kb_adapter import KBEngineAdapter
-from .planner import PlannerContext, QuestionPlanner, RuleBasedContextualPlanner, OllamaContextualPlanner
+from .actions import build_action_context
+from .action_runtime import decide_action, dispatch_action
+from poc.jev.relations import SYMPTOMS
 
 
 class CandidateConfirmation(Contract):
     """Explicit caller-reviewed subject, polarity and observation time, not yes/no NLP."""
-    subject: Literal["self", "other"]
-    state: Literal["affirmed", "denied"]
-    observed_at: str
+    subject: Literal["self", "other", "unknown"]
+    state: Literal["affirmed", "denied", "unknown", "declined"]
+    observed_at: str | None = None
 
     @model_validator(mode="after")
     def utc_time(self):
+        if self.state in ("unknown", "declined") and self.observed_at is None:
+            return self
+        if self.observed_at is None or (self.state in ("affirmed", "denied") and self.subject == "unknown"):
+            raise ValueError("affirmed/denied confirmation requires subject and time")
         stamp = datetime.fromisoformat(self.observed_at.replace("Z", "+00:00"))
         if stamp.tzinfo is None or stamp.utcoffset() != timedelta(0):
             raise ValueError("explicit UTC observation time required")
@@ -48,20 +52,22 @@ def clarification_candidates(features, message, namespace=None):
     digest = namespace or hashlib.sha256(message.encode()).hexdigest()[:12]
     for index, item in enumerate(features.get("symptoms", [])):
         key = f"clarify:{digest}:{index}"
-        name = item.get("label", item.get("symptom", "증상"))
+        # Extraction labels/clarification text are untrusted, not reviewed wording.
+        name = SYMPTOMS.get(item.get("symptom"), "증상")
         pending[key] = f"{name} 언급의 대상이 본인인지, 실제 증상이 있었는지와 관찰 시점을 확인해 주세요."
     for index, text in enumerate(features.get("clarifications", [])):
         key = f"clarify:{digest}:extra:{index}"
-        pending[key] = "추출된 관계의 대상·실제 여부·시점을 확인해 주세요: " + str(text)[:200]
+        pending[key] = "추출된 관계의 대상·실제 여부·시점을 확인해 주세요."
     if features.get("warnings") and not pending and features.get("extraction_failed"):
         pending[f"clarify:{digest}:failure"] = "추출에 실패했습니다. 본인의 실제 관찰과 시점을 확인해 주세요."
     return pending
 
 
-async def run_pipeline_turn(request: TurnRequest, *, planner: QuestionPlanner | None = None,
+async def run_pipeline_turn(request: TurnRequest, *, planner=None,
                             extractor=None, mapping=None, kb=None, observations=None,
                             pending_clarifications=None, confirmed_clarifications=None,
-                            card_ids=None, clarification_namespace=None) -> PipelineTurnResponse:
+                            card_ids=None, clarification_namespace=None, history=None,
+                            planner_timeout=20.0) -> PipelineTurnResponse:
     extractor = extractor or JevExtractorAdapter()
     features = await asyncio.to_thread(extractor.extract, request.message)
     reviewed = (mapping or MappingReviewAdapter()).evaluate(features)
@@ -80,34 +86,19 @@ async def run_pipeline_turn(request: TurnRequest, *, planner: QuestionPlanner | 
         kb_missing_ask_slots=list(evaluated["ask_slots"]),
         kb_retrieve_slots=evaluated["retrieve_slots"], hold_signals=evaluated["hold_signals"],
         pending_clarifications=pending)
-    blockers = missing_information(request)
-    context = PlannerContext(request.message, features, reviewed["findings"], pending,
-                             blockers, evaluated["ask_slots"], evaluated["retrieve_slots"],
-                             evaluated["hold_signals"])
-    candidates = context.candidates()
-    if not candidates:
-        response = await run_turn(request)
-        trace.selected_route = "ready_for_draft"
-        return PipelineTurnResponse(**response.model_dump(), trace=trace)
-    if planner is None:
-        provider = os.environ.get("AGENT_PROVIDER", "baseline")
-        if provider not in ("baseline", "ollama"):
-            raise ValueError("AGENT_PROVIDER must be baseline or ollama")
-        planner = OllamaContextualPlanner() if provider == "ollama" else RuleBasedContextualPlanner()
-    output = await planner.plan(context)
-    # Validate even custom/trained planners against the current priority tier.
-    # Only reviewed candidate wording can reach the user. Model text cannot ask
-    # for undisclosed concentrations, override a hold, or clear a blocker.
-    selected = next((item for item in candidates
-                     if (item.route, item.target_slot, item.question_id) ==
-                     (output.route, output.target_slot, output.question_id)), candidates[0])
-    trace.selected_route = selected.route
-    questions = []
-    if selected.route == "ask_user":
-        questions = [Question(id=selected.question_id, text=selected.question_ko)]
-    questions.extend(q for q in blockers if q.id not in {x.id for x in questions})
-    return PipelineTurnResponse(status="needs_information", message=selected.question_ko,
-                                questions=questions, provider=output.provider, model=output.model, trace=trace)
+    context = build_action_context(request, features, reviewed, evaluated, pending, observations or {},
+        {key: value.model_dump() if isinstance(value, CandidateConfirmation) else value
+         for key, value in (confirmed_clarifications or {}).items()}, history)
+    decision = await decide_action(context, planner, timeout=planner_timeout)
+    response, outcome = await dispatch_action(decision, context, request)
+    trace.proposed_action = decision.proposed
+    trace.applied_action = decision.applied.model_dump()
+    trace.validation_results = decision.validation
+    trace.fallback_reason = decision.fallback_reason
+    trace.execution_status = outcome
+    trace.selected_route = {"hold": "hold_or_escalate", "retrieve_evidence": "retrieve_product",
+                            "request_draft": "ready_for_draft"}.get(decision.applied.action, "ask_user")
+    return PipelineTurnResponse(**response.model_dump(), trace=trace)
 
 
 class AgentSession:
@@ -140,7 +131,7 @@ class AgentSession:
             previous = state.confirmed_observations.get(key)
             if previous and key not in resolve_conflicts:
                 if previous.state == "conflicting" or (previous.state == "known" and slot.state == "known"
-                                                       and previous.value != slot.value):
+                        and json.dumps(previous.value, sort_keys=True) != json.dumps(slot.value, sort_keys=True)):
                     slot = slot.model_copy(update={"state": "conflicting", "value": None})
             state.confirmed_observations[key] = slot.model_copy(deep=True)
         for key, confirmation in (confirmations or {}).items():
@@ -153,7 +144,7 @@ class AgentSession:
             kb=self.kb, observations=state.confirmed_observations,
             pending_clarifications=state.pending_clarifications,
             confirmed_clarifications=state.confirmed_clarifications, card_ids=self.card_ids,
-            clarification_namespace=f"turn{state.turn_index + 1}")
+            clarification_namespace=f"turn{state.turn_index + 1}", history=state.history)
         # Confirmations remain separate from KB observations.
         state.pending_clarifications = dict(response.trace.pending_clarifications)
         state.turn_index += 1

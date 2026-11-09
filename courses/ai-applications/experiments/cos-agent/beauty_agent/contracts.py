@@ -99,6 +99,11 @@ class PipelineTrace(Contract):
     kb_retrieve_slots: list[str] = Field(default_factory=list)
     hold_signals: list[str] = Field(default_factory=list)
     pending_clarifications: dict[str, str] = Field(default_factory=dict)
+    proposed_action: dict | None = None
+    applied_action: dict | None = None
+    validation_results: list[str] = Field(default_factory=list)
+    fallback_reason: str | None = None
+    execution_status: Literal["awaiting_user", "awaiting_product_evidence", "held", "draft_generated"] | None = None
     selected_route: Literal["ask_user", "retrieve_product", "hold_or_escalate", "ready_for_draft"] = "ask_user"
 
 

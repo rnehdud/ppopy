@@ -1,4 +1,8 @@
-"""Optional bounded SLM choice; model output never becomes executable code."""
+"""Legacy question selection for the unchanged HTTP API and compatibility adapter.
+
+The modular loop uses action_planner.ActionPlanner and actions.ActionProposal.
+Existing QuestionPlanner / SFTAdapterPlanner implementations remain supported.
+"""
 import json
 import os
 from typing import Literal

@@ -34,11 +34,15 @@ SLM은 작은 언어 모델이고, 에이전트는 입력을 보고 필요한 �
 | `agent.py` | 확인 상태 검사, 제외 제품 적용, 초안 생성 |
 | `catalog.py` | 가상 제품 2개와 합성 표시 사용법 |
 | `planner.py` | 기준선 질문 선택 또는 Ollama 질문 ID 선택 |
+| `actions.py`, `action_planner.py`, `action_runtime.py` | 별도 루프의 액션 제안 계약, 실행 조건 검증·fallback·dispatcher |
+| `loop.py` | Python/CLI 다중 턴 세션·정형 확인·트레이스 |
 | `api.py` | HTTP 진입점·스키마 문서 |
 
 현재 `concerns`는 수집 형식만 있고 효능·피부별 계산에 사용하지 않습니다. 자유 대화에서 프로필을 추출·저장하지도 않습니다. 초안 hash는 내용 식별자이며 승인 토큰이 아닙니다. `requires_approval`은 향후 승인 절차를 위한 표시이며 저장 API는 아직 없습니다.
 
 ## 로컬 SLM 연결 — 선택
+
+이 절의 질문 ID 선택 설명은 기존 HTTP API에 해당합니다. 별도 Python/CLI 루프는 전체 액션 제안을 받는 Ollama 경로와 향후 Qwen SFT 주입 계약을 사용합니다. [액션 중심 루프 문서](docs/modular-agent-loop.md)에 실행 조건, 질문 문구 검증 한계 및 합성 SFT 예제를 정리했습니다.
 
 Ollama를 별도로 설치하고 라이선스·메모리·한국어 품질을 확인한 모델을 로컬에 준비한 뒤 서버 시작 전에 설정합니다. 모델은 자동 다운로드하지 않습니다.
 
