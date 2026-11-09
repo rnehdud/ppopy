@@ -33,7 +33,8 @@ def obs(key, value, **kwargs):
 def features(message):
     return {"schema_version": "relations-0.3", "products": [{"text": "폼클렌저"}],
             "symptoms": [{"symptom": "stinging", "relations": {
-                "state": {"value": "affirmed"}, "subject": {"value": "self"},
+                "state": {"value": "affirmed", "status": "candidate", "score": .9},
+                "subject": {"value": "self", "status": "candidate", "score": .9},
                 "severity": {"value": "mild"}}}] if "따가" in message else [],
             "warnings": [], "clarifications": []}
 
@@ -52,7 +53,7 @@ def test_compound_turn_trace_and_mapping_bridge(request_data):
     source = features(request.message)
     original = deepcopy(source)
     view = JevExtractorAdapter.to_mapping_review_features(source)
-    assert view["schema_version"] == "relations-0.2" and source == original
+    assert view["schema_version"] == "relations-0.3" and source == original
     result = run(run_pipeline_turn(request, extractor=extractor(), card_ids=["B-C01"]))
     assert result.status == "needs_information" and result.draft is None
     assert result.trace.jev_products == ["폼클렌저"]
@@ -315,3 +316,24 @@ def test_valid_long_product_ids_return_resolution_blocker(request_data, length):
     assert result.status == "needs_information" and result.draft is None
     assert result.questions[0].id == "resolve:" + product_id
     assert result.message == result.questions[0].text
+
+
+@pytest.mark.parametrize("version", ["relations-0.2", "relations-0.3", "relations-0.4", "relations-0.5"])
+def test_pipeline_accepts_main_jev_schemas_without_downgrade(request_data, version):
+    source = {**features("따가워"), "schema_version": version}
+    original = deepcopy(source)
+    adapter = JevExtractorAdapter(extractor=lambda _: source)
+    view = adapter.to_mapping_review_features(source)
+    assert view == original and view is not source
+    result = run(run_pipeline_turn(request_data, extractor=adapter, card_ids=["B-C01"]))
+    assert result.trace.mapping_findings[0]["issue"] == "candidate_requires_user_and_time_confirmation"
+    assert source == original
+
+
+@pytest.mark.parametrize("version", ["relations-0.3", "relations-0.4", "relations-0.5"])
+def test_modern_unassessed_relations_do_not_use_legacy_review(version):
+    source = {**features("따가워"), "schema_version": version}
+    source["symptoms"][0]["relations"]["state"] = {"value": "affirmed"}
+    finding = MappingReviewAdapter().evaluate(source)["findings"][0]
+    assert finding["issue"] == "unassessed_or_uncertain_symptom_do_not_map"
+    assert "suggested_value" not in finding

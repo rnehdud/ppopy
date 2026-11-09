@@ -12,7 +12,7 @@ flowchart TD
     Update["명시적 사용자 확인<br/>observations · confirmations<br/>resolve_conflicts"] --> Session
     Session --> State["이번 턴의 임시 상태<br/>확정 관찰 / 후보 확인 / 미확정 항목 분리"]
     State --> Jev["1. JevExtractorAdapter<br/>제품·증상·관계 후보 추출"]
-    Jev --> Bridge["relations-0.3 → 0.2<br/>호환 복사본 생성"]
+    Jev --> Bridge["relations-0.2~0.5<br/>버전·평가 메타데이터를 보존한 복사본"]
     Bridge --> Mapping["2. MappingReviewAdapter<br/>피부 상태 계약 검증 · 후보/경고 도출"]
     Mapping --> KB["3. KBEngineAdapter<br/>확인된 관찰로 비활성 KB 평가"]
     State -->|"confirmed_observations"| KB
@@ -107,7 +107,7 @@ uv run python -m beauty_agent.loop --demo --scripted
 ## 어댑터와 플래너
 
 - `JevExtractorAdapter()`의 기본값은 Kiwi 분할과 증상 어휘 탐지입니다. 외부 호출 없이 대상·긍정/부정·시간을 미상으로 둡니다. 트레이스에 `offline_candidate_detection_not_jev_inference`를 표시합니다. 실제 Jev는 `JevExtractorAdapter(key=...)`로 명시적으로 연결하며, 기존 함수의 실제 이름인 `extract_features()`를 호출합니다. 키는 기록하거나 자동 로드하지 않습니다. 테스트는 합성 추출기를 주입합니다.
-- Mapping Review에는 원본을 변경하지 않은 `relations-0.2` 호환 복사본을 전달합니다. 잘못된 계약 스냅샷은 오류이며 후보는 확정 관찰로 승격하지 않습니다.
+- 최신 main의 Mapping Review는 `relations-0.2`부터 `relations-0.5`까지 직접 지원합니다. 어댑터는 버전과 평가 메타데이터를 보존한 복사본을 전달합니다. 최신 형식을 레거시 헤더로 낮추지 않으므로 미평가·불확실 후보의 검사를 유지합니다. 잘못된 계약 스냅샷은 오류이며 후보는 확정 관찰로 승격하지 않습니다.
 - KB는 저장소 원본 `PreviewEngine`을 그대로 호출합니다. `consumer_question_allowed`인 관찰만 `ASK`, 제품 누락 필드는 `RETRIEVE`로 분리합니다. 조회는 대기 경로만 구현했으며 실제 제품 DB 조회는 아직 없습니다. 비공개 정보는 미상으로 남습니다. 제조업자 의견 카드 B-P07은 제외합니다.
 - `QuestionPlanner.plan(context)`는 비동기 인터페이스입니다. `RuleBasedContextualPlanner`, `OllamaContextualPlanner`, 향후 구현용 추상 `SFTAdapterPlanner`를 제공합니다. `AGENT_PROVIDER=ollama`와 `OLLAMA_MODEL`로 기존 로컬 전송을 사용합니다. 안전 보류 → 후보 확인 → 기존 필수 블로커 → KB 관찰 질문 → 제품 근거 조회 순으로 처리합니다.
 - Ollama는 구조화된 컨텍스트를 받아 현재 우선순위의 허용 질문 ID를 고릅니다. 자유 문장 생성 대신 코드가 소유한 질문과 라우트로 `PlannerOutput`을 구성합니다. 기존 15초 HTTP 타임아웃, 64KiB 응답 상한과 실패 시 기준선 복귀를 재사용합니다. 전체 응답의 절대 마감 제한은 기존과 같이 미구현입니다. 사용자 정의 플래너도 현재 허용 후보의 ID·슬롯·라우트를 검사하며 문구는 코드의 후보를 사용합니다.
@@ -127,6 +127,8 @@ uv run python -m beauty_agent.loop --demo --scripted
 2026-11-09 로컬 검증: `uv run pytest` 81개 통과(기존 58 + 신규 23), 원본 해시 27/27 일치, KB 구조 95/95 통과, 경계·현재 명세 371개 통과. 엄격 원본 테스트는 기존과 동일한 62개 통과·5개 실패(T17, T20, T37, T45, V06-T04)입니다. 고정 CLI 시연의 두 상태 전이도 확인했습니다. 테스트 실행에는 기존 Starlette/httpx 사용 중단 경고 1건이 있습니다.
 
 리뷰 수정 후 `uv run pytest`는 95개 통과(기존 81 + 회귀 14), 원본 해시는 27/27 일치했습니다. `ObservationSlot.value`는 재귀 JSON 값으로 숫자·불리언·구조화 답변을 보존합니다. B-C03의 접촉 시간 객체와 B-S06의 정수 사용 횟수를 실제 KB로 전달하는 테스트를 추가했습니다. 플래너의 슬롯·질문 ID는 `resolve:` 접두사와 100자 제품 ID를 수용하도록 최대 108자로 확장했습니다. 기존 HTTP 계약은 유지합니다.
+
+최신 main (`b2dbc0b`, PR #12 포함) 동기화 후 `uv run pytest`는 232개 통과했습니다. 이 중 루프 테스트는 44개이며, 스키마 0.2~0.5의 호환성과 최신 스키마의 평가 메타데이터 검사 유지 사례를 포함합니다. 원본 해시 27/27, KB 구조 검사 95/95, 경계·현재 명세 테스트 371개도 통과했습니다. 동결 감사는 기존과 같은 52/57 충족 및 불일치 5건(종료 코드 1)을 유지합니다.
 
 기존 API/회귀 테스트와 신규 `tests/test_agent_loop.py`는 합성 입력 및 MockTransport만 사용합니다. 실제 Jev 서비스, Ollama 추론, SFT 학습, 앱 연동, 저장·승인 및 실제 사용자 수집은 검증하거나 활성화하지 않았습니다. 항상 `development_preview`, `production_enabled=false`입니다.
 

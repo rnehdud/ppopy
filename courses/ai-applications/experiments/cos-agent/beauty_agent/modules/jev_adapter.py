@@ -4,6 +4,7 @@ import re
 
 from poc.jev.relations import extract_features, SYMPTOM_ANCHORS
 from poc.jev.segmenter import units, segmentation_method
+from poc.jev.mapping_review.review import SUPPORTED_SCHEMAS
 
 
 class JevExtractorAdapter:
@@ -32,8 +33,8 @@ class JevExtractorAdapter:
 
     @staticmethod
     def to_mapping_review_features(features):
-        if features.get("schema_version") not in ("relations-0.2", "relations-0.3"):
+        if features.get("schema_version") not in SUPPORTED_SCHEMAS:
             raise ValueError("unsupported relations schema")
-        view = deepcopy(features)
-        view["schema_version"] = "relations-0.2"
-        return view
+        # Current main reviews 0.2–0.5 directly. Downgrading a modern header
+        # would bypass its assessment-metadata checks through the legacy path.
+        return deepcopy(features)
