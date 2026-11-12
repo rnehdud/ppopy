@@ -7,7 +7,7 @@ from typing import Protocol
 
 import httpx
 
-from .actions import ActionContext, ActionProposal
+from .actions import ActionContext, ActionProposal, INFORMATION_HOLD_SIGNALS
 from .contracts import PlannerMetadata
 from .planner import (PlannerContext, OllamaContextualPlanner,
                       RuleBasedContextualPlanner, SFTAdapterPlanner)
@@ -69,7 +69,8 @@ class QuestionPlannerAdapter:
         self.applied_metadata = self.requested_metadata.model_copy(deep=True)
         legacy = PlannerContext(context.message, context.jev_summary, context.mapping_findings,
             context.pending_clarifications, context.blockers, context.kb_ask_slots,
-            context.forbidden_retrieve_slots, context.hold_signals)
+            context.forbidden_retrieve_slots,
+            [signal for signal in context.hold_signals if signal not in INFORMATION_HOLD_SIGNALS])
         if not legacy.candidates():
             self.applied_metadata = PlannerMetadata(provider="baseline")
             return await RuleBasedActionPlanner().plan_action(context)

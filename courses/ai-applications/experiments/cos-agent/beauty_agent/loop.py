@@ -112,12 +112,21 @@ class AgentSession:
                                   products=[p.model_copy(deep=True) for p in self.request.products])
         self.planner, self.extractor, self.mapping, self.kb = planner, extractor, mapping, kb
         self.card_ids = card_ids
+        self._step_lock = asyncio.Lock()
 
     async def step(self, message: str, *, profile: Profile | None = None,
                    products: list[OwnedProduct] | None = None,
                    observations: dict[str, ObservationSlot] | None = None,
                    confirmations: dict[str, CandidateConfirmation] | None = None,
                    resolve_conflicts: tuple[str, ...] = ()) -> PipelineTurnResponse:
+        # Serialize the entire read/stage/execute/commit transaction per session.
+        async with self._step_lock:
+            return await self._step(message, profile=profile, products=products,
+                                    observations=observations, confirmations=confirmations,
+                                    resolve_conflicts=resolve_conflicts)
+
+    async def _step(self, message, *, profile, products, observations, confirmations,
+                    resolve_conflicts):
         # Stage changes transactionally: invalid input/module failure leaves state intact.
         state = self.state.model_copy(deep=True)
         if profile is not None:

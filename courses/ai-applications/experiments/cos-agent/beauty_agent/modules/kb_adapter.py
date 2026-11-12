@@ -38,9 +38,20 @@ class KBEngineAdapter:
         ask = {q["field"]: q["text"] for q in result["questions"]
                if not q["field"].startswith("product.")
                and self.engine.variables.get(q["field"], {}).get("consumer_question_allowed") is True}
-        retrieve = sorted({f for row in result["results"] for f in row["missing_fields"]
-                           if f.startswith("product.") and "retrieve_product_evidence" in row["action_types"]})
-        holds = sorted({a for row in result["results"] for a in row["action_types"]
+        retrieve = {f for row in result["results"] for f in row["missing_fields"]
+                    if f.startswith("product.") and "retrieve_product_evidence" in row["action_types"]}
+        # Unresolved cards can request evidence without a retrieval action type.
+        # Resolved cards also list incidental gaps; those do not require retrieval.
+        retrieve.update(item["field"] for row in result["results"]
+                        if row["comparison_status"] in ("unknown", "conflicting", "exception")
+                        for item in row.get("evidence_requests", [])
+                        if item.get("route") == "retrieve_product_evidence" and item["field"].startswith("product."))
+        retrieve = sorted(retrieve)
+        # Unknown comparisons defer a recommendation while information is acquired.
+        # Other deferrals (e.g. a confirmed quality issue) remain mandatory holds.
+        holds = sorted({"insufficient_information" if a == "defer_specific_recommendation"
+                        and row["comparison_status"] == "unknown" else a
+                        for row in result["results"] for a in row["action_types"]
                         if a in ("refer_for_professional_review", "defer_specific_recommendation",
                                  "pause_specific_cosmetic_due_to_discomfort",
                                  "pause_specific_product_pending_quality_check")})

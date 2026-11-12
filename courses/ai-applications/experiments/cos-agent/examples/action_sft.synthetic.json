@@ -157,7 +157,7 @@
             "tool": "request_user_input",
             "enabled": true,
             "conditions": [
-              "consumer-observable slot; no answered/declined slot"
+              "consumer-observable slot; unanswered or KB-unrecognized known value"
             ],
             "blocked_by": [],
             "reviewed_text": "사용 신체 부위에 대해 알려주세요.",
@@ -381,7 +381,7 @@
             "tool": "request_user_input",
             "enabled": true,
             "conditions": [
-              "consumer-observable slot; no answered/declined slot"
+              "consumer-observable slot; unanswered or KB-unrecognized known value"
             ],
             "blocked_by": [],
             "reviewed_text": "세안할 때 물은 뜨겁게 느껴지나요, 미지근한가요, 차가운가요?",
@@ -1564,10 +1564,11 @@
         "mapping_findings": [],
         "blockers": [],
         "kb_ask_slots": {},
-        "forbidden_retrieve_slots": [],
+        "forbidden_retrieve_slots": [
+          "product.instructions"
+        ],
         "hold_signals": [
-          "refer_for_professional_review",
-          "unresolved_kb_comparison"
+          "refer_for_professional_review"
         ],
         "evidence": {
           "kb:B-B01": {
@@ -1642,6 +1643,22 @@
         },
         "available_actions": [
           {
+            "action": "retrieve_evidence",
+            "target_id": "product.instructions",
+            "tool": "await_product_evidence",
+            "enabled": false,
+            "conditions": [
+              "request only; product retrieval is not implemented"
+            ],
+            "blocked_by": [
+              "refer_for_professional_review"
+            ],
+            "reviewed_text": "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
+            "evidence_refs": [
+              "kb:B-B01"
+            ]
+          },
+          {
             "action": "request_draft",
             "target_id": "label_draft",
             "tool": "generate_label_draft",
@@ -1651,6 +1668,7 @@
             ],
             "blocked_by": [
               "B-B01",
+              "product.instructions",
               "refer_for_professional_review"
             ],
             "reviewed_text": "합성 제품의 표시 사용법 기반 초안 생성을 요청합니다.",

@@ -172,11 +172,21 @@ def test_conflicts_require_explicit_resolution(request_data):
     assert session.state.confirmed_observations[key].state == "known"
 
 
-def test_no_acquisition_path_cannot_become_draft(request_data):
+def test_unresolved_comparison_preserves_explicit_evidence_path_without_draft(request_data):
     observations = ready_observations()
     observations["method.water_temperature"] = obs("method.water_temperature", "cold")
     result = run(run_pipeline_turn(request_data, extractor=extractor(), observations=observations, card_ids=["B-C01"]))
-    assert result.trace.selected_route == "hold_or_escalate" and result.draft is None
+    assert result.trace.execution_status == "awaiting_product_evidence" and result.draft is None
+
+
+def test_no_acquisition_path_cannot_become_draft(request_data):
+    class UnresolvedKB:
+        def evaluate(self, *args):
+            return {"raw": {"results": [{"card_id": "synthetic:unresolved", "comparison_status": "unknown"}]},
+                    "ask_slots": {}, "retrieve_slots": [], "hold_signals": ["unresolved_kb_comparison"]}
+
+    result = run(run_pipeline_turn(request_data, extractor=extractor(), kb=UnresolvedKB()))
+    assert result.trace.execution_status == "held" and result.draft is None
 
 
 def test_declined_slot_not_reasked():
@@ -337,3 +347,149 @@ def test_modern_unassessed_relations_do_not_use_legacy_review(version):
     finding = MappingReviewAdapter().evaluate(source)["findings"][0]
     assert finding["issue"] == "unassessed_or_uncertain_symptom_do_not_map"
     assert "suggested_value" not in finding
+
+
+@pytest.mark.parametrize("card_id", ["B-G06", "B-M04"])
+@pytest.mark.parametrize("planner", [None, RuleBasedContextualPlanner()])
+def test_information_deferral_allows_missing_user_questions(request_data, card_id, planner):
+    session = AgentSession(request_data, planner=planner, extractor=extractor(), card_ids=[card_id])
+    result = run(session.step("", observations={"method.body_site": obs("method.body_site", "face")}))
+    assert "insufficient_information" in result.trace.hold_signals
+    assert result.trace.execution_status == "awaiting_user"
+    assert result.trace.applied_action["action"] == "ask_user"
+    assert result.questions and result.draft is None
+
+
+@pytest.mark.parametrize("card_id", ["B-G16", "B-P09"])
+def test_unresolved_explicit_evidence_requests_reach_retrieval(request_data, card_id):
+    observations = {"method.body_site": obs("method.body_site", "face")}
+    evaluated = KBEngineAdapter().evaluate(observations, [card_id])
+    row = evaluated["raw"]["results"][0]
+    assert "retrieve_product_evidence" not in row["action_types"]
+    expected = sorted({item["field"] for item in row["evidence_requests"]})
+    assert expected and evaluated["retrieve_slots"] == expected
+    session = AgentSession(request_data, extractor=extractor(), card_ids=[card_id])
+    result = run(session.step("", observations=observations))
+    assert result.trace.execution_status == "awaiting_product_evidence"
+    assert result.trace.applied_action["target_id"] in expected
+    assert not result.questions and result.draft is None
+
+
+def test_resolved_card_incidental_evidence_gaps_do_not_block_draft(request_data):
+    evaluated = KBEngineAdapter().evaluate(ready_observations(), ["B-C01"])
+    assert evaluated["raw"]["results"][0]["evidence_requests"]
+    assert not evaluated["retrieve_slots"]
+    session = AgentSession(request_data, extractor=extractor(), card_ids=["B-C01"])
+    assert run(session.step("", observations=ready_observations())).status == "draft"
+
+
+@pytest.mark.parametrize("state", ["unknown", "declined"])
+@pytest.mark.parametrize("polarity", ["affirmed", "denied"])
+def test_unresolved_candidate_can_be_explicitly_corrected(request_data, state, polarity):
+    session = AgentSession(request_data, extractor=extractor(), card_ids=["B-C01"])
+    run(session.step("따가워", observations=ready_observations()))
+    key = next(iter(session.state.pending_clarifications))
+    unanswered = CandidateConfirmation(subject="unknown", state=state)
+    result = run(session.step("", confirmations={key: unanswered}))
+    assert result.trace.execution_status == "held" and result.draft is None
+    assert not session.state.pending_clarifications
+    assert run(session.step("")).trace.execution_status == "held"
+    with pytest.raises(ValueError):
+        run(session.step("", confirmations={"clarify:invented": unanswered}))
+    with pytest.raises(ValueError):
+        run(session.step("", confirmations={key: {"subject": "self", "state": polarity}}))
+    assert session.state.confirmed_clarifications[key] == unanswered
+    replacement = CandidateConfirmation(subject="self", state=polarity, observed_at="2026-11-08T12:00:00Z")
+    result = run(session.step("명시적 수정", confirmations={key: replacement}))
+    assert result.trace.execution_status == "draft_generated"
+    assert session.state.confirmed_clarifications[key] == replacement
+    assert not session.state.pending_clarifications
+    assert "skin.stinging" not in session.state.confirmed_observations
+    # The previous held result remains visible in history.
+    assert session.state.history[1]["trace"]["execution_status"] == "held"
+
+
+def test_unrecognized_known_answer_is_reasked_until_explicitly_corrected(request_data):
+    session = AgentSession(request_data, extractor=extractor(), card_ids=["B-C01"])
+    observations = ready_observations()
+    key = "method.water_temperature"
+    observations[key] = obs(key, "warm")
+    result = run(session.step("", observations=observations))
+    assert result.trace.execution_status == "awaiting_user"
+    assert result.trace.applied_action["target_id"] == key
+    assert result.questions[0].id == "kb:" + key and result.draft is None
+    assert session.state.confirmed_observations[key].value == "warm"
+    result = run(session.step("정형 수정", observations={key: obs(key, "lukewarm")}, resolve_conflicts=(key,)))
+    assert result.trace.execution_status == "draft_generated"
+
+
+def test_quality_deferral_without_referral_still_requires_hold(request_data):
+    session = AgentSession(request_data, extractor=extractor(), card_ids=["B-G11"])
+    observations = {"method.body_site": obs("method.body_site", "face"),
+                    "storage.expiry": obs("storage.expiry", "confirmed_expired")}
+    result = run(session.step("", observations=observations))
+    assert "defer_specific_recommendation" in result.trace.hold_signals
+    assert result.trace.applied_action["action"] == "hold"
+    assert result.trace.applied_action["target_id"] == "safety"
+    assert result.trace.execution_status == "held" and result.draft is None
+
+
+def test_concurrent_session_turns_preserve_both_updates_and_history(request_data):
+    session = AgentSession(request_data, extractor=extractor(), card_ids=["B-C01"])
+
+    async def concurrent():
+        return await asyncio.gather(
+            session.step("first", observations={"method.body_site": obs("method.body_site", "face")}),
+            session.step("second", observations={"method.water_temperature": obs("method.water_temperature", "lukewarm")}))
+
+    first, second = run(concurrent())
+    assert first.trace.execution_status == "awaiting_user"
+    assert second.trace.execution_status == "draft_generated"
+    assert session.state.confirmed_observations == ready_observations()
+    assert session.state.turn_index == 2
+    assert [item["message"] for item in session.state.history] == ["first", "second"]
+
+
+def test_failed_concurrent_turn_releases_session_for_next_turn(request_data):
+    def fail_first(message):
+        if message == "invalid":
+            raise ValueError("synthetic extraction failure")
+        return features(message)
+
+    session = AgentSession(request_data, extractor=JevExtractorAdapter(extractor=fail_first), card_ids=["B-C01"])
+
+    async def concurrent():
+        return await asyncio.gather(
+            session.step("invalid", observations={"synthetic.failed_update": obs("synthetic.failed_update", True)}),
+            session.step("valid", observations=ready_observations()), return_exceptions=True)
+
+    failed, succeeded = run(concurrent())
+    assert isinstance(failed, ValueError)
+    assert succeeded.trace.execution_status == "draft_generated"
+    assert "synthetic.failed_update" not in session.state.confirmed_observations
+    assert session.state.turn_index == 1
+    assert [item["message"] for item in session.state.history] == ["valid"]
+
+
+def test_cancelled_turn_rolls_back_and_releases_session_lock(request_data):
+    async def scenario():
+        entered, release = asyncio.Event(), asyncio.Event()
+
+        class WaitingPlanner:
+            async def plan_action(self, context):
+                entered.set()
+                await release.wait()
+
+        session = AgentSession(request_data, extractor=extractor(), planner=WaitingPlanner(), card_ids=["B-C01"])
+        task = asyncio.create_task(session.step("cancelled", observations=ready_observations()))
+        await asyncio.wait_for(entered.wait(), timeout=5)
+        task.cancel()
+        with pytest.raises(asyncio.CancelledError):
+            await task
+        assert session.state.turn_index == 0 and not session.state.confirmed_observations
+        session.planner = None
+        result = await asyncio.wait_for(session.step("next", observations=ready_observations()), timeout=5)
+        assert result.trace.execution_status == "draft_generated"
+        assert [item["message"] for item in session.state.history] == ["next"]
+
+    run(scenario())
