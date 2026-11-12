@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-public-loop-frequency-http-20261020",
+  "scope": "public_service_loop_frequency_http_not_TEST_or_research",
+  "automatic_correction": false,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "correction_confirms_new_actual_use": false,
+  "purpose": "poppy_public_loop_frequency_http",
+  "routes": {
+    "read": {
+      "method": "GET",
+      "path": "/api/v1/app/loop/frequency"
+    },
+    "confirm": {
+      "method": "POST",
+      "path": "/api/v1/app/loop/frequency"
+    }
+  },
+  "max_request_bytes": 8192,
+  "max_response_bytes": 65536,
+  "metadata_table": "care_sensitive.app_public_loop_frequency_correction",
+  "correction_function": "service.apply_app_public_loop_frequency_correction"
+}

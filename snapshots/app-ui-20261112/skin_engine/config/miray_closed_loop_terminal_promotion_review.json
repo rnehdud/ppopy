@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0-terminal-promotion-local-review",
+  "enabled": false,
+  "registered": false,
+  "deployment_context": "synthetic_test",
+  "purpose": "miray_terminal_next_explicit_promotion",
+  "snapshot_source": "terminal_fresh",
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "real_user_question_exposure_enabled": false,
+  "registration_confirms_actual_use": false,
+  "max_metadata_rows": 160,
+  "max_response_bytes": 65536,
+  "evaluation_scope": "synthetic_local_review_only",
+  "max_request_bytes": 1024,
+  "statuses": [
+    "input_ready",
+    "ready",
+    "blocked",
+    "pending",
+    "completed",
+    "deferred",
+    "terminal_without_result"
+  ],
+  "blocked_reasons": [
+    "quota_unavailable"
+  ],
+  "routes": {
+    "read": {
+      "method": "POST",
+      "path": "/api/review/loop-terminal-promotion/read"
+    },
+    "promote": {
+      "method": "POST",
+      "path": "/api/review/loop-terminal-promotion/promote"
+    },
+    "resume": {
+      "method": "POST",
+      "path": "/api/review/loop-terminal-promotion/resume"
+    }
+  }
+}

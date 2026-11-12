@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-test-client-serialization-20261010",
+  "scope": "existing_test_client_request_scheduling_only",
+  "origin": "https://checkpoint.invalid",
+  "max_in_flight": 1,
+  "max_pending": 16,
+  "max_queue_wait_milliseconds": 30000,
+  "automatic_retry": false,
+  "coalesce_requests": false,
+  "response_cache": false,
+  "limits": [
+    "Explicit core TEST auth composition and branded native loop only; no server permission or route activation.",
+    "Queue wait is bounded by the existing auth client budget. Native completion holds the slot even after JS retirement.",
+    "Local serialization prevents this app's overlapping dispatches, not requests from other clients or every AWS throttle."
+  ]
+}

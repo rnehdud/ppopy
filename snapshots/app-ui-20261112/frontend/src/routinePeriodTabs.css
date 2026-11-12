@@ -1,0 +1,13 @@
+.routine-period-tabs{display:flex;gap:8px;margin:0 0 16px}
+.routine-period-tabs>button{flex:1;min-height:48px;border:1px solid #dce2e8;border-radius:12px;background:#fff;color:#53677e;font-weight:650;font:inherit}
+.routine-period-tabs>button[aria-selected=true]{background:#0759ce;border-color:#0759ce;color:#fff}
+.routine-period-view [role=tabpanel]{min-width:0}
+.routine-snapshot-list{list-style:none;padding:0;margin:0;border:1px solid #e1e7ef;border-radius:16px;overflow:hidden}
+.routine-snapshot-list>li{display:flex;gap:12px;align-items:baseline;padding:16px;margin:0}
+.routine-snapshot-list>li+li{border-top:1px solid #e1e7ef}
+.routine-snapshot-number{flex:0 0 1.5em;color:#64778a;font-variant-numeric:tabular-nums}
+.routine-snapshot-list h3{margin:0;font-size:inherit;line-height:1.55;font-weight:600;overflow-wrap:anywhere}
+.routine-snapshot-list small{display:block;color:#64778a;font-size:.85em;margin-top:4px}
+
+.poppy-visual-theme .member-kb .routine-period-tabs>button[aria-selected=true],
+.poppy-visual-theme .miray-main .miray-routine .routine-period-tabs>button[aria-selected=true]{background:#0759ce;border-color:#0759ce;color:#fff}

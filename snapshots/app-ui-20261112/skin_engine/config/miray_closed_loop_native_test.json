@@ -1,0 +1,95 @@
+{
+  "version": "1.0.0-native-test-loop-review-20261009",
+  "scope": "aws_test_candidate_not_applied",
+  "runtime_enabled": false,
+  "installed_factory": false,
+  "apply_approval": false,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "origin": "https://checkpoint.invalid",
+  "contract_versions": {
+    "miray_closed_loop_state_http_test": "1.0.0-test-state-http-review-20261008",
+    "miray_closed_loop_worker_http_test": "1.0.0-test-worker-http-review-20261008",
+    "miray_closed_loop_frequency_test": "1.0.0-test-frequency-http-review-20261008"
+  },
+  "routes": [
+    {
+      "contract": "miray_closed_loop_state_http_test",
+      "action": "read",
+      "method": "GET",
+      "path": "/api/v1/app/loop/test-state",
+      "max_request_bytes": 65536,
+      "max_response_bytes": 262144
+    },
+    {
+      "contract": "miray_closed_loop_state_http_test",
+      "action": "registration",
+      "method": "POST",
+      "path": "/api/v1/app/loop/test-state/registration",
+      "max_request_bytes": 65536,
+      "max_response_bytes": 262144
+    },
+    {
+      "contract": "miray_closed_loop_state_http_test",
+      "action": "actual",
+      "method": "POST",
+      "path": "/api/v1/app/loop/test-state/actual",
+      "max_request_bytes": 65536,
+      "max_response_bytes": 262144
+    },
+    {
+      "contract": "miray_closed_loop_state_http_test",
+      "action": "followup",
+      "method": "POST",
+      "path": "/api/v1/app/loop/test-state/followup",
+      "max_request_bytes": 65536,
+      "max_response_bytes": 262144
+    },
+    {
+      "contract": "miray_closed_loop_worker_http_test",
+      "action": "read",
+      "method": "GET",
+      "path": "/api/v1/app/loop/test-worker",
+      "max_request_bytes": 65536,
+      "max_response_bytes": 262144
+    },
+    {
+      "contract": "miray_closed_loop_worker_http_test",
+      "action": "submit",
+      "method": "POST",
+      "path": "/api/v1/app/loop/test-worker",
+      "max_request_bytes": 65536,
+      "max_response_bytes": 262144
+    },
+    {
+      "contract": "miray_closed_loop_frequency_test",
+      "action": "read",
+      "method": "GET",
+      "path": "/api/v1/app/loop/test-frequency",
+      "max_request_bytes": 8192,
+      "max_response_bytes": 65536
+    },
+    {
+      "contract": "miray_closed_loop_frequency_test",
+      "action": "confirm",
+      "method": "POST",
+      "path": "/api/v1/app/loop/test-frequency",
+      "max_request_bytes": 8192,
+      "max_response_bytes": 65536
+    }
+  ],
+  "bearer_pattern": "^Bearer [A-Za-z0-9_-]{32,200}$",
+  "connect_timeout_milliseconds": 12000,
+  "read_timeout_milliseconds": 20000,
+  "max_response_headers": 64,
+  "max_response_header_bytes": 16384,
+  "server_review": {
+    "ledger": "docs/launch_evidence/ledger/P3-A05-loop-deployment-local-20261008.json",
+    "lambda_sha256": "830b78a8916b353b6acb1027e34e91c75c619284079386747c8cb18b785a6441",
+    "template_sha256": "3f3a44f91f6ed3f358757ffd3a2ee5935c1a6c4fc28a1a7d2f4c0736cdc3d412"
+  },
+  "limits": [
+    "Explicit held composition only; current main/AppAuth default unchanged. No route/deploy/native install approval.",
+    "CapacitorHttp mocked ABI/JS bounded response checks do not prove OS cookie/cache isolation, raw allocation, wire cancellation or actual TLS/member/iPhone E2E."
+  ]
+}

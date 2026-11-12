@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0-admission-local-review",
+  "enabled": false,
+  "deployment_context": "synthetic_test",
+  "purpose": "miray_original_loop_entry_admission",
+  "category": "questionnaire",
+  "encryption_key_ref": "synthetic:local-review-admission-aead-v1",
+  "max_plaintext_bytes": 2097152,
+  "max_ciphertext_bytes": 2097216,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "persistent_queue_enabled": false
+}

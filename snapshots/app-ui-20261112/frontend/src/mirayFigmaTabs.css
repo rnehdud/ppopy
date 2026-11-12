@@ -1,0 +1,52 @@
+/* User-edited Figma frames 32:39–42 and 32:48–49, 2026-11-12.
+   Keep deleted copy out of the layout; use flow sizing so long product names grow. */
+.poppy-visual-theme .miray-workspace .miray-header{display:flex;justify-content:flex-end;padding-top:8px;padding-bottom:0}
+.poppy-visual-theme .miray-main .miray-cosmetics>h1{margin:0 0 16px;font-size:24px;line-height:36px;color:#172331}
+.poppy-visual-theme .miray-main .miray-cosmetics>p{margin:0;font-size:14px;line-height:26px;color:#53677e;letter-spacing:-.1px}
+.poppy-visual-theme .miray-main .miray-cosmetics .ppopy-product-count{margin-top:24px;padding:0 0 14px;min-height:39px;border-color:#e1e7ef;font-size:15px;line-height:24px}
+.poppy-visual-theme .miray-main .miray-cosmetics .ppopy-product-count strong{font-size:16px}
+.poppy-visual-theme .miray-main .miray-cosmetics .miray-cosmetics-product{margin:24px 0 0;padding:0;border:0;border-radius:0}
+.poppy-visual-theme .miray-main .miray-cosmetics-product:after{content:"";display:block;height:1px;margin-top:16px;background:#e1e7ef}
+.poppy-visual-theme .miray-main .miray-cosmetics-details{margin:0;border:0}
+.poppy-visual-theme .miray-main .miray-cosmetics-details>summary{display:flex;align-items:flex-start;box-sizing:border-box;min-height:48px;padding:0 0 16px;border-bottom:1px solid #e1e7ef;list-style:none}
+.poppy-visual-theme .miray-main .miray-cosmetics-details>summary::-webkit-details-marker{display:none}
+.poppy-visual-theme .miray-main .miray-cosmetics-details>summary h2{margin:0;font-size:15px;line-height:24px;font-weight:700;color:#172331}
+.poppy-visual-theme .miray-main .miray-cosmetics-details>p:first-of-type{margin:16px 0 0;font-size:14px;line-height:24px;color:#53677e}
+.poppy-visual-theme .miray-main .miray-cosmetics-details .product-frequency-editor>button{margin-top:12px;min-height:50px}
+.poppy-visual-theme .miray-main .miray-cosmetics-product>.miray-cosmetics-remove{margin-top:16px;min-width:60px;min-height:48px;padding:10px 14px;font-size:14px;line-height:24px;border-color:#dce2e8;color:#172331}
+.poppy-visual-theme .miray-main .miray-cosmetics-remove-confirm{margin-top:16px;padding-top:16px;border-color:#e1e7ef}
+.poppy-visual-theme .miray-main .miray-cosmetics-remove-confirm>p{font-size:14px;line-height:24px;color:#172331}
+.poppy-visual-theme .miray-main .miray-cosmetics-remove-confirm>button{min-height:50px;font-size:14px}
+.poppy-visual-theme .miray-main .miray-cosmetics-empty>p:last-of-type{margin-top:24px}
+.poppy-visual-theme .miray-main .miray-cosmetics-empty>.miray-primary{margin:20px 0 0;min-height:52px;font-size:15px;line-height:22px;background:#0759ce;color:#fff}
+.poppy-visual-theme .miray-workspace[data-figma-tab=routine]>.miray-main{padding-top:12px}
+.poppy-visual-theme .miray-main .miray-routine>h1{margin:0 0 24px;font-size:28px;line-height:42px;color:#172331}
+.poppy-visual-theme .miray-main .miray-routine .miray-routine-product{margin:0 0 14px;padding:16px 19px 18px;min-height:122px;border-radius:18px;border-color:#dce2e8}
+.poppy-visual-theme .miray-main .miray-routine-product-name{font-size:16px;line-height:28px;font-weight:700;color:#172331}
+.poppy-visual-theme .miray-main .miray-routine .miray-routine-product select{margin-top:10px;padding:10px 15px;height:48px;min-height:48px;font-size:14px;line-height:24px}
+.poppy-visual-theme .miray-main .miray-routine .miray-routine-order{margin:0 0 14px;padding:13px 19px;border-radius:18px;border-color:#dce2e8}
+.poppy-visual-theme .miray-main .miray-routine-order h2{font-size:20px;line-height:32px;color:#172331}
+.poppy-visual-theme .miray-main .miray-routine-empty>h1{margin-bottom:10px}
+.poppy-visual-theme .miray-main .miray-routine-empty>p{margin:0;font-size:14px;line-height:26px;color:#53677e}
+.poppy-visual-theme .miray-main .miray-routine-empty>.miray-primary{margin-top:24px;min-height:52px;font-size:15px;line-height:22px;background:#0759ce;color:#fff}
+.poppy-visual-theme .miray-main .miray-routine-period-tabs{display:flex;gap:8px;margin:0 0 16px}
+.poppy-visual-theme .miray-main .miray-routine-period-tabs button{flex:1;min-height:48px;border:1px solid #dce2e8;border-radius:12px;background:#fff;color:#53677e;font-weight:650}
+.poppy-visual-theme .miray-main .miray-routine-period-tabs button[aria-selected=true]{background:#0759ce;border-color:#0759ce;color:#fff}
+.poppy-visual-theme .miray-main .miray-routine-sunscreen-note{margin:0 0 12px;color:#53677e;font-size:14px;line-height:1.5}
+.poppy-visual-theme .miray-main .miray-routine-times{margin:20px 0}
+.poppy-visual-theme .miray-main .miray-routine-times>summary{min-height:48px;display:flex;align-items:center;cursor:pointer;color:#0759ce;font-weight:650}
+/* Owned inventory and selected current routine are separate views. */
+.poppy-visual-theme .miray-main .ppopy-owned-list{list-style:none;margin:0;padding:0}
+.poppy-visual-theme .miray-main .ppopy-owned-list>li{padding:18px 0;border-bottom:1px solid #e1e7ef}
+.poppy-visual-theme .miray-main .ppopy-owned-list h2{margin:0;font-size:16px;line-height:1.55;overflow-wrap:anywhere;font-weight:600}
+.ppopy-owned-manager{margin-top:20px;border-top:1px solid #e1e7ef;padding-top:20px}
+.ppopy-owned-manager>label{display:block;line-height:1.6}
+.ppopy-owned-manager select{display:block;max-width:100%;width:100%;min-height:48px;margin-top:8px}
+.ppopy-routine-picker{margin:16px 0;padding:16px;border:1px solid #e1e7ef;border-radius:16px}
+.ppopy-routine-picker>label{display:flex;gap:12px;align-items:center;padding:12px 0;line-height:1.5}
+.ppopy-routine-picker input{flex:0 0 auto;min-width:24px;min-height:24px}
+.ppopy-routine-picker>button{margin-top:12px;min-height:48px}
+
+.poppy-visual-theme .miray-main .miray-cosmetics{display:block}
+.poppy-visual-theme .miray-main .miray-cosmetics .ppopy-product-count{margin-top:8px;padding-bottom:8px;min-height:0;border:0}
+.poppy-visual-theme .miray-main .miray-cosmetics>.miray-primary{display:block;width:100%;margin-top:20px}

@@ -1,0 +1,50 @@
+.poppy-companion {
+  display: inline-block;
+  max-width: 100%;
+  aspect-ratio: 1;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.poppy-companion > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: 50% 85%;
+  animation: poppy-breathe 4s ease-in-out infinite;
+}
+
+.poppy-companion[data-state="greeting"] > img {
+  animation: poppy-greet 1.2s ease-in-out 1;
+}
+
+.poppy-companion[data-state="thinking"] > img {
+  animation: poppy-ponder 3.2s ease-in-out infinite;
+}
+
+.poppy-companion[data-paused] > img {
+  animation: none;
+}
+
+@keyframes poppy-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: translateY(-1.5%) scale(1.012, 1.02); }
+}
+
+@keyframes poppy-greet {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-7deg) translateY(-2%); }
+  45% { transform: rotate(6deg) translateY(-2%); }
+  70% { transform: rotate(-3deg); }
+}
+
+@keyframes poppy-ponder {
+  0%, 100% { transform: rotate(0); }
+  45%, 65% { transform: rotate(4deg) translateY(-1%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poppy-companion > img { animation: none !important; }
+}

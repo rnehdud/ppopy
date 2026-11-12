@@ -1,0 +1,29 @@
+.poppy-visual-theme .member-kb {max-width:42rem;margin:auto;padding-bottom:2rem}
+.member-kb header,.member-kb label {display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+.member-kb header h1 {margin:0;font-size:1.45rem}
+.member-kb fieldset {border:0;padding:0;min-width:0;margin:1.25rem 0;display:grid;gap:.875rem}
+.member-kb h2,.member-kb h3,.member-kb p {margin:.35rem 0}
+.member-kb .kb-row-summary {font-size:.9375rem;line-height:1.65;color:#4f5e6d}
+.poppy-visual-theme .member-kb .miray-card {padding:1rem;margin:0;border-radius:1rem}
+.poppy-visual-theme .member-kb label {display:grid;grid-template-columns:minmax(6.5rem,1fr) minmax(7.5rem,1.35fr);padding:.4rem 0}
+.poppy-visual-theme .member-kb .kb-water {display:flex;justify-content:flex-start;gap:.6rem}
+.poppy-visual-theme .member-kb .kb-water input {appearance:auto;width:1.25rem;height:1.25rem;min-height:0;margin:0;accent-color:#0759c9}
+.member-kb select,.member-kb button {font:inherit;min-height:44px;max-width:100%}
+.poppy-visual-theme .member-kb select {width:100%;border:1px solid #dbe2e8;border-radius:.6rem;background-color:white;padding:.35rem;color:inherit}
+.member-kb section button {margin:.25rem .35rem .25rem 0}
+.member-kb summary {cursor:pointer;padding:.5rem 0;color:#234d80}
+.member-kb li {line-height:1.6;margin-bottom:.55rem}
+.member-kb .kb-conversation-question {padding:1.25rem;border:1px solid #e1e7ef;border-radius:1.25rem;background:#f7f9fc;min-width:0}
+.member-kb .kb-conversation-question h2 {font-size:1.25rem;line-height:1.55;margin:0 0 1rem;overflow-wrap:anywhere}
+.member-kb .kb-conversation-question h2:focus {outline:none}
+.member-kb .kb-conversation-options,.member-kb .kb-answer-history {display:grid;gap:.625rem}
+.member-kb .kb-conversation-options button,.member-kb .kb-answer-history button {margin:0;width:100%;min-height:48px;padding:.875rem 1rem;text-align:left;white-space:normal;overflow-wrap:anywhere;border:1px solid #d6dfea;border-radius:.875rem;background:#fff;color:#182b42;line-height:1.5}
+.member-kb .kb-conversation-options button:hover {border-color:#0759c9;background:#f0f6ff}
+.member-kb .kb-conversation-options button:focus-visible {outline:3px solid #0759c9;outline-offset:3px}
+.member-kb .kb-conversation-options button:disabled {opacity:.55;cursor:wait}
+.member-kb .kb-conversation-optional {display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;margin-top:.75rem}
+.member-kb .kb-conversation-optional button {min-height:44px;margin:0;padding:.5rem 0;border:0;background:none;color:#526479;text-align:left;line-height:1.5;white-space:normal}
+.member-kb .kb-conversation-safety {padding:1rem;border-left:3px solid #be3b32;background:#fff6f5;border-radius:.5rem;line-height:1.65}
+.member-kb .kb-text-action {background:none;border:0;color:#1456a0;padding:.5rem 0;text-align:left;white-space:normal}
+.member-kb .kb-context-summary {font-size:.9375rem;line-height:1.6}
+@media(prefers-reduced-motion:no-preference){.member-kb .kb-conversation-question {animation:kb-question-in .16s ease-out}@keyframes kb-question-in {from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}}

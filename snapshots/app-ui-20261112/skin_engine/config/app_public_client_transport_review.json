@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-public-client-transport-review-20261021",
+  "scope": "public_client_wire_contract_not_native_registration_or_server_admission",
+  "request_deadline_milliseconds": 35000,
+  "maximum_queued_requests": 4,
+  "maximum_response_headers": 64,
+  "maximum_response_header_bytes": 8192,
+  "default_maximum_request_bytes": 16384,
+  "default_maximum_response_bytes": 65536,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "browser_fallback": false,
+  "known_TEST_api_ids": [
+    "j9xwsogwph"
+  ],
+  "live_binding": null,
+  "state_read_accept": [
+    "application/vnd.poppy.loop-entry+json",
+    "application/vnd.poppy.loop-entry+json; products=1",
+    "application/vnd.poppy.loop-products+json",
+    "application/vnd.poppy.loop-entry+json; products=2",
+    "application/vnd.poppy.loop-products-v2+json"
+  ],
+  "state_write_accept": [
+    "application/vnd.poppy.loop-products+json",
+    "application/vnd.poppy.loop-products-v2+json"
+  ]
+}

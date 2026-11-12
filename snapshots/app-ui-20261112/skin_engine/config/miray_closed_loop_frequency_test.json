@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0-test-frequency-http-review-20261008",
+  "scope": "aws_test_candidate_not_applied",
+  "runtime_enabled": false,
+  "runtime_registered": false,
+  "automatic_correction": false,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "correction_confirms_new_actual_use": false,
+  "required_environment": {"APP_LOOP_FREQUENCY_TEST_ENABLED": "true"},
+  "contract_environment_variable": "APP_LOOP_FREQUENCY_TEST_CONTRACT_SHA256",
+  "purpose": "miray_original_loop_frequency_correction",
+  "routes": {
+    "read": {"method": "GET", "path": "/api/v1/app/loop/test-frequency"},
+    "confirm": {"method": "POST", "path": "/api/v1/app/loop/test-frequency"}
+  },
+  "max_request_bytes": 8192,
+  "max_response_bytes": 65536,
+  "approval_requirements": [
+    "Explicit existing actual frequency only; no new action or inferred improvement",
+    "Separate exact 0060 schema, bounded function and reclosure approval before application",
+    "Original KMS, authority, runtime and route approvals remain separate and held"
+  ]
+}

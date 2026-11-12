@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0-preview",
+  "enabled": false,
+  "tabs": [
+    {
+      "id": "cosmetics",
+      "label": "화장품"
+    },
+    {
+      "id": "routine",
+      "label": "루틴"
+    },
+    {
+      "id": "home",
+      "label": "홈"
+    },
+    {
+      "id": "explore",
+      "label": "탐색"
+    },
+    {
+      "id": "my",
+      "label": "마이"
+    }
+  ],
+  "home_task_limit": 3,
+  "task_priority": [
+    "safety",
+    "skin_change",
+    "checkin",
+    "adjustment",
+    "depletion",
+    "saved",
+    "information"
+  ],
+  "checkin_enabled": false,
+  "fit_check_enabled": false,
+  "purchase_destinations_enabled": false,
+  "replenishment_enabled": false,
+  "push_enabled": false,
+  "portfolio_http": {
+    "runtime_enabled": false,
+    "path": "/api/v1/app/portfolio",
+    "authorization_scheme": "Bearer",
+    "max_request_bytes": 65536
+  },
+  "saved_candidates_http": {
+    "runtime_enabled": false,
+    "path": "/api/v1/app/saved-candidates",
+    "authorization_scheme": "Bearer",
+    "max_request_bytes": 65536
+  },
+  "subscription_status_http": {
+    "runtime_enabled": false,
+    "path": "/api/v1/app/subscription-status",
+    "method": "GET",
+    "authorization_scheme": "Bearer"
+  },
+  "quota_status_http": {
+    "runtime_enabled": false,
+    "path": "/api/v1/app/quota-status",
+    "method": "GET",
+    "authorization_scheme": "Bearer"
+  }
+}

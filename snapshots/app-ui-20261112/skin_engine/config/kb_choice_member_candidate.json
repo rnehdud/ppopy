@@ -1,0 +1,19 @@
+{
+  "version": "poppy-kb-member-v1",
+  "production_enabled": false,
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/api/v1/app/kb/read",
+      "operation": "member_read"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/kb/intake",
+      "operation": "member_intake"
+    }
+  ],
+  "max_request_bytes": 2048,
+  "max_response_bytes": 262144,
+  "max_intake_request_bytes": 65536
+}

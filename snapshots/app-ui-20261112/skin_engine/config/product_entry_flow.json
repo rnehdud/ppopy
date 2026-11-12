@@ -1,0 +1,131 @@
+{
+  "version": "1.0.0-owner-review",
+  "phases": [
+    "products",
+    "routine_experience",
+    "personalization",
+    "decision"
+  ],
+  "frequency_days": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "missing_values": [
+    "unknown",
+    "refused",
+    "not_asked",
+    "user_does_not_remember",
+    "user_refused",
+    "conflicting",
+    "needs_confirmation"
+  ],
+  "discomfort_answers": [
+    "yes",
+    "no",
+    "unknown",
+    "refused",
+    "skipped",
+    "not_asked",
+    "user_does_not_remember",
+    "user_refused",
+    "conflicting",
+    "needs_confirmation"
+  ],
+  "q04_mandatory": false,
+  "maximum_products": 30,
+  "maximum_resolution_requests_per_session": 10,
+  "external_photo_transfer_enabled": false,
+  "camera_provider": null,
+  "camera_model": null,
+  "camera_retention_acceptance": null,
+  "question_ids": [
+    "frequency",
+    "discomfort",
+    "timing",
+    "ongoing"
+  ],
+  "events": [
+    "session_started",
+    "product_capture_started",
+    "product_capture_success",
+    "product_candidate_shown",
+    "product_confirmed",
+    "product_db_miss",
+    "ingredient_resolution_started",
+    "ingredient_resolution_pass",
+    "ingredient_resolution_review",
+    "ingredient_resolution_fail",
+    "frequency_entered",
+    "routine_completed",
+    "discomfort_answered",
+    "adaptive_question_shown",
+    "adaptive_question_skipped",
+    "adaptive_question_unknown",
+    "adaptive_question_refused",
+    "questionnaire_completed",
+    "decision_generated",
+    "needs_confirmation_returned",
+    "payment_started",
+    "payment_completed",
+    "result_viewed",
+    "refund_requested",
+    "withdrawal_requested",
+    "session_deleted"
+  ],
+  "context_contract": {
+    "version": "1.0.0",
+    "states": [
+      "known",
+      "unknown",
+      "not_asked",
+      "user_does_not_remember",
+      "user_refused",
+      "conflicting",
+      "needs_confirmation"
+    ],
+    "followup_order": [
+      "timing",
+      "ongoing",
+      "duration",
+      "other_recent_changes",
+      "application_site",
+      "amount"
+    ],
+    "followup_values": {
+      "duration": [
+        "brief",
+        "persistent"
+      ],
+      "other_recent_changes": [
+        "none",
+        "new_product",
+        "frequency_changed",
+        "both"
+      ],
+      "application_site": [
+        "whole_face",
+        "localized",
+        "other"
+      ],
+      "amount": [
+        "less_than_usual",
+        "usual",
+        "more_than_usual"
+      ]
+    },
+    "terminal_states": [
+      "user_does_not_remember",
+      "user_refused",
+      "refused",
+      "conflicting",
+      "needs_confirmation"
+    ],
+    "new_x0_action_policy_enabled": false
+  }
+}

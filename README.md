@@ -83,3 +83,7 @@ python3 tools/verify_source_manifest.py
 ```
 
 The snapshot's KB structure checks pass, but its original 57-case acceptance audit retains five documented mismatches. It is a development preview, not a trained AI agent or a production release. See the verification page before reporting test results.
+
+## 앱 UI 체크포인트 — 2026-11-12
+
+[공개 가능한 앱 UI 스냅샷과 실행 방법](snapshots/app-ui-20261112/README.md)을 추가했습니다. 합성 입력으로 기존 컴포넌트를 검토하며, 운영 서버·계정·비밀정보는 포함하지 않습니다. 기존 수업별 구현과 KB 스냅샷은 보존합니다.

@@ -1,0 +1,36 @@
+{
+  "_comment": "P2-A13 소비자 API 계약과 P3-A00 보호 gateway 연결. 실제 사용자 요청은 승인된 버전 동의·연령·운영 활성화를 검증한 gateway를 통해서만 허용한다.",
+  "version": "0.2.0-protected-beta-gateway",
+  "request_schema_version": "0.1.0",
+  "care_response_schema_version": "0.2.0",
+  "real_user_direct_enabled": false,
+  "real_user_via_consent_gateway_enabled": true,
+  "allowed_deployment_contexts": ["synthetic_test", "real_user"],
+  "allowed_product_context_statuses": ["registered", "partial", "unregistered"],
+  "allowed_top_level_fields": [
+    "schema_version",
+    "deployment_context",
+    "product_context_status",
+    "confirmed_current_product_ids",
+    "care_priorities",
+    "aggravating_answers",
+    "survey"
+  ],
+  "allowed_survey_fields": [
+    "irritation_history",
+    "current_actives",
+    "retinoid_in_use",
+    "dermatology_treatment_status",
+    "tightness_dryness_score"
+  ],
+  "allowed_current_actives": ["retinoid", "acid"],
+  "http": {
+    "bind_host": "127.0.0.1",
+    "default_port": 8765,
+    "max_request_bytes": 32768,
+    "search_limit": 5,
+    "health_path": "/api/v1/health",
+    "product_search_path": "/api/v1/products",
+    "care_analysis_path": "/api/v1/care-analysis"
+  }
+}

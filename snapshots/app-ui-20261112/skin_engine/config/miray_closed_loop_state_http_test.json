@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-test-state-http-review-20261008",
+  "scope": "aws_test_candidate_not_applied",
+  "runtime_enabled": false,
+  "runtime_registered": false,
+  "required_environment": {"APP_LOOP_STATE_HTTP_TEST_ENABLED": "true"},
+  "contract_environment_variable": "APP_LOOP_STATE_HTTP_TEST_CONTRACT_SHA256",
+  "purpose": "miray_original_loop_state_http",
+  "routes": {
+    "read": {"method": "GET", "path": "/api/v1/app/loop/test-state"},
+    "registration": {"method": "POST", "path": "/api/v1/app/loop/test-state/registration"},
+    "actual": {"method": "POST", "path": "/api/v1/app/loop/test-state/actual"},
+    "followup": {"method": "POST", "path": "/api/v1/app/loop/test-state/followup"}
+  },
+  "max_request_bytes": 65536,
+  "max_response_bytes": 262144,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "registration_confirms_actual_use": false,
+  "portfolio_edit_confirms_actual_use": false,
+  "product_confirmation_modes": ["newly_started", "current_use"],
+  "current_use_action_type": "current_use_confirmed",
+  "approval_requirements": [
+    "Original TEST worker/storage authority and explicit user input only",
+    "Exact original runtime/route/crypto composition and approval before registration",
+    "Terminal fresh input, product/bottle changes, normal AppAuth/native and actual member/iPhone E2E remain incomplete"
+  ]
+}
