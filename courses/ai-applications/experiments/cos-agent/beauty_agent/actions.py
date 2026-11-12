@@ -8,6 +8,7 @@ from .contracts import Contract, ObservationSlot, Question
 ActionKind = Literal["ask_user", "confirm_candidate", "retrieve_evidence",
                      "resolve_conflict", "hold", "request_draft"]
 ToolName = Literal["request_user_input", "await_product_evidence", "hold_guidance", "generate_label_draft"]
+INFORMATION_HOLD_SIGNALS = frozenset({"unresolved_kb_comparison", "insufficient_information"})
 
 
 class ActionArguments(Contract):
@@ -81,8 +82,10 @@ def build_action_context(request, features, reviewed, evaluated, pending, observ
 
     observations = {key: ObservationSlot.model_validate(slot) for key, slot in observations.items()}
     conflicts = {key for key, slot in observations.items() if slot.confirmed_by_user and slot.state == "conflicting"}
+    unrecognized = {key for row in evaluated["raw"]["results"] for key in row.get("unrecognized_fields", [])}
     answered = {key for key, slot in observations.items() if slot.confirmed_by_user and slot.state in
-                ("known", "unknown", "declined", "not_applicable")}
+                ("known", "unknown", "declined", "not_applicable")
+                and not (slot.state == "known" and key in unrecognized)}
     ask = {key: text for key, text in evaluated["ask_slots"].items()
            if key not in answered | conflicts and not key.startswith("product.")}
     blockers = missing_information(request)
@@ -101,8 +104,9 @@ def build_action_context(request, features, reviewed, evaluated, pending, observ
     for q in blockers:
         evidence["blocker:" + q.id] = {"kind": "structural_blocker", "target_id": q.id}
 
-    # A generic unresolved signal does not prevent requesting conflict resolution.
-    mandatory = [signal for signal in evaluated["hold_signals"] if signal != "unresolved_kb_comparison"]
+    # Information holds block drafts but allow acquisition and conflict resolution.
+    mandatory = [signal for signal in evaluated["hold_signals"]
+                 if signal not in INFORMATION_HOLD_SIGNALS]
     offers = []
 
     def add(action, target, text, refs=(), conditions=()):
@@ -124,13 +128,13 @@ def build_action_context(request, features, reviewed, evaluated, pending, observ
         add("ask_user", q.id, q.text, ["blocker:" + q.id], ["request only; caller-reviewed profile/products required"])
     kb_refs = [key for key in evidence if key.startswith("kb:")]
     for key, text in ask.items():
-        add("ask_user", key, text, kb_refs, ["consumer-observable slot; no answered/declined slot"])
+        add("ask_user", key, text, kb_refs, ["consumer-observable slot; unanswered or KB-unrecognized known value"])
     for key in evaluated["retrieve_slots"]:
         add("retrieve_evidence", key, "제품 근거 조회가 필요하여 초안을 보류합니다. 비공개 제형 정보는 미상으로 유지합니다.",
             kb_refs, ["request only; product retrieval is not implemented"])
     unresolved = [r["card_id"] for r in evaluated["raw"]["results"]
                   if r.get("comparison_status") in ("unknown", "conflicting", "exception")]
-    blocked = list(mandatory) + list(pending) + [q.id for q in blockers] + sorted(conflicts)
+    blocked = list(evaluated["hold_signals"]) + list(pending) + [q.id for q in blockers] + sorted(conflicts)
     blocked += ["unresolved_candidate:" + key for key, value in (confirmed_candidates or {}).items()
                 if value.get("state") in ("unknown", "declined") or value.get("subject") == "unknown"]
     blocked += list(ask) + list(evaluated["retrieve_slots"]) + unresolved
