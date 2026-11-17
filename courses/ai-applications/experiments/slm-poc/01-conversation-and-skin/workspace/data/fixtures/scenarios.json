@@ -1,0 +1,36 @@
+[
+  {"id":"stinging_correction_search","turns":[
+    {"input":"오늘 볼이 따가워. 어젯밤에 로션을 발랐어.","expected":{"skin_condition":["stinging"],"usage_time":"evening","symptom_onset":"today","product_used":"yes","severity":"unknown"},"required_tool":"update_session_state"},
+    {"input":"아니, 어젯밤이 아니라 오늘 아침이었어.","expected":{"skin_condition":["stinging"],"usage_time":"morning","symptom_onset":"today"},"required_tool":"update_session_state"},
+    {"input":"지금 상태로 주의사항을 찾아줘.","expected":{"skin_condition":["stinging"],"usage_time":"morning"},"required_tool":"search_knowledge_base","search_arguments":{"skin_condition":["stinging"],"usage_time":"morning"},"document_id":"FIXTURE-STING-001"}
+  ]},
+  {"id":"dryness_preserve_onset","turns":[
+    {"input":"어제부터 피부가 건조해. 오늘 아침에 크림을 발랐어.","expected":{"skin_condition":["dryness"],"usage_time":"morning","symptom_onset":"yesterday","product_used":"yes","severity":"unknown"},"required_tool":"update_session_state"},
+    {"input":"크림은 아침이 아니라 저녁에 발랐어.","expected":{"skin_condition":["dryness"],"usage_time":"evening","symptom_onset":"yesterday"},"required_tool":"update_session_state"}
+  ]},
+  {"id":"negative_symptom","turns":[
+    {"input":"가렵지는 않고 따가워. 오늘 아침에 로션을 썼어.","expected":{"skin_condition":["stinging"],"usage_time":"morning","symptom_onset":"unknown","product_used":"yes","severity":"unknown"},"required_tool":"update_session_state"}
+  ]},
+  {"id":"explicit_no_product","turns":[
+    {"input":"오늘 볼이 건조해. 화장품은 안 썼어.","expected":{"skin_condition":["dryness"],"usage_time":"unknown","symptom_onset":"today","product_used":"no"},"required_tool":"update_session_state"}
+  ]},
+  {"id":"remove_negated_symptom","turns":[
+    {"input":"볼이 가렵고 붉어. 어젯밤에 크림을 썼어.","expected":{"skin_condition":["itching","redness"],"usage_time":"evening","product_used":"yes"},"required_tool":"update_session_state"},
+    {"input":"붉지는 않아. 가렵기만 해.","expected":{"skin_condition":["itching"],"usage_time":"evening","product_used":"yes"},"required_tool":"update_session_state"}
+  ]},
+  {"id":"greeting_no_tool","turns":[
+    {"input":"안녕!","expected":{"skin_condition":[],"usage_time":"unknown","product_used":"unknown"},"no_tools":true}
+  ]},
+  {"id":"clarify_empty_search","turns":[
+    {"input":"그걸로 찾아줘.","expected":{"skin_condition":[],"usage_time":"unknown"},"no_tools":true}
+  ]},
+  {"id":"counterfactual_morning","initial":{"skin_condition":["stinging"],"usage_time":"morning","product_used":"yes"},"turns":[
+    {"input":"지금 상태로 조회해줘.","expected":{"skin_condition":["stinging"],"usage_time":"morning"},"required_tool":"search_knowledge_base","search_arguments":{"skin_condition":["stinging"],"usage_time":"morning"},"document_id":"FIXTURE-STING-001"}
+  ]},
+  {"id":"counterfactual_evening","initial":{"skin_condition":["dryness"],"usage_time":"evening","product_used":"yes"},"turns":[
+    {"input":"지금 상태로 조회해줘.","expected":{"skin_condition":["dryness"],"usage_time":"evening"},"required_tool":"search_knowledge_base","search_arguments":{"skin_condition":["dryness"],"usage_time":"evening"},"document_id":"FIXTURE-DRY-002"}
+  ]},
+  {"id":"kb_failure","initial":{"skin_condition":["stinging"],"usage_time":"morning"},"fail_search":true,"turns":[
+    {"input":"지금 상태로 주의사항을 찾아줘.","expected":{"skin_condition":["stinging"],"usage_time":"morning"},"required_tool":"search_knowledge_base","search_arguments":{"skin_condition":["stinging"],"usage_time":"morning"},"expect_search_failure":true}
+  ]}
+]

@@ -1,0 +1,7 @@
+[
+  {"id":"minimal_state_correction_search","turns":[
+    {"input":"피부가 건조해. 크림은 아침에 발랐어.","expected":{"skin_condition":["dryness"],"usage_time":"morning","product_used":"yes","symptom_onset":"unknown","severity":"unknown"},"required_tool":"update_session_state"},
+    {"input":"크림을 바른 시간은 아침이 아니라 저녁이야.","expected":{"skin_condition":["dryness"],"usage_time":"evening","product_used":"yes","symptom_onset":"unknown","severity":"unknown"},"required_tool":"update_session_state"},
+    {"input":"현재 상태로 검색하고, 검색된 문서의 제목과 ID를 알려줘.","expected":{"skin_condition":["dryness"],"usage_time":"evening","product_used":"yes","symptom_onset":"unknown","severity":"unknown"},"required_tool":"search_knowledge_base","search_arguments":{"skin_condition":["dryness"],"usage_time":"evening"},"document_id":"FIXTURE-DRY-002"}
+  ]}
+]

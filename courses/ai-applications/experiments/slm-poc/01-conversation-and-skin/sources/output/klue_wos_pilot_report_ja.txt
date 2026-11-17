@@ -1,0 +1,38 @@
+﻿KLUE-DST / Wizard of Seoul Qwen3 小規模学習結果
+
+目的: 既存の韓国語会話に付いた状態ラベルを使い、Qwen3に次の状態JSONを学習させる。
+対象は宿泊・飲食店・観光などで、スキンケア用ラベルでもツール呼び出しデータでもない。
+
+データ
+原本: klue/klue, WoS subset, CC BY-SA 4.0
+学習: 200会話から各1ユーザーターン（200例）。全58,792学習ユーザーターンではない。
+検証loss: 40会話から各1例。比較評価: 別の60会話から各1例。
+入力に「直前の正解状態」と「直前のシステム発話」を与え、現発話後の全状態JSONを出力する。
+本評価は正解の過去状態を与えるteacher forcingであり、連続会話での自律追跡評価ではない。
+
+学習
+Qwen3-4B-Instruct-2507、NF4 QLoRA、学習可能パラメータ 2,949,120
+学習例 200、optimizer 100 ステップ、学習時間 435.4秒
+検証loss 0.835804 → 0.066193
+LoRA重みの変化 True、保存前後の生成probe一致 True
+
+KLUE評価（同一60例、Q4_K_M GGUF / adapterなし→あり）
+完全一致 9/60 → 35/60
+不正JSON・構文超過・未知slotなど 15/60 → 0/60
+slot-value micro F1 0.5993 → 0.9384
+状態が変更される例の完全一致 2/34 → 13/34
+状態が変わらない例の完全一致 7/26 → 22/26
+ペア集計: {"fail_to_fail": 24, "fail_to_pass": 27, "pass_to_pass": 8, "pass_to_fail": 1}
+
+既存スキンケアAgentの副作用確認（観測済み合成59シナリオ）
+シナリオ合格 41/59 → 30/59
+状態5項目完全一致 56/83 → 36/84（実行ターン分母）
+このスキンケア評価は繰り返し参照済みであり、新しい未使用testではない。
+
+限界: 1 seed・200例の探索的実験。汎用的効果、皮膚情報の正確性、実ユーザーへの安全性は未確定。
+ツール呼び出しはこのKLUE学習には含まれない。実サービスの判断には独立評価が必要。
+元データのライセンスや出典は使用・共有前に確認する。
+
+出力: output/klue_wos_pilot_summary.json, output/klue_wos_pilot_predictions.csv
+詳細ログ: output/training/klue-wos-before-v1/, klue-wos-after-v1/
+保存LoRA: adapters/klue-wos-qwen3-pilot-v1/

@@ -1,0 +1,70 @@
+{
+  "version": "v2",
+  "seed": 20261104,
+  "synthetic": true,
+  "human_collected": false,
+  "supersedes": "v1 (pre-training author review: grammar and consistency of seeded product-use state)",
+  "draft_scenarios": {
+    "train": 300,
+    "validation": 30,
+    "holdout": 60
+  },
+  "duplicate_decisions_removed": {
+    "train": 60,
+    "validation": 4,
+    "holdout": 16
+  },
+  "counts": {
+    "train": {
+      "scenarios": 209,
+      "decision_examples": 529,
+      "turns": 314
+    },
+    "validation": {
+      "scenarios": 30,
+      "decision_examples": 80,
+      "turns": 44
+    },
+    "holdout": {
+      "scenarios": 59,
+      "decision_examples": 143,
+      "turns": 84
+    }
+  },
+  "freeze_policy": "Holdout created before model training; do not use for prompt tuning/checkpoint selection.",
+  "separation": "Disjoint authored surface template families and no exact user-utterance overlap. Semantic categories are shared.",
+  "validation": "Every oracle action executed against the actual Session/tool implementation; full state checked after each turn.",
+  "limitations": [
+    "Structural/execution validation does not replace independent human semantic review.",
+    "Synthetic controlled language, not real speech or broad Korean generalization.",
+    "Tool documents are synthetic and fixed, not clinical evidence."
+  ],
+  "runtime_sha256": "2994f9e043ee7029047a5908cb9ad53462a0f041e570258873467bdc07eaadb8",
+  "system_and_tools_sha256": "c7d00328fdb981d788ffb3340fe2b923fdc0ac09bb23360ba5a0a0657917ac09",
+  "files": {
+    "train.cases.json": {
+      "sha256": "68e0e2f137db1467c793cf71c977941d7191f9d330e9cd76ed0721a020976881",
+      "bytes": 381348
+    },
+    "train.sft.jsonl": {
+      "sha256": "53d9fa7ba821a545f742f81290f967783b9003f9f9126e99856bc8745eeac608",
+      "bytes": 2590282
+    },
+    "validation.cases.json": {
+      "sha256": "8dcbe8dad8f3bc63012d8a60553d608838e763f384dd5b64cf58ed8e1db8e4f9",
+      "bytes": 54209
+    },
+    "validation.sft.jsonl": {
+      "sha256": "671245bb36033453a77fe770b21ac87a7fddc998ac6b2cd8cc712eb75d8676fd",
+      "bytes": 395499
+    },
+    "holdout.cases.json": {
+      "sha256": "57cd40215c346e70a7de947d5386ced836e8285efda0100a6e800849f215fe9b",
+      "bytes": 104410
+    },
+    "holdout.sft.jsonl": {
+      "sha256": "7afe82eee5b70b592f10281c5a5c70acc93bb020ecd2e6884624aebff83f6e14",
+      "bytes": 703467
+    }
+  }
+}

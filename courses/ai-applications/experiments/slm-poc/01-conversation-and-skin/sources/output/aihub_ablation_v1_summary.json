@@ -1,0 +1,355 @@
+{
+  "base_model": "Qwen3-4B-Instruct-2507, NF4 LoRA training, Q4_K_M inference",
+  "training_model_manifest": {
+    "repo": "unsloth/Qwen3-4B-Instruct-2507-bnb-4bit",
+    "revision": "f12db89cd5156e090618dded9b4367f23f8f3b33",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 9044,
+        "sha256": null
+      },
+      {
+        "path": "config.json",
+        "size": 2185,
+        "sha256": null
+      },
+      {
+        "path": "generation_config.json",
+        "size": 237,
+        "sha256": null
+      },
+      {
+        "path": "model.safetensors",
+        "size": 2653133894,
+        "sha256": "f632ab95da1d8f307237094aca7c7dfa9e416b6d2f87bdd8ecda6dadfedb204d"
+      }
+    ],
+    "quantization_config": {
+      "_load_in_4bit": true,
+      "_load_in_8bit": false,
+      "bnb_4bit_compute_dtype": "bfloat16",
+      "bnb_4bit_quant_storage": "uint8",
+      "bnb_4bit_quant_type": "nf4",
+      "bnb_4bit_use_double_quant": true,
+      "llm_int8_enable_fp32_cpu_offload": false,
+      "llm_int8_has_fp16_weight": false,
+      "llm_int8_skip_modules": [
+        "embed_tokens",
+        "embedding",
+        "lm_head",
+        "multi_modal_projector",
+        "merger",
+        "modality_projection"
+      ],
+      "llm_int8_threshold": 6.0,
+      "load_in_4bit": true,
+      "load_in_8bit": false,
+      "quant_method": "bitsandbytes"
+    },
+    "tokenizer_repo": "Qwen/Qwen3-4B-Instruct-2507",
+    "tokenizer_revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+  },
+  "skin_validation_category_counts": {
+    "VL_모공.zip": 6,
+    "VL_미백(색소침착_기미_칙칙함).zip": 29,
+    "VL_주름.zip": 2,
+    "VL_붉어짐(홍조).zip": 1,
+    "VL_여드름_뾰루지.zip": 2
+  },
+  "examples_per_condition": 2000,
+  "conditions": {
+    "sns_only": {
+      "training": {
+        "condition": "sns_only",
+        "examples": 2000,
+        "optimizer_steps": 1000,
+        "validation_before": {
+          "sns": 4.7965029835700985,
+          "skin": 2.1024949133396147
+        },
+        "validation_after": {
+          "sns": 2.0683412194252013,
+          "skin": 1.5549118518829346
+        },
+        "training_seconds": 1272.3888351000205,
+        "adapter_path": "adapters\\aihub-ablation-v1-sns_only",
+        "adapter_sha256": "b0b87caeb534ec26dcca5bf659dafc41e7b0db28e065bc44e64debd014ad3f12",
+        "reload_loss_equal": true,
+        "reload_reference": 1.0658063888549805,
+        "reload_actual": 1.0658063888549805,
+        "config": {
+          "seed": 20261105,
+          "lora_r": 8,
+          "lora_alpha": 16,
+          "lora_dropout": 0.05,
+          "target_modules": [
+            "q_proj",
+            "v_proj"
+          ],
+          "lr": 0.0002,
+          "optimizer_steps": 1000,
+          "gradient_accumulation": 2,
+          "examples_per_condition": 2000,
+          "max_length": 2048,
+          "checkpoint_every_steps": 50,
+          "gradient_checkpointing": true,
+          "model_repo": "unsloth/Qwen3-4B-Instruct-2507-bnb-4bit",
+          "model_revision": "f12db89cd5156e090618dded9b4367f23f8f3b33",
+          "dataset_manifest_sha256": "9a65b3312a5e89e20e81c03884d5d579fb801386ba69c0dc1fe31a93364c57d8",
+          "data_prepare_script_sha256": "1ebff82e0160b14bd11165f629333acb1f46a07fcba806e11f166e3180b18bef",
+          "train_script_sha256": "d1eae4c3c2ee018711b94e5789deccfefa10fd58e8bda138afc3ea9e97922356",
+          "loss_script_sha256": "514f13445991c69573e44923568dca8e379492ef5b68c1c5ef7877bc669720d1",
+          "tokenization_script_sha256": "f0b8fd7ddf022bf3d670a3b87e8687203966f484e3a46b853fa9b17d4c4bf62c",
+          "condition": "sns_only"
+        }
+      },
+      "skincare_agent": {
+        "scenarios": 59,
+        "passed_scenarios": 15,
+        "executed_turns": 83,
+        "planned_turns": 84,
+        "passed_turns": 15,
+        "state_exact_turns": 19,
+        "elapsed_seconds": 169.1056205999921,
+        "field_correct": {
+          "skin_condition": 39,
+          "severity": 74,
+          "usage_time": 54,
+          "product_used": 59,
+          "symptom_onset": 49
+        },
+        "failed_checks": {
+          "search_arguments": 24,
+          "state": 64,
+          "required_tool": 40,
+          "source_id": 6,
+          "completed": 1
+        }
+      },
+      "exact_duplicate_text_pairs": 0,
+      "source_category_counts": {
+        "TL_1.일상트랜드_4.미용과_패션.zip": 2000
+      },
+      "token_stats": {
+        "examples": 2000,
+        "sources": {
+          "sns": 2000
+        },
+        "tokens_total": 164241,
+        "target_tokens_total": 47020
+      },
+      "eval_path": "output\\runs\\aihub-ablation-v1-sns_only"
+    },
+    "skin_only": {
+      "training": {
+        "condition": "skin_only",
+        "examples": 2000,
+        "optimizer_steps": 1000,
+        "validation_before": {
+          "sns": 4.7965029835700985,
+          "skin": 2.1024949133396147
+        },
+        "validation_after": {
+          "sns": 3.7951956391334534,
+          "skin": 0.5841856852173806
+        },
+        "training_seconds": 2266.288363700005,
+        "adapter_path": "adapters\\aihub-ablation-v1-skin_only",
+        "adapter_sha256": "bbc802b72b03f79ed76e491020cc8287e73cad88445e956981b0b3c790395cf3",
+        "reload_loss_equal": true,
+        "reload_reference": 2.6908185482025146,
+        "reload_actual": 2.6908185482025146,
+        "config": {
+          "seed": 20261105,
+          "lora_r": 8,
+          "lora_alpha": 16,
+          "lora_dropout": 0.05,
+          "target_modules": [
+            "q_proj",
+            "v_proj"
+          ],
+          "lr": 0.0002,
+          "optimizer_steps": 1000,
+          "gradient_accumulation": 2,
+          "examples_per_condition": 2000,
+          "max_length": 2048,
+          "checkpoint_every_steps": 50,
+          "gradient_checkpointing": true,
+          "model_repo": "unsloth/Qwen3-4B-Instruct-2507-bnb-4bit",
+          "model_revision": "f12db89cd5156e090618dded9b4367f23f8f3b33",
+          "dataset_manifest_sha256": "9a65b3312a5e89e20e81c03884d5d579fb801386ba69c0dc1fe31a93364c57d8",
+          "data_prepare_script_sha256": "1ebff82e0160b14bd11165f629333acb1f46a07fcba806e11f166e3180b18bef",
+          "train_script_sha256": "d1eae4c3c2ee018711b94e5789deccfefa10fd58e8bda138afc3ea9e97922356",
+          "loss_script_sha256": "514f13445991c69573e44923568dca8e379492ef5b68c1c5ef7877bc669720d1",
+          "tokenization_script_sha256": "f0b8fd7ddf022bf3d670a3b87e8687203966f484e3a46b853fa9b17d4c4bf62c",
+          "condition": "skin_only"
+        }
+      },
+      "skincare_agent": {
+        "scenarios": 59,
+        "passed_scenarios": 38,
+        "executed_turns": 84,
+        "planned_turns": 84,
+        "passed_turns": 50,
+        "state_exact_turns": 51,
+        "elapsed_seconds": 247.4317704999994,
+        "field_correct": {
+          "skin_condition": 74,
+          "severity": 84,
+          "usage_time": 70,
+          "product_used": 65,
+          "symptom_onset": 84
+        },
+        "failed_checks": {
+          "state": 33,
+          "search_arguments": 11,
+          "source_id": 2,
+          "required_tool": 4
+        }
+      },
+      "exact_duplicate_text_pairs": 4,
+      "source_category_counts": {
+        "TL_미백(색소침착_기미_칙칙함).zip": 670,
+        "TL_피부처짐_탄력저하.zip": 11,
+        "TL_모공.zip": 680,
+        "TL_주름.zip": 425,
+        "TL_여드름_뾰루지.zip": 168,
+        "TL_과각질_악건성.zip": 13,
+        "TL_붉어짐(홍조).zip": 33
+      },
+      "token_stats": {
+        "examples": 2000,
+        "sources": {
+          "skin": 2000
+        },
+        "tokens_total": 901407,
+        "target_tokens_total": 491228
+      },
+      "eval_path": "output\\runs\\aihub-ablation-v1-skin_only"
+    },
+    "mixed": {
+      "training": {
+        "condition": "mixed",
+        "examples": 2000,
+        "optimizer_steps": 1000,
+        "validation_before": {
+          "sns": 4.7965029835700985,
+          "skin": 2.1024949133396147
+        },
+        "validation_after": {
+          "sns": 2.1859013363718987,
+          "skin": 0.7009199827909469
+        },
+        "training_seconds": 1766.148864000017,
+        "adapter_path": "adapters\\aihub-ablation-v1-mixed",
+        "adapter_sha256": "04979468eef400cff61fd85d9226ac2bf1fe161949cc98a95567ed3d35fc56b3",
+        "reload_loss_equal": true,
+        "reload_reference": 1.0936001539230347,
+        "reload_actual": 1.0936001539230347,
+        "config": {
+          "seed": 20261105,
+          "lora_r": 8,
+          "lora_alpha": 16,
+          "lora_dropout": 0.05,
+          "target_modules": [
+            "q_proj",
+            "v_proj"
+          ],
+          "lr": 0.0002,
+          "optimizer_steps": 1000,
+          "gradient_accumulation": 2,
+          "examples_per_condition": 2000,
+          "max_length": 2048,
+          "checkpoint_every_steps": 50,
+          "gradient_checkpointing": true,
+          "model_repo": "unsloth/Qwen3-4B-Instruct-2507-bnb-4bit",
+          "model_revision": "f12db89cd5156e090618dded9b4367f23f8f3b33",
+          "dataset_manifest_sha256": "9a65b3312a5e89e20e81c03884d5d579fb801386ba69c0dc1fe31a93364c57d8",
+          "data_prepare_script_sha256": "1ebff82e0160b14bd11165f629333acb1f46a07fcba806e11f166e3180b18bef",
+          "train_script_sha256": "d1eae4c3c2ee018711b94e5789deccfefa10fd58e8bda138afc3ea9e97922356",
+          "loss_script_sha256": "514f13445991c69573e44923568dca8e379492ef5b68c1c5ef7877bc669720d1",
+          "tokenization_script_sha256": "f0b8fd7ddf022bf3d670a3b87e8687203966f484e3a46b853fa9b17d4c4bf62c",
+          "condition": "mixed"
+        }
+      },
+      "skincare_agent": {
+        "scenarios": 59,
+        "passed_scenarios": 13,
+        "executed_turns": 84,
+        "planned_turns": 84,
+        "passed_turns": 13,
+        "state_exact_turns": 19,
+        "elapsed_seconds": 101.11403729999438,
+        "field_correct": {
+          "skin_condition": 39,
+          "severity": 74,
+          "usage_time": 54,
+          "product_used": 59,
+          "symptom_onset": 49
+        },
+        "failed_checks": {
+          "state": 65,
+          "required_tool": 68,
+          "search_arguments": 30,
+          "source_id": 23,
+          "error_disclosed": 1
+        }
+      },
+      "exact_duplicate_text_pairs": 1,
+      "source_category_counts": {
+        "TL_1.일상트랜드_4.미용과_패션.zip": 1000,
+        "TL_미백(색소침착_기미_칙칙함).zip": 339,
+        "TL_피부처짐_탄력저하.zip": 5,
+        "TL_모공.zip": 342,
+        "TL_주름.zip": 205,
+        "TL_여드름_뾰루지.zip": 89,
+        "TL_과각질_악건성.zip": 6,
+        "TL_붉어짐(홍조).zip": 14
+      },
+      "token_stats": {
+        "examples": 2000,
+        "sources": {
+          "sns": 1000,
+          "skin": 1000
+        },
+        "tokens_total": 533903,
+        "target_tokens_total": 269938
+      },
+      "eval_path": "output\\runs\\aihub-ablation-v1-mixed"
+    }
+  },
+  "baseline_skincare_agent": {
+    "scenarios": 59,
+    "passed_scenarios": 41,
+    "executed_turns": 83,
+    "planned_turns": 84,
+    "passed_turns": 55,
+    "state_exact_turns": 56,
+    "elapsed_seconds": 280.704458799999,
+    "field_correct": {
+      "skin_condition": 66,
+      "severity": 83,
+      "usage_time": 69,
+      "product_used": 69,
+      "symptom_onset": 83
+    },
+    "failed_checks": {
+      "state": 27,
+      "search_arguments": 9,
+      "source_id": 4,
+      "completed": 1
+    }
+  },
+  "interpretation": [
+    "Training objective is next-response prediction; no skincare state labels or tool calls were used as targets.",
+    "SNS uses one real adjacent pair per two-speaker beauty/fashion dialogue; skincare uses question/answer, excludes explicit image references.",
+    "The SNS training examples do not include earlier dialogue history; this is not multi-turn state-tracking supervision.",
+    "Equal record counts and steps, but different distributions, output lengths, supervision and total tokens; a few records share identical text pairs.",
+    "Skin training and validation samples are strongly category-imbalanced; rare sensitivity and dryness classes may be missing.",
+    "Loss is mean assistant-token loss within each example averaged over 40 held-out examples per domain; compare before/after within the same domain.",
+    "The skincare Agent uses an already-observed synthetic 59-scenario development set, not a fresh blind test.",
+    "No clinical, real-user, generalization or causal claims from one seed and one small run.",
+    "Raw AI Hub data and derived examples remain local; source images, demographics metadata and structured CoT are not used."
+  ]
+}

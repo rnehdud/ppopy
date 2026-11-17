@@ -1,0 +1,1026 @@
+{
+  "validation_scenario_sha256": "0086f780cc6491d4bb1dfdf765a2b5b806b8b3f2fbe699afd3c23fbaac1effe2",
+  "warning": "Exploratory synthetic validation, no independent language review; not blind holdout; backends differ in quantization and implementation.",
+  "gguf_validation": {
+    "base": {
+      "scenarios": 30,
+      "passed_scenarios": 20,
+      "executed_turns": 44,
+      "planned_turns": 44,
+      "state_exact_turns": 27
+    },
+    "stateful25": {
+      "scenarios": 30,
+      "passed_scenarios": 21,
+      "executed_turns": 44,
+      "planned_turns": 44,
+      "state_exact_turns": 29
+    },
+    "stateful50": {
+      "scenarios": 30,
+      "passed_scenarios": 21,
+      "executed_turns": 44,
+      "planned_turns": 44,
+      "state_exact_turns": 29
+    },
+    "stateful100": {
+      "scenarios": 30,
+      "passed_scenarios": 22,
+      "executed_turns": 44,
+      "planned_turns": 44,
+      "state_exact_turns": 31
+    },
+    "mixed100": {
+      "scenarios": 30,
+      "passed_scenarios": 21,
+      "executed_turns": 44,
+      "planned_turns": 44,
+      "state_exact_turns": 29
+    },
+    "aihubmixed": {
+      "scenarios": 30,
+      "passed_scenarios": 7,
+      "executed_turns": 44,
+      "planned_turns": 44,
+      "state_exact_turns": 8
+    }
+  },
+  "hf_vs_gguf_subset": {
+    "base": {
+      "cases": 6,
+      "same_scenario_pass": 5,
+      "same_states": 3,
+      "same_tool_names": 5,
+      "details": [
+        {
+          "id": "validation-report-001",
+          "hf_pass": false,
+          "gguf_pass": false,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          ],
+          "hf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-change_onset-000",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            },
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            },
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            }
+          ],
+          "hf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-conflicting_events-002",
+          "hf_pass": false,
+          "gguf_pass": false,
+          "hf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "morning",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "morning",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          ],
+          "hf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-failed_search-001",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "hf_tools": [
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-negation-001",
+          "hf_pass": false,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "hf_tools": [
+            []
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state"
+            ]
+          ]
+        },
+        {
+          "id": "validation-greeting-001",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "hf_tools": [
+            []
+          ],
+          "gguf_tools": [
+            []
+          ]
+        }
+      ]
+    },
+    "stateful100": {
+      "cases": 6,
+      "same_scenario_pass": 6,
+      "same_states": 5,
+      "same_tool_names": 5,
+      "details": [
+        {
+          "id": "validation-report-001",
+          "hf_pass": false,
+          "gguf_pass": false,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          ],
+          "hf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-change_onset-000",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            },
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            },
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "yesterday"
+            }
+          ],
+          "hf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-conflicting_events-002",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "redness"
+              ],
+              "severity": "unknown",
+              "usage_time": "morning",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "redness"
+              ],
+              "severity": "unknown",
+              "usage_time": "morning",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "redness"
+              ],
+              "severity": "unknown",
+              "usage_time": "morning",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "redness"
+              ],
+              "severity": "unknown",
+              "usage_time": "morning",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          ],
+          "hf_tools": [
+            [
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state",
+              "update_session_state",
+              "update_session_state"
+            ],
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-failed_search-001",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "hf_tools": [
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-negation-001",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "hf_tools": [
+            [
+              "update_session_state"
+            ]
+          ],
+          "gguf_tools": [
+            [
+              "update_session_state"
+            ]
+          ]
+        },
+        {
+          "id": "validation-greeting-001",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "hf_tools": [
+            []
+          ],
+          "gguf_tools": [
+            []
+          ]
+        }
+      ]
+    },
+    "aihubmixed": {
+      "cases": 6,
+      "same_scenario_pass": 5,
+      "same_states": 6,
+      "same_tool_names": 5,
+      "details": [
+        {
+          "id": "validation-report-001",
+          "hf_pass": false,
+          "gguf_pass": false,
+          "hf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            },
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            },
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "hf_tools": [
+            [],
+            []
+          ],
+          "gguf_tools": [
+            [],
+            []
+          ]
+        },
+        {
+          "id": "validation-change_onset-000",
+          "hf_pass": false,
+          "gguf_pass": false,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            },
+            {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "mild",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          ],
+          "hf_tools": [
+            [],
+            [
+              "search_knowledge_base"
+            ]
+          ],
+          "gguf_tools": [
+            [],
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-conflicting_events-002",
+          "hf_pass": false,
+          "gguf_pass": false,
+          "hf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            },
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            },
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "hf_tools": [
+            [],
+            []
+          ],
+          "gguf_tools": [
+            [],
+            []
+          ]
+        },
+        {
+          "id": "validation-failed_search-001",
+          "hf_pass": false,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "hf_tools": [
+            []
+          ],
+          "gguf_tools": [
+            [
+              "search_knowledge_base"
+            ]
+          ]
+        },
+        {
+          "id": "validation-negation-001",
+          "hf_pass": false,
+          "gguf_pass": false,
+          "hf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          ],
+          "hf_tools": [
+            []
+          ],
+          "gguf_tools": [
+            []
+          ]
+        },
+        {
+          "id": "validation-greeting-001",
+          "hf_pass": true,
+          "gguf_pass": true,
+          "hf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "gguf_states": [
+            {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "moderate",
+              "usage_time": "evening",
+              "product_used": "yes",
+              "symptom_onset": "recent"
+            }
+          ],
+          "hf_tools": [
+            []
+          ],
+          "gguf_tools": [
+            []
+          ]
+        }
+      ]
+    }
+  },
+  "training": {
+    "stateful": {
+      "history": [
+        {
+          "step": 0,
+          "validation_loss": 2.803875382214392
+        },
+        {
+          "step": 25,
+          "examples": 50,
+          "validation_loss": 0.23373212151236658,
+          "adapter": "adapters\\agent-audit-v1-stateful-step25"
+        },
+        {
+          "step": 50,
+          "examples": 100,
+          "validation_loss": 0.0779242368902942,
+          "adapter": "adapters\\agent-audit-v1-stateful-step50"
+        },
+        {
+          "step": 100,
+          "examples": 200,
+          "validation_loss": 0.07159946298029354,
+          "adapter": "adapters\\agent-audit-v1-stateful-step100"
+        }
+      ],
+      "config": {
+        "seed": 20261106,
+        "condition": "stateful",
+        "examples": 200,
+        "stateful": 200,
+        "aihub_sns": 0,
+        "aihub_skin": 0,
+        "updates": 100,
+        "gradient_accumulation": 2,
+        "lr": 0.0002,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "snapshots": [
+          25,
+          50,
+          100
+        ],
+        "stateful_manifest_sha256": "f8f3a2aa26e3fdd954be94416869f1ad9fd2cfb2df60d6917bd5a083224cd008",
+        "aihub_manifest_sha256": "9a65b3312a5e89e20e81c03884d5d579fb801386ba69c0dc1fe31a93364c57d8",
+        "source_sha256": "d49922104a3b926b26733c49257e5567bdc0f81c57edf4d22db941583b3e5e63"
+      }
+    },
+    "mixed": {
+      "history": [
+        {
+          "step": 0,
+          "validation_loss": 2.803875382214392
+        },
+        {
+          "step": 25,
+          "examples": 50,
+          "validation_loss": 0.5621348105513789,
+          "adapter": "adapters\\agent-audit-v1-mixed-step25"
+        },
+        {
+          "step": 50,
+          "examples": 100,
+          "validation_loss": 0.10307492470210491,
+          "adapter": "adapters\\agent-audit-v1-mixed-step50"
+        },
+        {
+          "step": 100,
+          "examples": 200,
+          "validation_loss": 0.0764600439933929,
+          "adapter": "adapters\\agent-audit-v1-mixed-step100"
+        }
+      ],
+      "config": {
+        "seed": 20261106,
+        "condition": "mixed",
+        "examples": 200,
+        "stateful": 100,
+        "aihub_sns": 50,
+        "aihub_skin": 50,
+        "updates": 100,
+        "gradient_accumulation": 2,
+        "lr": 0.0002,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "snapshots": [
+          25,
+          50,
+          100
+        ],
+        "stateful_manifest_sha256": "f8f3a2aa26e3fdd954be94416869f1ad9fd2cfb2df60d6917bd5a083224cd008",
+        "aihub_manifest_sha256": "9a65b3312a5e89e20e81c03884d5d579fb801386ba69c0dc1fe31a93364c57d8",
+        "source_sha256": "d49922104a3b926b26733c49257e5567bdc0f81c57edf4d22db941583b3e5e63"
+      }
+    }
+  },
+  "real_model_loss_audit": {
+    "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "autocast_dtype": "torch.bfloat16",
+    "model_config_quantization": "BitsAndBytesConfig {\n  \"_load_in_4bit\": true,\n  \"_load_in_8bit\": false,\n  \"bnb_4bit_compute_dtype\": \"bfloat16\",\n  \"bnb_4bit_quant_storage\": \"uint8\",\n  \"bnb_4bit_quant_type\": \"nf4\",\n  \"bnb_4bit_use_double_quant\": true,\n  \"llm_int8_enable_fp32_cpu_offload\": false,\n  \"llm_int8_has_fp16_weight\": false,\n  \"llm_int8_skip_modules\": [\n    \"embed_tokens\",\n    \"embedding\",\n    \"lm_head\",\n    \"multi_modal_projector\",\n    \"merger\",\n    \"modality_projection\"\n  ],\n  \"llm_int8_threshold\": 6.0,\n  \"load_in_4bit\": true,\n  \"load_in_8bit\": false,\n  \"quant_method\": \"bitsandbytes\"\n}\n",
+    "comparison": "HF causal LM labels loss vs sparse custom CE, dropout disabled",
+    "results": [
+      {
+        "id": "train-conflicting_events-021-t0-d0",
+        "tool_call_target": true,
+        "tokens": 254,
+        "target_tokens": 52,
+        "standard_loss": 2.8261260986328125,
+        "custom_loss": 2.8261260986328125,
+        "absolute_loss_difference": 0.0,
+        "gradient_relative_l2": 0.010459232937317856,
+        "gradient_max_absolute_difference": 0.001953125,
+        "reference_gradient_norm": 6.466518984866518
+      },
+      {
+        "id": "train-conflicting_events-021-t0-d1",
+        "tool_call_target": false,
+        "tokens": 211,
+        "target_tokens": 9,
+        "standard_loss": 7.349071979522705,
+        "custom_loss": 7.349071979522705,
+        "absolute_loss_difference": 0.0,
+        "gradient_relative_l2": 0.011257186075305955,
+        "gradient_max_absolute_difference": 0.0041351318359375,
+        "reference_gradient_norm": 11.663404460531895
+      }
+    ]
+  }
+}

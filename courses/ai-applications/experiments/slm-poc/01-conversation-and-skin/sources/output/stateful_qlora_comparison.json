@@ -1,0 +1,667 @@
+{
+  "training": {
+    "environment": {
+      "python": "3.11.15 (main, Jun 23 2026, 15:20:37) [MSC v.1944 64 bit (AMD64)]",
+      "packages": {
+        "torch": "2.11.0+cu128",
+        "transformers": "4.57.6",
+        "peft": "0.18.0",
+        "bitsandbytes": "0.49.2",
+        "accelerate": "1.12.0"
+      },
+      "cuda_runtime": "12.8",
+      "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "gpu_total_bytes": 8585216000
+    },
+    "training": {
+      "optimizer_steps": 60,
+      "micro_batches": 120,
+      "first_loss": 0.43449,
+      "last_loss": 0.035133,
+      "logged_loss_samples": [
+        {
+          "event": "train_step",
+          "step": 1,
+          "loss": 0.43449,
+          "elapsed_seconds": 4.49,
+          "peak_cuda_gib": 2.728
+        },
+        {
+          "event": "train_step",
+          "step": 5,
+          "loss": 0.364499,
+          "elapsed_seconds": 20.63,
+          "peak_cuda_gib": 2.892
+        },
+        {
+          "event": "train_step",
+          "step": 10,
+          "loss": 1.689187,
+          "elapsed_seconds": 42.97,
+          "peak_cuda_gib": 2.892
+        },
+        {
+          "event": "train_step",
+          "step": 15,
+          "loss": 1.01029,
+          "elapsed_seconds": 66.38,
+          "peak_cuda_gib": 2.892
+        },
+        {
+          "event": "train_step",
+          "step": 20,
+          "loss": 0.794676,
+          "elapsed_seconds": 89.91,
+          "peak_cuda_gib": 2.892
+        },
+        {
+          "event": "train_step",
+          "step": 25,
+          "loss": 0.902733,
+          "elapsed_seconds": 110.21,
+          "peak_cuda_gib": 2.892
+        },
+        {
+          "event": "train_step",
+          "step": 30,
+          "loss": 0.142912,
+          "elapsed_seconds": 134.62,
+          "peak_cuda_gib": 2.892
+        },
+        {
+          "event": "train_step",
+          "step": 35,
+          "loss": 0.994587,
+          "elapsed_seconds": 161.83,
+          "peak_cuda_gib": 2.892
+        },
+        {
+          "event": "train_step",
+          "step": 40,
+          "loss": 0.524446,
+          "elapsed_seconds": 187.85,
+          "peak_cuda_gib": 3.075
+        },
+        {
+          "event": "train_step",
+          "step": 45,
+          "loss": 0.026656,
+          "elapsed_seconds": 214.24,
+          "peak_cuda_gib": 3.075
+        },
+        {
+          "event": "train_step",
+          "step": 50,
+          "loss": 0.026353,
+          "elapsed_seconds": 243.3,
+          "peak_cuda_gib": 3.075
+        },
+        {
+          "event": "train_step",
+          "step": 55,
+          "loss": 0.010808,
+          "elapsed_seconds": 269.67,
+          "peak_cuda_gib": 3.075
+        },
+        {
+          "event": "train_step",
+          "step": 60,
+          "loss": 0.035133,
+          "elapsed_seconds": 298.06,
+          "peak_cuda_gib": 3.075
+        }
+      ],
+      "seconds": 298.06,
+      "peak_cuda_allocated_gib_observed": 3.075,
+      "note": "Recovered persisted progress; times/memory/loss samples are rounded logs, not all per-step losses."
+    },
+    "training_examples": 120,
+    "stateful_decision_examples": 100,
+    "public_tool_decision_examples": 20,
+    "training_source_scenarios": 102,
+    "trainable_parameters": 1843200,
+    "validation_loss_before": 1.592305990960449,
+    "validation_loss_after": 0.1149519593338482,
+    "adapter_path": "adapters\\qlora-smoke-v3",
+    "adapter_weights_changed": true,
+    "adapter_reload_probe_equal": true,
+    "reload_probe_token_ids": [
+      20487,
+      49664,
+      17877,
+      63757,
+      125144,
+      133240,
+      13,
+      151645
+    ],
+    "reload_probe_scope": "Two independent loads of the saved adapter; in-memory pre-save probe was lost to the logging exception.",
+    "adapter_weights_sha256": "b82da500c9742ff7cda16577f8958a94e8b37cc5a9d6cf2805f9e7b301dcd880",
+    "closed_loop_evaluation_backend": "llama_cpp_same_Q4_K_M_base_before_after_NF4_trained_adapter",
+    "holdout_hash_before": "57cd40215c346e70a7de947d5386ced836e8285efda0100a6e800849f215fe9b",
+    "holdout_hash_after": "57cd40215c346e70a7de947d5386ced836e8285efda0100a6e800849f215fe9b",
+    "recovery": {
+      "cause": "emit(log, adapter_saved, path=...) collided with the logger path parameter AFTER save and 60 optimizer steps.",
+      "retrained": false,
+      "verification_source_sha256": "acfd583fb649fd74383496d80832fa763a044fb0a22cde7911e8169344a3d126"
+    },
+    "limitations": [
+      "One small synthetic controlled run, not broad Korean or clinical accuracy.",
+      "NF4 training, identical official Q4_K_M GGUF for closed-loop before/after."
+    ]
+  },
+  "before": {
+    "phase": "gguf-before",
+    "additional_training": false,
+    "scenarios": 59,
+    "passed_scenarios": 20,
+    "executed_turns": 84,
+    "planned_turns": 84,
+    "passed_turns": 39,
+    "state_exact_turns": 71,
+    "elapsed_seconds": 150.35640160000185,
+    "field_exact_hits": {
+      "skin_condition": 82,
+      "severity": 84,
+      "usage_time": 84,
+      "product_used": 73,
+      "symptom_onset": 84
+    },
+    "completed_turns": 55,
+    "category": {
+      "clarify": {
+        "passed": 0,
+        "total": 4
+      },
+      "failed_search": {
+        "passed": 2,
+        "total": 5
+      },
+      "change_onset": {
+        "passed": 0,
+        "total": 5
+      },
+      "negation": {
+        "passed": 5,
+        "total": 5
+      },
+      "change_time": {
+        "passed": 0,
+        "total": 5
+      },
+      "search": {
+        "passed": 0,
+        "total": 5
+      },
+      "conflicting_events": {
+        "passed": 0,
+        "total": 5
+      },
+      "missing_information": {
+        "passed": 5,
+        "total": 5
+      },
+      "remove_symptom": {
+        "passed": 0,
+        "total": 5
+      },
+      "report": {
+        "passed": 0,
+        "total": 5
+      },
+      "greeting": {
+        "passed": 4,
+        "total": 5
+      },
+      "no_product": {
+        "passed": 4,
+        "total": 5
+      }
+    },
+    "failed_checks": {
+      "completed": 29,
+      "required_tool": 25,
+      "search_arguments": 31,
+      "source_id": 23,
+      "state": 13,
+      "error_disclosed": 2
+    },
+    "completed_turn_latency": {
+      "n": 55,
+      "mean_seconds": 2.493996494545453,
+      "p95_seconds": 5.712393800000427
+    },
+    "latency_note": "Only turns carrying seconds; early runtime failures have no recorded total seconds."
+  },
+  "after": {
+    "phase": "gguf-after",
+    "additional_training": true,
+    "scenarios": 59,
+    "passed_scenarios": 42,
+    "executed_turns": 84,
+    "planned_turns": 84,
+    "passed_turns": 57,
+    "state_exact_turns": 58,
+    "elapsed_seconds": 147.10786580000422,
+    "field_exact_hits": {
+      "skin_condition": 81,
+      "severity": 84,
+      "usage_time": 76,
+      "product_used": 59,
+      "symptom_onset": 84
+    },
+    "completed_turns": 84,
+    "category": {
+      "clarify": {
+        "passed": 4,
+        "total": 4
+      },
+      "failed_search": {
+        "passed": 5,
+        "total": 5
+      },
+      "change_onset": {
+        "passed": 5,
+        "total": 5
+      },
+      "negation": {
+        "passed": 4,
+        "total": 5
+      },
+      "change_time": {
+        "passed": 4,
+        "total": 5
+      },
+      "search": {
+        "passed": 5,
+        "total": 5
+      },
+      "conflicting_events": {
+        "passed": 0,
+        "total": 5
+      },
+      "missing_information": {
+        "passed": 5,
+        "total": 5
+      },
+      "remove_symptom": {
+        "passed": 5,
+        "total": 5
+      },
+      "report": {
+        "passed": 0,
+        "total": 5
+      },
+      "greeting": {
+        "passed": 5,
+        "total": 5
+      },
+      "no_product": {
+        "passed": 0,
+        "total": 5
+      }
+    },
+    "failed_checks": {
+      "state": 26,
+      "search_arguments": 5,
+      "source_id": 2
+    },
+    "completed_turn_latency": {
+      "n": 84,
+      "mean_seconds": 1.74979927500265,
+      "p95_seconds": 2.341977100004442
+    },
+    "latency_note": "Only turns carrying seconds; early runtime failures have no recorded total seconds."
+  },
+  "paired_scenarios": {
+    "fail_to_pass": 27,
+    "pass_to_pass": 15,
+    "fail_to_fail": 12,
+    "pass_to_fail": 5
+  },
+  "comparable_metadata_verified": [
+    "model_manifest",
+    "holdout_sha256",
+    "system",
+    "tools",
+    "generation",
+    "runtime_sha256",
+    "evaluation_sha256"
+  ],
+  "adapter_gguf_sha256": "e6acc24144cb83bcea0e28d0ac736055f37968ceb24add2c79c02b82ac90d470",
+  "converter_commit": "4c4ca5b18854c973655a62a6164a3ae930ee76b0",
+  "representative_after_failures": [
+    {
+      "id": "holdout-conflicting_events-003",
+      "category": "conflicting_events",
+      "input": "오후에 제품을 바른 건 어제의 일이야. 따가움이 생기기 시작한 건 오늘이고.",
+      "failed_checks": [
+        "state"
+      ],
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "error": null,
+      "answer": "기록을 반영했습니다.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "afternoon",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "afternoon",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "itching"
+            ],
+            "severity": "unknown",
+            "usage_time": "afternoon",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "id": "holdout-report-002",
+      "category": "report",
+      "input": "메모를 새로 남겨줘. 피부가 건조해. 발생은 어제이고, 바른 시간대는 아침, 정도 표시는 중등도이야.",
+      "failed_checks": [
+        "state"
+      ],
+      "expected_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "moderate",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "yesterday"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "moderate",
+        "usage_time": "morning",
+        "product_used": "unknown",
+        "symptom_onset": "yesterday"
+      },
+      "error": null,
+      "answer": "기록을 반영했습니다.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "dryness"
+              ],
+              "severity": "moderate",
+              "usage_time": "morning",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "dryness"
+              ],
+              "severity": "moderate",
+              "usage_time": "morning",
+              "product_used": "unknown",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "dryness"
+            ],
+            "severity": "moderate",
+            "usage_time": "morning",
+            "product_used": "unknown",
+            "symptom_onset": "yesterday"
+          }
+        }
+      ]
+    },
+    {
+      "id": "holdout-no_product-002",
+      "category": "no_product",
+      "input": "화장품 사용은 없었다고 적어줘. 건조함이 생기기 시작한 건 오늘이야.",
+      "failed_checks": [
+        "state"
+      ],
+      "expected_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "error": null,
+      "answer": "기록을 반영했습니다.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "dryness"
+              ],
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "dryness"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "dryness"
+            ],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "id": "holdout-negation-003",
+      "category": "negation",
+      "input": "증상을 구별해서 적어줘. 피부가 붉지는 않아. \"피부가 따가워\"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.",
+      "failed_checks": [
+        "state"
+      ],
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "unknown"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "unknown"
+      },
+      "error": null,
+      "answer": "기록을 반영했습니다.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "itching"
+              ]
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "itching"
+            ],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "id": "holdout-change_time-003",
+      "category": "change_time",
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "failed_checks": [
+        "source_id"
+      ],
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "error": null,
+      "answer": "출처: 합성 테스트 문서",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "최신 상태 조건",
+            "skin_condition": [
+              "stinging"
+            ],
+            "usage_time": "afternoon"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "최신 상태 조건",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            },
+            "documents": [
+              {
+                "id": "FIXTURE-STING-001",
+                "tags": [
+                  "stinging"
+                ],
+                "title": "따가움 테스트 문서",
+                "content": "모의 검색 결과: 따가움 증상과 제품 사용 시점은 별도 항목으로 기록합니다. 이 문서는 도구 실행 검증용 합성 자료이며 치료 지침이 아닙니다."
+              }
+            ],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [
+              "stinging"
+            ],
+            "severity": "unknown",
+            "usage_time": "afternoon",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic authored Korean, no independent human semantic audit.",
+    "59 template-disjoint controlled scenarios, not broad or clinical performance.",
+    "One fixed seed, 120 decisions and 60 steps; no checkpoint selection on holdout.",
+    "Adapter trained on NF4; closed-loop before/after both official Q4_K_M GGUF.",
+    "External skincare KB, STT, Jev, real product mapping are not evaluated."
+  ]
+}

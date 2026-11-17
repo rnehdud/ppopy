@@ -1,0 +1,3411 @@
+[
+  {
+    "id": "holdout-clarify-000",
+    "category": "clarify",
+    "split": "holdout",
+    "surface_template_family": "holdout/clarify",
+    "initial": {
+      "skin_condition": [],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "unknown",
+      "severity": "severe"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "이것에 대한 자료를 부탁해. 아직 무슨 피부 증상인지는 설명하지 않았어.",
+        "expected": {
+          "skin_condition": [],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "어떤 피부 증상을 조회할까요?"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-failed_search-000",
+    "category": "failed_search",
+    "split": "holdout",
+    "surface_template_family": "holdout/failed_search",
+    "initial": {
+      "skin_condition": [
+        "redness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "unknown",
+      "severity": "severe"
+    },
+    "fail_search": true,
+    "turns": [
+      {
+        "input": "지금 기록을 기준으로 문서를 찾아서 그 식별자를 답해줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon"
+        },
+        "expect_search_failure": true,
+        "final_response": "조회 도구 오류로 문서를 가져오지 못했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-clarify-003",
+    "category": "clarify",
+    "split": "holdout",
+    "surface_template_family": "holdout/clarify",
+    "initial": {
+      "skin_condition": [],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "이것에 대한 자료를 부탁해. 아직 무슨 피부 증상인지는 설명하지 않았어.",
+        "expected": {
+          "skin_condition": [],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "어떤 피부 증상을 조회할까요?"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_onset-004",
+    "category": "change_onset",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_onset",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용 시각은 그대로야. 증상이 발생한 날만 바로잡아줘. 어제 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "yesterday"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-negation-002",
+    "category": "negation",
+    "split": "holdout",
+    "surface_template_family": "holdout/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "증상을 구별해서 적어줘. 피부가 가렵지는 않아. \"피부가 건조해\"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "dryness"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_time-001",
+    "category": "change_time",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_time",
+    "initial": {
+      "skin_condition": [
+        "breakout"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "바른 시각만 정정해줘. 저녁 기록은 틀렸어. 실제로는 오후에 발랐어.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "afternoon"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "final_response": "현재 조건에 해당하는 모의 문서가 없습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-search-003",
+    "category": "search",
+    "split": "holdout",
+    "surface_template_family": "holdout/search",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-clarify-004",
+    "category": "clarify",
+    "split": "holdout",
+    "surface_template_family": "holdout/clarify",
+    "initial": {
+      "skin_condition": [],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "이것에 대한 자료를 부탁해. 아직 무슨 피부 증상인지는 설명하지 않았어.",
+        "expected": {
+          "skin_condition": [],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "어떤 피부 증상을 조회할까요?"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-clarify-001",
+    "category": "clarify",
+    "split": "holdout",
+    "surface_template_family": "holdout/clarify",
+    "initial": {
+      "skin_condition": [],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "이것에 대한 자료를 부탁해. 아직 무슨 피부 증상인지는 설명하지 않았어.",
+        "expected": {
+          "skin_condition": [],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "어떤 피부 증상을 조회할까요?"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-conflicting_events-003",
+    "category": "conflicting_events",
+    "split": "holdout",
+    "surface_template_family": "holdout/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "오후에 제품을 바른 건 어제의 일이야. 따가움이 생기기 시작한 건 오늘이고.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ],
+                "usage_time": "afternoon",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-failed_search-004",
+    "category": "failed_search",
+    "split": "holdout",
+    "surface_template_family": "holdout/failed_search",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": true,
+    "turns": [
+      {
+        "input": "지금 기록을 기준으로 문서를 찾아서 그 식별자를 답해줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "expect_search_failure": true,
+        "final_response": "조회 도구 오류로 문서를 가져오지 못했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-missing_information-002",
+    "category": "missing_information",
+    "split": "holdout",
+    "surface_template_family": "holdout/missing_information",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "제품을 썼는지나 언제부터인지는 말한 적 없어. \"피부가 건조해\"라는 점만 기억해줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "dryness"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-remove_symptom-001",
+    "category": "remove_symptom",
+    "split": "holdout",
+    "surface_template_family": "holdout/remove_symptom",
+    "initial": {
+      "skin_condition": [
+        "breakout",
+        "stinging"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "다른 항목은 건드리지 마. 피부가 따갑지는 않아. \"뾰루지가 생겼어\"라는 것만 증상 목록에 남겨줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "breakout"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "final_response": "현재 조건에 해당하는 모의 문서가 없습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-conflicting_events-004",
+    "category": "conflicting_events",
+    "split": "holdout",
+    "surface_template_family": "holdout/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "저녁에 제품을 바른 건 어제의 일이야. 가려움이 생기기 시작한 건 오늘이고.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ],
+                "usage_time": "evening",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-report-002",
+    "category": "report",
+    "split": "holdout",
+    "surface_template_family": "holdout/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "메모를 새로 남겨줘. 피부가 건조해. 발생은 어제이고, 바른 시간대는 아침, 정도 표시는 중등도이야.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "severity": "moderate",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "dryness"
+                ],
+                "usage_time": "morning",
+                "product_used": "yes",
+                "symptom_onset": "yesterday",
+                "severity": "moderate"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "severity": "moderate",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-DRY-002",
+        "final_response": "조회 문서: 건조함 테스트 문서. 출처: FIXTURE-DRY-002"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-conflicting_events-001",
+    "category": "conflicting_events",
+    "split": "holdout",
+    "surface_template_family": "holdout/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "오후에 제품을 바른 건 어제의 일이야. 뾰루지가 생기기 시작한 건 오늘이고.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "severity": "unknown",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "breakout"
+                ],
+                "usage_time": "afternoon",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "severity": "unknown",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "final_response": "현재 조건에 해당하는 모의 문서가 없습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-greeting-004",
+    "category": "greeting",
+    "split": "holdout",
+    "surface_template_family": "holdout/greeting",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "만나서 반가워요. 오늘은 인사만 하고 갈게요.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "안녕하세요."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-conflicting_events-000",
+    "category": "conflicting_events",
+    "split": "holdout",
+    "surface_template_family": "holdout/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "아침에 제품을 바른 건 어제의 일이야. 붉어짐이 생기기 시작한 건 오늘이고.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ],
+                "usage_time": "morning",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-no_product-002",
+    "category": "no_product",
+    "split": "holdout",
+    "surface_template_family": "holdout/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품 사용은 없었다고 적어줘. 건조함이 생기기 시작한 건 오늘이야.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "dryness"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-greeting-001",
+    "category": "greeting",
+    "split": "holdout",
+    "surface_template_family": "holdout/greeting",
+    "initial": {
+      "skin_condition": [
+        "breakout"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "만나서 반가워요. 오늘은 인사만 하고 갈게요.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "안녕하세요."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-no_product-001",
+    "category": "no_product",
+    "split": "holdout",
+    "surface_template_family": "holdout/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품 사용은 없었다고 적어줘. 뾰루지가 생기기 시작한 건 오늘이야.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "breakout"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_time-002",
+    "category": "change_time",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_time",
+    "initial": {
+      "skin_condition": [
+        "dryness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "바른 시각만 정정해줘. 오후 기록은 틀렸어. 실제로는 아침에 발랐어.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "morning"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-DRY-002",
+        "final_response": "조회 문서: 건조함 테스트 문서. 출처: FIXTURE-DRY-002"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-search-002",
+    "category": "search",
+    "split": "holdout",
+    "surface_template_family": "holdout/search",
+    "initial": {
+      "skin_condition": [
+        "dryness"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening"
+        },
+        "document_id": "FIXTURE-DRY-002",
+        "final_response": "조회 문서: 건조함 테스트 문서. 출처: FIXTURE-DRY-002"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-no_product-000",
+    "category": "no_product",
+    "split": "holdout",
+    "surface_template_family": "holdout/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품 사용은 없었다고 적어줘. 붉어짐이 생기기 시작한 건 오늘이야.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-failed_search-001",
+    "category": "failed_search",
+    "split": "holdout",
+    "surface_template_family": "holdout/failed_search",
+    "initial": {
+      "skin_condition": [
+        "breakout"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": true,
+    "turns": [
+      {
+        "input": "지금 기록을 기준으로 문서를 찾아서 그 식별자를 답해줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon"
+        },
+        "expect_search_failure": true,
+        "final_response": "조회 도구 오류로 문서를 가져오지 못했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_onset-001",
+    "category": "change_onset",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_onset",
+    "initial": {
+      "skin_condition": [
+        "breakout"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용 시각은 그대로야. 증상이 발생한 날만 바로잡아줘. 오늘 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "final_response": "현재 조건에 해당하는 모의 문서가 없습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_onset-002",
+    "category": "change_onset",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_onset",
+    "initial": {
+      "skin_condition": [
+        "dryness"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용 시각은 그대로야. 증상이 발생한 날만 바로잡아줘. 어제 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "yesterday"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-DRY-002",
+        "final_response": "조회 문서: 건조함 테스트 문서. 출처: FIXTURE-DRY-002"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-remove_symptom-003",
+    "category": "remove_symptom",
+    "split": "holdout",
+    "surface_template_family": "holdout/remove_symptom",
+    "initial": {
+      "skin_condition": [
+        "redness",
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "다른 항목은 건드리지 마. 피부가 붉지는 않아. \"피부가 따가워\"라는 것만 증상 목록에 남겨줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-negation-001",
+    "category": "negation",
+    "split": "holdout",
+    "surface_template_family": "holdout/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "증상을 구별해서 적어줘. 피부가 따갑지는 않아. \"뾰루지가 생겼어\"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "breakout"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-failed_search-003",
+    "category": "failed_search",
+    "split": "holdout",
+    "surface_template_family": "holdout/failed_search",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": true,
+    "turns": [
+      {
+        "input": "지금 기록을 기준으로 문서를 찾아서 그 식별자를 답해줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "expect_search_failure": true,
+        "final_response": "조회 도구 오류로 문서를 가져오지 못했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-report-003",
+    "category": "report",
+    "split": "holdout",
+    "surface_template_family": "holdout/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "메모를 새로 남겨줘. 피부가 따가워. 발생은 오늘이고, 바른 시간대는 오후, 정도 표시는 심함이야.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "severe",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ],
+                "usage_time": "afternoon",
+                "product_used": "yes",
+                "symptom_onset": "today",
+                "severity": "severe"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "severe",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-missing_information-003",
+    "category": "missing_information",
+    "split": "holdout",
+    "surface_template_family": "holdout/missing_information",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "제품을 썼는지나 언제부터인지는 말한 적 없어. \"피부가 따가워\"라는 점만 기억해줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_onset-003",
+    "category": "change_onset",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_onset",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용 시각은 그대로야. 증상이 발생한 날만 바로잡아줘. 오늘 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-conflicting_events-002",
+    "category": "conflicting_events",
+    "split": "holdout",
+    "surface_template_family": "holdout/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "아침에 제품을 바른 건 어제의 일이야. 건조함이 생기기 시작한 건 오늘이고.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "severity": "unknown",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "dryness"
+                ],
+                "usage_time": "morning",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "severity": "unknown",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-DRY-002",
+        "final_response": "조회 문서: 건조함 테스트 문서. 출처: FIXTURE-DRY-002"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_onset-000",
+    "category": "change_onset",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_onset",
+    "initial": {
+      "skin_condition": [
+        "redness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "severe"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용 시각은 그대로야. 증상이 발생한 날만 바로잡아줘. 어제 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "severe"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "yesterday"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "severe"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-missing_information-000",
+    "category": "missing_information",
+    "split": "holdout",
+    "surface_template_family": "holdout/missing_information",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "제품을 썼는지나 언제부터인지는 말한 적 없어. \"피부가 붉어\"라는 점만 기억해줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-remove_symptom-000",
+    "category": "remove_symptom",
+    "split": "holdout",
+    "surface_template_family": "holdout/remove_symptom",
+    "initial": {
+      "skin_condition": [
+        "dryness",
+        "redness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "unknown",
+      "severity": "severe"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "다른 항목은 건드리지 마. 피부가 건조하지 않아. \"피부가 붉어\"라는 것만 증상 목록에 남겨줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_time-000",
+    "category": "change_time",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_time",
+    "initial": {
+      "skin_condition": [
+        "redness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "unknown",
+      "severity": "severe"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "바른 시각만 정정해줘. 오후 기록은 틀렸어. 실제로는 아침에 발랐어.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "morning"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-no_product-003",
+    "category": "no_product",
+    "split": "holdout",
+    "surface_template_family": "holdout/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품 사용은 없었다고 적어줘. 따가움이 생기기 시작한 건 오늘이야.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-greeting-002",
+    "category": "greeting",
+    "split": "holdout",
+    "surface_template_family": "holdout/greeting",
+    "initial": {
+      "skin_condition": [
+        "dryness"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "만나서 반가워요. 오늘은 인사만 하고 갈게요.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "안녕하세요."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-greeting-000",
+    "category": "greeting",
+    "split": "holdout",
+    "surface_template_family": "holdout/greeting",
+    "initial": {
+      "skin_condition": [
+        "redness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "unknown",
+      "severity": "severe"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "만나서 반가워요. 오늘은 인사만 하고 갈게요.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "안녕하세요."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-no_product-004",
+    "category": "no_product",
+    "split": "holdout",
+    "surface_template_family": "holdout/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품 사용은 없었다고 적어줘. 가려움이 생기기 시작한 건 오늘이야.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-report-004",
+    "category": "report",
+    "split": "holdout",
+    "surface_template_family": "holdout/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "메모를 새로 남겨줘. 피부가 가려워. 발생은 어제이고, 바른 시간대는 저녁, 정도 표시는 경미함이야.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "mild",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ],
+                "usage_time": "evening",
+                "product_used": "yes",
+                "symptom_onset": "yesterday",
+                "severity": "mild"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "mild",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-search-004",
+    "category": "search",
+    "split": "holdout",
+    "surface_template_family": "holdout/search",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-remove_symptom-004",
+    "category": "remove_symptom",
+    "split": "holdout",
+    "surface_template_family": "holdout/remove_symptom",
+    "initial": {
+      "skin_condition": [
+        "breakout",
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "다른 항목은 건드리지 마. 뾰루지는 없어. \"피부가 가려워\"라는 것만 증상 목록에 남겨줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-greeting-003",
+    "category": "greeting",
+    "split": "holdout",
+    "surface_template_family": "holdout/greeting",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "만나서 반가워요. 오늘은 인사만 하고 갈게요.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "안녕하세요."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-missing_information-004",
+    "category": "missing_information",
+    "split": "holdout",
+    "surface_template_family": "holdout/missing_information",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "제품을 썼는지나 언제부터인지는 말한 적 없어. \"피부가 가려워\"라는 점만 기억해줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-search-001",
+    "category": "search",
+    "split": "holdout",
+    "surface_template_family": "holdout/search",
+    "initial": {
+      "skin_condition": [
+        "breakout"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon"
+        },
+        "final_response": "현재 조건에 해당하는 모의 문서가 없습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-report-000",
+    "category": "report",
+    "split": "holdout",
+    "surface_template_family": "holdout/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "메모를 새로 남겨줘. 피부가 붉어. 발생은 어제이고, 바른 시간대는 아침, 정도 표시는 심함이야.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "severe",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ],
+                "usage_time": "morning",
+                "product_used": "yes",
+                "symptom_onset": "yesterday",
+                "severity": "severe"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "severe",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-negation-004",
+    "category": "negation",
+    "split": "holdout",
+    "surface_template_family": "holdout/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "증상을 구별해서 적어줘. 뾰루지는 없어. \"피부가 가려워\"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_time-004",
+    "category": "change_time",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_time",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "morning",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "바른 시각만 정정해줘. 아침 기록은 틀렸어. 실제로는 저녁에 발랐어.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "evening"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-report-001",
+    "category": "report",
+    "split": "holdout",
+    "surface_template_family": "holdout/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "메모를 새로 남겨줘. 뾰루지가 생겼어. 발생은 오늘이고, 바른 시간대는 오후, 정도 표시는 경미함이야.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "severity": "mild",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "breakout"
+                ],
+                "usage_time": "afternoon",
+                "product_used": "yes",
+                "symptom_onset": "today",
+                "severity": "mild"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "severity": "mild",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "final_response": "현재 조건에 해당하는 모의 문서가 없습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-remove_symptom-002",
+    "category": "remove_symptom",
+    "split": "holdout",
+    "surface_template_family": "holdout/remove_symptom",
+    "initial": {
+      "skin_condition": [
+        "dryness",
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "다른 항목은 건드리지 마. 피부가 가렵지는 않아. \"피부가 건조해\"라는 것만 증상 목록에 남겨줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "dryness"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-DRY-002",
+        "final_response": "조회 문서: 건조함 테스트 문서. 출처: FIXTURE-DRY-002"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-missing_information-001",
+    "category": "missing_information",
+    "split": "holdout",
+    "surface_template_family": "holdout/missing_information",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "제품을 썼는지나 언제부터인지는 말한 적 없어. \"뾰루지가 생겼어\"라는 점만 기억해줘.",
+        "expected": {
+          "skin_condition": [
+            "breakout"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "breakout"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-negation-003",
+    "category": "negation",
+    "split": "holdout",
+    "surface_template_family": "holdout/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "증상을 구별해서 적어줘. 피부가 붉지는 않아. \"피부가 따가워\"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-negation-000",
+    "category": "negation",
+    "split": "holdout",
+    "surface_template_family": "holdout/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "증상을 구별해서 적어줘. 피부가 건조하지 않아. \"피부가 붉어\"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-change_time-003",
+    "category": "change_time",
+    "split": "holdout",
+    "surface_template_family": "holdout/change_time",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "바른 시각만 정정해줘. 저녁 기록은 틀렸어. 실제로는 오후에 발랐어.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "afternoon"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-search-000",
+    "category": "search",
+    "split": "holdout",
+    "surface_template_family": "holdout/search",
+    "initial": {
+      "skin_condition": [
+        "redness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "unknown",
+      "severity": "severe"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "unknown",
+          "severity": "severe"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "afternoon"
+        },
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "holdout-failed_search-002",
+    "category": "failed_search",
+    "split": "holdout",
+    "surface_template_family": "holdout/failed_search",
+    "initial": {
+      "skin_condition": [
+        "dryness"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "unknown"
+    },
+    "fail_search": true,
+    "turns": [
+      {
+        "input": "지금 기록을 기준으로 문서를 찾아서 그 식별자를 답해줘.",
+        "expected": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "dryness"
+          ],
+          "usage_time": "evening"
+        },
+        "expect_search_failure": true,
+        "final_response": "조회 도구 오류로 문서를 가져오지 못했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  }
+]

@@ -1,0 +1,47 @@
+﻿# 実行に必要なもの
+
+## コピー済み
+
+- コード、指定された入力、モデル・アダプターのファイル：151件。
+- ファイルごとの元の場所・サイズ・SHA-256は [runtime-inventory.json](runtime-inventory.json) を参照。
+- 100 MB以上の重み等もローカルにはコピー済み。GitHubへ誤って追加しないよう `.gitignore` 対象にした。
+
+## 実行の入口
+
+作業ディレクトリをこのフォルダの `workspace` にして実行する。
+
+```powershell
+python -m pip install -r requirements.txt
+powershell -ExecutionPolicy Bypass -File scripts/start_qwen.ps1 -ServerPath (Resolve-Path external/llama-cpp/llama-server.exe).Path
+python scripts/run_agent.py --demo
+```
+
+これは候補コマンドであり、コピー先での実モデル実行成功はまだ検証していない。
+
+## 不足・別途必要
+
+- Python環境と依存ライブラリのインストール。GPUを使うものは対応GPU・ドライバー。
+- 指定した代表ファイルに、ファイル単位で見つからなかったものはない。
+- Windows CUDA対応GPU・Python・PowerShellが必要。Linuxでは同梱Windows実行エンジンを使えない。
+- JanのCUDA 13版バイナリとDLLを別途コピー。配布権利やドライバー互換性は未検証。
+- Qwen2.5の最小学習前デモ用。QLoRAの全条件・別モデルまで自動的に再現するパッケージではない。
+
+## 範囲
+
+共通：コマンドはこのPOCの workspace を作業ディレクトリとする。元のスクリプトは既存出力を保護して停止する場合がある。実モデル・GPU・外部サーバーの実行は今回検査していない。
+静的import以外の動的参照・各歴史的実験の全保存点は網羅を証明できていない。全54条件が単独再現できるとは主張しない。
+モデルやデータのGitHubへの再配布は、それぞれのライセンス・公開範囲を確認する。APIキー・会話ログは意図的に含めない。
+
+
+
+## 追加で確認した依存
+
+追加調査で照合した依存（既にコピー済みのものを含む）：128ファイル。詳細はruntime-inventory.json。
+
+追加学習・KLUE・AI Hubのコード、保存データ、LoRA、および該当ベースモデルを追加。
+AI Hub由来と公開ツール用の学習データは、再配布条件・内容の確認までGit追加対象から除外。
+元の個別実験コードには固定された元データ・評価・生成サーバーへの追加依存があり、全条件の実行は未検証。
+
+CUDA環境について：requirements-train.txtだけのinstallではCUDA版PyTorchが入るとは限らない。
+コピーしたscripts/bootstrap_training.ps1は元のWindows/Python3.11向け構築手順。uvとPython3.11が別途必要で、実行環境の構築は今回未検証。
+Kaggle Notebookを使う場合はNotebook内の個別環境構築手順を使う。
