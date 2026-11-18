@@ -1,0 +1,47 @@
+﻿# 実行に必要なもの
+
+## コピー済み
+
+- コード、指定された入力、モデル・アダプターのファイル：122件。
+- ファイルごとの元の場所・サイズ・SHA-256は [runtime-inventory.json](runtime-inventory.json) を参照。
+- 100 MB以上の重み等もローカルにはコピー済み。GitHubへ誤って追加しないよう `.gitignore` 対象にした。
+
+## 実行の入口
+
+作業ディレクトリをこのフォルダの `workspace` にして実行する。
+
+```powershell
+python -m pip install -r requirements-train.txt
+python scripts/compare_korean_decision_pilot.py --help
+python scripts/run_choice_agent_v1.py --help
+```
+
+これは候補コマンドであり、コピー先での実モデル実行成功はまだ検証していない。
+
+## 不足・別途必要
+
+- Python環境と依存ライブラリのインストール。GPUを使うものは対応GPU・ドライバー。
+- 指定した代表ファイルに、ファイル単位で見つからなかったものはない。
+- 症状・候補選択は別試験。評価条件や保存点が異なるため一つの再現コマンドではない。
+- 本体重みは大容量・利用条件あり。学習済みLoRAはベースとセットで必要。
+- 学習スクリプトは既存の出力やアダプターがある場合、上書きを防ぐため停止する。
+
+## 範囲
+
+共通：コマンドはこのPOCの workspace を作業ディレクトリとする。元のスクリプトは既存出力を保護して停止する場合がある。実モデル・GPU・外部サーバーの実行は今回検査していない。
+静的import以外の動的参照・各歴史的実験の全保存点は網羅を証明できていない。全54条件が単独再現できるとは主張しない。
+モデルやデータのGitHubへの再配布は、それぞれのライセンス・公開範囲を確認する。APIキー・会話ログは意図的に含めない。
+
+
+
+## 追加で確認した依存
+
+追加調査で照合した依存（既にコピー済みのものを含む）：58ファイル。詳細はruntime-inventory.json。
+
+学習済み選択の例：`python scripts/run_choice_agent_v1.py --experiment routing --model selected --once "피부가 가려워요."`。
+結果JSONを追加したので、新規学習コードは既存出力を保護して停止する。学習をやり直す場合は別の作業コピーが必要。
+保存JSONのアダプターパスはWindows区切りのため、Linuxで使う場合はパス解釈の確認が必要。
+
+CUDA環境について：requirements-train.txtだけのinstallではCUDA版PyTorchが入るとは限らない。
+コピーしたscripts/bootstrap_training.ps1は元のWindows/Python3.11向け構築手順。uvとPython3.11が別途必要で、実行環境の構築は今回未検証。
+Kaggle Notebookを使う場合はNotebook内の個別環境構築手順を使う。

@@ -1,0 +1,168 @@
+[
+  {
+    "id": "E07",
+    "phase": "選択モデルへ移行",
+    "title": "症状4択を2モデルで追加学習",
+    "change": "ko-decisionとEXAONE-JEVに120判断ずつ。症状ごとの4択を学習。",
+    "result": "新しい8会話10ターン：ko-decision状態0/10→8/10、会話0/8→6/8。JEV状態0/10→6/10、会話0/8→4/8。両モデルval120/120。",
+    "scope": "同一作者の小規模合成例。ツール選択・製品・自由な値生成は対象外。",
+    "decision": "小型モデルにも学習効果がある。val100%を実会話100%と呼ばない。",
+    "sources": [
+      {
+        "source": "output/decision-qlora-comparison-v1/結果.md",
+        "status": "copied",
+        "path": "sources/output/decision-qlora-comparison-v1/結果.md",
+        "bytes": 6207,
+        "sha256": "20687761bba7e74fbf41a982d950384488afa6b9821745570e7e01b9d2c7e35b"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E08",
+    "phase": "症状学習拡大",
+    "title": "6000判断の症状学習",
+    "change": "合成症状5000＋WoS由来の暫定非更新1000判断。",
+    "result": "別の20会話：前4/20、開発で選んだ2000判断時15/20、最終6000判断時19/20。状態ターン18/45→44/45。",
+    "scope": "合成20会話で95%。開発規則の選択モデルは75%。製品やツール呼び出しの完全一致ではない。",
+    "decision": "限定した症状記録での成功として残す。現在のkotraj90%達成とは別。",
+    "sources": [
+      {
+        "source": "output/ko-symptom-6000-report-v1/結果.md",
+        "status": "copied",
+        "path": "sources/output/ko-symptom-6000-report-v1/結果.md",
+        "bytes": 4425,
+        "sha256": "ba16e55fbfd464b6d6f00f750f03e71cc7e17031ca118f66e9f6bcddce18ace8"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E09",
+    "phase": "症状から動作選択へ",
+    "title": "3235判断で記録・検索・表示などを選ぶ",
+    "change": "症状モデルへツール選択1290等を追加。1発話1ツール。",
+    "result": "ツール選択13/24→19/24。会話2/8→6/8。ツールと状態のターン7/18→14/18（選択重み）、最終15/18。",
+    "scope": "候補から選択し模擬関数を実行。自由な引数生成・連続実行ではない。",
+    "decision": "選択から実行へ接続できた。ただし必要ツールがない場合の誤選択が残る。",
+    "sources": [
+      {
+        "source": "output/choice-agent-report-v2/結果.md",
+        "status": "copied",
+        "path": "sources/output/choice-agent-report-v2/結果.md",
+        "bytes": 5421,
+        "sha256": "d6bd387b9c6fd1b2a241da940d579948c9e00353dedc0b74fb8cb1f0c55ad677"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E10",
+    "phase": "質問への対応",
+    "title": "質問を変えたとき答えも変わるか",
+    "change": "はい・いいえ・不明と旧動作保持を2400判断追加。",
+    "result": "新しい質問16問は前後とも16/16。既出ツール19/24→選択19/24・最終22/24。既出会話6/8→選択4/8・最終6/8。",
+    "scope": "質問の試験は学習前に満点。既出の会話は新しい最終テストではない。",
+    "decision": "この新質問では追加学習の改善は測れない。選択重みの保持悪化も残す。",
+    "sources": [
+      {
+        "source": "output/question-conditioned-agent-report-v1/結果.md",
+        "status": "copied",
+        "path": "sources/output/question-conditioned-agent-report-v1/結果.md",
+        "bytes": 5021,
+        "sha256": "496cd58954ef0f8d73e39c638697e620e19dde5dba3fd5e473e498cd4d2c9ead"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E11",
+    "phase": "公開ツール例の選択学習",
+    "title": "公開例4400判断：名前は合っても値で失敗",
+    "change": "ツール候補と引数候補から選ぶ学習。",
+    "result": "公開由来dev70/100→84/100。一方、別の未知ツール27要求の全条件22/27→20/27。学習後の未指定値での正しい停止0/6。",
+    "scope": "引数は提示候補から選ぶ。自由なJSON生成ではない。模擬実行のみ。",
+    "decision": "dev上昇だけで採用しない。未指定値を勝手に選ぶ誤りが残る。",
+    "sources": [
+      {
+        "source": "output/public-tool-choice-report-v1/結果.md",
+        "status": "copied",
+        "path": "sources/output/public-tool-choice-report-v1/結果.md",
+        "bytes": 6413,
+        "sha256": "5b372f3b2a9bca8c6d295ef1001e7aab2195ff6cd914660f730dfd47f61e750f"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E12",
+    "phase": "公開ツールの選択確認",
+    "title": "FunctionChat 600判断",
+    "change": "公開データ追加学習前後の選択を比較。",
+    "result": "332/600→365/600。呼ぶ86/100→91/100、拒否10/100→25/100。未知名を含む呼び出し233/372→247/372。",
+    "scope": "候補選択の試験。名前と値の自由生成や外部実行ではない。",
+    "decision": "改善はあるが拒否と似た候補の区別が弱い。",
+    "sources": [
+      {
+        "source": "output/functionchat-tool-selection-v1/summary.json",
+        "status": "copied",
+        "path": "sources/output/functionchat-tool-selection-v1/summary.json",
+        "bytes": 2608,
+        "sha256": "72da4194059e767eb9898ec0b047ad4400715e69a263b67a9c4943dc479ad58f"
+      },
+      {
+        "source": "output/functionchat-tool-selection-v1/結果.md",
+        "status": "copied",
+        "path": "sources/output/functionchat-tool-selection-v1/結果.md",
+        "bytes": 3415,
+        "sha256": "2bc2814a0b1c0966db74ea907048309bb2fd7e08e739f05cb24951a5e0ce1e7b"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E13",
+    "phase": "旧kotraj選択学習",
+    "title": "kotrajの少量確認と200例",
+    "change": "14種類の小規模試験後、200例＋旧40判断へ拡大。",
+    "result": "最初の8問は5/8→5/8。200例条件の60問は25/60→32/60。ただし呼び出し7/30→6/30、呼ばない18/30→26/30。",
+    "scope": "同じ固定ツール群の合成出典。選択だけで値は未実行。8問と60問は別の評価。",
+    "decision": "全体改善の中身は主に呼ばない判断。呼び出し精度の改善ではない。",
+    "sources": [
+      {
+        "source": "output/training/kotraj-pilot-v1/results.json",
+        "status": "copied",
+        "path": "sources/output/training/kotraj-pilot-v1/results.json",
+        "bytes": 51975,
+        "sha256": "c9a6cdb7bc4640966aa8ef77ff09e26722292ff8621306e8e744d7ffec0e178a"
+      },
+      {
+        "source": "output/training/kotraj-200-v1/results.json",
+        "status": "copied",
+        "path": "sources/output/training/kotraj-200-v1/results.json",
+        "bytes": 206030,
+        "sha256": "a994ca0f92eda6dafa1431706a768111ae870b7f57eb7a23b8df7467074a6921"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E14",
+    "phase": "旧kotraj大規模学習",
+    "title": "Kaggleで旧選択モデルを拡大学習",
+    "change": "kotraj由来の候補選択学習を拡大。",
+    "result": "新120問37/120→87/120。呼ぶ7/76→58/76、呼ばない30/44→29/44。旧60問25/60→49/60。既出肌23問の動作20→15、状態20→15。",
+    "scope": "ツール候補を選ぶ試験。自由な値生成ではない。保存結果は87、会話に貼られた88ではない。",
+    "decision": "選択は明確に改善。一方、肌の旧動作は悪化。",
+    "sources": [
+      {
+        "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/summary.json",
+        "status": "copied",
+        "path": "sources/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/summary.json",
+        "bytes": 1123,
+        "sha256": "904be17fc2a47dda2ac8e2a4ad5bdeccf7310617c7d235ad50ea0a48b6773133"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  }
+]
