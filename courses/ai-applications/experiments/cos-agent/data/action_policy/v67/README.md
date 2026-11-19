@@ -1,5 +1,7 @@
 # 팀 공용 v67 액션 데이터셋 — AFA / QLoRA
 
+v67은 EDA·기존 행동 예시·파생 질문 실험의 출처다. E26 첫 PPO용 64상황은 별도 자료이며, 새 날씨·제품·추천 행동의 SFT 예시는 추가 설계 대상이다. [목표 구조](../../../docs/agent-runtime-target.md)
+
 이 자료는 **현재 상태를 보고 다음 행동 하나를 고르는** 합성 개발 데이터입니다. AFA(Active Feature Acquisition)는 무엇을 먼저 물을지 배우는 데, QLoRA는 `ActionContext → ActionProposal` 대응 관계를 학습하는 데 사용합니다. 최종 공유 검토일: 2026-11-14.
 
 ## 처음 사용하는 팀원은 여기부터

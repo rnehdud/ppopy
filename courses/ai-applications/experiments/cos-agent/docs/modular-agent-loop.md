@@ -1,5 +1,7 @@
 # 액션 중심 모듈형 에이전트 루프
 
+[목표 구조](agent-runtime-target.md)의 런타임은 조회 결과를 다시 판단에 반영하고 질문을 기다렸다가 재개한다. 아래 구현은 Python/CLI에서 한 번의 행동을 실행하는 기존 실험이다.
+
 합성 개발 프리뷰입니다. 항상 `development_preview`, `production_enabled=false`이며 무저장입니다. SLM은 발화와 현재 상태를 해석해 **다음 액션을 제안**하고, 코드는 계약·실행 조건을 검증한 뒤 허용된 dispatcher만 실행합니다. 실제 Jev/Ollama 추론·Qwen 학습·다운로드·배포는 실행하지 않았습니다.
 
 기존 `POST /v1/agent/turn`, `TurnRequest`/`TurnResponse`, `run_turn()`은 유지합니다. HTTP 경로는 기존 질문 ID 선택 방식이며 새 액션 루프는 **Python API와 CLI에서만** 실행합니다. 새 HTTP 엔드포인트는 없습니다.

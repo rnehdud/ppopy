@@ -1,0 +1,54 @@
+{
+  "default_answers": {
+    "method.body_site": "face",
+    "method.water_temperature": "lukewarm",
+    "method.tools": "scrub_brush",
+    "method.friction": "gentle",
+    "method.drying": "pat_gently",
+    "cleansing.target_load": "no_additional_removal_need",
+    "cleansing.repeat_wash": "habitual_without_reason",
+    "cleansing.steps": "declined",
+    "dose.frequency": "declined",
+    "method.current_routine": "declined"
+  },
+  "cases": [
+    {
+      "id": "dev-habitual-brush",
+      "family": "habitual-brush",
+      "message": "세안 방법과 반복 세안을 확인하고 싶어요.",
+      "prefilled": ["method.water_temperature"],
+      "answers": {},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "completed"
+    },
+    {
+      "id": "dev-sweat-cloth",
+      "family": "sweat-cloth",
+      "message": "세안을 두 번 하는데 세안 방법도 봐 주세요.",
+      "prefilled": ["method.body_site"],
+      "answers": {"method.tools": "washcloth", "cleansing.target_load": "heavy_sweat"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "held"
+    },
+    {
+      "id": "dev-removal-hands",
+      "family": "removal-hands",
+      "message": "이중 세안과 도구 사용을 확인해 주세요.",
+      "prefilled": ["method.body_site", "method.water_temperature", "cleansing.repeat_wash"],
+      "answers": {"method.tools": "hands", "cleansing.target_load": "confirmed_removal_need",
+                  "cleansing.repeat_wash": "purpose_matched"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "completed"
+    },
+    {
+      "id": "dev-unanswered-repeat",
+      "family": "unanswered-repeat",
+      "message": "반복 세안과 수건 사용을 확인해 주세요.",
+      "prefilled": ["method.body_site", "cleansing.target_load"],
+      "answers": {"method.tools": "hands", "method.drying": "rubbing_strongly",
+                  "cleansing.repeat_wash": "declined"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "held"
+    }
+  ]
+}

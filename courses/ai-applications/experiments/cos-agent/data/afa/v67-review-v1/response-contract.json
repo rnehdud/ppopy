@@ -1,0 +1,41 @@
+{
+  "version": "v67-response-contract-0.1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "human_review": "unreviewed",
+  "status": "development_contract_and_recorded_event_diagnostic_not_gym_integration",
+  "source_split_for_followup": "train",
+  "recorded_path": {
+    "choice_identity": ["action", "target_id", "arguments.confirmation_focus"],
+    "response_lookup": "immediate_next_canonical_turn_only",
+    "allowed_response_kinds": ["confirmed_user_observation", "explicit_candidate_confirmation", "explicit_conflict_resolution_with_observation"],
+    "return_whole_next_record": true,
+    "no_automatic_dispatch_or_state_commit": true,
+    "target_event_presence_is_not_rl_eligibility": true
+  },
+  "counterfactual_world_fixture_requirements": {
+    "implemented": false,
+    "preserve": ["parent_scenario_id", "source_split", "source_hash", "event_order", "history_sensitive_state", "explicit_response_domain", "fixture_version"],
+    "key_must_include": ["scenario_id", "public_history_fingerprint", "action", "target_id", "confirmation_focus"],
+    "validate_before_rollout": "every supported reachable action has an explicit response or a justified terminal contract",
+    "missing_response": "dataset_contract_error_before_dispatch_not_unknown_reward_penalty_or_truncation",
+    "no_masking_solely_to_hide_missing_recorded_answers": true,
+    "no_future_events_in_policy_input": true,
+    "no_static_flattening_of_later_corrections": true
+  },
+  "candidate_confirmation": {
+    "identity": "declared_alias_to_extraction_fixture_index_and_origin_turn",
+    "validate_expected_symptom": true,
+    "update_only_addressed_candidate": true,
+    "creates_kb_observation": false,
+    "no_first_candidate_fallback": true
+  },
+  "state_and_conflict": {
+    "preserve_states": ["known", "unknown", "declined", "conflicting", "not_applicable"],
+    "resolve_conflict_requires": ["explicit_resolve_conflicts_target", "matching_confirmed_observation"],
+    "commit": "future_environment_adapter_only_after_whole_step_success"
+  },
+  "deferred_adapters": ["profile_and_owned_product_confirmation", "product_evidence_result_and_failure", "candidate_confirmation_to_kb_observation", "history_sensitive_counterfactual_world", "gym_prepare_apply_commit_integration"],
+  "terminal_labels": "hold_and_request_draft_require_separate_semantic_and_timing_judgment",
+  "label_review": "runtime_valid_alternatives_are_not_automatically_equal_cost_optimality_or_unique_gold"
+}
