@@ -1,0 +1,358 @@
+[
+  {
+    "id": "E15",
+    "phase": "実行への接続",
+    "title": "旧kotrajの選択を実ツールへつなぐ",
+    "change": "一時的なローカル関数を呼ぶ。さらに次の選択へ結果を戻す。",
+    "result": "22ターンの正しい選択12→11、状態20→20、実行エラー0→0。10会話の正しい操作順2→1、繰り返し遮断7→8。",
+    "scope": "引数なしの一時ローカルツール。Qwen・外部サービスは不使用。期待順に別解の余地がある少数合成例。",
+    "decision": "エラーなく呼べても目的達成は増えなかった。単純なループ追加だけでは解決していない。",
+    "sources": [
+      {
+        "source": "output/kotraj-tool-execution-v1.json",
+        "status": "copied",
+        "path": "sources/output/kotraj-tool-execution-v1.json",
+        "bytes": 40050,
+        "sha256": "194ef1a97cc43e2bf04073833374008fa7c07bc36ba9916b39e8ac4cbe438612"
+      },
+      {
+        "source": "output/kotraj-multistep-loop-v1.json",
+        "status": "copied",
+        "path": "sources/output/kotraj-multistep-loop-v1.json",
+        "bytes": 26922,
+        "sha256": "d7d92879fbf85bdb2638dc05ea820aa6313fd5230ae963615c150f2230e5360e"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E28",
+    "phase": "連続実行v26",
+    "title": "実行結果を返すだけで次へ進めるか",
+    "change": "ツール結果を履歴へ戻す3条件。追加学習なし。",
+    "result": "正しい操作順と終了は3条件とも0/20。",
+    "scope": "狭い合成の連続操作試験。",
+    "decision": "ループの配線だけでは次の操作を学んだことにならない。",
+    "sources": [
+      {
+        "source": "output/実行結果で次の選択が変わるかの確認-v26.txt",
+        "status": "copied",
+        "path": "sources/output/実行結果で次の選択が変わるかの確認-v26.txt",
+        "bytes": 8012,
+        "sha256": "c75a145c46a44160abad7622c961f06ffe21eae27f6f2fe082ebe3119b76381b"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E29",
+    "phase": "連続実行v27–v29",
+    "title": "選択役・停止役と対比較の追加",
+    "change": "選択だけ、停止だけ、両方、閾値変更、正誤対比較を分離。",
+    "result": "v27全24例1→選択4・停止7・両方11。v28全40例10→13だが必要操作完了7/20→4/20。v29全32例12→通常学習19・対比較17。",
+    "scope": "評価集合は実験ごとに違う。v29は同じ32例で通常学習と対比較を比較。",
+    "decision": "対比較追加は通常学習を超えなかった。これは既に試した方法として記録。",
+    "sources": [
+      {
+        "source": "output/結果を見て次を選ぶ追加学習の結果-v27.txt",
+        "status": "copied",
+        "path": "sources/output/結果を見て次を選ぶ追加学習の結果-v27.txt",
+        "bytes": 11097,
+        "sha256": "f4044328605ffe66ebe1ca2c95f66be508cd53d410e0768e90409245a707cf62"
+      },
+      {
+        "source": "output/実行基準だけを変えた比較の結論-v28.txt",
+        "status": "copied",
+        "path": "sources/output/実行基準だけを変えた比較の結論-v28.txt",
+        "bytes": 9849,
+        "sha256": "6114ab5620a334022d0d64c9adb27b1d4cdf040530d6d718e861cf6ec744897d"
+      },
+      {
+        "source": "output/二例の違いを教える学習との比較結果-v29.txt",
+        "status": "copied",
+        "path": "sources/output/二例の違いを教える学習との比較結果-v29.txt",
+        "bytes": 12666,
+        "sha256": "a74605aee51dd3ccb46181f40e4b47fbdae2de66c1e949d3ec3feb8e98a8ca15"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E30",
+    "phase": "実行時接続v31–v34",
+    "title": "候補数・説明・実行条件を変更",
+    "change": "候補を増やす、説明を残す、呼ぶ条件と終了条件を分ける。",
+    "result": "v31旧32例19→24、新24例0→0。v32新24例10→14。v34狭い40例30→36（90%ちょうど）、不要継続6/20→0、必要操作完了19/20のまま。",
+    "scope": "旧例と新例を区別。v34は現在のkotrajでも90%超でもない。",
+    "decision": "不要な継続は減ったが、必要操作の増加という事前条件は満たさなかった。",
+    "sources": [
+      {
+        "source": "output/候補を増やす接続の実行比較-v31.txt",
+        "status": "copied",
+        "path": "sources/output/候補を増やす接続の実行比較-v31.txt",
+        "bytes": 12182,
+        "sha256": "fb95ce5adf2398466ddf8603bdf0420277218ea5d07d4d85f7b39590ba6f0ff8"
+      },
+      {
+        "source": "output/説明を省略しない連続実行の比較-v32.txt",
+        "status": "copied",
+        "path": "sources/output/説明を省略しない連続実行の比較-v32.txt",
+        "bytes": 11012,
+        "sha256": "59f697ab6ced86051c961fa30c4bc37e2f73c54e6fe6e79a460068407117aa16"
+      },
+      {
+        "source": "output/実行条件を分けた選択の比較-v34.txt",
+        "status": "copied",
+        "path": "sources/output/実行条件を分けた選択の比較-v34.txt",
+        "bytes": 13341,
+        "sha256": "adb3e4a6264e79a5a9fa563f8eba0e826ba7f8caf81cb7070b31ce9c7bb02e7f"
+      },
+      {
+        "source": "output/実行条件比較の結論-v34.txt",
+        "status": "copied",
+        "path": "sources/output/実行条件比較の結論-v34.txt",
+        "bytes": 5555,
+        "sha256": "094e38e3b5152dca2610e79cab3dffaf9e8b7096046529f1ed3edd8f138da4e2"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E31",
+    "phase": "次の操作学習v36–v38",
+    "title": "入力と正解を合わせ直すと狭い課題は動いた",
+    "change": "次操作を学習。長すぎて読めない教材を退け、完全な履歴と正解を対応づけ直した。",
+    "result": "v36全42例6→30だが2操作0/10→0/10。v38の正しい症状情報を渡す条件3/30→30/30、固定症状モデル条件1/30→28/30。2操作は両条件0/10→10/10、必要書き込み15/15保持。",
+    "scope": "少数の合成定型例。30/30は症状情報が正しい条件。通常の症状モデルを含めると28/30。v36とは別試験。",
+    "decision": "狭い連続実行の成功はある。v39以降で広げた結果も必ず併記する。",
+    "sources": [
+      {
+        "source": "output/実行後の選択だけを学習した結果-v36.txt",
+        "status": "copied",
+        "path": "sources/output/実行後の選択だけを学習した結果-v36.txt",
+        "bytes": 7315,
+        "sha256": "e8a2c9b614f81e77070a82cc20c3f43380055c498bd98bb89fff8d904c380a0f"
+      },
+      {
+        "source": "output/完全な操作履歴の教材確認-v37r1.txt",
+        "status": "copied",
+        "path": "sources/output/完全な操作履歴の教材確認-v37r1.txt",
+        "bytes": 3919,
+        "sha256": "b77854aa54a3e10c8d7957d38eb5c19aaad5da3409a810759887c07920b101cc"
+      },
+      {
+        "source": "output/教材を揃えた次操作学習の結果-v38.txt",
+        "status": "copied",
+        "path": "sources/output/教材を揃えた次操作学習の結果-v38.txt",
+        "bytes": 5817,
+        "sha256": "00364a150f6fc548d8c45a531fccce7a7e44ffac186d28071595ee7349ae6d61"
+      },
+      {
+        "source": "output/残った2件の原因-v38.txt",
+        "status": "copied",
+        "path": "sources/output/残った2件の原因-v38.txt",
+        "bytes": 3606,
+        "sha256": "22378117f6d9744e50b438b9fbd9c73cde6f642c590821188b8fb190989bf7b7"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E32",
+    "phase": "狭い成功を広げるv39–v42",
+    "title": "自然な依頼への移行で崩れた",
+    "change": "依頼と症状を分ける、言い換え対応、残った依頼だけを渡す。",
+    "result": "v39全120例86→59、必要書き込み45/45→25/45。v41未知関数の実行全体18/56・2操作0/16。v42旧入力4/16に対し学習後0/16。",
+    "scope": "v38とは別の広い試験。履歴を消す診断15/16は、履歴が必要な実運用で採用できる方式ではない。",
+    "decision": "定型での成功を、そのまま自然な複数ターンの成功としない。",
+    "sources": [
+      {
+        "source": "output/依頼と症状予測を分けた学習の結果-v39.txt",
+        "status": "copied",
+        "path": "sources/output/依頼と症状予測を分けた学習の結果-v39.txt",
+        "bytes": 57218,
+        "sha256": "e092e6a8e5d18dd113d96d2badaae6b34e95179dc7b01f8415e6dd8c323f1294"
+      },
+      {
+        "source": "output/選択が崩れる入力を分けた結果-v40.txt",
+        "status": "copied",
+        "path": "sources/output/選択が崩れる入力を分けた結果-v40.txt",
+        "bytes": 7687,
+        "sha256": "893a8beb46450bb4f622ca400baa9360896f6a21707fda1bfb99df35bd28a340"
+      },
+      {
+        "source": "output/説明と言い換えを使う二条件の結果-v41.txt",
+        "status": "copied",
+        "path": "sources/output/説明と言い換えを使う二条件の結果-v41.txt",
+        "bytes": 12030,
+        "sha256": "fd575916abeb1e99192384f4192fdc197dca4602a91221c320cc3d12e93f1614"
+      },
+      {
+        "source": "output/残った依頼を渡す方法の確認-v42.txt",
+        "status": "copied",
+        "path": "sources/output/残った依頼を渡す方法の確認-v42.txt",
+        "bytes": 7042,
+        "sha256": "c046c048c994b1150d1245f0fdb31d1136a6f4e0613c13be059806be2f8e8e19"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E34",
+    "phase": "読み取り後の継続v45–v46",
+    "title": "読むだけか、次に記録するか",
+    "change": "読み取り後の次操作を学習し、第二確認役追加とも比較。",
+    "result": "対24例の正解1→21。全48例25→34。必要継続1/24→24/24だが読み取りだけの終了24/24→21/24。追加確認役は別8例4→1。",
+    "scope": "全体と部分の試験を混同しない。新しい16例の対正解は0/8→2/8にとどまった。",
+    "decision": "必要な継続は増えたが、不要な継続と未知表現の失敗が残る。",
+    "sources": [
+      {
+        "source": "output/読むだけと続ける判断の確認-v45.txt",
+        "status": "copied",
+        "path": "sources/output/読むだけと続ける判断の確認-v45.txt",
+        "bytes": 3568,
+        "sha256": "7a259ffb9ec254a654636028c9163026a3f049dff9c02f821978eb6b084983e2"
+      },
+      {
+        "source": "output/次操作学習で残った失敗-v45.txt",
+        "status": "copied",
+        "path": "sources/output/次操作学習で残った失敗-v45.txt",
+        "bytes": 1963,
+        "sha256": "7250f7afb5e12918b7292b44b01a705fdfb3590caef56f534e6f9afa29cdacbb"
+      },
+      {
+        "source": "output/二つ目の判定を足す案の確認-v46.txt",
+        "status": "copied",
+        "path": "sources/output/二つ目の判定を足す案の確認-v46.txt",
+        "bytes": 2627,
+        "sha256": "e488563792bd4a79dac9dda6d705873f8a70a5c80ecddb33e6c3d5aed2e22aa1"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E35",
+    "phase": "入力短縮v47–v48",
+    "title": "情報を保つ圧縮形式",
+    "change": "元定義を復元できる短い入力を用意して学習比較。",
+    "result": "265入力中512以内が242→265。だが16例の学習前は旧6・短縮0・説明型0、学習後は旧8・短縮2・説明型1。",
+    "scope": "入力が収まる検査とモデルの意味判断は別。",
+    "decision": "短縮形式は、この結果では精度改善策として採用しない。",
+    "sources": [
+      {
+        "source": "output/履歴の渡し方を見直した判断-v47.txt",
+        "status": "copied",
+        "path": "sources/output/履歴の渡し方を見直した判断-v47.txt",
+        "bytes": 5408,
+        "sha256": "07e5f4b4c0d1047975f4edc8fbb2314d6661cb300a6472f89b505d456a8c2628"
+      },
+      {
+        "source": "output/履歴の渡し方を三条件で比較した結果-v48.txt",
+        "status": "copied",
+        "path": "sources/output/履歴の渡し方を三条件で比較した結果-v48.txt",
+        "bytes": 5458,
+        "sha256": "b25817994124f039601d63b4e2acdb7eacac661173fae7391adf68158419bb32"
+      },
+      {
+        "source": "output/今回の変更を採用しない理由-v48.txt",
+        "status": "copied",
+        "path": "sources/output/今回の変更を採用しない理由-v48.txt",
+        "bytes": 3423,
+        "sha256": "b5d8f351d4e656ff64b28b2a7ee62cb37dfb81346c0f2f3f2837631e28d8f466"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E36",
+    "phase": "三案と対照v50",
+    "title": "入力段階を合わせる・結果を残す",
+    "change": "旧方式反復を対照に3案を比較。",
+    "result": "固定16例の全条件：初期6、反復対照9、段階対応10、段階対応＋結果保持8。旧56例は初期32、対照37、段階対応36。",
+    "scope": "条件間で呼ぶ/止めるの提示数も異なり、形式変更だけの効果とは断定できない。",
+    "decision": "単に学習を続けた対照との差は小さい。",
+    "sources": [
+      {
+        "source": "output/三案と対照をまとめて試した結果-v50.txt",
+        "status": "copied",
+        "path": "sources/output/三案と対照をまとめて試した結果-v50.txt",
+        "bytes": 8462,
+        "sha256": "e4d796ef2068890321e7fdf2b92adf01b33f347dace79c2a710d8989879e8f98"
+      },
+      {
+        "source": "output/今回わかったこと-v50.txt",
+        "status": "copied",
+        "path": "sources/output/今回わかったこと-v50.txt",
+        "bytes": 3950,
+        "sha256": "d559baeb43dd042c75b2fb7fab1bab1b7eefe72e1ee8796f790ba32cf1f4b998"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E37",
+    "phase": "公開例追加v54–v57",
+    "title": "ToolACE・Nemotron追加と旧例保持を分離",
+    "change": "旧例対照、英語公開例、韓国語公開例、更新幅と旧例保持を検査。",
+    "result": "v54固定16例：初期10、対照12、英語12、韓国語11。必要継続4/8、5/8、4/8、4/8。v57学習用38判断は前14、旧反復13、混合26、新例だけ30。一方、既存16会話の全手順は10、13、9、8。",
+    "scope": "学習用38判断への適合と、既存会話の実行成績は別。v57新例だけは旧肌360判断が360→358。混合は360を維持しても全手順が悪化。",
+    "decision": "新しい判断は学べたが、その学習が既存の仕事の改善につながらなかった。",
+    "sources": [
+      {
+        "source": "output/公開ツール例を追加した三条件の結果-v54.txt",
+        "status": "copied",
+        "path": "sources/output/公開ツール例を追加した三条件の結果-v54.txt",
+        "bytes": 7842,
+        "sha256": "f1745524b1ae8d8fb1a95adccb98ccab0322f790383bd08c2771d8cdea0cf63c"
+      },
+      {
+        "source": "output/異なる道具の教材を増やした今回の結論-v55.txt",
+        "status": "copied",
+        "path": "sources/output/異なる道具の教材を増やした今回の結論-v55.txt",
+        "bytes": 5110,
+        "sha256": "8b7d813697b12cde2d904a2eb6bb502b67454bb8d420026fc3b71394a4f12454"
+      },
+      {
+        "source": "output/教材追加と更新幅を分けて確かめた結論-v56.txt",
+        "status": "copied",
+        "path": "sources/output/教材追加と更新幅を分けて確かめた結論-v56.txt",
+        "bytes": 6553,
+        "sha256": "903a8710e5ddcc0442baf9412e6466f5a937caab7874385f3f424104fd1a09c7"
+      },
+      {
+        "source": "output/旧例を残した追加学習と新例だけの比較-v57.txt",
+        "status": "copied",
+        "path": "sources/output/旧例を残した追加学習と新例だけの比較-v57.txt",
+        "bytes": 5564,
+        "sha256": "5e1bf86611df2d947ca0405c06bfa721fc19caf43382611ceabd1b30c93cb93e"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E38",
+    "phase": "実ファイル操作v58",
+    "title": "実ファイルを使う別の仕事で比較",
+    "change": "モデル選択からローカルファイル操作と停止まで実行。",
+    "result": "操作＋保存ファイル20/27→18/27。モデルの終了も含めると11/27→16/27。2操作の操作成功2/6→1/6。不要書き込み0、呼ばない9/9維持。",
+    "scope": "終了の改善と正しい仕事の改善は逆向きだった。",
+    "decision": "単一の『成功』へまとめない。重みは採用しない。",
+    "sources": [
+      {
+        "source": "output/実ファイルの道具選択と連続実行-v58.txt",
+        "status": "copied",
+        "path": "sources/output/実ファイルの道具選択と連続実行-v58.txt",
+        "bytes": 4623,
+        "sha256": "b30d350355b2602a4a667a3e36b8939123024877000d9c69f3fcf0470020d554"
+      },
+      {
+        "source": "output/今回の結論と次に直す箇所-v58.txt",
+        "status": "copied",
+        "path": "sources/output/今回の結論と次に直す箇所-v58.txt",
+        "bytes": 3988,
+        "sha256": "e141a2b52b6238823443a92123f9cacf03f6959c2952b663e90bceffd0703565"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  }
+]

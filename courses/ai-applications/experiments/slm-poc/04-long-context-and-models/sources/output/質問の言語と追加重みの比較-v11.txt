@@ -1,0 +1,88 @@
+追加重みの有無と、質問の言語を分ける比較V11
+
+目的：韓国語の会話と道具の説明から、小さいモデルが必要な道具／今は使わないを選ぶ。今のモデルや追加学習を続けること自体を目的にしない。
+今回は新しい学習データを集めず、追加学習もしませんでした。元のJEVとV7追加重み、英語と韓国語の質問の2×2を比較しました。
+
+固定した条件
+ユーザーの発言、道具の説明、項目キー、正解、候補の順番、四択の意味と並びは同じです。
+変えたのは、必要情報の有無を判定する役のV7 LoRAの適用と、質問文・選択肢の説明文の韓国語訳だけです。
+公式のsystem文、意味キーneither/only0/only1/bothと識別文字ABCDは英語表記のままです。「すべてを韓国語にした」比較ではありません。
+道具候補を選ぶkoモデルと、依頼確認のV5重みの保存済み出力は4条件で完全に共通です。エージェント全体の全追加学習を外した比較ではありません。
+元のJEVは、配布済みJEV v0.3に私たちのV7追加重みを適用しない状態です。LGの未調整EXAONEや、何も学習していないモデルという意味ではありません。
+NF4、FP16計算、温度1、4つの巡回順の確率を平均して最大を選ぶ方式は全条件で共通です。温度やしきい値の調整はしていません。
+追加重みを無効化した状態と、追加重みを取り付ける前の同じ基本モデルが同じ出力であることを確認しました。
+V7＋英語質問も、前回V10の保存出力と照合しました。
+
+データ
+同じ情報の項目名つき40発言と自然な40発言、以前の文構造48発言、計128発言を4条件で判定しました。512件の独立した新しい会話ではありません。
+すべて以前に見た例です。比較条件を調べるための診断であり、最終評価や未知領域への性能とは数えません。
+韓国語訳は私が作り、独立した人による確認は未実施です。新しい判定ルールや使用例は足していません。
+
+自然な40発言：主な比較
+条件 | 必須2項目の有無が両方正しい | 必要時の正しい呼び出し判断 | 止める場面の正解 | 実行判断の合計
+元のJEV・英語質問 | 9/40 | 3/10 | 15/30 | 18/40
+元のJEV・韓国語質問 | 5/40 | 1/10 | 24/30 | 25/40
+V7追加重みあり・英語質問 | 28/40 | 6/10 | 25/30 | 31/40
+V7追加重みあり・韓国語質問 | 17/40 | 3/10 | 25/30 | 28/40
+
+項目名つき40発言：以前の動作と入力構造の確認
+元のJEV・英語質問：状態8/40、呼ぶ6/10、止める13/30、実行判断19/40
+元のJEV・韓国語質問：状態7/40、呼ぶ1/10、止める23/30、実行判断24/40
+V7追加重みあり・英語質問：状態38/40、呼ぶ10/10、止める29/30、実行判断39/40
+V7追加重みあり・韓国語質問：状態21/40、呼ぶ9/10、止める28/30、実行判断37/40
+
+文の形を変えた48発言：以前の動作と入力構造の確認
+元のJEV・英語質問：状態16/48、呼ぶ5/12、止める17/36、実行判断22/48
+元のJEV・韓国語質問：状態14/48、呼ぶ3/12、止める26/36、実行判断29/48
+V7追加重みあり・英語質問：状態29/48、呼ぶ7/12、止める29/36、実行判断36/48
+V7追加重みあり・韓国語質問：状態17/48、呼ぶ3/12、止める30/36、実行判断33/48
+
+自然文の個別の変化（同じ合計でも相殺を隠さない）
+元のJEV・英語質問 → 元のJEV・韓国語質問：状態 正→誤9、誤→正5、同じ予測5/40。実行判断 正→誤6、誤→正13。
+V7追加重みあり・英語質問 → V7追加重みあり・韓国語質問：状態 正→誤11、誤→正0、同じ予測26/40。実行判断 正→誤3、誤→正0。
+元のJEV・英語質問 → V7追加重みあり・英語質問：状態 正→誤5、誤→正24、同じ予測9/40。実行判断 正→誤3、誤→正16。
+元のJEV・韓国語質問 → V7追加重みあり・韓国語質問：状態 正→誤3、誤→正15、同じ予測10/40。実行判断 正→誤5、誤→正8。
+
+自然文に残った間違いの具体例
+元のJEV・英語質問
+[{"role": "user", "content": "인천으로 갈 거예요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": true, "arrival_station": true}
+[{"role": "user", "content": "대전에서 출발할게요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": true, "departure_station": true}
+元のJEV・韓国語質問
+[{"role": "user", "content": "기차표를 예약해 주세요"}]
+正解：{"departure_station": false, "arrival_station": false}
+予測：{"departure_station": true, "arrival_station": false}
+[{"role": "user", "content": "대전에서 출발할게요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": true, "departure_station": false}
+V7追加重みあり・英語質問
+[{"role": "user", "content": "인천으로 갈 거예요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": true, "arrival_station": true}
+[{"role": "user", "content": "대전에서 출발할게요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": true, "departure_station": true}
+V7追加重みあり・韓国語質問
+[{"role": "user", "content": "인천으로 갈 거예요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": true, "arrival_station": true}
+[{"role": "user", "content": "대전에서 출발할게요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": true, "departure_station": true}
+
+言える範囲
+測ったのは、この韓国語訳を使った差と、このV7追加重みを適用した差です。韓国語の質問が一般に優れる／劣る、QLoRA全般が良い／悪いとは言いません。
+ユーザーの発言は全条件で韓国語のままです。英語の発言なら元のJEVができるか、別の韓国語モデルができるかは今回測っていません。
+全条件が悪くても、新しい学習データが必須だとまでは決まりません。短い使用例を入力する方法や判定役を替える方法は、この比較では試していません。
+良い条件があっても、この同じ例で本番採用しません。別の未使用の会話で確かめる必要があります。
+候補2道具・必須2文字列・単発依頼に限ります。正解は私が作ったものです。独立した人の正解確認、引数の抽出、実際の外部実行、複数ターンの実行後の判断は未評価です。
+追加学習、モデルの保存点の変更、結果に合わせた質問の書き換え、デモ変更はしていません。
+
+質問・選択肢の対訳：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\language-adapter-korean-v11\translation-review.csv
+全予測：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\language-adapter-korean-v11\predictions.csv
+実際のモデル入力：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\language-adapter-korean-v11\model-inputs-en.jsonl / model-inputs-ko.jsonl
+個別の比較：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\language-adapter-korean-v11\results.json
+監査：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\language-adapter-korean-v11\final-audit.json

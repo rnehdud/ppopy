@@ -1,0 +1,260 @@
+依頼と症状予測を分けた学習（V39）
+2026-11-09
+
+結論
+採用検査の全条件合格：False。現在のチャットには反映していない。
+V38の重みから一度だけ追加学習。既存360判断をそのまま残し、依頼の違いと同じ症状予測を組み合わせた210判断を追加した。症状モデルとQwenは変更していない。
+新しい言い方120件を、正しい症状情報／意図的な誤予測も含む指定情報／実際の固定症状モデルの3条件で確認。指定情報は症状モデルの実際の出力ではない。
+判定は実行順、実状態、正常終了に加え、最後の聞き返し／終了の区別も一致すること。V38ではツール不要時に両方を認めたため、従来指標をJSONにも別記した。
+
+新しい言い方120件
+gold:
+全条件合格 86/120 → 59/120
+必要な保存 45/45 → 25/45
+不要な保存 0 → 0
+二操作の順序・状態・停止 15/30 → 8/30
+停止理由 {'model_stop': 103, 'model_ask': 11, 'tool_error': 6} → {'model_stop': 117, 'model_ask': 3}
+provided:
+全条件合格 72/120 → 54/120
+必要な保存 45/45 → 25/45
+不要な保存 15 → 0
+二操作の順序・状態・停止 15/30 → 8/30
+停止理由 {'model_ask': 22, 'model_stop': 98} → {'model_stop': 117, 'model_ask': 3}
+parser:
+全条件合格 71/120 → 58/120
+必要な保存 40/45 → 23/45
+不要な保存 6 → 0
+二操作の順序・状態・停止 15/30 → 8/30
+停止理由 {'model_ask': 15, 'model_stop': 96, 'condition_not_met': 3, 'tool_error': 6} → {'model_stop': 117, 'model_ask': 3}
+
+既に見た30件の保持確認（新規試験ではない）
+gold:
+全条件合格 30/30 → 29/30
+必要な保存 15/15 → 14/15
+不要な保存 0 → 0
+二操作の順序・状態・停止 10/10 → 9/10
+停止理由 {'model_stop': 25, 'model_ask': 5} → {'model_stop': 24, 'model_ask': 6}
+parser:
+全条件合格 26/30 → 29/30
+必要な保存 15/15 → 14/15
+不要な保存 2 → 0
+二操作の順序・状態・停止 10/10 → 9/10
+停止理由 {'model_stop': 25, 'model_ask': 5} → {'model_stop': 24, 'model_ask': 6}
+
+固定した採用検査
+provided_unwanted_writes_decrease: True
+gold_needed_writes_preserved: False
+gold_two_operations_preserved: False
+provided_needed_writes_preserved: False
+provided_two_operations_preserved: False
+parser_needed_writes_preserved: False
+parser_two_operations_preserved: False
+parser_unwanted_writes_not_higher: True
+seen_gold_strict_preserved: False
+seen_parser_strict_preserved: True
+
+学習後に残った失敗
+new | gold | v39:heldout:dryness:present:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:dryness:present:write_read | 지금 제 건조함 증상이 있어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"present"}
+new | gold | v39:heldout:dryness:present:missing_write | 지금 제 건조함 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"present"}
+new | gold | v39:heldout:dryness:absent:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:dryness:absent:write_read | 지금 제 건조함 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"absent"}
+new | gold | v39:heldout:dryness:absent:read_write | 지금 제 건조함 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"dryness":"absent"}
+new | gold | v39:heldout:dryness:absent:missing_write | 지금 제 건조함 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"absent"}
+new | gold | v39:heldout:dryness:unknown:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:dryness:unknown:write_read | 지금 제 건조함 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"unknown"}
+new | gold | v39:heldout:dryness:unknown:read_write | 지금 제 건조함 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"dryness":"unknown"}
+new | gold | v39:heldout:dryness:unknown:missing_write | 지금 제 건조함 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"unknown"}
+new | gold | v39:heldout:breakout:present:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:breakout:present:write_only | 지금 제 뾰루지 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"present"}
+new | gold | v39:heldout:breakout:present:write_read | 지금 제 뾰루지 증상이 있어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"present"}
+new | gold | v39:heldout:breakout:present:missing_write | 지금 제 뾰루지 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"present"}
+new | gold | v39:heldout:breakout:absent:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:breakout:absent:write_only | 지금 제 뾰루지 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"absent"}
+new | gold | v39:heldout:breakout:absent:write_read | 지금 제 뾰루지 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | gold | v39:heldout:breakout:absent:read_write | 지금 제 뾰루지 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"breakout":"absent"}
+new | gold | v39:heldout:breakout:absent:missing_write | 지금 제 뾰루지 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | gold | v39:heldout:breakout:unknown:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:breakout:unknown:write_only | 지금 제 뾰루지 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"unknown"}
+new | gold | v39:heldout:breakout:unknown:write_read | 지금 제 뾰루지 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"unknown"}
+new | gold | v39:heldout:breakout:unknown:read_write | 지금 제 뾰루지 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"breakout":"unknown"}
+new | gold | v39:heldout:redness:present:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:redness:present:missing_write | 지금 제 붉어짐 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"present"}
+new | gold | v39:heldout:redness:absent:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:redness:absent:write_read | 지금 제 붉어짐 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | gold | v39:heldout:redness:absent:read_write | 지금 제 붉어짐 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"redness":"absent"}
+new | gold | v39:heldout:redness:absent:missing_write | 지금 제 붉어짐 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | gold | v39:heldout:redness:unknown:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:redness:unknown:write_only | 지금 제 붉어짐 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_ask | state_ok=False | observed={"redness":"unknown"}
+new | gold | v39:heldout:redness:unknown:write_read | 지금 제 붉어짐 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"redness":"unknown"}
+new | gold | v39:heldout:redness:unknown:read_write | 지금 제 붉어짐 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"redness":"unknown"}
+new | gold | v39:heldout:redness:unknown:missing_write | 지금 제 붉어짐 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"unknown"}
+new | gold | v39:heldout:stinging:present:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:stinging:present:write_only | 지금 제 따가움 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"stinging":"present"}
+new | gold | v39:heldout:stinging:present:missing_write | 지금 제 따가움 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"present"}
+new | gold | v39:heldout:stinging:absent:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:stinging:absent:write_only | 지금 제 따가움 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"stinging":"absent"}
+new | gold | v39:heldout:stinging:absent:write_read | 지금 제 따가움 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | gold | v39:heldout:stinging:absent:read_write | 지금 제 따가움 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"stinging":"absent"}
+new | gold | v39:heldout:stinging:absent:missing_write | 지금 제 따가움 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | gold | v39:heldout:stinging:unknown:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:stinging:unknown:write_only | 지금 제 따가움 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_ask | state_ok=False | observed={"stinging":"unknown"}
+new | gold | v39:heldout:stinging:unknown:write_read | 지금 제 따가움 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | gold | v39:heldout:stinging:unknown:read_write | 지금 제 따가움 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"stinging":"unknown"}
+new | gold | v39:heldout:stinging:unknown:missing_write | 지금 제 따가움 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | gold | v39:heldout:itching:present:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:itching:present:write_only | 지금 제 가려움 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"present"}
+new | gold | v39:heldout:itching:present:missing_write | 지금 제 가려움 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"present"}
+new | gold | v39:heldout:itching:absent:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:itching:absent:write_only | 지금 제 가려움 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"absent"}
+new | gold | v39:heldout:itching:absent:write_read | 지금 제 가려움 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"itching":"absent"}
+new | gold | v39:heldout:itching:absent:read_write | 지금 제 가려움 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"itching":"absent"}
+new | gold | v39:heldout:itching:absent:missing_write | 지금 제 가려움 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"absent"}
+new | gold | v39:heldout:itching:unknown:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | gold | v39:heldout:itching:unknown:write_only | 지금 제 가려움 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"unknown"}
+new | gold | v39:heldout:itching:unknown:write_read | 지금 제 가려움 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"itching":"unknown"}
+new | gold | v39:heldout:itching:unknown:read_write | 지금 제 가려움 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"itching":"unknown"}
+new | gold | v39:heldout:itching:unknown:missing_write | 지금 제 가려움 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"unknown"}
+new | provided | v39:heldout:dryness:present:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"present"}
+new | provided | v39:heldout:dryness:present:write_read | 지금 제 건조함 증상이 있어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"present"}
+new | provided | v39:heldout:dryness:present:missing_write | 지금 제 건조함 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"present"}
+new | provided | v39:heldout:dryness:absent:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"absent"}
+new | provided | v39:heldout:dryness:absent:write_read | 지금 제 건조함 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"absent"}
+new | provided | v39:heldout:dryness:absent:read_write | 지금 제 건조함 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"dryness":"absent"}
+new | provided | v39:heldout:dryness:absent:missing_write | 지금 제 건조함 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"absent"}
+new | provided | v39:heldout:dryness:unknown:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"unknown"}
+new | provided | v39:heldout:dryness:unknown:write_read | 지금 제 건조함 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"unknown"}
+new | provided | v39:heldout:dryness:unknown:read_write | 지금 제 건조함 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"dryness":"unknown"}
+new | provided | v39:heldout:dryness:unknown:missing_write | 지금 제 건조함 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"unknown"}
+new | provided | v39:heldout:breakout:present:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"present"}
+new | provided | v39:heldout:breakout:present:write_only | 지금 제 뾰루지 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"present"}
+new | provided | v39:heldout:breakout:present:write_read | 지금 제 뾰루지 증상이 있어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"present"}
+new | provided | v39:heldout:breakout:present:missing_write | 지금 제 뾰루지 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"present"}
+new | provided | v39:heldout:breakout:absent:read_only | 제 뾰루지 항목은 어떤 내용으로 남아 있나요? 수정 없이 확인만 부탁해요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | provided | v39:heldout:breakout:absent:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | provided | v39:heldout:breakout:absent:write_only | 지금 제 뾰루지 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"absent"}
+new | provided | v39:heldout:breakout:absent:write_read | 지금 제 뾰루지 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | provided | v39:heldout:breakout:absent:read_write | 지금 제 뾰루지 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"breakout":"absent"}
+new | provided | v39:heldout:breakout:absent:missing_write | 지금 제 뾰루지 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | provided | v39:heldout:breakout:unknown:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"unknown"}
+new | provided | v39:heldout:breakout:unknown:write_only | 지금 제 뾰루지 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"unknown"}
+new | provided | v39:heldout:breakout:unknown:write_read | 지금 제 뾰루지 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"unknown"}
+new | provided | v39:heldout:breakout:unknown:read_write | 지금 제 뾰루지 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"breakout":"unknown"}
+new | provided | v39:heldout:redness:present:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"present"}
+new | provided | v39:heldout:redness:present:missing_write | 지금 제 붉어짐 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"present"}
+new | provided | v39:heldout:redness:absent:read_only | 제 붉어짐 항목은 어떤 내용으로 남아 있나요? 수정 없이 확인만 부탁해요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | provided | v39:heldout:redness:absent:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | provided | v39:heldout:redness:absent:write_read | 지금 제 붉어짐 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | provided | v39:heldout:redness:absent:read_write | 지금 제 붉어짐 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"redness":"absent"}
+new | provided | v39:heldout:redness:absent:missing_write | 지금 제 붉어짐 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | provided | v39:heldout:redness:unknown:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"unknown"}
+new | provided | v39:heldout:redness:unknown:write_only | 지금 제 붉어짐 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_ask | state_ok=False | observed={"redness":"unknown"}
+new | provided | v39:heldout:redness:unknown:write_read | 지금 제 붉어짐 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"redness":"unknown"}
+new | provided | v39:heldout:redness:unknown:read_write | 지금 제 붉어짐 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"redness":"unknown"}
+new | provided | v39:heldout:redness:unknown:missing_write | 지금 제 붉어짐 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"unknown"}
+new | provided | v39:heldout:stinging:present:read_only | 제 따가움 항목은 어떤 내용으로 남아 있나요? 수정 없이 확인만 부탁해요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"present"}
+new | provided | v39:heldout:stinging:present:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"present"}
+new | provided | v39:heldout:stinging:present:write_only | 지금 제 따가움 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"stinging":"present"}
+new | provided | v39:heldout:stinging:present:missing_write | 지금 제 따가움 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"present"}
+new | provided | v39:heldout:stinging:absent:read_only | 제 따가움 항목은 어떤 내용으로 남아 있나요? 수정 없이 확인만 부탁해요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | provided | v39:heldout:stinging:absent:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | provided | v39:heldout:stinging:absent:write_only | 지금 제 따가움 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"stinging":"absent"}
+new | provided | v39:heldout:stinging:absent:write_read | 지금 제 따가움 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | provided | v39:heldout:stinging:absent:read_write | 지금 제 따가움 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"stinging":"absent"}
+new | provided | v39:heldout:stinging:absent:missing_write | 지금 제 따가움 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | provided | v39:heldout:stinging:unknown:read_only | 제 따가움 항목은 어떤 내용으로 남아 있나요? 수정 없이 확인만 부탁해요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | provided | v39:heldout:stinging:unknown:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | provided | v39:heldout:stinging:unknown:write_only | 지금 제 따가움 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_ask | state_ok=False | observed={"stinging":"unknown"}
+new | provided | v39:heldout:stinging:unknown:write_read | 지금 제 따가움 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | provided | v39:heldout:stinging:unknown:read_write | 지금 제 따가움 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"stinging":"unknown"}
+new | provided | v39:heldout:stinging:unknown:missing_write | 지금 제 따가움 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | provided | v39:heldout:itching:present:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"present"}
+new | provided | v39:heldout:itching:present:write_only | 지금 제 가려움 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"present"}
+new | provided | v39:heldout:itching:present:missing_write | 지금 제 가려움 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"present"}
+new | provided | v39:heldout:itching:absent:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"absent"}
+new | provided | v39:heldout:itching:absent:write_only | 지금 제 가려움 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"absent"}
+new | provided | v39:heldout:itching:absent:write_read | 지금 제 가려움 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"itching":"absent"}
+new | provided | v39:heldout:itching:absent:read_write | 지금 제 가려움 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"itching":"absent"}
+new | provided | v39:heldout:itching:absent:missing_write | 지금 제 가려움 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"absent"}
+new | provided | v39:heldout:itching:unknown:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"unknown"}
+new | provided | v39:heldout:itching:unknown:write_only | 지금 제 가려움 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"unknown"}
+new | provided | v39:heldout:itching:unknown:write_read | 지금 제 가려움 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"itching":"unknown"}
+new | provided | v39:heldout:itching:unknown:read_write | 지금 제 가려움 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"itching":"unknown"}
+new | provided | v39:heldout:itching:unknown:missing_write | 지금 제 가려움 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"unknown"}
+new | parser | v39:heldout:dryness:present:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:dryness:present:write_only | 지금 제 건조함 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=False | observed={"dryness":"present","stinging":"present"}
+new | parser | v39:heldout:dryness:present:write_read | 지금 제 건조함 증상이 있어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"present"}
+new | parser | v39:heldout:dryness:present:missing_write | 지금 제 건조함 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"present"}
+new | parser | v39:heldout:dryness:absent:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:dryness:absent:write_read | 지금 제 건조함 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"absent"}
+new | parser | v39:heldout:dryness:absent:read_write | 지금 제 건조함 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"dryness":"absent"}
+new | parser | v39:heldout:dryness:unknown:missing_read | 남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:dryness:unknown:write_only | 지금 제 건조함 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=False | observed={"dryness":"unknown","itching":"unknown","stinging":"unknown"}
+new | parser | v39:heldout:dryness:unknown:write_read | 지금 제 건조함 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"dryness":"unknown"}
+new | parser | v39:heldout:dryness:unknown:read_write | 지금 제 건조함 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"dryness":"unknown"}
+new | parser | v39:heldout:dryness:unknown:missing_write | 지금 제 건조함 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"dryness":"unknown"}
+new | parser | v39:heldout:breakout:present:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:breakout:present:write_only | 지금 제 뾰루지 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"present"}
+new | parser | v39:heldout:breakout:present:write_read | 지금 제 뾰루지 증상이 있어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"present"}
+new | parser | v39:heldout:breakout:present:missing_write | 지금 제 뾰루지 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"present"}
+new | parser | v39:heldout:breakout:absent:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:breakout:absent:write_only | 지금 제 뾰루지 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"breakout":"absent"}
+new | parser | v39:heldout:breakout:absent:write_read | 지금 제 뾰루지 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | parser | v39:heldout:breakout:absent:read_write | 지금 제 뾰루지 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"breakout":"absent"}
+new | parser | v39:heldout:breakout:absent:missing_write | 지금 제 뾰루지 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"breakout":"absent"}
+new | parser | v39:heldout:breakout:unknown:missing_read | 남겨 둔 뾰루지 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:breakout:unknown:write_only | 지금 제 뾰루지 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=False | observed={"breakout":"unknown","itching":"unknown","redness":"unknown"}
+new | parser | v39:heldout:breakout:unknown:write_read | 지금 제 뾰루지 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"breakout":"unknown"}
+new | parser | v39:heldout:breakout:unknown:read_write | 지금 제 뾰루지 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"breakout":"unknown"}
+new | parser | v39:heldout:redness:present:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:redness:present:missing_write | 지금 제 붉어짐 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"present"}
+new | parser | v39:heldout:redness:absent:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:redness:absent:write_read | 지금 제 붉어짐 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | parser | v39:heldout:redness:absent:read_write | 지금 제 붉어짐 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"redness":"absent"}
+new | parser | v39:heldout:redness:absent:missing_write | 지금 제 붉어짐 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"absent"}
+new | parser | v39:heldout:redness:unknown:missing_read | 남겨 둔 붉어짐 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:redness:unknown:write_only | 지금 제 붉어짐 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_ask | state_ok=False | observed={"breakout":"unknown","redness":"unknown","stinging":"unknown"}
+new | parser | v39:heldout:redness:unknown:write_read | 지금 제 붉어짐 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"redness":"unknown"}
+new | parser | v39:heldout:redness:unknown:read_write | 지금 제 붉어짐 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"redness":"unknown"}
+new | parser | v39:heldout:redness:unknown:missing_write | 지금 제 붉어짐 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"redness":"unknown"}
+new | parser | v39:heldout:stinging:present:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:stinging:present:write_only | 지금 제 따가움 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"stinging":"present"}
+new | parser | v39:heldout:stinging:present:missing_write | 지금 제 따가움 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"present"}
+new | parser | v39:heldout:stinging:absent:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:stinging:absent:write_only | 지금 제 따가움 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"stinging":"absent"}
+new | parser | v39:heldout:stinging:absent:write_read | 지금 제 따가움 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | parser | v39:heldout:stinging:absent:read_write | 지금 제 따가움 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"stinging":"absent"}
+new | parser | v39:heldout:stinging:absent:missing_write | 지금 제 따가움 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"absent"}
+new | parser | v39:heldout:stinging:unknown:missing_read | 남겨 둔 따가움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:stinging:unknown:write_only | 지금 제 따가움 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=False | observed={"itching":"unknown","redness":"unknown","stinging":"unknown"}
+new | parser | v39:heldout:stinging:unknown:write_read | 지금 제 따가움 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | parser | v39:heldout:stinging:unknown:read_write | 지금 제 따가움 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"stinging":"unknown"}
+new | parser | v39:heldout:stinging:unknown:missing_write | 지금 제 따가움 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"stinging":"unknown"}
+new | parser | v39:heldout:itching:present:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:itching:present:write_only | 지금 제 가려움 증상이 있어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"present"}
+new | parser | v39:heldout:itching:present:missing_write | 지금 제 가려움 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"present"}
+new | parser | v39:heldout:itching:absent:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:itching:absent:write_only | 지금 제 가려움 증상은 없어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=[] | stop=model_stop | state_ok=False | observed={"itching":"absent"}
+new | parser | v39:heldout:itching:absent:write_read | 지금 제 가려움 증상은 없어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"itching":"absent"}
+new | parser | v39:heldout:itching:absent:read_write | 지금 제 가려움 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"itching":"absent"}
+new | parser | v39:heldout:itching:absent:missing_write | 지금 제 가려움 증상은 없어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"absent"}
+new | parser | v39:heldout:itching:unknown:missing_read | 남겨 둔 가려움 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={}
+new | parser | v39:heldout:itching:unknown:write_only | 지금 제 가려움 증상이 있는지 모르겠어요. 앞서 남긴 상태 대신 방금 말한 내용으로 수정해 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=False | observed={"itching":"unknown","stinging":"unknown"}
+new | parser | v39:heldout:itching:unknown:write_read | 지금 제 가려움 증상이 있는지 모르겠어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요. | actual=['record_skin_symptoms'] | stop=model_stop | state_ok=True | observed={"itching":"unknown"}
+new | parser | v39:heldout:itching:unknown:read_write | 지금 제 가려움 증상이 있는지 모르겠어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요. | actual=['read_skin_record'] | stop=model_stop | state_ok=False | observed={"itching":"unknown"}
+new | parser | v39:heldout:itching:unknown:missing_write | 지금 제 가려움 증상이 있는지 모르겠어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요. | actual=[] | stop=model_stop | state_ok=True | observed={"itching":"unknown"}
+seen_retention | gold | heldout:stinging:read_write:6 | 새 내용을 넣기 전의 기록부터 확인해 주세요. 제 피부가 따가워요. 기존 기록을 확인한 뒤 이 내용을 저장해 주세요. | actual=[] | stop=model_ask | state_ok=False | observed={"stinging":"present"}
+seen_retention | parser | heldout:stinging:read_write:6 | 새 내용을 넣기 전의 기록부터 확인해 주세요. 제 피부가 따가워요. 기존 기록을 확인한 뒤 이 내용을 저장해 주세요. | actual=[] | stop=model_ask | state_ok=False | observed={"stinging":"present"}
+
+確認事項
+監査 11/11。保存後再読込の出力差 0.0
+570判断、4エポック、572更新、2280行の学習。NF4FP16、query/value LoRAだけ。学習秒数 777.2。症状モデルの同じ入力の出力差 0.0
+元の360判断は内容を変えず保持。教材の実処理確認240件。長さで途中段階を落とさず、入力を切り落とさない。
+Two known tools, five symptoms, no generated arguments; assistant-authored labels. New wording within known task patterns, not unknown-domain generality, independent human gold, Qwen or voice evaluation.
+訂正・症状あり／なし／不明は含むが、全ての自然な会話、製品・時刻、未知の道具での正確さを保証しない。
+ラベルは私が定めた。独立した人の確認は未実施。heldoutは新しい言い方だが同じ課題の型と症状語を共有する。
+指定された症状予測を含む条件は、誤予測に耐えるかを見るための条件であり、症状読取能力の改善ではない。
+When2Callからは必要な道具がないときの判断、ToolSandboxからは実際の状態変化と不要操作を検査する考え方を参考にした。公開例をこの教材の正解として転用していない。
+https://huggingface.co/datasets/nvidia/When2Call
+https://github.com/apple-aiml-research/ToolSandbox/blob/main/tool_sandbox/scenarios/insufficient_information_scenarios.py
+今回はこの一度の比較で止める。採点後の学習量・閾値・文面調整はしていない。デモのモデルと会話メモリは変更していない。

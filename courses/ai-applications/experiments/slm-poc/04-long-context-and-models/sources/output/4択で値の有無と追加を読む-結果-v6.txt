@@ -1,0 +1,75 @@
+4択で2項目の値の有無を読む試験
+
+確認したこと：個別にある／ないと答える代わりに、どちらもない／片方だけ／両方あるの4択で、未知の道具の値の有無を区別できるか。
+前回のモデルV5から、値の有無だけを追加学習しました。ツール選択モデルと、依頼・取り消しを読むV5の重みは固定しました。
+依頼確認と値の確認には別のアダプターを使う設計です。この試験では前者の実測出力を固定して再利用しました。
+
+学習と判定
+学習26道具・364会話。うち208会話が、最初に未定と言い、後で値を伝える／まだ伝えない会話です。
+1会話に4通りの候補順を与え、1回だけ学習しました。4通りは別の会話数ではありません。
+途中確認8道具・112会話で保存点を選びました。最終評価は新しい12道具・168会話です。
+4択はネイティブのA/B/C/D出力値を対応づけて平均し、最大の選択肢を取ります。値の有無の判定基準を最終結果から調整していません。
+この試験の4択は必須2項目から自動で作ります。項目数が多い道具で同じ方法が使えることまでは確認していません。
+
+新しい168会話での比較
+条件 | 2項目完全一致 | 必要な呼び出し | 止める場面 | 片方だけある会話 | 履歴のある会話の2項目一致
+従来の2問方式（V5の重み・基準0.5） | 132/168 | 34/36 | 103/132 | 39/72 | 71/96
+4択に変更・追加学習前 | 69/168 | 9/36 | 123/132 | 19/72 | 38/96
+4択に変更・追加学習後 | 147/168 | 35/36 | 115/132 | 52/72 | 83/96
+
+全件止めるだけでも132/168になります。全体の実行判断だけでは採用しません。
+
+既に見たV4の168会話。初見の成績ではなく、前回失った動作が戻るかを確認する参考です。
+前々回V4の固定設定では呼ぶ36/36。前回V5では32/36、止める123/132、2項目一致131/168でした。
+今回の採用条件には、36件すべて呼べること、止める数と2項目一致がV5を下回らないことを明示しました。
+従来の2問方式（V5の重み・基準0.5）: 呼ぶ32/36、止める123/132、2項目一致131/168、履歴38/48
+4択に変更・追加学習前: 呼ぶ0/36、止める130/132、2項目一致60/168、履歴17/48
+4択に変更・追加学習後: 呼ぶ31/36、止める127/132、2項目一致139/168、履歴40/48
+
+前回止まった4件の回復：1/4
+crossed-v4:test:request_transcript:history:11: 呼ぶ
+crossed-v4:test:lookup_pool_schedule:history:11: まだ誤り
+crossed-v4:test:reserve_rehearsal_studio:history:11: まだ誤り
+crossed-v4:test:book_city_tour:history:11: まだ誤り
+
+事前に固定した採用条件
+dev_call_guard: 合格
+fresh_state_90: 不合格
+fresh_calls_90: 合格
+fresh_stops_90: 不合格
+state_improved_vs_binary: 合格
+state_improved_by_training: 合格
+balanced_pipeline_not_worse: 合格
+previous_36_calls_restored: 不合格
+previous_state_preserved: 合格
+previous_stops_preserved: 合格
+結論：今回の採用条件を満たしませんでした。
+元のデモには反映していません。
+
+残った間違いの例
+joint-v6:test:register_chess_tournament:history:0:10
+[{"role": "user", "content": "먼저 말씀드릴게요. 체스 대회를 신청해 주세요 참가할 체스 대회 이름 값은 아직 정하지 못했어요. 체스 참가 부문 값은 아직 정하지 못했어요."}, {"role": "assistant", "content": "참가할 체스 대회 이름 값을 알려 주세요."}, {"role": "user", "content": "참가할 체스 대회 이름 값은 가상봄체스대회입니다. 체스 대회를 신청해 주세요"}]
+正解：{"chess_event": true, "chess_division": false}
+予測：{"chess_event": true, "chess_division": true}
+joint-v6:test:request_translation_quote:single:01
+[{"role": "user", "content": "프랑스어로 바꿔 주세요. 번역 견적을 신청해 주세요"}]
+正解：{"quote_source_lang": false, "quote_target_lang": true}
+予測：{"quote_target_lang": true, "quote_source_lang": true}
+joint-v6:test:order_custom_stamp:history:0:01
+[{"role": "user", "content": "먼저 말씀드릴게요. 도장을 주문해 주세요 도장에 새길 글 값은 아직 정하지 못했어요. 도장의 모양: 타원."}, {"role": "assistant", "content": "도장에 새길 글 값을 알려 주세요."}, {"role": "user", "content": "아직 정하지 못했어요. 그 값은 나중에 알려 드릴게요. 도장을 주문해 주세요"}]
+正解：{"stamp_phrase": false, "stamp_shape": true}
+予測：{"stamp_phrase": true, "stamp_shape": true}
+
+ここまでで言える範囲
+私が作った韓国語の例です。独立した人による正解確認は未実施です。文型は学習と評価で共通するものを含みます。
+ツール名・項目キーを分けましたが、元のモデルにとって意味まで完全に未知だったとは保証しません。
+4択への変更と追加学習の前後は分けて比較しました。ただし、追加学習内では質問形式と履歴の教師を一緒に教えているため、各要素の効果までは分けられません。
+選択肢間の相対出力であり、正解する確率として確認した値ではありません。
+未知から既知への追加は含みますが、既にある値の取り下げ・置き換え、引数抽出、外部サービス実行は含みません。
+実運用で2種類のアダプターを切り替える速さやQwenの返事は測っていません。
+最後の評価を見て選び直したり学習し直したりしていません。今回の試験はここで止めます。
+
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\joint-availability-korean-v6\results.json
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\joint-availability-korean-v6\predictions.csv
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\joint-availability-korean-v6\label-review.csv
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\joint-availability-korean-v6\final-audit.json

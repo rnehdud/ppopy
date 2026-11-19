@@ -1,0 +1,1465 @@
+{
+  "config": {
+    "train_long": 40,
+    "replay_short": 20,
+    "dev": 20,
+    "test": 30,
+    "short_test": 30,
+    "lr": 1e-05,
+    "steps": 30,
+    "seed": 71521,
+    "position_initialization": "repeat original first 512 positions three times; only extended position rows trainable",
+    "train_order": [
+      "shard0:30915",
+      "replay:1",
+      "replay:2",
+      "shard0:9626",
+      "shard0:23819",
+      "shard0:14346",
+      "replay:6",
+      "shard0:37381",
+      "replay:8",
+      "shard0:8073",
+      "replay:10",
+      "shard0:51083",
+      "replay:12",
+      "shard0:50884",
+      "shard0:46598",
+      "replay:15",
+      "replay:16",
+      "replay:17",
+      "shard0:22360",
+      "shard0:33029",
+      "shard0:42402",
+      "shard0:37575",
+      "shard0:34732",
+      "shard0:4854",
+      "shard0:38106",
+      "replay:25",
+      "replay:26",
+      "shard0:34373",
+      "shard0:44359",
+      "shard0:25960",
+      "shard0:20640",
+      "shard0:33591",
+      "shard0:32307",
+      "shard0:15060",
+      "shard0:30284",
+      "shard0:28488",
+      "shard0:1009",
+      "shard0:26978",
+      "shard0:9413",
+      "replay:39",
+      "shard0:8235",
+      "shard0:17931",
+      "shard0:36695",
+      "shard0:32955",
+      "replay:44",
+      "replay:45",
+      "shard0:45387",
+      "replay:47",
+      "shard0:36159",
+      "shard0:30608",
+      "shard0:52205",
+      "replay:51",
+      "replay:52",
+      "shard0:24719",
+      "replay:54",
+      "replay:55",
+      "shard0:52365",
+      "shard0:14244",
+      "replay:58",
+      "shard0:205"
+    ],
+    "warning": "exploratory; synthetic labels not independently human checked; only one source shard; old short test previously observed; full model position embeddings saved separately"
+  },
+  "before": {
+    "long_dev": {
+      "n": 20,
+      "correct": 5,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:2948",
+          "expected": "get_triangle_numbers",
+          "predicted": "calculate_fibonacci",
+          "match": false
+        },
+        {
+          "id": "shard0:6672",
+          "expected": "process_article",
+          "predicted": "no_op",
+          "match": false
+        },
+        {
+          "id": "shard0:18052",
+          "expected": "find_fastest_pentium_dual_core",
+          "predicted": "find_fastest_pentium_dual_core",
+          "match": true
+        },
+        {
+          "id": "shard0:13105",
+          "expected": "analyze_egg_danger",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24256",
+          "expected": "get_school_level",
+          "predicted": "get_student_count",
+          "match": false
+        },
+        {
+          "id": "shard0:32144",
+          "expected": "process_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:10347",
+          "expected": "extract_japanese_cities_from_airport",
+          "predicted": "check_weather",
+          "match": false
+        },
+        {
+          "id": "shard0:23003",
+          "expected": "extract_last_year_in_hanwha",
+          "predicted": "no_op",
+          "match": false
+        },
+        {
+          "id": "shard0:22514",
+          "expected": "analyze_transit",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:27988",
+          "expected": "extract_gad_symptoms",
+          "predicted": "extract_gad_symptoms",
+          "match": true
+        },
+        {
+          "id": "shard0:22574",
+          "expected": "get_most_winning_team",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:26648",
+          "expected": "get_star_details",
+          "predicted": "get_star_details",
+          "match": true
+        },
+        {
+          "id": "shard0:39783",
+          "expected": "find_drama_and_variety",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:2619",
+          "expected": "get_article_info",
+          "predicted": "translate_text",
+          "match": false
+        },
+        {
+          "id": "shard0:2917",
+          "expected": "get_friction_cause",
+          "predicted": "get_friction_cause",
+          "match": true
+        },
+        {
+          "id": "shard0:52607",
+          "expected": "get_latest_statistic",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:20475",
+          "expected": "find_scientists",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:22867",
+          "expected": "get_expo_city",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24332",
+          "expected": "extract_building_features",
+          "predicted": "extract_building_features",
+          "match": true
+        },
+        {
+          "id": "shard0:38165",
+          "expected": "extract_color_broadcast_start",
+          "predicted": "fetch_tv_schedule",
+          "match": false
+        }
+      ]
+    },
+    "long_test": {
+      "n": 30,
+      "correct": 12,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:15480",
+          "expected": "get_plant_features",
+          "predicted": "get_weather",
+          "match": false
+        },
+        {
+          "id": "shard0:29044",
+          "expected": "summarize_position_changes",
+          "predicted": "convert_to_modern_korean",
+          "match": false
+        },
+        {
+          "id": "shard0:17512",
+          "expected": "find_actor_role",
+          "predicted": "find_actor_role",
+          "match": true
+        },
+        {
+          "id": "shard0:5428",
+          "expected": "find_name_change",
+          "predicted": "get_weather",
+          "match": false
+        },
+        {
+          "id": "shard0:35286",
+          "expected": "get_rocket_launch_details",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:27047",
+          "expected": "find_new_sport",
+          "predicted": "find_new_sport",
+          "match": true
+        },
+        {
+          "id": "shard0:9546",
+          "expected": "analyze_dance_mode",
+          "predicted": "analyze_dance_mode",
+          "match": true
+        },
+        {
+          "id": "shard0:11896",
+          "expected": "get_brain_death_criteria",
+          "predicted": "get_brain_death_criteria",
+          "match": true
+        },
+        {
+          "id": "shard0:7553",
+          "expected": "get_voroshilov_promotion_year",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:37075",
+          "expected": "get_broadcast_time",
+          "predicted": "get_broadcast_time",
+          "match": true
+        },
+        {
+          "id": "shard0:32572",
+          "expected": "get_transfer_path",
+          "predicted": "calculate_train_schedules",
+          "match": false
+        },
+        {
+          "id": "shard0:40648",
+          "expected": "extract_suicide_reason",
+          "predicted": "extract_suicide_reason",
+          "match": true
+        },
+        {
+          "id": "shard0:32123",
+          "expected": "process_article",
+          "predicted": "translate_text",
+          "match": false
+        },
+        {
+          "id": "shard0:953",
+          "expected": "count_first_place_wins",
+          "predicted": "count_first_place_wins",
+          "match": true
+        },
+        {
+          "id": "shard0:789",
+          "expected": "extract_prosperity_period",
+          "predicted": "no_op",
+          "match": false
+        },
+        {
+          "id": "shard0:21536",
+          "expected": "get_chart_position",
+          "predicted": "get_chart_position",
+          "match": true
+        },
+        {
+          "id": "shard0:12313",
+          "expected": "extract_fuel_cladding_material",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:35383",
+          "expected": "get_drama_roles",
+          "predicted": "get_drama_roles",
+          "match": true
+        },
+        {
+          "id": "shard0:43789",
+          "expected": "find_invasive_species",
+          "predicted": "count_species",
+          "match": false
+        },
+        {
+          "id": "shard0:32698",
+          "expected": "get_construction_dates",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:19719",
+          "expected": "analyze_electoral_changes",
+          "predicted": "analyze_electoral_changes",
+          "match": true
+        },
+        {
+          "id": "shard0:24374",
+          "expected": "summarize_chief_justice_info",
+          "predicted": "analyze_law_career",
+          "match": false
+        },
+        {
+          "id": "shard0:28187",
+          "expected": "extract_incorporation_details",
+          "predicted": "extract_incorporation_details",
+          "match": true
+        },
+        {
+          "id": "shard0:2177",
+          "expected": "find_highest_mountain",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:4467",
+          "expected": "extract_cia_document_info",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:13742",
+          "expected": "find_game_sales",
+          "predicted": "no_op",
+          "match": false
+        },
+        {
+          "id": "shard0:46798",
+          "expected": "extract_breakpoint_purpose",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:46787",
+          "expected": "summarize_landing_operation",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:11875",
+          "expected": "parse_olympic_performance",
+          "predicted": "find_team_mates",
+          "match": false
+        },
+        {
+          "id": "shard0:17708",
+          "expected": "classify_assets",
+          "predicted": "classify_assets",
+          "match": true
+        }
+      ]
+    },
+    "short_test": {
+      "n": 30,
+      "correct": 24,
+      "no_tool_n": 18,
+      "no_tool_correct": 12,
+      "rows": [
+        {
+          "id": "s1_20260729-1313_b2639_1:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2275_0:1",
+          "expected": "get_reservation",
+          "predicted": "get_reservation",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1258_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2993_3:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0104_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1082_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1026_0:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2112_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1398_1:1",
+          "expected": "get_order_status",
+          "predicted": "get_order_status",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2402_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2758_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0834_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0867_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2952_2:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0184_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1273_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0024_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2972_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1758_3:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0219_2:1",
+          "expected": "no_tool",
+          "predicted": "get_order_status",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2499_2:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1432_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0788_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1516_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0152_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0373_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2425_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1606_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b2461_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1819_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        }
+      ]
+    },
+    "medium_test": {
+      "n": 30,
+      "correct": 13,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:34923",
+          "expected": "calculate_road_length",
+          "predicted": "get_road_conditions",
+          "match": false
+        },
+        {
+          "id": "shard0:49568",
+          "expected": "extract_company_history",
+          "predicted": "extract_company_history",
+          "match": true
+        },
+        {
+          "id": "shard0:20486",
+          "expected": "get_date_and_towns_of_merger",
+          "predicted": "get_date_and_towns_of_merger",
+          "match": true
+        },
+        {
+          "id": "shard0:22605",
+          "expected": "get_first_king_of_jerusalem",
+          "predicted": "get_first_king_of_jerusalem",
+          "match": true
+        },
+        {
+          "id": "shard0:49777",
+          "expected": "extract_partnerships",
+          "predicted": "extract_partnerships",
+          "match": true
+        },
+        {
+          "id": "shard0:51992",
+          "expected": "summarize_character_changes",
+          "predicted": "summarize_character_changes",
+          "match": true
+        },
+        {
+          "id": "shard0:33642",
+          "expected": "get_transportation_accessibility",
+          "predicted": "get_transportation_accessibility",
+          "match": true
+        },
+        {
+          "id": "shard0:43435",
+          "expected": "extract_party_affiliations",
+          "predicted": "fetch_award_history",
+          "match": false
+        },
+        {
+          "id": "shard0:30857",
+          "expected": "extract_first_broadcast_date",
+          "predicted": "count_viewers",
+          "match": false
+        },
+        {
+          "id": "shard0:25418",
+          "expected": "extract_socialist_activities",
+          "predicted": "find_book_by_title",
+          "match": false
+        },
+        {
+          "id": "shard0:35087",
+          "expected": "extract_founding_date_of_group",
+          "predicted": "extract_founding_date_of_group",
+          "match": true
+        },
+        {
+          "id": "shard0:52807",
+          "expected": "extract_control_method",
+          "predicted": "check_server_status",
+          "match": false
+        },
+        {
+          "id": "shard0:15813",
+          "expected": "get_current_developer",
+          "predicted": "check_file_extension",
+          "match": false
+        },
+        {
+          "id": "shard0:30689",
+          "expected": "extract_oppert_attempt",
+          "predicted": "extract_oppert_attempt",
+          "match": true
+        },
+        {
+          "id": "shard0:49027",
+          "expected": "get_historical_battles",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:7013",
+          "expected": "process_article",
+          "predicted": "fetch_player_stats",
+          "match": false
+        },
+        {
+          "id": "shard0:33906",
+          "expected": "extract_name_change",
+          "predicted": "extract_name_change",
+          "match": true
+        },
+        {
+          "id": "shard0:47497",
+          "expected": "get_population",
+          "predicted": "get_area",
+          "match": false
+        },
+        {
+          "id": "shard0:52115",
+          "expected": "extract_names",
+          "predicted": "extract_names",
+          "match": true
+        },
+        {
+          "id": "shard0:37720",
+          "expected": "find_earliest_song",
+          "predicted": "find_earliest_song",
+          "match": true
+        },
+        {
+          "id": "shard0:48784",
+          "expected": "analyze_natural_theology",
+          "predicted": "analyze_natural_theology",
+          "match": true
+        },
+        {
+          "id": "shard0:12501",
+          "expected": "process_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:655",
+          "expected": "analyze_sophists_influence",
+          "predicted": "count_words",
+          "match": false
+        },
+        {
+          "id": "shard0:19331",
+          "expected": "compare_legal_entities",
+          "predicted": "get_company_info",
+          "match": false
+        },
+        {
+          "id": "shard0:27421",
+          "expected": "analyze_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:22081",
+          "expected": "extract_article_info",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24103",
+          "expected": "summarize_activities",
+          "predicted": "summarize_activities",
+          "match": true
+        },
+        {
+          "id": "shard0:48544",
+          "expected": "extract_event_date",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:42108",
+          "expected": "process_election_results",
+          "predicted": "calculate_age",
+          "match": false
+        },
+        {
+          "id": "shard0:1695",
+          "expected": "get_known_works",
+          "predicted": "get_birthplace",
+          "match": false
+        }
+      ]
+    }
+  },
+  "after": {
+    "long_dev": {
+      "n": 20,
+      "correct": 6,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:2948",
+          "expected": "get_triangle_numbers",
+          "predicted": "calculate_fibonacci",
+          "match": false
+        },
+        {
+          "id": "shard0:6672",
+          "expected": "process_article",
+          "predicted": "process_article",
+          "match": true
+        },
+        {
+          "id": "shard0:18052",
+          "expected": "find_fastest_pentium_dual_core",
+          "predicted": "find_fastest_pentium_dual_core",
+          "match": true
+        },
+        {
+          "id": "shard0:13105",
+          "expected": "analyze_egg_danger",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24256",
+          "expected": "get_school_level",
+          "predicted": "get_student_count",
+          "match": false
+        },
+        {
+          "id": "shard0:32144",
+          "expected": "process_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:10347",
+          "expected": "extract_japanese_cities_from_airport",
+          "predicted": "check_weather",
+          "match": false
+        },
+        {
+          "id": "shard0:23003",
+          "expected": "extract_last_year_in_hanwha",
+          "predicted": "no_op",
+          "match": false
+        },
+        {
+          "id": "shard0:22514",
+          "expected": "analyze_transit",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:27988",
+          "expected": "extract_gad_symptoms",
+          "predicted": "extract_gad_symptoms",
+          "match": true
+        },
+        {
+          "id": "shard0:22574",
+          "expected": "get_most_winning_team",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:26648",
+          "expected": "get_star_details",
+          "predicted": "get_star_details",
+          "match": true
+        },
+        {
+          "id": "shard0:39783",
+          "expected": "find_drama_and_variety",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:2619",
+          "expected": "get_article_info",
+          "predicted": "translate_text",
+          "match": false
+        },
+        {
+          "id": "shard0:2917",
+          "expected": "get_friction_cause",
+          "predicted": "get_friction_cause",
+          "match": true
+        },
+        {
+          "id": "shard0:52607",
+          "expected": "get_latest_statistic",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:20475",
+          "expected": "find_scientists",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:22867",
+          "expected": "get_expo_city",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24332",
+          "expected": "extract_building_features",
+          "predicted": "extract_building_features",
+          "match": true
+        },
+        {
+          "id": "shard0:38165",
+          "expected": "extract_color_broadcast_start",
+          "predicted": "fetch_tv_schedule",
+          "match": false
+        }
+      ]
+    },
+    "long_test": {
+      "n": 30,
+      "correct": 12,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:15480",
+          "expected": "get_plant_features",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:29044",
+          "expected": "summarize_position_changes",
+          "predicted": "convert_to_modern_korean",
+          "match": false
+        },
+        {
+          "id": "shard0:17512",
+          "expected": "find_actor_role",
+          "predicted": "find_actor_role",
+          "match": true
+        },
+        {
+          "id": "shard0:5428",
+          "expected": "find_name_change",
+          "predicted": "get_weather",
+          "match": false
+        },
+        {
+          "id": "shard0:35286",
+          "expected": "get_rocket_launch_details",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:27047",
+          "expected": "find_new_sport",
+          "predicted": "find_new_sport",
+          "match": true
+        },
+        {
+          "id": "shard0:9546",
+          "expected": "analyze_dance_mode",
+          "predicted": "analyze_dance_mode",
+          "match": true
+        },
+        {
+          "id": "shard0:11896",
+          "expected": "get_brain_death_criteria",
+          "predicted": "get_brain_death_criteria",
+          "match": true
+        },
+        {
+          "id": "shard0:7553",
+          "expected": "get_voroshilov_promotion_year",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:37075",
+          "expected": "get_broadcast_time",
+          "predicted": "get_broadcast_time",
+          "match": true
+        },
+        {
+          "id": "shard0:32572",
+          "expected": "get_transfer_path",
+          "predicted": "calculate_train_schedules",
+          "match": false
+        },
+        {
+          "id": "shard0:40648",
+          "expected": "extract_suicide_reason",
+          "predicted": "extract_suicide_reason",
+          "match": true
+        },
+        {
+          "id": "shard0:32123",
+          "expected": "process_article",
+          "predicted": "translate_text",
+          "match": false
+        },
+        {
+          "id": "shard0:953",
+          "expected": "count_first_place_wins",
+          "predicted": "count_first_place_wins",
+          "match": true
+        },
+        {
+          "id": "shard0:789",
+          "expected": "extract_prosperity_period",
+          "predicted": "no_op",
+          "match": false
+        },
+        {
+          "id": "shard0:21536",
+          "expected": "get_chart_position",
+          "predicted": "get_chart_position",
+          "match": true
+        },
+        {
+          "id": "shard0:12313",
+          "expected": "extract_fuel_cladding_material",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:35383",
+          "expected": "get_drama_roles",
+          "predicted": "get_drama_roles",
+          "match": true
+        },
+        {
+          "id": "shard0:43789",
+          "expected": "find_invasive_species",
+          "predicted": "count_species",
+          "match": false
+        },
+        {
+          "id": "shard0:32698",
+          "expected": "get_construction_dates",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:19719",
+          "expected": "analyze_electoral_changes",
+          "predicted": "analyze_electoral_changes",
+          "match": true
+        },
+        {
+          "id": "shard0:24374",
+          "expected": "summarize_chief_justice_info",
+          "predicted": "analyze_law_career",
+          "match": false
+        },
+        {
+          "id": "shard0:28187",
+          "expected": "extract_incorporation_details",
+          "predicted": "extract_incorporation_details",
+          "match": true
+        },
+        {
+          "id": "shard0:2177",
+          "expected": "find_highest_mountain",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:4467",
+          "expected": "extract_cia_document_info",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:13742",
+          "expected": "find_game_sales",
+          "predicted": "no_op",
+          "match": false
+        },
+        {
+          "id": "shard0:46798",
+          "expected": "extract_breakpoint_purpose",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:46787",
+          "expected": "summarize_landing_operation",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:11875",
+          "expected": "parse_olympic_performance",
+          "predicted": "find_team_mates",
+          "match": false
+        },
+        {
+          "id": "shard0:17708",
+          "expected": "classify_assets",
+          "predicted": "classify_assets",
+          "match": true
+        }
+      ]
+    },
+    "short_test": {
+      "n": 30,
+      "correct": 24,
+      "no_tool_n": 18,
+      "no_tool_correct": 12,
+      "rows": [
+        {
+          "id": "s1_20260729-1313_b2639_1:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2275_0:1",
+          "expected": "get_reservation",
+          "predicted": "get_reservation",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1258_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2993_3:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0104_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1082_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1026_0:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2112_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1398_1:1",
+          "expected": "get_order_status",
+          "predicted": "get_order_status",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2402_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2758_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0834_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0867_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2952_2:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0184_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1273_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0024_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2972_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1758_3:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0219_2:1",
+          "expected": "no_tool",
+          "predicted": "get_order_status",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2499_2:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1432_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0788_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1516_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0152_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0373_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2425_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1606_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b2461_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1819_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        }
+      ]
+    },
+    "medium_test": {
+      "n": 30,
+      "correct": 14,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:34923",
+          "expected": "calculate_road_length",
+          "predicted": "get_road_conditions",
+          "match": false
+        },
+        {
+          "id": "shard0:49568",
+          "expected": "extract_company_history",
+          "predicted": "extract_company_history",
+          "match": true
+        },
+        {
+          "id": "shard0:20486",
+          "expected": "get_date_and_towns_of_merger",
+          "predicted": "get_date_and_towns_of_merger",
+          "match": true
+        },
+        {
+          "id": "shard0:22605",
+          "expected": "get_first_king_of_jerusalem",
+          "predicted": "get_first_king_of_jerusalem",
+          "match": true
+        },
+        {
+          "id": "shard0:49777",
+          "expected": "extract_partnerships",
+          "predicted": "extract_partnerships",
+          "match": true
+        },
+        {
+          "id": "shard0:51992",
+          "expected": "summarize_character_changes",
+          "predicted": "summarize_character_changes",
+          "match": true
+        },
+        {
+          "id": "shard0:33642",
+          "expected": "get_transportation_accessibility",
+          "predicted": "get_transportation_accessibility",
+          "match": true
+        },
+        {
+          "id": "shard0:43435",
+          "expected": "extract_party_affiliations",
+          "predicted": "fetch_award_history",
+          "match": false
+        },
+        {
+          "id": "shard0:30857",
+          "expected": "extract_first_broadcast_date",
+          "predicted": "count_viewers",
+          "match": false
+        },
+        {
+          "id": "shard0:25418",
+          "expected": "extract_socialist_activities",
+          "predicted": "find_book_by_title",
+          "match": false
+        },
+        {
+          "id": "shard0:35087",
+          "expected": "extract_founding_date_of_group",
+          "predicted": "extract_founding_date_of_group",
+          "match": true
+        },
+        {
+          "id": "shard0:52807",
+          "expected": "extract_control_method",
+          "predicted": "check_server_status",
+          "match": false
+        },
+        {
+          "id": "shard0:15813",
+          "expected": "get_current_developer",
+          "predicted": "check_file_extension",
+          "match": false
+        },
+        {
+          "id": "shard0:30689",
+          "expected": "extract_oppert_attempt",
+          "predicted": "extract_oppert_attempt",
+          "match": true
+        },
+        {
+          "id": "shard0:49027",
+          "expected": "get_historical_battles",
+          "predicted": "get_historical_battles",
+          "match": true
+        },
+        {
+          "id": "shard0:7013",
+          "expected": "process_article",
+          "predicted": "fetch_player_stats",
+          "match": false
+        },
+        {
+          "id": "shard0:33906",
+          "expected": "extract_name_change",
+          "predicted": "extract_name_change",
+          "match": true
+        },
+        {
+          "id": "shard0:47497",
+          "expected": "get_population",
+          "predicted": "get_area",
+          "match": false
+        },
+        {
+          "id": "shard0:52115",
+          "expected": "extract_names",
+          "predicted": "extract_names",
+          "match": true
+        },
+        {
+          "id": "shard0:37720",
+          "expected": "find_earliest_song",
+          "predicted": "find_earliest_song",
+          "match": true
+        },
+        {
+          "id": "shard0:48784",
+          "expected": "analyze_natural_theology",
+          "predicted": "analyze_natural_theology",
+          "match": true
+        },
+        {
+          "id": "shard0:12501",
+          "expected": "process_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:655",
+          "expected": "analyze_sophists_influence",
+          "predicted": "count_words",
+          "match": false
+        },
+        {
+          "id": "shard0:19331",
+          "expected": "compare_legal_entities",
+          "predicted": "get_company_info",
+          "match": false
+        },
+        {
+          "id": "shard0:27421",
+          "expected": "analyze_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:22081",
+          "expected": "extract_article_info",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24103",
+          "expected": "summarize_activities",
+          "predicted": "summarize_activities",
+          "match": true
+        },
+        {
+          "id": "shard0:48544",
+          "expected": "extract_event_date",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:42108",
+          "expected": "process_election_results",
+          "predicted": "calculate_age",
+          "match": false
+        },
+        {
+          "id": "shard0:1695",
+          "expected": "get_known_works",
+          "predicted": "get_birthplace",
+          "match": false
+        }
+      ]
+    }
+  },
+  "seconds": 310.0
+}

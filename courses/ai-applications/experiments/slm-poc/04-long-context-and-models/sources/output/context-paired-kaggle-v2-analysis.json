@@ -1,0 +1,226 @@
+{
+  "archive_sha256": "91aff526125bd450e13b0c24f090fb4029b8377437b72f23a3d193a834045605",
+  "outcome_transitions": {
+    "call | baseline_right | mixed_right": 10,
+    "call | baseline_right | mixed_wrong": 5,
+    "call | baseline_wrong | mixed_wrong": 15,
+    "no_tool | baseline_right | mixed_right": 9,
+    "no_tool | baseline_wrong | mixed_right": 10,
+    "no_tool | baseline_wrong | mixed_wrong": 11
+  },
+  "predicted_call_transitions": {
+    "call | no_tool | no_tool": 5,
+    "call | tool | no_tool": 9,
+    "call | tool | tool": 16,
+    "no_tool | no_tool | no_tool": 9,
+    "no_tool | tool | no_tool": 10,
+    "no_tool | tool | tool": 11
+  },
+  "most_common_prediction_changes": [
+    {
+      "expected_type": "no_tool",
+      "from": "no_tool",
+      "to": "no_tool",
+      "n": 9
+    },
+    {
+      "expected_type": "call",
+      "from": "search_products",
+      "to": "search_products",
+      "n": 7
+    },
+    {
+      "expected_type": "call",
+      "from": "no_tool",
+      "to": "no_tool",
+      "n": 5
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "get_order_status",
+      "to": "no_tool",
+      "n": 2
+    },
+    {
+      "expected_type": "call",
+      "from": "send_email",
+      "to": "send_email",
+      "n": 2
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "book_hotel",
+      "to": "get_reservation",
+      "n": 2
+    },
+    {
+      "expected_type": "call",
+      "from": "list_events",
+      "to": "no_tool",
+      "n": 2
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "get_reservation",
+      "to": "get_reservation",
+      "n": 2
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "book_hotel",
+      "to": "no_tool",
+      "n": 2
+    },
+    {
+      "expected_type": "call",
+      "from": "search_products",
+      "to": "no_tool",
+      "n": 2
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "search_flights",
+      "to": "search_flights",
+      "n": 2
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "find_free_slots",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "get_reservation",
+      "to": "get_reservation",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "book_hotel",
+      "to": "book_hotel",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "list_events",
+      "to": "list_events",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "update_event",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "list_emails",
+      "to": "list_emails",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "view_cart",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "get_hotel_detail",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "search_products",
+      "to": "search_products",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "track_delivery",
+      "to": "track_delivery",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "find_free_slots",
+      "to": "find_free_slots",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "get_reservation",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "cancel_hotel_booking",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "create_event",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "list_events",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "get_hotel_detail",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "get_order_status",
+      "to": "get_order_status",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "create_event",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "send_email",
+      "to": "list_emails",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "create_event",
+      "to": "create_event",
+      "n": 1
+    },
+    {
+      "expected_type": "no_tool",
+      "from": "track_delivery",
+      "to": "cancel_order",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "get_order_status",
+      "to": "no_tool",
+      "n": 1
+    },
+    {
+      "expected_type": "call",
+      "from": "list_events",
+      "to": "list_events",
+      "n": 1
+    }
+  ],
+  "warnings": "Synthetic source labels not human verified; short and long split groups were previously observed in project; long filler is artificial."
+}

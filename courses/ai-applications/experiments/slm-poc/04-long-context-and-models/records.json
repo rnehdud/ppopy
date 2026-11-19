@@ -1,0 +1,313 @@
+[
+  {
+    "id": "E16",
+    "phase": "入力長拡張",
+    "title": "1024・2048・4096の追加学習",
+    "change": "位置埋め込みを拡張し、長い40＋旧短文20判断で各30回更新。",
+    "result": "各条件の長文30問：1024は13→14、2048は12→12、4096は2→2。既出短文30問24→24。",
+    "scope": "長さごとに長文の評価内容が違う。13→12→2を同じ文章を長くした推移と読まない。",
+    "decision": "入力できる長さは増やせたが、長文で正しく選べる証拠は弱い。",
+    "sources": [
+      {
+        "source": "output/training/kofunction-1024-pilot-v1/results.json",
+        "status": "copied",
+        "path": "sources/output/training/kofunction-1024-pilot-v1/results.json",
+        "bytes": 29197,
+        "sha256": "c001b031f066c49437b62815842642414edd22dafb73043217ae598b129ea372"
+      },
+      {
+        "source": "output/training/kofunction-2048-pilot-v1/results.json",
+        "status": "copied",
+        "path": "sources/output/training/kofunction-2048-pilot-v1/results.json",
+        "bytes": 41199,
+        "sha256": "7ea571bbd10838004936d7102614da8a5e605bc3be85baf668a1639a316306be"
+      },
+      {
+        "source": "output/training/kofunction-4096-pilot-v1/results.json",
+        "status": "copied",
+        "path": "sources/output/training/kofunction-4096-pilot-v1/results.json",
+        "bytes": 51659,
+        "sha256": "8458b73e30355a9c26868ee9a4fbf3102170446034ca67827c08ec2462b3de3b"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E17",
+    "phase": "短文と長文の対比較",
+    "title": "同じ判断に文章を足した対で学習",
+    "change": "追加なし・短文だけ・短文と長文の3条件。",
+    "result": "短文60問49→51→50。長文60問24→23→29。短文＋長文では長文の呼ぶ15/30→10/30、呼ばない9/30→19/30。",
+    "scope": "人工的な付加文章、合成出典。短文と長文で同じ正解を置いた対。",
+    "decision": "長文全体は5件増えたが、呼び出しは5件減った。総合点だけの成功判定をしない。",
+    "sources": [
+      {
+        "source": "output/training/context-paired-kaggle-v2-import/summary.json",
+        "status": "copied",
+        "path": "sources/output/training/context-paired-kaggle-v2-import/summary.json",
+        "bytes": 3492,
+        "sha256": "c7cead282f46e7c4d1483cd1aee61d61d8486a780d33f84c7e84480a0be52f28"
+      },
+      {
+        "source": "output/context-paired-kaggle-v2-analysis.json",
+        "status": "copied",
+        "path": "sources/output/context-paired-kaggle-v2-analysis.json",
+        "bytes": 4996,
+        "sha256": "e838191f720a36b6b144f46ec1997cd329dff8e00633c26d2bdc63d47b3a15a8"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E18",
+    "phase": "履歴を選んで短縮",
+    "title": "KUREで過去の発言を選ぶ",
+    "change": "全履歴2048と、直近優先・KURE優先の短縮を同じ60問で比較。",
+    "result": "全履歴8/60。1024では両短縮5/60・39件が上限超過。1500では直近10/60、KURE9/60、両方17件上限超過。",
+    "scope": "上限超過を含む60問。入力できた例だけの正解率にすり替えない。ツール実行なし。",
+    "decision": "この方法・予算ではKUREが直近優先を超えた証拠はない。",
+    "sources": [
+      {
+        "source": "output/kure-multiturn-heldout-v1/results.json",
+        "status": "copied",
+        "path": "sources/output/kure-multiturn-heldout-v1/results.json",
+        "bytes": 574540,
+        "sha256": "501a571d07d06fee299c3c592df1174096496cbaca6babe3c43cc2d49e449bb7"
+      },
+      {
+        "source": "output/kure-multiturn-heldout-v2/results.json",
+        "status": "copied",
+        "path": "sources/output/kure-multiturn-heldout-v2/results.json",
+        "bytes": 598112,
+        "sha256": "00ececca1674f099f17002537104c87ca6d84a3277417538c6e550aa3f8c45a0"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E21",
+    "phase": "選ぶ役と止める役を分離",
+    "title": "2段構成の最初の比較",
+    "change": "選択役と呼ぶ・止める判断を分けた。",
+    "result": "呼ぶ80例の選択35→47。全体120問29→31、呼ぶ40問17→22。ただし同じ2段方式の停止80問19→9。",
+    "scope": "小さい合成の選択評価。停止能力が下がった分も含めて見る。",
+    "decision": "選択の改善は残すが、学習した停止役はそのまま採用しない。",
+    "sources": [
+      {
+        "source": "output/tool-split-pilot-v1-結果.txt",
+        "status": "copied",
+        "path": "sources/output/tool-split-pilot-v1-結果.txt",
+        "bytes": 4599,
+        "sha256": "a6a74d61eccc89da4eef807e33a4df7471974af81f5280f5c567ad2b28e01bd9"
+      },
+      {
+        "source": "output/tool-split-pilot-v1-結論.txt",
+        "status": "copied",
+        "path": "sources/output/tool-split-pilot-v1-結論.txt",
+        "bytes": 8914,
+        "sha256": "49f9060b5fba5bed485d14b0187e7c7e866f455a6ad02f41046680dbd5082345"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E22",
+    "phase": "確認役v1–v2",
+    "title": "EXAONE-JEVと学習データの偏り修正",
+    "change": "別の小型確認役を追加し、全て呼ぶ正解だった教材を修正。",
+    "result": "初期EXAONE確認は別120問24/120。v2の96問では元60/96→偏り修正＋調整72/96。呼ぶ59/60、止める13/36。必要値不足の停止は7/24→1/24へ悪化。",
+    "scope": "v1とv2は別評価。v2は12種・必須文字列2つの合成例。実値生成なし。",
+    "decision": "2モデル化そのものは解決ではない。修正後も不足値の判定に弱い。",
+    "sources": [
+      {
+        "source": "output/異なる小型モデル2つ-比較結果-v1.txt",
+        "status": "copied",
+        "path": "sources/output/異なる小型モデル2つ-比較結果-v1.txt",
+        "bytes": 5868,
+        "sha256": "60e76f80ed646532cd9460993bd3552d973a1083af2e08270ff8ff9c49295d1f"
+      },
+      {
+        "source": "output/確認モデル追加学習-最終比較-v2.txt",
+        "status": "copied",
+        "path": "sources/output/確認モデル追加学習-最終比較-v2.txt",
+        "bytes": 11001,
+        "sha256": "f82a729898b7668b4899c906b24e57d1b68ea5c1958c68cca167707135995752"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E23",
+    "phase": "項目ごとの確認v3–v5",
+    "title": "値を読む教材へ段階的に修正",
+    "change": "項目名だけで正解できる教材をやめ、2項目を交差させて学習。",
+    "result": "v3は全体72/96に対し学習分離71/96。v4は2項目52/168→82/168。v5は128/216→176/216、呼ぶ48/48維持、止める103/168→140/168。",
+    "scope": "v3・v4・v5の母集団は別。2項目の有無を読む試験で任意の引数値生成ではない。",
+    "decision": "教材の対応づけ修正で改善した事実を残す。数字を連続曲線にしない。",
+    "sources": [
+      {
+        "source": "output/項目ごとの確認モデル-結果-v3.txt",
+        "status": "copied",
+        "path": "sources/output/項目ごとの確認モデル-結果-v3.txt",
+        "bytes": 7268,
+        "sha256": "4f0807dbfd39246aa6b0afb31cd311e5c036275d081fe3cec26a753179dae82f"
+      },
+      {
+        "source": "output/項目名と値を分けた再学習-結果-v4.txt",
+        "status": "copied",
+        "path": "sources/output/項目名と値を分けた再学習-結果-v4.txt",
+        "bytes": 6368,
+        "sha256": "4f22173c8dce98cde6211331922afe95a1051935e052c56f3345e2298728d063"
+      },
+      {
+        "source": "output/同じ会話の項目を分ける再学習-結果-v5.txt",
+        "status": "copied",
+        "path": "sources/output/同じ会話の項目を分ける再学習-結果-v5.txt",
+        "bytes": 5995,
+        "sha256": "6160b14dadecce63f6b5316e59e0ea48a29fe04af746c2a77a99e09a49649219"
+      },
+      {
+        "source": "output/同じ会話の項目を分ける再学習-結論-v5.txt",
+        "status": "copied",
+        "path": "sources/output/同じ会話の項目を分ける再学習-結論-v5.txt",
+        "bytes": 4577,
+        "sha256": "8ddfba3c1cc62be44a66e2132807ed285770b1afe106acbc3af642848a62f9dd"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E24",
+    "phase": "4択・対応づけv6–v8",
+    "title": "限定した項目読解は97%、言い換えは悪化",
+    "change": "4択化、発言と項目の対応学習、言い換え対追加を比較。",
+    "result": "v7の未知ツール2項目151/168→163/168（97.0%）。同じ更新回数の反復対照161/168。v8の自然表現48例は33→28、全216例201→194。",
+    "scope": "正しいツールを与えた狭い項目判定。v7の差は同更新数対照比2件。v8は別の言い換え評価。",
+    "decision": "97%の成功範囲は明記する。言い換え追加は改善案として再利用する前に既失敗を参照。",
+    "sources": [
+      {
+        "source": "output/4択で値の有無と追加を読む-結果-v6.txt",
+        "status": "copied",
+        "path": "sources/output/4択で値の有無と追加を読む-結果-v6.txt",
+        "bytes": 6292,
+        "sha256": "66df5b45c098468bfd55a74428c08b7fe55a43d98cdd0fed2fa3f30ff7aca4e8"
+      },
+      {
+        "source": "output/発言と項目の対応づけ学習-比較結果-v7.txt",
+        "status": "copied",
+        "path": "sources/output/発言と項目の対応づけ学習-比較結果-v7.txt",
+        "bytes": 6450,
+        "sha256": "437e983ddf4a4c204134bfc1aa3fbb917ed6343c05bb008d8b9e8bee39f230f3"
+      },
+      {
+        "source": "output/発言と項目の対応づけ学習-結論-v7.txt",
+        "status": "copied",
+        "path": "sources/output/発言と項目の対応づけ学習-結論-v7.txt",
+        "bytes": 7555,
+        "sha256": "89e7fb8f9f79455fcacba1427f1299f06e26a0f9f3dcd0fa6e8445eea47f3792"
+      },
+      {
+        "source": "output/言い換えと情報不足の対を学ぶ-比較結果-v8.txt",
+        "status": "copied",
+        "path": "sources/output/言い換えと情報不足の対を学ぶ-比較結果-v8.txt",
+        "bytes": 7120,
+        "sha256": "8ba073b081257f4d720739cd9c6447aca30c3db68f7a6dd0a0d7e81d3f76fe2f"
+      },
+      {
+        "source": "output/言い換え追加学習の結論-v8.txt",
+        "status": "copied",
+        "path": "sources/output/言い換え追加学習の結論-v8.txt",
+        "bytes": 6410,
+        "sha256": "511df3cec23a309f07ddd224c19b62b0b383bfee79039a7f36651183e97329bf"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E25",
+    "phase": "入力・言語・モデル交換v9–v13",
+    "title": "文を拾う・使用例・質問言語を変更",
+    "change": "名前変更、文選択、短い例、韓国語質問、確認モデル交換。",
+    "result": "v10自然文の状態28/40→23/40、全体31/40→27/40。v12元31/40に対し定義例28/40。v13元JEV状態28/40に対しko-decision英語10/40・韓国語10/40。",
+    "scope": "各変更をそれぞれの固定入力で比較。名前だけ変えた39/40→40/40を自然文の改善と呼ばない。",
+    "decision": "この接続・交換は採用根拠にならなかった。",
+    "sources": [
+      {
+        "source": "output/名前と説明を変えた検査結果-v9.txt",
+        "status": "copied",
+        "path": "sources/output/名前と説明を変えた検査結果-v9.txt",
+        "bytes": 10362,
+        "sha256": "7de8152c2c93b69234a4d2e1b2870ff7633b9da8ccec3628dee869e56e718635"
+      },
+      {
+        "source": "output/発言箇所を選ぶ実行時比較-v10.txt",
+        "status": "copied",
+        "path": "sources/output/発言箇所を選ぶ実行時比較-v10.txt",
+        "bytes": 9001,
+        "sha256": "5fb408ef598b8abb90f529fbc873e8d2e048c62dcd594ff4d8bc45ec03248ea3"
+      },
+      {
+        "source": "output/質問の言語と追加重みの比較-v11.txt",
+        "status": "copied",
+        "path": "sources/output/質問の言語と追加重みの比較-v11.txt",
+        "bytes": 8086,
+        "sha256": "e1b1d25e476acb231de626d27e8988cd78eedfa2ebe127e1feeae55ac7069363"
+      },
+      {
+        "source": "output/短い使用例を添える比較-v12.txt",
+        "status": "copied",
+        "path": "sources/output/短い使用例を添える比較-v12.txt",
+        "bytes": 6893,
+        "sha256": "cc637bfdf5bf04a1b30a92c2025031e9db41cd4efb5362a60fbc206529b4368e"
+      },
+      {
+        "source": "output/韓国語モデルの判定役比較-v13.txt",
+        "status": "copied",
+        "path": "sources/output/韓国語モデルの判定役比較-v13.txt",
+        "bytes": 10320,
+        "sha256": "b9b1cf9dfbf2945b1419234b84c497fd6114a7116bf814a9482413d917886b3f"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E26",
+    "phase": "教材修正v14・文選択v16",
+    "title": "発言と値を対応づける",
+    "change": "教材ラベルを修正し、文を直接選ぶ案とも比較。",
+    "result": "v14の2項目162/200→171/200、反復対照154/200。呼ぶ43/50→46/50、止める133/150維持。v16の2項目126→139/200だが、呼ばない92/120→89/120。",
+    "scope": "値があるかの判定。v14とv16は別条件。",
+    "decision": "正しい教材対応づけは改善。文選択へ全面置換する理由にはならない。",
+    "sources": [
+      {
+        "source": "output/依頼文と値の区別を教える比較-v14.txt",
+        "status": "copied",
+        "path": "sources/output/依頼文と値の区別を教える比較-v14.txt",
+        "bytes": 8664,
+        "sha256": "be076b897535718734f42aaaa8ffc468bd3a8a0192d0437b2802be8a9c2c6a23"
+      },
+      {
+        "source": "output/教材の対応づけ修正の結論-v14.txt",
+        "status": "copied",
+        "path": "sources/output/教材の対応づけ修正の結論-v14.txt",
+        "bytes": 8790,
+        "sha256": "64eb1aa9b6a84d86a648470464f079c385c203b493957b7526af01aa9eb59884"
+      },
+      {
+        "source": "output/文の選択を直接使う比較-v16.txt",
+        "status": "copied",
+        "path": "sources/output/文の選択を直接使う比較-v16.txt",
+        "bytes": 7564,
+        "sha256": "341caaf6bede5d16cd84c066f8c7c410f81b038dbfb6ca5963d732b87a1b1074"
+      },
+      {
+        "source": "output/文の選択を直接使う判断の結論-v16.txt",
+        "status": "copied",
+        "path": "sources/output/文の選択を直接使う判断の結論-v16.txt",
+        "bytes": 8516,
+        "sha256": "08569049ddf8558a490f586eb05999d57a809ee8871e18220cd9971d0f4b4535"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  }
+]

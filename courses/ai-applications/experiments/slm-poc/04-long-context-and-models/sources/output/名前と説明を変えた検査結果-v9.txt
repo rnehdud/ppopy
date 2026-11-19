@@ -1,0 +1,130 @@
+名前・説明・発言を別々に変える検査：V9
+
+目標：その場で渡した道具の説明と韓国語の会話を使い、必要な道具／今は使わないを小さいモデルで選ぶ。最後は複数ターンと実行につなげる。
+今回はどこで判断が変わるかを調べる検査だけです。追加学習、モデルの選び直し、デモ更新はしていません。
+
+入力の作り方
+V8の既存の学習用・評価用ファイルから、それぞれ最初の5道具を採用しました。成績を見て良い例だけを選んでいません。
+各道具で必須2値の両方なし／片方だけ（2通り）／両方ありを用意。40例×6条件＝240入力です。
+240件の独立した会話という意味ではありません。既に見た評価例を含む診断です。新しい未知領域の成績ではありません。
+候補2道具、必須2文字列。全例が操作を頼む単発の発言です。取り消しや通常会話、実行後の次の判断は今回は測っていません。
+改名は両方の候補に適用。説明と発言を変えず、properties・required・参照呼び出し・正解も同じ対応で更新しました。
+各組で候補順・項目順を固定。四択は変更前の4つの巡回順を全条件に使いました。並びの種が入力変更で変わる別要因を避けています。
+このため、変形後の入力ごとに本来の実装が自動算出する四択の並びとは異なる場合があります。比較用の制御です。
+発言の言い換えは既存の同じ提供情報の文を使用。説明の言い換えは私が作りました。独立した人による意味の確認は未実施です。
+正解や改名対応表はモデルに渡していません。モデルが実際に読んだ文章は別ファイルに保存しました。
+名前を変えると文字数・トークン列も変わります。この検査だけで暗記が原因だとは断定しません。
+
+道具候補の選択と、依頼確認（全3条件で重みは共通）
+条件 | 正しい道具候補 | 正しい道具について操作依頼があると判断
+変更なし | 39/40 | 40/40
+道具名だけ変更 | 39/40 | 40/40
+引数名だけ変更 | 39/40 | 40/40
+両方の名前を変更 | 39/40 | 40/40
+発言だけ言い換え | 38/40 | 40/40
+説明だけ言い換え | 39/40 | 39/40
+道具候補は現行の方式どおり、no_tool以外で最高点の道具です。呼ぶ／止めるは、その後の依頼確認と情報確認で決まります。
+
+必須2項目の値の有無が両方正しい例数（正しい道具を指定して診断）
+条件 | V8追加学習前 | 項目名反復後 | 言い換え学習後
+変更なし | 38/40 | 40/40 | 39/40
+道具名だけ変更 | 38/40 | 40/40 | 39/40
+引数名だけ変更 | 38/40 | 40/40 | 38/40
+両方の名前を変更 | 37/40 | 40/40 | 37/40
+発言だけ言い換え | 28/40 | 25/40 | 29/40
+説明だけ言い換え | 34/40 | 40/40 | 37/40
+
+V8追加学習前（V7の重み）：最終的な呼ぶ／止める判断
+条件 | 必要時に正しい道具を呼ぶ判断 | 止めるべき時に止める判断 | 全体
+変更なし | 10/10 | 29/30 | 39/40
+道具名だけ変更 | 10/10 | 29/30 | 39/40
+引数名だけ変更 | 10/10 | 29/30 | 39/40
+両方の名前を変更 | 9/10 | 28/30 | 37/40
+発言だけ言い換え | 6/10 | 25/30 | 31/40
+説明だけ言い換え | 9/10 | 29/30 | 38/40
+変更前との対応（状態判断）：条件 | 同じ予測 | 正→誤 | 誤→正
+道具名だけ変更 | 40/40 | 0 | 0
+引数名だけ変更 | 40/40 | 0 | 0
+両方の名前を変更 | 39/40 | 1 | 0
+発言だけ言い換え | 26/40 | 12 | 2
+説明だけ言い換え | 34/40 | 5 | 1
+
+項目名つき文の反復後：最終的な呼ぶ／止める判断
+条件 | 必要時に正しい道具を呼ぶ判断 | 止めるべき時に止める判断 | 全体
+変更なし | 10/10 | 30/30 | 40/40
+道具名だけ変更 | 10/10 | 30/30 | 40/40
+引数名だけ変更 | 10/10 | 30/30 | 40/40
+両方の名前を変更 | 9/10 | 30/30 | 39/40
+発言だけ言い換え | 8/10 | 19/30 | 27/40
+説明だけ言い換え | 10/10 | 30/30 | 40/40
+変更前との対応（状態判断）：条件 | 同じ予測 | 正→誤 | 誤→正
+道具名だけ変更 | 40/40 | 0 | 0
+引数名だけ変更 | 40/40 | 0 | 0
+両方の名前を変更 | 40/40 | 0 | 0
+発言だけ言い換え | 25/40 | 15 | 0
+説明だけ言い換え | 40/40 | 0 | 0
+
+項目名つき文＋言い換え学習後：最終的な呼ぶ／止める判断
+条件 | 必要時に正しい道具を呼ぶ判断 | 止めるべき時に止める判断 | 全体
+変更なし | 10/10 | 29/30 | 39/40
+道具名だけ変更 | 10/10 | 29/30 | 39/40
+引数名だけ変更 | 10/10 | 29/30 | 39/40
+両方の名前を変更 | 9/10 | 28/30 | 37/40
+発言だけ言い換え | 9/10 | 24/30 | 33/40
+説明だけ言い換え | 9/10 | 29/30 | 38/40
+変更前との対応（状態判断）：条件 | 同じ予測 | 正→誤 | 誤→正
+道具名だけ変更 | 40/40 | 0 | 0
+引数名だけ変更 | 39/40 | 1 | 0
+両方の名前を変更 | 38/40 | 2 | 0
+発言だけ言い換え | 28/40 | 11 | 1
+説明だけ言い換え | 38/40 | 2 | 0
+
+学習した道具と、学習していない道具の内訳（V8追加学習前の重み）
+変更なし: {"state_training_tool": {"n": 20, "state_correct": 18, "action_correct": 19}, "untrained_state_tool_previously_evaluated": {"n": 20, "state_correct": 20, "action_correct": 20}}
+道具名だけ変更: {"state_training_tool": {"n": 20, "state_correct": 18, "action_correct": 19}, "untrained_state_tool_previously_evaluated": {"n": 20, "state_correct": 20, "action_correct": 20}}
+引数名だけ変更: {"state_training_tool": {"n": 20, "state_correct": 18, "action_correct": 19}, "untrained_state_tool_previously_evaluated": {"n": 20, "state_correct": 20, "action_correct": 20}}
+両方の名前を変更: {"state_training_tool": {"n": 20, "state_correct": 18, "action_correct": 19}, "untrained_state_tool_previously_evaluated": {"n": 20, "state_correct": 19, "action_correct": 18}}
+発言だけ言い換え: {"state_training_tool": {"n": 20, "state_correct": 15, "action_correct": 16}, "untrained_state_tool_previously_evaluated": {"n": 20, "state_correct": 13, "action_correct": 15}}
+説明だけ言い換え: {"state_training_tool": {"n": 20, "state_correct": 15, "action_correct": 18}, "untrained_state_tool_previously_evaluated": {"n": 20, "state_correct": 19, "action_correct": 20}}
+
+条件を変えた際の具体的な変化（V8追加学習前の重み）
+道具名だけ変更：状態の選択結果は40例とも同じでした。確率まで同一という意味ではありません。
+引数名だけ変更：状態の選択結果は40例とも同じでした。確率まで同一という意味ではありません。
+両方の名前を変更 / query_audiobook
+[{"role": "user", "content": "오디오북 낭독자: 아직 제공하지 않았어요. 오디오북 도서명: 가상의 긴 산책. 오디오북을 검색해 주세요"}]
+正解：{"audio_reader": false, "audio_title": true}
+変更前：{"audio_title": true, "audio_reader": false}
+変更後：{"audio_title": true, "audio_reader": true}
+発言だけ言い換え / reserve_train
+[{"role": "user", "content": "인천으로 갈 거예요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": false, "arrival_station": true}
+変更前：{"departure_station": false, "arrival_station": true}
+変更後：{"departure_station": true, "arrival_station": true}
+発言だけ言い換え / reserve_train
+[{"role": "user", "content": "대전에서 출발할게요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": true, "arrival_station": false}
+変更前：{"arrival_station": false, "departure_station": true}
+変更後：{"arrival_station": true, "departure_station": true}
+説明だけ言い換え / reserve_train
+[{"role": "user", "content": "출발역: 대전. 도착역: 아직 제공하지 않았어요. 기차표를 예약해 주세요"}]
+正解：{"departure_station": true, "arrival_station": false}
+変更前：{"arrival_station": false, "departure_station": true}
+変更後：{"arrival_station": true, "departure_station": false}
+説明だけ言い換え / track_parcel
+[{"role": "user", "content": "택배사: 아직 제공하지 않았어요. 운송장 번호: 아직 제공하지 않았어요. 택배 배송 상태를 조회해 주세요"}]
+正解：{"carrier_code": false, "tracking_number": false}
+変更前：{"carrier_code": true, "tracking_number": false}
+変更後：{"carrier_code": false, "tracking_number": false}
+
+この結果から言える範囲
+同じ正解数でも、直った例と新しく間違えた例が相殺する場合があります。個別の変化をpaired-analysis.jsonとCSVに残しています。
+改名後も正解であることは、新しい機能や任意の項目数への成功を証明しません。差が出ても、それだけでは暗記、文字数、説明の不足などを一つに決められません。
+参考のSGD-Xは英語です。学習データとして追加したわけではありません。既存の韓国語の入力で、比較方法を取り入れました。
+値の抽出、引数生成、実際のツール実行、複数ターンの実行結果、Qwenの返事は未評価です。
+今回の結果で学習率・重み・質問文を調整したり、評価例を学習に戻したりしていません。
+
+参照した方法と出典は計画書を参照：C:\Users\ling\Desktop\projects\SLM意思決定\output\次の検査計画-v9.txt
+入力と正解の確認：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\interface-probe-korean-v9\review.csv
+個別の予測：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\interface-probe-korean-v9\predictions.csv
+各モデルへの実入力：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\interface-probe-korean-v9\selector-inputs.jsonl / request-inputs.jsonl / state-inputs.jsonl
+監査：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\interface-probe-korean-v9\final-audit.json

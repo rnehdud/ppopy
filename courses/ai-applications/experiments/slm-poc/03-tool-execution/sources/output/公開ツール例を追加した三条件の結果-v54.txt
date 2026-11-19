@@ -1,0 +1,90 @@
+異なる公開ツール例の追加を比べた結果（V54）
+2026-11-09
+
+目的: 異なる道具でも、実行結果の後に必要な操作へ続くかを確認する。
+
+調査で分かった制約
+V51はToolACE全11300会話、Nemotronの手元の先頭1000会話、kotraj全11357会話を点検。逐次呼出し、2〜12候補、完全な定義・引数・結果・履歴を512以内で読む条件では、確認された結果後の呼出しはToolACE0件、Nemotron8件、kotraj0件だった。
+並列呼出しや未照合結果などの除外があり、全ての元データの続行数を表す数字ではない。Nemotron全体を調べたとは言わない。
+V52で一種類の指示文を丸ごと除いたが、日付を含む別の指示文を扱えなかった。この前処理は採用しなかった。
+V53では、既知の一般的な呼出し書式・役割文だけを外し、日付やその他の制約を残した。ToolACEの結果後331判断のうち、512以内は15件。316件は切り捨てず除外。
+この15件を全て読み、返されていない選手IDを使う例、複数の次操作が同じく妥当な例、条件の判定根拠がない例等を外した。詳しい除外理由はdata-audit.json。
+
+今回使ったもの
+20元会話、29判断、52種類の道具名。そのうち結果後の続行は9判断。大規模な学習ではなく、小さい実現性比較である。
+英語版は元の依頼・説明。韓国語版は同じ依頼と道具の説明だけをassistantが訳した。名前・数値・順序・条件を照合したが、独立した人手確認ではない。
+韓国語版にも英語の引数名・引数の説明・結果の文字列は残る。全てが韓国語になったデータとは言わない。
+元データの最後の文章を自動的に「終了」とは扱っていない。新しく教えた正解は、確認できたツール呼出しだけ。
+toolace:627:4の選手ID捏造等の問題を教えないため、選択だけでなく全ての過去呼出しと正解呼出しの引数Schemaを照合した。
+
+比較条件
+出発点はV50配分変更の実験用重み。デモ用重みとは別。三条件とも600提示、200更新、学習率1e-5、q/v LoRA。
+control: V50の配分を繰り返す。en: 最初の60提示と結果後の50提示を英語の新しい例へ差し替える。ko: 同じ位置・同じ正解・同じ元会話を韓国語版へ差し替える。
+従来の肌判断、「呼ばない」正解、共通200復習は同一。従って不要な呼出しが減る/増えることを、教えた呼出し数の差だけで説明する比較ではない。
+29判断を110回提示している。110種類の新しい正解ではない。データ種類のほか、語彙、Schemaの複雑さ、結果の形も変わるため、道具の種類だけの因果効果とは言わない。
+全条件の最終重みを保存してから採点。設定の再調整や途中の重み選びはしていない。
+
+結果: 今回の追加学習から外した既存4種類・16会話
+initial: 全条件一致 10/16、正しい読取後の必要な続行 4/8、読むだけで終了 8/8、二依頼を両方正解 4/8。
+  以前の56会話: 全条件一致 36/56、必要ツール完了 25/40、不要変更 0。旧肌判断 360/360。
+  最初の失敗箇所: {"continued_after_done": 1, "stopped_before_needed_tool": 3, "initial_wrong_choice": 2}
+  新しい教材への適合（学習用であり未知テストではない）: {"en": {"n": 29, "correct": 11, "after_n": 9, "after_correct": 1}, "ko": {"n": 29, "correct": 14, "after_n": 9, "after_correct": 3}}
+control: 全条件一致 12/16、正しい読取後の必要な続行 5/8、読むだけで終了 8/8、二依頼を両方正解 5/8。
+  以前の56会話: 全条件一致 39/56、必要ツール完了 28/40、不要変更 0。旧肌判断 359/360。
+  最初の失敗箇所: {"continued_after_done": 1, "stopped_before_needed_tool": 3}
+  新しい教材への適合（学習用であり未知テストではない）: {"en": {"n": 29, "correct": 12, "after_n": 9, "after_correct": 1}, "ko": {"n": 29, "correct": 13, "after_n": 9, "after_correct": 3}}
+en: 全条件一致 12/16、正しい読取後の必要な続行 4/8、読むだけで終了 8/8、二依頼を両方正解 4/8。
+  以前の56会話: 全条件一致 36/56、必要ツール完了 24/40、不要変更 0。旧肌判断 360/360。
+  最初の失敗箇所: {"stopped_before_needed_tool": 3, "initial_wrong_choice": 1}
+  新しい教材への適合（学習用であり未知テストではない）: {"en": {"n": 29, "correct": 13, "after_n": 9, "after_correct": 2}, "ko": {"n": 29, "correct": 14, "after_n": 9, "after_correct": 3}}
+ko: 全条件一致 11/16、正しい読取後の必要な続行 4/8、読むだけで終了 8/8、二依頼を両方正解 4/8。
+  以前の56会話: 全条件一致 39/56、必要ツール完了 24/40、不要変更 0。旧肌判断 360/360。
+  最初の失敗箇所: {"stopped_before_needed_tool": 3, "initial_wrong_choice": 2}
+  新しい教材への適合（学習用であり未知テストではない）: {"en": {"n": 29, "correct": 10, "after_n": 9, "after_correct": 2}, "ko": {"n": 29, "correct": 18, "after_n": 9, "after_correct": 5}}
+
+採用条件
+{
+  "en": {
+    "strict_beats_control": false,
+    "strict_beats_initial": true,
+    "continuation_beats_control": false,
+    "continuation_beats_initial": false,
+    "old360_retained_vs_control": true,
+    "old360_retained_vs_initial": true,
+    "previous_needed_retained_vs_control": false,
+    "previous_needed_retained_vs_initial": false,
+    "previous_unwanted_not_increased_vs_control": true,
+    "previous_unwanted_not_increased_vs_initial": true,
+    "matched_unwanted_not_increased_vs_control": true,
+    "matched_unwanted_not_increased_vs_initial": true
+  },
+  "ko": {
+    "strict_beats_control": false,
+    "strict_beats_initial": true,
+    "continuation_beats_control": false,
+    "continuation_beats_initial": false,
+    "old360_retained_vs_control": true,
+    "old360_retained_vs_initial": true,
+    "previous_needed_retained_vs_control": false,
+    "previous_needed_retained_vs_initial": false,
+    "previous_unwanted_not_increased_vs_control": true,
+    "previous_unwanted_not_increased_vs_initial": true,
+    "matched_unwanted_not_increased_vs_control": true,
+    "matched_unwanted_not_increased_vs_initial": true
+  }
+}
+条件を全て満たす案: なし
+通過しても未使用の独立した会話で確認する候補まで。今回のデモ置換はしない。
+
+分からないこと
+既存の16会話・56会話は過去に繰り返し見た修正確認用。今回の学習からは外したが、独立した未知分野テストではない。
+新しい公開29判断の正答率は学習への適合確認だけ。元の基盤モデルや過去アダプターでの元データへの接触を排除していない。
+公開データのAPIは一度も実行していない。実動作を測ったのは既存のローカル模擬ツール。引数生成、Qwenの返答、一般の外部APIの達成率は未評価。
+
+参照した原資料
+ToolACE公開データ: https://huggingface.co/datasets/Team-ACE/ToolACE
+kotraj公開データ: https://huggingface.co/datasets/drlee1/kotraj
+Nemotron公開データ: https://huggingface.co/datasets/nvidia/Nemotron-SFT-Agentic-v4
+手元の元ファイルを直接点検した数と制約が、この比較の根拠。配布者の成績を今回の予測値にはしていない。
+
+この固定比較の設定を、試験結果を見て変更し繰り返すことはしない。失敗ならこの小規模版の失敗として残す。

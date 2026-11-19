@@ -1,0 +1,100 @@
+三つの方法を同じ条件で試した結果（V50）
+2026-11-09
+
+目的: 与えたツールの説明と会話から、使う道具・続けるか・終了するかを小さいモデルが選ぶ。
+今回: 10の原資料と15の既存報告を読み直し、12案を比較して上位3案を試した。
+判断表の点数は私の優先度であり、成功率ではない。output/research-matrix-v49/decision-matrix.csv を参照。
+
+保ったもの
+四条件とも同じV45重みから開始。同じ韓国語入力、候補の説明、512トークン上限、ローカル実行処理、q/v LoRA。デモとQwenは変更しない。
+各条件400回の主教材＋200回の共通復習、200更新、学習率1e-5。提示回数であり600個の独立した会話ではない。
+三案は主教材の順番まで共通。対照のみ従来V45の主教材。全条件の最終重みを固定してから採点し、途中の成績で設定を変えていない。
+
+変えたもの
+balanced: 開始・一操作後・二操作後・従来の肌判断を100提示ずつ。346個の異なる行を使用。
+distilled: balancedに加え、共通復習で学習前の候補点数の分布との差も小さくする。温度2、係数1。間違った旧判断は保持対象から外し、正解だけ学習する。
+  保持対象の復習: 177/200。
+projected: balancedに加え、AdamWが提案した実際の重み変化を、復習一例の損失を一次近似で増やす向きなら補正する。
+  A-GEMのSGD手順そのものではない。実損失や全例の正答率の保持を保証するものではない。
+配分の注意: ツールを使う/使わない正解の提示数は対照316/284、三案260/340。段階をそろえる変更と、この比率変化は分離していない。
+
+結果: 今回の追加学習から外した4種類、8組16会話
+学習開始時: 最初から全条件一致 6/16、読み取り後の二依頼を両方正解 2/8、必要な続行 4/8、読むだけで終了 6/8、不要な変更 1。
+  以前の56会話: 全条件一致 32/56、必要なツール完了 24/40、不要な変更 2。旧肌判断 360/360。
+元の教材＋共通の復習: 最初から全条件一致 9/16、読み取り後の二依頼を両方正解 5/8、必要な続行 5/8、読むだけで終了 8/8、不要な変更 1。
+  以前の56会話: 全条件一致 37/56、必要なツール完了 25/40、不要な変更 2。旧肌判断 356/360。
+開始・途中・終了の例をそろえる: 最初から全条件一致 10/16、読み取り後の二依頼を両方正解 4/8、必要な続行 4/8、読むだけで終了 8/8、不要な変更 1。
+  以前の56会話: 全条件一致 36/56、必要なツール完了 25/40、不要な変更 0。旧肌判断 360/360。
+例をそろえ、以前の出力点数も保つ: 最初から全条件一致 8/16、読み取り後の二依頼を両方正解 4/8、必要な続行 4/8、読むだけで終了 8/8、不要な変更 1。
+  以前の56会話: 全条件一致 34/56、必要なツール完了 24/40、不要な変更 1。旧肌判断 359/360。
+例をそろえ、更新方向も補正する: 最初から全条件一致 10/16、読み取り後の二依頼を両方正解 4/8、必要な続行 4/8、読むだけで終了 8/8、不要な変更 1。
+  以前の56会話: 全条件一致 36/56、必要なツール完了 25/40、不要な変更 0。旧肌判断 360/360。
+
+学習処理の確認
+control 対 initial の同じ16会話: 誤り→全条件正解 3、正解→誤り 0。
+control 対 control の同じ16会話: 誤り→全条件正解 0、正解→誤り 0。
+balanced 対 initial の同じ16会話: 誤り→全条件正解 4、正解→誤り 0。
+balanced 対 control の同じ16会話: 誤り→全条件正解 2、正解→誤り 1。
+distilled 対 initial の同じ16会話: 誤り→全条件正解 2、正解→誤り 0。
+distilled 対 control の同じ16会話: 誤り→全条件正解 0、正解→誤り 1。
+projected 対 initial の同じ16会話: 誤り→全条件正解 4、正解→誤り 0。
+projected 対 control の同じ16会話: 誤り→全条件正解 2、正解→誤り 1。
+control: 196.2秒、最大GPU割当 0.863GiB、最大重み差 0.00085028、再読込誤差 0.0、数値オーバーフロー再試行 0回。
+balanced: 212.0秒、最大GPU割当 0.924GiB、最大重み差 0.00086542、再読込誤差 0.0、数値オーバーフロー再試行 0回。
+distilled: 226.4秒、最大GPU割当 0.924GiB、最大重み差 0.00076275、再読込誤差 0.0、数値オーバーフロー再試行 0回。
+projected: 284.0秒、最大GPU割当 0.930GiB、最大重み差 0.00086744、再読込誤差 0.0、数値オーバーフロー再試行 0回。
+  方向補正 52/200、参照勾配ゼロ 28、丸め後の正の残差が規定許容値を超えた更新 0。
+
+事前に決めた採用条件の判定
+{
+  "balanced": {
+    "test_strict_improves_control": true,
+    "test_paired_choices_improve_control": false,
+    "test_continuation_retained_vs_control": false,
+    "old360_retained_vs_control": true,
+    "previous_needed_retained_vs_control": true,
+    "previous_unwanted_not_increased_vs_control": true,
+    "matched_unwanted_not_increased_vs_control": true,
+    "test_strict_improves_initial": true,
+    "previous_unwanted_not_increased_vs_initial": true
+  },
+  "distilled": {
+    "test_strict_improves_control": false,
+    "test_paired_choices_improve_control": false,
+    "test_continuation_retained_vs_control": false,
+    "old360_retained_vs_control": true,
+    "previous_needed_retained_vs_control": false,
+    "previous_unwanted_not_increased_vs_control": true,
+    "matched_unwanted_not_increased_vs_control": true,
+    "test_strict_improves_initial": true,
+    "previous_unwanted_not_increased_vs_initial": true
+  },
+  "projected": {
+    "test_strict_improves_control": true,
+    "test_paired_choices_improve_control": false,
+    "test_continuation_retained_vs_control": false,
+    "old360_retained_vs_control": true,
+    "previous_needed_retained_vs_control": true,
+    "previous_unwanted_not_increased_vs_control": true,
+    "matched_unwanted_not_increased_vs_control": true,
+    "test_strict_improves_initial": true,
+    "previous_unwanted_not_increased_vs_initial": true
+  }
+}
+全条件を満たす案: なし
+通過した案も独立した未使用会話で確認する候補まで。デモには適用していない。
+通過しなかった案は今回の設定では採用しない。失敗は全てsummary.jsonと各評価の実行履歴に残した。
+
+この結果で分からないこと
+評価は以前に何度も見た合成の会話。今回の追加学習のtrainからは分けたが、独立した未知分野の試験ではない。人による新しい正解確認もない。
+旧360判断は学習済みの例であり、保持確認である。新しい会話への正答率とは数えない。
+実際に動くローカル模擬ツールで引数は事前に結び付けた空の形式。自由な引数抽出、外部API、Qwen返答、製品や使用時刻の保存、同じ道具を状態変化後に再使用する能力は評価していない。
+一回の固定seed比較であり、数例差の再現性や90%への到達を示さない。参照を一例ずつ保護する方法は、全会話を守る方法ではない。
+
+資料から取り入れた部分と、こちらで変えた部分
+Learning without Forgetting: 旧出力の分布を保持する考え。こちらでは既存の復習例を使い、旧モデルが正しかった例だけに適用。元論文の再現ではない。 https://arxiv.org/html/1606.09282v3
+A-GEM: 参照例を悪くする更新方向を補正する考え。こちらではAdamWの重み変化を補正。元論文のSGD手順とは異なる。 https://arxiv.org/html/1812.00420v2
+Agent-FLAN: 能力を分けて教材配分を見る根拠として参照。四段階100提示ずつは私の比較案であり、論文指定の配分ではない。 https://aclanthology.org/2024.findings-acl.557/
+他の7資料と、今回は使わなかった9案の理由も判断表に記載。
+
+今回の固定比較はここで終了する。結果に合わせて回数・学習率・入力を変え、同じ試験で良い数字を探すことはしない。

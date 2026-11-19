@@ -1,0 +1,85 @@
+同じ会話の2項目を区別させる追加学習
+
+今回の問い：片方の値だけが分かるとき、分かる項目と分からない項目を分けられるか。
+元のV4の保存済みモデルから追加学習しました。ツール選択モデルと実行時の質問文は変えていません。
+
+変えたこと
+前回も2項目を別々に質問していました。今回は、その2問を同じ学習単位に残しました。
+通常の正解学習に加え、片方だけ値がある会話で、ある項目の点数がない項目より上になるように学習しました。
+両方ある／両方ない例では、この差を強制していません。実際の使用時には正解ラベルを渡していません。
+明示的に未定と言う例、何も言わない項目、後の発言で値を補う会話、取り消しを入れました。
+学習時に具体的な値も変えています。項目名の出現だけで答える方法の正解率は各区分で50%です。
+学習：26道具・468会話・1,040判断。途中確認：8道具・144会話。最後の評価：新しい12道具・216会話。
+1,040は独立した会話数ではなく、936項目確認と104依頼確認の合計です。
+
+新しい216会話での比較
+条件 | 必要な呼び出し | 止める場面 | 2項目とも正しい | 片方だけ値がある会話の完全一致
+before・raw | 48/48 | 88/168 | 121/216 | 19/96
+before・dev_calibrated | 48/48 | 103/168 | 128/216 | 23/96
+after・raw | 48/48 | 140/168 | 176/216 | 58/96
+after・dev_calibrated | 48/48 | 140/168 | 176/216 | 58/96
+
+全件止めるだけでも168/216正解になります。そのため全体の正解率だけで採用しません。
+呼ぶ場面と止める場面を同じ重さで平均した正解率：80.7% → 91.7%
+片方だけ値があるのに両方あると判断：56/96 → 27/96
+
+項目名の有無と実際の値の有無（途中確認で決めた基準）
+name=True,value=False: 77/120 → 112/120
+name=True,value=True: 117/120 → 117/120
+name=False,value=False: 58/96 → 72/96
+name=False,value=True: 82/96 → 88/96
+
+実行の判定基準を使わず、2項目の出力値の大小だけを見た診断
+before: 値のある項目の出力が上 75/96、逆順 21、同点 0
+after: 値のある項目の出力が上 87/96、逆順 9、同点 0
+これは片方だけ値があると正解から分かっている場面の診断です。実際に値が何個あるかの判断や、実行判断の正解率ではありません。
+出力値は選択肢間の相対値であり、正解する確率として確認したものではありません。
+
+会話の種類別：2項目完全一致
+cancelled: 21/24 → 24/24
+history: 30/48 → 39/48
+single: 77/144 → 113/144
+
+既に見たV4の168会話。初見の成績ではなく、以前の動作が失われていないかの参考です。
+次のbefore/afterは、今回の途中確認でそれぞれ選んだ基準での比較です。前回報告の固定基準とは異なります。
+before: 呼ぶ33/36、止める94/132、2項目完全一致96/168
+after: 呼ぶ32/36、止める123/132、2項目完全一致131/168
+前回の固定基準も再現：呼ぶ36/36、止める67/132、2項目完全一致82/168。基準を動かして前回の成績を書き換えてはいません。
+
+事前に固定した採用条件
+fresh_state_90: 不合格
+fresh_calls_90: 合格
+fresh_stops_90: 不合格
+state_improved: 合格
+balanced_pipeline_improved: 合格
+seen_state_preserved: 合格
+seen_calls_preserved: 合格
+seen_stops_preserved: 合格
+結論：今回の採用条件は満たしませんでした。
+いずれの場合も、元のデモには反映していません。
+
+間違いが残った具体例
+binding-v5:test:issue_flight_receipt:single:1:10
+[{"role": "user", "content": "항공권 영수증을 발급해 주세요 표에 적힌 번호는 아직 안 알려 드렸어요. 가상항공에서 산 표예요."}]
+正解：{"receipt_airline": true, "receipt_ticket": false}
+予測：{"receipt_airline": false, "receipt_ticket": false}
+binding-v5:test:reserve_wood_workshop:single:1:01
+[{"role": "user", "content": "12월 16일에 배우러 갈게요. 무엇을 만들지는 정하지 않았어요. 목공 수업을 신청해 주세요"}]
+正解：{"wood_item": false, "wood_class_day": true}
+予測：{"wood_item": true, "wood_class_day": true}
+binding-v5:test:lookup_cafe_stamp:single:1:10
+[{"role": "user", "content": "가상나무카페에서 모았어요. 카페 적립 내역을 조회해 주세요 제 회원 코드는 아직 말하지 않았어요."}]
+正解：{"stamp_shop": true, "stamp_account": false}
+予測：{"stamp_shop": false, "stamp_account": false}
+
+この試験で言える範囲
+データと学習計算を一緒に変えました。どちらだけが効いたかは、この1条件の試験では分けられません。
+新しいツール名・項目キーを分けましたが、共通の言い方を含む私が作った例です。正解の独立した人手確認は未実施です。
+元のモデルの学習から完全に未知の意味だったと保証するものでも、自由な会話全般の正解率でもありません。
+候補2道具・必須2項目・文字列です。値の抽出、引数JSON生成、型検証、外部ツール実行は含めていません。
+最終評価を見て保存点や基準を選び直していません。今回の試験はここで止めます。
+
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\field-binding-korean-v5\results.json
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\field-binding-korean-v5\predictions.csv
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\field-binding-korean-v5\label-review.csv
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\field-binding-korean-v5\final-audit.json

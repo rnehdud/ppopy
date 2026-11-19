@@ -1,0 +1,77 @@
+教材を揃えた次操作学習の結果（V38）
+2026-11-09
+
+結論
+同じ学習前の重みから、360判断を一度だけ追加学習した。失敗したV36の重みは継ぎ足していない。
+正しい症状情報を与えた場合と、固定した症状モデルを使った場合を、同じ30会話で分けて比較した。
+採用検査の全条件合格：True。結果にかかわらず、自動的なデモ反映はしていない。
+
+最後までの合格：操作順、保存内容、モデルによる停止を含む
+
+正しい症状情報
+全条件合格：3/30 → 30/30
+二操作の順序・実行・停止まで：0/10 → 10/10
+必要な保存が正しい状態で完了：15/15 → 15/15
+不要な保存：0 → 0
+プログラムによる打切り：{'condition_not_met': 14, 'tool_error': 12} → {}
+missing：0/5 → 5/5
+no_write：3/5 → 5/5
+read_only：0/5 → 5/5
+read_write：0/5 → 5/5
+write_only：0/5 → 5/5
+write_read：0/5 → 5/5
+
+実際の症状モデル
+全条件合格：1/30 → 28/30
+二操作の順序・実行・停止まで：0/10 → 10/10
+必要な保存が正しい状態で完了：15/15 → 15/15
+不要な保存：2 → 2
+プログラムによる打切り：{'condition_not_met': 15, 'tool_error': 12} → {}
+missing：0/5 → 3/5
+no_write：1/5 → 5/5
+read_only：0/5 → 5/5
+read_write：0/5 → 5/5
+write_only：0/5 → 5/5
+write_read：0/5 → 5/5
+
+同じ正解の途中状態60判断を個別に選んだ一致（連続実行とは別）
+{'before': {'n': 60, 'correct': 16}, 'after': {'n': 60, 'correct': 60}}
+
+学習後の二条件を同じ会話で照合
+gold_True_parser_True：28会話 ['heldout:dryness:read_write:6', 'heldout:dryness:write_read:6', 'heldout:dryness:write_only:6', 'heldout:dryness:read_only:6', 'heldout:dryness:no_write:6', 'heldout:dryness:missing:6', 'heldout:breakout:read_write:6', 'heldout:breakout:write_read:6', 'heldout:breakout:write_only:6', 'heldout:breakout:read_only:6', 'heldout:breakout:no_write:6', 'heldout:breakout:missing:6', 'heldout:redness:read_write:6', 'heldout:redness:write_read:6', 'heldout:redness:write_only:6', 'heldout:redness:read_only:6', 'heldout:redness:no_write:6', 'heldout:stinging:read_write:6', 'heldout:stinging:write_read:6', 'heldout:stinging:write_only:6', 'heldout:stinging:read_only:6', 'heldout:stinging:no_write:6', 'heldout:itching:read_write:6', 'heldout:itching:write_read:6', 'heldout:itching:write_only:6', 'heldout:itching:read_only:6', 'heldout:itching:no_write:6', 'heldout:itching:missing:6']
+gold_True_parser_False：2会話 ['heldout:redness:missing:6', 'heldout:stinging:missing:6']
+同じ症状情報だった会話では、二条件の操作と結果も一致することを照合した。
+正しい情報でも失敗するものは、症状読み取りだけを直しても解決しない。正しい情報で成功し実際の症状モデルで失敗するものは、その入力の違いを別に調べられる。
+
+学習と接続の確認
+180学習会話の360判断を全て使用。6エポック・540更新・2160行の学習。標準cross entropy、NF4FP16、query/value LoRAだけ。
+両操作順の完全な教師は各30会話。長さによる教材の除外や途中段階の切捨てはない。
+学習前後の両方で同じ可逆なV37r1書式を使った。旧書式のV36の数字と直接比較して効果を主張しない。
+モデルに渡すのは要求、現在の状態、症状情報、未反映差分、実際の実行結果、利用可能な選択肢。正解の次操作・順序・到達状態は実行側へ渡していない。
+症状モデルを使う条件には、想定正解の症状情報も渡さない。症状モデルは常に元の重み。
+学習／推論の入力の一致を、事前に全420判断で検査。全入力・役割別重み・実処理の監査：13/13。
+学習行での一致（本評価とは別）：[{'epoch': 0, 'n': 360, 'correct': 140, 'CE': 2.285756104361402}, {'epoch': 6, 'n': 360, 'correct': 359, 'CE': 0.00942551384833315}]
+重み最大変化：0.016266191378235817、保存後再読込のスコア差：0.0
+学習秒数：692.0、学習プロセスのGPU最大割当：0.627 GiB。
+
+学習後に残った失敗
+parser | heldout:redness:missing:6 | ['record_skin_symptoms'] | model_stop | state_ok=False
+parser | heldout:stinging:missing:6 | ['record_skin_symptoms'] | model_stop | state_ok=False
+
+固定した採用検査
+gold_two_operation_improved：True
+gold_required_writes_not_lower：True
+gold_unwanted_writes_not_higher：True
+parser_required_writes_not_lower：True
+parser_unwanted_writes_not_higher：True
+
+範囲の限界
+Small assistant-authored same two tools/five symptoms/empty arguments, heldout phrasings only. Not independent human gold, unknown-tool/domain90, Qwen/STT or actual live user evaluation.
+正しい症状情報の条件は、その情報をモデルが自分で読めたという意味ではない。
+heldoutのno_write5会話は家族の症状に関するもの。拒否・一般論・挨拶を含む学習用の全種類について、新しい評価が済んだとは言わない。
+missingは必要な道具がない場合の適切な停止・確認であり、依頼した作業そのものの完了ではない。
+返答用Qwen、音声、製品・使用時間、未知の道具・領域、医療上の正確さは確認していない。ラベルは私が定め、独立した人手確認は未実施。
+現在のチャット、症状用の元の重み、会話メモリは変更していない。今回は一度の学習と比較で止める。
+
+成果物
+output\diagnostics\prepared-next-action-v38/episode-review.csv、results.json、audit.json、train/final-adapter/。

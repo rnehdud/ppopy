@@ -1,0 +1,74 @@
+選択が崩れる入力を分けた確認（V40）
+2026-11-09
+
+追加学習はしていない。V38を主な比較対象とし、不採用V39も同じ条件で照合した。
+120の既知の依頼から210の正しい途中状態を固定し、正解の次操作は採点側だけに置いた。モデル自身がその状態まで連続実行できた、という採点ではない。
+全ての入力で実際に推論した。特に内部候補順の検査で、辞書順を無視する旧キャッシュを使って結果を再利用していない。
+症状情報の比較は読取・他人の症状など、誤予測があっても正しい次操作が変わらない60判断。正しい情報から、指定した誤予測へ変更した。実際の症状モデルの出力ではない。
+
+V38
+固定した基準入力の一致：182/210
+言い方だけ変更：同じ対象の基準 182/210 → 変更後 176/210、選択変更 34、正解→誤り 17、誤り→正解 11
+入力文中のツール一覧順だけ変更：同じ対象の基準 167/180 → 変更後 167/180、選択変更 0、正解→誤り 0、誤り→正解 0
+候補を採点する内部順だけ変更：同じ対象の基準 182/210 → 変更後 182/210、選択変更 0、正解→誤り 0、誤り→正解 0
+症状予測とそれに従う未保存差分だけ変更：同じ対象の基準 44/60 → 変更後 36/60、選択変更 34、正解→誤り 20、誤り→正解 12
+例 言い方だけ変更 | v39:train:dryness:present:read_write:step:0 | show→record | 正解=show
+元の依頼：지금 제 건조함 증상이 있어요. 예전 내용을 읽는 일을 먼저 하고, 그다음 새 상태로 고쳐 주세요.
+変更後：지금 제 건조함 증상이 있어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요.
+元の症状情報：{"dryness":"present"}／変更後：{"dryness":"present"}
+一覧：['record', 'show', 'ask', 'none'] → ['record', 'show', 'ask', 'none']
+例 言い方だけ変更 | v39:train:dryness:present:missing_write:step:0 | ask→none | 正解=ask
+元の依頼：지금 제 건조함 증상이 있어요. 제 기록을 수정해 주세요. 읽기만 해서는 안 돼요.
+変更後：지금 제 건조함 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요.
+元の症状情報：{"dryness":"present"}／変更後：{"dryness":"present"}
+一覧：['show', 'ask', 'none'] → ['show', 'ask', 'none']
+例 言い方だけ変更 | v39:train:dryness:absent:read_write:step:0 | show→record | 正解=show
+元の依頼：지금 제 건조함 증상은 없어요. 예전 내용을 읽는 일을 먼저 하고, 그다음 새 상태로 고쳐 주세요.
+変更後：지금 제 건조함 증상은 없어요. 변경 전 내용을 먼저 보여 주고, 보여 준 뒤 방금 말한 상태를 남겨 줘요.
+元の症状情報：{"dryness":"absent"}／変更後：{"dryness":"absent"}
+一覧：['record', 'show', 'ask', 'none'] → ['record', 'show', 'ask', 'none']
+例 症状予測とそれに従う未保存差分だけ変更 | v39:train:dryness:present:third_party:step:0 | none→ask | 正解=none
+元の依頼：동생의 건조함 이야기예요. 제 증상으로 저장하지 마세요.
+変更後：동생의 건조함 이야기예요. 제 증상으로 저장하지 마세요.
+元の症状情報：{}／変更後：{"dryness":"present"}
+一覧：['record', 'show', 'ask', 'none'] → ['record', 'show', 'ask', 'none']
+例 症状予測とそれに従う未保存差分だけ変更 | v39:train:dryness:absent:third_party:step:0 | none→ask | 正解=none
+元の依頼：동생의 건조함 이야기예요. 제 증상으로 저장하지 마세요.
+変更後：동생의 건조함 이야기예요. 제 증상으로 저장하지 마세요.
+元の症状情報：{}／変更後：{"dryness":"absent"}
+一覧：['record', 'show', 'ask', 'none'] → ['record', 'show', 'ask', 'none']
+例 症状予測とそれに従う未保存差分だけ変更 | v39:train:dryness:unknown:third_party:step:0 | none→ask | 正解=none
+元の依頼：동생의 건조함 이야기예요. 제 증상으로 저장하지 마세요.
+変更後：동생의 건조함 이야기예요. 제 증상으로 저장하지 마세요.
+元の症状情報：{}／変更後：{"dryness":"unknown"}
+一覧：['record', 'show', 'ask', 'none'] → ['record', 'show', 'ask', 'none']
+
+V39_rejected_secondary_comparison
+固定した基準入力の一致：210/210
+言い方だけ変更：同じ対象の基準 210/210 → 変更後 149/210、選択変更 61、正解→誤り 61、誤り→正解 0
+入力文中のツール一覧順だけ変更：同じ対象の基準 180/180 → 変更後 180/180、選択変更 0、正解→誤り 0、誤り→正解 0
+候補を採点する内部順だけ変更：同じ対象の基準 210/210 → 変更後 210/210、選択変更 0、正解→誤り 0、誤り→正解 0
+症状予測とそれに従う未保存差分だけ変更：同じ対象の基準 60/60 → 変更後 60/60、選択変更 0、正解→誤り 0、誤り→正解 0
+例 言い方だけ変更 | v39:train:dryness:present:missing_read:step:0 | ask→none | 正解=ask
+元の依頼：제 건조함 기록을 읽어 주세요. 다른 작업은 요청하지 않았어요.
+変更後：남겨 둔 건조함 내용을 보고 싶어요. 읽는 기능이 없으면 저장으로 대신하지 마세요.
+元の症状情報：{}／変更後：{}
+一覧：['record', 'ask', 'none'] → ['record', 'ask', 'none']
+例 言い方だけ変更 | v39:train:dryness:present:write_read:step:1 | show→none | 正解=show
+元の依頼：지금 제 건조함 증상이 있어요. 기록을 바꾸고 나서 바뀐 내용을 보여 주세요.
+変更後：지금 제 건조함 증상이 있어요. 먼저 이 상태를 반영해 줘요. 반영이 끝나면 기록 내용을 읽어 줘요.
+元の症状情報：{"dryness":"present"}／変更後：{"dryness":"present"}
+一覧：['record', 'show', 'ask', 'none'] → ['record', 'show', 'ask', 'none']
+例 言い方だけ変更 | v39:train:dryness:present:missing_write:step:0 | ask→none | 正解=ask
+元の依頼：지금 제 건조함 증상이 있어요. 제 기록을 수정해 주세요. 읽기만 해서는 안 돼요.
+変更後：지금 제 건조함 증상이 있어요. 이 내용으로 기록을 바꾸고 싶어요. 수정 기능이 없으면 바꾸었다고 하지 마세요.
+元の症状情報：{"dryness":"present"}／変更後：{"dryness":"present"}
+一覧：['show', 'ask', 'none'] → ['show', 'ask', 'none']
+
+範囲と限界
+Post-hoc diagnosis using known authored requests and fixed teacher-prefix states, not new independent task accuracy or autonomous execution. Gold upstream does not measure symptom reader performance. No Qwen, live-state changes, unknown tools or new learning.
+言い方と一覧順は別々に変えたため、その一変更で起きる選択差は確認できる。ただし全ての相互作用や学習時の悪化の唯一の原因を説明する検査ではない。
+正解は私が定め、独立した人の確認は受けていない。特に確認と終了の区別は定めたラベルへの一致。
+既知の2ツールと5症状の診断で、未知の道具や領域の正確さを示すものではない。
+現在のチャット、症状モデル、Qwen、学習済み重みは変更していない。この一度の切り分けで止める。
+全入力・トークン列・重み・判定の監査 8/8。推論回数 1740。

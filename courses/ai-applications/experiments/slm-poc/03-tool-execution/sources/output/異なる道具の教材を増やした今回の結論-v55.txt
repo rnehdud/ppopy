@@ -1,0 +1,70 @@
+異なる道具への広がりを調べた今回の結論
+2026-11-09
+
+目的: 道具の説明を渡した時、実行結果の後に必要な道具を選び、依頼が終わったら終了する。
+
+今回やったこと
+手元の公開データを全件または明記した範囲で調べ、完全な説明・引数・結果・依頼を512以内で渡せる続行例を探した。
+ToolACEの定型的な返答書式だけを除き、日付などの事実は保った。512以内に収まった15続行例を全て読み、使える9例を選んだ。
+20元会話・29判断・52種類の道具名を使い、既存例の反復／英語追加／韓国語追加を同じ600提示・200更新で比較した。
+韓国語は依頼と道具の説明だけを翻訳。引数名・Schema・結果・その他の事実は同じ。独立した人手翻訳ではない。
+韓国語追加が調整用の会話で対照を上回らなかったため、事前に決めた次の変更を実施した。
+同じ道具・結果を使い、依頼だけを最初の操作だけにした9判断を作った。8件は読み取り、1件はメール登録の成功後に終了する。終了例50提示だけを差し替えた。新しい呼出し正解110提示・その他の教材・順番・開始重み・更新回数・seedは韓国語追加と同じ。
+最後の比較用結果で変更を選んだのではなく、trigger.jsonに保存した調整用(dev)の成績だけで実施を決めた。
+
+結果: 以前から確認している、今回の追加学習には使わない16会話
+開始時: 全手順一致 10/16、正しい読取後の続行 4/8、読むだけで終了 8/8、旧肌判断 360/360。
+  以前の56会話: 必要な操作の完了 25/40、不要な変更 0。
+従来教材の反復: 全手順一致 12/16、正しい読取後の続行 5/8、読むだけで終了 8/8、旧肌判断 359/360。
+  以前の56会話: 必要な操作の完了 28/40、不要な変更 0。
+新しい英語例を追加: 全手順一致 12/16、正しい読取後の続行 4/8、読むだけで終了 8/8、旧肌判断 360/360。
+  以前の56会話: 必要な操作の完了 24/40、不要な変更 0。
+同じ例の依頼・道具説明を韓国語にする: 全手順一致 11/16、正しい読取後の続行 4/8、読むだけで終了 8/8、旧肌判断 360/360。
+  以前の56会話: 必要な操作の完了 24/40、不要な変更 0。
+同じ結果で終了／続行を分ける例も追加: 全手順一致 8/16、正しい読取後の続行 1/8、読むだけで終了 8/8、旧肌判断 360/360。
+  以前の56会話: 必要な操作の完了 17/40、不要な変更 0。
+
+事前条件を全て満たすもの
+最初の比較: {"en": false, "ko": false}
+終了対比を加えた比較: False
+{
+  "initial": {
+    "strict_improves": false,
+    "continuation_improves": false,
+    "old360_retained": true,
+    "previous_needed_retained": false,
+    "previous_unwanted_not_increased": true,
+    "matched_unwanted_not_increased": true
+  },
+  "control": {
+    "strict_improves": false,
+    "continuation_improves": false,
+    "old360_retained": true,
+    "previous_needed_retained": false,
+    "previous_unwanted_not_increased": true,
+    "matched_unwanted_not_increased": true
+  },
+  "ko": {
+    "strict_improves": false,
+    "continuation_improves": false,
+    "old360_retained": true,
+    "previous_needed_retained": false,
+    "previous_unwanted_not_increased": true,
+    "matched_unwanted_not_increased": true
+  }
+}
+
+結論の範囲
+新しい29判断を110回提示した小さい比較。終了対比を実施した場合も、追加した異なる終了判断は9件。大きい公開データ全体を学習したわけではない。
+新しい韓国語29判断への適合は、V54では14/29から18/29、結果後の正解は3/9から5/9。学習した例自体にも誤りが残ったため、データ種類だけが足りない、または学習済み能力の広がりだけが弱い、とはまだ断定しない。
+16会話・56会話は過去に繰り返し見た修正確認用。独立した未知分野で90%という証拠ではない。旧360判断は学習済みの保持確認。
+配布元のAPIを実行したわけではない。実際の実行は既存のローカル模擬ツールだけ。Qwenの返事、引数の自由な生成、製品使用時間などの記録は今回も評価していない。
+いずれも既存デモへ適用していない。通過した場合でも、独立した未使用会話で確かめる候補まで。失敗した場合は、その失敗を保存し、この小さい追加データでの改善を主張しない。
+
+資料・実行履歴
+output/公開ツール例を追加した三条件の結果-v54.txt
+output/diagnostics/diverse-sources-v54/summary.json
+output/diagnostics/diverse-sources-v54/case-by-case.csv
+output/diagnostics/trajectory-source-audit-v51/audit.json
+output/diagnostics/fact-policy-audit-v53/audit.json
+output/diagnostics/matched-sources-v55/summary.json

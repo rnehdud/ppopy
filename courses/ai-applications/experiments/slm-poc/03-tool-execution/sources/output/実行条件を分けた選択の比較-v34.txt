@@ -1,0 +1,155 @@
+実行条件を分けた選択の比較（V34）
+2026-11-08
+
+結論
+モデルの重みは同じ。比較したのは、既存の全候補方式と、宣言された実行条件を満たさない候補を最終選択から除く方式。
+以下の改善は接続方法の改善であり、モデルを学習して判断力が上がったという結果ではない。
+採用検査の全条件合格：False。実運用・デモへの置換はしていない。
+
+新しい20依頼×条件あり・なし（通常の二候補）
+指標                              従来の全候補    条件で候補を除く
+正しい確認・実行・停止まで合格    30/40    36/40
+条件ありで必要な実行が完了    19/20    19/20
+条件ありで全条件合格    17/20    18/20
+条件なしで後続操作を試みた    6/20    0/20
+無関係な操作の回数    0    0
+繰り返した操作の回数    4    4
+受け側に拒否された呼出回数    7    0
+既存の正解が不正解へ変わった依頼：0。不正解が正解へ変わった依頼：6。
+同じ20用途から条件や候補を変えた試験であり、40個の独立した未知用途とは数えない。
+
+候補の変更・完了後の停止（同じ20依頼からの派生）
+plain：全条件合格 30/40 → 36/40、不要候補の実行 0 → 0、繰返し 4 → 4
+distracted：全条件合格 29/40 → 35/40、不要候補の実行 1 → 1、繰返し 4 → 4
+missing_check：全条件合格 18/40 → 18/40、不要候補の実行 22 → 24、繰返し 0 → 2
+missing_act：全条件合格 32/40 → 32/40、不要候補の実行 1 → 1、繰返し 7 → 7
+renamed：全条件合格 33/40 → 33/40、不要候補の実行 0 → 0、繰返し 6 → 6
+completed：全条件合格 17/20 → 18/20、不要候補の実行 0 → 0、繰返し 3 → 2
+completed_distracted：全条件合格 16/20 → 17/20、不要候補の実行 1 → 1、繰返し 3 → 2
+missing_checkは停止のみ。missing_actは停止、または利用可能な確認を一度して停止を許す。いずれも作業完了とは数えない。
+完了済みは実際に確認と対象操作を済ませた履歴を与え、次の一回だけを見る。打切りをAIの停止にはしない。
+
+同じ観測を与えた80場面（20組×四状態）
+状態：モデルの元の選択の正解 → 条件を適用した後の正解
+initial：20/20 → 20/20
+after_true：19/20 → 19/20
+after_false：13/20 → 18/20
+after_done：17/20 → 18/20
+この80場面では、両方式のモデルへの入力と重みは同じ。モデルの元の正解数は変わらない。
+条件で除外して正解に変わったものは、モデル自身の改善として報告しない。
+
+条件で候補を除いた後も残る失敗（通常40通りの最初の誤り）
+確認を繰り返す：4
+最初の誤りの分類であり、一か所を直せば最後まで成功するという推定ではない。
+
+実際の全経路（新しい20依頼、条件あり・なし）
+archive
+  条件True：inspect_mock_archive_index → list_mock_archive_members → inspect_mock_archive_index → inspect_mock_archive_index → list_mock_archive_members → inspect_mock_archive_index / 合格=False
+  条件False：inspect_mock_archive_index → list_mock_archive_members → no_tool → inspect_mock_archive_index → inspect_mock_archive_index → no_tool / 合格=False
+audio
+  条件True：inspect_mock_audio_peak → normalize_mock_audio → no_tool → inspect_mock_audio_peak → normalize_mock_audio → no_tool / 合格=True
+  条件False：inspect_mock_audio_peak → normalize_mock_audio → no_tool → inspect_mock_audio_peak → no_tool / 合格=True
+canvas
+  条件True：inspect_virtual_canvas_size → draw_virtual_grid → no_tool → inspect_virtual_canvas_size → draw_virtual_grid → no_tool / 合格=True
+  条件False：inspect_virtual_canvas_size → no_tool → inspect_virtual_canvas_size → no_tool / 合格=True
+chart
+  条件True：inspect_virtual_chart_values → draw_virtual_stacked_chart → no_tool → inspect_virtual_chart_values → draw_virtual_stacked_chart → no_tool / 合格=True
+  条件False：inspect_virtual_chart_values → no_tool → inspect_virtual_chart_values → no_tool / 合格=True
+checksum
+  条件True：inspect_mock_data_checksum → import_mock_data → no_tool → inspect_mock_data_checksum → import_mock_data → no_tool / 合格=True
+  条件False：inspect_mock_data_checksum → no_tool → inspect_mock_data_checksum → no_tool / 合格=True
+columns
+  条件True：inspect_virtual_column_uniqueness → summarize_virtual_columns → no_tool → inspect_virtual_column_uniqueness → summarize_virtual_columns → no_tool / 合格=True
+  条件False：inspect_virtual_column_uniqueness → no_tool → inspect_virtual_column_uniqueness → no_tool / 合格=True
+dictionary
+  条件True：inspect_virtual_dictionary_entry → lookup_virtual_dictionary → no_tool → inspect_virtual_dictionary_entry → lookup_virtual_dictionary → no_tool / 合格=True
+  条件False：inspect_virtual_dictionary_entry → no_tool → inspect_virtual_dictionary_entry → no_tool / 合格=True
+glyphs
+  条件True：inspect_virtual_font_glyphs → render_virtual_font_sample → no_tool → inspect_virtual_font_glyphs → render_virtual_font_sample → no_tool / 合格=True
+  条件False：inspect_virtual_font_glyphs → no_tool → inspect_virtual_font_glyphs → no_tool / 合格=True
+lighting
+  条件True：inspect_mock_light_settings → build_mock_shadows → no_tool → inspect_mock_light_settings → build_mock_shadows → no_tool / 合格=True
+  条件False：inspect_mock_light_settings → build_mock_shadows → no_tool → inspect_mock_light_settings → no_tool / 合格=True
+locale
+  条件True：inspect_mock_locale_resources → switch_mock_display_locale → no_tool → inspect_mock_locale_resources → switch_mock_display_locale → no_tool / 合格=True
+  条件False：inspect_mock_locale_resources → no_tool → inspect_mock_locale_resources → no_tool / 合格=True
+matrix
+  条件True：inspect_mock_matrix_invertibility → invert_mock_matrix → no_tool → inspect_mock_matrix_invertibility → invert_mock_matrix → no_tool / 合格=True
+  条件False：inspect_mock_matrix_invertibility → no_tool → inspect_mock_matrix_invertibility → no_tool / 合格=True
+mesh
+  条件True：inspect_virtual_mesh_seal → compute_virtual_mesh_volume → no_tool → inspect_virtual_mesh_seal → compute_virtual_mesh_volume → no_tool / 合格=True
+  条件False：inspect_virtual_mesh_seal → compute_virtual_mesh_volume → no_tool → inspect_virtual_mesh_seal → no_tool / 合格=True
+palette
+  条件True：inspect_mock_palette_size → apply_mock_palette → no_tool → inspect_mock_palette_size → apply_mock_palette → no_tool / 合格=True
+  条件False：inspect_mock_palette_size → apply_mock_palette → no_tool → inspect_mock_palette_size → no_tool / 合格=True
+polygon
+  条件True：inspect_mock_polygon_closure → inspect_mock_polygon_closure → no_tool → inspect_mock_polygon_closure → inspect_mock_polygon_closure → no_tool / 合格=False
+  条件False：inspect_mock_polygon_closure → inspect_mock_polygon_closure → no_tool → inspect_mock_polygon_closure → inspect_mock_polygon_closure → no_tool / 合格=False
+puzzle
+  条件True：inspect_virtual_puzzle_reachability → trace_virtual_puzzle_path → no_tool → inspect_virtual_puzzle_reachability → trace_virtual_puzzle_path → no_tool / 合格=True
+  条件False：inspect_virtual_puzzle_reachability → no_tool → inspect_virtual_puzzle_reachability → no_tool / 合格=True
+subtitles
+  条件True：inspect_mock_subtitle_timing → join_mock_subtitles → no_tool → inspect_mock_subtitle_timing → join_mock_subtitles → no_tool / 合格=True
+  条件False：inspect_mock_subtitle_timing → no_tool → inspect_mock_subtitle_timing → no_tool / 合格=True
+sudoku
+  条件True：inspect_mock_number_grid → derive_mock_grid_candidates → no_tool → inspect_mock_number_grid → derive_mock_grid_candidates → no_tool / 合格=True
+  条件False：inspect_mock_number_grid → no_tool → inspect_mock_number_grid → no_tool / 合格=True
+timetable
+  条件True：inspect_virtual_timetable_overlap → arrange_virtual_timetable → no_tool → inspect_virtual_timetable_overlap → arrange_virtual_timetable → no_tool / 合格=True
+  条件False：inspect_virtual_timetable_overlap → no_tool → inspect_virtual_timetable_overlap → no_tool / 合格=True
+timezone
+  条件True：inspect_virtual_time_zone → shift_virtual_time → no_tool → inspect_virtual_time_zone → shift_virtual_time → no_tool / 合格=True
+  条件False：inspect_virtual_time_zone → shift_virtual_time → no_tool → inspect_virtual_time_zone → no_tool / 合格=True
+vectors
+  条件True：inspect_virtual_vector_dimensions → add_virtual_vectors → add_virtual_vectors → inspect_virtual_vector_dimensions → add_virtual_vectors → no_tool / 合格=True
+  条件False：inspect_virtual_vector_dimensions → no_tool → inspect_virtual_vector_dimensions → no_tool / 合格=True
+
+既に見たV32の12依頼（再現確認専用）
+plain：14/24 → 19/24
+distracted：14/24 → 19/24
+missing_check：16/24 → 18/24
+missing_act：23/24 → 23/24
+renamed：18/24 → 21/24
+completed：11/12 → 12/12
+completed_distracted：11/12 → 12/12
+元のV32全候補方式の全144場面と、経路・入力・スコアを照合した。新しい20組の評価には混ぜない。
+
+採用検査
+plain_strict_improves：True
+plain_positive_execution_improves：False
+plain_negative_followup_attempted_not_higher：True
+plain_unrelated_calls_not_higher：True
+plain_repeated_calls_not_higher：True
+distracted_negative_followup_attempted_not_higher：True
+distracted_unrelated_calls_not_higher：True
+distracted_repeated_calls_not_higher：True
+renamed_negative_followup_attempted_not_higher：True
+renamed_unrelated_calls_not_higher：True
+renamed_repeated_calls_not_higher：True
+missing_check_strict_not_lower：True
+missing_act_strict_not_lower：True
+completed_strict_not_lower：True
+completed_distracted_strict_not_lower：True
+
+何を実装したか
+ツール提供者が、必要な確認結果と実行済みを判別する戻り値をexecution_contractとして渡す。自然文からの自動抽出はしていない。
+この新しい仕様を与える負担がある。説明文だけで任意の未知ツールへ対応できたという主張ではない。
+照合するのは、ツール名・引数が一致する実際のイベント。確認の最新結果が成功で、指定のBoolean値が一致するときだけ条件成立。
+未確認と不成立は別に記録。別対象・失敗・数値の1をtrueとしては扱わない。
+対象操作自身の成功done=trueだけを完了証拠とする。全てのツールのdoneを依頼全体の完了と同一視しない。
+確認や無関係な読み書きツールは実行可能として残る。正解ツールへの自動置換、確認済みツールの一律禁止、強制的な完了停止はない。
+比較を分けるため、条件のJSONは実行側だけが使う。モデルには従来と同じ完全な説明・質問・履歴を渡す。
+各候補を独立に採点するモデルなので、全候補を採点して元の提案も保存し、最終選択前に候補を除く。速度最適化実験ではない。
+通常は最大3判断、完了済みは1判断。誤った呼出を受け側が拒否しただけでは全条件合格にしない。
+
+検査と再現
+仕組みの単体検査：19/19。入力・選択・実行・保存済みモデル・既存経路の監査：14/14。
+切捨てなし。事前確認最大428トークン。元の重み・デモ・V32ファイルは未変更。
+結果：output/diagnostics/contract-filter-v34/results.json、episodes.json、episode-grades.csv、probe-review.csv、audit.json。
+再現：新しい出力先を持つ別バージョンを作り、data作成→単体検査→実行→集計→監査の順に実行する。保存済みV34の上書き実行は防止する。
+
+範囲の限界
+20 newly authored Korean tasks, English full tools, zero arguments, same check/positive-Boolean/act-once template. 80 probes and 240 variants are NOT independent tasks, not human-reviewed gold or proof of general unknown-domain90. Reference12 V32 tasks kept separate. Mock only, no real files/APIs, Qwen/STT or demo changes.
+引数照合の単体検査はしたが、モデルによる引数抽出は評価していない。時刻・期限・外部からの状態変更には対応する契約が別に必要。
+新しい用途でも同じ肯定Booleanの確認→一回実行という構造。一般の未知領域で80〜90%という証明ではない。
+これはモデル学習ではなく、実行条件を分ける接続の比較。次に学習するなら、条件で除けない「必要なのに止まる」「確認を繰り返す」「無関係な操作」を区別して例を選ぶ。

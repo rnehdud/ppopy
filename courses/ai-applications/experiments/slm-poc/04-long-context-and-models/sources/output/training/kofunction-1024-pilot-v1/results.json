@@ -1,0 +1,1022 @@
+{
+  "config": {
+    "train_long": 40,
+    "replay_short": 20,
+    "seed": 71521,
+    "lr": 1e-05,
+    "steps": 30,
+    "note": "Recovered by loading saved adapter and position embeddings after results-writing error; synthetic labels not human-verified; old short test previously seen."
+  },
+  "before": {
+    "long_dev": {
+      "n": 20,
+      "correct": 7,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:49562",
+          "expected": "extract_yamato_reason",
+          "predicted": "extract_yamato_reason",
+          "match": true
+        },
+        {
+          "id": "shard0:7929",
+          "expected": "extract_new_participating_countries",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:44475",
+          "expected": "extract_soil_problems",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:49327",
+          "expected": "extract_date_and_reason",
+          "predicted": "extract_date_and_reason",
+          "match": true
+        },
+        {
+          "id": "shard0:882",
+          "expected": "process_article",
+          "predicted": "calculate_energy",
+          "match": false
+        },
+        {
+          "id": "shard0:29966",
+          "expected": "process_mansocheo",
+          "predicted": "fake_function2",
+          "match": false
+        },
+        {
+          "id": "shard0:52645",
+          "expected": "summarize_article",
+          "predicted": "translate_text",
+          "match": false
+        },
+        {
+          "id": "shard0:53534",
+          "expected": "extract_famous_food",
+          "predicted": "extract_famous_food",
+          "match": true
+        },
+        {
+          "id": "shard0:37335",
+          "expected": "extract_unification_year",
+          "predicted": "extract_reign_duration",
+          "match": false
+        },
+        {
+          "id": "shard0:38036",
+          "expected": "find_first_release_date",
+          "predicted": "find_first_release_date",
+          "match": true
+        },
+        {
+          "id": "shard0:135",
+          "expected": "extract_company_acquisition",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:34924",
+          "expected": "get_breeding_habitats",
+          "predicted": "get_population_trend",
+          "match": false
+        },
+        {
+          "id": "shard0:8633",
+          "expected": "analyze_article",
+          "predicted": "calculate_war_duration",
+          "match": false
+        },
+        {
+          "id": "shard0:37370",
+          "expected": "extract_group_name",
+          "predicted": "extract_group_name",
+          "match": true
+        },
+        {
+          "id": "shard0:31686",
+          "expected": "analyze_preferred_stock",
+          "predicted": "analyze_preferred_stock",
+          "match": true
+        },
+        {
+          "id": "shard0:47676",
+          "expected": "get_castle_abolition_year",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:31620",
+          "expected": "extract_student_roles",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:6665",
+          "expected": "extract_movie_titles",
+          "predicted": "count_movies",
+          "match": false
+        },
+        {
+          "id": "shard0:7680",
+          "expected": "extract_legal_punishment",
+          "predicted": "search_person",
+          "match": false
+        },
+        {
+          "id": "shard0:21224",
+          "expected": "find_yoyo_origin",
+          "predicted": "find_yoyo_origin",
+          "match": true
+        }
+      ]
+    },
+    "long_test": {
+      "n": 30,
+      "correct": 13,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:34923",
+          "expected": "calculate_road_length",
+          "predicted": "get_road_conditions",
+          "match": false
+        },
+        {
+          "id": "shard0:49568",
+          "expected": "extract_company_history",
+          "predicted": "extract_company_history",
+          "match": true
+        },
+        {
+          "id": "shard0:20486",
+          "expected": "get_date_and_towns_of_merger",
+          "predicted": "get_date_and_towns_of_merger",
+          "match": true
+        },
+        {
+          "id": "shard0:22605",
+          "expected": "get_first_king_of_jerusalem",
+          "predicted": "get_first_king_of_jerusalem",
+          "match": true
+        },
+        {
+          "id": "shard0:49777",
+          "expected": "extract_partnerships",
+          "predicted": "extract_partnerships",
+          "match": true
+        },
+        {
+          "id": "shard0:51992",
+          "expected": "summarize_character_changes",
+          "predicted": "summarize_character_changes",
+          "match": true
+        },
+        {
+          "id": "shard0:33642",
+          "expected": "get_transportation_accessibility",
+          "predicted": "get_transportation_accessibility",
+          "match": true
+        },
+        {
+          "id": "shard0:43435",
+          "expected": "extract_party_affiliations",
+          "predicted": "fetch_award_history",
+          "match": false
+        },
+        {
+          "id": "shard0:30857",
+          "expected": "extract_first_broadcast_date",
+          "predicted": "count_viewers",
+          "match": false
+        },
+        {
+          "id": "shard0:25418",
+          "expected": "extract_socialist_activities",
+          "predicted": "find_book_by_title",
+          "match": false
+        },
+        {
+          "id": "shard0:35087",
+          "expected": "extract_founding_date_of_group",
+          "predicted": "extract_founding_date_of_group",
+          "match": true
+        },
+        {
+          "id": "shard0:52807",
+          "expected": "extract_control_method",
+          "predicted": "check_server_status",
+          "match": false
+        },
+        {
+          "id": "shard0:15813",
+          "expected": "get_current_developer",
+          "predicted": "check_file_extension",
+          "match": false
+        },
+        {
+          "id": "shard0:30689",
+          "expected": "extract_oppert_attempt",
+          "predicted": "extract_oppert_attempt",
+          "match": true
+        },
+        {
+          "id": "shard0:49027",
+          "expected": "get_historical_battles",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:7013",
+          "expected": "process_article",
+          "predicted": "fetch_player_stats",
+          "match": false
+        },
+        {
+          "id": "shard0:33906",
+          "expected": "extract_name_change",
+          "predicted": "extract_name_change",
+          "match": true
+        },
+        {
+          "id": "shard0:47497",
+          "expected": "get_population",
+          "predicted": "get_area",
+          "match": false
+        },
+        {
+          "id": "shard0:52115",
+          "expected": "extract_names",
+          "predicted": "extract_names",
+          "match": true
+        },
+        {
+          "id": "shard0:37720",
+          "expected": "find_earliest_song",
+          "predicted": "find_earliest_song",
+          "match": true
+        },
+        {
+          "id": "shard0:48784",
+          "expected": "analyze_natural_theology",
+          "predicted": "analyze_natural_theology",
+          "match": true
+        },
+        {
+          "id": "shard0:12501",
+          "expected": "process_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:655",
+          "expected": "analyze_sophists_influence",
+          "predicted": "count_words",
+          "match": false
+        },
+        {
+          "id": "shard0:19331",
+          "expected": "compare_legal_entities",
+          "predicted": "get_company_info",
+          "match": false
+        },
+        {
+          "id": "shard0:27421",
+          "expected": "analyze_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:22081",
+          "expected": "extract_article_info",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24103",
+          "expected": "summarize_activities",
+          "predicted": "summarize_activities",
+          "match": true
+        },
+        {
+          "id": "shard0:48544",
+          "expected": "extract_event_date",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:42108",
+          "expected": "process_election_results",
+          "predicted": "calculate_age",
+          "match": false
+        },
+        {
+          "id": "shard0:1695",
+          "expected": "get_known_works",
+          "predicted": "get_birthplace",
+          "match": false
+        }
+      ]
+    },
+    "short_test": {
+      "n": 30,
+      "correct": 24,
+      "no_tool_n": 18,
+      "no_tool_correct": 12,
+      "rows": [
+        {
+          "id": "s1_20260729-1313_b2639_1:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2275_0:1",
+          "expected": "get_reservation",
+          "predicted": "get_reservation",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1258_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2993_3:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0104_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1082_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1026_0:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2112_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1398_1:1",
+          "expected": "get_order_status",
+          "predicted": "get_order_status",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2402_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2758_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0834_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0867_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2952_2:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0184_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1273_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0024_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2972_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1758_3:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0219_2:1",
+          "expected": "no_tool",
+          "predicted": "get_order_status",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2499_2:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1432_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0788_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1516_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0152_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0373_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2425_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1606_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b2461_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1819_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        }
+      ]
+    }
+  },
+  "after": {
+    "long_dev": {
+      "n": 20,
+      "correct": 9,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:49562",
+          "expected": "extract_yamato_reason",
+          "predicted": "extract_yamato_reason",
+          "match": true
+        },
+        {
+          "id": "shard0:7929",
+          "expected": "extract_new_participating_countries",
+          "predicted": "extract_new_participating_countries",
+          "match": true
+        },
+        {
+          "id": "shard0:44475",
+          "expected": "extract_soil_problems",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:49327",
+          "expected": "extract_date_and_reason",
+          "predicted": "extract_date_and_reason",
+          "match": true
+        },
+        {
+          "id": "shard0:882",
+          "expected": "process_article",
+          "predicted": "calculate_energy",
+          "match": false
+        },
+        {
+          "id": "shard0:29966",
+          "expected": "process_mansocheo",
+          "predicted": "fake_function2",
+          "match": false
+        },
+        {
+          "id": "shard0:52645",
+          "expected": "summarize_article",
+          "predicted": "translate_text",
+          "match": false
+        },
+        {
+          "id": "shard0:53534",
+          "expected": "extract_famous_food",
+          "predicted": "extract_famous_food",
+          "match": true
+        },
+        {
+          "id": "shard0:37335",
+          "expected": "extract_unification_year",
+          "predicted": "extract_unification_year",
+          "match": true
+        },
+        {
+          "id": "shard0:38036",
+          "expected": "find_first_release_date",
+          "predicted": "find_first_release_date",
+          "match": true
+        },
+        {
+          "id": "shard0:135",
+          "expected": "extract_company_acquisition",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:34924",
+          "expected": "get_breeding_habitats",
+          "predicted": "get_population_trend",
+          "match": false
+        },
+        {
+          "id": "shard0:8633",
+          "expected": "analyze_article",
+          "predicted": "calculate_war_duration",
+          "match": false
+        },
+        {
+          "id": "shard0:37370",
+          "expected": "extract_group_name",
+          "predicted": "extract_group_name",
+          "match": true
+        },
+        {
+          "id": "shard0:31686",
+          "expected": "analyze_preferred_stock",
+          "predicted": "analyze_preferred_stock",
+          "match": true
+        },
+        {
+          "id": "shard0:47676",
+          "expected": "get_castle_abolition_year",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:31620",
+          "expected": "extract_student_roles",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:6665",
+          "expected": "extract_movie_titles",
+          "predicted": "count_movies",
+          "match": false
+        },
+        {
+          "id": "shard0:7680",
+          "expected": "extract_legal_punishment",
+          "predicted": "search_person",
+          "match": false
+        },
+        {
+          "id": "shard0:21224",
+          "expected": "find_yoyo_origin",
+          "predicted": "find_yoyo_origin",
+          "match": true
+        }
+      ]
+    },
+    "long_test": {
+      "n": 30,
+      "correct": 14,
+      "no_tool_n": 0,
+      "no_tool_correct": 0,
+      "rows": [
+        {
+          "id": "shard0:34923",
+          "expected": "calculate_road_length",
+          "predicted": "get_road_conditions",
+          "match": false
+        },
+        {
+          "id": "shard0:49568",
+          "expected": "extract_company_history",
+          "predicted": "extract_company_history",
+          "match": true
+        },
+        {
+          "id": "shard0:20486",
+          "expected": "get_date_and_towns_of_merger",
+          "predicted": "get_date_and_towns_of_merger",
+          "match": true
+        },
+        {
+          "id": "shard0:22605",
+          "expected": "get_first_king_of_jerusalem",
+          "predicted": "get_first_king_of_jerusalem",
+          "match": true
+        },
+        {
+          "id": "shard0:49777",
+          "expected": "extract_partnerships",
+          "predicted": "extract_partnerships",
+          "match": true
+        },
+        {
+          "id": "shard0:51992",
+          "expected": "summarize_character_changes",
+          "predicted": "summarize_character_changes",
+          "match": true
+        },
+        {
+          "id": "shard0:33642",
+          "expected": "get_transportation_accessibility",
+          "predicted": "get_transportation_accessibility",
+          "match": true
+        },
+        {
+          "id": "shard0:43435",
+          "expected": "extract_party_affiliations",
+          "predicted": "fetch_award_history",
+          "match": false
+        },
+        {
+          "id": "shard0:30857",
+          "expected": "extract_first_broadcast_date",
+          "predicted": "count_viewers",
+          "match": false
+        },
+        {
+          "id": "shard0:25418",
+          "expected": "extract_socialist_activities",
+          "predicted": "find_book_by_title",
+          "match": false
+        },
+        {
+          "id": "shard0:35087",
+          "expected": "extract_founding_date_of_group",
+          "predicted": "extract_founding_date_of_group",
+          "match": true
+        },
+        {
+          "id": "shard0:52807",
+          "expected": "extract_control_method",
+          "predicted": "check_server_status",
+          "match": false
+        },
+        {
+          "id": "shard0:15813",
+          "expected": "get_current_developer",
+          "predicted": "check_file_extension",
+          "match": false
+        },
+        {
+          "id": "shard0:30689",
+          "expected": "extract_oppert_attempt",
+          "predicted": "extract_oppert_attempt",
+          "match": true
+        },
+        {
+          "id": "shard0:49027",
+          "expected": "get_historical_battles",
+          "predicted": "get_historical_battles",
+          "match": true
+        },
+        {
+          "id": "shard0:7013",
+          "expected": "process_article",
+          "predicted": "fetch_player_stats",
+          "match": false
+        },
+        {
+          "id": "shard0:33906",
+          "expected": "extract_name_change",
+          "predicted": "extract_name_change",
+          "match": true
+        },
+        {
+          "id": "shard0:47497",
+          "expected": "get_population",
+          "predicted": "get_area",
+          "match": false
+        },
+        {
+          "id": "shard0:52115",
+          "expected": "extract_names",
+          "predicted": "extract_names",
+          "match": true
+        },
+        {
+          "id": "shard0:37720",
+          "expected": "find_earliest_song",
+          "predicted": "find_earliest_song",
+          "match": true
+        },
+        {
+          "id": "shard0:48784",
+          "expected": "analyze_natural_theology",
+          "predicted": "analyze_natural_theology",
+          "match": true
+        },
+        {
+          "id": "shard0:12501",
+          "expected": "process_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:655",
+          "expected": "analyze_sophists_influence",
+          "predicted": "count_words",
+          "match": false
+        },
+        {
+          "id": "shard0:19331",
+          "expected": "compare_legal_entities",
+          "predicted": "get_company_info",
+          "match": false
+        },
+        {
+          "id": "shard0:27421",
+          "expected": "analyze_article",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:22081",
+          "expected": "extract_article_info",
+          "predicted": "no_tool",
+          "match": false
+        },
+        {
+          "id": "shard0:24103",
+          "expected": "summarize_activities",
+          "predicted": "summarize_activities",
+          "match": true
+        },
+        {
+          "id": "shard0:48544",
+          "expected": "extract_event_date",
+          "predicted": "chat",
+          "match": false
+        },
+        {
+          "id": "shard0:42108",
+          "expected": "process_election_results",
+          "predicted": "calculate_age",
+          "match": false
+        },
+        {
+          "id": "shard0:1695",
+          "expected": "get_known_works",
+          "predicted": "get_birthplace",
+          "match": false
+        }
+      ]
+    },
+    "short_test": {
+      "n": 30,
+      "correct": 24,
+      "no_tool_n": 18,
+      "no_tool_correct": 12,
+      "rows": [
+        {
+          "id": "s1_20260729-1313_b2639_1:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2275_0:1",
+          "expected": "get_reservation",
+          "predicted": "get_reservation",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1258_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2993_3:1",
+          "expected": "no_tool",
+          "predicted": "list_events",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0104_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1082_0:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1026_0:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2112_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1398_1:1",
+          "expected": "get_order_status",
+          "predicted": "get_order_status",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2402_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2758_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0834_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0867_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2952_2:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0184_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1273_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0024_0:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2972_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1758_3:1",
+          "expected": "no_tool",
+          "predicted": "search_products",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b0219_2:1",
+          "expected": "no_tool",
+          "predicted": "get_order_status",
+          "match": false
+        },
+        {
+          "id": "s1_20260729-1313_b2499_2:1",
+          "expected": "search_products",
+          "predicted": "search_products",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1432_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0788_0:1",
+          "expected": "list_emails",
+          "predicted": "list_emails",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1516_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b0152_3:1",
+          "expected": "list_events",
+          "predicted": "list_events",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b0373_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b2425_2:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b1606_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s6_20260803-1449_s1_20260729-1313_b2461_1:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        },
+        {
+          "id": "s1_20260729-1313_b1819_0:1",
+          "expected": "no_tool",
+          "predicted": "no_tool",
+          "match": true
+        }
+      ]
+    }
+  }
+}

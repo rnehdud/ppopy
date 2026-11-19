@@ -1,0 +1,150 @@
+別の韓国語モデルによる必要情報の確認 V13
+
+目的：会話と道具の説明を渡したとき、使える道具を選び、情報が足りないときは実行を止める。
+今回は、そのうち「必要な2項目の値が会話にあるか」を確認する役だけを替えました。追加学習はしていません。
+道具の候補を選ぶ役と、依頼かどうかを確認する役は、全条件で以前と同じ保存出力です。
+2つの値があると判定し、依頼確認も通った場合に限り、候補の道具を呼ぶという判断にします。実際の引数の抽出や外部実行は含みません。
+
+比較したもの
+1. JEV V7の英語／韓国語四択。以前の出力をそのまま使います。
+2. ko-decisionに同じ英語／韓国語の四択を渡す方法。
+3. 項目ごとに「この会話でユーザーが、この項目の具体的な値を提供した」と言えるかを韓国語で確認する方法。ko-decisionとJEVの両方で同じ質問を使います。
+3では「言える」を値あり、「判断できない／矛盾する」を値なしとします。結果を見てしきい値や質問は変えていません。
+3の前提には実際の会話だけ、確認する文には道具に書かれた項目の説明だけを使います。正解値や正解ラベルは入力しません。
+四択では道具全体のJSON、項目別確認では会話と1項目の意味を渡すので、3はモデル交換だけでなく入力の変更でもあります。
+ko-decisionは配布済みの判断モデルに、私たちの追加重みを付けない状態です。何も学んでいないモデルではありません。
+ko-decisionはモデルが示す2文の入力形式と選択肢別スコアを使います。公式例1件の「矛盾」を再現しましたが、これだけでこの課題が得意だとは判断しません。
+JEVはV7追加重み・NF4/FP16・選択肢の巡回順の平均を使い、ko-decisionはFP32重み・TF32許可・選択肢間softmaxを使います。実用上の入力方法を含めた比較で、計算形式を揃えた比較ではありません。
+どちらの数値も、正解である確率だとは扱いません。最大スコアの選択だけを使います。
+
+データの範囲
+以前に見た128発言です。項目名を明記した40例、同じ情報を自然に言った40例、文の形を変えた48例です。すべて私が作った正解で、別の人による確認は未実施です。
+候補2道具・必須2文字列・単発依頼だけです。未知の会話での正解率、複数ターン、実行後の判断、Qwenの返事は今回測っていません。
+ko入力は最大{"four_en": 468, "four_ko": 446, "nli_ko": 111}トークンで、切り捨てはありません。
+
+自然な言い方の40発言
+方法 | 2項目の有無が両方正しい | 必要時に正しく呼ぶ判断 | 止める場面で止める | 実行判断合計
+JEV V7・元の英語四択 | 28/40 | 6/10 | 25/30 | 31/40
+JEV V7・韓国語四択 | 17/40 | 3/10 | 25/30 | 28/40
+ko-decision・同じ英語四択 | 10/40 | 9/10 | 1/30 | 10/40
+ko-decision・同じ韓国語四択 | 10/40 | 9/10 | 2/30 | 11/40
+ko-decision・項目ごとの韓国語確認 | 10/40 | 0/10 | 30/30 | 30/40
+JEV V7・同じ項目ごとの韓国語確認 | 16/40 | 0/10 | 30/30 | 30/40
+
+項目名を明記した40発言
+JEV V7・元の英語四択：状態38/40、呼ぶ10/10、止める29/30
+JEV V7・韓国語四択：状態21/40、呼ぶ9/10、止める28/30
+ko-decision・同じ英語四択：状態10/40、呼ぶ10/10、止める1/30
+ko-decision・同じ韓国語四択：状態18/40、呼ぶ10/10、止める19/30
+ko-decision・項目ごとの韓国語確認：状態10/40、呼ぶ0/10、止める30/30
+JEV V7・同じ項目ごとの韓国語確認：状態24/40、呼ぶ7/10、止める30/30
+
+文の形を変えた48発言
+JEV V7・元の英語四択：状態29/48、呼ぶ7/12、止める29/36
+JEV V7・韓国語四択：状態17/48、呼ぶ3/12、止める30/36
+ko-decision・同じ英語四択：状態12/48、呼ぶ11/12、止める1/36
+ko-decision・同じ韓国語四択：状態12/48、呼ぶ11/12、止める1/36
+ko-decision・項目ごとの韓国語確認：状態12/48、呼ぶ0/12、止める36/36
+JEV V7・同じ項目ごとの韓国語確認：状態19/48、呼ぶ0/12、止める34/36
+
+自然文：ある値の見落とし／ない値をあると判定した数（各40項目）
+JEV V7・元の英語四択：ある値の見落とし7/40、ない値をあると判定6/40
+JEV V7・韓国語四択：ある値の見落とし21/40、ない値をあると判定5/40
+ko-decision・同じ英語四択：ある値の見落とし0/40、ない値をあると判定40/40
+ko-decision・同じ韓国語四択：ある値の見落とし0/40、ない値をあると判定39/40
+ko-decision・項目ごとの韓国語確認：ある値の見落とし40/40、ない値をあると判定0/40
+JEV V7・同じ項目ごとの韓国語確認：ある値の見落とし28/40、ない値をあると判定0/40
+
+自然文：直った例と新しく間違えた例
+JEV V7・元の英語四択 → ko-decision・同じ英語四択：状態 誤→正3、正→誤21。実行判断 誤→正3、正→誤24。
+JEV V7・韓国語四択 → ko-decision・同じ韓国語四択：状態 誤→正7、正→誤14。実行判断 誤→正6、正→誤23。
+JEV V7・同じ項目ごとの韓国語確認 → ko-decision・項目ごとの韓国語確認：状態 誤→正0、正→誤6。実行判断 誤→正0、正→誤0。
+ko-decision・同じ韓国語四択 → ko-decision・項目ごとの韓国語確認：状態 誤→正10、正→誤10。実行判断 誤→正28、正→誤9。
+JEV V7・韓国語四択 → JEV V7・同じ項目ごとの韓国語確認：状態 誤→正4、正→誤5。実行判断 誤→正5、正→誤3。
+JEV V7・元の英語四択 → ko-decision・項目ごとの韓国語確認：状態 誤→正0、正→誤18。実行判断 誤→正5、正→誤6。
+
+項目別の確認で選ばれた答えの数（3分類の正解率ではない）
+{
+  "ko_nli_ko": {
+    "named": {
+      "neutral": 69,
+      "contradiction": 11
+    },
+    "natural": {
+      "neutral": 80
+    },
+    "structure": {
+      "neutral": 96
+    }
+  },
+  "jev_nli_ko": {
+    "named": {
+      "contradiction": 7,
+      "neutral": 50,
+      "entailment": 23
+    },
+    "natural": {
+      "neutral": 68,
+      "entailment": 12
+    },
+    "structure": {
+      "neutral": 82,
+      "entailment": 14
+    }
+  }
+}
+
+自然文の間違いの例
+JEV V7・元の英語四択
+인천으로 갈 거예요. 기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": true, "arrival_station": true}
+대전에서 출발할게요. 기차표를 예약해 주세요
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": true, "departure_station": true}
+JEV V7・韓国語四択
+인천으로 갈 거예요. 기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": true, "arrival_station": true}
+대전에서 출발할게요. 기차표를 예약해 주세요
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": true, "departure_station": true}
+ko-decision・同じ英語四択
+기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": false}
+予測：{"departure_station": true, "arrival_station": true}
+인천으로 갈 거예요. 기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": true, "arrival_station": true}
+ko-decision・同じ韓国語四択
+기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": false}
+予測：{"departure_station": false, "arrival_station": true}
+인천으로 갈 거예요. 기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": true, "arrival_station": true}
+ko-decision・項目ごとの韓国語確認
+인천으로 갈 거예요. 기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": false, "arrival_station": false}
+대전에서 출발할게요. 기차표를 예약해 주세요
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": false, "departure_station": false}
+JEV V7・同じ項目ごとの韓国語確認
+인천으로 갈 거예요. 기차표를 예약해 주세요
+正解：{"departure_station": false, "arrival_station": true}
+予測：{"departure_station": false, "arrival_station": false}
+대전에서 출발할게요. 기차표를 예약해 주세요
+正解：{"departure_station": true, "arrival_station": false}
+予測：{"arrival_station": false, "departure_station": false}
+
+判断の限界
+これは入力方法とモデルの違いを調べる比較です。同じ128例を繰り返しているため、良い条件があっても本番採用や未知領域での90%とは数えません。
+悪い条件があっても、このモデルでは学べない、追加データが必須、あるいは他の入力方法も失敗するとまでは言えません。
+追加学習、モデル保存点の変更、質問の結果合わせ、デモ変更はしていません。
+
+質問の一覧：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\ko-state-checker-v13\question-review.csv
+全予測：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\ko-state-checker-v13\predictions.csv
+モデルのスコア：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\ko-state-checker-v13/*-scores.json
+集計と個別変化：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\ko-state-checker-v13\results.json
+確認記録：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\ko-state-checker-v13\final-audit.json

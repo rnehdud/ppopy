@@ -1,0 +1,105 @@
+確認する小型モデル：追加学習と教師の修正を比べた結果
+
+選ぶ側は固定。確認するEXAONE-JEV 1.2BだけをQLoRAで学習しました。
+最初の教師に偏りが見つかったため、修正して一度だけ追加比較しました。これ以上の学習は今回行いません。
+
+最初のデータの問題
+AIの返事を会話に含む学習例が、52件すべて「呼ぶ」でした。「必要な情報」ではなく「AIの返事があったか」で答えられる偏りを、私が作っていました。
+修正版は、AIの返事あり：呼ぶ52／呼ばない52、返事なし：呼ぶ52／呼ばない52です。
+不足している値を尋ねたあと、ユーザーが値を追加せず依頼を繰り返す例と、確認を受けてから取り消す例を入れました。
+道具・正解・学習件数208・学習率・2周という条件は同じで、該当する2種類の会話の形を直しました。
+
+同じ新しい96例での比較
+この96例の12種類の道具は、学習・途中確認と重ならず、前の96例でも使っていません。修正前の学習済みモデルも、この同じ96例で測りました。
+私が作った韓国語の例です。候補道具2つ、各道具の必須項目2つ、値は文字列、1つの作業です。予約などの一般的な動作や文章の作り方は共通しています。
+「調整あり」は途中確認だけで決めた判定基準を使用。最後の96例で基準を選び直していません。
+
+条件 | 確認側だけの正解 | 選択側につないだ正解 | 必要な道具の選択を通した数 | 止める正解
+学習前・調整なし | 48/96 | 60/96 | 60/60 | 0/36
+学習前・調整あり | 48/96 | 60/96 | 60/60 | 0/36
+最初の学習・調整なし | 56/96 | 48/96 | 36/60 | 12/36
+最初の学習・調整あり | 58/96 | 67/96 | 60/60 | 7/36
+偏りを修正して学習・調整なし | 71/96 | 71/96 | 50/60 | 21/36
+偏りを修正して学習・調整あり | 67/96 | 72/96 | 59/60 | 13/36
+
+呼び出し判断の種類別：修正前モデル → 修正後モデル（ともに途中確認で基準調整）
+確認後に取り消す: 0/12 → 12/12
+次の発言で情報を補う: 12/12 → 12/12
+前の内容で進めると確認する: 12/12 → 12/12
+尋ねた後も情報が欠ける: 0/12 → 0/12
+もう1つの必須項目がない: 7/12 → 1/12
+情報がそろう: 12/12 → 12/12
+情報あり・言い換え: 12/12 → 11/12
+依頼と選んだ道具が合わない: 3/12 → 7/12
+
+以前見た会話の確認（新しい会話への成績ではありません）
+主に英語60例
+  学習前・調整なし: 14/60、呼ぶ正解率 0.700、止める正解率 0.000
+  偏りを修正して学習・調整なし: 34/60、呼ぶ正解率 0.600、止める正解率 0.550
+  偏りを修正して学習・調整あり: 14/60、呼ぶ正解率 0.700、止める正解率 0.000
+韓国語30例
+  学習前・調整なし: 13/30、呼ぶ正解率 0.929、止める正解率 0.000
+  偏りを修正して学習・調整なし: 13/30、呼ぶ正解率 0.286、止める正解率 0.562
+  偏りを修正して学習・調整あり: 14/30、呼ぶ正解率 0.857、止める正解率 0.125
+
+事前に決めた採用条件
+checker_balanced_improved: 合格
+checker_yes_retained: 不合格
+pipeline_calls_retained: 不合格
+pipeline_stops_improved: 合格
+seen_english_calls_retained: 合格
+採用条件は満たしませんでした。 デモには反映していません。
+90%の目標：確認側 69.8%、選択側につないだ判断 75.0%。これはこの形式の96例に限った値です。
+
+今回の結論
+偏りを直したモデルは取り消しを12/12件止めました。修正前の同じ96例では0/12件でした。
+一方、必須項目が欠ける例は1/24件しか止めていません。修正前は7/24件でした。情報不足の判断は改善していません。
+私の教師にあった会話の形の偏りは直しましたが、それだけで狙った判断が得られるという結果にはなりませんでした。
+この試験では、学習前に必要な60件すべてで正しい道具が仮選択されていました。修正後に必要な実行を止めた誤りは確認側で起きています。
+「小型モデル2つでは不可能」という意味ではありません。今回の教師、質問、モデル、学習設定では未達です。
+次に試すなら、呼ぶ／呼ばないだけでなく、必須項目ごとの値がある／ないを別々に教える方法です。ただし、それで改善するかは今回検証していません。
+今回の試験をここで止めます。追加学習を重ねたり、最後の正解を使って基準を変えたりはしません。
+
+実際に残った誤り
+必要な呼び出しを止めた例：[{"role": "user", "content": "마지막으로 본 장소는 가상광장입니다. 분실물 이름은 테스트우산입니다. 분실물을 신고해 주실래요?"}]
+呼ぶ側の出力値0.394409、途中確認で固定した基準0.4。正しい道具の仮選択を捨てた。
+必要項目なしで呼ぼうとした例：[{"role": "user", "content": "여객선을 예약해 주세요 출항 날짜는 12월 11일입니다."}, {"role": "assistant", "content": "운항 구간을 알려 주시겠어요?"}, {"role": "user", "content": "여객선을 예약해 주세요 출항 날짜는 12월 11일입니다."}]
+道具の必須項目：["ferry_route", "sailing_date"]
+呼ぶ側の出力値0.519834。項目の名前を尋ねた発言はあるが、その値は会話に追加されていない。
+
+判定基準だけで直せるかの診断
+最後の正解を見て最も都合よく区切っても、この96例で全体最大74/96でした。学習前に正しく通せた必要な呼び出し数を保つ場合は最大72/96でした。
+これは最後の正解を使った診断上限です。採用した成績ではなく、基準選びや追加学習にも使っていません。
+
+同じモデル出力を1つの基準で区切るだけでは、この96例でも90%に届きません。基準の位置だけを直せば済む問題ではありません。
+
+学習処理
+学習は208例を2周まで実行。選択した保存時点は78ステップ（312例分）、判定基準0.4。選択には途中確認だけを使いました。
+更新したパラメータ1597440、重みの最大変化0.00373259、再読込の出力差0.00000000。
+学習と途中確認は587.1秒、最大割当GPUメモリ1.90GiB。
+
+言える範囲
+合成した限られた形の例です。自由に話す韓国語、未知のすべての分野、実際の外部実行で同じ正解率になるとは言えません。
+正解は私が作り、項目が欠けていることと会話の形の偏りはコードでも確認しました。独立した人による全件確認は未実施です。
+引数の生成や実際の道具実行は測っていません。元の選択モデル、元のモデル本体、デモには変更を入れていません。
+
+保存先
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\paired-checker-korean-v2-balanced-history\results.json
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\paired-checker-korean-v2-balanced-history\predictions.csv
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\paired-checker-korean-v2-balanced-history\v1-control-on-v2-test.json
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\paired-checker-korean-v2-balanced-history\threshold-diagnostic-only.json
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\paired-checker-korean-v2-balanced-history\final-audit.json
+C:\Users\ling\Desktop\projects\SLM意思決定\data\processed\paired-checker-korean-v2-balanced-history\protocol.json
+
+実行コード（今回の保存先は上書き防止のため再実行不可。再現するときは別の保存先を指定する）
+scripts/paired_checker_data_v1.py：元の教師の作成
+scripts/train_paired_checker_v1.py：共通の学習・途中確認・評価処理
+scripts/balanced_history_checker_v2.py：修正した教師、prepare → ko → train → test → control → fit
+controlの実行時はtorch.backends.cuda.matmul.allow_tf32=Trueを先に設定し、ほかの評価とそろえた。
+scripts/summarize_balanced_checker_v2.py：結果集計、診断、監査
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\paired-checker-korean-v2-balanced-history\label-review.csv
+
+学習に使った208例での確認（新しい会話への成績ではありません）
+学習前: 104/208（途中確認で選んだ基準）
+学習後: 143/208（途中確認で選んだ基準）
+学習計算の精度と評価計算の精度の小規模照合：{"before": [{"id": "paired-ko:train:reserve_train:ready", "max_abs_logit_difference": 0.029317855834960938, "max_abs_label_probability_difference": 0.0011304020881652832, "p_yes_eval": 0.8065364956855774, "p_yes_training_precision": 0.8059277534484863}, {"id": "paired-ko:train:reserve_train:missing_first", "max_abs_logit_difference": 0.022125244140625, "max_abs_label_probability_difference": 0.0026293694972991943, "p_yes_eval": 0.8297536373138428, "p_yes_training_precision": 0.8275049924850464}, {"id": "paired-ko:train:reserve_train:wrong_selected_tool", "max_abs_logit_difference": 0.07889938354492188, "max_abs_label_probability_difference": 0.002300262451171875, "p_yes_eval": 0.7609190940856934, "p_yes_training_precision": 0.7609432339668274}, {"id": "paired-ko:train:reserve_train:completed_next_turn", "max_abs_logit_difference": 0.024219512939453125, "max_abs_label_probability_difference": 0.0004337728023529053, "p_yes_eval": 0.7954224944114685, "p_yes_training_precision": 0.7953648567199707}], "after": [{"id": "paired-ko:train:reserve_train:ready", "max_abs_logit_difference": 0.04239845275878906, "max_abs_label_probability_difference": 0.0008081793785095215, "p_yes_eval": 0.4819326400756836, "p_yes_training_precision": 0.4824892282485962}, {"id": "paired-ko:train:reserve_train:missing_first", "max_abs_logit_difference": 0.013643264770507812, "max_abs_label_probability_difference": 0.00044670701026916504, "p_yes_eval": 0.5927064418792725, "p_yes_training_precision": 0.5925793051719666}, {"id": "paired-ko:train:reserve_train:wrong_selected_tool", "max_abs_logit_difference": 0.024438858032226562, "max_abs_label_probability_difference": 0.0022322535514831543, "p_yes_eval": 0.38060808181762695, "p_yes_training_precision": 0.3819010853767395}, {"id": "paired-ko:train:reserve_train:completed_next_turn", "max_abs_logit_difference": 0.015119552612304688, "max_abs_label_probability_difference": 0.003259211778640747, "p_yes_eval": 0.6178092360496521, "p_yes_training_precision": 0.6150612831115723}]}

@@ -1,0 +1,118 @@
+学習した文の選択を直接使う比較 V16
+
+追加学習はしていません。V14修正後の同じ重みで、元の四択と、項目ごとの文の選択を使う方法を比べました。
+道具候補を選ぶモデルと依頼確認のモデル、しきい値0.5は両方法で共通です。実際に選ばれた候補の項目を確認してから判断しています。正解の道具へ差し替えていません。
+文が選ばれた項目は値あり、該当なしを選んだ項目は値なしとし、依頼確認と必須項目が揃ったときだけ呼ぶ判断にします。重複の削除や四択との多数決はしていません。
+文を選べても正しい引数を抽出したことにはなりません。実際の実行・訂正・取消し・複数ターンの状態管理はまだ測っていません。
+
+新しい評価200発言
+20種類の新しい比較用ツール×先に伝える項目の2種類×5条件です。単一項目、同じ項目の反復、別項目の追加、同じ値を2項目に指定、依頼だけ。
+反復・別項目追加・同じ値を2項目に指定する場合は、依頼を含め文の数を3つに揃えています。
+これらの比較APIでは、2つの文字列が同じでも比較できるとツールの説明に明記しています。全て私が作った正解で、独立した人の確認は未実施です。
+200の独立した領域ではなく、同じ作り方を使った40組の発言です。元のモデルの事前学習まで含めて全く未知だという保証もありません。
+
+方法 | 必須2項目が両方正しい | 呼ぶ80件 | 止める120件 | 実行判断合計
+元の四択 | 126/200 | 60/80 | 92/120 | 152/200
+文の選択を直接使う | 139/200 | 66/80 | 89/120 | 155/200
+
+条件別（各40発言）：2項目の正解／呼ぶ・止めるの正解
+single 元の四択：22/40、27/40、実際に呼ぶと選んだ13件
+single 文の選択を直接使う：22/40、29/40、実際に呼ぶと選んだ11件
+repeat 元の四択：20/40、27/40、実際に呼ぶと選んだ13件
+repeat 文の選択を直接使う：15/40、22/40、実際に呼ぶと選んだ18件
+complete 元の四択：39/40、36/40、実際に呼ぶと選んだ36件
+complete 文の選択を直接使う：39/40、36/40、実際に呼ぶと選んだ37件
+same_value 元の四択：31/40、24/40、実際に呼ぶと選んだ25件
+same_value 文の選択を直接使う：37/40、30/40、実際に呼ぶと選んだ32件
+none 元の四択：14/40、38/40、実際に呼ぶと選んだ2件
+none 文の選択を直接使う：26/40、38/40、実際に呼ぶと選んだ2件
+
+40組で、変わらない情報と追加情報を分けられたか
+元の四択: {"groups": 40, "single_and_repeat_both_state_correct": 20, "single_repeat_prediction_unchanged": 38, "repeat_became_false_complete": 1, "complete_and_same_value_both_action_correct": 23, "all5_states_correct": 5}
+文の選択を直接使う: {"groups": 40, "single_and_repeat_both_state_correct": 14, "single_repeat_prediction_unchanged": 30, "repeat_became_false_complete": 9, "complete_and_same_value_both_action_correct": 29, "all5_states_correct": 13}
+
+呼ぶべき80件の内訳
+元の四択: {"correct_call": 60, "wrong_candidate": 10, "availability_blocked": 10}
+文の選択を直接使う: {"correct_call": 66, "wrong_candidate": 10, "availability_blocked": 4}
+
+正しい文を両項目とも選べたか
+新しい200発言：131/200。項目ごとでは323/400。
+間違い：{"request_as_value": 46, "wrong_source": 19, "missed_value": 12}
+
+以前の128発言：必須項目の正解／呼ぶ正解／止める正解
+named 元の四択：38/40、10/10、29/30
+named 文の選択を直接使う：36/40、10/10、29/30
+natural 元の四択：33/40、8/10、27/30
+natural 文の選択を直接使う：34/40、9/10、27/30
+structure 元の四択：29/48、9/12、28/36
+structure 文の選択を直接使う：31/48、9/12、27/36
+
+同じ発言での直りと新しい誤り
+{
+  "state": {
+    "changed_prediction": 44,
+    "correct_to_wrong": 12,
+    "same_prediction": 156,
+    "both_correct": 114,
+    "wrong_to_correct": 25,
+    "both_wrong": 49
+  },
+  "pipeline": {
+    "changed_prediction": 23,
+    "correct_to_wrong": 9,
+    "same_prediction": 177,
+    "both_correct": 143,
+    "wrong_to_correct": 12,
+    "both_wrong": 36
+  }
+}
+
+事前に固定した条件
+{
+  "fresh_state_improved": true,
+  "fresh_calls_retained": true,
+  "fresh_stops_retained": false,
+  "fresh_state_90": false,
+  "fresh_calls_90": false,
+  "fresh_stops_90": false,
+  "strict_source_both_90": false,
+  "single_repeat_both_correct_90": false,
+  "valid_same_value_calls_90": false,
+  "named_old_state_retained": false,
+  "named_call_correct_retained": true,
+  "named_stop_correct_retained": true,
+  "natural_old_state_retained": true,
+  "natural_call_correct_retained": true,
+  "natural_stop_correct_retained": true,
+  "structure_old_state_retained": true,
+  "structure_call_correct_retained": true,
+  "structure_stop_correct_retained": false
+}
+次の未使用の複数ターン検査へ進める条件全体：False
+
+残る間違い：新しい入力の最初の5件
+가상서림역에서 출발할게요. 두 역의 환승 정보를 비교해 주세요.
+正解：{"connection_origin": true, "connection_destination": false}
+予測：{"connection_destination": true, "connection_origin": true}
+가상서림역에서 출발할게요. 가상서림역에서 출발할게요. 두 역의 환승 정보를 비교해 주세요.
+正解：{"connection_origin": true, "connection_destination": false}
+予測：{"connection_destination": true, "connection_origin": true}
+가상늘봄역에 도착할 거예요. 다시 말하면 가상늘봄역에 도착할 거예요. 두 역의 환승 정보를 비교해 주세요.
+正解：{"connection_origin": false, "connection_destination": true}
+予測：{"connection_origin": true, "connection_destination": true}
+글씨는 남색으로 해 주세요. 글씨는 남색으로 해 주세요. 글씨색과 바탕색의 조합을 확인해 주세요.
+正解：{"letter_colour": true, "surface_colour": false}
+予測：{"surface_colour": true, "letter_colour": true}
+글씨색과 바탕색의 조합을 확인해 주세요.
+正解：{"letter_colour": false, "surface_colour": false}
+予測：{"surface_colour": false, "letter_colour": true}
+
+停止と確認
+結果に合わせた追加学習、質問や保存点・しきい値の変更はしていません。条件を通っても、本番採用や任意ツール全般の90%を証明したとは扱いません。通らなければ、この置換を採用せず報告します。
+以前の128発言は保持確認だけに使いました。元のモデル・追加重み・デモは変更していません。
+
+正解と根拠の一覧：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\source-policy-korean-v16\label-review.csv
+全予測：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\source-policy-korean-v16\predictions.csv
+実際の質問：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\source-policy-korean-v16\source-inputs.jsonl
+集計：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\source-policy-korean-v16\results.json
+確認記録：C:\Users\ling\Desktop\projects\SLM意思決定\output\diagnostics\source-policy-korean-v16\final-audit.json

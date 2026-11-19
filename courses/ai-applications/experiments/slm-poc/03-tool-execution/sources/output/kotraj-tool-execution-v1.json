@@ -1,0 +1,1571 @@
+{
+  "limitations": "author-written small Korean test; sandboxed local tools, no arguments, no external services or Qwen; not independent human review",
+  "before_summary": {
+    "turns": 22,
+    "correct_selection": 12,
+    "correct_state": 20,
+    "actual_tool_calls": 18,
+    "execution_errors": 0,
+    "all_correct_scenarios": 6,
+    "scenarios": 16
+  },
+  "after_summary": {
+    "turns": 22,
+    "correct_selection": 11,
+    "correct_state": 20,
+    "actual_tool_calls": 21,
+    "execution_errors": 0,
+    "all_correct_scenarios": 6,
+    "scenarios": 16
+  },
+  "before": [
+    {
+      "scenario": "itch_then_read",
+      "turn": 1,
+      "input": "제 피부가 지금 가려워요. 가려움을 기록해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_itch",
+      "selected": "record_itch",
+      "scores": {
+        "record_itch": 0.3996652834504394,
+        "record_dry": 0.210608804470537,
+        "read_record": 0.34453300984029117,
+        "get_time": 6.280112933708512e-09,
+        "no_tool": 0.045192895958619465
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_then_read",
+      "turn": 2,
+      "input": "방금 저장한 피부 기록을 보여 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.4178772264802238,
+        "record_dry": 0.027454536621063716,
+        "read_record": 0.5535973806608908,
+        "get_time": 7.255116091529746e-08,
+        "no_tool": 0.001070783686660862
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [
+        "가려움"
+      ],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_read",
+      "turn": 1,
+      "input": "제 얼굴이 건조해요. 건조함으로 기록해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_dry",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.26915253347716933,
+        "record_dry": 0.36788789471964545,
+        "read_record": 0.35104108147085666,
+        "get_time": 2.9295572892942996e-09,
+        "no_tool": 0.011918487402771207
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_read",
+      "turn": 2,
+      "input": "현재 피부 기록을 확인해 줘요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.008994422237083284,
+        "record_dry": 0.43507171683005597,
+        "read_record": 0.4283265550610161,
+        "get_time": 1.1792831899578644e-06,
+        "no_tool": 0.12760612658865472
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [
+        "건조함"
+      ],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "time",
+      "turn": 1,
+      "input": "지금 몇 시인지 알려 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "get_time",
+      "selected": "no_tool",
+      "scores": {
+        "record_itch": 0.10812366069033309,
+        "record_dry": 0.01256520930324043,
+        "read_record": 0.11199249145823773,
+        "get_time": 0.013854195050397039,
+        "no_tool": 0.7534644434977918
+      },
+      "action_ok": false,
+      "executed": false,
+      "tool_result": null,
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "greeting",
+      "turn": 1,
+      "input": "안녕하세요!",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.27580200617354295,
+        "record_dry": 0.15471090391399642,
+        "read_record": 0.48404759533386954,
+        "get_time": 1.8825151045380654e-08,
+        "no_tool": 0.08543947575344013
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "thanks",
+      "turn": 1,
+      "input": "고마워요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.2967830393746854,
+        "record_dry": 0.13481977205612228,
+        "read_record": 0.5088045042586773,
+        "get_time": 1.2238731947545242e-08,
+        "no_tool": 0.0595926720717832
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "unsupported_product",
+      "turn": 1,
+      "input": "저한테 선크림을 검색해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "no_tool",
+      "scores": {
+        "record_itch": 0.13004451754469495,
+        "record_dry": 0.018588894536759673,
+        "read_record": 0.2930598441733285,
+        "get_time": 2.4946656356696145e-07,
+        "no_tool": 0.5583064942786533
+      },
+      "action_ok": true,
+      "executed": false,
+      "tool_result": null,
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "unsupported_recommend",
+      "turn": 1,
+      "input": "제 피부에 맞는 화장품을 추천해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "no_tool",
+      "scores": {
+        "record_itch": 0.19221756461593525,
+        "record_dry": 0.07675811620996288,
+        "read_record": 0.3605152036205098,
+        "get_time": 6.234803696475553e-08,
+        "no_tool": 0.3705090532055551
+      },
+      "action_ok": true,
+      "executed": false,
+      "tool_result": null,
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "other_person",
+      "turn": 1,
+      "input": "제 친구 얼굴이 건조하대요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.20273734500064317,
+        "record_dry": 0.4063536234724475,
+        "read_record": 0.3758156664145976,
+        "get_time": 3.4177564678094547e-09,
+        "no_tool": 0.015093361694555125
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [],
+      "state_ok": false,
+      "result_ok": true
+    },
+    {
+      "scenario": "hypothetical",
+      "turn": 1,
+      "input": "만약 피부가 가렵다면 어떻게 해야 하나요?",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.09745135677257687,
+        "record_dry": 0.004795291977768845,
+        "read_record": 0.8961460022255987,
+        "get_time": 1.1274079266977804e-06,
+        "no_tool": 0.0016062216161288193
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "negative",
+      "turn": 1,
+      "input": "지금 저는 가렵지 않아요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 9.978321694418803e-07,
+        "record_dry": 0.000452603884726079,
+        "read_record": 0.8677084640332569,
+        "get_time": 6.36933280112546e-05,
+        "no_tool": 0.13177424092183648
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "unknown",
+      "turn": 1,
+      "input": "오늘 가려운지 잘 모르겠어요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.014140141952632981,
+        "record_dry": 0.8186130039266705,
+        "read_record": 0.15441483267136855,
+        "get_time": 0.00831256062759793,
+        "no_tool": 0.004519460821730063
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [],
+      "state_ok": false,
+      "result_ok": true
+    },
+    {
+      "scenario": "empty_read",
+      "turn": 1,
+      "input": "아직 아무것도 기록하지 않았는데 제 기록을 보여 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.005060636827842487,
+        "record_dry": 0.005712096280271754,
+        "read_record": 0.9891865667926406,
+        "get_time": 4.614703457530579e-06,
+        "no_tool": 3.6085395787610664e-05
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "time_then_dry",
+      "turn": 1,
+      "input": "현재 시간을 확인해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "get_time",
+      "selected": "get_time",
+      "scores": {
+        "record_itch": 0.03996439342376218,
+        "record_dry": 0.0015435464265794252,
+        "read_record": 0.314344303541526,
+        "get_time": 0.35342680053647757,
+        "no_tool": 0.29072095607165477
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "local_time": "2026-11-06T21:13:19+09:00"
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "time_then_dry",
+      "turn": 2,
+      "input": "저는 피부가 건조해요. 건조함을 저장해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_dry",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.003918429068342808,
+        "record_dry": 0.7294226462048827,
+        "read_record": 0.26625136016452755,
+        "get_time": 0.0003160397445567769,
+        "no_tool": 9.152481769021499e-05
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_time_read",
+      "turn": 1,
+      "input": "저는 가려움이 있어요. 기록 부탁해요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_itch",
+      "selected": "record_itch",
+      "scores": {
+        "record_itch": 0.7175040714341482,
+        "record_dry": 0.18283628264951607,
+        "read_record": 0.09940636264135533,
+        "get_time": 4.8973982125149376e-08,
+        "no_tool": 0.00025323430099835403
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_time_read",
+      "turn": 2,
+      "input": "지금 시간은 어떻게 돼요?",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "get_time",
+      "selected": "record_itch",
+      "scores": {
+        "record_itch": 0.45792246377883394,
+        "record_dry": 0.36295468861560104,
+        "read_record": 0.04945751109347047,
+        "get_time": 0.12470096942620601,
+        "no_tool": 0.0049643670858886615
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [
+        "가려움"
+      ],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_time_read",
+      "turn": 3,
+      "input": "저장해 둔 피부 상태를 확인해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.002246574810016994,
+        "record_dry": 0.005770542660268691,
+        "read_record": 0.9915312840152812,
+        "get_time": 0.00016048740973109604,
+        "no_tool": 0.0002911111047021144
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [
+        "가려움"
+      ],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_other",
+      "turn": 1,
+      "input": "제가 건조해요. 제 기록에 남겨 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_dry",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.4103049230130495,
+        "record_dry": 0.5877346661113545,
+        "read_record": 0.001960404046058764,
+        "get_time": 1.2498657629529534e-09,
+        "no_tool": 5.579671512372243e-09
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_other",
+      "turn": 2,
+      "input": "동생은 가렵다고 하네요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.31190229061761643,
+        "record_dry": 0.6879427296383238,
+        "read_record": 0.00015105329878876156,
+        "get_time": 3.110150025194325e-07,
+        "no_tool": 3.6154302685711677e-06
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [
+        "건조함"
+      ],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "no_clear",
+      "turn": 1,
+      "input": "저장된 피부 기록을 모두 지워 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "no_tool",
+      "scores": {
+        "record_itch": 1.2456499429525002e-07,
+        "record_dry": 6.263521264142182e-08,
+        "read_record": 3.48617459067087e-08,
+        "get_time": 4.926641094278778e-07,
+        "no_tool": 0.9999992852739378
+      },
+      "action_ok": true,
+      "executed": false,
+      "tool_result": null,
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    }
+  ],
+  "after": [
+    {
+      "scenario": "itch_then_read",
+      "turn": 1,
+      "input": "제 피부가 지금 가려워요. 가려움을 기록해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_itch",
+      "selected": "record_itch",
+      "scores": {
+        "record_itch": 0.5504871005521224,
+        "record_dry": 0.4423288118182701,
+        "read_record": 0.007177562018429625,
+        "get_time": 6.038701960282817e-09,
+        "no_tool": 6.519572476050449e-06
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_then_read",
+      "turn": 2,
+      "input": "방금 저장한 피부 기록을 보여 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.3051714278339559,
+        "record_dry": 0.02816446782276246,
+        "read_record": 0.6665556801126863,
+        "get_time": 6.491657507354868e-08,
+        "no_tool": 0.00010835931402027217
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [
+        "가려움"
+      ],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_read",
+      "turn": 1,
+      "input": "제 얼굴이 건조해요. 건조함으로 기록해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_dry",
+      "selected": "record_itch",
+      "scores": {
+        "record_itch": 0.7290884787157145,
+        "record_dry": 0.2640583481971832,
+        "read_record": 0.006847107803340159,
+        "get_time": 1.7985722443814076e-09,
+        "no_tool": 6.063485189869311e-06
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": false,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_read",
+      "turn": 2,
+      "input": "현재 피부 기록을 확인해 줘요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.04184376904147414,
+        "record_dry": 0.7216925000419849,
+        "read_record": 0.23613688261216784,
+        "get_time": 1.1014494782931559e-07,
+        "no_tool": 0.0003267381594253374
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움",
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [
+        "가려움"
+      ],
+      "after": [
+        "가려움",
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": false,
+      "result_ok": true
+    },
+    {
+      "scenario": "time",
+      "turn": 1,
+      "input": "지금 몇 시인지 알려 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "get_time",
+      "selected": "get_time",
+      "scores": {
+        "record_itch": 1.750151841593969e-08,
+        "record_dry": 1.1567797311608219e-08,
+        "read_record": 0.0006355764388374346,
+        "get_time": 0.998398091271837,
+        "no_tool": 0.0009663032200099352
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "local_time": "2026-11-06T21:13:20+09:00"
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "greeting",
+      "turn": 1,
+      "input": "안녕하세요!",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 4.932368503898605e-08,
+        "record_dry": 2.7452765026210153e-08,
+        "read_record": 0.995461386265967,
+        "get_time": 1.0606259009382091e-07,
+        "no_tool": 0.004538430894992882
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "thanks",
+      "turn": 1,
+      "input": "고마워요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 2.1473295600205576e-08,
+        "record_dry": 1.252526241469763e-08,
+        "read_record": 0.999794282241107,
+        "get_time": 6.022334681776022e-08,
+        "no_tool": 0.00020562353698804755
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "unsupported_product",
+      "turn": 1,
+      "input": "저한테 선크림을 검색해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "no_tool",
+      "scores": {
+        "record_itch": 8.584944622531005e-05,
+        "record_dry": 5.542856845002199e-05,
+        "read_record": 0.2765734911984694,
+        "get_time": 0.00010518494028073351,
+        "no_tool": 0.7231800458465745
+      },
+      "action_ok": true,
+      "executed": false,
+      "tool_result": null,
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "unsupported_recommend",
+      "turn": 1,
+      "input": "제 피부에 맞는 화장품을 추천해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 1.986778362905194e-05,
+        "record_dry": 2.1650683118355568e-05,
+        "read_record": 0.9373558422735425,
+        "get_time": 2.7099007395855474e-06,
+        "no_tool": 0.06259992935897034
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "other_person",
+      "turn": 1,
+      "input": "제 친구 얼굴이 건조하대요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 1.502524968632205e-05,
+        "record_dry": 0.00418239090291904,
+        "read_record": 0.9957929150585834,
+        "get_time": 5.579224997015082e-09,
+        "no_tool": 9.663209586211288e-06
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "hypothetical",
+      "turn": 1,
+      "input": "만약 피부가 가렵다면 어떻게 해야 하나요?",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.00010282840455424584,
+        "record_dry": 7.406452137235017e-05,
+        "read_record": 0.9769993944783665,
+        "get_time": 2.5696193645371527e-05,
+        "no_tool": 0.022798016402061447
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "negative",
+      "turn": 1,
+      "input": "지금 저는 가렵지 않아요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 3.91955719466941e-08,
+        "record_dry": 2.410417198386672e-07,
+        "read_record": 0.9999854430319187,
+        "get_time": 4.691095732709488e-08,
+        "no_tool": 1.4229819832100618e-05
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "unknown",
+      "turn": 1,
+      "input": "오늘 가려운지 잘 모르겠어요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 8.512390830321643e-07,
+        "record_dry": 7.512158541348362e-07,
+        "read_record": 0.999989695856344,
+        "get_time": 9.951993140733178e-07,
+        "no_tool": 7.706489404825114e-06
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "empty_read",
+      "turn": 1,
+      "input": "아직 아무것도 기록하지 않았는데 제 기록을 보여 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 3.016969723185567e-08,
+        "record_dry": 3.47251086573348e-08,
+        "read_record": 0.9999784310026305,
+        "get_time": 1.1705048432948731e-05,
+        "no_tool": 9.799054130615398e-06
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "time_then_dry",
+      "turn": 1,
+      "input": "현재 시간을 확인해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "get_time",
+      "selected": "get_time",
+      "scores": {
+        "record_itch": 9.124933654247632e-09,
+        "record_dry": 6.470546868558079e-09,
+        "read_record": 0.05317695207009465,
+        "get_time": 0.9425840289290653,
+        "no_tool": 0.0042390034053594846
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "local_time": "2026-11-06T21:13:20+09:00"
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "time_then_dry",
+      "turn": 2,
+      "input": "저는 피부가 건조해요. 건조함을 저장해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_dry",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.07920547576825045,
+        "record_dry": 0.920733315786658,
+        "read_record": 6.095049299253624e-05,
+        "get_time": 1.555443644538912e-07,
+        "no_tool": 1.0240773459249006e-07
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_time_read",
+      "turn": 1,
+      "input": "저는 가려움이 있어요. 기록 부탁해요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_itch",
+      "selected": "record_itch",
+      "scores": {
+        "record_itch": 0.9981924861799742,
+        "record_dry": 0.00179087431034579,
+        "read_record": 1.0933444655985267e-05,
+        "get_time": 4.1899665542127885e-07,
+        "no_tool": 5.287068368577853e-06
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_time_read",
+      "turn": 2,
+      "input": "지금 시간은 어떻게 돼요?",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "get_time",
+      "selected": "get_time",
+      "scores": {
+        "record_itch": 0.00044097824839567606,
+        "record_dry": 0.0008000695615814174,
+        "read_record": 0.0024890086482227953,
+        "get_time": 0.9961486783365759,
+        "no_tool": 0.00012126520522401661
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "local_time": "2026-11-06T21:13:21+09:00"
+      },
+      "error": null,
+      "before": [
+        "가려움"
+      ],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "itch_time_read",
+      "turn": 3,
+      "input": "저장해 둔 피부 상태를 확인해 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "read_record",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 0.0009122993642691461,
+        "record_dry": 0.0009692427160710381,
+        "read_record": 0.6248488512725522,
+        "get_time": 0.37311429086101505,
+        "no_tool": 0.00015531578609255382
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "가려움"
+        ]
+      },
+      "error": null,
+      "before": [
+        "가려움"
+      ],
+      "after": [
+        "가려움"
+      ],
+      "expected_after": [
+        "가려움"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_other",
+      "turn": 1,
+      "input": "제가 건조해요. 제 기록에 남겨 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "record_dry",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.20118459855448423,
+        "record_dry": 0.7988148065454818,
+        "read_record": 5.295762695249023e-07,
+        "get_time": 5.440941932957729e-09,
+        "no_tool": 5.988282255634184e-08
+      },
+      "action_ok": true,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "dry_then_other",
+      "turn": 2,
+      "input": "동생은 가렵다고 하네요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "record_dry",
+      "scores": {
+        "record_itch": 0.22402236696956804,
+        "record_dry": 0.7746943431805927,
+        "read_record": 0.0012022644700521105,
+        "get_time": 1.9508853065395145e-05,
+        "no_tool": 6.151652672176482e-05
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": [
+          "건조함"
+        ]
+      },
+      "error": null,
+      "before": [
+        "건조함"
+      ],
+      "after": [
+        "건조함"
+      ],
+      "expected_after": [
+        "건조함"
+      ],
+      "state_ok": true,
+      "result_ok": true
+    },
+    {
+      "scenario": "no_clear",
+      "turn": 1,
+      "input": "저장된 피부 기록을 모두 지워 주세요.",
+      "options": [
+        "record_itch",
+        "record_dry",
+        "read_record",
+        "get_time",
+        "no_tool"
+      ],
+      "expected_action": "no_tool",
+      "selected": "read_record",
+      "scores": {
+        "record_itch": 4.4628186580477265e-06,
+        "record_dry": 3.877364043482601e-06,
+        "read_record": 0.5355733062128853,
+        "get_time": 1.2131198861879115e-05,
+        "no_tool": 0.4644062224055513
+      },
+      "action_ok": false,
+      "executed": true,
+      "tool_result": {
+        "stored": []
+      },
+      "error": null,
+      "before": [],
+      "after": [],
+      "expected_after": [],
+      "state_ok": true,
+      "result_ok": true
+    }
+  ]
+}

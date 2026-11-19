@@ -1,0 +1,89 @@
+項目名と値を分けた教師での再学習
+
+目的：項目名が出たかではなく、その項目の具体的な値が会話にあるかを判断させる。
+前回の項目別EXAONE-JEV 1.2Bを出発点に、教師を直して追加学習。道具を選ぶko-decisionは固定しました。
+
+学習前に直したこと
+同じ道具・同じ項目について「名前あり／なし」×「値あり／なし」をそろえました。
+両方の値がある、片方だけある、どちらもない、を含めています。
+後の発言で値を補う会話と、実行を取り消しても既知の値は残る例も含めています。
+文の順、道具の候補順、定義の項目順を入れ替えました。後から答える項目は、先頭の項目だけに固定していません。
+項目名の出現だけで答える方法は、学習・途中確認・最後の評価のすべてで正解率50%です。
+学習用は26道具・364会話、値の有無728問と依頼確認104問、計832判断です。独立した832会話ではありません。
+途中確認は8道具・112会話。最後の評価は新しい12道具・168会話です。独立した人による正解確認は未実施です。
+
+同じ新しい168例での比較
+条件 | 全体の実行判断 | 必要な呼び出し36例 | 止める132例 | 2項目とも有無が正しい168例
+修正した教師で学習する前・基準0.5 | 115/168 | 9/36 | 106/132 | 51/168
+修正した教師で学習する前・途中確認で基準調整 | 88/168 | 30/36 | 58/132 | 52/168
+修正した教師で追加学習した後・基準0.5 | 116/168 | 35/36 | 81/132 | 92/168
+修正した教師で追加学習した後・途中確認で基準調整 | 103/168 | 36/36 | 67/132 | 82/168
+
+全件を止めるだけでも132/168になります。そのため、全体の正解率だけでは成功と数えません。必要な呼び出しと、項目を両方正しく区別した数を重視します。
+
+項目名と値の4条件（途中確認で選んだ基準、各項目を個別に採点）
+条件 | 学習前 | 学習後
+項目名あり・値あり | 100/108 | 107/108
+項目名あり・値なし | 18/108 | 38/108
+項目名なし・値あり | 30/60 | 54/60
+項目名なし・値なし | 27/60 | 35/60
+
+会話の種類別（実行判断、学習前→後）
+cancelled: 24/24 → 24/24
+history: 12/48 → 24/48
+single: 52/96 → 55/96
+
+すでに見た例での参考比較。初見の成績ではありません。
+seen_wording_24: 2/24 → 17/24
+seen_korean_30: 15/30 → 19/30
+
+学習に使った4道具の一部での確認（学習例であり、一般化の成績ではありません）
+学習前: 2項目の有無完全一致 21/56
+学習後: 2項目の有無完全一致 50/56
+
+同じ道具で具体的な値だけを替えた参考比較（基準選び・学習には使っていません）
+学習前: 既存の値 6/8、新しい値 7/8
+学習後: 既存の値 8/8、新しい値 8/8
+
+事前に決めた成功条件
+state_exact_at_least_90: 不合格
+call_recall_at_least_90: 合格
+stop_recall_at_least_90: 不合格
+state_improved: 合格
+balanced_pipeline_improved: 合格
+今回の条件は満たしませんでした。 元のデモには反映していません。
+
+出力を見て分かる失敗例
+crossed-v4:test:reserve_planetarium:single:0:00
+[{"role": "user", "content": "어느 관에서 관람할지 알려드린 적은 없어요. 몇 시에 볼지 알려드린 적은 없어요. 천문관 관람을 예약해 주세요"}]
+正解の有無：{"planetarium_name": false, "show_time": false}
+判断した有無：{"planetarium_name": true, "show_time": false}
+実行判断：no_tool
+各項目の出力値：{"planetarium_name": 0.9525197744369507, "show_time": 0.2139199636876583}
+crossed-v4:test:reserve_planetarium:single:0:01
+[{"role": "user", "content": "어느 관에서 관람할지 알려드린 적은 없어요. 토요일 오후 3시에 볼 거예요. 천문관 관람을 예약해 주세요"}]
+正解の有無：{"planetarium_name": false, "show_time": true}
+判断した有無：{"planetarium_name": true, "show_time": true}
+実行判断：tool_001
+各項目の出力値：{"planetarium_name": 0.9352230727672577, "show_time": 0.9562214612960815}
+crossed-v4:test:reserve_planetarium:single:0:10
+[{"role": "user", "content": "몇 시에 볼지 알려드린 적은 없어요. 가상천문관에서 관람할게요. 천문관 관람을 예약해 주세요"}]
+正解の有無：{"planetarium_name": true, "show_time": false}
+判断した有無：{"planetarium_name": true, "show_time": true}
+実行判断：tool_000
+各項目の出力値：{"planetarium_name": 0.5441713333129883, "show_time": 0.6925851106643677}
+
+範囲と限界
+私が作った、候補2道具・必須2項目・文字列の例です。モデルの元の学習から完全に未知の意味であることまでは保証していません。
+今回の項目名の偏りは除きましたが、自然な会話全般、否定された具体値、値の撤回、複雑な型や多数の項目で同じ成績になるとは言えません。
+項目名なしの例にも、役割を示す自然な言い方は含まれます。単なる文字列の羅列を常に正しく割り当てる試験ではありません。
+モデルは値の有無を答えます。実際の値の抽出、引数JSON生成、型検証、外部サービス実行は含みません。
+判定基準と保存点は途中確認だけで決め、最後の結果を見て選び直していません。
+元のモデル、本体、前回のアダプター、デモには変更なし。今回の試験はここで止めます。
+
+保存先
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\crossed-field-korean-v4-order-balanced\results.json
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\crossed-field-korean-v4-order-balanced\predictions.csv
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\crossed-field-korean-v4-order-balanced\label-review.csv
+C:\Users\ling\Desktop\projects\SLM意思決定\output\training\crossed-field-korean-v4-order-balanced\final-audit.json
+C:\Users\ling\Desktop\projects\SLM意思決定\data\processed\crossed-field-korean-v4-order-balanced\protocol.json

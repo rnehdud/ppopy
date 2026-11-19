@@ -1,0 +1,108 @@
+依頼文・別項目の値を区別する追加学習 V14
+
+元の目標：会話と、その場で渡した道具の説明から、小さいモデルが使う道具／今は使わないを選べること。
+今回測ったのは、必要な2項目の値が発言にあるかを確認する役の修正です。道具選択と依頼確認の重みは変更していません。
+
+学習内容
+各条件200会話、600判断、300更新、1周、同じV7重みから開始、学習率0.00005、固定乱数1回です。
+比較側は項目名つきの四択200問を3回。修正側は自然文の四択200問＋値を伝えた文を選ぶ400問です。
+同じツール・具体値・有無のラベル・会話順です。ただし、文の言い方と学習する質問の両方が変わります。
+選択肢数によって巡回する入力数とトークン数も違うため、同じ判断数・更新数ですが同じ計算量ではありません。
+V8では既に言い換え学習をしていました。今回はV7教材に欠けていた依頼文を候補へ必ず含め、別項目の値と該当なしも、全学習会話で正解付きで区別させます。
+これは教材変更の組み合わせの比較です。依頼文の追加だけが唯一の原因、または改善の唯一の理由と分離して証明する試験ではありません。
+実行時の判断は元の英語四択のままです。値を選ぶ補助出力を呼び出し判断へ追加する変更はしていません。
+
+新しい200発言
+追加学習から分けた25種類の道具×4つの値の有無×2つの言い方。私が作った韓国語です。
+同じ道具の8例には共通部分があります。200の独立した領域でも、独立した人が確認した正解でもありません。
+25の道具定義は以前の自作評価・今回の学習と分けています。元のモデルがその意味を事前学習で知らなかったという保証ではありません。
+候補2道具、必須2文字列、単発の実行依頼です。値の抽出や外部実行、取消し、複数ターンは測っていません。
+
+条件 | 2項目とも正しい | 呼ぶべき50件 | 止めるべき150件 | 実行判断合計
+追加学習なし | 162/200 | 43/50 | 133/150 | 176/200
+項目名つきの四択を反復 | 154/200 | 41/50 | 136/150 | 177/200
+自然文と値の対応を学習 | 171/200 | 46/50 | 133/150 | 179/200
+
+呼ぶべき50件が、どこで止まったか
+追加学習なし: {"availability_blocked": 7, "correct_call": 43}
+項目名つきの四択を反復: {"availability_blocked": 9, "correct_call": 41}
+自然文と値の対応を学習: {"availability_blocked": 4, "correct_call": 46}
+
+値のある文を選ぶ補助問題（呼び出し判断とは別の診断）
+追加学習なし：正しい文または該当なし340/400、2項目とも正しい文を選べた発言151/200、間違い{"other_field_as_value": 12, "missed_value": 11, "request_as_value": 37}
+項目名つきの四択を反復：正しい文または該当なし324/400、2項目とも正しい文を選べた発言130/200、間違い{"missed_value": 4, "other_field_as_value": 39, "request_as_value": 33}
+自然文と値の対応を学習：正しい文または該当なし367/400、2項目とも正しい文を選べた発言172/200、間違い{"other_field_as_value": 9, "missed_value": 11, "request_as_value": 13}
+
+同じ発言で、直った数と新しく間違えた数
+baseline -> control：状態 誤→正9／正→誤17、実行判断 誤→正5／正→誤4
+baseline -> repaired：状態 誤→正12／正→誤3、実行判断 誤→正8／正→誤5
+control -> repaired：状態 誤→正23／正→誤6、実行判断 誤→正9／正→誤7
+
+以前の128発言：状態／必要時の呼び出し／正しく止める
+named 追加学習なし：38/40、10/10、29/30
+named 項目名つきの四択を反復：38/40、10/10、29/30
+named 自然文と値の対応を学習：38/40、10/10、29/30
+natural 追加学習なし：28/40、6/10、25/30
+natural 項目名つきの四択を反復：27/40、6/10、25/30
+natural 自然文と値の対応を学習：33/40、8/10、27/30
+structure 追加学習なし：29/48、7/12、29/36
+structure 項目名つきの四択を反復：31/48、7/12、33/36
+structure 自然文と値の対応を学習：29/48、9/12、28/36
+
+事前に決めた条件：改善と維持
+{
+  "fresh_state_improves_vs_baseline": true,
+  "fresh_call_correct_retained_vs_baseline": true,
+  "fresh_stop_correct_retained_vs_baseline": true,
+  "fresh_state_improves_vs_control": true,
+  "fresh_call_correct_retained_vs_control": true,
+  "fresh_stop_correct_retained_vs_control": false,
+  "old_named_state_retained": true,
+  "old_named_call_correct_retained": true,
+  "old_named_stop_correct_retained": true,
+  "old_natural_state_retained": true,
+  "old_natural_call_correct_retained": true,
+  "old_natural_stop_correct_retained": true,
+  "old_structure_state_retained": true,
+  "old_structure_call_correct_retained": true,
+  "old_structure_stop_correct_retained": false
+}
+全条件：False
+90%の別目標：{"state_90": false, "calls_90": true, "stops_90": false}
+
+学習処理の確認
+control: {"adapter": "output\\training\\binding-repair-korean-v14\\control\\adapter-step-300", "seen": 600, "steps": 300, "max_abs_weight_change": 0.004159633070230484, "reload_probability_error": 0.0, "seconds": 1295.67295800001, "views": 2400, "nonpadding_tokens": 1070988, "peak_GiB": 2.3249754905700684, "overflows": [{"old": 128.0, "new": 64.0}], "no_test_selection": true}
+repaired: {"adapter": "output\\training\\binding-repair-korean-v14\\repaired\\adapter-step-300", "seen": 600, "steps": 300, "max_abs_weight_change": 0.004336263053119183, "reload_probability_error": 0.0, "seconds": 930.8856450000021, "views": 2000, "nonpadding_tokens": 797678, "peak_GiB": 2.282944679260254, "overflows": [{"old": 128.0, "new": 64.0}, {"old": 64.0, "new": 32.0}], "no_test_selection": true}
+
+修正側に残った状態判断の間違い（最初の5件）
+가상찻마루에서 맛볼게요. 차 시음회를 예약해 주세요.
+正解：{"tea_house": true, "tea_kind": false}
+予測：{"tea_kind": true, "tea_house": false}
+가상찻마루에서 맛볼게요. 우롱차를 마셔 볼게요. 차 시음회를 예약해 주세요.
+正解：{"tea_house": true, "tea_kind": true}
+予測：{"tea_kind": true, "tea_house": false}
+차 시음회를 예약해 주세요. 가상찻마루로 가려고 해요.
+正解：{"tea_house": true, "tea_kind": false}
+予測：{"tea_house": true, "tea_kind": true}
+작품을 물결 뒤편이라고 불러요. 시 공모전에 접수해 주세요.
+正解：{"poem_title": true, "poem_penname": false}
+予測：{"poem_penname": true, "poem_title": false}
+빙상장을 예약해 주세요.
+正解：{"ice_venue": false, "ice_start": false}
+予測：{"ice_start": false, "ice_venue": true}
+
+この試験をここで止める理由
+学習前と、同じ更新数の比較側と修正側を一度ずつ比べました。結果によって学習を追加したり、質問や正解・保存点を選び直したりしていません。
+条件を通っても、この小さな自作例だけで自由な韓国語や未知領域の90%は主張しません。通らなければ今回の教材では目標未達として報告し、デモへ反映しません。
+
+資料から使ったもの
+SGDの項目説明・原文の対応箇所という作り方を参考にしました。SGDの英語データをこの試験の韓国語教材だと扱ってはいません。
+https://github.com/google-research-datasets/dstc8-schema-guided-dialogue
+D3STの、名前だけでなく渡された説明に対応するという設計を参考にしました。その研究の正解率を今回へ移してはいません。
+https://research.google/pubs/description-driven-task-oriented-dialog-modeling/
+
+正解・位置の一覧：C:\Users\ling\Desktop\projects\SLM意思決定\output\training\binding-repair-korean-v14\label-review.csv
+全予測：C:\Users\ling\Desktop\projects\SLM意思決定\output\training\binding-repair-korean-v14\predictions.csv
+文の選択の全予測：C:\Users\ling\Desktop\projects\SLM意思決定\output\training\binding-repair-korean-v14\source-predictions.csv
+集計：C:\Users\ling\Desktop\projects\SLM意思決定\output\training\binding-repair-korean-v14\results.json
+確認記録：C:\Users\ling\Desktop\projects\SLM意思決定\output\training\binding-repair-korean-v14\final-audit.json

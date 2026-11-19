@@ -1,0 +1,108 @@
+説明と同じ意味の言い換えを使う二条件の比較（V41）
+2026-11-09
+
+結論
+固定した採用検査の全条件合格：False。デモには反映していない。
+同じV38から通常CEとCE+.2JSを各一度学習。同じ696判断・順番・学習量。違いは同じ意味の判断のずれを減らすJS項の重みだけ。
+既存の360判断を変えず、新しい336判断を追加した。6学習機能群、2開発機能群、4試験機能群に分割。学習・開発・試験の機能群は重ならない。
+ツール名を意味のないIDに変え、説明と完全な空引数定義を残した。対応する実行結果のIDも一致させた。名前の変更だけを未知機能と数えない。
+両条件とも同じ名前変更を使うため、この比較だけで名前変更そのものの効果は測っていない。
+以前のV8はEXAONEの状態判定で同様の対を学習し不採用。この結果を操作選択にも改善があるという根拠にはしていない。今回も不改善を含めて比較した。
+
+baseline
+未学習機能群の固定途中状態：55/112、同じ意味の2文とも正しい：20/56
+必要なツール選択：36/56、呼ばない／確認：19/56
+実際に操作を順に実行する全条件合格：18/56、2文とも実行合格：5/28
+必要な操作が完了：22/40、二操作の合格：0/16、依頼にない状態変更：2
+停止理由：{'model_stop': 20, 'duplicate_call': 31, 'model_ask': 5}
+image：4/14
+library：4/14
+text：5/14
+units：5/14
+以前の肌の30例（既知） gold：{'n': 30, 'strict': 30, 'required_write_n': 15, 'required_write_completed': 15, 'unwanted_writes': 0, 'two_n': 10, 'two_strict': 10}、parser：{'n': 30, 'strict': 26, 'required_write_n': 15, 'required_write_completed': 15, 'unwanted_writes': 2, 'two_n': 10, 'two_strict': 10}
+以前の普通の照会40条件（既知） parser：{'n': 40, 'strict': 18, 'required_write_n': 0, 'required_write_completed': 0, 'unwanted_writes': 10, 'two_n': 0, 'two_strict': 0}
+
+regular
+未学習機能群の固定途中状態：81/112、同じ意味の2文とも正しい：37/56
+必要なツール選択：32/56、呼ばない／確認：49/56
+実際に操作を順に実行する全条件合格：29/56、2文とも実行合格：13/28
+必要な操作が完了：19/40、二操作の合格：0/16、依頼にない状態変更：0
+停止理由：{'model_stop': 53, 'model_ask': 3}
+image：10/14
+library：7/14
+text：5/14
+units：7/14
+以前の肌の30例（既知） gold：{'n': 30, 'strict': 30, 'required_write_n': 15, 'required_write_completed': 15, 'unwanted_writes': 0, 'two_n': 10, 'two_strict': 10}、parser：{'n': 30, 'strict': 28, 'required_write_n': 15, 'required_write_completed': 15, 'unwanted_writes': 2, 'two_n': 10, 'two_strict': 10}
+以前の普通の照会40条件（既知） parser：{'n': 40, 'strict': 14, 'required_write_n': 0, 'required_write_completed': 0, 'unwanted_writes': 12, 'two_n': 0, 'two_strict': 0}
+
+consistent
+未学習機能群の固定途中状態：80/112、同じ意味の2文とも正しい：36/56
+必要なツール選択：31/56、呼ばない／確認：49/56
+実際に操作を順に実行する全条件合格：28/56、2文とも実行合格：12/28
+必要な操作が完了：18/40、二操作の合格：0/16、依頼にない状態変更：0
+停止理由：{'model_stop': 53, 'model_ask': 3}
+image：10/14
+library：7/14
+text：4/14
+units：7/14
+以前の肌の30例（既知） gold：{'n': 30, 'strict': 30, 'required_write_n': 15, 'required_write_completed': 15, 'unwanted_writes': 0, 'two_n': 10, 'two_strict': 10}、parser：{'n': 30, 'strict': 28, 'required_write_n': 15, 'required_write_completed': 15, 'unwanted_writes': 2, 'two_n': 10, 'two_strict': 10}
+以前の普通の照会40条件（既知） parser：{'n': 40, 'strict': 15, 'required_write_n': 0, 'required_write_completed': 0, 'unwanted_writes': 12, 'two_n': 0, 'two_strict': 0}
+
+固定した採用検査
+paired_both_improves_over_baseline: True
+paired_both_improves_over_regular: False
+needed_tool_choices_preserved: False
+autonomous_needed_tools_preserved: False
+autonomous_strict_preserved: True
+unrequested_changes_not_increased: True
+old_skin_gold_strict_preserved: True
+old_skin_parser_strict_preserved: True
+old_plain_read_preserved: False
+old_plain_unwanted_writes_not_increased: False
+
+学習後の試験機能群で残った失敗
+v41:test:library:0:b:style:0 | 이 책의 대출을 일주일 연장해 줘요. | actual=[] | stop=model_stop | state_ok=False
+v41:test:library:0:a_b:style:0 | 먼저 빌린 책의 대출 상태를 보여 줘요. 그 일을 끝낸 다음 이 책의 대출을 일주일 연장해 줘요. | actual=['x0d63107'] | stop=model_stop | state_ok=False
+v41:test:library:0:a_b:style:1 | 반납일과 분실로 등록됐는지 확인해 주세요. 확인 작업이 끝나면 그다음에 지금 반납 예정일보다 7일 더 빌리도록 바꿔 주세요. | actual=['xc2172ef'] | stop=model_stop | state_ok=False
+v41:test:library:0:b_a:style:0 | 먼저 이 책의 대출을 일주일 연장해 줘요. 그 일이 끝난 후 빌린 책의 대출 상태를 보여 줘요. | actual=['x82ebf3c'] | stop=model_stop | state_ok=True
+v41:test:library:0:b_a:style:1 | 지금 반납 예정일보다 7일 더 빌리도록 바꿔 주세요. 작업을 마치면 이어서 반납일과 분실로 등록됐는지 확인해 주세요. | actual=['x1c549fe'] | stop=model_stop | state_ok=True
+v41:test:library:0:missing_b:style:0 | 이 책의 대출을 일주일 연장해 줘요. | actual=[] | stop=model_stop | state_ok=True
+v41:test:library:0:missing_b:style:1 | 지금 반납 예정일보다 7일 더 빌리도록 바꿔 주세요. | actual=[] | stop=model_stop | state_ok=True
+v41:test:image:0:a_b:style:0 | 먼저 이미지의 현재 크기를 확인해 줘요. 그 일을 끝낸 다음 이미지를 90도 돌려 줘요. | actual=['xc7aa9b3'] | stop=model_stop | state_ok=False
+v41:test:image:0:a_b:style:1 | 이 그림의 가로와 세로 픽셀 수를 알려 주세요. 확인 작업이 끝나면 그다음에 그림의 방향을 직각으로 회전해 주세요. | actual=['xbbc6fc0'] | stop=model_stop | state_ok=False
+v41:test:image:0:b_a:style:0 | 먼저 이미지를 90도 돌려 줘요. 그 일이 끝난 후 이미지의 현재 크기를 확인해 줘요. | actual=['xe824df2'] | stop=model_stop | state_ok=False
+v41:test:image:0:b_a:style:1 | 그림의 방향을 직각으로 회전해 주세요. 작업을 마치면 이어서 이 그림의 가로와 세로 픽셀 수를 알려 주세요. | actual=['xf5566dd'] | stop=model_stop | state_ok=True
+v41:test:units:0:b:style:1 | 현재 온도값을 화씨 단위의 수로 계산해 주세요. | actual=['x711b560'] | stop=model_stop | state_ok=False
+v41:test:units:0:a_b:style:0 | 먼저 마지막 단위변환 결과를 보여 줘요. 그 일을 끝낸 다음 저장된 섭씨 온도를 화씨로 환산해 줘요. | actual=['x23f6a5f'] | stop=model_stop | state_ok=False
+v41:test:units:0:a_b:style:1 | 가장 최근에 계산해 둔 환산값을 읽어 주세요. 확인 작업이 끝나면 그다음에 현재 온도값을 화씨 단위의 수로 계산해 주세요. | actual=[] | stop=model_ask | state_ok=False
+v41:test:units:0:b_a:style:0 | 먼저 저장된 섭씨 온도를 화씨로 환산해 줘요. 그 일이 끝난 후 마지막 단위변환 결과를 보여 줘요. | actual=['xe8c5904'] | stop=model_stop | state_ok=True
+v41:test:units:0:b_a:style:1 | 현재 온도값을 화씨 단위의 수로 계산해 주세요. 작업을 마치면 이어서 가장 최근에 계산해 둔 환산값을 읽어 주세요. | actual=['x5b93098'] | stop=model_stop | state_ok=True
+v41:test:units:0:missing_b:style:0 | 저장된 섭씨 온도를 화씨로 환산해 줘요. | actual=[] | stop=model_stop | state_ok=True
+v41:test:units:0:missing_b:style:1 | 현재 온도값을 화씨 단위의 수로 계산해 주세요. | actual=[] | stop=model_stop | state_ok=True
+v41:test:text:0:a:style:1 | 현재 목록에 들어 있는 단어 수를 알려 주세요. | actual=[] | stop=model_stop | state_ok=True
+v41:test:text:0:b:style:1 | 단어들이 작은 순서대로 놓이도록 배열해 주세요. | actual=[] | stop=model_stop | state_ok=False
+v41:test:text:0:c:style:0 | 목록에서 중복 단어를 제거해 줘요. | actual=[] | stop=model_stop | state_ok=False
+v41:test:text:0:c:style:1 | 같은 단어는 처음 것 하나만 남겨 주세요. | actual=[] | stop=model_stop | state_ok=False
+v41:test:text:0:a_b:style:0 | 먼저 단어 목록에 항목이 몇 개인지 세어 줘요. 그 일을 끝낸 다음 단어 목록을 오름차순 정렬해 줘요. | actual=['x1f0b681'] | stop=model_stop | state_ok=False
+v41:test:text:0:a_b:style:1 | 현재 목록에 들어 있는 단어 수를 알려 주세요. 확인 작업이 끝나면 그다음에 단어들이 작은 순서대로 놓이도록 배열해 주세요. | actual=['x4f02788'] | stop=model_stop | state_ok=False
+v41:test:text:0:b_a:style:0 | 먼저 단어 목록을 오름차순 정렬해 줘요. 그 일이 끝난 후 단어 목록에 항목이 몇 개인지 세어 줘요. | actual=['x11f25c3'] | stop=model_stop | state_ok=True
+v41:test:text:0:b_a:style:1 | 단어들이 작은 순서대로 놓이도록 배열해 주세요. 작업을 마치면 이어서 현재 목록에 들어 있는 단어 수를 알려 주세요. | actual=[] | stop=model_stop | state_ok=False
+v41:test:text:0:missing_b:style:0 | 단어 목록을 오름차순 정렬해 줘요. | actual=[] | stop=model_stop | state_ok=True
+v41:test:text:0:missing_b:style:1 | 단어들이 작은 순서대로 놓이도록 배열해 주세요. | actual=[] | stop=model_stop | state_ok=True
+
+検証
+実処理・役割別重み・全入力の監査：14/14。症状モデルの同じ入力のスコア差：0.0
+学習量は各696更新、1392判断の提示。最終重みだけを評価。開発用や試験用の成績で選び直していない。
+regular：学習秒数 611.5、最大GPU割当 0.803GiB、重み変化 0.005057167261838913、再読込差 0.0、学習行一致 619/696
+consistent：学習秒数 722.9、最大GPU割当 0.803GiB、重み変化 0.005146414507180452、再読込差 0.0、学習行一致 619/696
+
+範囲
+Two paraphrases per authored request, six train/two dev/four test function families. Function families excluded from THIS added training, not proved absent in base pretraining/prior unrelated experiments. Empty turn-bound arguments; arbitrary schema binding/extraction not learned. Not broad 90% unknown-domain evidence or independent human labels.
+教師と状態・手順は私が作り、独立した人の確認は未実施。実処理はローカルな模擬ハンドラーで、外部サービスへの実行ではない。
+引数は発話ごとに予めプログラムで接続した空引数ツール。引数の抽出・作成、任意スキーマ、製品、音声、Qwenの返答は評価していない。
+試験用4機能群56発話は28種類の依頼各2表現であり、56種類の独立した依頼ではない。途中状態112判断も56組で、独立した112会話ではない。
+開発用の数字もJSONに残した。追加学習から除外した機能でも、元のモデルが事前学習等で類似の意味を知らなかったという保証はない。
+UDAの一般分類の方法を選択肢得点に適用した考え方で、UDA全体の再現ではない。Hammerの生成モデルの成果をこの小さい判定器の成績として借りていない。
+参考：https://github.com/google-research/uda/blob/master/text/uda.py
+参考：https://github.com/MadeAgents/Hammer/blob/main/train/data_processing.py
+現在のチャット、元の症状モデルと会話メモリは変更していない。二条件の一度の比較で止める。

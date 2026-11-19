@@ -1,0 +1,363 @@
+{
+  "directory": "03-tool-execution",
+  "copied": {
+    "workspace/requirements.txt": {
+      "source": "requirements.txt",
+      "bytes": 156,
+      "sha256": "7119baefcc4d080d50a72c0089905cb3b96af56012edb474cd263a864e8c2e25"
+    },
+    "workspace/requirements-train.txt": {
+      "source": "requirements-train.txt",
+      "bytes": 182,
+      "sha256": "082653edf1e6e465fc2f36a50af278d8738ec3dc7e8702b609a80f36fcab7bc8"
+    },
+    "workspace/scripts/eval_kotraj_real_tools.py": {
+      "source": "scripts/eval_kotraj_real_tools.py",
+      "bytes": 7789,
+      "sha256": "e9e31d3f09c7b9b20eaf2382c55b488af7d7c819fdda90a4d00e028d2a855493"
+    },
+    "workspace/scripts/eval_kotraj_multistep_loop.py": {
+      "source": "scripts/eval_kotraj_multistep_loop.py",
+      "bytes": 6493,
+      "sha256": "8811952c8d55990235f40e5af400247eb0517c8aa5458094cb08ab989f9dd4d2"
+    },
+    "workspace/scripts/eval_kotraj_loop_guard.py": {
+      "source": "scripts/eval_kotraj_loop_guard.py",
+      "bytes": 1834,
+      "sha256": "88826e494315757b3e45698b140d454c7af70fed362af40243bfb2016636051e"
+    },
+    "workspace/scripts/candidate_loop_v31.py": {
+      "source": "scripts/candidate_loop_v31.py",
+      "bytes": 1889,
+      "sha256": "a66020981bb3108ef894f76dc9e4c3aa877f98ab5612100653fbc49683bfff56"
+    },
+    "workspace/scripts/result_loop_split_v27.py": {
+      "source": "scripts/result_loop_split_v27.py",
+      "bytes": 12685,
+      "sha256": "0a16303067de6e4e1a2536239b9a13fbfad768225aab1e97046fbb09c6d599ba"
+    },
+    "workspace/scripts/result_loop_split_data_v27.py": {
+      "source": "scripts/result_loop_split_data_v27.py",
+      "bytes": 13286,
+      "sha256": "e38cd29a6793dcff3f64cf396ca499b404bd73d6b743902a9f0ea2bde1e619ed"
+    },
+    "workspace/agent/__init__.py": {
+      "source": "agent/__init__.py",
+      "bytes": 74,
+      "sha256": "c0f8939a0919250f24d8e8b2f5c773c1c863c377171be71a04078090bd9e61da"
+    },
+    "workspace/agent/candidate_loop_v31.py": {
+      "source": "agent/candidate_loop_v31.py",
+      "bytes": 4834,
+      "sha256": "7872fbc2113e286ae1656c1a83a890ecf5bca82f2a81d2a591c99205006b3c10"
+    },
+    "workspace/agent/choice_agent_v1.py": {
+      "source": "agent/choice_agent_v1.py",
+      "bytes": 5058,
+      "sha256": "9c494f9e572931c1d8d72bb6db275be7e7b19982a93bd9dc307785f02e8a4a36"
+    },
+    "workspace/agent/local_choice_scorer_v1.py": {
+      "source": "agent/local_choice_scorer_v1.py",
+      "bytes": 1613,
+      "sha256": "38bc64094581af52f5e3efea15742e8a04865e2ae09702dd697bf98ce765806e"
+    },
+    "workspace/agent/result_loop_probe_v26.py": {
+      "source": "agent/result_loop_probe_v26.py",
+      "bytes": 4459,
+      "sha256": "da419e6275bf9fd987b848763e1c27d41b19ae7661130cafcf5e69f79076fca4"
+    },
+    "workspace/agent/result_loop_split_v27.py": {
+      "source": "agent/result_loop_split_v27.py",
+      "bytes": 1370,
+      "sha256": "9d4fed9787ff4cc915edbafa01671c1af232b55f20b50754e73c7c7e24a54a88"
+    },
+    "workspace/agent/symptom_state_v1.py": {
+      "source": "agent/symptom_state_v1.py",
+      "bytes": 1440,
+      "sha256": "b9fc2575161375e8bc8d730081120c9b37fe8c27897408679caa44e163350a17"
+    },
+    "workspace/scripts/build_tool_decision_mix_v1.py": {
+      "source": "scripts/build_tool_decision_mix_v1.py",
+      "bytes": 29087,
+      "sha256": "915fdbedabe24cc50d20f640b2aa21ee279a19632b70829e0b73df6434682191"
+    },
+    "workspace/scripts/build_tool_split_pilot_v1.py": {
+      "source": "scripts/build_tool_split_pilot_v1.py",
+      "bytes": 10140,
+      "sha256": "18f571937254648d579f0d4ca699a79b9384d5af6adf002540172c86e829518d"
+    },
+    "workspace/scripts/candidate_loop_data_v31.py": {
+      "source": "scripts/candidate_loop_data_v31.py",
+      "bytes": 15077,
+      "sha256": "50db3cb41a2014db21ffc62a932a60ca0e888650561339f7d45947736068f622"
+    },
+    "workspace/scripts/compare_korean_decision_pilot.py": {
+      "source": "scripts/compare_korean_decision_pilot.py",
+      "bytes": 13122,
+      "sha256": "dd5b09012b2500cbc44c2e78eb673e3f132a71a6e3ea1cad8203993d6e1a8f32"
+    },
+    "workspace/scripts/evaluate_jev_style_qwen_pilot.py": {
+      "source": "scripts/evaluate_jev_style_qwen_pilot.py",
+      "bytes": 8125,
+      "sha256": "a2ed7fe6dbefe9ae32f4407a5c2ae9a51d6da5fbe0af83f939e4138135575030"
+    },
+    "workspace/scripts/evaluate_symptom_state_v1.py": {
+      "source": "scripts/evaluate_symptom_state_v1.py",
+      "bytes": 6070,
+      "sha256": "73d219a67dd4623e4b84c04aa21e91b8af6bc21185aa49cbda6bbf7386a3743b"
+    },
+    "workspace/scripts/exaone_tokenizer_compat.py": {
+      "source": "scripts/exaone_tokenizer_compat.py",
+      "bytes": 687,
+      "sha256": "06c0f1cd1182e3bafc8130b8e593eaa272f04ef675b5e7cdb723ec6649863c69"
+    },
+    "workspace/scripts/gate_pair_data_v29.py": {
+      "source": "scripts/gate_pair_data_v29.py",
+      "bytes": 14120,
+      "sha256": "abffa1b5e0c188256285b5ace325cda84ba40641ec7cc3ecdeade344d16350ef"
+    },
+    "workspace/scripts/heterogeneous_tool_checker_v1.py": {
+      "source": "scripts/heterogeneous_tool_checker_v1.py",
+      "bytes": 22316,
+      "sha256": "463a36ac2c19f9013bd712a7b01e3ac3d7e853e1e27eb505f3638521bc61e73c"
+    },
+    "workspace/scripts/result_loop_data_v26.py": {
+      "source": "scripts/result_loop_data_v26.py",
+      "bytes": 9345,
+      "sha256": "5296ada87991218c30bbbde2de0abb5f4dcb008ee0a77a4c61f6e2f1a5eedb37"
+    },
+    "workspace/scripts/result_loop_policy_data_v28.py": {
+      "source": "scripts/result_loop_policy_data_v28.py",
+      "bytes": 13115,
+      "sha256": "d088f8c58f0f42f6cbcd0a6e1030794b4da467ed9673ebe40bf0c954fe20eb11"
+    },
+    "workspace/scripts/review_candidate_rejection_v30.py": {
+      "source": "scripts/review_candidate_rejection_v30.py",
+      "bytes": 7571,
+      "sha256": "68db965d0de66586f3ebcacbecab43d0030f5a656311490f0bc87176005237de"
+    },
+    "workspace/scripts/review_korean_material_v22.py": {
+      "source": "scripts/review_korean_material_v22.py",
+      "bytes": 4183,
+      "sha256": "c44ce700deaa90c9fe28108926b3b418f41b67fea0b027a0194309155fdffff1"
+    },
+    "workspace/scripts/selector_broad_data_v20.py": {
+      "source": "scripts/selector_broad_data_v20.py",
+      "bytes": 16101,
+      "sha256": "5fa987d84451a003c205cf3c95e63cf18f64723525ca7afc0cf3989ff8c5d6f3"
+    },
+    "workspace/scripts/selector_broad_v20.py": {
+      "source": "scripts/selector_broad_v20.py",
+      "bytes": 7039,
+      "sha256": "119afd9a45bd91be780dffcfc3d704f8b31e9ca105ede4d3787ceddd5b04bae5"
+    },
+    "workspace/scripts/selector_fit_data_v23.py": {
+      "source": "scripts/selector_fit_data_v23.py",
+      "bytes": 4032,
+      "sha256": "d2f3e5f648fd899d52fc6e1443a3108648e47f3e4b6c5c783f49c0ea16ababbe"
+    },
+    "workspace/scripts/selector_followup_data_v18.py": {
+      "source": "scripts/selector_followup_data_v18.py",
+      "bytes": 9610,
+      "sha256": "199229543f35c3102ae57eda3a80af723cc7067c2801763297c5cddf96f1b255"
+    },
+    "workspace/scripts/selector_interface_data_v18.py": {
+      "source": "scripts/selector_interface_data_v18.py",
+      "bytes": 8781,
+      "sha256": "f0b5f699372451fa9af850ec3cad324d28713705c0b8e98878b191a28c19bb51"
+    },
+    "workspace/scripts/selector_korean_data_v22.py": {
+      "source": "scripts/selector_korean_data_v22.py",
+      "bytes": 7989,
+      "sha256": "e5b4911388d672241dd6bf446538eec8b0e02e10d8517206dc8792e0ce9ae996"
+    },
+    "workspace/scripts/selector_learning_v18.py": {
+      "source": "scripts/selector_learning_v18.py",
+      "bytes": 9487,
+      "sha256": "7e443a6ce77e389380645423fd4a812e69d3ce315227f843c839b8f069bf09d1"
+    },
+    "workspace/scripts/selector_name_check_v25.py": {
+      "source": "scripts/selector_name_check_v25.py",
+      "bytes": 9655,
+      "sha256": "da6f114d37678abd105deeaef9cae0bb5bdc25a830c130bc9fd06ce603d0fb9b"
+    },
+    "workspace/scripts/selector_source_data_v21.py": {
+      "source": "scripts/selector_source_data_v21.py",
+      "bytes": 6064,
+      "sha256": "ec01b8d0041ef7f06917b026fb70169da51f7c311adfd5950f9cbbdd3bd7757b"
+    },
+    "workspace/scripts/selector_transfer_data_v24.py": {
+      "source": "scripts/selector_transfer_data_v24.py",
+      "bytes": 8558,
+      "sha256": "d4bbe2367320dbced1ed87898ce44bf19c8a2e0d9333430e11f640f36cd3ee6d"
+    },
+    "workspace/scripts/tool_split_data_v1.py": {
+      "source": "scripts/tool_split_data_v1.py",
+      "bytes": 2079,
+      "sha256": "c245ac59c1cb28da395eb9b4bf63012a9843c1af15c5b6d3bba48f83712c2203"
+    },
+    "workspace/scripts/train_choice_agent_v1.py": {
+      "source": "scripts/train_choice_agent_v1.py",
+      "bytes": 10825,
+      "sha256": "1640feadf394ce4c706c680bc1b645e0c88a0aa854272345c746119ac96d5954"
+    },
+    "workspace/scripts/train_ko_decision_qlora_pilot.py": {
+      "source": "scripts/train_ko_decision_qlora_pilot.py",
+      "bytes": 12396,
+      "sha256": "967dcd4338f0c9ba827311792e94425311bd794769e490c4a06dfa9e3fa1a62a"
+    },
+    "workspace/scripts/train_ko_symptom_6000_v1.py": {
+      "source": "scripts/train_ko_symptom_6000_v1.py",
+      "bytes": 10039,
+      "sha256": "379df3557cd946e9f5dd6508e2b7faf56ce52c3e3fbc37b4603030c7649cd26d"
+    },
+    "workspace/scripts/translate_selector_material_v20.py": {
+      "source": "scripts/translate_selector_material_v20.py",
+      "bytes": 5622,
+      "sha256": "ac734df1e8e3f5382bc6b9b7e19516073a84e0d78a0bad25d1dbcc9cf239b2dc"
+    },
+    "workspace/scripts/when2call_operational_data_v1.py": {
+      "source": "scripts/when2call_operational_data_v1.py",
+      "bytes": 3517,
+      "sha256": "b4a9d66e93bca4a06a5c24edd6355d7bbf7e3357e95aa72ed3ce6028e6818d59"
+    },
+    "workspace/adapters/cosmetics-chat-v1/step-0100/adapter_config.json": {
+      "source": "adapters/cosmetics-chat-v1/step-0100/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "f28a2679fc659b026867c8a33dc732c0590989cc694265acdced7c14a0f1d449"
+    },
+    "workspace/adapters/cosmetics-chat-v1/step-0100/adapter_model.safetensors": {
+      "source": "adapters/cosmetics-chat-v1/step-0100/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "12feecff4a7d8897d9deb47479d568af3f0e9ed5f9325b47c8ce58f097ee9232"
+    },
+    "workspace/adapters/cosmetics-chat-v1/step-0100/README.md": {
+      "source": "adapters/cosmetics-chat-v1/step-0100/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_config.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_config.json",
+      "bytes": 1172,
+      "sha256": "2cd56ae60ef72e890bd393c4a6a3ee0a97ee074f6d9122de1183e4684a46a5fb"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_model.safetensors": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "1cccc63a743f4dbced54f3ec05e3c5aa9188192ce3a52507f96273ec9ecdaffa"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/README.md": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/README.md",
+      "bytes": 5194,
+      "sha256": "aba568fa620fb37bcc7faa75f06dc6264f797db259798d2a2f3456fe827e86ac"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/special_tokens_map.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/special_tokens_map.json",
+      "bytes": 971,
+      "sha256": "63cd5b53789b3b5ae2c3d7aa377bcba1557ff0b41dc69ce07b94350ea32291c2"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer.json",
+      "bytes": 752154,
+      "sha256": "3eaa9c422ff9796cfceed83c613a0fd0a1648551a7618d28759dc95ad9b5a416"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer_config.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer_config.json",
+      "bytes": 1651,
+      "sha256": "96bd773dd505cf0e78d02c47a201f47e907653da4d9d5b7ce294d911b0b69d39"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/vocab.txt": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/vocab.txt",
+      "bytes": 248477,
+      "sha256": "1ad4978b5dbe269dcc402a3c6eb71ceab21d712bca3b7d3b9994845e54cdcb39"
+    },
+    "workspace/models/ko-decision-roberta-large/calibration.json": {
+      "source": "models/ko-decision-roberta-large/calibration.json",
+      "bytes": 1202,
+      "sha256": "ff1edf03f9e548fb55b376823fc9bc35abefb433cefe41c2ecb300d6e3193f72"
+    },
+    "workspace/models/ko-decision-roberta-large/config.json": {
+      "source": "models/ko-decision-roberta-large/config.json",
+      "bytes": 789,
+      "sha256": "1f7092ef468dc9f841f5bfbb9d60095b8057f40d9179c437a743d1aa044fe9d0"
+    },
+    "workspace/models/ko-decision-roberta-large/DATA_LICENSE_CC-BY-SA-4.0.txt": {
+      "source": "models/ko-decision-roberta-large/DATA_LICENSE_CC-BY-SA-4.0.txt",
+      "bytes": 20131,
+      "sha256": "7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297"
+    },
+    "workspace/models/ko-decision-roberta-large/DATA_NOTICE.md": {
+      "source": "models/ko-decision-roberta-large/DATA_NOTICE.md",
+      "bytes": 3475,
+      "sha256": "a37cab0e266e139a305623890e417c9d4120493b5ce2fac2ab568534e4fda7e9"
+    },
+    "workspace/models/ko-decision-roberta-large/model.safetensors": {
+      "source": "models/ko-decision-roberta-large/model.safetensors",
+      "bytes": 1346677820,
+      "sha256": "7b6ac5dbac2c1bad001f730b019d0e416ffdeb9e487a996fb36440323b605655"
+    },
+    "workspace/models/ko-decision-roberta-large/README.md": {
+      "source": "models/ko-decision-roberta-large/README.md",
+      "bytes": 29401,
+      "sha256": "bfced9cd6d29deda61e37362c33c0b140b38997d7d58d1d51ed58e4539e0c22e"
+    },
+    "workspace/models/ko-decision-roberta-large/special_tokens_map.json": {
+      "source": "models/ko-decision-roberta-large/special_tokens_map.json",
+      "bytes": 971,
+      "sha256": "63cd5b53789b3b5ae2c3d7aa377bcba1557ff0b41dc69ce07b94350ea32291c2"
+    },
+    "workspace/models/ko-decision-roberta-large/tokenizer.json": {
+      "source": "models/ko-decision-roberta-large/tokenizer.json",
+      "bytes": 752250,
+      "sha256": "dacfab652386ca05c69f0639e623c71754ae01e2a5d3c88ed16e86ba11ce9dc3"
+    },
+    "workspace/models/ko-decision-roberta-large/tokenizer_config.json": {
+      "source": "models/ko-decision-roberta-large/tokenizer_config.json",
+      "bytes": 1647,
+      "sha256": "8c335996b382be0daf5ca42ddf4a91efbecf76826ccf26c9e46dd4bb424ded96"
+    },
+    "workspace/models/ko-decision-roberta-large/vocab.txt": {
+      "source": "models/ko-decision-roberta-large/vocab.txt",
+      "bytes": 248477,
+      "sha256": "1ad4978b5dbe269dcc402a3c6eb71ceab21d712bca3b7d3b9994845e54cdcb39"
+    },
+    "workspace/scripts/bootstrap_training.ps1": {
+      "source": "scripts/bootstrap_training.ps1",
+      "bytes": 1525,
+      "sha256": "55327b4ccfcb9f171e3b5c24dbe1066913ac490e8c5687d12b2e4350d4e09ad1"
+    },
+    "workspace/scripts/parallel_download.py": {
+      "source": "scripts/parallel_download.py",
+      "bytes": 5910,
+      "sha256": "5d5a697aa2aa277b6d7c853c42e0ca0f58276ad575af36dab4bafadb29f148f0"
+    },
+    "workspace/scripts/check_training_env.py": {
+      "source": "scripts/check_training_env.py",
+      "bytes": 1412,
+      "sha256": "da4ca5ef2771295330a17ed65aa8be3c2aa69e548b085f05e3d90e1653eb51f7"
+    }
+  },
+  "missing": [],
+  "requires_manual_review": [],
+  "environment": {
+    "python_venv": "not copied; install the appropriate requirements in a new environment",
+    "gpu": "real GPU operation has not been checked in these new folders",
+    "git_ignored_large_files": [
+      "workspace/models/ko-decision-roberta-large/model.safetensors"
+    ],
+    "no_keys_or_conversation_logs_intentionally_included": true,
+    "imports": "Only static top-level local module imports resolved; dynamic imports and runtime data paths need individual checks.",
+    "historical_coverage": "Representative runnable paths for this theme, not all historical experiment conditions."
+  },
+  "commands": [
+    "python -m pip install -r requirements-train.txt",
+    "python scripts/eval_kotraj_multistep_loop.py"
+  ],
+  "limitations": [
+    "一時ディレクトリ内の模擬ツール。外部サービスへの本番操作ではない。",
+    "既存の結果ファイルを上書きしない実装であり、再実行は別の作業コピーで行う。",
+    "v28以降を含むすべての歴史的条件・保存点の完全性は未確認。"
+  ],
+  "actual_execution_verified": false,
+  "supplemental_trace": "結果JSON内のLoRA参照、xLAMの凍結ハッシュ一覧、v67 val専用実行入口を追加確認。"
+}
