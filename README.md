@@ -86,7 +86,7 @@ The snapshot's KB structure checks pass, but its original 57-case acceptance aud
 
 ## Phase 2 C/D · Product update (November 20, 2026)
 
-[Read the IEEE C/D report (PDF)](courses/software-engineering/submissions/phase2/2026-11-20/Ppopy_Submission_CD.pdf) · [LaTeX source](courses/software-engineering/submissions/phase2/2026-11-20/Ppopy_Submission_CD.tex)
+[Read the full C/D update on GitHub](courses/software-engineering/submissions/phase2/2026-11-20/README.md)
 
 Ppopy is an iPhone app that helps people decide what to keep or change in their skincare routine. Users choose the products they actually use in the morning and evening. Ppopy reviews that routine against guidance on cleansing, moisturizing, and sun protection. Popo, the in-app guide, asks one question at a time when the answer could change the advice.
 

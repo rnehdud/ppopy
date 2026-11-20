@@ -4,7 +4,7 @@ Team CosMate's Ppopy project combines product confirmation, routine records and 
 
 ## Phase 2 submissions
 
-- [Submission C/D report (PDF)](submissions/phase2/2026-11-20/Ppopy_Submission_CD.pdf) and [LaTeX source](submissions/phase2/2026-11-20/Ppopy_Submission_CD.tex), updated November 20. Sections V and VI cover architecture, directory organization, implementation status, and requirement-linked use cases.
+- [Submission C/D](submissions/phase2/2026-11-20/README.md), updated November 20. Sections V and VI cover architecture, directory organization, implementation status, and requirement-linked use cases.
 
 The [latest Revised LaTeX package](submissions/phase2/2026-11-06/README.md) contains two independently buildable main documents:
 
