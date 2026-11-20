@@ -1,43 +1,39 @@
-# 뽀피 · Ppopy
+# Ppopy
 
-뽀피는 **내가 가진 화장품과 실제로 쓰는 아침·저녁 루틴을 바탕으로, 무엇을 그대로 쓰고 무엇을 바꿀지 점검하는 iPhone 앱**입니다. 세정·보습·자외선차단 기준을 사용하며, 답에 따라 안내가 달라질 때 포포가 한 번에 한 가지를 묻습니다.
+Ppopy is an iPhone app that helps people decide what to keep or change in their skincare routine. Users choose the products they actually use in the morning and evening. Ppopy reviews that routine against guidance on cleansing, moisturizing, and sun protection. Popo, the in-app guide, asks one question at a time when the answer could change the advice.
 
-## 앱에서는 무엇을 할 수 있나요?
+## What users can do
 
-| 화면 | 사용자 흐름 |
+| Screen | What happens there |
 | --- | --- |
-| 탐색 | 제품명·브랜드 또는 제품 사진으로 후보를 찾습니다. 제품 상세에서 용량과 확인된 전성분을 봅니다. |
-| 내 화장품 | 보유한 제품을 모으고 관리합니다. 아직 쓰지 않는 제품도 보관할 수 있습니다. |
-| 내 루틴 | 보유 제품 중 실제 쓰는 제품을 골라 아침·저녁 사용 순서를 정합니다. |
-| 루틴 점검 | 평소 루틴과 현재 불편감을 확인하고 필요한 질문에 답합니다. 이전 답을 고치면 관련 안내도 다시 계산합니다. |
-| 저장한 점검 | 사용자가 저장한 결과를 다시 열어 당시의 안내를 확인합니다. |
+| Explore | Search by brand or product name, or take a photo of the packaging. Open a match to see its size and full ingredient list when available. |
+| My Products | Keep an inventory of products, including ones the user owns but has yet to start using. |
+| My Routine | Choose products from the inventory and arrange them in morning and evening application order. |
+| Routine Check | Review the routine, report any discomfort, and answer relevant questions. Editing an earlier answer updates the guidance that depended on it. |
+| Saved Checks | Reopen a saved check and read the guidance from that session. |
 
-## 질문과 결과가 만들어지는 과정
+## How a routine becomes guidance
 
-| 구성 | 맡은 일 |
+| Component | Responsibility |
 | --- | --- |
-| iOS 앱 (React · Capacitor) | 제품 검색·촬영, 루틴 편집, 선택형 질문과 답변 수정, 결과 표시 |
-| 제품 카탈로그 | 제품 ID와 버전으로 검색 결과·전성분·루틴 항목을 연결합니다. 전성분이 비었거나 서로 충돌해도 제품은 찾을 수 있고 해당 성분 판단은 보류합니다. |
-| 지식 기준(KB)과 판단 엔진 | 등록 제품, 확인된 사용 행동, 사용자 상태를 세 축의 기준 및 예외와 비교해 유지·조정·보류 가능한 행동을 구합니다. |
-| 적응형 질문 선택(AFA) | 가능한 답을 비교해 다음 행동을 바꿀 질문을 고릅니다. 더 물어볼 실익이 없으면 그때까지 확인한 내용으로 마칩니다. |
-| 서버와 저장소 (AWS HTTP API · Lambda · PostgreSQL) | 계정과 동의를 확인하고 점검 요청·답변·저장을 처리합니다. 카탈로그에서 찾기 어려운 제품은 외부 검색이나 사진 인식으로 탐색할 수 있습니다. |
+| iOS app (React and Capacitor) | Captures product photos, displays search results, and lets users edit routines, answer questions, and review results. |
+| Product catalog | Links search results, ingredient lists, and routine entries by product ID and version. Products with missing or conflicting labels stay searchable while ingredient-specific judgments remain on hold. |
+| Knowledge base (KB) and decision engine | Compare confirmed product use and user observations with rules and exceptions for cleansing, moisturizing, and sun protection. Identify which steps to keep, adjust, or defer. |
+| Adaptive question selection (AFA) | Compares what each possible answer would change, selects a useful follow-up, and stops when further questions would leave the guidance unchanged. |
+| Backend (AWS HTTP API, Lambda, PostgreSQL) | Checks account access and consent, processes answers, and saves results. External search and photo recognition help identify products the catalog alone cannot match. |
 
-**예시** · 최근 트러블을 점검할 때 사용자가 무엇이 바뀌었는지 모르겠다고 답하면, 다른 답에 따라 안내가 달라지는 경우 반복해서 피부를 문지르는지 확인합니다. 이전 답을 수정해 그 질문이 필요 없어지면 연결된 안내도 사라집니다. 트러블의 원인을 특정 제품으로 단정하지 않습니다.
+For example, someone reporting a recent breakout may be unsure what changed. Ppopy can ask about repeated rubbing if the answer would change its advice. If the user revises an earlier answer and that question no longer applies, the related guidance disappears. The check leaves the cause of the breakout open.
 
-## 어디까지 확인했나요?
+## Release candidate status
 
-2026-11-19 기준, iPhone에서 **1,977개 제품 카탈로그**의 검색과 루틴 화면 연결을 확인했습니다. 다음 통합 출시 후보에는 센카 브랜드 검색, 로벡틴 클렌징 워터의 전성분 표시 개선, 루틴 전체를 살피는 AFA v4를 묶었습니다. 이 후보는 iOS 빌드와 로컬 서버를 통한 답변 수정·저장·재열람 검증을 마쳤고, 공개 서버 전환과 설치 후 실기기 확인이 남아 있습니다.
+As of November 19, 2026, the team had checked product search against the **1,977-product catalog** and opened the linked routine screen on an iPhone. The next candidate combines Senka brand search, an updated ingredient display for Rovectin cleansing water, and whole-routine AFA v4. It passed iOS builds and a local server test covering answer revision, saving, and reopening. Public API rollout and an on-device check of this combined candidate are pending.
 
-## 저장소 둘러보기
+## Explore the repository
 
-이 공개 저장소에서 바로 실행할 수 있는 범위는 **합성 입력을 사용하는 KB 개발판**입니다. 앱의 화면 구현은 [선별 공개한 앱 소스](https://github.com/rnehdud/ppopy/tree/codex/ios-app-source-share/app-snapshot)에서 볼 수 있습니다.
-
-- [KB 기준](KB/README.md) · [로컬 판단 엔진](skin_engine/kb_preview/README.md) · [실행 방법과 검증 결과](docs/verification.md)
-- [소프트웨어공학 설계와 스마트 미러 제안](courses/software-engineering/README.md) · [AI 연구 및 평가 설계](courses/ai-applications/README.md)
-- [공개 범위](docs/repository-scope.md) · [공개 파일의 출처](docs/source-manifest.json)
+Start with the [local KB preview](skin_engine/kb_preview/README.md) to run a synthetic routine check. The [app source snapshot](https://github.com/rnehdud/ppopy/tree/codex/ios-app-source-share/app-snapshot) shows selected iOS app screens. The [verification guide](docs/verification.md) documents what the public preview tests and where its results differ from the original expectations.
 
 <details>
-<summary>과목별 제안서 원문과 팀 구성 (영문)</summary>
+<summary>Original course proposals and project teams</summary>
 
 ## ITE 351: AI & Applications — Group Project Proposal
 
