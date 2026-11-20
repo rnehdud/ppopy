@@ -83,3 +83,37 @@ python3 tools/verify_source_manifest.py
 ```
 
 The snapshot's KB structure checks pass, but its original 57-case acceptance audit retains five documented mismatches. It is a development preview, not a trained AI agent or a production release. See the verification page before reporting test results.
+
+## Product update (November 19, 2026)
+
+Ppopy is an iPhone app that helps people decide what to keep or change in their skincare routine. Users choose the products they actually use in the morning and evening. Ppopy reviews that routine against guidance on cleansing, moisturizing, and sun protection. Popo, the in-app guide, asks one question at a time when the answer could change the advice.
+
+### What users can do
+
+| Screen | What happens there |
+| --- | --- |
+| Explore | Search by brand or product name, or take a photo of the packaging. Open a match to see its size and full ingredient list when available. |
+| My Products | Keep an inventory of products, including ones the user owns but has yet to start using. |
+| My Routine | Choose products from the inventory and arrange them in morning and evening application order. |
+| Routine Check | Review the routine, report any discomfort, and answer relevant questions. Editing an earlier answer updates the guidance that depended on it. |
+| Saved Checks | Reopen a saved check and read the guidance from that session. |
+
+### How a routine becomes guidance
+
+| Component | Responsibility |
+| --- | --- |
+| iOS app (React and Capacitor) | Captures product photos, displays search results, and lets users edit routines, answer questions, and review results. |
+| Product catalog | Links search results, ingredient lists, and routine entries by product ID and version. Products with missing or conflicting labels stay searchable while ingredient-specific judgments remain on hold. |
+| Knowledge base (KB) and decision engine | Compare confirmed product use and user observations with rules and exceptions for cleansing, moisturizing, and sun protection. Identify which steps to keep, adjust, or defer. |
+| Adaptive question selection (AFA) | Compares what each possible answer would change, selects a useful follow-up, and stops when further questions would leave the guidance unchanged. |
+| Backend (AWS HTTP API, Lambda, PostgreSQL) | Checks account access and consent, processes answers, and saves results. External search and photo recognition help identify products the catalog alone cannot match. |
+
+For example, someone reporting a recent breakout may be unsure what changed. Ppopy can ask about repeated rubbing if the answer would change its advice. If the user revises an earlier answer and that question no longer applies, the related guidance disappears. The check leaves the cause of the breakout open.
+
+### Release candidate status
+
+As of November 19, 2026, the team had checked product search against the **1,977-product catalog** and opened the linked routine screen on an iPhone. The next candidate combines Senka brand search, an updated ingredient display for Rovectin cleansing water, and whole-routine AFA v4. It passed iOS builds and a local server test covering answer revision, saving, and reopening. Public API rollout and an on-device check of this combined candidate are pending.
+
+### Explore the repository
+
+Start with the [local KB preview](skin_engine/kb_preview/README.md) to run a synthetic routine check. The [app source snapshot](https://github.com/rnehdud/ppopy/tree/codex/ios-app-source-share/app-snapshot) shows selected iOS app screens. The [verification guide](docs/verification.md) documents what the public preview tests and where its results differ from the original expectations.
