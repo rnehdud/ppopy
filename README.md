@@ -84,11 +84,15 @@ python3 tools/verify_source_manifest.py
 
 The snapshot's KB structure checks pass, but its original 57-case acceptance audit retains five documented mismatches. It is a development preview, not a trained AI agent or a production release. See the verification page before reporting test results.
 
-## Product update (November 19, 2026)
+## Phase 2 C/D · Product update (November 20, 2026)
+
+[Read the IEEE C/D report (PDF)](courses/software-engineering/submissions/phase2/2026-11-20/Ppopy_Submission_CD.pdf) · [LaTeX source](courses/software-engineering/submissions/phase2/2026-11-20/Ppopy_Submission_CD.tex)
 
 Ppopy is an iPhone app that helps people decide what to keep or change in their skincare routine. Users choose the products they actually use in the morning and evening. Ppopy reviews that routine against guidance on cleansing, moisturizing, and sun protection. Popo, the in-app guide, asks one question at a time when the answer could change the advice.
 
-### What users can do
+### V. Architecture Design & Implementation (Partial)
+
+#### iPhone workflow and components
 
 | Screen | What happens there |
 | --- | --- |
@@ -98,7 +102,7 @@ Ppopy is an iPhone app that helps people decide what to keep or change in their 
 | Routine Check | Review the routine, report any discomfort, and answer relevant questions. Editing an earlier answer updates the guidance that depended on it. |
 | Saved Checks | Reopen a saved check and read the guidance from that session. |
 
-### How a routine becomes guidance
+#### How a routine becomes guidance
 
 | Component | Responsibility |
 | --- | --- |
@@ -108,11 +112,19 @@ Ppopy is an iPhone app that helps people decide what to keep or change in their 
 | Adaptive question selection (AFA) | Compares what each possible answer would change, selects a useful follow-up, and stops when further questions would leave the guidance unchanged. |
 | Backend (AWS HTTP API, Lambda, PostgreSQL) | Checks account access and consent, processes answers, and saves results. External search and photo recognition help identify products the catalog alone cannot match. |
 
+### VI. Use Cases
+
+| Use case | Specification | Verification |
+| --- | --- | --- |
+| Find a product and read its matched ingredient label | R2 and Q2 | Search for Senka, open the standalone Perfect Whip Facial Wash, then compare the Rovectin 400 mL label. The 1,977-product catalog and five label states passed automated checks. |
+| Revise a recent-breakout answer, then save and reopen | R3–R7 and Q3 | Change an earlier answer and verify that the dependent guidance disappears. Revision, saving and reopening passed with the member HTTP path and disposable PostgreSQL. |
+| Compare sunscreen-removal answers in the same routine | R4–R6 and Q3 | Use the published synthetic case to compare a cleansing-water answer with a foam answer. [Steps and screenshots](KB/Poppy_KB_v0.6.1/case-6/README.md) |
+
 For example, someone reporting a recent breakout may be unsure what changed. Ppopy can ask about repeated rubbing if the answer would change its advice. If the user revises an earlier answer and that question no longer applies, the related guidance disappears. The check leaves the cause of the breakout open.
 
 ### Release candidate status
 
-As of November 19, 2026, the team had checked product search against the **1,977-product catalog** and opened the linked routine screen on an iPhone. The next candidate combines Senka brand search, an updated ingredient display for Rovectin cleansing water, and whole-routine AFA v4. It passed iOS builds and a local server test covering answer revision, saving, and reopening. Public API rollout and an on-device check of this combined candidate are pending.
+On November 20, 2026, the combined Senka, Rovectin and whole-routine AFA v4 candidate was deployed to the public API. Anonymous checks passed before and after the switch, and the signed app installed and launched on an iPhone 13 Pro. The combined on-device feature check is pending. Timing-based delivery and the authorized physical mirror remain integration targets.
 
 ### Explore the repository
 
