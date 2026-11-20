@@ -1,0 +1,121 @@
+{
+  "contract_sha256": "03d1551b7ee319b8fa5394e81e548573ed1062f161d622e1421575bb786e0456",
+  "files": {
+    "test_internal.jsonl": {
+      "bytes": 2781,
+      "sha256": "ff0574c88074b268c129257083dd214fe8429b531bf979aba22c64086fa686d7"
+    },
+    "train.jsonl": {
+      "bytes": 8973,
+      "sha256": "fe58da2d065efd832b8430fa4e6230a5d0e0127d461eab7bb5a0d56c02ec042b"
+    },
+    "val_internal.jsonl": {
+      "bytes": 2809,
+      "sha256": "3f52cf2231586a07e7d08c4dd711f64a0fdf2ed47739f4061b4b7db16f8ede04"
+    }
+  },
+  "generator_sha256": "9f7e448ea49dcaa781f85f8887decea5ab0b305190dfa80642e7a2415635bb6c",
+  "limitations": [
+    "10 small pre-inspected design worlds, not an unseen external test",
+    "No guarantee of semantic-family/product-family separation; same rule/product/template pool",
+    "No model selection or generalization claim from this bundle",
+    "environment_only responses/reference/IDs/provenance must not enter policy observations",
+    "No Gym environment, NLP, product retrieval or RL training implemented"
+  ],
+  "mode": "development_preview",
+  "origin": "standalone_stage0_design_grid_not_v67_derived",
+  "production_enabled": false,
+  "review": {
+    "approved_reference": false,
+    "human_review": "unreviewed",
+    "training_ready": false
+  },
+  "source_audit_inputs": {
+    "canonical-candidates-v67.jsonl": "71a25422de8fa139db07249e1676d751ca0b0474bedb7d65e1bd09275bf4907a",
+    "v67-sft-manifest.json": "e66dde9e7ffba0bb5ec29ef89bd76bf773938b2d443d5b630f4b95b517475403",
+    "v67-sft-test-internal.jsonl": "e565a376d8c28dc1801f6552e97c72b1b5621a4d90e8f3d0d79ca0540d34b1cc",
+    "v67-sft-train.jsonl": "4a7e441f16908af6664fc9ff9d7cdb13d4a7567604323a084c54c52a14e40472",
+    "v67-sft-val-internal.jsonl": "c93110715e72b3dd925a7707fad53bc4648c585a1d78691c406592a24e6a4a67"
+  },
+  "split_cards": {
+    "test_internal": {
+      "B-C01": 1,
+      "B-C02": 1
+    },
+    "train": {
+      "B-C01": 1,
+      "B-C02": 5
+    },
+    "val_internal": {
+      "B-C01": 1,
+      "B-C02": 1
+    }
+  },
+  "split_counts": {
+    "test_internal": 2,
+    "train": 6,
+    "val_internal": 2
+  },
+  "split_rule": "within each card sort canonical response-world SHA256; first=val, second=test, rest=train",
+  "split_unit": "whole world; all future question orders/repetitions/variants inherit parent split",
+  "stage0_checker_sha256": "fba1bef7d38942628de0465b3f87389519e8503f069385886c473b0bee798670",
+  "stage0_eligibility": {
+    "B-C01:eligible": 3,
+    "B-C02:eligible": 7,
+    "B-C02:excluded": 9,
+    "eligible": 10,
+    "excluded_semantic_variation": 9
+  },
+  "v67_unchanged_compatibility": {
+    "by_effective_split": {
+      "test_internal": {
+        "excluded": 91
+      },
+      "train": {
+        "excluded": 858
+      },
+      "val_internal": {
+        "excluded": 76
+      }
+    },
+    "counts": {
+      "excluded": 1025
+    },
+    "cross_split_supported_world_collisions": 0,
+    "integrity": {
+      "action_distribution": {
+        "ask_user": 711,
+        "confirm_candidate": 442,
+        "hold": 665,
+        "request_draft": 223,
+        "resolve_conflict": 208,
+        "retrieve_evidence": 204
+      },
+      "overlap_counts": {
+        "cross_split_derived_from": 0,
+        "group_id": 0,
+        "normalized_utterances": 0,
+        "product_family_id": 0,
+        "scenario_family_id": 0
+      },
+      "scenarios": 1025,
+      "scope": "integrity, recorded lineage and explicit policy constraints; not full semantic/clinical approval",
+      "split_turns": {
+        "test_internal": 252,
+        "train": 1980,
+        "val_internal": 221
+      },
+      "status": "passed",
+      "turns": 2453
+    },
+    "reason_counts_nonexclusive": {
+      "initial_context_not_stage0_fixture": 602,
+      "missing_response": 8,
+      "multiple_turns_need_event_model": 576,
+      "outside_fixed_single_card_scope": 423,
+      "unsupported_response_state_value_or_time": 14
+    },
+    "scope": "Unchanged-source compatibility only. Multi-turn events are not flattened. No v67 rows exported to the standalone grid bundle."
+  },
+  "version": "afa-stage1-v1"
+}

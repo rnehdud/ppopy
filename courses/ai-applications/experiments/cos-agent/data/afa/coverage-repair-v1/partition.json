@@ -1,0 +1,31 @@
+{
+  "version": "afa-coverage-repair-0.1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "purpose": "Internal coverage repair after the observed v2 composition gap; not a new independent evaluation",
+  "source_bundle": "data/afa/joint-v2-v1",
+  "same_48_preinspected_worlds": true,
+  "split_family_counts": {"train": 10, "val_internal": 3, "test_internal": 3},
+  "strata": {
+    "hands": {"train": 2, "val_internal": 1, "test_internal": 1},
+    "tool_difference": {"train": 8, "val_internal": 2, "test_internal": 2}
+  },
+  "stratum_definition": "method.tools == hands versus the other three declared tools; structural raw-input category, not a human difficulty label",
+  "assignment_salt": "afa-structural-coverage-repair-20261117",
+  "assignment_rule": "within stratum sort SHA256(salt,stratum,family_id); fixed train/val_internal/test_internal quotas",
+  "selection_inputs": "family input values and declared quotas only; no reward, baseline scores, learned policy or optimal-cost results",
+  "world_ids_and_answers": "preserve root/family IDs, responses, references and original split provenance; only this version's split membership changes",
+  "nonanswer_or_correction_derivatives": "not added; future variants require shared-parent and effective-response duplicate grouping",
+  "cost_or_gate_changes": false,
+  "required_presence": ["hands", "tool_difference"],
+  "known_infeasible_requirements": [
+    "all four tool values in every split: val/test each have only three families",
+    "hands+gentle+pat_gently in every split: that indivisible family exists only once"
+  ],
+  "human_review": "unreviewed",
+  "approved_reference": false,
+  "independent_evaluation": false,
+  "performance_protocol_frozen": false,
+  "policy_scoring_authorized_in_this_step": false,
+  "learning_executed": false
+}

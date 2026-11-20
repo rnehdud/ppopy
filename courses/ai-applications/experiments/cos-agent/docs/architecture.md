@@ -1,5 +1,7 @@
 # 구조 결정 ADR 001
 
+이 ADR은 초기 합성 구현 기록입니다. [현재 목표 구조](agent-runtime-target.md)에서는 Python이 조회·실행·대기·종료를 맡고 AFA가 질문을 고릅니다.
+
 상태: 초기 제안 / 합성 프로토타입 구현. 2026-11-02.
 
 현재 PR #13의 별도 Python/CLI 루프는 [액션 중심 모듈형 구조](modular-agent-loop.md)를 따릅니다. Jev → Mapping Review → KB → ActionPlanner의 제안을 코드가 검증·dispatch합니다. 규칙 기반/Ollama/향후 SFT는 같은 액션 계약을 사용합니다. 아래 다이어그램의 기존 HTTP 경로는 질문 선택 방식을 유지하며 새 루프를 HTTP에 연결하지 않았습니다.

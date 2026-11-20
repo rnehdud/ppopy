@@ -1,0 +1,138 @@
+{
+  "manifest_version": "v67-sft-export-1.2",
+  "created_at_utc": "2026-11-14T14:27:41.562010+00:00",
+  "source_snapshot": "canonical-candidates-v67.jsonl",
+  "source_sha256": "71a25422de8fa139db07249e1676d751ca0b0474bedb7d65e1bd09275bf4907a",
+  "clean_scenarios": 1025,
+  "excluded_scenarios": 76,
+  "total_sft_turns": 2453,
+  "train_turns": 1980,
+  "val_internal_turns": 221,
+  "test_internal_turns": 252,
+  "train_file": "v67-sft-train.jsonl",
+  "train_sha256": "4a7e441f16908af6664fc9ff9d7cdb13d4a7567604323a084c54c52a14e40472",
+  "val_internal_file": "v67-sft-val-internal.jsonl",
+  "val_internal_sha256": "c93110715e72b3dd925a7707fad53bc4648c585a1d78691c406592a24e6a4a67",
+  "test_internal_file": "v67-sft-test-internal.jsonl",
+  "test_internal_sha256": "e565a376d8c28dc1801f6552e97c72b1b5621a4d90e8f3d0d79ca0540d34b1cc",
+  "label_source_counts": {
+    "baseline_with_ko_reason": 528,
+    "authored_proposal": 1925
+  },
+  "action_distribution": {
+    "ask_user": 711,
+    "request_draft": 223,
+    "confirm_candidate": 442,
+    "hold": 665,
+    "retrieve_evidence": 204,
+    "resolve_conflict": 208
+  },
+  "train_action_distribution": {
+    "ask_user": 561,
+    "confirm_candidate": 362,
+    "hold": 566,
+    "request_draft": 145,
+    "retrieve_evidence": 160,
+    "resolve_conflict": 186
+  },
+  "val_internal_action_distribution": {
+    "request_draft": 38,
+    "ask_user": 58,
+    "confirm_candidate": 42,
+    "hold": 50,
+    "resolve_conflict": 11,
+    "retrieve_evidence": 22
+  },
+  "test_internal_action_distribution": {
+    "hold": 49,
+    "ask_user": 92,
+    "request_draft": 40,
+    "retrieve_evidence": 22,
+    "confirm_candidate": 38,
+    "resolve_conflict": 11
+  },
+  "unique_kb_cards": 58,
+  "b_p07_count": 0,
+  "kb_compatibility": {
+    "total_scenarios": 1025,
+    "total_turns": 2453,
+    "total_known_observations": 1791,
+    "dict_wrapped_known_observations": 199,
+    "turns_with_unrecognized_fields": 0,
+    "top_unrecognized_fields": [],
+    "cards_reaching_resolved_status_count": 41,
+    "cards_reaching_resolved_status": [
+      "B-B01",
+      "B-C01",
+      "B-C02",
+      "B-C05",
+      "B-G01",
+      "B-G02",
+      "B-G03",
+      "B-G04",
+      "B-G06",
+      "B-G07",
+      "B-G09",
+      "B-G10",
+      "B-G11",
+      "B-G12",
+      "B-G17",
+      "B-H01",
+      "B-H02",
+      "B-I01",
+      "B-I02",
+      "B-L01",
+      "B-L02",
+      "B-L03",
+      "B-M01",
+      "B-M02",
+      "B-M03",
+      "B-M04",
+      "B-M05",
+      "B-P02",
+      "B-P04",
+      "B-P05",
+      "B-P06",
+      "B-P08",
+      "B-Q01",
+      "B-Q04",
+      "B-Q06",
+      "B-S01",
+      "B-S03",
+      "B-S04",
+      "B-S05",
+      "B-S06",
+      "B-S07"
+    ]
+  },
+  "leakage_verification": {
+    "zero_leakage_verified": true,
+    "overlap_counts": {
+      "group_id": 0,
+      "scenario_family_id": 0,
+      "product_family_id": 0,
+      "normalized_utterances": 0,
+      "cross_split_derived_from": 0
+    }
+  },
+  "policy_violations": 0,
+  "char_length_stats": {
+    "min": 3427,
+    "p50": 5956,
+    "p95": 9475,
+    "max": 14257
+  },
+  "review": {
+    "reviewer_id": "user-authorized-agent-review",
+    "review_mode": "agent_policy_audit_with_user_authorization",
+    "approved_reference": true,
+    "synthetic": true
+  },
+  "boundaries": {
+    "development_preview": true,
+    "production_enabled": false,
+    "training_ready": true,
+    "independent_evaluation_ready": false,
+    "note": "val_internal is leakage-free from train on group/family/product/utterance, but shares TRAIN_PRODUCTS/generation pool; external VAL_PRODUCTS/HOLDOUT_PRODUCTS evaluation remains separate."
+  }
+}
