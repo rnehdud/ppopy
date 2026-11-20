@@ -29,6 +29,8 @@ We plan to compare the agent with a general-purpose language model using the sam
 
 ### Latest Phase 2 submissions — 2026-11-06
 
+PDFs: [Submission A](Ppopy_Submission_A.pdf) · [Submission B](Ppopy_Submission_B.pdf) (includes A).
+
 The [Revised A and B LaTeX sources](courses/software-engineering/submissions/phase2/2026-11-06/README.md) specify history-based routine timing, context-dependent KB review and advance guidance on one authorized, output-only mirror. Questions, settings and plan approval remain in the app. This revision uses confirmed actual-use times for proactive delivery rather than a presence sensor.
 
 ### Initial proposal concept
