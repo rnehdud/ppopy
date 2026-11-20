@@ -104,6 +104,8 @@ Ppopy is an iPhone app that helps people decide what to keep or change in their 
 
 #### How a routine becomes guidance
 
+[View the deployed AWS architecture diagram](courses/software-engineering/architecture/ppopy-aws-architecture.svg).
+
 | Component | Responsibility |
 | --- | --- |
 | iOS app (React and Capacitor) | Captures product photos, displays search results, and lets users edit routines, answer questions, and review results. |

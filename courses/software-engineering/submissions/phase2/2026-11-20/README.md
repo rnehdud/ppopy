@@ -10,24 +10,13 @@ This update continues [Submission B](../2026-11-06/Ppopy_Submission_B.tex). Its 
 
 ### A. Overall architecture
 
-```mermaid
-flowchart LR
-    App["iOS app<br/>Search, edit routines, answer questions"]
-    API["AWS API Gateway + Lambda<br/>Check access and handle requests"]
-    Catalog["Product catalog<br/>Product IDs, versions, and labels"]
-    DB["PostgreSQL<br/>Account and routine records"]
-    KB["KB decision engine<br/>Compare confirmed use with rules"]
-    AFA["Adaptive question selection<br/>Ask or stop"]
-    Mirror["Authorized smart mirror<br/>Planned output-only display"]
-    App <-->|"HTTPS requests and results"| API
-    API <-->|"Versioned product lookup"| Catalog
-    API <-->|"Read and save"| DB
-    API -->|"Confirmed products, routine, and answers"| KB
-    Catalog -->|"Product facts"| KB
-    KB -->|"Possible actions and unresolved facts"| AFA
-    AFA -->|"Next question or guidance"| API
-    API -.->|"Planned proactive delivery"| Mirror
-```
+![Ppopy's deployed AWS architecture showing the iPhone app, API Gateway, Lambda, Aurora, external providers, and background services](../../../architecture/ppopy-aws-architecture.svg)
+
+The iPhone app sends HTTPS requests to API Gateway. A Python Lambda handles account access, product lookup, and routine checks. It reads and writes account and routine data in Aurora PostgreSQL through the RDS Data API. The versioned catalog, knowledge base (KB), and adaptive question selection (AFA) run in the backend, and a bundled catalog and optical character recognition (OCR) also support lookup on the device.
+
+Apple, Google, and Kakao provide sign-in. The optional OpenAI connection supports product discovery and photo matching. EventBridge schedules background cleanup, and CloudWatch can notify the operator through SNS. The planned mirror is described in Section V.F.
+
+The layout follows the course slide “Serverless web application” (slide 85). [AWS architecture icons](https://aws.amazon.com/architecture/icons/) are used for AWS services.
 
 ### B. Directory organization
 
