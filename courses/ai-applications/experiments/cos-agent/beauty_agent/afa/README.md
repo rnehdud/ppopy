@@ -4,6 +4,39 @@
 
 먼저 [AFA 시작 안내](../../docs/afa-policy-guide.md)를 본다. 코드는 역할별 모듈로 유지하고, 이 목차로 현재 v2와 이전 v1을 구분한다. 모듈 경로를 바꾸면 CLI·import·실험 해시에 영향을 주므로 이번 구조 정리에서는 이동하지 않았다.
 
+## 런타임용 Myopic VOI
+
+```python
+from beauty_agent.afa.question_priority import MyopicVOIAFAPolicy
+from beauty_agent.runtime import AgentRuntime
+
+runtime = AgentRuntime(afa_policy=MyopicVOIAFAPolicy())
+```
+
+런타임에서 선택된 전체 카드 집합과 현재 관찰을 고정하고, 각 질문에 KB 분기 값 하나씩 가상 대입한다. `decision_change_rate`는 현재 결과와 달라진 답의 비율이고, `expected_pruned`는 그 답으로 사라지는 다른 열린 질문 수의 평균이다. `distinct_outcomes`는 가상 답들이 만든 고유한 결과 수다. 답의 가중치는 균등하다. 질문별 `question_costs`와 `safety_weights`는 기본값 1이며, 각 점수의 우선순위에 안전 가중치 / 비용 비율을 곱한다. 종료는 유효한 후보가 없을 때 런타임의 현재 근거 및 보류 상태에 따른다.
+
+`score_candidates(...)`의 `AFACandidateScore` 모델과 `runtime.get_session(request_id).afa_question_scores`에서 질문의 선택·제외 사유를 조회할 수 있다. 정책을 단독 호출할 때는 `card_ids`를 생성자에 지정하면 질문을 만들지 않는 카드의 판정도 비교에 포함된다.
+
+1단계 AFA는 한 답으로 판정이 바뀌는 후보만 선택한다. AFA가 `stop(insufficient)`를 반환하면 Control Plane이 현재 답과 양립하는 KB 분기를 최대 두 답까지 별도로 확인한다. 가상 답 순서가 실제 질문 후보를 따라갈 수 있고 최종 판정이 바뀌면 첫 질문만 제시한다. 실제 답을 받아 다시 평가한다. 세션의 `afa_hold_review_slot`은 이 단계에서 제시한 질문을 나타내며 같은 턴의 1단계 점수는 `zero_impact`를 유지한다. `stop_lookahead=1`로 Control Plane의 보류 전 확인을 끌 수 있고, `stop_lookahead=3`으로 세 답까지 시험할 수 있다. 비교 명령에 `--dependency-lookahead 2 --dependency-lookahead 3`을 붙이면 두 변형을 같은 사례에 추가한다.
+
+```powershell
+uv run --locked pytest -q -s tests/afa/core/test_myopic_voi.py -k synthetic_comparison
+uv run --locked python -m beauty_agent.afa.myopic_evaluation --output ../../../../outputs/myopic-comparison.json
+```
+
+확장 비교는 KB 분기에서 만든 조건, 여러 카드가 함께 활성화되는 합성 조건, v67 E22의 train 파생 4건을 사용한다. 같은 환경에서 고정 순서와 Myopic VOI의 질문 수 및 최종 판정 일치율을 비교한다. 보고서에는 전체 합성 응답을 처음부터 공개했을 때의 KB 판정도 담긴다.
+
+기존 PPO까지 비교하려면 `uv run --locked --group rl-train python -m beauty_agent.afa.myopic_evaluation --ppo-model <checkpoint.zip> --output ../../../../outputs/myopic-ppo-comparison.json`을 실행한다. 기존 B-C02 라우터가 허용하는 턴에만 신뢰할 수 있는 로컬 체크포인트를 사용한다. 보고서는 모델이 선택한 질문, 지원 범위 밖 규칙 선택, 모델 시도 후 규칙 복구를 구분한다.
+
+E51의 4정책 비교는 기존 78조건과 추가 합성 98조건을 따로 집계한다. 실험 폴더에서 다음 명령을 실행한다.
+
+```powershell
+uv run --locked python -m beauty_agent.afa.paired_evaluation --freeze --fixtures ../../../../outputs/paired-fixtures.json
+uv run --locked --group rl-train python -m beauty_agent.afa.paired_evaluation --fixtures ../../../../outputs/paired-fixtures.json --ppo-model <checkpoint.zip> --output ../../../../outputs/paired-report.json
+```
+
+보고서는 전체 합성 답을 처음부터 알려 준 기준과의 사용자 응답·내부 KB 판정 일치, 질문 수, 필수 보류, 로컬 턴 처리 시간과 PPO 사용 범위를 기록한다.
+
 ## 현재 v2 — 두 카드 공동 질문 환경
 
 실험 기록·그래프는 [MLflow 안내](../../docs/afa-mlflow.md)를 본다. [tracking.py](tracking.py)는 과거 결과 가져오기와 향후 기록 인터페이스를 제공하며, 학습·환경을 실행하지 않는다.

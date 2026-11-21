@@ -31,6 +31,8 @@ We plan to compare the agent with a general-purpose language model using the sam
 
 ### Latest Phase 2 submissions — 2026-11-06
 
+PDFs: [Submission A](Ppopy_Submission_A.pdf) · [Submission B](Ppopy_Submission_B.pdf) (includes A).
+
 The [Revised A and B LaTeX sources](courses/software-engineering/submissions/phase2/2026-11-06/README.md) specify history-based routine timing, context-dependent KB review and advance guidance on one authorized, output-only mirror. Questions, settings and plan approval remain in the app. This revision uses confirmed actual-use times for proactive delivery rather than a presence sensor.
 
 ### Initial proposal concept
@@ -69,7 +71,7 @@ The 2026-11-05 import reuses selected KB and development-preview files from the 
 | [Natural-language feature extraction PoC](courses/ai-applications/experiments/cos-agent/README.md) | Isolated Jev experiments, synthetic cases, regression tests and exploratory evaluation |
 | [AFA Policy starting guide](courses/ai-applications/experiments/cos-agent/docs/afa-policy-guide.md) | Reading order, code and data map, current test commands and progress evidence |
 | [AFA / QLoRA synthetic dataset v67](courses/ai-applications/experiments/cos-agent/data/action_policy/v67/README.md) | Team usage guide, frozen train/validation/test splits and verification |
-| [Knowledge base](KB/README.md) | Inactive v0.6 draft: cleansing, moisturizing and sun protection |
+| [Knowledge base](KB/README.md) | v0.6.1 KB, sunscreen removal rules and worked case 6 |
 | [Local preview](skin_engine/kb_preview/README.md) | Runnable structured rule engine, source tracing and follow-up handling |
 | [Repository scope](docs/repository-scope.md) | Reuse policy, export boundaries and future integration |
 | [Verification](docs/verification.md) | Reproduction commands, observed results and five open acceptance mismatches |
@@ -87,3 +89,51 @@ python3 tools/verify_source_manifest.py
 ```
 
 The snapshot's KB structure checks pass, but its original 57-case acceptance audit retains five documented mismatches. It is a development preview, not a trained AI agent or a production release. See the verification page before reporting test results.
+
+## Phase 2 C/D · Product update (November 20, 2026)
+
+[Read the full C/D update on GitHub](courses/software-engineering/submissions/phase2/2026-11-20/README.md)
+
+Ppopy is an iPhone app that helps people decide what to keep or change in their skincare routine. Users choose the products they actually use in the morning and evening. Ppopy reviews that routine against guidance on cleansing, moisturizing, and sun protection. Popo, the in-app guide, asks one question at a time when the answer could change the advice.
+
+### V. Architecture Design & Implementation (Partial)
+
+#### iPhone workflow and components
+
+| Screen | What happens there |
+| --- | --- |
+| Explore | Search by brand or product name, or take a photo of the packaging. Open a match to see its size and full ingredient list when available. |
+| My Products | Keep an inventory of products, including ones the user owns but has yet to start using. |
+| My Routine | Choose products from the inventory and arrange them in morning and evening application order. |
+| Routine Check | Review the routine, report any discomfort, and answer relevant questions. Editing an earlier answer updates the guidance that depended on it. |
+| Saved Checks | Reopen a saved check and read the guidance from that session. |
+
+#### How a routine becomes guidance
+
+[View the deployed AWS architecture diagram](courses/software-engineering/architecture/ppopy-aws-architecture.svg).
+
+| Component | Responsibility |
+| --- | --- |
+| iOS app (React and Capacitor) | Captures product photos, displays search results, and lets users edit routines, answer questions, and review results. |
+| Product catalog | Links search results, ingredient lists, and routine entries by product ID and version. Products with missing or conflicting labels stay searchable while ingredient-specific judgments remain on hold. |
+| Knowledge base (KB) and decision engine | Compare confirmed product use and user observations with rules and exceptions for cleansing, moisturizing, and sun protection. Identify which steps to keep, adjust, or defer. |
+| Adaptive question selection (AFA) | Compares what each possible answer would change, selects a useful follow-up, and stops when further questions would leave the guidance unchanged. |
+| Backend (AWS HTTP API, Lambda, PostgreSQL) | Checks account access and consent, processes answers, and saves results. External search and photo recognition help identify products the catalog alone cannot match. |
+
+### VI. Use Cases
+
+| Use case | Specification | Verification |
+| --- | --- | --- |
+| Find a product and read its matched ingredient label | R2 and Q2 | Search for Senka, open the standalone Perfect Whip Facial Wash, then compare the Rovectin 400 mL label. The 1,977-product catalog and five label states passed automated checks. |
+| Revise a recent-breakout answer, then save and reopen | R3–R7 and Q3 | Change an earlier answer and verify that the dependent guidance disappears. Revision, saving and reopening passed with the member HTTP path and disposable PostgreSQL. |
+| Compare sunscreen-removal answers in the same routine | R4–R6 and Q3 | Use the published synthetic case to compare a cleansing-water answer with a foam answer. [Steps and screenshots](KB/Poppy_KB_v0.6.1/case-6/README.md) |
+
+For example, someone reporting a recent breakout may be unsure what changed. Ppopy can ask about repeated rubbing if the answer would change its advice. If the user revises an earlier answer and that question no longer applies, the related guidance disappears. The check leaves the cause of the breakout open.
+
+### Release candidate status
+
+On November 20, 2026, the combined Senka, Rovectin and whole-routine AFA v4 candidate was deployed to the public API. Anonymous checks passed before and after the switch, and the signed app installed and launched on an iPhone 13 Pro. The combined on-device feature check is pending. Timing-based delivery and the authorized physical mirror remain integration targets.
+
+### Explore the repository
+
+Start with the [local KB preview](skin_engine/kb_preview/README.md) to run a synthetic routine check. The [app source snapshot](https://github.com/rnehdud/ppopy/tree/codex/ios-app-source-share/app-snapshot) shows selected iOS app screens. The [verification guide](docs/verification.md) documents what the public preview tests and where its results differ from the original expectations.

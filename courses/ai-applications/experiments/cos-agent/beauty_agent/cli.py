@@ -2,22 +2,17 @@
 from __future__ import annotations
 
 import argparse
-import json
 from pathlib import Path
 from uuid import uuid4
 import warnings
 from zipfile import BadZipFile
 
+from .afa.question_priority import MyopicVOIAFAPolicy
 from .catalog_adapter import AuroraCatalogAdapter, SyntheticCatalogAdapter
 from .contracts import ObservationSlot, OwnedProduct, Profile
-from .nlp_layer import (
-    NLPLayer,
-    interpret_candidate_confirmation,
-    interpret_slot_answer,
-    load_jev_api_key,
-)
+from .nlp_layer import NLPLayer, load_jev_api_key
 from .runtime import AgentRuntime, RoutedAFAPolicy
-from .runtime_contracts import CandidateConfirmationInput, RuntimeTurnRequest, RuntimeTurnResponse
+from .runtime_contracts import ChoiceSelection, RuntimeQuestion, RuntimeTurnRequest, RuntimeTurnResponse
 
 
 def _demo_cleanser() -> OwnedProduct:
@@ -64,6 +59,7 @@ def format_response(resp: RuntimeTurnResponse) -> str:
     if resp.questions:
         for q in resp.questions:
             lines.append(f"  ? 질문 [{q.id}]: {q.text}")
+            lines.extend(f"    {number}. {choice.label}" for number, choice in enumerate(q.choices, 1))
     if resp.hold_reason:
         lines.append(f"  ! 보류: {resp.hold_reason}")
     if resp.recommendation:
@@ -105,7 +101,9 @@ def build_runtime(ppo_model_path: Path | None = None, *, use_remote_jev: bool = 
     nlp = NLPLayer(use_remote_jev=use_remote_jev and load_jev_api_key() is not None)
     return AgentRuntime(
         nlp_layer=nlp,
-        afa_policy=RoutedAFAPolicy(ppo_policy=ppo_policy),
+        afa_policy=(
+            MyopicVOIAFAPolicy() if ppo_model_path is None else RoutedAFAPolicy(ppo_policy=ppo_policy)
+        ),
         catalog_adapter=catalog,
         auto_apply_nlp_features=True,
     )
@@ -160,12 +158,16 @@ def run_scripted_demo(runtime: AgentRuntime) -> None:
 
 def run_interactive(runtime: AgentRuntime) -> None:
     req_id = f"cli-{uuid4().hex[:8]}"
-    last_question_id: str | None = None
-    first_turn = True
+    pending: RuntimeQuestion | None = None
     print("Ppopy 로컬 통합 CLI (합성 개발 프리뷰 · 무저장)")
-    print("명령어: /state (현재 세션 상태), /quit (종료), 또는 질문에 대한 값 입력 (예: face, hands, lukewarm, unknown)")
+    if isinstance(runtime.afa_policy, MyopicVOIAFAPolicy):
+        print("질문 정책: Myopic VOI")
+    print("첫 요청은 문장으로 입력하고, 후속 질문에는 선택지 번호를 입력하세요. /state (세션 상태), /quit (종료)")
     while True:
-        raw = input("\n나 > ").strip()
+        try:
+            raw = input("\n선택 번호 > " if pending else "\n나 > ").strip()
+        except EOFError:
+            return
         if not raw:
             continue
         if raw == "/quit":
@@ -175,68 +177,35 @@ def run_interactive(runtime: AgentRuntime) -> None:
             print(state.model_dump_json(indent=2) if state else "{}")
             continue
 
-        observations: dict[str, ObservationSlot] = {}
-        confirmations: dict[str, CandidateConfirmationInput] = {}
-        message = raw
-        if "=" in raw and "." in raw.split("=", 1)[0]:
-            key, val = raw.split("=", 1)
-            observations[key.strip()] = _make_observation(key.strip(), val.strip())
-            message = ""
-        elif last_question_id and not first_turn and last_question_id.startswith("clarify:"):
-            conf = interpret_candidate_confirmation(
-                raw,
-                api_key=runtime.nlp_layer.api_key,
-            )
-            if conf is None:
-                print("\n에이전트 > 본인 경험 여부와 최근/지속 여부를 조금 더 명확히 답해 주세요 (예: 네 어제부터 계속 그래요 / 아니요).")
+        if pending is not None:
+            choices = {str(number): choice.id for number, choice in enumerate(pending.choices, 1)}
+            if raw not in choices:
+                print(f"화면에 나온 선택지 번호(1~{len(choices)})를 입력하세요.")
                 continue
-            confirmations[last_question_id] = conf
-            message = ""
-        elif last_question_id and not first_turn:
-            mapped = interpret_slot_answer(
-                last_question_id,
-                raw,
-                api_key=runtime.nlp_layer.api_key,
+            req = RuntimeTurnRequest(
+                request_id=req_id,
+                choice_selection=ChoiceSelection(
+                    turn_index=pending.turn_index, question_id=pending.id, choice_id=choices[raw],
+                ),
             )
-            if mapped is None:
-                print(f"\n에이전트 > 답변을 '{last_question_id}' 값으로 이해하지 못했습니다. 조금 더 명확히 답해 주세요 (또는 모름/거절).")
-                continue
-            state_kind, mapped_val = mapped
-            observations[last_question_id] = ObservationSlot(
-                variable_id=last_question_id,
-                state=state_kind,
-                value=mapped_val,
-                source="user_report",
-                confirmed_by_user=True,
+        else:
+            req = RuntimeTurnRequest(
+                request_id=req_id, message=raw, profile=Profile(confirmed=True), products=[_demo_cleanser()],
             )
-            # Clear raw message so a reply to e.g. method.drying ("수건으로...")
-            # is not re-interpreted by upfront extraction as method.tools=washcloth.
-            message = ""
-
-        req = RuntimeTurnRequest(
-            request_id=req_id,
-            message=message,
-            profile=Profile(confirmed=True) if first_turn else None,
-            products=[_demo_cleanser()] if first_turn else None,
-            observations=observations,
-            confirmations=confirmations,
-        )
-        first_turn = False
         resp = runtime.handle_turn(req)
         print("\n에이전트 >")
         print(format_response(resp))
-        last_question_id = resp.questions[0].id if resp.questions else None
+        pending = resp.questions[0] if resp.questions else None
         if resp.status in ("completed", "held"):
             print("\n[요청이 종료되었습니다. 새 요청을 시작하려면 /quit 후 다시 실행하거나 새 발화를 입력하세요.]")
             req_id = f"cli-{uuid4().hex[:8]}"
-            first_turn = True
-            last_question_id = None
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scripted", action="store_true", help="Run a fixed 2-turn synthetic demo.")
-    parser.add_argument("--ppo-model", type=Path, default=None, help="Optional trained B-C02 PPO .zip path.")
+    parser.add_argument("--ppo-model", type=Path, default=None,
+                        help="Use a trained B-C02 PPO .zip for comparison (default: Myopic VOI).")
     parser.add_argument("--offline-nlp", action="store_true", help="Force offline Kiwi NLP fallback.")
     args = parser.parse_args()
     runtime = build_runtime(args.ppo_model, use_remote_jev=not args.offline_nlp)

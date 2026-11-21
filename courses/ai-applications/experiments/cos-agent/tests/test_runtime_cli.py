@@ -8,6 +8,7 @@ from beauty_agent.runtime import AgentRuntime, RoutedAFAPolicy, RuleBasedAFAPoli
 from beauty_agent.runtime_contracts import (
     AFAStepDecision,
     CandidateConfirmationInput,
+    ChoiceSelection,
     QuestionCandidate,
     RuntimeTurnRequest,
 )
@@ -418,10 +419,77 @@ def test_cli_scripted_demo_runs_cleanly(capsys):
     assert "--- Turn 2" in captured.out
 
 
+def test_cli_default_uses_myopic_with_numbered_answers(monkeypatch, capsys):
+    for key in ("AURORA_CLUSTER_ARN", "AURORA_SECRET_ARN", "AURORA_DATABASE"):
+        monkeypatch.delenv(key, raising=False)
+    dialogue = iter([
+        "얼굴을 미온수로 세안해요. 세안 방법을 확인해 주세요.",
+        "손으로 세안해요.",
+        "99",
+        "1",
+        "1",
+        "1",
+        "/quit",
+    ])
+    monkeypatch.setattr("builtins.input", lambda _: next(dialogue))
+    runtime = build_runtime(use_remote_jev=False)
+    analyzed = []
+    analyze = runtime.nlp_layer.analyze
+
+    def track_analysis(message, **kwargs):
+        analyzed.append(message)
+        return analyze(message, **kwargs)
+
+    monkeypatch.setattr(runtime.nlp_layer, "analyze", track_analysis)
+    run_interactive(runtime)
+    output = capsys.readouterr().out
+    assert "질문 정책: Myopic VOI" in output
+    assert output.index("질문 [method.tools]") < output.index("질문 [method.drying]") < output.index(
+        "질문 [method.friction]"
+    )
+    assert "[상태: completed] (실행: recommend)" in output
+    assert len(analyzed) == 1
+    assert "1. 손으로만 세안" in output
+    assert "모르겠어요" in output and "건너뛰기" in output
+    assert output.count("화면에 나온 선택지 번호") == 2
+
+
+@pytest.mark.parametrize(("choice_id", "status"), [("recent", "awaiting_user"), ("repeated", "held")])
+def test_myopic_scores_symptom_confirmation_as_a_question(choice_id, status):
+    runtime = build_runtime(use_remote_jev=False)
+    request_id = "myopic-symptom"
+    first = runtime.handle_turn(RuntimeTurnRequest(
+        request_id=request_id, message="어제 손으로 세안했는데 아침에 일어나니까 턱에 뾰루지가 났네",
+    ))
+    question = first.questions[0]
+    session = runtime.get_session(request_id)
+    assert first.pending_action == "ask_user" and "confirm_candidate" not in first.executed_actions
+    assert session.afa_step_decision == AFAStepDecision(
+        action="acquire", target_feature=question.id, policy_source="myopic_voi",
+    )
+    scores = {score.slot_id: score for score in session.afa_question_scores}
+    assert scores[question.id].reason == "selected"
+    assert scores[question.id].decision_change_rate > 0
+    assert "method.drying" in scores
+    assert "skin.current_discomfort" not in session.confirmed_observations
+    assert len(question.choices) == 5
+    assert question.choices[0].id == "recent"
+    result = runtime.handle_turn(RuntimeTurnRequest(
+        request_id=request_id, choice_selection=ChoiceSelection(
+            turn_index=question.turn_index, question_id=question.id, choice_id=choice_id,
+        ),
+    ))
+    assert result.nlp is None and result.status == status
+    if status == "held":
+        assert not result.questions and runtime.get_session(request_id).afa_step_decision is None
+    else:
+        assert result.pending_action == "ask_user" and result.questions[0].id == "method.drying"
+
+
 def test_interactive_cleansing_answers_without_unrelated_sunscreen(monkeypatch, capsys):
     dialogue = iter([
         "얼굴을 미온수로 씻어요. 세안 방법을 확인해 주세요.",
-        "세안 브러시를 써요.",
+        "2",
         "/quit",
     ])
     monkeypatch.setattr("builtins.input", lambda _: next(dialogue))
@@ -492,7 +560,8 @@ def test_unrecognized_known_value_triggers_reask_and_updates_without_conflict():
     assert runtime.get_session(req_id).confirmed_observations["method.water_temperature"].value == "lukewarm"
 
 
-def test_confirm_candidate_persistent_symptom_triggers_safety_hold():
+@pytest.mark.parametrize("use_choice", [False, True])
+def test_confirm_candidate_persistent_symptom_triggers_safety_hold(use_choice):
     runtime = AgentRuntime(auto_apply_nlp_features=True)
     req_id = "test-confirm-persistent"
     t1 = runtime.handle_turn(
@@ -504,19 +573,23 @@ def test_confirm_candidate_persistent_symptom_triggers_safety_hold():
     )
     assert t1.status == "awaiting_user"
     assert "confirm_candidate" in t1.executed_actions
-    cid = t1.questions[0].id
+    question = t1.questions[0]
+    cid = question.id
     assert cid.startswith("clarify:")
 
     conf = interpret_candidate_confirmation("네 며칠째 계속 따가워요")
     assert conf is not None and conf.persistence == "persistent"
-    t2 = runtime.handle_turn(
-        RuntimeTurnRequest(
-            request_id=req_id,
-            confirmations={cid: conf},
-        )
-    )
+    if use_choice:
+        choice = next(option for option in question.choices if option.label == "본인에게 계속 있었음")
+        request = RuntimeTurnRequest(request_id=req_id, choice_selection=ChoiceSelection(
+            turn_index=question.turn_index, question_id=cid, choice_id=choice.id,
+        ))
+    else:
+        request = RuntimeTurnRequest(request_id=req_id, confirmations={cid: conf})
+    t2 = runtime.handle_turn(request)
     assert t2.status == "held"
     assert "hold" in t2.executed_actions
+    assert t2.nlp is None
 
 
 def test_confirm_candidate_denied_or_recent_proceeds_to_afa_completion():

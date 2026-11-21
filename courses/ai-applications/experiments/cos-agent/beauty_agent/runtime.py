@@ -7,17 +7,26 @@ from hashlib import sha256
 import json
 from typing import Callable
 
-from .afa.question_priority import rank_questions
+from .afa.question_priority import (
+    MyopicVOIAFAPolicy,
+    branch_values,
+    rank_questions,
+    required_product_evidence,
+    select_hold_review_question,
+)
 from .catalog_adapter import (
     AuroraCatalogAdapter,
     CatalogAdapter,
     DEFAULT_SYNTHETIC_CATALOG,
     SyntheticCatalogAdapter,
 )
-from .contracts import ObservationSlot, OwnedProduct, Profile, Question
+from .contracts import ObservationSlot, OwnedProduct, Profile
+from .followup_choices import observation_choices, symptom_choices
 from .modules.kb_adapter import KBEngineAdapter
 from .nlp_layer import NLPLayer
 from .runtime_contracts import (
+    ANSWERED_STATES,
+    MANDATORY_HOLD_SIGNALS,
     AFAHandoffResult,
     AFAPolicy,
     AFAStepDecision,
@@ -27,21 +36,15 @@ from .runtime_contracts import (
     RecommendationBundle,
     RecommendationItem,
     RuntimeActionKind,
+    RuntimeQuestion,
     RuntimeSessionState,
     RuntimeTurnRequest,
     RuntimeTurnResponse,
     ToolLookupResult,
 )
+from .v3_contracts import AFAStepDecision as V3AFAStepDecision
 
-ANSWERED_STATES = frozenset({"known", "unknown", "declined", "not_applicable"})
 C02_QUESTION_ORDER = ("method.tools", "method.friction", "method.drying")
-MANDATORY_HOLD_SIGNALS = frozenset(
-    {
-        "refer_for_professional_review",
-        "pause_specific_cosmetic_due_to_discomfort",
-        "pause_specific_product_pending_quality_check",
-    }
-)
 TOPIC_TO_CARDS: dict[str, tuple[str, ...]] = {
     "outdoor_sun": ("B-P01",),
     "cleansing_method": ("B-C01", "B-C02"),
@@ -414,19 +417,30 @@ class AgentRuntime:
         )
 
     def _await_question(
-        self, state: RuntimeSessionState, question: Question, action: RuntimeActionKind,
+        self, state: RuntimeSessionState, question_id: str, question_text: str, action: RuntimeActionKind,
         executed_actions: list[RuntimeActionKind], nlp: NLPExtractionResult | None,
+        *, symptom_confirmation: bool = False,
     ) -> RuntimeTurnResponse:
         executed_actions.append(action)
+        if action == "confirm_candidate" or symptom_confirmation:
+            choices, answers = symptom_choices(compact=symptom_confirmation)
+        else:
+            choices, answers = observation_choices(
+                question_id, branch_values(self.kb_adapter, state.active_cards, question_id),
+            )
+        state.turn_index += 1
+        question = RuntimeQuestion(
+            id=question_id, text=question_text, turn_index=state.turn_index, choices=choices,
+        )
         state.pending_question = question
+        state.pending_choice_answers = answers
         state.pending_action = action
         state.status = "awaiting_user"
-        state.turn_index += 1
         self._sessions[state.request_id] = state
         return RuntimeTurnResponse(
             request_id=state.request_id, status=state.status,
             executed_actions=executed_actions, pending_action=action,
-            questions=[question], nlp=nlp, tool_results=state.tool_results,
+            questions=[question.model_copy(deep=True)], nlp=nlp, tool_results=state.tool_results,
         )
 
     def handle_turn(self, request: RuntimeTurnRequest) -> RuntimeTurnResponse:
@@ -438,6 +452,7 @@ class AgentRuntime:
             not request.message.strip() and not request.observations
             and not request.confirmations and not request.resolve_conflicts
             and request.profile is None and request.products is None
+            and request.choice_selection is None
         )
         if (
             prev is not None and prev.status == "awaiting_user" and prev.pending_question is not None
@@ -449,6 +464,28 @@ class AgentRuntime:
                 questions=[prev.pending_question.model_copy(deep=True)],
                 tool_results=deepcopy(prev.tool_results),
             )
+        observations = request.observations
+        confirmations = request.confirmations
+        resolve_conflicts = request.resolve_conflicts
+        selection = request.choice_selection
+        if selection is not None:
+            if (
+                prev is None or prev.status != "awaiting_user" or prev.pending_question is None
+                or prev.pending_question.turn_index != selection.turn_index
+                or prev.pending_question.id != selection.question_id
+                or selection.choice_id not in prev.pending_choice_answers
+            ):
+                raise ValueError("stale question or invalid choice")
+            answer = prev.pending_choice_answers[selection.choice_id]
+            if isinstance(answer, ObservationSlot):
+                observations = {selection.question_id: answer}
+                previous_answer = prev.confirmed_observations.get(selection.question_id)
+                if prev.pending_action == "resolve_conflict" or (
+                    previous_answer is not None and previous_answer.state == "conflicting"
+                ):
+                    resolve_conflicts = (selection.question_id,)
+            else:
+                confirmations = {selection.question_id: answer}
         state = (
             prev.model_copy(deep=True)
             if prev is not None
@@ -460,8 +497,12 @@ class AgentRuntime:
         )
         state.last_turn_fingerprint = request_fingerprint
         state.pending_question = None
+        state.pending_choice_answers = {}
         state.pending_action = None
         state.afa_handoff = None
+        state.afa_step_decision = None
+        state.afa_question_scores = []
+        state.afa_hold_review_slot = None
         if prev is not None:
             if request.profile is not None:
                 state.profile = request.profile.model_copy(deep=True)
@@ -473,8 +514,8 @@ class AgentRuntime:
                         state.tool_results.pop(f"alternative:{product.product_id}", None)
                 state.products = [p.model_copy(deep=True) for p in request.products]
 
-        self._merge_observations(state, request.observations, request.resolve_conflicts)
-        self._apply_confirmations(state, request.confirmations)
+        self._merge_observations(state, observations, resolve_conflicts)
+        self._apply_confirmations(state, confirmations)
         executed_actions: list[RuntimeActionKind] = []
 
         nlp_result: NLPExtractionResult | None = None
@@ -518,17 +559,19 @@ class AgentRuntime:
         conflicts = sorted(
             key for key, slot in state.confirmed_observations.items() if slot.state == "conflicting"
         )
-        if conflicts:
+        policy = self.afa_policy
+        myopic = isinstance(policy, MyopicVOIAFAPolicy)
+        if conflicts and not myopic:
             field = conflicts[0]
             return self._await_question(
-                state, Question(id=field, text=f"{field} 값이 상충합니다. 확인해 주세요."),
+                state, field, f"{field} 값이 상충합니다. 확인해 주세요.",
                 "resolve_conflict", executed_actions, nlp_result,
             )
 
-        if state.pending_candidates:
+        if state.pending_candidates and not myopic:
             cand = state.pending_candidates[0]
             return self._await_question(
-                state, Question(id=cand.candidate_id, text=cand.prompt_ko),
+                state, cand.candidate_id, cand.prompt_ko,
                 "confirm_candidate", executed_actions, nlp_result,
             )
 
@@ -538,16 +581,7 @@ class AgentRuntime:
             for key in row.get("unrecognized_fields", [])
         }
         state.unrecognized_fields = sorted(unrecognized)
-        retrieve_slots = sorted(
-            set(evaluated["retrieve_slots"])
-            | {
-                item["field"]
-                for row in evaluated["raw"].get("results", [])
-                if row.get("comparison_status") in ("unknown", "conflicting", "exception")
-                for item in row.get("evidence_requests", [])
-                if item.get("route") == "retrieve_product_evidence" and item["field"].startswith("product.")
-            }
-        )
+        retrieve_slots = required_product_evidence(evaluated)
         answered = {
             key
             for key, slot in state.confirmed_observations.items()
@@ -563,37 +597,81 @@ class AgentRuntime:
                 card_ids=list(dict.fromkeys(cards_by_slot[field])),
             )
             for field, text in evaluated["ask_slots"].items()
-            if field in cards_by_slot and field not in answered
+            if field in cards_by_slot and field not in answered and not field.startswith("product.")
         ]
-
-        can_stop_sufficient = (
-            not unique_candidates and not evaluated["hold_signals"]
-            and not retrieve_slots and evaluated["raw"]["overall"] != "hold"
-        )
-        can_stop_insufficient = not unique_candidates and not can_stop_sufficient
-        permissions = {
-            "can_stop_sufficient": can_stop_sufficient,
-            "can_stop_insufficient": can_stop_insufficient,
-        }
-        candidate_by_id = {candidate.slot_id: candidate for candidate in unique_candidates}
-        policy = self.afa_policy
         if isinstance(policy, RoutedAFAPolicy) and (
             "B-C02" not in card_ids or set(card_ids).difference({"B-C01", "B-C02"})
             or any(candidate.card_ids != ["B-C02"] for candidate in unique_candidates)
         ):
             policy = policy.baseline
+        if myopic:
+            # Legacy policies can clarify unrecognized known values. This policy
+            # treats all reported states as answered, including on fallback.
+            unique_candidates = [
+                candidate for candidate in unique_candidates
+                if candidate.slot_id not in state.confirmed_observations
+                or state.confirmed_observations[candidate.slot_id].state not in ANSWERED_STATES
+            ]
+        evidence_sufficient = (
+            not evaluated["hold_signals"] and not retrieve_slots and evaluated["raw"]["overall"] != "hold"
+            and not conflicts
+        )
+        can_stop_sufficient = not unique_candidates and evidence_sufficient
+        can_stop_insufficient = not unique_candidates and not evidence_sufficient
+        permissions = {
+            "can_stop_sufficient": can_stop_sufficient,
+            "can_stop_insufficient": can_stop_insufficient,
+        }
+        # Simulate the same confirmation that a numbered reply would submit.
+        # The NLP candidate remains unconfirmed in the live session.
+        answer_evaluations = {}
+        symptom_questions = []
+        if myopic and state.pending_candidates:
+            _, answers = symptom_choices(compact=True)
+            for cand in state.pending_candidates:
+                symptom_questions.append(QuestionCandidate(
+                    slot_id=cand.candidate_id,
+                    question_text=f"언급한 {cand.label}은 최근 한 번 있었나요, 반복되거나 계속됐나요?",
+                    card_ids=["B-B01"],
+                ))
+                evaluations = []
+                for answer in ("recent", "repeated", "persistent"):
+                    simulated = state.model_copy(deep=True)
+                    self._apply_confirmations(simulated, {cand.candidate_id: answers[answer]})
+                    simulated_cards = self._select_cards(simulated, [], simulated.confirmed_observations)
+                    evaluations.append(self.kb_adapter.evaluate(
+                        simulated.confirmed_observations, simulated_cards,
+                    ))
+                answer_evaluations[cand.candidate_id] = evaluations
+        candidate_by_id = {candidate.slot_id: candidate
+                           for candidate in [*unique_candidates, *symptom_questions]}
         try:
-            if self.prioritize_question_outcomes and isinstance(policy, RuleBasedAFAPolicy):
-                unique_candidates = rank_questions(
-                    self.kb_adapter, card_ids, state.confirmed_observations, unique_candidates, evaluated,
+            if myopic:
+                scores = policy.score_candidates(
+                    deepcopy(state.confirmed_observations), deepcopy(list(candidate_by_id.values())),
+                    adapter=self.kb_adapter, card_ids=card_ids, evaluated=evaluated,
+                    answer_evaluations=answer_evaluations,
                 )
-            decision = policy.decide_step(
-                deepcopy(state.confirmed_observations), deepcopy(unique_candidates), **permissions,
-            )
-            if not isinstance(decision, AFAStepDecision):
+                eligible = {score.slot_id for score in scores if score.decision_change_rate > 0}
+                can_stop_sufficient = not eligible and evidence_sufficient
+                can_stop_insufficient = not eligible and not evidence_sufficient
+                decision = policy.decide_scored_step(
+                    scores, can_stop_sufficient=can_stop_sufficient,
+                    can_stop_insufficient=can_stop_insufficient,
+                )
+            else:
+                eligible = candidate_by_id.keys()
+                if self.prioritize_question_outcomes and isinstance(policy, RuleBasedAFAPolicy):
+                    unique_candidates = rank_questions(
+                        self.kb_adapter, card_ids, state.confirmed_observations, unique_candidates, evaluated,
+                    )
+                decision = policy.decide_step(
+                    deepcopy(state.confirmed_observations), deepcopy(unique_candidates), **permissions,
+                )
+            if not isinstance(decision, V3AFAStepDecision):
                 raise ValueError("unexpected AFA decision")
             if decision.action == "acquire":
-                permitted = decision.target_feature in candidate_by_id
+                permitted = decision.target_feature in candidate_by_id and decision.target_feature in eligible
             else:
                 permitted = (
                     can_stop_sufficient if decision.stop_reason == "sufficient"
@@ -601,18 +679,36 @@ class AgentRuntime:
                 )
             if not permitted:
                 raise ValueError("AFA decision is outside the runtime's permitted actions")
+            if myopic:
+                state.afa_question_scores = scores
         except (ValueError, TypeError, KeyError, RuntimeError, TimeoutError):
             decision = RuleBasedAFAPolicy().decide_step(
                 state.confirmed_observations, unique_candidates, **permissions,
             )
 
-        if decision.action == "acquire" and decision.target_feature:
-            chosen = candidate_by_id[decision.target_feature]
+        state.afa_step_decision = decision
+        question_slot = decision.target_feature
+        if myopic and decision.policy_source == "myopic_voi" and decision.stop_reason == "insufficient":
+            try:
+                review_slot = select_hold_review_question(
+                    self.kb_adapter, card_ids, state.confirmed_observations,
+                    (candidate.slot_id for candidate in unique_candidates),
+                    evaluated, state.afa_question_scores, policy.stop_lookahead,
+                )
+            except (ValueError, TypeError, KeyError, RuntimeError, TimeoutError):
+                review_slot = None
+            if review_slot in candidate_by_id:
+                state.afa_hold_review_slot = review_slot
+                question_slot = review_slot
+
+        if question_slot is not None:
+            chosen = candidate_by_id[question_slot]
             if chosen.slot_id not in state.asked_feature_order:
                 state.asked_feature_order.append(chosen.slot_id)
             return self._await_question(
-                state, Question(id=chosen.slot_id, text=chosen.question_text),
+                state, chosen.slot_id, chosen.question_text,
                 "ask_user", executed_actions, nlp_result,
+                symptom_confirmation=chosen.slot_id in answer_evaluations,
             )
 
         unanswered = [
