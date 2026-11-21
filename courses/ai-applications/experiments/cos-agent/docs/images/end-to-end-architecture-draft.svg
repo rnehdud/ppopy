@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1080" width="1440" height="1080" font-family="'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D97706"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7C3AED"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#DC2626"/>
+    </marker>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="1080" fill="#F8FAFC"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1440" height="76" fill="#0F172A"/>
+  <text x="36" y="34" fill="#FFFFFF" font-size="22" font-weight="700">Ppopy End-to-End AI Agent Architecture (v3 Finalized Blueprint)</text>
+  <text x="36" y="58" fill="#94A3B8" font-size="13">3-Stage Schema NLU · Control Plane Hub · Myopic VOI AFA · Local Reference Vector RAG · OpenAI-Compatible QLoRA Serving</text>
+  <rect x="1156" y="20" width="248" height="36" rx="18" fill="#1E293B" stroke="#38BDF8"/>
+  <text x="1280" y="43" fill="#38BDF8" font-size="12" font-weight="700" text-anchor="middle">v3 Finalized · ITE 351 / CSE 406</text>
+
+  <!-- ==================== ROW 1: CLIENT & 3-STAGE NLU ==================== -->
+  <!-- 1. Client Box -->
+  <rect x="36" y="98" width="400" height="172" rx="12" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="54" y="124" fill="#1D4ED8" font-size="14" font-weight="700">1. Client Channels (CLI MVP → iOS App &amp; Mirror)</text>
+  <rect x="54" y="136" width="176" height="62" rx="8" fill="#FFFFFF" stroke="#BFDBFE"/>
+  <text x="142" y="156" fill="#0F172A" font-size="12" font-weight="700" text-anchor="middle">초기 상태 (Onboarding)</text>
+  <text x="142" y="173" fill="#475569" font-size="10.5" text-anchor="middle">보유 제품·습관·루틴 입력</text>
+  <text x="142" y="188" fill="#64748B" font-size="10" text-anchor="middle">Baseline Routine 생성</text>
+
+  <rect x="242" y="136" width="176" height="62" rx="8" fill="#FFFFFF" stroke="#BFDBFE"/>
+  <text x="330" y="156" fill="#0F172A" font-size="12" font-weight="700" text-anchor="middle">대화 턴 (Chat &amp; Buttons)</text>
+  <text x="330" y="173" fill="#475569" font-size="10.5" text-anchor="middle">1턴: 자유 자연어 질문</text>
+  <text x="330" y="188" fill="#059669" font-size="10" font-weight="600" text-anchor="middle">2턴+: 버튼(우선) / 타이핑</text>
+
+  <rect x="54" y="208" width="364" height="48" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-dasharray="5,3"/>
+  <text x="236" y="228" fill="#334155" font-size="11.5" font-weight="600" text-anchor="middle">Smart Mirror (Planned · Output-Only · CSE 406)</text>
+  <text x="236" y="245" fill="#64748B" font-size="10.5" text-anchor="middle">승인된 루틴 사전 안내 표시 · ACK 기록 (질문/승인은 앱 전용)</text>
+
+  <!-- 2. API Gateway & 3-Stage Schema-Constrained NLU -->
+  <rect x="480" y="98" width="440" height="172" rx="12" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="498" y="124" fill="#15803D" font-size="14" font-weight="700">2. Ingress &amp; 3-Stage Schema-Constrained NLU</text>
+
+  <rect x="498" y="136" width="156" height="120" rx="8" fill="#FFFFFF" stroke="#BBF7D0"/>
+  <text x="576" y="158" fill="#0F172A" font-size="11.5" font-weight="700" text-anchor="middle">Stage 0: Input Router</text>
+  <text x="576" y="176" fill="#475569" font-size="10.5" text-anchor="middle">API Gateway / Auth</text>
+  <text x="576" y="193" fill="#475569" font-size="10.5" text-anchor="middle">request_id 세션 바인딩</text>
+  <line x1="512" y1="206" x2="640" y2="206" stroke="#E2E8F0"/>
+  <text x="576" y="223" fill="#059669" font-size="10" font-weight="700" text-anchor="middle">선택형 버튼 탭 → 0ms</text>
+  <text x="576" y="238" fill="#059669" font-size="10" font-weight="600" text-anchor="middle">NLU 완전 우회(Fast Path)</text>
+  <text x="576" y="251" fill="#64748B" font-size="9.5" text-anchor="middle">자유 타이핑만 Stage 1 진입</text>
+
+  <rect x="668" y="136" width="236" height="120" rx="8" fill="#FFFFFF" stroke="#BBF7D0"/>
+  <text x="786" y="156" fill="#0F172A" font-size="11.5" font-weight="700" text-anchor="middle">Stage 1~3: Hybrid NLU (재사용)</text>
+  <text x="678" y="174" fill="#334155" font-size="10">① 제품명 사전/Fuzzy 매칭 힌트 (~2ms)</text>
+  <text x="678" y="191" fill="#334155" font-size="10">② SLM 1회 Structured JSON 추출</text>
+  <text x="688" y="205" fill="#475569" font-size="9.5">(직전 질문 맥락 + evidence_span 강제)</text>
+  <text x="678" y="222" fill="#334155" font-size="10">③ Python Gate: 화이트리스트·원문 대조</text>
+  <text x="678" y="244" fill="#DC2626" font-size="9.5" font-weight="600">※ 고위험 항목은 confirmed=False (확인 후 확정)</text>
+
+  <!-- 4. Data Stores, External APIs & Local Vector RAG (Right Column) -->
+  <rect x="960" y="98" width="444" height="442" rx="12" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="978" y="124" fill="#0F172A" font-size="14" font-weight="700">4. Data Stores, Tools &amp; Local Reference RAG</text>
+
+  <rect x="978" y="138" width="408" height="114" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="994" y="159" fill="#0F172A" font-size="12.5" font-weight="700">AWS Aurora PostgreSQL (via RDS Data API)</text>
+  <text x="994" y="179" fill="#334155" font-size="10.5">• user_observations (EAV Key-Value): 234개 KB 변수 저장</text>
+  <text x="994" y="197" fill="#334155" font-size="10.5">• user_products &amp; Versioned INCI Catalog (1,977개 제품 전성분)</text>
+  <text x="994" y="215" fill="#334155" font-size="10.5">• Structured KB v0.6.1 (60카드 · AFA/안전 논리 규칙)</text>
+  <text x="994" y="233" fill="#64748B" font-size="10">• Session &amp; TurnTrace Audit Log (지연·근거·승인 추적)</text>
+
+  <rect x="978" y="264" width="408" height="64" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="994" y="285" fill="#0F172A" font-size="12.5" font-weight="700">External Data APIs (Parallel Tool Calling)</text>
+  <text x="994" y="304" fill="#334155" font-size="10.5">• Weather / UV API (기온·습도·자외선) · Optional Product OCR</text>
+  <text x="994" y="320" fill="#64748B" font-size="10">• asyncio.gather 병렬 호출로 응답 지연 최소화</text>
+
+  <!-- Local Reference Literature RAG -->
+  <rect x="978" y="340" width="408" height="186" rx="8" fill="#FAF5FF" stroke="#A78BFA" stroke-width="1.5"/>
+  <text x="994" y="362" fill="#6D28D9" font-size="12.5" font-weight="700">Reference Literature RAG (Local Vector DB)</text>
+  <text x="994" y="382" fill="#334155" font-size="10.5">• Corpus: KB 참고 피부과학 논문·공식 가이드라인·아티클</text>
+  <text x="994" y="400" fill="#334155" font-size="10.5">• Pipeline: Section Chunking → Multilingual Embedding</text>
+  <text x="1004" y="416" fill="#475569" font-size="10">(BGE-M3 / multilingual-e5: 한국어 질의 ↔ 영어 논문 검색)</text>
+  <text x="994" y="434" fill="#059669" font-size="10.5" font-weight="700">• Local MVP: FAISS / Chroma (5~20ms, 비용 0원, 오프라인)</text>
+  <text x="994" y="451" fill="#475569" font-size="10">• 추후 AWS 배포 시 Retriever 인터페이스 유지한 채 pgvector 전환</text>
+  <line x1="994" y1="463" x2="1370" y2="463" stroke="#DDD6FE"/>
+  <text x="994" y="480" fill="#DC2626" font-size="10" font-weight="600">※ 제3자 원문 PDF Git 커밋 금지 (URL/DOI + 로컬 빌드 스크립트)</text>
+  <text x="994" y="496" fill="#7C3AED" font-size="10" font-weight="600">※ SOLUTION_MODE에서만 호출 (질문 턴 생략 · 비임상 scope)</text>
+  <text x="994" y="512" fill="#64748B" font-size="10">※ 방해 청크(Distractor) 무시 및 제공된 Citation ID만 인용 강제</text>
+
+  <!-- ==================== ROW 2: CONTROL PLANE HUB ==================== -->
+  <rect x="36" y="310" width="884" height="230" rx="12" fill="#FFFBEB" stroke="#D97706" stroke-width="2.2" filter="url(#shadow)"/>
+  <text x="54" y="337" fill="#92400E" font-size="15" font-weight="700">3. Agent Orchestrator / Control Plane — Central Hub (Python State Machine · CLI / Lambda)</text>
+  <text x="54" y="356" fill="#B45309" font-size="11" font-weight="600">★ 중앙 지휘자(Hub): 매 턴 ①~④를 직접 제어 · 질문 턴은 SLM 생략(0ms), 최종 솔루션 턴만 SLM 1회 호출</text>
+
+  <!-- 4 Steps inside Control Plane -->
+  <rect x="54" y="369" width="200" height="154" rx="8" fill="#FFFFFF" stroke="#FCD34D"/>
+  <text x="154" y="390" fill="#B45309" font-size="11.5" font-weight="700" text-anchor="middle">Step ① Context &amp; Tools</text>
+  <text x="64" y="410" fill="#334155" font-size="10.5">• request_id 세션 로드</text>
+  <text x="64" y="428" fill="#334155" font-size="10.5">• Parallel Tool Calling:</text>
+  <text x="72" y="445" fill="#475569" font-size="10">- Aurora User Context</text>
+  <text x="72" y="461" fill="#475569" font-size="10">- Versioned INCI Catalog</text>
+  <text x="72" y="477" fill="#475569" font-size="10">- Weather / UV API</text>
+  <text x="64" y="497" fill="#2563EB" font-size="10" font-weight="600">→ Hydrated Context 조립</text>
+
+  <rect x="268" y="369" width="200" height="154" rx="8" fill="#FFFFFF" stroke="#FCD34D"/>
+  <text x="368" y="390" fill="#B45309" font-size="11.5" font-weight="700" text-anchor="middle">Step ② Myopic AFA</text>
+  <text x="278" y="410" fill="#334155" font-size="10.5">• 5A. Myopic VOI AFA 호출</text>
+  <text x="278" y="428" fill="#334155" font-size="10.5">• 반환값에 따라 분기:</text>
+  <text x="286" y="446" fill="#059669" font-size="10" font-weight="600">· acquire(feature) → 버튼질문</text>
+  <text x="286" y="463" fill="#2563EB" font-size="10" font-weight="600">· need_tool → 추가 조회</text>
+  <text x="286" y="480" fill="#7C3AED" font-size="10" font-weight="600">· stop(sufficient) → 솔루션</text>
+  <text x="286" y="497" fill="#DC2626" font-size="10" font-weight="600">· stop(hold) → 보류 안내</text>
+
+  <rect x="482" y="369" width="210" height="154" rx="8" fill="#FFFFFF" stroke="#FCD34D"/>
+  <text x="587" y="390" fill="#B45309" font-size="11.5" font-weight="700" text-anchor="middle">Step ③ 질문 / RAG+SLM</text>
+  <text x="492" y="410" fill="#059669" font-size="10.5" font-weight="700">• 질문 턴 (0ms Fast Path):</text>
+  <text x="500" y="426" fill="#475569" font-size="10">정형 KB 질문+선택지 버튼 반환</text>
+  <text x="500" y="440" fill="#64748B" font-size="9.5">(SLM·RAG 생략, 선택적 문구확장)</text>
+  <text x="492" y="460" fill="#7C3AED" font-size="10.5" font-weight="700">• 솔루션 턴 (SOLUTION):</text>
+  <text x="500" y="476" fill="#475569" font-size="10">로컬 Vector RAG 검색 후</text>
+  <text x="500" y="491" fill="#475569" font-size="10">HTTP SLM 1회 호출</text>
+
+  <rect x="706" y="369" width="198" height="154" rx="8" fill="#FFFFFF" stroke="#F59E0B" stroke-dasharray="5,3"/>
+  <text x="805" y="390" fill="#B45309" font-size="11.5" font-weight="700" text-anchor="middle">Step ④ 검증 · Pause/종료</text>
+  <text x="716" y="410" fill="#334155" font-size="10.5">• 5C. Guardrail 검증 호출</text>
+  <text x="716" y="428" fill="#334155" font-size="10.5">• 타임아웃(15s) → Fallback</text>
+  <text x="716" y="446" fill="#334155" font-size="10.5">• 정형 Response 반환:</text>
+  <text x="724" y="463" fill="#059669" font-size="10">- awaiting_user (Pause)</text>
+  <text x="724" y="479" fill="#2563EB" font-size="10">- completed (승인 대기)</text>
+  <text x="724" y="495" fill="#DC2626" font-size="10">- held (보류 종료)</text>
+
+  <!-- Step arrows inside Control Plane -->
+  <line x1="254" y1="446" x2="266" y2="446" stroke="#D97706" stroke-width="1.8" marker-end="url(#arrow-amber)"/>
+  <line x1="468" y1="446" x2="480" y2="446" stroke="#D97706" stroke-width="1.8" marker-end="url(#arrow-amber)"/>
+  <line x1="692" y1="446" x2="704" y2="446" stroke="#D97706" stroke-width="1.8" marker-end="url(#arrow-amber)"/>
+
+  <!-- ==================== ROW 3: WORKER MODULES CALLED BY CONTROL PLANE ==================== -->
+  <rect x="36" y="590" width="1368" height="224" rx="12" fill="#F5F3FF" stroke="#A78BFA" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="54" y="616" fill="#5B21B6" font-size="14" font-weight="700">5. Decision, Local GPU Generation &amp; Safety Worker Modules (Control Plane 서브콜)</text>
+
+  <!-- 5A. Myopic 1-Step Lookahead AFA -->
+  <rect x="54" y="630" width="390" height="168" rx="8" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+  <rect x="66" y="639" width="120" height="20" rx="4" fill="#DBEAFE"/>
+  <text x="126" y="653" fill="#1D4ED8" font-size="10.5" font-weight="700" text-anchor="middle">MYOPIC VOI AFA</text>
+  <text x="196" y="654" fill="#0F172A" font-size="12.5" font-weight="700">5A. 1-Step Lookahead AFA</text>
+  <text x="68" y="677" fill="#334155" font-size="11">• 범위: 세정·보습·자외선·영역간조정(B-I01) 60카드 전체</text>
+  <text x="68" y="696" fill="#334155" font-size="11">• 원리: 가상 답변 시뮬레이션 → 결정 변화량·분기 축소 계산</text>
+  <text x="68" y="715" fill="#059669" font-size="11" font-weight="600">  ① acquire(required_feature) → 정보이득 최고 1개</text>
+  <text x="68" y="733" fill="#7C3AED" font-size="11" font-weight="600">  ② stop(sufficient) → 불필요 질문 제거 후 자동 중단</text>
+  <text x="68" y="751" fill="#DC2626" font-size="11" font-weight="600">  ③ stop(insufficient / hold) → 보류 신호</text>
+  <text x="68" y="776" fill="#64748B" font-size="10">※ 재학습 0회 · 1ms 미만 · 100% 설명 가능 (PPO는 B-C02 비교군)</text>
+
+  <!-- 5B. Solution Generation Module (OpenAI-Compatible HTTP Serving) -->
+  <rect x="466" y="630" width="468" height="168" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1.5"/>
+  <rect x="478" y="639" width="144" height="20" rx="4" fill="#EDE9FE"/>
+  <text x="550" y="653" fill="#6D28D9" font-size="10.5" font-weight="700" text-anchor="middle">OPENAI-COMPAT HTTP</text>
+  <text x="632" y="654" fill="#0F172A" font-size="12.5" font-weight="700">5B. Qwen 3.5 4B QLoRA Server</text>
+  <text x="480" y="677" fill="#6D28D9" font-size="11" font-weight="600">• Serving: 로컬 vLLM / Ollama 백그라운드 (/v1/chat/completions)</text>
+  <text x="480" y="696" fill="#334155" font-size="10.5">  - Python 프로세스와 분리 (재로딩 0초 · URL 변경만으로 AWS 전환)</text>
+  <text x="480" y="716" fill="#0F172A" font-size="11" font-weight="700">• 주 역할 [SOLUTION_MODE] (AFA = stop(sufficient)):</text>
+  <text x="490" y="733" fill="#334155" font-size="10.5">Context + 정형 KB 판정 + 로컬 논문 RAG 청크 → 최종 루틴·근거 설명</text>
+  <text x="480" y="753" fill="#475569" font-size="10.5">• 보조 [NLU Multi-LoRA / HOLD_MODE / 선택적 질문 다듬기]</text>
+  <text x="480" y="776" fill="#059669" font-size="10" font-weight="600">※ HTTP Timeout 15초 시 결정론적 Rule Baseline 자동 Fallback</text>
+
+  <!-- 5C. Hard Safety Guardrail -->
+  <rect x="956" y="630" width="430" height="168" rx="8" fill="#FEF2F2" stroke="#F87171" stroke-width="1.5"/>
+  <rect x="968" y="639" width="118" height="20" rx="4" fill="#FEE2E2"/>
+  <text x="1027" y="653" fill="#B91C1C" font-size="10.5" font-weight="700" text-anchor="middle">HARD GUARDRAIL</text>
+  <text x="1096" y="654" fill="#B91C1C" font-size="12.5" font-weight="700">5C. Safety &amp; Contract Guardrail</text>
+  <text x="970" y="677" fill="#334155" font-size="11">1. 필수 안전 보류 강제: 통증·지속불편·품질이상 → 즉시 HOLD</text>
+  <text x="970" y="696" fill="#334155" font-size="11">2. 비임상/비진단 검증: 논문 청크 과잉 인용(치료 효과 주장) 차단</text>
+  <text x="970" y="715" fill="#334155" font-size="11">3. 출처·버전 검증: 미제공 Citation ID·제품 버전 불일치 거부</text>
+  <text x="970" y="734" fill="#334155" font-size="11">4. NLU 검증: evidence_span 원문 미존재 후보 폐기</text>
+  <text x="970" y="753" fill="#334155" font-size="11">5. 승인 경계: requires_approval=True, saved=False 강제</text>
+  <text x="970" y="776" fill="#B91C1C" font-size="10" font-weight="600">※ 위반 시 차단 및 안전한 결정론적 Baseline 응답으로 자동 복귀</text>
+
+  <!-- ==================== ROW 4: STATE UPDATE & CLOSED-LOOP FEEDBACK ==================== -->
+  <rect x="36" y="854" width="1368" height="142" rx="12" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="54" y="880" fill="#047857" font-size="14" font-weight="700">6. State Persistence, Async Follow-up &amp; Closed-Loop Feedback (Planned / Future Phase)</text>
+
+  <rect x="54" y="894" width="330" height="84" rx="8" fill="#FFFFFF" stroke="#A7F3D0"/>
+  <text x="70" y="916" fill="#0F172A" font-size="12" font-weight="700">Explicit Approval &amp; Context Commit</text>
+  <text x="70" y="936" fill="#334155" font-size="10.5">• 사용자 명시적 승인 후 Aurora User Context 갱신</text>
+  <text x="70" y="954" fill="#334155" font-size="10.5">• 승인된 루틴은 Smart Mirror 표시 큐로 전달(Planned)</text>
+  <text x="70" y="970" fill="#64748B" font-size="10">• TurnTrace(AFA 점수·RAG 청크·Latency) 감사 로그 저장</text>
+
+  <rect x="414" y="894" width="360" height="84" rx="8" fill="#FFFFFF" stroke="#A7F3D0"/>
+  <text x="430" y="916" fill="#0F172A" font-size="12" font-weight="700">Async Follow-up Scheduler (AWS EventBridge)</text>
+  <text x="430" y="936" fill="#334155" font-size="10.5">• 솔루션 적용 N일 후 앱 푸시/인앱 피드백 프롬프트 발송</text>
+  <text x="430" y="954" fill="#334155" font-size="10.5">• 긍정/부정 만족도 + 당시 Context Snapshot 이벤트 저장</text>
+  <text x="430" y="970" fill="#64748B" font-size="10">• 초기 MVP는 Log-only 수집 후 충분한 표본 확보 시 노출</text>
+
+  <rect x="804" y="894" width="582" height="84" rx="8" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="814" y="902" width="110" height="20" rx="4" fill="#FEF3C7"/>
+  <text x="869" y="916" fill="#92400E" font-size="10.5" font-weight="700" text-anchor="middle">PLANNED PHASE</text>
+  <text x="934" y="916" fill="#0F172A" font-size="12" font-weight="700">Context-Cohort Social Proof [Non-Clinical Survey]</text>
+  <text x="816" y="937" fill="#334155" font-size="10.5">• 유사 Context 코호트 집계 → "비슷한 상황 사용자 설문 80% 만족" (최소 표본 N≥30 미만 미노출)</text>
+  <text x="816" y="955" fill="#B45309" font-size="10" font-weight="600">※ 현재 development_preview 비활성 · 임상 효능/자동 피부 개선 판정 금지, 설문 만족도 통계로만 표현</text>
+  <text x="816" y="970" fill="#64748B" font-size="10">※ 검증된 집계 통계만 Control Plane의 Context Hydration 단계로 역주입</text>
+
+  <!-- ==================== ARROWS (HUB-AND-SPOKE) ==================== -->
+  <!-- Client -> Input Router -->
+  <line x1="436" y1="184" x2="478" y2="184" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="457" y="175" fill="#1D4ED8" font-size="10" font-weight="600" text-anchor="middle">Turn</text>
+
+  <!-- Input Router -> NLU -->
+  <line x1="654" y1="196" x2="666" y2="196" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Fast Path (Router -> Control Plane) & NLU -> Control Plane -->
+  <line x1="576" y1="256" x2="576" y2="308" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="530" y="294" fill="#059669" font-size="9.5" font-weight="600">버튼 Fast Path</text>
+
+  <line x1="786" y1="256" x2="786" y2="308" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="854" y="294" fill="#475569" font-size="9.5">NLU 추출 후보</text>
+
+  <!-- Control Plane <-> Aurora / External APIs / Local Vector RAG -->
+  <line x1="920" y1="382" x2="958" y2="382" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <line x1="958" y1="406" x2="920" y2="406" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="939" y="374" fill="#1D4ED8" font-size="9.5" text-anchor="middle">Tools</text>
+  <text x="939" y="421" fill="#1D4ED8" font-size="9.5" text-anchor="middle">Data</text>
+
+  <line x1="920" y1="468" x2="958" y2="468" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <line x1="958" y1="492" x2="920" y2="492" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <text x="939" y="460" fill="#6D28D9" font-size="9.5" text-anchor="middle">RAG</text>
+  <text x="939" y="507" fill="#6D28D9" font-size="9.5" text-anchor="middle">Chunks</text>
+
+  <!-- Control Plane Step 2 <-> 5A. Myopic AFA -->
+  <line x1="354" y1="540" x2="354" y2="628" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <line x1="380" y1="628" x2="380" y2="540" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="275" y="572" fill="#1D4ED8" font-size="10" font-weight="600">① Context 전달</text>
+  <text x="388" y="572" fill="#1D4ED8" font-size="10" font-weight="600">② feature / STOP 반환</text>
+
+  <!-- Control Plane Step 3 <-> 5B. OpenAI-Compatible QLoRA Server -->
+  <line x1="574" y1="540" x2="574" y2="628" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <line x1="600" y1="628" x2="600" y2="540" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <text x="486" y="572" fill="#6D28D9" font-size="10" font-weight="600">③ HTTP 요청</text>
+  <text x="608" y="572" fill="#6D28D9" font-size="10" font-weight="600">④ 솔루션·근거 설명</text>
+
+  <!-- Control Plane Step 4 <-> 5C. Guardrail -->
+  <line x1="805" y1="540" x2="805" y2="564" stroke="#DC2626" stroke-width="2"/>
+  <line x1="805" y1="564" x2="1156" y2="564" stroke="#DC2626" stroke-width="2"/>
+  <line x1="1156" y1="564" x2="1156" y2="628" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <line x1="1182" y1="628" x2="1182" y2="576" stroke="#DC2626" stroke-width="2"/>
+  <line x1="1182" y1="576" x2="830" y2="576" stroke="#DC2626" stroke-width="2"/>
+  <line x1="830" y1="576" x2="830" y2="540" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <text x="995" y="559" fill="#B91C1C" font-size="10" font-weight="600" text-anchor="middle">⑤ 안전·인용·버전 검증 / 통과·차단 반환</text>
+
+  <!-- Control Plane -> Row 4 (Response / Commit) -->
+  <line x1="140" y1="540" x2="140" y2="566" stroke="#059669" stroke-width="2"/>
+  <line x1="140" y1="566" x2="18" y2="566" stroke="#059669" stroke-width="2"/>
+  <line x1="18" y1="566" x2="18" y2="936" stroke="#059669" stroke-width="2"/>
+  <line x1="18" y1="936" x2="52" y2="936" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="26" y="745" fill="#047857" font-size="10.5" font-weight="700" transform="rotate(-90 26 745)" text-anchor="middle">Control Plane 최종 응답 (ASK: 버튼질문 Pause / RECOMMEND: 승인 후 커밋)</text>
+
+  <!-- State -> EventBridge -> Cohort -->
+  <line x1="384" y1="936" x2="412" y2="936" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <line x1="774" y1="936" x2="802" y2="936" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow-amber)"/>
+
+  <!-- ==================== FOOTER LEGEND ==================== -->
+  <rect x="36" y="1020" width="1368" height="40" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <line x1="58" y1="1040" x2="94" y2="1040" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="104" y="1044" fill="#334155" font-size="11">Control Plane 동기(Sync) 서브콜 · 반환</text>
+
+  <line x1="340" y1="1040" x2="376" y2="1040" stroke="#D97706" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow-amber)"/>
+  <text x="386" y="1044" fill="#334155" font-size="11">비동기(Async) / Planned</text>
+
+  <rect x="565" y="1030" width="22" height="18" rx="3" fill="#FFFBEB" stroke="#D97706" stroke-width="2"/>
+  <text x="595" y="1044" fill="#334155" font-size="11">Control Plane (중앙 오케스트레이터 Hub)</text>
+
+  <rect x="855" y="1030" width="22" height="18" rx="3" fill="#FEF2F2" stroke="#F87171" stroke-width="1.5"/>
+  <text x="885" y="1044" fill="#334155" font-size="11">결정론적 안전 가드레일 (Hard Guardrail)</text>
+
+  <text x="1386" y="1044" fill="#64748B" font-size="10.5" text-anchor="end">Ppopy · Finalized v3 · 2026-11-21</text>
+</svg>
