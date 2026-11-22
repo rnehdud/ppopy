@@ -1,10 +1,22 @@
 # BeautyLIFE 개인화 화장품 관리 에이전트
 
+**목표 구조부터 보려면 [Ppopy 런타임·AFA·추천 구조](docs/agent-runtime-target.md)를 읽으세요.** 아래는 기존 데모 실행 안내입니다.
+
 **현재 단계: 전체 가이드라인과 개발 틀 정리.** 기능을 한꺼번에 완성하지 않고, 작은 사용 흐름을 하나씩 검증하며 발전시킵니다. 먼저 [프로젝트 개발 가이드](docs/project-guide.md)를 읽으세요. 아래 실행 방법과 코드는 구조를 살펴보기 위한 실험용 골격이며 기술 선택을 확정하지 않습니다.
 
 iOS 앱과 스마트미러가 같은 HTTP API를 호출하는 Python 초기 골격입니다. **현재는 합성 입력 전용·무저장 기술 데모**입니다. 실제 앱 탑재, 학습된 SLM, 실제 제품 추천이 완료된 상태는 아닙니다.
 
 ## 먼저 실행하기 — Windows PowerShell
+
+이 실험 폴더에서 대화형 CLI를 실행하면 기본 질문 정책으로 Myopic VOI를 사용합니다.
+
+```powershell
+uv run --locked python -m beauty_agent.cli --offline-nlp
+```
+
+`나 >`에 `얼굴을 미온수로 세안해요. 세안 방법을 확인해 주세요.`를 입력하세요. 그다음 `선택 번호 >`에 각 질문 아래에 표시된 번호를 입력하면 같은 요청을 이어갑니다. 답을 모르거나 건너뛰려면 그에 해당하는 번호를 고르세요. `/state`는 진행 중인 상태를 보여주고 `/quit`은 종료합니다.
+
+HTTP 데모는 아래 명령으로 실행합니다.
 
 ```powershell
 cd C:\cos-agent
@@ -60,6 +72,11 @@ Ollama의 [JSON Schema 출력](https://docs.ollama.com/capabilities/structured-o
 
 ## 다음으로 읽을 문서
 
+- [v67 전체 데이터 EDA — 배우며 읽는 보고서](docs/afa-v67-eda.md) — 1,025개 상황·2,453턴의 구성, 검사·그래프·학습 활용 한계
+- [AFA MLflow 대시보드](docs/afa-mlflow.md) — 기존 결과 그래프·학습 곡선·설정·증빙 확인
+- [AFA Policy 시작 안내](docs/afa-policy-guide.md) — 처음 볼 파일, 코드·자료·테스트 구조, 최신 검사 명령
+- [AFA Policy 누적 진행·발표 증빙](docs/afa-policy-progress.md) — 전체 흐름, 단계별 목적·결과·반례·다음 단계
+- [AFA 자료·단계별 문서 목차](data/afa/README.md) — 현재 v2와 초기 v1의 상세 문서
 - [모듈형 에이전트 루프](docs/modular-agent-loop.md) — 기존 API와 별도로 실행하는 합성 다중 턴 프리뷰, 어댑터 및 플래너 교체 계약
 - [STT → Jev 테스트 필드 명세](poc/jev/stt-jev-test-fields.md)
 - [전체 개발 마일스톤](docs/development-milestones.md)

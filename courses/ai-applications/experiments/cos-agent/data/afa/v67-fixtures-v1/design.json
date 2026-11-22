@@ -1,0 +1,33 @@
+{
+  "version": "v67-bounded-responses-0.1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "human_review": "unreviewed",
+  "approved_reference": false,
+  "training_ready": false,
+  "source_split": "train",
+  "card_ids": ["B-C02"],
+  "question_slots": ["method.tools", "method.friction", "method.drying"],
+  "scope": "structured response data only; no KB permission override, Gym integration, reward or performance evaluation",
+  "assumptions": [
+    "Static responses within each derived fixture; retiming recorded answers is an explicit counterfactual assumption.",
+    "Future structured observations remain environment-only until the matching question is chosen.",
+    "Original follow-up prose and requested next-question order are not replayed in changed branches.",
+    "All permutations are checked as a data-level superset; the real runtime must apply its own action gates.",
+    "No profile/product updates, candidate confirmations, conflict resolution, temporal correction or retrieval in these four response worlds."
+  ],
+  "deferred": ["profile_and_product_adapters", "candidate_confirmation_worlds", "conflicts_and_temporal_events", "product_evidence_results", "runtime_and_gym_integration", "terminal_judgments_and_reward"],
+  "fixtures": [
+    {"parent_scenario_id": "luna-v3-train-847", "author_defined_additions": {"method.tools": "hands", "method.friction": "gentle"}},
+    {"parent_scenario_id": "luna-v3-train-848", "author_defined_additions": {"method.friction": "strong", "method.drying": "pat_gently"}},
+    {"parent_scenario_id": "luna-v3-train-849", "author_defined_additions": {"method.tools": "scrub_brush", "method.friction": "gentle"}},
+    {"parent_scenario_id": "luna-v3-train-851", "author_defined_additions": {"method.friction": "gentle", "method.drying": "rubbing_strongly"}}
+  ],
+  "label_derivation": {
+    "parent_turn_id": "luna-v3-train-919-t01",
+    "review_decision": "../v67-review-v1/review-decisions.json#candidate_priority",
+    "additional_rationale_correction": "Synchronize the reason_summary with burning target 1; do not retain target 0 in the explanation.",
+    "changes_source": false,
+    "changes_current_training_input": false
+  }
+}

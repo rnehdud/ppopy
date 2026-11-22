@@ -1,5 +1,7 @@
 # Ppopy: Skincare Routine Support
 
+[Target agent architecture](courses/ai-applications/experiments/cos-agent/docs/agent-runtime-target.md) describes the weather and user-context workflow, the Python runtime, and the scope of AFA question selection.
+
 Ppopy explores how product information, user-reported context, and reviewed evidence can support decisions about an existing skincare routine. The project is shared across two courses: **ITE 351: AI & Applications** and **CSE 406: Software Engineering**.
 
 The broader knowledge base (KB) is planned around three areas: cleansing, moisturizing, and sun protection. The initial AI research prototype focuses on facial cleansers. The three-area KB is under development; candidate evidence and AI outputs require review before they can become application rules.
@@ -67,6 +69,8 @@ The 2026-11-05 import reuses selected KB and development-preview files from the 
 | [Software Engineering](courses/software-engineering/README.md) | System responsibilities, smart mirror requirements and verification scope |
 | [AI & Applications](courses/ai-applications/README.md) | Cleanser-agent research question, available assets and proposed evaluation |
 | [Natural-language feature extraction PoC](courses/ai-applications/experiments/cos-agent/README.md) | Isolated Jev experiments, synthetic cases, regression tests and exploratory evaluation |
+| [AFA Policy starting guide](courses/ai-applications/experiments/cos-agent/docs/afa-policy-guide.md) | Reading order, code and data map, current test commands and progress evidence |
+| [AFA / QLoRA synthetic dataset v67](courses/ai-applications/experiments/cos-agent/data/action_policy/v67/README.md) | Team usage guide, frozen train/validation/test splits and verification |
 | [Knowledge base](KB/README.md) | v0.6.1 KB, sunscreen removal rules and worked case 6 |
 | [Local preview](skin_engine/kb_preview/README.md) | Runnable structured rule engine, source tracing and follow-up handling |
 | [Repository scope](docs/repository-scope.md) | Reuse policy, export boundaries and future integration |

@@ -1,5 +1,7 @@
 # ITE 351 — AI & Applications
 
+[Target agent architecture](experiments/cos-agent/docs/agent-runtime-target.md) separates the overall workflow and recommendation logic from the AFA question policy. The initial cleanser experiment is one part of that workflow.
+
 Current proposal: **An AI Agent for Evidence-Based Cleansing Routine Support**. The shared KB covers cleansing, moisturizing, and sun protection; the initial research evaluation focuses on facial cleansers.
 
 The agent is intended to retrieve relevant evidence, identify information needed for a decision, ask useful follow-up questions, and explain uncertainty when maintaining or adjusting a routine or considering a product alternative. This repository does not yet contain a trained agent, an independent labeled dataset, or a completed AI comparison.

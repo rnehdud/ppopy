@@ -1,0 +1,52 @@
+{
+  "version": "afa-v2-scenario-plan-0.1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "purpose": "Freeze the first joint-card development task before adapter, dataset and scoring implementation",
+  "cards_per_episode": ["B-C01", "B-C02"],
+  "domains_from": "data/afa/stage0-v1/contract.json",
+  "initial_visible_observations": {},
+  "initial_context": "same confirmed synthetic profile and demo-cleanser/fixture-v1 as v1; no NLP or product evidence",
+  "core_response_states": ["known"],
+  "core_world_count": 48,
+  "engineering_probe_states": ["known", "unknown", "declined", "conflicting"],
+  "probe_training_use": false,
+  "probe_scoring_use": false,
+  "corrections": "engineering-only ordered superseding events; not flattened into core worlds",
+  "family_slots": ["method.tools", "method.friction", "method.drying"],
+  "split_order_salt": "afa-v2-joint-design-20261117",
+  "split_family_counts": {"train": 10, "val_internal": 3, "test_internal": 3},
+  "derivative_rule": "same root and family inherit split; effective duplicate response tables must not cross splits",
+  "independent_evaluation": false,
+  "preinspected_synthetic_domains": true,
+  "cost_protocols": {
+    "unit_primary": {
+      "ask_costs": {"method.body_site": 1, "method.water_temperature": 1, "method.tools": 1, "method.friction": 1, "method.drying": 1},
+      "max_questions": 5,
+      "max_acquisition_cost": 5,
+      "incorrect_terminal_loss": 6,
+      "correct_terminal_loss": 0,
+      "gamma": 1.0,
+      "shaping_beta": 0
+    },
+    "weighted_sensitivity": {
+      "ask_costs": {"method.body_site": 1, "method.water_temperature": 1, "method.tools": 1, "method.friction": 2, "method.drying": 2},
+      "max_questions": 5,
+      "max_acquisition_cost": 7,
+      "incorrect_terminal_loss": 8,
+      "correct_terminal_loss": 0,
+      "gamma": 1.0,
+      "shaping_beta": 0
+    }
+  },
+  "cost_provenance": "synthetic design weights, not measured time/fatigue or clinical utility; secondary weights are sensitivity analysis",
+  "core_terminal_reference": "unchanged full-known joint-card semantic signature plus draft/hold disposition",
+  "draft_requirement": "semantic certificate AND existing runtime gate; extensions require versioned v2 adapter",
+  "correct_hold": "full-known reference requires hold and no unasked supported acquisition remains; cold-water unresolved behavior is preserved",
+  "budget": "count every ask even nonanswer; allow free valid terminal after last question; budget exhaustion is termination, not external truncation",
+  "scope_exclusions": ["additional cards", "new safety-required variable labels", "NLP", "product retrieval", "candidate confirmation", "v67 transformation", "probabilistic stopping optimization", "real users", "app integration"],
+  "readiness": {"plan_frozen": true, "v2_adapter_implemented": false, "v2_gym_implemented": false, "training_bundle_generated": false, "performance_protocol_frozen": false},
+  "human_review": "unreviewed",
+  "approved_reference": false,
+  "training_ready": false
+}

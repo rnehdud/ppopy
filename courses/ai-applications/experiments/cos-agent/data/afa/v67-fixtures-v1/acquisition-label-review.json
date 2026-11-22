@@ -1,0 +1,66 @@
+{
+  "entry": "E23",
+  "source_split": "train",
+  "human_review": "unreviewed",
+  "approved_reference": false,
+  "training_ready": false,
+  "scope": "preference only when the task is active acquisition of missing required input",
+  "groups": [
+    {
+      "turn_ids": [
+        "luna-v3-train-022-t01",
+        "luna-v3-train-224-t01"
+      ],
+      "input_sha256": "3cd051a88a453e114607071e0f27e1e08752526a78332f10af5a72eaf6d02679",
+      "source_proposal_sha256": [
+        "c561947a145da5a2e1e1aa83ad0c4dc72e19be05c68096c1798dd434bf064d92",
+        "8c6f9ab9b69de472b069675f2c8a227935fd94140b82eedb17c840680d33b200"
+      ],
+      "allowed_actions": [
+        [
+          "ask_user",
+          "method.body_site"
+        ],
+        [
+          "hold",
+          "insufficient_information"
+        ]
+      ],
+      "preference_under_active_acquisition": [
+        "ask_user",
+        "method.body_site"
+      ],
+      "single_label_disposition": "withhold_group_pending_dataset_purpose",
+      "rationale": "The required body site can be asked, and no hold signal or refusal is present.",
+      "hold_reason_claims_no_relevant_question": false
+    },
+    {
+      "turn_ids": [
+        "luna-v3-train-306-t01",
+        "luna-v3-train-327-t01"
+      ],
+      "input_sha256": "db547ab8b7435c9d12c24e5359c038510ebefa4d9868c0cbbf0a9e328ccd5ab4",
+      "source_proposal_sha256": [
+        "948862efe4b793583b35703bfba2badbe586c7ee710398b8a7ae15eecf12bf5a",
+        "d5e77b07bba4e976d07f8358613d295725418a9f455a6b0cf12b5b095beaab73"
+      ],
+      "allowed_actions": [
+        [
+          "ask_user",
+          "method.body_site"
+        ],
+        [
+          "hold",
+          "insufficient_information"
+        ]
+      ],
+      "preference_under_active_acquisition": [
+        "ask_user",
+        "method.body_site"
+      ],
+      "single_label_disposition": "withhold_group_pending_dataset_purpose",
+      "rationale": "The required body site can be asked, and no hold signal or refusal is present.",
+      "hold_reason_claims_no_relevant_question": true
+    }
+  ]
+}

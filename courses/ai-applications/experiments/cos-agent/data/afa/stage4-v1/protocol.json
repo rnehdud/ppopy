@@ -1,0 +1,18 @@
+{
+  "version": "afa-stage4-baselines-v1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "purpose": "Establish public-input train/val baselines before RL; no model or hyperparameter search",
+  "evaluation_splits": ["train", "val_internal"],
+  "test_internal_scoring": false,
+  "seeds": [0, 1, 2],
+  "policies": ["existing_rule_order", "uniform_all_allowed", "random_acquisition_fixed_stop", "train_prior_greedy_fixed_stop", "tabular_bc_rule_teacher"],
+  "fit_split": "train",
+  "greedy": {"answer_prior": "uniform over matching train worlds", "score": "one-step expected reduction of incorrect terminal loss per acquisition cost", "stop": "fixed runtime-gate rule", "no_support": "rule fallback, counted", "ties": "lexical target order"},
+  "bc": {"model": "exact public-state action lookup", "teacher": "existing static-task rule order", "deduplication": "unique public observation+mask", "unseen": "rule fallback, counted", "labels": "synthetic rule teacher; not independent expert references"},
+  "metrics": ["question_count", "cost", "return", "correct_terminal", "semantic_match", "draft_rate", "hold_rate", "wrong_hold", "conditional_draft_error", "policy_fallbacks"],
+  "future_rl_comparison": {"status": "synthetic design criterion, not clinical approval", "quality_drop_allowed": 0, "coverage_drop_allowed": 0, "cost_improvement_required": "strictly positive paired mean reduction against strongest quality-preserving baseline", "unsupported_claim": "No generalization or statistical superiority claim from two validation worlds"},
+  "interpretation": "Compare cost only at matched quality/coverage; always holding cannot win by asking fewer questions. Seed repetitions do not increase independent world count.",
+  "human_review": "unreviewed",
+  "approved_reference": false
+}
