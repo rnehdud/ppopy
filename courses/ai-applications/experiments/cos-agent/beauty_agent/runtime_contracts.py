@@ -6,6 +6,12 @@ from typing import Literal, Protocol
 from pydantic import Field, JsonValue, model_validator
 
 from .contracts import Contract, ObservationSlot, OwnedProduct, Profile, Question
+from .v3_contracts import (
+    AFACandidateScore as AFACandidateScore,
+    AFAPolicySourceV3 as AFAPolicySource,
+    AFAStepDecision as V3AFAStepDecision,
+    AFAStopStatusV3 as AFAStopStatus,
+)
 
 RuntimeActionKind = Literal[
     "ask_user",
@@ -25,8 +31,12 @@ ExclusionDisposition = Literal[
     "verified_contraindication",
 ]
 RuntimeStatus = Literal["awaiting_user", "completed", "held"]
-AFAPolicySource = Literal["rule_baseline", "ppo_model"]
-AFAStopStatus = Literal["sufficient", "insufficient"]
+ANSWERED_STATES = frozenset({"known", "unknown", "declined", "not_applicable"})
+MANDATORY_HOLD_SIGNALS = frozenset({
+    "refer_for_professional_review",
+    "pause_specific_cosmetic_due_to_discomfort",
+    "pause_specific_product_pending_quality_check",
+})
 
 
 class ProductQueryCandidate(Contract):
@@ -60,6 +70,22 @@ class CandidateConfirmationInput(Contract):
     observed_at: str | None = None
 
 
+class QuestionChoice(Contract):
+    id: str
+    label: str
+
+
+class RuntimeQuestion(Question):
+    turn_index: int
+    choices: list[QuestionChoice]
+
+
+class ChoiceSelection(Contract):
+    turn_index: int = Field(ge=1)
+    question_id: str
+    choice_id: str
+
+
 class FeatureCandidate(Contract):
     """Unconfirmed KB slot value extracted from natural-language utterance."""
 
@@ -87,23 +113,10 @@ class NLPExtractionResult(Contract):
     confirmed_by_user: Literal[False] = False
 
 
-class AFAStepDecision(Contract):
-    """Single-step decision inside the AFA-Policy feature acquisition loop."""
+class AFAStepDecision(V3AFAStepDecision):
+    """v3 decision with the legacy runtime default and E26 PPO conversion."""
 
-    action: Literal["acquire", "stop"]
-    target_feature: str | None = Field(default=None, min_length=1, max_length=120)
-    stop_reason: AFAStopStatus | None = None
     policy_source: AFAPolicySource = "rule_baseline"
-
-    @model_validator(mode="after")
-    def validate_step_fields(self) -> AFAStepDecision:
-        if self.action == "acquire":
-            if not self.target_feature or self.stop_reason is not None:
-                raise ValueError("acquire requires target_feature and stop_reason=None")
-        else:
-            if self.stop_reason is None or self.target_feature is not None:
-                raise ValueError("stop requires stop_reason and target_feature=None")
-        return self
 
     @classmethod
     def from_legacy_action(
@@ -149,7 +162,7 @@ class AFAPolicy(Protocol):
         *,
         can_stop_sufficient: bool,
         can_stop_insufficient: bool = True,
-    ) -> AFAStepDecision: ...
+    ) -> V3AFAStepDecision: ...
 
 
 class QuestionSelector(Protocol):
@@ -212,7 +225,11 @@ class RuntimeSessionState(Contract):
     unrecognized_fields: list[str] = Field(default_factory=list)
     asked_feature_order: list[str] = Field(default_factory=list)
     afa_handoff: AFAHandoffResult | None = None
-    pending_question: Question | None = None
+    afa_step_decision: V3AFAStepDecision | None = None
+    afa_question_scores: list[AFACandidateScore] = Field(default_factory=list)
+    afa_hold_review_slot: str | None = None
+    pending_question: RuntimeQuestion | None = None
+    pending_choice_answers: dict[str, ObservationSlot | CandidateConfirmationInput] = Field(default_factory=dict)
     pending_action: RuntimeActionKind | None = None
     last_turn_fingerprint: str | None = None
     tool_results: dict[str, ToolLookupResult] = Field(default_factory=dict)
@@ -230,6 +247,16 @@ class RuntimeTurnRequest(Contract):
     observations: dict[str, ObservationSlot] = Field(default_factory=dict)
     confirmations: dict[str, CandidateConfirmationInput] = Field(default_factory=dict)
     resolve_conflicts: tuple[str, ...] = ()
+    choice_selection: ChoiceSelection | None = None
+
+    @model_validator(mode="after")
+    def validate_choice_only(self) -> RuntimeTurnRequest:
+        if self.choice_selection is not None and (
+            self.message.strip() or self.observations or self.confirmations or self.resolve_conflicts
+            or self.profile is not None or self.products is not None
+        ):
+            raise ValueError("a choice selection must be submitted by itself")
+        return self
 
 
 class RuntimeTurnResponse(Contract):
@@ -239,7 +266,7 @@ class RuntimeTurnResponse(Contract):
     status: RuntimeStatus
     executed_actions: list[RuntimeActionKind] = Field(default_factory=list)
     pending_action: RuntimeActionKind | None = None
-    questions: list[Question] = Field(default_factory=list)
+    questions: list[RuntimeQuestion] = Field(default_factory=list)
     nlp: NLPExtractionResult | None = None
     afa_handoff: AFAHandoffResult | None = None
     recommendation: RecommendationBundle | None = None

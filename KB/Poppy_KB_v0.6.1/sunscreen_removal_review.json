@@ -1,0 +1,155 @@
+{
+  "version": "B-I01-removal-v1",
+  "card": "B-I01",
+  "sources": {
+    "comparison": "https://pubmed.ncbi.nlm.nih.gov/31157512/",
+    "milk_label_example": "https://www.nomadiaskin.com/products/blue-calming-panthenol-1-cleansing-milk"
+  },
+  "reviewed_labels": {
+    "SHEET-SUNSCREEN-SUN-0051-adb1c24a1bbd6b21": {
+      "version": "adb1c24a1bbd6b2119303d31f728ff6cea2a393829cb531a4cdbc38ce3acaaf2",
+      "condition": "foam_test",
+      "source": "https://m.gsshop.com/prd/prd.gs?prdid=1103743433",
+      "scope": "닥터지 그린 마일드 업 선 플러스 50ml 해당 버전의 제품 자료에 기재된 폼 클렌저 1회 씻김성 시험. 개별 세정제의 제거율은 미확인."
+    }
+  },
+  "label_question": "이 선크림에는 어떻게 지우라고 적혀 있나요?",
+  "label_choices": {
+    "oil_required": "클렌징 오일을 쓰라고 적혀 있어요",
+    "face_wash": "일반 세안제로 지울 수 있어요",
+    "plain_water": "물로만 씻어도 돼요",
+    "special": "전용 리무버 등 별도 방법이 적혀 있어요",
+    "unknown": "보지 않았거나 잘 모르겠어요",
+    "skipped": "건너뛰기"
+  },
+  "method_choices": {
+    "water": "일반 클렌징 워터로만 닦았어요",
+    "foam": "클렌징폼으로 씻었어요",
+    "milk_label": "선크림 제거용이라고 적힌 클렌징 밀크를 썼어요",
+    "milk": "클렌징 밀크를 썼는데 제거용 표시는 모르겠어요",
+    "oil": "클렌징 오일로 지웠어요",
+    "matched": "이 선크림의 제거 안내에 맞는 방법을 썼어요",
+    "water_rinse": "물로만 헹궜어요",
+    "other": "다른 방법으로 지웠어요",
+    "unused": "이 선크림을 바르지 않았어요",
+    "unknown": "기억나지 않아요",
+    "skipped": "건너뛰기",
+    "resistant_label": "워터프루프 제거용이라고 표시된 세정제를 썼어요"
+  },
+  "messages": {
+    "foam_water": "일반 클렌징 워터로만 닦으면 이 선크림이 충분히 지워지지 않을 수 있어요. 다음에는 저녁에 클렌징폼으로 한 번 씻거나, 선크림 제거용으로 표시된 클렌징 밀크를 사용해 보세요.",
+    "foam_keep": "이 선크림은 폼 클렌저로 한 번 씻는 조건에서 씻김성을 시험했어요. 지금처럼 저녁에 폼으로 부드럽게 씻어 주세요.",
+    "foam_rinse": "이 선크림의 씻김성을 확인한 방법은 폼 클렌저 세안이에요. 다음에는 저녁에 클렌징폼으로 한 번 씻어 주세요.",
+    "milk_keep": "선크림 제거용으로 표시된 밀크를 쓰고 있어요. 선크림에 별도 지시가 없다면 밀크에 적힌 양과 닦거나 헹구는 방법을 따라 주세요.",
+    "milk_check": "밀크의 용기에서 선크림 제거 용도와 닦거나 헹구는 방법을 확인해 주세요.",
+    "foam_option": "표시를 확인하기 어렵다면 이 선크림은 저녁에 클렌징폼으로 한 번 씻는 방법을 선택할 수 있어요.",
+    "matched_keep": "확인한 선크림 제거 안내에 맞춰 지금 방법을 이어가세요.",
+    "special_check": "이 선크림에는 별도 제거 방법이 적혀 있어요. 사용한 세정제가 그 조건에 맞는지 확인하고, 다음에도 선크림에 적힌 방법대로 지워 주세요.",
+    "resistant_check": "워터프루프 선크림을 바른 날에는 세정제에 워터프루프 제품도 지울 수 있다고 적혀 있는지 확인해 주세요. 선크림에 별도 제거 방법이 있으면 그 방법을 따라 주세요.",
+    "wash_use": "일반 세안제로 지울 수 있다고 확인한 선크림이에요. 다음에는 저녁에 클렌징폼이나 선크림 제거용 클렌징 밀크로 부드럽게 씻어 주세요.",
+    "wash_keep": "일반 세안제로 지울 수 있다고 확인했어요. 지금 쓰는 폼의 사용법대로 부드럽게 씻어 주세요.",
+    "rinse_keep": "이 선크림은 물로 지울 수 있다고 확인했어요. 용기에 적힌 방법대로 헹궈 주세요.",
+    "unknown_check": "이 선크림의 제거 방법을 먼저 확인해 주세요. 따로 적힌 방법이 없다면 선크림 제거 용도가 표시된 세정제를 사용해 주세요.",
+    "unknown_water": "일반 클렌징 워터로만 닦았다면 이 선크림의 제거용으로 쓸 수 있는지 워터의 표시를 확인해 주세요. 그 용도를 확인하기 어렵다면 선크림 제거용 세정제를 선택해 주세요.",
+    "resistant_keep": "워터프루프 제거용 세정제를 썼다고 답했어요. 선크림에 다른 지시가 없다면 그 세정제의 사용법대로 지워 주세요.",
+    "oil_use": "이 선크림에는 클렌징 오일로 지우라고 적혀 있다고 답했어요. 다음에는 저녁에 클렌징 오일을 표시된 방법대로 사용해 주세요.",
+    "oil_keep": "선크림에 적힌 대로 클렌징 오일을 쓰고 있어요. 지금처럼 오일의 사용법에 맞춰 지워 주세요."
+  },
+  "default_outcomes": {
+    "matched": [
+      "keep",
+      "matched_keep"
+    ],
+    "water": [
+      "review",
+      "unknown_water"
+    ],
+    "milk": [
+      "review",
+      "milk_check"
+    ],
+    "milk_label": [
+      "keep",
+      "milk_keep"
+    ],
+    "other": [
+      "review",
+      "unknown_check"
+    ]
+  },
+  "condition_outcomes": {
+    "foam_test": {
+      "water": [
+        "adjust",
+        "foam_water"
+      ],
+      "foam": [
+        "keep",
+        "foam_keep"
+      ],
+      "water_rinse": [
+        "adjust",
+        "foam_rinse"
+      ],
+      "milk": [
+        "review",
+        "milk_check",
+        "foam_option"
+      ],
+      "other": [
+        "review",
+        "foam_option"
+      ]
+    },
+    "face_wash": {
+      "foam": [
+        "keep",
+        "wash_keep"
+      ],
+      "water": [
+        "review",
+        "wash_use"
+      ],
+      "water_rinse": [
+        "review",
+        "wash_use"
+      ]
+    },
+    "waterproof": {
+      "resistant_label": [
+        "keep",
+        "resistant_keep"
+      ],
+      "default": [
+        "review",
+        "resistant_check"
+      ]
+    },
+    "plain_water": {
+      "water_rinse": [
+        "keep",
+        "rinse_keep"
+      ],
+      "default": [
+        "review",
+        "rinse_keep"
+      ]
+    },
+    "oil_required": {
+      "oil": [
+        "keep",
+        "oil_keep"
+      ],
+      "default": [
+        "adjust",
+        "oil_use"
+      ]
+    },
+    "special": {
+      "default": [
+        "review",
+        "special_check"
+      ]
+    }
+  }
+}

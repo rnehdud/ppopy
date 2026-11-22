@@ -8,6 +8,16 @@ iOS 앱과 스마트미러가 같은 HTTP API를 호출하는 Python 초기 골�
 
 ## 먼저 실행하기 — Windows PowerShell
 
+이 실험 폴더에서 대화형 CLI를 실행하면 기본 질문 정책으로 Myopic VOI를 사용합니다.
+
+```powershell
+uv run --locked python -m beauty_agent.cli --offline-nlp
+```
+
+`나 >`에 `얼굴을 미온수로 세안해요. 세안 방법을 확인해 주세요.`를 입력하세요. 그다음 `선택 번호 >`에 각 질문 아래에 표시된 번호를 입력하면 같은 요청을 이어갑니다. 답을 모르거나 건너뛰려면 그에 해당하는 번호를 고르세요. `/state`는 진행 중인 상태를 보여주고 `/quit`은 종료합니다.
+
+HTTP 데모는 아래 명령으로 실행합니다.
+
 ```powershell
 cd C:\cos-agent
 uv sync --locked

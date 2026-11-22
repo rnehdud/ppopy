@@ -9,8 +9,8 @@
   "source_commit_pinned": false,
   "raw_outputs_gitignored": true,
   "note": "Portable selected metrics and receipts, not a replacement for full reports. Earlier software test summaries are historical records, not newly rerun or independently signed evidence. Append new entries; preserve old receipts and disclose corrections.",
-  "latest_full_software_suite_recorded": 567,
-  "latest_full_software_suite_entry": "E39",
+  "latest_full_software_suite_recorded": 599,
+  "latest_full_software_suite_entry": "E52",
   "original_strict_suite": {
     "passed": 62,
     "known_failed": 5,
@@ -4772,8 +4772,2782 @@
           "sha256": "87b8537f7b96613260816d62b74d19fbef1422e29c4230c9ee0f1dbcdb651527"
         }
       ]
+    },
+    {
+      "id": "E40",
+      "title_ko": "로컬 세안 CLI의 선택형 응답과 직접 입력",
+      "kind": "software_regression",
+      "metrics": {
+        "focused_tests_passed": 39,
+        "software_suite_passed": 576,
+        "entrypoint_completed_cases": 2,
+        "entrypoint_followup_questions": 3,
+        "direct_input_confirmations": 1,
+        "kb_current_tests_passed": 371,
+        "kb_documented_strict_mismatches": 5
+      },
+      "mlflow": {
+        "experiment_id": "9",
+        "run_id": "0317c25ba0dd49b28648055bf56e1c68"
+      },
+      "verification_path": "outputs/afa-e40/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e40/focused.txt",
+          "bytes": 102,
+          "sha256": "84af4db74f1f16de3c89ccc997c08d4b4670907bde3b5a4f7b9f4dc6787c5c5b"
+        },
+        {
+          "path": "outputs/afa-e40/focused-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e40/suite.txt",
+          "bytes": 1246,
+          "sha256": "3bd3dadb041e2623284562f53521630d088ae9dc566e22006e0c01cf46936e34"
+        },
+        {
+          "path": "outputs/afa-e40/suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e40/cli-smoke.txt",
+          "bytes": 4255,
+          "sha256": "e10fe5bfad7b9d889c98496569e794543d9f872a30c7c12c9c0cb2318688ae75"
+        },
+        {
+          "path": "outputs/afa-e40/cli-smoke-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e40/summary.json",
+          "bytes": 738,
+          "sha256": "869c3792a89624297f6eb9f84799ec15dce060475d5390770a1a0627a23092b4"
+        },
+        {
+          "path": "outputs/afa-e40/commands.txt",
+          "bytes": 290,
+          "sha256": "c48a75623c7d941fbfab4bd9f010b17c9b1310543a70a2e7034acaf505400e5a"
+        },
+        {
+          "path": "outputs/afa-e40/kb-current.txt",
+          "bytes": 507,
+          "sha256": "3ba053840d41ac07325bddaac49c4f25a95d2908cce906e17bc9741613b06649"
+        },
+        {
+          "path": "outputs/afa-e40/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "8c98feca107dca5c193be1fc71259e8a99415b134ec4e8df8611edbff02a66e7"
+        },
+        {
+          "path": "outputs/afa-e40/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e40/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e40/mlflow-run.json",
+          "bytes": 283,
+          "sha256": "9a4ad6f3b41a0d8d1576dbe98b739fd61a63a71158e66a8d46a02e0bab69bca2"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/cli.py",
+          "bytes": 14042,
+          "sha256": "0112833a3ee4661e1f4f65f891182d7a7f12725df1be08e7095fa4202f543000"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/followups.py",
+          "bytes": 6609,
+          "sha256": "6f27ed3480b5f9992e81699a7b4af8043bbaccd07823213dc5a58495d6d460d2"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_cli_followup_choices.py",
+          "bytes": 3694,
+          "sha256": "171025b4e9180d317287c0068af2425bee7263cf2fce71456858fd4ece12c1f9"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E40-result.png",
+          "bytes": 224310,
+          "sha256": "5b161fcdf7d69b00ad25aecc1911420d8d1aa25c2770081494ff38358b23db08"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 125592,
+          "sha256": "8c952e04091660140411fa857876a26ff4af2dc8030b2f61189c2ae8ec72b26f"
+        }
+      ]
+    },
+    {
+      "id": "E41",
+      "title_ko": "CLI 입력과 질문·최종 응답 모듈 표시",
+      "kind": "software_regression",
+      "metrics": {
+        "focused_tests_passed": 39,
+        "software_suite_passed": 576,
+        "rule_question_labels": 1,
+        "ppo_question_labels": 1,
+        "runtime_symptom_question_labels": 1,
+        "kb_current_tests_passed": 371,
+        "kb_documented_strict_mismatches": 5
+      },
+      "mlflow": {
+        "experiment_id": "9",
+        "run_id": "b0d00aea3146423ea2b4e12f64f6bd0e"
+      },
+      "verification_path": "outputs/afa-e41/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e41/focused.txt",
+          "bytes": 102,
+          "sha256": "5fa88c029b2cca585aa83c34f851e42ab61b1e944626e649356188905967ac7b"
+        },
+        {
+          "path": "outputs/afa-e41/focused-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e41/suite.txt",
+          "bytes": 1246,
+          "sha256": "a4420e483c5d47afc4fc209d0692bfdba03afb5b1ccf9d5bf9b123575526f612"
+        },
+        {
+          "path": "outputs/afa-e41/suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e41/cli-rule.txt",
+          "bytes": 3139,
+          "sha256": "e12a8373e106f1b5adc4184582b3fad1641571086c2790d309ce63d2b91d0e21"
+        },
+        {
+          "path": "outputs/afa-e41/cli-ppo.txt",
+          "bytes": 1149,
+          "sha256": "4f97927b01935262b9b56a446d45f15f90cba31db85e03875c82f689fe2ad651"
+        },
+        {
+          "path": "outputs/afa-e41/cli-smoke-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e41/summary.json",
+          "bytes": 807,
+          "sha256": "ef7829dfc2de1f4f91d9b2ecbf883c56e617dd5b08e550332b0089bd0bc38206"
+        },
+        {
+          "path": "outputs/afa-e41/commands.txt",
+          "bytes": 388,
+          "sha256": "a43f7a59a9d6d7631e1dfb2d1c401a9636c1fc0392af814d664e85fd2593e390"
+        },
+        {
+          "path": "outputs/afa-e41/kb-current.txt",
+          "bytes": 507,
+          "sha256": "0b05bc3bf7a8fb6769213626577a42c83c916b76e6f7b87ac7d952caebd9e4e8"
+        },
+        {
+          "path": "outputs/afa-e41/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "d30560ce4aa7b329fb080589048f53fcc3bf4145c8cf81da9dc76fec72d517a3"
+        },
+        {
+          "path": "outputs/afa-e41/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e41/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e41/mlflow-run.json",
+          "bytes": 272,
+          "sha256": "4ef17253c2784155bff6e812c7f19a515527049a30a20494602fa9cd2a779a8a"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E41-result.png",
+          "bytes": 215592,
+          "sha256": "83bcedbaf5f0fe556eb09b960d82afe3a0813cf91e215cd8eceaf5383cd33abf"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 127404,
+          "sha256": "e029619aa499f76cbd7cc9071132f3fdaad22aa0f278574d7c08cfa37e7a815c"
+        }
+      ]
+    },
+    {
+      "id": "E42",
+      "title_ko": "증상 질문을 한 항목씩 선택하고 번호 선택지를 줄임",
+      "kind": "software_regression",
+      "metrics": {
+        "focused_passed": 46,
+        "suite_passed": 583,
+        "largest_numbered_option": 4,
+        "symptom_held_path_questions": 3,
+        "symptom_questions_when_two_mentions_are_for_others": 2,
+        "kb_current_tests_passed": 371,
+        "kb_documented_strict_mismatches": 5
+      },
+      "mlflow": {
+        "experiment_id": "9",
+        "run_id": "b2115d650a8e499db10813f2d01cc544"
+      },
+      "verification_path": "outputs/afa-e42/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e42/focused.txt",
+          "bytes": 102,
+          "sha256": "677cb1b4d1e7d94b64c830f6292f5526bd473c44cda947752acbe044f4201939"
+        },
+        {
+          "path": "outputs/afa-e42/focused-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e42/suite.txt",
+          "bytes": 1327,
+          "sha256": "488fba4471e26e2d6b8cca25a0f8a96b023287074d87da28f23f69339d50b2b5"
+        },
+        {
+          "path": "outputs/afa-e42/suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e42/cli-safety_stop.txt",
+          "bytes": 2180,
+          "sha256": "e60656778c86771274953e9c12aea25e9ac5e0c9937044885e4af19fdc211b1a"
+        },
+        {
+          "path": "outputs/afa-e42/cli-other_person.txt",
+          "bytes": 1866,
+          "sha256": "285719cc8306adb6b06f807e301be01fbf193a59b9f8c62a08234335462e499c"
+        },
+        {
+          "path": "outputs/afa-e42/cli-smoke-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e42/summary.json",
+          "bytes": 1200,
+          "sha256": "97cc5e0fa2dff7dcd92f05d351167f811ce3bd46007ea3365aafdc50b07b521d"
+        },
+        {
+          "path": "outputs/afa-e42/commands.txt",
+          "bytes": 253,
+          "sha256": "8e50c20638b498b2cc8adddcef16f124c629ccd007307a1944b4b395f96998ba"
+        },
+        {
+          "path": "outputs/afa-e42/kb-current.txt",
+          "bytes": 507,
+          "sha256": "408dd4878e5c0cc5bcaf3c9c6fc68a58ca6262d983c2d5015b849720be63482d"
+        },
+        {
+          "path": "outputs/afa-e42/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "5ab84bfc92e85d9e0ed8b2ca8e645193dfc790afecd0b30252cf494519c398ea"
+        },
+        {
+          "path": "outputs/afa-e42/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e42/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e42/mlflow-run.json",
+          "bytes": 287,
+          "sha256": "fe48cce3e5cc18eac222431317c859793065859e722544a79ed9360028dcb9f3"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E42-result.png",
+          "bytes": 226479,
+          "sha256": "fa816df2ad0595914fa0701d67b2496a6aa67fbf3367ba70aba3112bccca5c80"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 129816,
+          "sha256": "6cb0900c9db3cf7b46494e9c07c73847874415a0176a136b1e0d347420cf323f"
+        }
+      ]
+    },
+    {
+      "id": "E43",
+      "title_ko": "Kiwi·Jev NLP 파이프라인 검사",
+      "kind": "software_regression",
+      "metrics": {
+        "focused_passed": 53,
+        "suite_passed": 596,
+        "offline_cli_cases_checked": 2,
+        "kb_current_tests_passed": 371,
+        "kb_documented_strict_mismatches": 5
+      },
+      "mlflow": {
+        "experiment_id": "9",
+        "run_id": "4e67bc50b67d4c0ea7bfea6aed72d001"
+      },
+      "verification_path": "outputs/afa-e43/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e43/focused.txt",
+          "bytes": 102,
+          "sha256": "da05ffda828095d41b7858967f565a93812e1d71a1e0393fd65d47db12233f57"
+        },
+        {
+          "path": "outputs/afa-e43/focused-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e43/suite.txt",
+          "bytes": 1327,
+          "sha256": "25aa304514dbe060bf553d1539b8b660e949a62599bae78cabc69df875213d35"
+        },
+        {
+          "path": "outputs/afa-e43/suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e43/cli-smoke.txt",
+          "bytes": 1839,
+          "sha256": "47ada8fd00475ed9b70b1b403658d92c14416cd1e5e7d8654ef4ccafd5337a88"
+        },
+        {
+          "path": "outputs/afa-e43/suite-before-bare-mention-fix.txt",
+          "bytes": 2259,
+          "sha256": "95b7546423aad1a6d22ca1a0faf49d699bcc9879936f51dbbb9e1828d32402ad"
+        },
+        {
+          "path": "outputs/afa-e43/summary.json",
+          "bytes": 1132,
+          "sha256": "b4bb7719858be1f3fe1720e2547e99cb061b59a45f7b29f3b78f6038ebe83735"
+        },
+        {
+          "path": "outputs/afa-e43/commands.txt",
+          "bytes": 224,
+          "sha256": "ad8a43398a8703b077aa799374fdad746a8ae2f106244a429bbbda942b9cce2b"
+        },
+        {
+          "path": "outputs/afa-e43/kb-current.txt",
+          "bytes": 507,
+          "sha256": "da163597f8395757684cb74e501dc42b0a810b5d7fca664411fbf6c93ef6e3fc"
+        },
+        {
+          "path": "outputs/afa-e43/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "74c15871d047d446baf47982c46edbf3e0408df770fd3cfb8a47f791ec1c6a01"
+        },
+        {
+          "path": "outputs/afa-e43/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e43/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e43/mlflow-run.json",
+          "bytes": 188,
+          "sha256": "695cc909b8febc5ad22f5b2fe6518752b4e6e0cea7a5f9ac2513815181a668c1"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E43-result.png",
+          "bytes": 73001,
+          "sha256": "25b610663bf8fd408e8efa40e5294e9d6b39337c44d5ad4bfc5103ccaf162412"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 132060,
+          "sha256": "dc8fa8bad8b7dc74e63b86a42c7fb01a76eb318d47ba6e4e6dbe86ae7325705a"
+        }
+      ]
+    },
+    {
+      "id": "E44",
+      "title_ko": "로컬 CLI PPO 우선과 규칙 기반 복구 검사",
+      "kind": "software_regression",
+      "metrics": {
+        "focused_passed": 50,
+        "suite_passed": 600,
+        "cli_cases_checked": 4,
+        "kb_documented_strict_mismatches": 5
+      },
+      "mlflow": {
+        "experiment_id": "9",
+        "run_id": "76a9befa67fc44d1955eb4462ab40c2f"
+      },
+      "verification_path": "outputs/afa-e44/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e44/focused.txt",
+          "bytes": 101,
+          "sha256": "3e3b9d9507f94182ed1f33af03248e12cf977e4c69a683e34827132f911dacc4"
+        },
+        {
+          "path": "outputs/afa-e44/focused-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e44/suite.txt",
+          "bytes": 1327,
+          "sha256": "67729825cf14214e65f061ffb55a01180835a192bd634d85fe0b5823ad31c1e0"
+        },
+        {
+          "path": "outputs/afa-e44/suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e44/check_cli.py",
+          "bytes": 2161,
+          "sha256": "ab92441663b2a00fe61197508b0c46c7b28f83cac0f93c14ef4bb231f5540ccc"
+        },
+        {
+          "path": "outputs/afa-e44/cli-smoke-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e44/cli-default.txt",
+          "bytes": 886,
+          "sha256": "5589fc3e65da1e7668a87783f3d754609f2880d741a7b4c6915ff9ee5691da67"
+        },
+        {
+          "path": "outputs/afa-e44/cli-missing.txt",
+          "bytes": 835,
+          "sha256": "13091fced387849caf2a5c42eff6cd9262e97ab2a3fa9dfb00dbed324401de43"
+        },
+        {
+          "path": "outputs/afa-e44/cli-rule.txt",
+          "bytes": 835,
+          "sha256": "13091fced387849caf2a5c42eff6cd9262e97ab2a3fa9dfb00dbed324401de43"
+        },
+        {
+          "path": "outputs/afa-e44/cli-symptom.txt",
+          "bytes": 920,
+          "sha256": "5e5687bde7bf191c9915621858b0f44ba7bf8d5037b7b308fec7916d849ceab7"
+        },
+        {
+          "path": "outputs/afa-e44/summary.json",
+          "bytes": 408,
+          "sha256": "ab15d949c852e7ad7684ee61585b8963a67b3d6dc6cf38edbe9e41091cbefe45"
+        },
+        {
+          "path": "outputs/afa-e44/commands.txt",
+          "bytes": 261,
+          "sha256": "151605a5b92d743fffe4faf7bd086f4c329f86255610f268c9a31936cb3c3993"
+        },
+        {
+          "path": "outputs/afa-e44/kb-current.txt",
+          "bytes": 507,
+          "sha256": "95d0f247ff5e9b1a03e920c3256e81c03e2657d78e7e4326e9a28a0f25978c90"
+        },
+        {
+          "path": "outputs/afa-e44/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "74c15871d047d446baf47982c46edbf3e0408df770fd3cfb8a47f791ec1c6a01"
+        },
+        {
+          "path": "outputs/afa-e44/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e44/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e44/mlflow-run.json",
+          "bytes": 180,
+          "sha256": "b35231122956f4988d46bc415d32be0dee7873d8d5564595918508911c0e9b9c"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E44-result.png",
+          "bytes": 77923,
+          "sha256": "8812bac5af602837ea4f341cc7953aedf2f1071a88c57ce69e115395b7e6eed3"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 134429,
+          "sha256": "2ac9def9e74ec792de4187bec7d622ed84cdb423f051a58d1f23746ee36971bd"
+        }
+      ]
+    },
+    {
+      "id": "E45",
+      "title_ko": "다중 영역 Myopic VOI 질문 정책",
+      "stage_record_date": "2026-11-20",
+      "kind": "paired_internal_synthetic_comparison_and_software_regression",
+      "source_type": "hand_authored_synthetic_scenarios_with_same_answers_for_both_policies",
+      "metrics": {
+        "scenario_count": 8,
+        "baseline_mean_questions": 3.375,
+        "myopic_mean_questions": 1.125,
+        "final_agreement_rate": 0.875,
+        "baseline_questions": 27,
+        "myopic_questions": 9,
+        "final_agreements": 7,
+        "repetitions_per_policy_and_case": 1,
+        "focused_passed": 18,
+        "default_suite_passed": 473,
+        "full_suite_passed": 585,
+        "kb_boundary_and_trace_passed": 371,
+        "kb_structure_passed": 95,
+        "original_audit_satisfied": 52,
+        "original_audit_total": 57,
+        "original_strict_known_failed": 5
+      },
+      "counterexample": {
+        "card": "B-I02",
+        "baseline": "maintain",
+        "myopic_voi": "hold",
+        "myopic_questions": 0
+      },
+      "mlflow": {
+        "experiment_id": "1",
+        "run_id": "357bf1b4ed304842a8c5a2cfe2f87b9b",
+        "visual": "chart_from_recorded_metrics_api_no_ui_capture"
+      },
+      "verification_path": "outputs/afa-e45/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e45/commands.json",
+          "bytes": 1470,
+          "sha256": "9c4e710ef617fb76473c544e510e65ad7450bcb2e2b25d9b18b24215362a6db6"
+        },
+        {
+          "path": "outputs/afa-e45/myopic-comparison.json",
+          "bytes": 4242,
+          "sha256": "4d3c81f464c6cb05c011f4dd9ada0aa8715ed4790e3eeed67d810cc780808357"
+        },
+        {
+          "path": "outputs/afa-e45/myopic-tests.txt",
+          "bytes": 2785,
+          "sha256": "f161daa007f0c7dde1614621d5dbdaf138959fd4f6a6116cff9649b28ad63a9c"
+        },
+        {
+          "path": "outputs/afa-e45/cos-agent-default.txt",
+          "bytes": 1138,
+          "sha256": "7cc53b620ab30e9ded873b162b0c29b2bbe0432d48439a76ba78731a64f4bd37"
+        },
+        {
+          "path": "outputs/afa-e45/cos-agent-full-final.txt",
+          "bytes": 1311,
+          "sha256": "7466fa7a6d02712addb7e90f56a2d939d1964de9fcbeb55144eba780e44d44eb"
+        },
+        {
+          "path": "outputs/afa-e45/mlflow-run.json",
+          "bytes": 263,
+          "sha256": "cb73cbed354ea778797f047f83969b0f0f57a114ff248de12a21554e1ef6c1c1"
+        },
+        {
+          "path": "outputs/afa-e45/mlflow-readback.json",
+          "bytes": 3268,
+          "sha256": "08d29f7c4f12f42eb698510ba5fd6c07a3157b661496da111379ef76baf4acdb"
+        },
+        {
+          "path": "outputs/afa-e45/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e45/kb-structure.json",
+          "bytes": 15094,
+          "sha256": "609e99ab86aca043198b1f76697a4ef8b1c46d30c10c7dcb45153f2ec4c7aa63"
+        },
+        {
+          "path": "outputs/afa-e45/kb-current.txt",
+          "bytes": 507,
+          "sha256": "3488bf0ec9808a5d2295b1d7bdcdbbe502b87c2d968eecc3e68400abdb464afa"
+        },
+        {
+          "path": "outputs/afa-e45/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "ebdf8f91a18af5fd4e4b6659fffbd9c0eb09f0d4c84dba6ee94239b2374ee64f"
+        },
+        {
+          "path": "outputs/afa-e45/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "outputs/afa-e45/card-coverage.json",
+          "bytes": 634409,
+          "sha256": "3f236be5a60f6c81ff433ee14477740c1ffa4b3a640332ec86abe7ff6af725a6"
+        },
+        {
+          "path": "outputs/afa-e45/kb-preview.txt",
+          "bytes": 3668,
+          "sha256": "cf634d2ac8ec684ffd263a0f743c7cd2d4bd8b91a529c53860d950ca835fcd8a"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E45-comparison.png",
+          "bytes": 29923,
+          "sha256": "8767ffcd09fda85b12f9e639e971bd53a637e4546421474e8c647ec8340f53f3"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 137650,
+          "sha256": "a996dca583372e57428d61a14d77e9001beef9cb1d0cf9beee4ba3d8b0724796"
+        }
+      ]
+    },
+    {
+      "id": "E46",
+      "title_ko": "Myopic VOI 합성 비교 확대",
+      "stage_record_date": "2026-11-20",
+      "kind": "paired_internal_synthetic_comparison_and_software_regression",
+      "source_type": "kb_derived_values_authored_boundaries_and_v67_e22_train_derived",
+      "metrics": {
+        "cases": 78,
+        "families": 46,
+        "worlds": 51,
+        "agreement_count": 69,
+        "status_agreement_count": 70,
+        "baseline": {
+          "questions": 280,
+          "mean_questions": 3.58974358974359,
+          "matches_full_input": 76,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 20,
+            "completed": 58
+          }
+        },
+        "myopic": {
+          "questions": 126,
+          "mean_questions": 1.6153846153846154,
+          "matches_full_input": 67,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 28,
+            "completed": 50
+          }
+        },
+        "default_suite_passed": 474,
+        "full_suite_passed": 586
+      },
+      "by_cohort": {
+        "authored_boundary": {
+          "cases": 12,
+          "families": 6,
+          "worlds": 6,
+          "agreement_count": 12,
+          "status_agreement_count": 12,
+          "baseline": {
+            "questions": 53,
+            "mean_questions": 4.416666666666667,
+            "matches_full_input": 10,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 10,
+              "completed": 2
+            }
+          },
+          "myopic": {
+            "questions": 19,
+            "mean_questions": 1.5833333333333333,
+            "matches_full_input": 10,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 10,
+              "completed": 2
+            }
+          }
+        },
+        "kb_branch": {
+          "cases": 62,
+          "families": 36,
+          "worlds": 41,
+          "agreement_count": 53,
+          "status_agreement_count": 54,
+          "baseline": {
+            "questions": 218,
+            "mean_questions": 3.5161290322580645,
+            "matches_full_input": 62,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 9,
+              "completed": 53
+            }
+          },
+          "myopic": {
+            "questions": 98,
+            "mean_questions": 1.5806451612903225,
+            "matches_full_input": 53,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 17,
+              "completed": 45
+            }
+          }
+        },
+        "v67_e22_train": {
+          "cases": 4,
+          "families": 4,
+          "worlds": 4,
+          "agreement_count": 4,
+          "status_agreement_count": 4,
+          "baseline": {
+            "questions": 9,
+            "mean_questions": 2.25,
+            "matches_full_input": 4,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 1,
+              "completed": 3
+            }
+          },
+          "myopic": {
+            "questions": 9,
+            "mean_questions": 2.25,
+            "matches_full_input": 4,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 1,
+              "completed": 3
+            }
+          }
+        }
+      },
+      "by_axis": {
+        "C": {
+          "cases": 21,
+          "families": 14,
+          "worlds": 18,
+          "agreement_count": 21,
+          "status_agreement_count": 21,
+          "baseline": {
+            "questions": 44,
+            "mean_questions": 2.0952380952380953,
+            "matches_full_input": 21,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 5,
+              "completed": 16
+            }
+          },
+          "myopic": {
+            "questions": 34,
+            "mean_questions": 1.619047619047619,
+            "matches_full_input": 21,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 5,
+              "completed": 16
+            }
+          }
+        },
+        "M": {
+          "cases": 13,
+          "families": 7,
+          "worlds": 8,
+          "agreement_count": 11,
+          "status_agreement_count": 11,
+          "baseline": {
+            "questions": 44,
+            "mean_questions": 3.3846153846153846,
+            "matches_full_input": 13,
+            "fallback_steps": 0,
+            "statuses": {
+              "completed": 11,
+              "held": 2
+            }
+          },
+          "myopic": {
+            "questions": 20,
+            "mean_questions": 1.5384615384615385,
+            "matches_full_input": 11,
+            "fallback_steps": 0,
+            "statuses": {
+              "completed": 9,
+              "held": 4
+            }
+          }
+        },
+        "P": {
+          "cases": 19,
+          "families": 11,
+          "worlds": 11,
+          "agreement_count": 16,
+          "status_agreement_count": 16,
+          "baseline": {
+            "questions": 62,
+            "mean_questions": 3.263157894736842,
+            "matches_full_input": 19,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 3,
+              "completed": 16
+            }
+          },
+          "myopic": {
+            "questions": 37,
+            "mean_questions": 1.9473684210526316,
+            "matches_full_input": 16,
+            "fallback_steps": 0,
+            "statuses": {
+              "held": 6,
+              "completed": 13
+            }
+          }
+        },
+        "I": {
+          "cases": 17,
+          "families": 10,
+          "worlds": 10,
+          "agreement_count": 13,
+          "status_agreement_count": 14,
+          "baseline": {
+            "questions": 82,
+            "mean_questions": 4.823529411764706,
+            "matches_full_input": 17,
+            "fallback_steps": 0,
+            "statuses": {
+              "completed": 13,
+              "held": 4
+            }
+          },
+          "myopic": {
+            "questions": 16,
+            "mean_questions": 0.9411764705882353,
+            "matches_full_input": 13,
+            "fallback_steps": 0,
+            "statuses": {
+              "completed": 10,
+              "held": 7
+            }
+          }
+        }
+      },
+      "multi_axis": {
+        "cases": 8,
+        "families": 4,
+        "worlds": 4,
+        "agreement_count": 8,
+        "status_agreement_count": 8,
+        "baseline": {
+          "questions": 48,
+          "mean_questions": 6.0,
+          "matches_full_input": 6,
+          "fallback_steps": 0,
+          "statuses": {
+            "completed": 2,
+            "held": 6
+          }
+        },
+        "myopic": {
+          "questions": 19,
+          "mean_questions": 2.375,
+          "matches_full_input": 6,
+          "fallback_steps": 0,
+          "statuses": {
+            "completed": 2,
+            "held": 6
+          }
+        }
+      },
+      "mlflow": {
+        "experiment_id": "1",
+        "run_id": "a3961d3a5c8d4c28b195cccade3108e3"
+      },
+      "verification_path": "outputs/afa-e46/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e46/comparison-final.json",
+          "bytes": 290538,
+          "sha256": "51f13b02bc1c3ad071d7b738130ca3d279edf886189c3a94995c49bd362c2bc6"
+        },
+        {
+          "path": "outputs/afa-e46/comparison-final.txt",
+          "bytes": 540,
+          "sha256": "4458ea8c1509b5d0e7822f812b1082993c36e7cf05105d81071d9c97810058e3"
+        },
+        {
+          "path": "outputs/afa-e46/cases.csv",
+          "bytes": 5877,
+          "sha256": "27aef9e5ebefa07d52833207146388d791ffdf677407e8326a1a3cc97083ec2a"
+        },
+        {
+          "path": "outputs/afa-e46/commands.json",
+          "bytes": 462,
+          "sha256": "cb6a7999d68eb4a13314caf3c3cbd063f04b5a4b296211b1facd73c4f764e367"
+        },
+        {
+          "path": "outputs/afa-e46/default-pytest.txt",
+          "bytes": 1138,
+          "sha256": "63f20e5ae14daacf153c3cfcc61411075fbe0a5065bf6474fb7c7a31aa2de972"
+        },
+        {
+          "path": "outputs/afa-e46/full-pytest.txt",
+          "bytes": 1311,
+          "sha256": "0088de9ba1adabac2e564ecddf215f2e1853588d51e3b88064ce2c068a1cda8c"
+        },
+        {
+          "path": "outputs/afa-e46/mlflow-run.json",
+          "bytes": 454,
+          "sha256": "0fb897f4c5f7f403dea6f4be521eadc5b6014026458cde61ed78acebcdcb818f"
+        },
+        {
+          "path": "outputs/afa-e46/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e46/kb-structure.json",
+          "bytes": 15094,
+          "sha256": "17335e32992a5796516a94888e749fa820caece359d875f970e48deaf4a7f3a8"
+        },
+        {
+          "path": "outputs/afa-e46/kb-current.txt",
+          "bytes": 507,
+          "sha256": "1d0c5090c065796eb3fa949b6e2ab491a85028f90b55b60c929bff01595f4f67"
+        },
+        {
+          "path": "outputs/afa-e46/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "2944cae4a8608876eb830c0064c9bf407c4a4e3bcfcb0fb68dffb63e7d1de0aa"
+        },
+        {
+          "path": "outputs/afa-e46/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "outputs/afa-e46/kb-exits.json",
+          "bytes": 125,
+          "sha256": "16f048ed4b2bf6e208fd6da0538d1487dca0e79e463ba99df78e577620da6135"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 141806,
+          "sha256": "b12c99f292540071f409687d43e0e0fef54ebeda3983c558c26e55bcb0b99b24"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E46-result.png",
+          "bytes": 85687,
+          "sha256": "3462b7e7aeaf0ad2eeb87f34d47c497342ee776a503bea0980b90d90eba16957"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/myopic_evaluation.py",
+          "bytes": 12063,
+          "sha256": "273a906e74ffea7ade76c64330ac653bec5fd6501532be5c75c5a63699cd7a1a"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_myopic_evaluation.py",
+          "bytes": 1893,
+          "sha256": "be1d3c1d231f20d22803cc44ebfda25da6f6b1e24213350380e639a62ccb5831"
+        }
+      ]
+    },
+    {
+      "id": "E47",
+      "title_ko": "기존 PPO를 포함한 동일 조건 3자 비교",
+      "stage_record_date": "2026-11-20",
+      "kind": "paired_internal_synthetic_three_policy_comparison_and_software_regression",
+      "source_type": "same_78_e46_cases_and_hash_verified_e29_seed0_checkpoint",
+      "metrics": {
+        "cases": 78,
+        "families": 46,
+        "worlds": 51,
+        "agreement_count": 69,
+        "status_agreement_count": 70,
+        "baseline": {
+          "questions": 280,
+          "mean_questions": 3.58974358974359,
+          "matches_full_input": 76,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 20,
+            "completed": 58
+          }
+        },
+        "myopic": {
+          "questions": 126,
+          "mean_questions": 1.6153846153846154,
+          "matches_full_input": 67,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 28,
+            "completed": 50
+          }
+        },
+        "ppo_routed": {
+          "questions": 280,
+          "mean_questions": 3.58974358974359,
+          "matches_full_input": 76,
+          "fallback_steps": 2,
+          "statuses": {
+            "held": 20,
+            "completed": 58
+          }
+        },
+        "default_suite_passed": 475,
+        "full_suite_passed": 587
+      },
+      "pairwise_agreements": {
+        "baseline_vs_myopic": 69,
+        "baseline_vs_ppo_routed": 78,
+        "myopic_vs_ppo_routed": 69
+      },
+      "ppo_coverage": {
+        "question_sources": {
+          "rule_outside_ppo_scope": 258,
+          "ppo_model": 22
+        },
+        "stop_sources": {
+          "rule_outside_ppo_scope": 63,
+          "ppo_model": 9,
+          "rule_after_ppo_attempt": 2,
+          "runtime_hold": 4
+        },
+        "cases_with_ppo_questions": 11,
+        "cases_with_ppo_activity": 11,
+        "ppo_question_cases_only": {
+          "cases": 11,
+          "families": 8,
+          "worlds": 10,
+          "agreement_count": 11,
+          "status_agreement_count": 11,
+          "baseline": {
+            "questions": 22,
+            "mean_questions": 2.0,
+            "matches_full_input": 11,
+            "fallback_steps": 0,
+            "statuses": {
+              "completed": 10,
+              "held": 1
+            }
+          },
+          "myopic": {
+            "questions": 22,
+            "mean_questions": 2.0,
+            "matches_full_input": 11,
+            "fallback_steps": 0,
+            "statuses": {
+              "completed": 10,
+              "held": 1
+            }
+          },
+          "ppo_routed": {
+            "questions": 22,
+            "mean_questions": 2.0,
+            "matches_full_input": 11,
+            "fallback_steps": 2,
+            "statuses": {
+              "completed": 10,
+              "held": 1
+            }
+          }
+        }
+      },
+      "ppo_checkpoint": {
+        "filename": "model-seed0.zip",
+        "sha256": "852ffab20130e186ebff3de3d808020ae64f9239d0f3a5be2813fa40ceca7d8e",
+        "bytes": 70582,
+        "inference": "deterministic CPU",
+        "route": "existing B-C02 runtime route; fixed-order rules elsewhere"
+      },
+      "mlflow": {
+        "experiment_id": "1",
+        "run_id": "f76b9a06a440476894c2acbfc46194dd"
+      },
+      "verification_path": "outputs/afa-e47/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e47/comparison.json",
+          "bytes": 385761,
+          "sha256": "f5e85872434206b30fe1e55e7088fb62f4fb28694aef93134bad60674f6d4cbf"
+        },
+        {
+          "path": "outputs/afa-e47/comparison.txt",
+          "bytes": 1864,
+          "sha256": "766a3d2651c152ffcfcd5801d7b05ea6b114953d8ce3f0ca79f9da3b09e2ac1f"
+        },
+        {
+          "path": "outputs/afa-e47/paired-audit.json",
+          "bytes": 462,
+          "sha256": "cf432f7ab8df3792ec9d1fcd9018be6155883ff9ba1c9e04552e26180a5fe9a3"
+        },
+        {
+          "path": "outputs/afa-e47/cases.csv",
+          "bytes": 5674,
+          "sha256": "4ea89925d1ee0d5d664b889d602f8878f633d9ddaa5db082b8aa526cfec8056d"
+        },
+        {
+          "path": "outputs/afa-e47/commands.json",
+          "bytes": 507,
+          "sha256": "35f6f9448ae11708b13f8781593a4c01bce6c600675c6a1de5bdb582f074c01a"
+        },
+        {
+          "path": "outputs/afa-e47/default-pytest.txt",
+          "bytes": 1138,
+          "sha256": "b33c89606de50b5d6b634c22dfebabb1feb3d81f90b106c15fcf3fb36c14a9ba"
+        },
+        {
+          "path": "outputs/afa-e47/full-pytest.txt",
+          "bytes": 1311,
+          "sha256": "ff3fa1409ea156528e29bb056ebafc658d71ec9920675619b53d30c6a3769b35"
+        },
+        {
+          "path": "outputs/afa-e47/ppo-fallback-reasons.json",
+          "bytes": 232,
+          "sha256": "a389cb816bc898414a5072df3b8809f128b29029a1894b75d15fcaba368dc364"
+        },
+        {
+          "path": "outputs/afa-e47/mlflow-run.json",
+          "bytes": 586,
+          "sha256": "6df6020ccd2599e539611604437065a9566826051b90b497256c2b42924a4d0d"
+        },
+        {
+          "path": "outputs/afa-e47/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e47/kb-structure.json",
+          "bytes": 15094,
+          "sha256": "2f27272a637afccd41a074c62e244617e1937bcbd56602d9ae9ad27d82e6a36b"
+        },
+        {
+          "path": "outputs/afa-e47/kb-current.txt",
+          "bytes": 507,
+          "sha256": "831b602d49847e28c0dd33f0e36b01a53ec6919b3ca0ad013d70d76c752e7638"
+        },
+        {
+          "path": "outputs/afa-e47/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "3fb7a804a8eab31db414d846c4e0a2e63ac617e496bc13fe557fad1009b2b17f"
+        },
+        {
+          "path": "outputs/afa-e47/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "outputs/afa-e47/kb-exits.json",
+          "bytes": 125,
+          "sha256": "16f048ed4b2bf6e208fd6da0538d1487dca0e79e463ba99df78e577620da6135"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 145426,
+          "sha256": "7e888550e4b0865d27c4acc0b8888202497c1e08293847e3b11478782be283d8"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E47-result.png",
+          "bytes": 245906,
+          "sha256": "d99f31dcc4cdd960cc6b07bb9b9f002c58b802a7a42083104a19acd7d90a4839"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/myopic_evaluation.py",
+          "bytes": 15721,
+          "sha256": "1f98d47460691d5e2120d62652b5a6c243917447226c141894767e922f7667da"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/ppo_preflight.py",
+          "bytes": 14319,
+          "sha256": "d1225f49c5dbb807bce291b740098ea8b77c3ca6cfdf1b66ab4a59baab871061"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/v67_runtime.py",
+          "bytes": 10999,
+          "sha256": "2961e283d95411e843f4391af1c5097a96b9bddca7d4a6e874e0ada8efef8124"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_myopic_evaluation.py",
+          "bytes": 3334,
+          "sha256": "f9fa7ef692ec641ea4c2cdddd7384583f2b52aac05ec704bd00eb3744801abd9"
+        }
+      ]
+    },
+    {
+      "id": "E48",
+      "title_ko": "Myopic 보류 전 KB 분기 확인",
+      "stage_record_date": "2026-11-21",
+      "kind": "paired_internal_synthetic_stop_lookahead_comparison_and_software_regression",
+      "source_type": "same_78_e47_cases_and_separate_mixed_card_regression",
+      "metrics": {
+        "cases": 78,
+        "families": 46,
+        "worlds": 51,
+        "agreement_count": 69,
+        "status_agreement_count": 70,
+        "baseline": {
+          "questions": 280,
+          "mean_questions": 3.58974358974359,
+          "matches_full_input": 76,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 20,
+            "completed": 58
+          }
+        },
+        "myopic": {
+          "questions": 126,
+          "mean_questions": 1.6153846153846154,
+          "matches_full_input": 67,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 28,
+            "completed": 50
+          }
+        },
+        "ppo_routed": {
+          "questions": 280,
+          "mean_questions": 3.58974358974359,
+          "matches_full_input": 76,
+          "fallback_steps": 2,
+          "statuses": {
+            "held": 20,
+            "completed": 58
+          }
+        },
+        "myopic_stop_2": {
+          "questions": 140,
+          "mean_questions": 1.794871794871795,
+          "matches_full_input": 74,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 22,
+            "completed": 56
+          }
+        },
+        "myopic_stop_3": {
+          "questions": 143,
+          "mean_questions": 1.8333333333333333,
+          "matches_full_input": 75,
+          "fallback_steps": 0,
+          "statuses": {
+            "held": 21,
+            "completed": 57
+          }
+        },
+        "default_suite_passed": 479,
+        "full_suite_passed": 591
+      },
+      "default_myopic_stop_lookahead": 2,
+      "paired_audit": {
+        "e47_rows_verified": 78,
+        "variants": {
+          "myopic_stop_2": {
+            "recovered": [
+              "B-M02:2:1:cold",
+              "B-M02:3:1:cold",
+              "B-P02:4:1:cold",
+              "B-I01:4:1:cold",
+              "B-I02:1:1:cold",
+              "B-I02:2:1:cold",
+              "B-I02:3:1:cold"
+            ],
+            "regressed": [],
+            "different_from_baseline": [
+              "B-P03:6:1:cold",
+              "B-P03:6:1:prefill"
+            ]
+          },
+          "myopic_stop_3": {
+            "recovered": [
+              "B-M02:2:1:cold",
+              "B-M02:3:1:cold",
+              "B-P02:4:1:cold",
+              "B-P03:6:1:prefill",
+              "B-I01:4:1:cold",
+              "B-I02:1:1:cold",
+              "B-I02:2:1:cold",
+              "B-I02:3:1:cold"
+            ],
+            "regressed": [],
+            "different_from_baseline": [
+              "B-P03:6:1:cold"
+            ]
+          }
+        }
+      },
+      "pairwise_agreements": {
+        "baseline_vs_myopic": 69,
+        "baseline_vs_ppo_routed": 78,
+        "baseline_vs_myopic_stop_2": 76,
+        "baseline_vs_myopic_stop_3": 77,
+        "myopic_vs_ppo_routed": 69,
+        "myopic_vs_myopic_stop_2": 71,
+        "myopic_vs_myopic_stop_3": 70,
+        "ppo_routed_vs_myopic_stop_2": 76,
+        "ppo_routed_vs_myopic_stop_3": 77,
+        "myopic_stop_2_vs_myopic_stop_3": 77
+      },
+      "mlflow": {
+        "experiment_id": "1",
+        "run_id": "f444b5774add49ae9da323c0b5ad3cd7"
+      },
+      "verification_path": "outputs/afa-e48/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e48/comparison-final.json",
+          "bytes": 532756,
+          "sha256": "55297a08509f7093020600b1019b5c5f39db2f8c4c6238236db111fd4de32b60"
+        },
+        {
+          "path": "outputs/afa-e48/comparison-final.txt",
+          "bytes": 2745,
+          "sha256": "b4b5090be8ad8cbcb80edc00d4a6e627be87bc23f1b09b58e0b39887fe302d58"
+        },
+        {
+          "path": "outputs/afa-e48/paired-audit.json",
+          "bytes": 809,
+          "sha256": "54bd6aa8714d616f8162192caeaea6c4004bbfc5b71ef976e206d71dd6e4525c"
+        },
+        {
+          "path": "outputs/afa-e48/cases.csv",
+          "bytes": 4219,
+          "sha256": "9225f87b3c89d6e833ed623e480aa27ce923247b2de5b74a9455001ae1b8d31b"
+        },
+        {
+          "path": "outputs/afa-e48/commands.json",
+          "bytes": 580,
+          "sha256": "ee36cb69011031b0f82965de2d25d0fec1b04ca6b8babdf7681b93d9b8564713"
+        },
+        {
+          "path": "outputs/afa-e48/default-pytest.txt",
+          "bytes": 1138,
+          "sha256": "ee755d12ee33dfb23dd3b02ff142abcc55e1036495703af2ad86f1052970f454"
+        },
+        {
+          "path": "outputs/afa-e48/full-pytest.txt",
+          "bytes": 1311,
+          "sha256": "67697cebc558b6b4d94a0f27e171a7b73e670c6361c4cefcb49c228b971a173c"
+        },
+        {
+          "path": "outputs/afa-e48/mlflow-run.json",
+          "bytes": 442,
+          "sha256": "d8a85538ae83f2707ef2de98aa97df7b585cc8725216e0092844f742e73828bf"
+        },
+        {
+          "path": "outputs/afa-e48/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e48/kb-structure.json",
+          "bytes": 15094,
+          "sha256": "4a33a3c2e11b4d7c567a6a20e497155b0d2bf361593c8ed8ec7f18ab30045877"
+        },
+        {
+          "path": "outputs/afa-e48/kb-current.txt",
+          "bytes": 507,
+          "sha256": "c4e142f3ff94375af216bfbd75d2e8eecc780e994134c07881a13f34d258a732"
+        },
+        {
+          "path": "outputs/afa-e48/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "ac5c6fe57cf68149f95c8b76dea37efe176adb2610fe3758286e727da96f3f28"
+        },
+        {
+          "path": "outputs/afa-e48/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "outputs/afa-e48/kb-exits.json",
+          "bytes": 125,
+          "sha256": "16f048ed4b2bf6e208fd6da0538d1487dca0e79e463ba99df78e577620da6135"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 149151,
+          "sha256": "f1746a9fa739c96c566371f8d04d773dcacd64ccc8a4b5d62a17771a1dd6c1f3"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E48-result.png",
+          "bytes": 87630,
+          "sha256": "14d551d040f911dfd762636bb24f132239559abe2abc89977fa33392cee770b4"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/myopic_evaluation.py",
+          "bytes": 16365,
+          "sha256": "47822c8142c678350ceeb2242517ea687b691a74a0678ae8bb700c653e8a4247"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/question_priority.py",
+          "bytes": 13976,
+          "sha256": "7afd4de4748bf6d10e85b6efe145c2d2f5990e71adb7207ee73a1c1387239e7f"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/runtime.py",
+          "bytes": 30631,
+          "sha256": "d1a9d5e01080b66926a20892082b29e5571f25426f6c0d5ef8c09bac248a08ab"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/runtime_contracts.py",
+          "bytes": 10390,
+          "sha256": "7f896604348a17de3aa7925a588430bb61a8808ee66cb4348f1a0a87791b4dd7"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_myopic_voi.py",
+          "bytes": 13650,
+          "sha256": "8cb1db9a37784b8d49af907270dd170ee803a986f803db17da7fd299305e0975"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_myopic_evaluation.py",
+          "bytes": 4789,
+          "sha256": "3645559b0646a74aae0178102218023cb617677fdff6b290d96dda90a585318d"
+        }
+      ]
+    },
+    {
+      "id": "E49",
+      "title_ko": "1단계 AFA와 Control Plane 보류 확인 분리",
+      "stage_record_date": "2026-11-21",
+      "kind": "paired_development_parity_and_software_regression",
+      "source_type": "same_78_e48_cases",
+      "metrics": {
+        "e48_report_sha256": "55297a08509f7093020600b1019b5c5f39db2f8c4c6238236db111fd4de32b60",
+        "paired_conditions_exactly_equal": 78,
+        "policies": [
+          "baseline",
+          "myopic",
+          "ppo_routed",
+          "myopic_stop_2",
+          "myopic_stop_3"
+        ],
+        "gate_minimum_matches": 74,
+        "gate_maximum_questions": 140,
+        "gate_passed": true,
+        "default_matches": 74,
+        "default_questions": 140,
+        "default_mean_questions": 1.794871794871795,
+        "default_suite_passed": 479,
+        "full_suite_passed": 591
+      },
+      "mlflow": {
+        "experiment_id": "1",
+        "run_id": "a3542d624548475997f19da22b43be52"
+      },
+      "verification_path": "outputs/afa-e49/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e49/comparison.json",
+          "bytes": 532756,
+          "sha256": "69576d69b9ed4838aeb5e8a90ddb52d295ced205fb9ef673a6b95af0601e0977"
+        },
+        {
+          "path": "outputs/afa-e49/comparison.txt",
+          "bytes": 2745,
+          "sha256": "b4b5090be8ad8cbcb80edc00d4a6e627be87bc23f1b09b58e0b39887fe302d58"
+        },
+        {
+          "path": "outputs/afa-e49/paired-audit.json",
+          "bytes": 400,
+          "sha256": "0a5cd737ba2c02bec4427caad92abe87f73d7516e2270cb19c631210ca2da3f4"
+        },
+        {
+          "path": "outputs/afa-e49/commands.json",
+          "bytes": 574,
+          "sha256": "40430f08cb4a6c0fc2f0850efeb02d5c17a1a550f60805ddb29cfbe5c0bdf522"
+        },
+        {
+          "path": "outputs/afa-e49/default-pytest.txt",
+          "bytes": 1138,
+          "sha256": "fc6f4578145107fd7ef42bc3d329975cfd1a60b6530a9a8d44a688020df027d7"
+        },
+        {
+          "path": "outputs/afa-e49/full-pytest.txt",
+          "bytes": 1311,
+          "sha256": "31ffbe93f287b7ab41aa2e672d9beec6e0bd9879a9cc0ba4ef134a4b6df3d703"
+        },
+        {
+          "path": "outputs/afa-e49/cli.txt",
+          "bytes": 2243,
+          "sha256": "6c0e665926797611617a10592bf481bc11f6c66f20a66660e8510eeecd4eb096"
+        },
+        {
+          "path": "outputs/afa-e49/mlflow-run.json",
+          "bytes": 357,
+          "sha256": "75f7ca142f8d0f0d71440be181f10a1a30d8a887dcb1b3a645f92a652809ed3b"
+        },
+        {
+          "path": "outputs/afa-e49/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e49/kb-structure.json",
+          "bytes": 15094,
+          "sha256": "383e48823d0333b9e74ac14b159bab241e407d7f1a68e51322c4026dc6345d80"
+        },
+        {
+          "path": "outputs/afa-e49/kb-current.txt",
+          "bytes": 507,
+          "sha256": "11139d083463e9d1077bed127c8f9f837f8c9669c48c61a8ebbce25d7c83694a"
+        },
+        {
+          "path": "outputs/afa-e49/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "2404aa5fe26a2e848de49387617509316f4f977d23612c3ed896697392cdad0b"
+        },
+        {
+          "path": "outputs/afa-e49/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "outputs/afa-e49/kb-exits.json",
+          "bytes": 125,
+          "sha256": "16f048ed4b2bf6e208fd6da0538d1487dca0e79e463ba99df78e577620da6135"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 152210,
+          "sha256": "5102eb5e3ce0a84212f161697a9e646d6730001d6de89d3a94e878bbbbaf1841"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E49-result.png",
+          "bytes": 84644,
+          "sha256": "8303fd6ffbe19ceb3e5390680640b6f011388230d0cd405ad337c979d2026dcf"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/question_priority.py",
+          "bytes": 14218,
+          "sha256": "2e3585101e9582aadd3ec2e352239b2e3e3d5247839887c41f17347144b9cf41"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/runtime.py",
+          "bytes": 31271,
+          "sha256": "87af4b5c35e74d8045e727c348c49104db8aed3a165a63fa13c32a4a4b2ee8f8"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/runtime_contracts.py",
+          "bytes": 10434,
+          "sha256": "d9a2a8c77c60061a4157fd3afc3c713a85ec13f18d1264aef1d78a97ca788df4"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_myopic_voi.py",
+          "bytes": 14226,
+          "sha256": "c9a9be4a56463447a7af565b4bd07a284a6c0dc0ae891cd9f19a1488d45c4486"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_myopic_evaluation.py",
+          "bytes": 4855,
+          "sha256": "53421b29fd540453bf0d35dcef661096cb6a07503c5bbb2216c52faa545fff4d"
+        }
+      ]
+    },
+    {
+      "id": "E50",
+      "title_ko": "기본 CLI에서 Myopic VOI 실행",
+      "stage_record_date": "2026-11-21",
+      "kind": "cli_wiring_and_software_regression",
+      "source_type": "synthetic_korean_cli_smoke_and_same_78_e49_policy_cases",
+      "metrics": {
+        "cli_smoke_cases": 1.0,
+        "cli_completed_cases": 1.0,
+        "cli_questions": 3.0,
+        "policy_type": "MyopicVOIAFAPolicy",
+        "stop_lookahead": 2,
+        "paired_conditions_exactly_equal": 78,
+        "total_questions": 140,
+        "full_input_matches": 74,
+        "default_suite_passed": 480,
+        "full_suite_passed": 592
+      },
+      "mlflow": {
+        "experiment_id": "2",
+        "run_id": "2b0f77c0bdbf4570b0427f1c8fee0cb9"
+      },
+      "verification_path": "outputs/afa-e50/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e50/cli.txt",
+          "bytes": 2270,
+          "sha256": "81a08a7471f429a1771a26a9f2d43fafc8c4ee5e954d196065af78439d56af5e"
+        },
+        {
+          "path": "outputs/afa-e50/cli-default-policy-parity.json",
+          "bytes": 167,
+          "sha256": "e707ef47c58d7c2e974042cd1f085ab2ce36504d42abac4e4720db78a9ea079e"
+        },
+        {
+          "path": "outputs/afa-e50/ppo-opt-in.txt",
+          "bytes": 68,
+          "sha256": "4aaf35b83994a32be40146be571a6f4687ac2844d4245881b56f583ffdee0701"
+        },
+        {
+          "path": "outputs/afa-e50/commands.json",
+          "bytes": 399,
+          "sha256": "27f6339091e2eaf7b4e02a72077167e0eecb1a9150558869929a65e7fc055d8a"
+        },
+        {
+          "path": "outputs/afa-e50/default-pytest.txt",
+          "bytes": 1138,
+          "sha256": "8415990f85149ede81b36f58443ee1cfadaf65bd8b3201303bead7fcdc35138c"
+        },
+        {
+          "path": "outputs/afa-e50/full-pytest.txt",
+          "bytes": 1311,
+          "sha256": "5b187a58d0bac4018e99962a2307db98a7f7bcba73cb1774d701c9f97478f8d5"
+        },
+        {
+          "path": "outputs/afa-e50/mlflow-run.json",
+          "bytes": 214,
+          "sha256": "bc32b6860bd715233c196fa664ecf04f3d3994e19c7fc33c4ad18f5a3bd46486"
+        },
+        {
+          "path": "outputs/afa-e50/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e50/kb-structure.json",
+          "bytes": 15094,
+          "sha256": "df6e9075050b18cac64b6ad6a4744a7b42e92070b1985a76051b5999db308ba1"
+        },
+        {
+          "path": "outputs/afa-e50/kb-current.txt",
+          "bytes": 507,
+          "sha256": "5dc1945e48b730219900db0d0a9e8ba1c2969ca783c65fa99a90cb117251db51"
+        },
+        {
+          "path": "outputs/afa-e50/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "74c15871d047d446baf47982c46edbf3e0408df770fd3cfb8a47f791ec1c6a01"
+        },
+        {
+          "path": "outputs/afa-e50/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "outputs/afa-e50/kb-exits.json",
+          "bytes": 125,
+          "sha256": "16f048ed4b2bf6e208fd6da0538d1487dca0e79e463ba99df78e577620da6135"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 154374,
+          "sha256": "be4aa7cc234283f2afe3f1bc5dbdef549012a859927217174e5ef1c6a443b67e"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E50-result.png",
+          "bytes": 73215,
+          "sha256": "01f8b705af8935b03cc90138d1d74dde3319b8d6256df960fbe9871ba7ce78cf"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/cli.py",
+          "bytes": 10331,
+          "sha256": "6b29a5d84a9450663d431ecab58dac998e4461f2cc1dc9b73315e6257170e1d1"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/test_runtime_cli.py",
+          "bytes": 28518,
+          "sha256": "33cfa9b98717af99adf28179487d9250312fc583cc24cb2b440c0db059d7f419"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/README.md",
+          "bytes": 9029,
+          "sha256": "1948d6ec4e0aed4e39f3af9da8db828ea079b8539c1c69bf8f3bb53526ba6b63"
+        }
+      ]
+    },
+    {
+      "id": "E51",
+      "title_ko": "네 질문 정책의 동일 조건 성능 비교",
+      "stage_record_date": "2026-11-21",
+      "kind": "paired_synthetic_historical_and_challenge_replay",
+      "source_type": "frozen_78_e49_conditions_and_98_additional_synthetic_conditions",
+      "metrics": {
+        "focused_passed": 57,
+        "default_suite_passed": 482,
+        "full_suite_passed": 594,
+        "overall": {
+          "conditions": 176,
+          "worlds": 100,
+          "families": 60,
+          "reference_errors": 0,
+          "current_myopic": {
+            "questions": 283,
+            "mean_questions": 1.6079545454545454,
+            "exact_matches": 165,
+            "visible_matches": 171,
+            "completed": 125,
+            "held_when_reference_completed": 3,
+            "mandatory_hold_references": 12,
+            "mandatory_holds_returned": 12,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 1.0541,
+              "p95_ms": 4.7897
+            },
+            "case_latency": {
+              "p50_ms": 2.5713,
+              "p95_ms": 14.3921
+            }
+          },
+          "ppo_routed": {
+            "questions": 527,
+            "mean_questions": 2.9943181818181817,
+            "exact_matches": 167,
+            "visible_matches": 173,
+            "completed": 127,
+            "held_when_reference_completed": 1,
+            "mandatory_hold_references": 12,
+            "mandatory_holds_returned": 12,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 2,
+            "turn_latency": {
+              "p50_ms": 0.5335,
+              "p95_ms": 1.473
+            },
+            "case_latency": {
+              "p50_ms": 2.11985,
+              "p95_ms": 7.3287
+            }
+          },
+          "old_myopic": {
+            "questions": 255,
+            "mean_questions": 1.4488636363636365,
+            "exact_matches": 151,
+            "visible_matches": 159,
+            "completed": 113,
+            "held_when_reference_completed": 15,
+            "mandatory_hold_references": 12,
+            "mandatory_holds_returned": 12,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 1.1056,
+              "p95_ms": 4.3529
+            },
+            "case_latency": {
+              "p50_ms": 2.3256499999999996,
+              "p95_ms": 11.282
+            }
+          },
+          "fixed_order": {
+            "questions": 523,
+            "mean_questions": 2.971590909090909,
+            "exact_matches": 167,
+            "visible_matches": 173,
+            "completed": 127,
+            "held_when_reference_completed": 1,
+            "mandatory_hold_references": 12,
+            "mandatory_holds_returned": 12,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.465,
+              "p95_ms": 1.0245
+            },
+            "case_latency": {
+              "p50_ms": 1.47735,
+              "p95_ms": 6.895400000000001
+            }
+          },
+          "exact_pairwise_agreements": {
+            "current_myopic_vs_ppo_routed": 174,
+            "current_myopic_vs_old_myopic": 162,
+            "current_myopic_vs_fixed_order": 174,
+            "ppo_routed_vs_old_myopic": 160,
+            "ppo_routed_vs_fixed_order": 176,
+            "old_myopic_vs_fixed_order": 160
+          },
+          "ppo_attribution": {
+            "question_sources": {
+              "rule_outside_ppo_scope": 472,
+              "ppo_model": 55
+            },
+            "terminal_sources": {
+              "rule_outside_ppo_scope": 127,
+              "ppo_model": 35,
+              "rule_after_ppo_attempt": 2,
+              "runtime_hold": 12
+            },
+            "conditions_with_model_questions": 30
+          }
+        },
+        "historical": {
+          "conditions": 78,
+          "worlds": 51,
+          "families": 46,
+          "reference_errors": 0,
+          "current_myopic": {
+            "questions": 140,
+            "mean_questions": 1.794871794871795,
+            "exact_matches": 74,
+            "visible_matches": 76,
+            "completed": 56,
+            "held_when_reference_completed": 2,
+            "mandatory_hold_references": 4,
+            "mandatory_holds_returned": 4,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 1.1227,
+              "p95_ms": 4.5632
+            },
+            "case_latency": {
+              "p50_ms": 2.7838000000000003,
+              "p95_ms": 18.596799999999998
+            }
+          },
+          "ppo_routed": {
+            "questions": 280,
+            "mean_questions": 3.58974358974359,
+            "exact_matches": 76,
+            "visible_matches": 78,
+            "completed": 58,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 4,
+            "mandatory_holds_returned": 4,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 2,
+            "turn_latency": {
+              "p50_ms": 0.52115,
+              "p95_ms": 1.4111
+            },
+            "case_latency": {
+              "p50_ms": 2.3066,
+              "p95_ms": 7.942699999999999
+            }
+          },
+          "old_myopic": {
+            "questions": 126,
+            "mean_questions": 1.6153846153846154,
+            "exact_matches": 67,
+            "visible_matches": 70,
+            "completed": 50,
+            "held_when_reference_completed": 8,
+            "mandatory_hold_references": 4,
+            "mandatory_holds_returned": 4,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 1.2584,
+              "p95_ms": 4.3367
+            },
+            "case_latency": {
+              "p50_ms": 2.77485,
+              "p95_ms": 13.3282
+            }
+          },
+          "fixed_order": {
+            "questions": 280,
+            "mean_questions": 3.58974358974359,
+            "exact_matches": 76,
+            "visible_matches": 78,
+            "completed": 58,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 4,
+            "mandatory_holds_returned": 4,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.4821,
+              "p95_ms": 0.9724
+            },
+            "case_latency": {
+              "p50_ms": 1.6788,
+              "p95_ms": 6.895400000000001
+            }
+          },
+          "exact_pairwise_agreements": {
+            "current_myopic_vs_ppo_routed": 76,
+            "current_myopic_vs_old_myopic": 71,
+            "current_myopic_vs_fixed_order": 76,
+            "ppo_routed_vs_old_myopic": 69,
+            "ppo_routed_vs_fixed_order": 78,
+            "old_myopic_vs_fixed_order": 69
+          },
+          "ppo_attribution": {
+            "question_sources": {
+              "rule_outside_ppo_scope": 258,
+              "ppo_model": 22
+            },
+            "terminal_sources": {
+              "rule_outside_ppo_scope": 63,
+              "ppo_model": 9,
+              "rule_after_ppo_attempt": 2,
+              "runtime_hold": 4
+            },
+            "conditions_with_model_questions": 11
+          }
+        },
+        "challenge": {
+          "conditions": 98,
+          "worlds": 49,
+          "families": 14,
+          "reference_errors": 0,
+          "current_myopic": {
+            "questions": 143,
+            "mean_questions": 1.4591836734693877,
+            "exact_matches": 91,
+            "visible_matches": 95,
+            "completed": 69,
+            "held_when_reference_completed": 1,
+            "mandatory_hold_references": 8,
+            "mandatory_holds_returned": 8,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 1.0088,
+              "p95_ms": 4.8071
+            },
+            "case_latency": {
+              "p50_ms": 2.08005,
+              "p95_ms": 14.2677
+            }
+          },
+          "ppo_routed": {
+            "questions": 247,
+            "mean_questions": 2.520408163265306,
+            "exact_matches": 91,
+            "visible_matches": 95,
+            "completed": 69,
+            "held_when_reference_completed": 1,
+            "mandatory_hold_references": 8,
+            "mandatory_holds_returned": 8,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.557,
+              "p95_ms": 1.4851
+            },
+            "case_latency": {
+              "p50_ms": 1.9797500000000001,
+              "p95_ms": 7.150499999999999
+            }
+          },
+          "old_myopic": {
+            "questions": 129,
+            "mean_questions": 1.316326530612245,
+            "exact_matches": 84,
+            "visible_matches": 89,
+            "completed": 63,
+            "held_when_reference_completed": 7,
+            "mandatory_hold_references": 8,
+            "mandatory_holds_returned": 8,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 1.0189,
+              "p95_ms": 4.3529
+            },
+            "case_latency": {
+              "p50_ms": 2.02935,
+              "p95_ms": 11.282
+            }
+          },
+          "fixed_order": {
+            "questions": 243,
+            "mean_questions": 2.479591836734694,
+            "exact_matches": 91,
+            "visible_matches": 95,
+            "completed": 69,
+            "held_when_reference_completed": 1,
+            "mandatory_hold_references": 8,
+            "mandatory_holds_returned": 8,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.4471,
+              "p95_ms": 1.0621
+            },
+            "case_latency": {
+              "p50_ms": 1.2097,
+              "p95_ms": 7.087700000000001
+            }
+          },
+          "exact_pairwise_agreements": {
+            "current_myopic_vs_ppo_routed": 98,
+            "current_myopic_vs_old_myopic": 91,
+            "current_myopic_vs_fixed_order": 98,
+            "ppo_routed_vs_old_myopic": 91,
+            "ppo_routed_vs_fixed_order": 98,
+            "old_myopic_vs_fixed_order": 91
+          },
+          "ppo_attribution": {
+            "question_sources": {
+              "ppo_model": 33,
+              "rule_outside_ppo_scope": 214
+            },
+            "terminal_sources": {
+              "ppo_model": 26,
+              "rule_outside_ppo_scope": 64,
+              "runtime_hold": 8
+            },
+            "conditions_with_model_questions": 19
+          }
+        },
+        "b_c02_only": {
+          "conditions": 37,
+          "worlds": 23,
+          "families": 9,
+          "reference_errors": 0,
+          "current_myopic": {
+            "questions": 55,
+            "mean_questions": 1.4864864864864864,
+            "exact_matches": 37,
+            "visible_matches": 37,
+            "completed": 34,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.8067,
+              "p95_ms": 2.0518
+            },
+            "case_latency": {
+              "p50_ms": 2.0766,
+              "p95_ms": 5.6004000000000005
+            }
+          },
+          "ppo_routed": {
+            "questions": 55,
+            "mean_questions": 1.4864864864864864,
+            "exact_matches": 37,
+            "visible_matches": 37,
+            "completed": 34,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 2,
+            "turn_latency": {
+              "p50_ms": 1.4138000000000002,
+              "p95_ms": 2.0603
+            },
+            "case_latency": {
+              "p50_ms": 3.2789,
+              "p95_ms": 7.942699999999999
+            }
+          },
+          "old_myopic": {
+            "questions": 55,
+            "mean_questions": 1.4864864864864864,
+            "exact_matches": 37,
+            "visible_matches": 37,
+            "completed": 34,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.7656499999999999,
+              "p95_ms": 1.6498
+            },
+            "case_latency": {
+              "p50_ms": 2.0052000000000003,
+              "p95_ms": 5.2732
+            }
+          },
+          "fixed_order": {
+            "questions": 51,
+            "mean_questions": 1.3783783783783783,
+            "exact_matches": 37,
+            "visible_matches": 37,
+            "completed": 34,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.3261,
+              "p95_ms": 0.5091
+            },
+            "case_latency": {
+              "p50_ms": 0.6739999999999999,
+              "p95_ms": 1.3926
+            }
+          },
+          "exact_pairwise_agreements": {
+            "current_myopic_vs_ppo_routed": 37,
+            "current_myopic_vs_old_myopic": 37,
+            "current_myopic_vs_fixed_order": 37,
+            "ppo_routed_vs_old_myopic": 37,
+            "ppo_routed_vs_fixed_order": 37,
+            "old_myopic_vs_fixed_order": 37
+          },
+          "ppo_attribution": {
+            "question_sources": {
+              "ppo_model": 55
+            },
+            "terminal_sources": {
+              "ppo_model": 35,
+              "rule_after_ppo_attempt": 2
+            },
+            "conditions_with_model_questions": 30
+          }
+        },
+        "ppo_model_question_conditions": {
+          "conditions": 30,
+          "worlds": 23,
+          "families": 9,
+          "reference_errors": 0,
+          "current_myopic": {
+            "questions": 55,
+            "mean_questions": 1.8333333333333333,
+            "exact_matches": 30,
+            "visible_matches": 30,
+            "completed": 27,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.8684,
+              "p95_ms": 2.0518
+            },
+            "case_latency": {
+              "p50_ms": 2.3732500000000005,
+              "p95_ms": 5.6004000000000005
+            }
+          },
+          "ppo_routed": {
+            "questions": 55,
+            "mean_questions": 1.8333333333333333,
+            "exact_matches": 30,
+            "visible_matches": 30,
+            "completed": 27,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 2,
+            "turn_latency": {
+              "p50_ms": 1.4111,
+              "p95_ms": 2.0479
+            },
+            "case_latency": {
+              "p50_ms": 4.0815,
+              "p95_ms": 7.942699999999999
+            }
+          },
+          "old_myopic": {
+            "questions": 55,
+            "mean_questions": 1.8333333333333333,
+            "exact_matches": 30,
+            "visible_matches": 30,
+            "completed": 27,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.8887,
+              "p95_ms": 1.6498
+            },
+            "case_latency": {
+              "p50_ms": 2.14655,
+              "p95_ms": 5.2732
+            }
+          },
+          "fixed_order": {
+            "questions": 51,
+            "mean_questions": 1.7,
+            "exact_matches": 30,
+            "visible_matches": 30,
+            "completed": 27,
+            "held_when_reference_completed": 0,
+            "mandatory_hold_references": 0,
+            "mandatory_holds_returned": 0,
+            "completed_despite_mandatory_hold_reference": 0,
+            "errors": 0,
+            "fallback_steps": 0,
+            "turn_latency": {
+              "p50_ms": 0.3285,
+              "p95_ms": 0.5091
+            },
+            "case_latency": {
+              "p50_ms": 0.9756,
+              "p95_ms": 1.3926
+            }
+          },
+          "exact_pairwise_agreements": {
+            "current_myopic_vs_ppo_routed": 30,
+            "current_myopic_vs_old_myopic": 30,
+            "current_myopic_vs_fixed_order": 30,
+            "ppo_routed_vs_old_myopic": 30,
+            "ppo_routed_vs_fixed_order": 30,
+            "old_myopic_vs_fixed_order": 30
+          },
+          "ppo_attribution": {
+            "question_sources": {
+              "ppo_model": 55
+            },
+            "terminal_sources": {
+              "ppo_model": 28,
+              "rule_after_ppo_attempt": 2
+            },
+            "conditions_with_model_questions": 30
+          }
+        }
+      },
+      "fixture_sha256": "a589dffb12d6e788177f0658afbde7ce93adaa430f9e59cf66d6f9569242c4c9",
+      "ppo_checkpoint_sha256": "852ffab20130e186ebff3de3d808020ae64f9239d0f3a5be2813fa40ceca7d8e",
+      "mlflow": {
+        "experiment_id": "1",
+        "run_id": "ccc25a8ce00249bfbe59f587cf9bece9"
+      },
+      "verification_path": "outputs/afa-e51/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e51/fixtures.json",
+          "bytes": 176188,
+          "sha256": "a589dffb12d6e788177f0658afbde7ce93adaa430f9e59cf66d6f9569242c4c9"
+        },
+        {
+          "path": "outputs/afa-e51/comparison-final.json",
+          "bytes": 1877972,
+          "sha256": "c91cf8771777f21daf817e2ef4f0e221e06e2161a8a43d6369684dd6cafb8a87"
+        },
+        {
+          "path": "outputs/afa-e51/comparison-final.txt",
+          "bytes": 9345,
+          "sha256": "fded90e693ba79935ff2880b38dc002ca915fb54c43a2311d10f454e06e5b2ca"
+        },
+        {
+          "path": "outputs/afa-e51/cases.csv",
+          "bytes": 89442,
+          "sha256": "5ff06275228233e2dd6138ff2a4487e5dd83783a913992087ec1d41d57266be0"
+        },
+        {
+          "path": "outputs/afa-e51/subgroups.csv",
+          "bytes": 4593,
+          "sha256": "b134008f2275027f66ff3cb3d29d9156545bf0582eb09f54c93fc36d23637df8"
+        },
+        {
+          "path": "outputs/afa-e51/paired-audit.json",
+          "bytes": 948,
+          "sha256": "c8895bfce63f51f89244c93c28163eefa2a3d0e93882feb9a91dbffa76c544b0"
+        },
+        {
+          "path": "outputs/afa-e51/commands.json",
+          "bytes": 755,
+          "sha256": "6bc75f796ec823804b27c3970543d0743435eae496f673bd0d460310095c20fb"
+        },
+        {
+          "path": "outputs/afa-e51/focused.txt",
+          "bytes": 102,
+          "sha256": "49f3ed129327e05154b5cb1ad94edcda77eebeda72eb9061d36b997820fa0735"
+        },
+        {
+          "path": "outputs/afa-e51/default-pytest.txt",
+          "bytes": 1138,
+          "sha256": "42a5902f5e0987f56b1ea1db9ee8db8c6e647d264da734069c510b2fb88504ef"
+        },
+        {
+          "path": "outputs/afa-e51/full-pytest.txt",
+          "bytes": 1311,
+          "sha256": "ffba2696604be7364cc7e9ab501eb00ba716c45ffd9b4c92e8dd2f2f808b82ff"
+        },
+        {
+          "path": "outputs/afa-e51/mlflow-run.json",
+          "bytes": 579,
+          "sha256": "e33a1d59298c11211e7ffd45d8096a53504af372e06e13008e4cdf778e7d8cff"
+        },
+        {
+          "path": "outputs/afa-e51/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e51/kb-structure.json",
+          "bytes": 15094,
+          "sha256": "499d6ccfb0bf026ccdd0529f1bcdcd0f74be4dc207132ebcd4db05ae78367b35"
+        },
+        {
+          "path": "outputs/afa-e51/kb-current.txt",
+          "bytes": 507,
+          "sha256": "a759e9780c56ac8888a1d0d4f52c83b9333dd550fb450e8547890a1191231228"
+        },
+        {
+          "path": "outputs/afa-e51/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "034bb0e1f43f7b8e2a6e67b28e22d4ab1a10c21a5770b0cf9805cf92619730bc"
+        },
+        {
+          "path": "outputs/afa-e51/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "outputs/afa-e51/kb-exits.json",
+          "bytes": 125,
+          "sha256": "16f048ed4b2bf6e208fd6da0538d1487dca0e79e463ba99df78e577620da6135"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 159167,
+          "sha256": "bc4ceee205c8cefdbc25ac1cbf84b1d0b96e5d286ada88921bbac7d0d4fa36dc"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E51-result.png",
+          "bytes": 244747,
+          "sha256": "c753745a7b00584c1b44e7309bfb5f35657e39961d788f3550b10718023adcc3"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/paired_evaluation.py",
+          "bytes": 17457,
+          "sha256": "04bf089cf3649323f066dd6e92594c4f2e98ed1275c8578551944d052a962859"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/myopic_evaluation.py",
+          "bytes": 16497,
+          "sha256": "a2b880536f7d107ba6e9a693e3249886cecdfd898e7e17d1e7a58489051f542e"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_paired_evaluation.py",
+          "bytes": 1855,
+          "sha256": "430e9ab6b415b8b428505329070571592caec88ffc0f5f1556c664a9ce714110"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/README.md",
+          "bytes": 7209,
+          "sha256": "ac4e77fcf4787c472575c4f01d410a41b2ddd3a9e571a7809265028f94e0ae58"
+        }
+      ]
+    },
+    {
+      "id": "E52",
+      "kind": "software_regression",
+      "metrics": {
+        "synthetic_conditions": 176,
+        "same_question_order": 176,
+        "same_visible_response_as_structured": 176,
+        "structured_conditions_unchanged_for_all_policies": 176,
+        "myopic_total_questions": 283,
+        "myopic_mean_questions": 1.6079545454545454,
+        "myopic_exact_matches_to_full_input": 165,
+        "myopic_visible_matches_to_full_input": 171,
+        "mandatory_holds_preserved": 12,
+        "default_pytest_passed": 487,
+        "full_pytest_passed": 599
+      },
+      "receipts": [
+        {
+          "path": "outputs/afa-e52/cli-smoke.txt",
+          "bytes": 2833,
+          "sha256": "ec46c0db648789afe70a2880d55fc4ecfe122d4e74d5a87fa7dcc41bbcccf0cf"
+        },
+        {
+          "path": "outputs/afa-e52/pytest.txt",
+          "bytes": 1148,
+          "sha256": "b36caf2bbae81d875887ab36e14da70bc6c7cfbca4daa5735335a85309ebcb76"
+        },
+        {
+          "path": "outputs/afa-e52/full-pytest.txt",
+          "bytes": 1311,
+          "sha256": "cf40639abe8c1b465a38836db6da62d1bdad7af8b88b2db5eaccd5e14000dddd"
+        },
+        {
+          "path": "outputs/afa-e52/comparison.json",
+          "bytes": 1878128,
+          "sha256": "772072bac54be2dae8965d1b87105e7a7aa1cd7a9cbf88c83be5d562e1711001"
+        },
+        {
+          "path": "outputs/afa-e52/mlflow-run.json",
+          "bytes": 473,
+          "sha256": "5926e9c6135c62c67856c1ea2710f564f4bbe7ac0933d3b2315dcc775f9b6825"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 161739,
+          "sha256": "bf7c6822620088b15dc9dcbe70a193b54bc710ff871cc72601b1730cf98ef4f3"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E52-result.png",
+          "bytes": 224246,
+          "sha256": "b9287dfcc9f1320369a640c47cb1a48457fa6897ede41f6fd31516e9518b5912"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/followup_choices.py",
+          "bytes": 5158,
+          "sha256": "ab5614c53db52567cc86931ddc58936ac6a0b5ee2ded9c1376d7d6e17c84750a"
+        },
+        {
+          "path": "outputs/afa-e52/commands.json",
+          "bytes": 1117,
+          "sha256": "fa6cf780d9be4268b30fbaaa48c7f53f73d8eabe1156ec27da4856678c518f21"
+        },
+        {
+          "path": "outputs/afa-e52/choice-replay.py",
+          "bytes": 2739,
+          "sha256": "5f5e85bd9201c0c92939a18e88a90df6059107437c3608a6f677ff7359af2228"
+        },
+        {
+          "path": "outputs/afa-e52/choice-replay.json",
+          "bytes": 181,
+          "sha256": "e929137d711858392c21065078b628e7efdd2f5d65f9c5fae03afafcc27d22b8"
+        }
+      ],
+      "title_ko": "Myopic CLI 선택형 후속 질문",
+      "stage_record_date": "2026-11-21",
+      "source_type": "local synthetic software regression and CLI smoke",
+      "fixtures_sha256": "a589dffb12d6e788177f0658afbde7ce93adaa430f9e59cf66d6f9569242c4c9",
+      "checkpoint_sha256": "852ffab20130e186ebff3de3d808020ae64f9239d0f3a5be2813fa40ceca7d8e",
+      "mlflow": {
+        "experiment_id": "3",
+        "run_id": "4c652a661b364e4dbd6e483f3b228073",
+        "status": "FINISHED",
+        "metrics": {
+          "conditions": 176.0,
+          "questions": 283.0,
+          "visible_matches_structured": 176.0,
+          "same_question_order": 176.0,
+          "all_policy_structured_rows_identical": 176.0,
+          "myopic_mean_questions": 1.6079545454545454,
+          "myopic_exact_matches": 165.0,
+          "myopic_visible_matches": 171.0,
+          "myopic_mandatory_holds_returned": 12.0
+        }
+      },
+      "verification_path": "outputs/afa-e52/commands.json"
+    },
+    {
+      "id": "E53",
+      "title_ko": "Ppopy v3 AFA 계약 및 불변식 점검",
+      "stage_record_date": "2026-11-21",
+      "kind": "software_regression",
+      "source_type": "local synthetic replay, version compatibility audit and tests",
+      "metrics": {
+        "conditions": 176,
+        "worlds": 100,
+        "exact_rows_unchanged_from_e52": 176,
+        "policies": {
+          "current_myopic": {
+            "mean_questions": 1.6079545454545454,
+            "exact_matches": 165,
+            "visible_matches": 171,
+            "decision_fidelity": 0.9375,
+            "hold_miss": 0,
+            "reask": 0,
+            "product_ask": 0,
+            "errors": 0,
+            "mandatory_holds_returned": 12
+          },
+          "ppo_routed": {
+            "mean_questions": 2.9943181818181817,
+            "exact_matches": 167,
+            "visible_matches": 173,
+            "decision_fidelity": 0.9488636363636364,
+            "hold_miss": 0,
+            "reask": 0,
+            "product_ask": 0,
+            "errors": 0,
+            "mandatory_holds_returned": 12
+          },
+          "old_myopic": {
+            "mean_questions": 1.4488636363636365,
+            "exact_matches": 151,
+            "visible_matches": 159,
+            "decision_fidelity": 0.8579545454545454,
+            "hold_miss": 0,
+            "reask": 0,
+            "product_ask": 0,
+            "errors": 0,
+            "mandatory_holds_returned": 12
+          },
+          "fixed_order": {
+            "mean_questions": 2.971590909090909,
+            "exact_matches": 167,
+            "visible_matches": 173,
+            "decision_fidelity": 0.9488636363636364,
+            "hold_miss": 0,
+            "reask": 0,
+            "product_ask": 0,
+            "errors": 0,
+            "mandatory_holds_returned": 12
+          }
+        },
+        "b_c02_conditions": 37,
+        "b_c02_model_question_conditions": 30,
+        "ppo_routed_b_c02": {
+          "mean_questions": 1.4864864864864864,
+          "exact_matches": 37,
+          "visible_matches": 37,
+          "hold_miss": 0,
+          "product_ask": 0,
+          "reask": 0
+        },
+        "default_pytest_passed": 492,
+        "current_kb": "0.6.0-draft",
+        "target_kb": "0.6.1-draft",
+        "consumer_path_card_checks": 59,
+        "target_kb_loaded": false,
+        "case6_adapter_integration_verified": false,
+        "parent_turn_trace_integration_verified": false
+      },
+      "fixture_sha256": "a589dffb12d6e788177f0658afbde7ce93adaa430f9e59cf66d6f9569242c4c9",
+      "ppo_checkpoint_sha256": "852ffab20130e186ebff3de3d808020ae64f9239d0f3a5be2813fa40ceca7d8e",
+      "active_kb_sha256": "10e054a8f6f2b363a4a991a3adc096604a11ad115c0ddd01f51789f75b5529dd",
+      "target_kb_sha256": "76de6a1d1938c96ac7487401e4c313cf096986e486f0d407488ced3d8d1fc962",
+      "target_review_sha256": "8e1d30619979c4c755b322081e617a66b425422bc087de4a8c06ddc2bd678a10",
+      "mlflow": {
+        "experiment_id": "3",
+        "run_id": "040f0c4455474f978b1b4e85dd60acb8",
+        "status": "FINISHED",
+        "metrics": {
+          "conditions": 176.0,
+          "consumer_path_kb_card_checks": 59.0,
+          "target_kb_loaded": 0.0,
+          "current_myopic_mean_questions": 1.6079545454545454,
+          "current_myopic_exact_matches": 165.0,
+          "current_myopic_product_ask": 0.0,
+          "current_myopic_hold_miss": 0.0,
+          "current_myopic_reask": 0.0,
+          "fixed_order_mean_questions": 2.971590909090909,
+          "fixed_order_exact_matches": 167.0,
+          "fixed_order_product_ask": 0.0,
+          "fixed_order_hold_miss": 0.0,
+          "fixed_order_reask": 0.0,
+          "ppo_routed_mean_questions": 2.9943181818181817,
+          "ppo_routed_exact_matches": 167.0,
+          "ppo_routed_product_ask": 0.0,
+          "ppo_routed_hold_miss": 0.0,
+          "ppo_routed_reask": 0.0
+        }
+      },
+      "verification_path": "outputs/afa-e53/commands.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e53/audit-kb.py",
+          "bytes": 4292,
+          "sha256": "60e706bf1c111f8f8dc79a8d550001e885cd7a8e6aae5b21ea76b83d8a788db8"
+        },
+        {
+          "path": "outputs/afa-e53/kb-compatibility.json",
+          "bytes": 80792,
+          "sha256": "73d2b6cdc6363bd5199e2882bf3f70748d754e8380a7fca1cee7af3c6187b186"
+        },
+        {
+          "path": "outputs/afa-e53/comparison.json",
+          "bytes": 1885943,
+          "sha256": "a68a615b90d45cf0f73944ba627d14395fabc397e6b5f6f07349ffea597211ec"
+        },
+        {
+          "path": "outputs/afa-e53/comparison-receipt.json",
+          "bytes": 1583,
+          "sha256": "239afd1c5cfb42877784e7f561bf41e0e4a299feb271bb2cba852c422a7f79ff"
+        },
+        {
+          "path": "outputs/afa-e53/pytest-final.txt",
+          "bytes": 1138,
+          "sha256": "aef2442a1a05a0c71c6420abdc0e3a0cc6af91b58c81b03560aa8047f5dcf4f5"
+        },
+        {
+          "path": "outputs/afa-e53/commands.json",
+          "bytes": 684,
+          "sha256": "d9aac571f877cc60038a616ed2b61a5593ebb27548be52b7bc9b2e52ccd92f6f"
+        },
+        {
+          "path": "outputs/afa-e53/mlflow-run.json",
+          "bytes": 828,
+          "sha256": "c71f7489904c45118e6aaee087806165581012ab0d4dbb8b865b4a91718d714c"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 165730,
+          "sha256": "d5b3661fcde584caad81bae6a56d30bcf1511cd366618dfb63643cc78e8e649c"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E53-result.png",
+          "bytes": 99662,
+          "sha256": "f2894bdaaa6303d7bcf4641a8eb65a7bbfd44852ff7f2a195a841ff187cf6008"
+        }
+      ]
+    },
+    {
+      "id": "E54",
+      "title_ko": "Myopic으로 증상 후속 질문 선택",
+      "stage_record_date": "2026-11-21",
+      "kind": "software_regression",
+      "source_type": "local CLI smoke and frozen structured replay",
+      "metrics": {
+        "structured_replays_unchanged": 176,
+        "cli_symptom_choices": 5,
+        "mean_questions": 1.6079545454545454,
+        "exact_matches": 165,
+        "visible_matches": 171,
+        "hold_miss": 0,
+        "product_ask": 0,
+        "reask": 0,
+        "default_pytest_passed": 494
+      },
+      "fixture_sha256": "a589dffb12d6e788177f0658afbde7ce93adaa430f9e59cf66d6f9569242c4c9",
+      "ppo_checkpoint_sha256": "852ffab20130e186ebff3de3d808020ae64f9239d0f3a5be2813fa40ceca7d8e",
+      "mlflow": {
+        "run_id": "244c155684424658a004b75c8aab6090",
+        "experiment_id": "3",
+        "status": "FINISHED",
+        "metrics": {
+          "structured_replays_unchanged": 176,
+          "cli_symptom_choices": 5,
+          "mean_questions": 1.6079545454545454,
+          "exact_matches": 165,
+          "visible_matches": 171,
+          "hold_miss": 0,
+          "product_ask": 0,
+          "reask": 0
+        }
+      },
+      "verification_path": "outputs/afa-e54/commands.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e54/commands.json",
+          "bytes": 741,
+          "sha256": "32e355c95200766da53b83b2720aee91aa5059234e146411eb17edcaae559228"
+        },
+        {
+          "path": "outputs/afa-e54/cli-recent.txt",
+          "bytes": 1115,
+          "sha256": "8aba51bf61e96ff972a1d29ed947c343a82742b9518a7dd89446269ad543692b"
+        },
+        {
+          "path": "outputs/afa-e54/cli-repeated.txt",
+          "bytes": 1066,
+          "sha256": "8683647d7a592316faa7beb3eb24df33ac18dc55b0c81df8c0bcfd119d73ba71"
+        },
+        {
+          "path": "outputs/afa-e54/pytest.txt",
+          "bytes": 1138,
+          "sha256": "c1e178e350824de53146a4ff912a880b598a79f0842506ef7b8327aebbee9339"
+        },
+        {
+          "path": "outputs/afa-e54/comparison.json",
+          "bytes": 1885961,
+          "sha256": "3f3a85e1712426667b77f85b83e8f364d2938df288009b7ccd999a0d9f63ccc0"
+        },
+        {
+          "path": "outputs/afa-e54/mlflow-run.json",
+          "bytes": 356,
+          "sha256": "577c846e494af26eded31060fdab2989c00659badfe196f157fa387913a9e115"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 167769,
+          "sha256": "7a0417881ef74df7c4bcd4c59cc039ba6229d408e9c5d5ed7289e18d6192e46c"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E54-result.png",
+          "bytes": 203628,
+          "sha256": "54109f985b666d2fbfebf6efce9be7052ea643f02140dabd85d8a68433db7912"
+        }
+      ]
+    },
+    {
+      "id": "E55",
+      "title_ko": "PR #24 AFA v3 계약 호환",
+      "stage_record_date": "2026-11-21",
+      "kind": "software_regression",
+      "source_type": "local Pydantic contract and runtime tests",
+      "metrics": {
+        "default_pytest_passed": 503,
+        "focused_pytest_passed": 48
+      },
+      "mlflow": {
+        "experiment_id": "3",
+        "run_id": "0a0f885e9ba140a4868de676a9c2432f",
+        "status": "FINISHED",
+        "metrics": {
+          "default_pytest_passed": 503,
+          "focused_pytest_passed": 48
+        }
+      },
+      "verification_path": "outputs/afa-e55/commands.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e55/commands.json",
+          "bytes": 352,
+          "sha256": "3d330f8ab27e6ef0b00e8861337fb2223573187fdde2188d05c14e51e21eed21"
+        },
+        {
+          "path": "outputs/afa-e55/pytest.txt",
+          "bytes": 1138,
+          "sha256": "77d7467160f2dddfb368a90edcaba447c30a83503a987c77aec9888725c967f4"
+        },
+        {
+          "path": "outputs/afa-e55/focused.txt",
+          "bytes": 101,
+          "sha256": "f1e7ab56a2f547081f850c85d7a8c463e842a40928ef688e2d0251998837bae5"
+        },
+        {
+          "path": "outputs/afa-e55/mlflow-run.json",
+          "bytes": 192,
+          "sha256": "f3f83bb9fa7ded74110390d0e24e2088ddef5e4cb8de07c3d64b9c6cd357cdda"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/v3_contracts.py",
+          "bytes": 12955,
+          "sha256": "b27c6f82279f05bb4f301a7a68dd61df93c438cbfc5309ce0f7c8524d99a2548"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/runtime_contracts.py",
+          "bytes": 10359,
+          "sha256": "dd0b4789ca4da52fd1b5fc71e68e0efb66b65f672fb932f6205a4bdd5c41a2fc"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_myopic_voi.py",
+          "bytes": 20390,
+          "sha256": "3bb6a7607793fb7ffb0ac3caf3b6ff50fddec3ac5eaeb318a92752e864d083d9"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 169279,
+          "sha256": "371160625b9710cb903d3f8680b2a2bb676ed4b0b097684a65def6ae1c6f2e35"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E55-result.png",
+          "bytes": 185448,
+          "sha256": "ce15c23b351f039996181692467e17a1c135e7917534e99b818fa48343fb5c0a"
+        }
+      ]
     }
   ],
-  "latest_record_entry": "E39",
-  "latest_experiment_entry": "E37"
+  "latest_record_entry": "E55",
+  "latest_experiment_entry": "E51"
 }
