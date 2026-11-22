@@ -1,7 +1,7 @@
 """Shared Pydantic contracts for the Python Agent Runtime, NLP Layer, AFA Loop, and CLI/iOS wrapper."""
 from __future__ import annotations
 
-from typing import Literal, Protocol
+from typing import Annotated, Literal, Protocol
 
 from pydantic import Field, JsonValue, model_validator
 
@@ -19,6 +19,7 @@ RuntimeActionKind = Literal[
     "resolve_conflict",
     "lookup_weather",
     "lookup_product",
+    "lookup_product_evidence",
     "lookup_alternative",
     "recommend",
     "hold",
@@ -84,6 +85,36 @@ class ChoiceSelection(Contract):
     turn_index: int = Field(ge=1)
     question_id: str
     choice_id: str
+
+
+EvidenceTarget = Literal["product.instructions", "product.spf", "product.uva"]
+
+
+class ProductEvidenceSelection(Contract):
+    product_id: str = Field(min_length=1, max_length=100)
+    version: str = Field(min_length=1, max_length=100)
+    target_id: EvidenceTarget
+
+
+class FoundProductEvidence(Contract):
+    status: Literal["found"] = "found"
+    selection: ProductEvidenceSelection
+    label_text: str = Field(min_length=1)
+    evidence_ref: str = Field(min_length=1)
+    freshness: Literal["version_only", "dated"]
+
+
+class UnavailableProductEvidence(Contract):
+    status: Literal["unavailable"] = "unavailable"
+    selection: ProductEvidenceSelection
+    reason: Literal["product_or_version_not_confirmed", "not_found", "failed",
+                    "catalog_identity_or_version_mismatch", "field_or_source_missing",
+                    "invalid_expiry", "expired"]
+
+
+ProductEvidenceResult = Annotated[
+    FoundProductEvidence | UnavailableProductEvidence, Field(discriminator="status")
+]
 
 
 class FeatureCandidate(Contract):
@@ -231,6 +262,7 @@ class RuntimeSessionState(Contract):
     pending_question: RuntimeQuestion | None = None
     pending_choice_answers: dict[str, ObservationSlot | CandidateConfirmationInput] = Field(default_factory=dict)
     pending_action: RuntimeActionKind | None = None
+    pending_product_evidence: list[ProductEvidenceSelection] = Field(default_factory=list)
     last_turn_fingerprint: str | None = None
     tool_results: dict[str, ToolLookupResult] = Field(default_factory=dict)
     pending_candidates: list[SymptomCandidate] = Field(default_factory=list)
@@ -248,10 +280,13 @@ class RuntimeTurnRequest(Contract):
     confirmations: dict[str, CandidateConfirmationInput] = Field(default_factory=dict)
     resolve_conflicts: tuple[str, ...] = ()
     choice_selection: ChoiceSelection | None = None
+    product_evidence_selection: ProductEvidenceSelection | None = None
 
     @model_validator(mode="after")
     def validate_choice_only(self) -> RuntimeTurnRequest:
-        if self.choice_selection is not None and (
+        if self.choice_selection is not None and self.product_evidence_selection is not None:
+            raise ValueError("only one selection may be submitted")
+        if (self.choice_selection is not None or self.product_evidence_selection is not None) and (
             self.message.strip() or self.observations or self.confirmations or self.resolve_conflicts
             or self.profile is not None or self.products is not None
         ):
@@ -273,3 +308,5 @@ class RuntimeTurnResponse(Contract):
     hold_reason: str | None = None
     required_product_evidence: list[str] = Field(default_factory=list)
     tool_results: dict[str, ToolLookupResult] = Field(default_factory=dict)
+    product_evidence: ProductEvidenceResult | None = None
+    pending_product_evidence: list[ProductEvidenceSelection] = Field(default_factory=list)

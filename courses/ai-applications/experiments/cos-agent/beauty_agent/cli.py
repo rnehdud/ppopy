@@ -12,7 +12,16 @@ from .catalog_adapter import AuroraCatalogAdapter, SyntheticCatalogAdapter
 from .contracts import ObservationSlot, OwnedProduct, Profile
 from .nlp_layer import NLPLayer, load_jev_api_key
 from .runtime import AgentRuntime, RoutedAFAPolicy
-from .runtime_contracts import ChoiceSelection, RuntimeQuestion, RuntimeTurnRequest, RuntimeTurnResponse
+from .runtime_contracts import (
+    ChoiceSelection, ProductEvidenceSelection, RuntimeQuestion, RuntimeTurnRequest, RuntimeTurnResponse,
+)
+
+
+EVIDENCE_CHOICES = (
+    ("product.instructions", "표시 사용법"),
+    ("product.spf", "SPF 표시"),
+    ("product.uva", "UVA 표시"),
+)
 
 
 def _demo_cleanser() -> OwnedProduct:
@@ -163,6 +172,7 @@ def run_interactive(runtime: AgentRuntime) -> None:
     if isinstance(runtime.afa_policy, MyopicVOIAFAPolicy):
         print("질문 정책: Myopic VOI")
     print("첫 요청은 문장으로 입력하고, 후속 질문에는 선택지 번호를 입력하세요. /state (세션 상태), /quit (종료)")
+    print("/evidence (보유 제품의 표시 자료 조회)")
     while True:
         try:
             raw = input("\n선택 번호 > " if pending else "\n나 > ").strip()
@@ -175,6 +185,48 @@ def run_interactive(runtime: AgentRuntime) -> None:
         if raw == "/state":
             state = runtime.get_session(req_id)
             print(state.model_dump_json(indent=2) if state else "{}")
+            continue
+        if raw == "/evidence":
+            state = runtime.get_session(req_id)
+            choices = [
+                (product, target, label)
+                for product in (state.products if state else [_demo_cleanser()]) if product.confirmed
+                for target, label in EVIDENCE_CHOICES
+            ]
+            if not choices:
+                print("먼저 보유 제품과 버전을 확인해 주세요.")
+                continue
+            for number, (product, _, label) in enumerate(choices, 1):
+                print(f"{number}. {product.product_id} ({product.version}) — {label}")
+            try:
+                selected = input("제품·항목 번호 (0: 취소) > ").strip()
+            except EOFError:
+                return
+            allowed = {str(number): choice for number, choice in enumerate(choices, 1)}
+            if selected not in allowed:
+                print("표시 자료 조회를 실행하지 않았습니다.")
+                continue
+            if state is None:
+                initial = runtime.handle_turn(RuntimeTurnRequest(
+                    request_id=req_id, profile=Profile(confirmed=True), products=[_demo_cleanser()],
+                ))
+                pending = initial.questions[0] if initial.questions else None
+            product, target, _ = allowed[selected]
+            resp = runtime.handle_turn(RuntimeTurnRequest(
+                request_id=req_id,
+                product_evidence_selection=ProductEvidenceSelection(
+                    product_id=product.product_id, version=product.version, target_id=target,
+                ),
+            ))
+            evidence = resp.product_evidence
+            if evidence.status == "found":
+                print(f"{evidence.label_text}\n출처: {evidence.evidence_ref}")
+            else:
+                print(f"이 제품 버전의 표시 자료를 확인하지 못했습니다. ({evidence.reason})")
+            if pending:
+                print(f"이전 질문 [{pending.id}]: {pending.text}")
+                for number, option in enumerate(pending.choices, 1):
+                    print(f"{number}. {option.label}")
             continue
 
         if pending is not None:

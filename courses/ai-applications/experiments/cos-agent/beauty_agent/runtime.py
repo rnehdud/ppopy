@@ -24,6 +24,7 @@ from .contracts import ObservationSlot, OwnedProduct, Profile
 from .followup_choices import observation_choices, symptom_choices
 from .modules.kb_adapter import KBEngineAdapter
 from .nlp_layer import NLPLayer
+from .product_evidence import lookup_product_evidence
 from .runtime_contracts import (
     ANSWERED_STATES,
     MANDATORY_HOLD_SIGNALS,
@@ -443,8 +444,30 @@ class AgentRuntime:
             questions=[question.model_copy(deep=True)], nlp=nlp, tool_results=state.tool_results,
         )
 
+    def _handle_product_evidence(self, request, previous):
+        if previous is None:
+            raise ValueError("product evidence requires an existing session")
+        state = previous.model_copy(deep=True)
+        selection = request.product_evidence_selection
+        result = lookup_product_evidence(selection, state.products, self.product_lookup)
+        confirmed = not (result.status == "unavailable" and result.reason == "product_or_version_not_confirmed")
+        if result.status == "unavailable" and confirmed:
+            if selection not in state.pending_product_evidence:
+                state.pending_product_evidence.append(selection)
+        elif selection in state.pending_product_evidence:
+            state.pending_product_evidence.remove(selection)
+        self._sessions[request.request_id] = state
+        return RuntimeTurnResponse(
+            request_id=request.request_id, status=state.status,
+            executed_actions=["lookup_product_evidence"] if confirmed else [],
+            pending_action=state.pending_action, questions=[state.pending_question] if state.pending_question else [],
+            product_evidence=result, pending_product_evidence=state.pending_product_evidence,
+        )
+
     def handle_turn(self, request: RuntimeTurnRequest) -> RuntimeTurnResponse:
         prev = self._sessions.get(request.request_id)
+        if request.product_evidence_selection is not None:
+            return self._handle_product_evidence(request, prev)
         request_fingerprint = sha256(
             json.dumps(request.model_dump(mode="json"), sort_keys=True).encode("utf-8")
         ).hexdigest()
@@ -513,6 +536,11 @@ class AgentRuntime:
                         state.tool_results.pop(f"product:{product.product_id}", None)
                         state.tool_results.pop(f"alternative:{product.product_id}", None)
                 state.products = [p.model_copy(deep=True) for p in request.products]
+                state.pending_product_evidence = [
+                    item for item in state.pending_product_evidence
+                    if (product := new_products.get(item.product_id)) is not None
+                    and product.confirmed and product.version == item.version
+                ]
 
         self._merge_observations(state, observations, resolve_conflicts)
         self._apply_confirmations(state, confirmations)
