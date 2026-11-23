@@ -1,0 +1,4779 @@
+{
+  "version": "afa-policy-evidence-0.1",
+  "captured_date": "2026-11-17",
+  "capture_kind": "historical evidence and fresh measurements recorded per entry",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "human_review": "unreviewed",
+  "approved_reference": false,
+  "source_commit_pinned": false,
+  "raw_outputs_gitignored": true,
+  "note": "Portable selected metrics and receipts, not a replacement for full reports. Earlier software test summaries are historical records, not newly rerun or independently signed evidence. Append new entries; preserve old receipts and disclose corrections.",
+  "latest_full_software_suite_recorded": 567,
+  "latest_full_software_suite_entry": "E39",
+  "original_strict_suite": {
+    "passed": 62,
+    "known_failed": 5,
+    "ids": [
+      "T17",
+      "T20",
+      "T37",
+      "T45",
+      "V06-T04"
+    ],
+    "acceptance_audit_satisfied": 52,
+    "acceptance_audit_total": 57
+  },
+  "entries": [
+    {
+      "id": "E00",
+      "title_ko": "첫 범위와 성공 기준",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "candidate_worlds": 19,
+        "eligibility": {
+          "eligible": 10,
+          "B-C01:eligible": 3,
+          "B-C02:eligible": 7,
+          "excluded_semantic_variation": 9,
+          "B-C02:excluded": 9
+        }
+      },
+      "software_test_record": {
+        "full_experiment_passed": 305,
+        "source": "stage README; no original pytest stdout retained here"
+      },
+      "evidence_kind": "machine_report_plus_historical_readme_test_summary",
+      "receipts": [
+        {
+          "path": "outputs/afa-stage0/report.json",
+          "sha256": "f757ca5c971a3cdfdf35ce84e8c644380f5b7a129ea4abde50f3e1ce250b7ea0",
+          "bytes": 35252
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage0-v1/README.md",
+          "sha256": "fa6e724fb1a358b7d15395c5d510ef63433f6aacd8c60ccf380ae406aee30f4e",
+          "bytes": 8830
+        }
+      ]
+    },
+    {
+      "id": "E01",
+      "title_ko": "v67 재사용 감사와 별도 응답 자료",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "v67_scenarios": 1025,
+        "v67_turns": 2453,
+        "source_scenario_splits": {
+          "train": 858,
+          "val_internal": 76,
+          "test_internal": 91
+        },
+        "unchanged_compatible": 0,
+        "reason_counts_nonexclusive": {
+          "initial_context_not_stage0_fixture": 602,
+          "missing_response": 8,
+          "multiple_turns_need_event_model": 576,
+          "outside_fixed_single_card_scope": 423,
+          "unsupported_response_state_value_or_time": 14
+        },
+        "standalone_split_counts": {
+          "train": 6,
+          "val_internal": 2,
+          "test_internal": 2
+        },
+        "v67_used_for_ppo": false
+      },
+      "software_test_record": {
+        "full_experiment_passed": 314,
+        "source": "stage README; no original pytest stdout retained here"
+      },
+      "evidence_kind": "machine_report_plus_historical_readme_test_summary",
+      "receipts": [
+        {
+          "path": "outputs/afa-stage1/v67-support.json",
+          "sha256": "776932896c105840130f6d284b227fb688befe58aca988384049a60b5cecfae5",
+          "bytes": 475798
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage1-v1/manifest.json",
+          "sha256": "e0ad2a026a8dea1c23da74e8147f04463655c42f77ec106ceb8bd5f492b904be",
+          "bytes": 4086
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage1-v1/README.md",
+          "sha256": "85bce3f848c7989835b012e52e8dad862ba072a29a85115fbf7118af0424ed23",
+          "bytes": 7381
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "title_ko": "첫 질문 환경",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "dimension": 58,
+        "dispatches": 3,
+        "questions": 2,
+        "return": -2.0,
+        "scripted_not_learned": true
+      },
+      "software_test_record": {
+        "full_experiment_and_rl_passed": 336,
+        "source": "stage README; no original pytest stdout retained here"
+      },
+      "evidence_kind": "machine_report_plus_historical_readme_test_summary",
+      "receipts": [
+        {
+          "path": "outputs/afa-stage2/smoke.json",
+          "sha256": "40213a21746c01c47b24b4fed13d8abd88804ac9b93d93dcfed1723d8ed0e737",
+          "bytes": 1247
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage2-v1/README.md",
+          "sha256": "bb2cc5f06293627162681d4a5a6d59a0f73f48ec2ba302c903abb93b5216f70d",
+          "bytes": 9056
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "title_ko": "환경과 보상 전수 검사",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "worlds": 10,
+        "distinct_public_states": 34,
+        "prefix_states": 88,
+        "allowed_transitions": 203,
+        "masked_rejections": 501,
+        "terminal_paths": 125,
+        "minimum_best_valid_vs_wrong_margin": 1.0
+      },
+      "software_test_record": {
+        "experiment_and_rl_passed": 342,
+        "root_extended_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-stage3/exhaustive.json",
+          "sha256": "d2c3ad76056d6d5b4341e2610059261cf9502e54074d3f7e0182932b14d38a77",
+          "bytes": 77162
+        },
+        {
+          "path": "outputs/afa-stage3/verification-index.json",
+          "sha256": "943807e36d51fbfd6dcef55bf9e8320f9ee181f82871ebc3495da8422db0aec8",
+          "bytes": 1904,
+          "historical_reference_check_at_capture": {
+            "matched": 5,
+            "changed": [
+              {
+                "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/environment.py",
+                "recorded_sha256": "9aea59ab285fc102fa16581d503375c1b8cbfaa177fdb0ab0999d09c5322de03",
+                "current_sha256": "de873e12d6409fbb895ce7ac7c5ec3ee3d6f746991f3ae78b4f8e5015b1ad6a7"
+              }
+            ],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "title_ko": "v1 기준선",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "episodes": 120,
+        "summaries": [
+          {
+            "split": "train",
+            "policy": "existing_rule_order",
+            "mean_questions": 3.3333333333333335,
+            "mean_cost": 3.3333333333333335,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "train",
+            "policy": "random_acquisition_fixed_stop",
+            "mean_questions": 2.9444444444444446,
+            "mean_cost": 2.9444444444444446,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "train",
+            "policy": "tabular_bc_rule_teacher",
+            "mean_questions": 3.3333333333333335,
+            "mean_cost": 3.3333333333333335,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "train",
+            "policy": "train_prior_greedy_fixed_stop",
+            "mean_questions": 2.5,
+            "mean_cost": 2.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "train",
+            "policy": "uniform_all_allowed",
+            "mean_questions": 0.8888888888888888,
+            "mean_cost": 0.8888888888888888,
+            "correct_terminal_rate": 0.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "val_internal",
+            "policy": "existing_rule_order",
+            "mean_questions": 2.0,
+            "mean_cost": 2.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "val_internal",
+            "policy": "random_acquisition_fixed_stop",
+            "mean_questions": 2.1666666666666665,
+            "mean_cost": 2.1666666666666665,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "val_internal",
+            "policy": "tabular_bc_rule_teacher",
+            "mean_questions": 2.0,
+            "mean_cost": 2.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 3
+          },
+          {
+            "split": "val_internal",
+            "policy": "train_prior_greedy_fixed_stop",
+            "mean_questions": 2.5,
+            "mean_cost": 2.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "split": "val_internal",
+            "policy": "uniform_all_allowed",
+            "mean_questions": 0.8333333333333334,
+            "mean_cost": 0.8333333333333334,
+            "correct_terminal_rate": 0.16666666666666666,
+            "policy_fallbacks": 0
+          }
+        ],
+        "headroom": [
+          {
+            "split": "train",
+            "strongest_quality_preserving_policy": "train_prior_greedy_fixed_stop",
+            "baseline_mean_cost": 2.5,
+            "hindsight_lower_bound": 2.3333333333333335,
+            "gap_to_hindsight": 0.16666666666666652,
+            "interpretation": "gap is an upper bound on possible improvement; hindsight may not be attainable from public information"
+          },
+          {
+            "split": "val_internal",
+            "strongest_quality_preserving_policy": "existing_rule_order",
+            "baseline_mean_cost": 2.0,
+            "hindsight_lower_bound": 2.0,
+            "gap_to_hindsight": 0.0,
+            "interpretation": "gap is an upper bound on possible improvement; hindsight may not be attainable from public information"
+          }
+        ]
+      },
+      "software_test_record": {
+        "experiment_and_rl_passed": 351,
+        "root_extended_current_spec_passed": 371,
+        "strict_original_known_failed": 5
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-stage4/baselines.json",
+          "sha256": "510c0bbbc62d0b12795b6adaf6a643edbe8143ccab8a43b3b013e3bf2d757707",
+          "bytes": 153854
+        },
+        {
+          "path": "outputs/afa-stage4/verification-index.json",
+          "sha256": "10be976d1e6a2cafe7c46ef925b283bc7ff51cd46328036c1f7cac7a65d0dc8d",
+          "bytes": 1833,
+          "historical_reference_check_at_capture": {
+            "matched": 5,
+            "changed": [],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "title_ko": "공개 정보 기반 최적 비용과 한계 점검",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "splits": [
+          {
+            "split": "train",
+            "worlds": 6,
+            "existing_rule_mean_cost": 3.3333333333333335,
+            "hindsight_lower_bound": 2.3333333333333335,
+            "train_fitted_baseline_costs": {
+              "existing_rule_order": 3.3333333333333335,
+              "train_prior_greedy_fixed_stop": 2.5
+            },
+            "best_measured_baseline_gap_to_public_optimum": 0.0,
+            "public_information_optimum": 2.5000000000000004
+          },
+          {
+            "split": "val_internal",
+            "worlds": 2,
+            "existing_rule_mean_cost": 2,
+            "hindsight_lower_bound": 2,
+            "train_fitted_baseline_costs": {
+              "existing_rule_order": 2,
+              "train_prior_greedy_fixed_stop": 2.5
+            },
+            "best_measured_baseline_gap_to_public_optimum": 0.0,
+            "public_information_optimum": 2.0
+          }
+        ],
+        "runtime_profile": {
+          "samples_per_method": 20,
+          "units": "milliseconds",
+          "scope": "local prepared adapter fork only",
+          "timings": {
+            "reload_fork_reference": {
+              "median": 13.763599999947473,
+              "p95": 20.6375850008044
+            },
+            "isolated_memory_copy": {
+              "median": 24.04855000349926,
+              "p95": 30.21558999971604
+            },
+            "current_fork": {
+              "median": 13.805149996187538,
+              "p95": 19.464234993211004
+            }
+          },
+          "limitations": "not rollout throughput, training speed or a portable performance guarantee"
+        },
+        "readiness": {
+          "v1_learning_connection_smoke": true,
+          "v1_question_efficiency_claim": false,
+          "independent_evaluation": false,
+          "domain_reference_approved": false,
+          "v2_runtime_implemented": false
+        }
+      },
+      "software_test_record": {
+        "experiment_and_rl_passed": 356,
+        "root_extended_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "original_audit_satisfied": 52,
+        "original_audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-review-v1/readiness.json",
+          "sha256": "03c0cb55e7782883d8400baf8f59485916c68ced0340a9e55b10ee738acf3e5d",
+          "bytes": 49985
+        },
+        {
+          "path": "outputs/afa-review-v1/verification-index.json",
+          "sha256": "fc06defc5333d9121529cd8d89a00220220072d985e81953c6d73767b0be966a",
+          "bytes": 2134,
+          "historical_reference_check_at_capture": {
+            "matched": 11,
+            "changed": [
+              {
+                "path": "courses/ai-applications/experiments/cos-agent/data/afa/benchmark-v2-design/README.md",
+                "recorded_sha256": "a669150fa1ffa09b9087a57efed15dceb89d01c9ed7ca93916f7f48c6496026b",
+                "current_sha256": "dcb10b8267e7737939767767d511003a55c45a1fe6494b718e7a31c7022d801f"
+              }
+            ],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "title_ko": "PPO 연결 준비",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "learning_executed": false,
+        "num_timesteps": 0,
+        "save_reload_equivalent": true,
+        "versions": {
+          "python": "3.10.5",
+          "platform": "Windows",
+          "torch": "2.9.1+cpu",
+          "stable-baselines3": "2.7.1",
+          "sb3-contrib": "2.7.1",
+          "gymnasium": "1.2.3",
+          "numpy": "2.2.6"
+        }
+      },
+      "software_test_record": {
+        "new_ppo": 13,
+        "experiment_rl_ppo_passed": 369,
+        "root_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-stage5a-setup-v1/report.json",
+          "sha256": "9a78a4677def8383c0a076be7e28febf24844e2229fab37c9f98266d4bb84e82",
+          "bytes": 5256
+        },
+        {
+          "path": "outputs/afa-stage5a-setup-v1/verification-index.json",
+          "sha256": "0af0891635877e2bded6919f75cd1690c4b353bd3b56e5564ee4e3dab958a15a",
+          "bytes": 1887,
+          "historical_reference_check_at_capture": {
+            "matched": 9,
+            "changed": [],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "title_ko": "첫 256 step PPO 시험 학습",
+      "stage_record_date": "2026-11-16",
+      "metrics": {
+        "seed": 0,
+        "num_timesteps": 256,
+        "collector_mask_checks": 256,
+        "invalid_action_selections": 0,
+        "policy_tensors_changed": 12,
+        "policy_tensors_total": 12,
+        "maximum_absolute_parameter_change": 0.023921623826026917,
+        "ppo_epoch_updates": 32,
+        "optimizer_steps_per_parameter": 64,
+        "csv_rollout_rows": 8,
+        "fresh_process_reload_evaluation_identical": true,
+        "before_train_diagnostic": {
+          "episode_count": 6,
+          "distinct_worlds": 6,
+          "mean_questions": 1.1666666666666667,
+          "median_questions": 1.0,
+          "p95_questions": 1.75,
+          "mean_cost": 1.1666666666666667,
+          "mean_return": -5.333333333333333,
+          "correct_terminal_rate": 0.16666666666666666,
+          "semantic_match_rate": 0.16666666666666666,
+          "draft_rate": 0.0,
+          "hold_rate": 1.0,
+          "wrong_hold_rate": 0.8333333333333334,
+          "error_among_drafts": null,
+          "policy_fallbacks": 0,
+          "runtime_rejects": 0,
+          "runtime_fallbacks": 0
+        },
+        "after_train_diagnostic": {
+          "episode_count": 6,
+          "distinct_worlds": 6,
+          "mean_questions": 2.5,
+          "median_questions": 2.0,
+          "p95_questions": 3.75,
+          "mean_cost": 2.5,
+          "mean_return": -2.5,
+          "correct_terminal_rate": 1.0,
+          "semantic_match_rate": 1.0,
+          "draft_rate": 0.8333333333333334,
+          "hold_rate": 0.16666666666666666,
+          "wrong_hold_rate": 0.0,
+          "error_among_drafts": 0.0,
+          "policy_fallbacks": 0,
+          "runtime_rejects": 0,
+          "runtime_fallbacks": 0
+        }
+      },
+      "software_test_record": {
+        "rerun_ppo_setup_tests": 13,
+        "full_suite_rerun_this_step": false,
+        "previous_suite_record": {
+          "experiment_rl_ppo_passed": 369,
+          "root_current_spec_passed": 371,
+          "strict_original_known_failed": 5
+        }
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-stage5a-trial-v1/audit.json",
+          "sha256": "a0c01012db13f55c5e454211db9a92be7636d60881cb535520c2a0e8b2901278",
+          "bytes": 4170
+        },
+        {
+          "path": "outputs/afa-stage5a-trial-v1/report.json",
+          "sha256": "0c688d86d81604037d943ce686c72b22dfd233ceb6adbb63c5a1e3cc6ea5cf1b",
+          "bytes": 6233
+        },
+        {
+          "path": "outputs/afa-stage5a-trial-v1/verification-index.json",
+          "sha256": "2f29dab613480d7d446a47b3ae066b46f8cf29b9c7297798cfa554237d7cf9c8",
+          "bytes": 1837,
+          "historical_reference_check_at_capture": {
+            "matched": 8,
+            "changed": [
+              {
+                "path": "courses/ai-applications/experiments/cos-agent/README.md",
+                "recorded_sha256": "ee223728e285af07ec0a7d5ff15c6ea1c842b600a6c7818e905094e5d65d381a",
+                "current_sha256": "dfdd845c6bc2998d097d2b91207c6e221de2407edaa18a5bfe7707b8b8f5a848"
+              }
+            ],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "title_ko": "v2 의미 계약",
+      "stage_record_date": "2026-11-17",
+      "metrics": {
+        "worlds": 19,
+        "priority_paths": 99,
+        "previously_excluded_worlds": 9,
+        "adapter_extension_slots": [
+          "method.tools"
+        ],
+        "mixed_priority_paths": 54
+      },
+      "software_test_record": {
+        "semantic_contract_passed": 13,
+        "experiment_rl_ppo_passed": 382,
+        "root_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-v2-semantics-v1/report.json",
+          "sha256": "ce0c89f7e6d7cd0042765b278cac50c6ba38984c72129172f8ebb66405fee8d1",
+          "bytes": 18272
+        },
+        {
+          "path": "outputs/afa-v2-semantics-v1/verification-index.json",
+          "sha256": "f7cbe2d8474eeb4d210ad837033b74fc6d0e4ef50e77cbfd65d475e15b25573c",
+          "bytes": 2298,
+          "historical_reference_check_at_capture": {
+            "matched": 10,
+            "changed": [
+              {
+                "path": "courses/ai-applications/experiments/cos-agent/data/afa/benchmark-v2-design/README.md",
+                "recorded_sha256": "cdde44e155c205244cf1fe09326f706f1dac48a1c24af15710fdac4dededafd8",
+                "current_sha256": "dcb10b8267e7737939767767d511003a55c45a1fe6494b718e7a31c7022d801f"
+              },
+              {
+                "path": "courses/ai-applications/experiments/cos-agent/README.md",
+                "recorded_sha256": "571b59bd5bfadef72147172ac9d1f2c3d05d5c0abe1f9b3b54659e829fd459bc",
+                "current_sha256": "dfdd845c6bc2998d097d2b91207c6e221de2407edaa18a5bfe7707b8b8f5a848"
+              }
+            ],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E09",
+      "title_ko": "48개 공동 상황 설계",
+      "stage_record_date": "2026-11-17",
+      "metrics": {
+        "world_count": 48,
+        "family_count": 16,
+        "split_world_counts": {
+          "train": 30,
+          "val_internal": 9,
+          "test_internal": 9
+        },
+        "engineering_probes": 9
+      },
+      "software_test_record": {
+        "new_plan_passed": 8,
+        "experiment_rl_ppo_passed": 390,
+        "root_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-v2-scenario-plan-v1/design.json",
+          "sha256": "ae46be1b78f58dfae25f2531582754954a7e119d5eb3a82a2d248d8f1b0f3578",
+          "bytes": 39213
+        },
+        {
+          "path": "outputs/afa-v2-scenario-plan-v1/verification-index.json",
+          "sha256": "4b5c5a6697c41c396d19ed32321ba3cf1d7e9ebf8f44ff7a9e6e801ccac66e9f",
+          "bytes": 2596,
+          "historical_reference_check_at_capture": {
+            "matched": 11,
+            "changed": [
+              {
+                "path": "courses/ai-applications/experiments/cos-agent/README.md",
+                "recorded_sha256": "56ad37fe33a6e4dcf188a5bdbd126ca3efc4f47e007d1ba2bcb618e2931febdc",
+                "current_sha256": "dfdd845c6bc2998d097d2b91207c6e221de2407edaa18a5bfe7707b8b8f5a848"
+              }
+            ],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "title_ko": "48개 상황 실행 환경",
+      "stage_record_date": "2026-11-17",
+      "metrics": {
+        "world_cost_cases": 96,
+        "distinct_public_vectors": 322,
+        "totals": {
+          "states": 1536,
+          "valid_transitions": 4000,
+          "masked_rejections": 8288,
+          "terminal_transitions": 1744
+        },
+        "worlds": 48,
+        "dimension": 64,
+        "split_counts": {
+          "train": 30,
+          "val_internal": 9,
+          "test_internal": 9
+        }
+      },
+      "software_test_record": {
+        "new_joint_checks_passed": 31,
+        "experiment_rl_ppo_passed": 421,
+        "root_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-v2-joint-v1/exhaustive-verified.json",
+          "sha256": "9c97cf609c984a9bd1290f2b2ae3abc9777079728b27f6d6a1fd8e28b2c0519a",
+          "bytes": 29825
+        },
+        {
+          "path": "outputs/afa-v2-joint-v1/verification-index.json",
+          "sha256": "f7b612f1d4ebb2e46625e53e803d4de16140f2f9a2b9771a1c9d447719fa32c4",
+          "bytes": 3727,
+          "historical_reference_check_at_capture": {
+            "matched": 19,
+            "changed": [],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "title_ko": "v2 고정 분할 비교와 누락 발견",
+      "stage_record_date": "2026-11-17",
+      "metrics": {
+        "episodes": 1170,
+        "summaries": [
+          {
+            "cost_protocol": "unit_primary",
+            "split": "train",
+            "policy": "existing_rule_order",
+            "mean_questions": 4.6,
+            "mean_cost": 4.6,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "train",
+            "policy": "joint_train_greedy",
+            "mean_questions": 4.6,
+            "mean_cost": 4.6,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "train",
+            "policy": "joint_train_multistep",
+            "mean_questions": 3.6,
+            "mean_cost": 3.6,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "train",
+            "policy": "random_acquisition_fixed_stop",
+            "mean_questions": 4.177777777777778,
+            "mean_cost": 4.177777777777778,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "train",
+            "policy": "uniform_all_allowed",
+            "mean_questions": 1.2333333333333334,
+            "mean_cost": 1.2333333333333334,
+            "correct_terminal_rate": 0.1111111111111111,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "val_internal",
+            "policy": "existing_rule_order",
+            "mean_questions": 4.666666666666667,
+            "mean_cost": 4.666666666666667,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "val_internal",
+            "policy": "joint_train_greedy",
+            "mean_questions": 4.666666666666667,
+            "mean_cost": 4.666666666666667,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 27
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "val_internal",
+            "policy": "joint_train_multistep",
+            "mean_questions": 3.0,
+            "mean_cost": 3.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "val_internal",
+            "policy": "random_acquisition_fixed_stop",
+            "mean_questions": 3.7777777777777777,
+            "mean_cost": 3.7777777777777777,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "val_internal",
+            "policy": "uniform_all_allowed",
+            "mean_questions": 1.3333333333333333,
+            "mean_cost": 1.3333333333333333,
+            "correct_terminal_rate": 0.14814814814814814,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "train",
+            "policy": "existing_rule_order",
+            "mean_questions": 4.6,
+            "mean_cost": 6.2,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "train",
+            "policy": "joint_train_greedy",
+            "mean_questions": 3.6,
+            "mean_cost": 4.2,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "train",
+            "policy": "joint_train_multistep",
+            "mean_questions": 3.6,
+            "mean_cost": 4.2,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "train",
+            "policy": "random_acquisition_fixed_stop",
+            "mean_questions": 4.177777777777778,
+            "mean_cost": 5.355555555555555,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "train",
+            "policy": "uniform_all_allowed",
+            "mean_questions": 1.2333333333333334,
+            "mean_cost": 1.5555555555555556,
+            "correct_terminal_rate": 0.1111111111111111,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "val_internal",
+            "policy": "existing_rule_order",
+            "mean_questions": 4.666666666666667,
+            "mean_cost": 6.333333333333333,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "val_internal",
+            "policy": "joint_train_greedy",
+            "mean_questions": 3.0,
+            "mean_cost": 3.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "val_internal",
+            "policy": "joint_train_multistep",
+            "mean_questions": 3.0,
+            "mean_cost": 3.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "val_internal",
+            "policy": "random_acquisition_fixed_stop",
+            "mean_questions": 3.7777777777777777,
+            "mean_cost": 4.555555555555555,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "val_internal",
+            "policy": "uniform_all_allowed",
+            "mean_questions": 1.3333333333333333,
+            "mean_cost": 1.6296296296296295,
+            "correct_terminal_rate": 0.14814814814814814,
+            "policy_fallbacks": 0
+          }
+        ],
+        "headroom": [
+          {
+            "cost_protocol": "unit_primary",
+            "split": "train",
+            "public_information_optimum": 3.6,
+            "hindsight_lower_bound": 3.5,
+            "evaluator_only": true,
+            "policy_training_use": false,
+            "assumption": "uniform known diagnostic split distribution; fixed semantic/runtime stopping gates",
+            "strongest_deterministic_baseline": "joint_train_multistep",
+            "baseline_cost": 3.6,
+            "gap_to_public_optimum": 0.0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "split": "val_internal",
+            "public_information_optimum": 3.0,
+            "hindsight_lower_bound": 3.0,
+            "evaluator_only": true,
+            "policy_training_use": false,
+            "assumption": "uniform known diagnostic split distribution; fixed semantic/runtime stopping gates",
+            "strongest_deterministic_baseline": "joint_train_multistep",
+            "baseline_cost": 3.0,
+            "gap_to_public_optimum": 0.0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "train",
+            "public_information_optimum": 4.2,
+            "hindsight_lower_bound": 4.0,
+            "evaluator_only": true,
+            "policy_training_use": false,
+            "assumption": "uniform known diagnostic split distribution; fixed semantic/runtime stopping gates",
+            "strongest_deterministic_baseline": "joint_train_greedy",
+            "baseline_cost": 4.2,
+            "gap_to_public_optimum": 0.0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "split": "val_internal",
+            "public_information_optimum": 3.0,
+            "hindsight_lower_bound": 3.0,
+            "evaluator_only": true,
+            "policy_training_use": false,
+            "assumption": "uniform known diagnostic split distribution; fixed semantic/runtime stopping gates",
+            "strongest_deterministic_baseline": "joint_train_greedy",
+            "baseline_cost": 3.0,
+            "gap_to_public_optimum": 0.0
+          }
+        ],
+        "composition": {
+          "train": {
+            "worlds": 30,
+            "tools_counts": {
+              "hands": 12,
+              "scrub_brush": 6,
+              "washcloth": 6,
+              "sponge": 6
+            },
+            "policy_scored": true
+          },
+          "val_internal": {
+            "worlds": 9,
+            "tools_counts": {
+              "washcloth": 3,
+              "sponge": 3,
+              "scrub_brush": 3
+            },
+            "policy_scored": true
+          },
+          "test_internal": {
+            "worlds": 9,
+            "tools_counts": {
+              "scrub_brush": 3,
+              "washcloth": 3,
+              "sponge": 3
+            },
+            "policy_scored": false
+          }
+        }
+      },
+      "software_test_record": {
+        "new_baselines_passed": 10,
+        "experiment_rl_ppo_passed": 431,
+        "root_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-v2-baselines-v1/baselines-verified.json",
+          "sha256": "0f5ee0536b225177b7da0f112a65c21ade06a1b033abd821a5ed275c78636bb0",
+          "bytes": 1350616
+        },
+        {
+          "path": "outputs/afa-v2-baselines-v1/cohort-composition.json",
+          "sha256": "e7db45a4c3f7897b28640a1053bedc71ab47427908ae1bae73860a9d12cd3417",
+          "bytes": 531
+        },
+        {
+          "path": "outputs/afa-v2-baselines-v1/verification-index.json",
+          "sha256": "8d91a7508f728b0737a5d381712da2f4600b6d76ef852d12d22d1398b9ea872b",
+          "bytes": 2341,
+          "historical_reference_check_at_capture": {
+            "matched": 10,
+            "changed": [],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "title_ko": "자료 구성 보완과 순환 점검 계획",
+      "stage_record_date": "2026-11-17",
+      "metrics": {
+        "before": {
+          "splits": {
+            "train": {
+              "worlds": 30,
+              "families": 10,
+              "stratum_families": {
+                "hands": 4,
+                "tool_difference": 6
+              },
+              "tools_world_counts": {
+                "hands": 12,
+                "scrub_brush": 6,
+                "sponge": 6,
+                "washcloth": 6
+              },
+              "water_values": [
+                "cold",
+                "hot",
+                "lukewarm"
+              ],
+              "missing_required_strata": []
+            },
+            "val_internal": {
+              "worlds": 9,
+              "families": 3,
+              "stratum_families": {
+                "hands": 0,
+                "tool_difference": 3
+              },
+              "tools_world_counts": {
+                "scrub_brush": 3,
+                "sponge": 3,
+                "washcloth": 3
+              },
+              "water_values": [
+                "cold",
+                "hot",
+                "lukewarm"
+              ],
+              "missing_required_strata": [
+                "hands"
+              ]
+            },
+            "test_internal": {
+              "worlds": 9,
+              "families": 3,
+              "stratum_families": {
+                "hands": 0,
+                "tool_difference": 3
+              },
+              "tools_world_counts": {
+                "scrub_brush": 3,
+                "sponge": 3,
+                "washcloth": 3
+              },
+              "water_values": [
+                "cold",
+                "hot",
+                "lukewarm"
+              ],
+              "missing_required_strata": [
+                "hands"
+              ]
+            }
+          },
+          "feasibility_checks": {
+            "every_tool_value_in_every_split": {
+              "feasible": false,
+              "reason": "four distinct tools need at least four indivisible families per split; val/test have three"
+            },
+            "aligned_method_family_in_every_split": {
+              "feasible": false,
+              "family_count": 1,
+              "current_splits": [
+                "train"
+              ],
+              "reason": "one indivisible aligned-method family cannot be placed in three disjoint splits"
+            }
+          },
+          "required_strata_present_everywhere": false,
+          "independent_evaluation": false,
+          "scope": "structural coverage, not policy accuracy or clinical difficulty"
+        },
+        "after": {
+          "splits": {
+            "train": {
+              "worlds": 30,
+              "families": 10,
+              "stratum_families": {
+                "hands": 2,
+                "tool_difference": 8
+              },
+              "tools_world_counts": {
+                "hands": 6,
+                "scrub_brush": 12,
+                "sponge": 3,
+                "washcloth": 9
+              },
+              "water_values": [
+                "cold",
+                "hot",
+                "lukewarm"
+              ],
+              "missing_required_strata": []
+            },
+            "val_internal": {
+              "worlds": 9,
+              "families": 3,
+              "stratum_families": {
+                "hands": 1,
+                "tool_difference": 2
+              },
+              "tools_world_counts": {
+                "hands": 3,
+                "sponge": 3,
+                "washcloth": 3
+              },
+              "water_values": [
+                "cold",
+                "hot",
+                "lukewarm"
+              ],
+              "missing_required_strata": []
+            },
+            "test_internal": {
+              "worlds": 9,
+              "families": 3,
+              "stratum_families": {
+                "hands": 1,
+                "tool_difference": 2
+              },
+              "tools_world_counts": {
+                "hands": 3,
+                "sponge": 6
+              },
+              "water_values": [
+                "cold",
+                "hot",
+                "lukewarm"
+              ],
+              "missing_required_strata": []
+            }
+          },
+          "feasibility_checks": {
+            "every_tool_value_in_every_split": {
+              "feasible": false,
+              "reason": "four distinct tools need at least four indivisible families per split; val/test have three"
+            },
+            "aligned_method_family_in_every_split": {
+              "feasible": false,
+              "family_count": 1,
+              "current_splits": [
+                "train"
+              ],
+              "reason": "one indivisible aligned-method family cannot be placed in three disjoint splits"
+            }
+          },
+          "required_strata_present_everywhere": true,
+          "independent_evaluation": false,
+          "scope": "structural coverage, not policy accuracy or clinical difficulty"
+        },
+        "moved_worlds": 24,
+        "preservation": {
+          "root_ids": true,
+          "unchanged_responses_and_references": true
+        },
+        "fold_plan": {
+          "folds": 16,
+          "fit_worlds_per_fold": 45,
+          "check_worlds_per_fold": 3,
+          "distinct_checked_roots": 48,
+          "each_family_checked_once": true,
+          "aligned_method_roots_checked": 3,
+          "fold_scores_computed": false,
+          "independent_evaluation_ready": false
+        }
+      },
+      "software_test_record": {
+        "new_coverage_checks": 15,
+        "experiment_rl_ppo_passed": 446,
+        "root_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-coverage-repair-v1/coverage-verified.json",
+          "sha256": "524c14b31269aed337c1af81bf56145b9fd07ecbd32de0634a7474eac79b1d59",
+          "bytes": 5054
+        },
+        {
+          "path": "outputs/afa-coverage-repair-v1/fold-plan-verified.json",
+          "sha256": "ee68e745769bc4b66bd27382018ab96a251d3ea320abc05aa3b9969c41d7f562",
+          "bytes": 266
+        },
+        {
+          "path": "outputs/afa-coverage-repair-v1/verification-index.json",
+          "sha256": "8a1b5cf7a5b943cc786b9b8a845650218ed41a60b1bac841cb74bb5dcc14f49b",
+          "bytes": 3578,
+          "historical_reference_check_at_capture": {
+            "matched": 18,
+            "changed": [],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E13",
+      "title_ko": "16가족 순환 기준선 비교",
+      "stage_record_date": "2026-11-17",
+      "metrics": {
+        "folds": 16,
+        "episodes": 1440,
+        "unique_worlds": 48,
+        "fit_worlds_per_fold": 45,
+        "check_worlds_per_fold": 3,
+        "summaries": [
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "existing_rule_order",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 4.5,
+            "mean_cost": 4.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 0.0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "uniform_all_allowed",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 1.1736111111111112,
+            "mean_cost": 1.1736111111111112,
+            "correct_terminal_rate": 0.05555555555555555,
+            "policy_fallbacks": 0,
+            "matched_quality_to_native": false,
+            "paired_mean_cost_saved_vs_native": null
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "random_acquisition_fixed_stop",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 3.7916666666666665,
+            "mean_cost": 3.7916666666666665,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 0.7083333333333334
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "joint_train_greedy",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 4.5,
+            "mean_cost": 4.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 72,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 0.0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "joint_train_multistep",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 3.4375,
+            "mean_cost": 3.4375,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 27,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 1.0625
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "existing_rule_order",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 4.5,
+            "mean_cost": 6.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 0.0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "uniform_all_allowed",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 1.1736111111111112,
+            "mean_cost": 1.5833333333333333,
+            "correct_terminal_rate": 0.05555555555555555,
+            "policy_fallbacks": 0,
+            "matched_quality_to_native": false,
+            "paired_mean_cost_saved_vs_native": null
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "random_acquisition_fixed_stop",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 3.7916666666666665,
+            "mean_cost": 4.583333333333333,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 1.4166666666666667
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "joint_train_greedy",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 3.4375,
+            "mean_cost": 3.875,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 2.125
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "joint_train_multistep",
+            "episode_count": 144,
+            "distinct_worlds": 48,
+            "mean_questions": 3.4375,
+            "mean_cost": 3.875,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 27,
+            "matched_quality_to_native": true,
+            "paired_mean_cost_saved_vs_native": 2.125
+          }
+        ],
+        "subgroups": [
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "existing_rule_order",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.5,
+            "mean_cost": 4.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "existing_rule_order",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 4.5,
+            "mean_cost": 4.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "uniform_all_allowed",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 1.1111111111111112,
+            "mean_cost": 1.1111111111111112,
+            "correct_terminal_rate": 0.05555555555555555,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "uniform_all_allowed",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 1.1944444444444444,
+            "mean_cost": 1.1944444444444444,
+            "correct_terminal_rate": 0.05555555555555555,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "random_acquisition_fixed_stop",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.5,
+            "mean_cost": 4.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "random_acquisition_fixed_stop",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 3.5555555555555554,
+            "mean_cost": 3.5555555555555554,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "joint_train_greedy",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.5,
+            "mean_cost": 4.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 18
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "joint_train_greedy",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 4.5,
+            "mean_cost": 4.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 54
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "joint_train_multistep",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.75,
+            "mean_cost": 4.75,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 27
+          },
+          {
+            "cost_protocol": "unit_primary",
+            "policy": "joint_train_multistep",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 3.0,
+            "mean_cost": 3.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "existing_rule_order",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.5,
+            "mean_cost": 6.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "existing_rule_order",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 4.5,
+            "mean_cost": 6.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "uniform_all_allowed",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 1.1111111111111112,
+            "mean_cost": 1.5,
+            "correct_terminal_rate": 0.05555555555555555,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "uniform_all_allowed",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 1.1944444444444444,
+            "mean_cost": 1.6111111111111112,
+            "correct_terminal_rate": 0.05555555555555555,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "random_acquisition_fixed_stop",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.5,
+            "mean_cost": 6.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "random_acquisition_fixed_stop",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 3.5555555555555554,
+            "mean_cost": 4.111111111111111,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "joint_train_greedy",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.75,
+            "mean_cost": 6.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "joint_train_greedy",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 3.0,
+            "mean_cost": 3.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "joint_train_multistep",
+            "structural_group": "hands",
+            "episode_count": 36,
+            "distinct_worlds": 12,
+            "mean_questions": 4.75,
+            "mean_cost": 6.5,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 27
+          },
+          {
+            "cost_protocol": "weighted_sensitivity",
+            "policy": "joint_train_multistep",
+            "structural_group": "tool_difference",
+            "episode_count": 108,
+            "distinct_worlds": 36,
+            "mean_questions": 3.0,
+            "mean_cost": 3.0,
+            "correct_terminal_rate": 1.0,
+            "policy_fallbacks": 0
+          }
+        ]
+      },
+      "software_test_record": {
+        "new_fold_checks": 10,
+        "experiment_rl_ppo_passed": 456,
+        "root_current_spec_passed": 371,
+        "strict_original_passed": 62,
+        "strict_original_known_failed": 5,
+        "audit_satisfied": 52,
+        "audit_total": 57
+      },
+      "evidence_kind": "saved_machine_reports",
+      "receipts": [
+        {
+          "path": "outputs/afa-fold-baselines-v1/comparison.json",
+          "sha256": "f6e7c060f6c051f1f95474f53510289dc60485d02eabd5052df9bb8c2ae97a93",
+          "bytes": 3541016
+        },
+        {
+          "path": "outputs/afa-fold-baselines-v1/subgroup-diagnostics.json",
+          "sha256": "34986d4774cf6175e11c83cd713614b48c21d7dcea1932e2e1e436e3014d0454",
+          "bytes": 6887
+        },
+        {
+          "path": "outputs/afa-fold-baselines-v1/verification-index.json",
+          "sha256": "1c1eca18bc543fb45e3ff410d0e638a236de6ed507677b379b762e867f00c4bb",
+          "bytes": 2296,
+          "historical_reference_check_at_capture": {
+            "matched": 10,
+            "changed": [],
+            "missing": [],
+            "note": "Historical index preserved. Later file changes are listed, not rewritten as original-run success."
+          }
+        }
+      ]
+    },
+    {
+      "id": "E14",
+      "title_ko": "온보딩·발표 설명 검토",
+      "stage_record_date": "2026-11-17",
+      "evidence_kind": "documentation_review_against_existing_code_config_and_reports",
+      "purpose_ko": "처음 읽는 팀원과 발표 청중이 역할·호출·설정·지표의 의미와 한계를 따라갈 수 있도록 보완",
+      "findings_ko": [
+        "구성요소 역할과 대화 흐름 설명 부족",
+        "호출 반환값·하이퍼파라미터 해설 부족",
+        "지표 분모와 반복 수 오해 가능성"
+      ],
+      "changes_ko": [
+        "독자별 읽는 순서·가상 대화·역할 흐름 추가",
+        "입력·호출·고정 행동 번호·인코딩·학습 설정·지표 해설 추가",
+        "후속 누적 기록에 쉬운 설명 기준 추가"
+      ],
+      "metrics": {
+        "new_training_runs": 0,
+        "new_benchmark_runs": 0,
+        "new_pytest_runs": 0,
+        "reader_comprehension_study_performed": false
+      },
+      "software_test_record": {
+        "new_tests_executed": false,
+        "last_full_experiment_passed": 456,
+        "last_suite_entry": "E13"
+      },
+      "verification_path": "outputs/afa-policy-onboarding-v1/verification.json",
+      "scope_note_ko": "기존 실행 증빙의 수치를 보존한 문서 검토. 실제 신규 팀원·클라이언트 이해도 측정은 하지 않음.",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "db00f81c61384edb10de3421b42f0c26fa4dc4d917c0eea773b220d6f76ad5c6",
+          "bytes": 56438
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/AGENTS.md",
+          "sha256": "24cd380cf4d274410ea3503740a16e66f73e1087cec1d5f9ccc16e3fce1b3e53",
+          "bytes": 3369
+        },
+        {
+          "path": "outputs/afa-stage5a-trial-v1/config.json",
+          "sha256": "c92af9d046d326d0d5883bfca7d44912f587b1d812da09644cc3ae87f1b3979c",
+          "bytes": 796
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/joint_environment.py",
+          "sha256": "0a5f7554fbcdb5a637d925e1452cb776b31b7901b4fa3d859434364804a3bb11",
+          "bytes": 8381
+        }
+      ]
+    },
+    {
+      "id": "E15",
+      "title_ko": "Linear 공유 이슈와 갱신 규칙",
+      "stage_record_date": "2026-11-17",
+      "evidence_kind": "documentation_publication_and_sync_contract",
+      "linear": {
+        "workspace": "PPOPY",
+        "workspace_id": "d651ad5c-e8e4-4cf1-ba4f-cedd94c1644d",
+        "issue": "PPO-32",
+        "uuid": "4f6008e0-d6d0-48d2-85c6-5631a0e75255",
+        "url": "https://linear.app/ppopy/issue/PPO-32",
+        "assignee": "kang kang",
+        "assignee_id": "1121d4d5-0e6f-438c-8f44-8f74eaa63673",
+        "related_issue": "PPO-23"
+      },
+      "metrics": {
+        "new_training_runs": 0,
+        "new_benchmark_runs": 0,
+        "new_pytest_runs": 0
+      },
+      "software_test_record": {
+        "new_tests_executed": false,
+        "last_full_experiment_passed": 456,
+        "last_suite_entry": "E13"
+      },
+      "verification_path": "outputs/afa-policy-linear-sync-v1/verification.json",
+      "note_ko": "같은 이슈 본문을 갱신하는 후속 에이전트 완료 조건. 상시 파일 감시 서비스가 아님. E14에 보존된 문서·AGENTS 해시는 이번 개정 전 버전의 증빙으로 유지.",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "33902ad26b8c68d4f116be2d3a977ae123b9b48a292ee11229bc34dbb5ada396",
+          "bytes": 58570
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/AGENTS.md",
+          "sha256": "a084e07809300c3084666475e985885db3dcefffe61dc60dd7a3d2be31bcfeb1",
+          "bytes": 5909
+        },
+        {
+          "path": "outputs/afa-policy-linear-sync-v1/issue-description.md",
+          "sha256": "82c6a4f5962411f497e02efc68c16d67b0a07c4e61071d7859a5e7133bb4da5f",
+          "bytes": 59756
+        }
+      ]
+    },
+    {
+      "id": "E16",
+      "title_ko": "AFA 탐색·테스트 구조 정리",
+      "stage_record_date": "2026-11-17",
+      "evidence_kind": "test_relocation_regression_and_navigation_review",
+      "metrics": {
+        "test_files_relocated_unchanged": 19,
+        "protected_source_and_data_files_unchanged": 74,
+        "new_training_runs": 0,
+        "new_benchmark_runs": 0
+      },
+      "software_test_record": {
+        "full_experiment_passed": 456,
+        "full_experiment_exit_code": 0,
+        "duration_seconds": 169.74,
+        "warnings": 1,
+        "full_command": ".venv/Scripts/python.exe -m pytest -q -o norecursedirs= tests",
+        "working_directory": "courses/ai-applications/experiments/cos-agent",
+        "earlier_partial_command": ".venv/Scripts/python.exe -m pytest -q tests tests/afa/gym tests/afa/ppo",
+        "earlier_partial_passed": 369,
+        "earlier_partial_was_not_full_suite": true,
+        "default_collection_with_rl_imports_blocked": 369,
+        "source_manifest_checked": 27,
+        "source_manifest_failed": 0,
+        "offline_lock_check_exit_code": 0,
+        "root_kb_tests_rerun": false
+      },
+      "verification_path": "outputs/afa-layout-v1/verification.json",
+      "linear_issue": "https://linear.app/ppopy/issue/PPO-32",
+      "note_ko": "실행 모듈·CLI·자료·원본 출력 경로는 유지. 옛 단계 README·보고서는 당시 경로의 증빙으로 보존. E00~E15 entries/receipts 보존. 과거 문서 해시는 당시 버전이며 최신 문서와 달라지는 것이 정상.",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "b5de0a8aa8b3a5aae46b8a28dc5a23c6c1ae2e0fed878dd8e4090fa1b54bc769",
+          "bytes": 61527
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-guide.md",
+          "sha256": "58c868587e5a4f3f2d73c63f598d17569197cfc8bb4b1231f22601d8a7b0f3ea",
+          "bytes": 5298
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/README.md",
+          "sha256": "06e421d7fe347bdb459157d2a3edb3a0a66042518c84f399dccd1a12a881ebca",
+          "bytes": 2009
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/README.md",
+          "sha256": "26ef5b86de805f0d1929c8bbbc07f33f58afdc27e872016950a11dfc0e1edba1",
+          "bytes": 2694
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/README.md",
+          "sha256": "a5b62483bc07a3a418809b80088e1da59a6b8e6b255793190b478e0b3eb5ba4e",
+          "bytes": 1780
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/README.md",
+          "sha256": "0d18823b97ced3d0223e9edd79fee5d84329d8f18bedbc6d6c5101a00d53db48",
+          "bytes": 8197
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/AGENTS.md",
+          "sha256": "267d4a63aa94ecf82d2b5179f28389968a84468460f30effe5bd2555c7cc7e2c",
+          "bytes": 6553
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/pyproject.toml",
+          "sha256": "fd3abe6b05b70cb978a335062c4178d9938cfc8d81aaa3b3f2ab1dbaa91692b3",
+          "bytes": 1066
+        },
+        {
+          "path": "README.md",
+          "sha256": "6c90e29ffc61ad49d948e0a74ca7e639e32d20a5b570aa2021ea76418137ca56",
+          "bytes": 7471
+        },
+        {
+          "path": "outputs/afa-layout-v1/before-layout.json",
+          "sha256": "7ad9a6f99dd447b44e834ddea853caae12cb52feceaf3d8b59a5be361ac8826a",
+          "bytes": 16492
+        },
+        {
+          "path": "outputs/afa-layout-v1/layout-verification.json",
+          "sha256": "037c072ff63c8cc8d3e18a1d0b87ff8d04931eab2f64a7225ab8442c2da50e2e",
+          "bytes": 204
+        },
+        {
+          "path": "outputs/afa-layout-v1/experiment-tests-full.txt",
+          "sha256": "4c0b478d62b297e3b834acae52e453b1685b4603f4ca68319ad6463e619a5e6f",
+          "bytes": 1165
+        },
+        {
+          "path": "outputs/afa-layout-v1/experiment-tests.txt",
+          "sha256": "1754047b1ee7d82d5b6fb3c910872bfa341decfec00144f87f19b7deabdce514",
+          "bytes": 1073
+        },
+        {
+          "path": "outputs/afa-layout-v1/base-without-rl.txt",
+          "sha256": "a7625f7f396bd26f8b9dae85813043867da5bc7cc11c0a5daffe9417df6793ef",
+          "bytes": 34686
+        },
+        {
+          "path": "outputs/afa-layout-v1/issue-description.md",
+          "sha256": "d398cb69e20a85b697931bc67ff123c4c518d3f89d3bb5781ee348a16bfb98f4",
+          "bytes": 62726
+        }
+      ]
+    },
+    {
+      "id": "E17",
+      "title_ko": "로컬 MLflow 실험 대시보드",
+      "stage_record_date": "2026-11-18",
+      "evidence_kind": "historical_report_import_and_local_dashboard_verification",
+      "metrics": {
+        "passed": true,
+        "run_count": 15,
+        "experiments": 4,
+        "idempotent_reimport": true,
+        "v1_metric_records_checked": 2,
+        "v2_policy_cost_records_checked": 10,
+        "subgroups_checked": 20,
+        "training_curve_rows_checked": 8,
+        "chart_artifacts": 8,
+        "original_inputs_unchanged": true,
+        "protected_source_and_data_files_unchanged": 74,
+        "new_learning": false,
+        "dashboard_url": "http://127.0.0.1:5000",
+        "overview_run_id": "8ba5e7ae2ab94d369d14c896a686306a",
+        "full_suite_passed": 463,
+        "full_suite_seconds": 179.08,
+        "new_tests": 7,
+        "http_api_readback": true,
+        "software_runs": 2
+      },
+      "software_test_record": {
+        "full_experiment_passed": 463,
+        "duration_seconds": 179.08,
+        "exit_code": 0,
+        "new_tracking_tests": 7,
+        "final_tracking_rerun_passed": 7,
+        "base_collection": 369,
+        "source_manifest_matched": 27,
+        "lock_check_offline_exit_code": 0,
+        "root_strict_rerun": false
+      },
+      "note_ko": "새 학습·성능 비교·EDA 실행 아님. v2 실시간 학습 연결은 다음 학습기 구현 시 검증. E00~E16 entries/receipts 보존. 선택 패키지 추가로 과거 pyproject/lock 해시와 현재 파일이 다름.",
+      "verification_path": "outputs/afa-mlflow-v1/verification.json",
+      "linear_issue": "https://linear.app/ppopy/issue/PPO-32",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "33ac879af6dd5bb2559adf02c2ab6f49b43f8e9cdb33e5c20e44063f2988dcaf",
+          "bytes": 65301
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-mlflow.md",
+          "sha256": "0b799d137a813ad4def5b0d21e8d68a33ee1d43b2c8b39550fece654baa8117d",
+          "bytes": 5855
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-guide.md",
+          "sha256": "b515786291a9d250b63dbc807245655a16d2c9d6cef419bb179e09ec23dad3b4",
+          "bytes": 5629
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/README.md",
+          "sha256": "5414af11cf05f9ebb753d970e68ac927cf112c2cbae913b265c59cf9aa9561db",
+          "bytes": 1962
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/README.md",
+          "sha256": "7e6de303df2628e18583309439904941640dd184504cdbb6403d36612c9b6540",
+          "bytes": 8312
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/AGENTS.md",
+          "sha256": "af7f8fa350e55ddc2952d94f89c1720511d1bec5b9aac163cfa6d833956bf605",
+          "bytes": 7404
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/tracking.py",
+          "sha256": "4904e676fc2606a70d11c217ab9e8188732f8ba4d6a6c9871298e7fe6ddc3bb3",
+          "bytes": 12260
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/tracking/test_tracking.py",
+          "sha256": "613df13da8265dd42b9d849ea7915dbfec01aa293b66be2083c3f68492443f1d",
+          "bytes": 2393
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/pyproject.toml",
+          "sha256": "b0424131dcbe9548631214f7cd0d9f08cee966e2c08468975dba517e4021e2d2",
+          "bytes": 1140
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/uv.lock",
+          "sha256": "82c0113db2f40393308410db41735c088c4baed7eee4f1f3cbe627ac9ae89b06",
+          "bytes": 812533
+        },
+        {
+          "path": "outputs/afa-mlflow-v1/tests.txt",
+          "sha256": "1ea9dbd7347a13bef2ffa0d7b66c30c42a6d116c10dfe123f9b09d9b6fc6c6ee",
+          "bytes": 1165
+        },
+        {
+          "path": "outputs/afa-mlflow-v1/tracking-tests-final.txt",
+          "sha256": "4c94c36f395439d928eca72a393289824fc0b3e4e41f52ead1d88ab4cc8092cc",
+          "bytes": 101
+        },
+        {
+          "path": "outputs/afa-mlflow-v1/regression-result.json",
+          "sha256": "ae12dee46a833fa2fed4255d3cefd1325d8e071cadba16830f4b98ccfa3f81ba",
+          "bytes": 131
+        },
+        {
+          "path": "outputs/afa-mlflow-v1/import-verification.json",
+          "sha256": "767719b4f6d5748b6b5e0490dff3169377536cb731db49b075b3588c92c1d2f2",
+          "bytes": 614
+        }
+      ]
+    },
+    {
+      "id": "E18",
+      "title_ko": "MLflow 첫 사용자 안내·화면 예시",
+      "stage_record_date": "2026-11-18",
+      "evidence_kind": "documentation_review_and_ui_capture",
+      "metrics": {
+        "screenshots": 2,
+        "source_charts": 1,
+        "new_training_runs": 0,
+        "new_pytest_runs": 0,
+        "reader_study_performed": false
+      },
+      "verification_path": "outputs/afa-mlflow-guide-v1/verification.json",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-mlflow.md",
+          "sha256": "ba8e5d81da43c37f775cb52777d856be39f1077084093dc9aedbfd6b75ba7589",
+          "bytes": 18666
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "aeb4c8d97cb1a49bfd4103ac568df3f85619d23eedce952af815a12ed0161a3a",
+          "bytes": 66690
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/experiment-home.png",
+          "sha256": "dcc7ea0fc9b58788fb66d2acd7361974b1ac4694713dfa68aa9d58acca83604a",
+          "bytes": 151602
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/questions.png",
+          "sha256": "4b89a84d12534853c4167cf444c23a12aece351a4a2c72a3655810c18b57d075",
+          "bytes": 40630
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/run-overview.png",
+          "sha256": "106232410e243b3e1f88dc7093dec6b601b20b90ff8e21b7786597a31a0ffa01",
+          "bytes": 82661
+        }
+      ]
+    },
+    {
+      "id": "E19",
+      "title_ko": "단계별 결과 화면의 Linear 본문 공유",
+      "stage_record_date": "2026-11-18",
+      "evidence_kind": "historical_result_ui_capture_and_inline_asset_publication",
+      "metrics": {
+        "result_screenshots": 4,
+        "guide_screenshots": 1,
+        "source_charts": 2,
+        "new_training_runs": 0,
+        "new_pytest_runs": 0
+      },
+      "verification_path": "outputs/afa-linear-snapshots-v1/verification.json",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "b5eb866b864c6084a9b382297c185ea06c654721ec648e8d708e175a2cfa483e",
+          "bytes": 71202
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/AGENTS.md",
+          "sha256": "f54e28025436add8ea2e754f238b4021876958dfda96ca7e1de5892b5f6b5cd2",
+          "bytes": 8240
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "8fd82476a7af2969ec46299eab4f6d785df8faf41a4cd9deffe098ca3b39bfb8",
+          "bytes": 2764
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E07-result.png",
+          "sha256": "ebe4224cc82539619a745fa073a55abb06eb61a4b9b64a66102261be79f0e0cc",
+          "bytes": 99530
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E13-result.png",
+          "sha256": "cbd7ee20559689c5070ccd47f15ae044b2ca326f5242f2b4682d0287978960ce",
+          "bytes": 105507
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E16-result.png",
+          "sha256": "a18aa996ff91bacb9282c9a7bb2e46eb1790217e1a261a6fc388c491b7bcc829",
+          "bytes": 81480
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E17-result.png",
+          "sha256": "55cc5c7baa727ee9b463dafbff3fcd0b8289997c87f096e30c26e20c8504b395",
+          "bytes": 77151
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/experiment-home.png",
+          "sha256": "dcc7ea0fc9b58788fb66d2acd7361974b1ac4694713dfa68aa9d58acca83604a",
+          "bytes": 151602
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/questions.png",
+          "sha256": "4b89a84d12534853c4167cf444c23a12aece351a4a2c72a3655810c18b57d075",
+          "bytes": 40630
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/subgroups.png",
+          "sha256": "c542aeb05ab957db140e77d62effaf538c552be8522bcc34fadf5c2a8f925f88",
+          "bytes": 59176
+        }
+      ]
+    },
+    {
+      "id": "E20",
+      "title_ko": "전체 v67 데이터 EDA 및 학습 활용 범위 분석",
+      "stage_record_date": "2026-11-18",
+      "evidence_kind": "whole_dataset_descriptive_analysis_and_agent_content_review_not_policy_evaluation",
+      "metrics": {
+        "scenarios": 1025,
+        "turns": 2453,
+        "cards": 58,
+        "multi_turn_scenarios": 964,
+        "B_C01_scenarios": 531,
+        "proposed_action_target_pairs": 127,
+        "available_action_target_pairs": 177,
+        "exact_input_duplicate_excess": 31,
+        "exact_input_multilabel_groups": 3,
+        "exact_input_cross_split_groups": 0,
+        "enabled_consumer_ask_occurrences": 2392,
+        "later_observation_event_present": 489,
+        "later_observation_event_not_recorded": 1903,
+        "reviewed_train_turns": 12,
+        "reviewed_train_scenarios": 12,
+        "base_tests_passed": 374,
+        "eda_tests_included": 5,
+        "charts": 7,
+        "new_policy_training_runs": 0
+      },
+      "interpretation_limits": [
+        "candidate occurrences may repeat; not missing-user-answer rate",
+        "same input different proposals need review; not all are errors",
+        "recorded declared slots are not RL eligibility",
+        "integrity passed is not semantic, clinical, or human approval",
+        "internal test read for structural audit; not independent unseen evaluation",
+        "base test scope differs from E17 full suite; no full optional suite rerun"
+      ],
+      "followups": [
+        "3 same-input/different-label groups",
+        "train-919 candidate priority/mapping",
+        "train-582 wording",
+        "event and counterfactual response contracts"
+      ],
+      "verification_path": "outputs/afa-eda-v1/verification.json",
+      "mlflow_run_id": "07f582a9da224c36a428b79fae10848b",
+      "source_sha256": {
+        "courses\\ai-applications\\experiments\\cos-agent\\data\\action_policy\\v67\\canonical-candidates-v67.jsonl": "71a25422de8fa139db07249e1676d751ca0b0474bedb7d65e1bd09275bf4907a",
+        "courses\\ai-applications\\experiments\\cos-agent\\data\\action_policy\\v67\\v67-excluded-scenarios-r1.jsonl": "8e72f2fe65489277f953d975815c7ca54ae2aa8119a2b2d589324a052fe496c0",
+        "courses\\ai-applications\\experiments\\cos-agent\\data\\action_policy\\v67\\v67-sft-test-internal.jsonl": "e565a376d8c28dc1801f6552e97c72b1b5621a4d90e8f3d0d79ca0540d34b1cc",
+        "courses\\ai-applications\\experiments\\cos-agent\\data\\action_policy\\v67\\v67-sft-train.jsonl": "4a7e441f16908af6664fc9ff9d7cdb13d4a7567604323a084c54c52a14e40472",
+        "courses\\ai-applications\\experiments\\cos-agent\\data\\action_policy\\v67\\v67-sft-val-internal.jsonl": "c93110715e72b3dd925a7707fad53bc4648c585a1d78691c406592a24e6a4a67",
+        "courses\\ai-applications\\experiments\\cos-agent\\data\\action_policy\\v67\\v67-sft-manifest.json": "e66dde9e7ffba0bb5ec29ef89bd76bf773938b2d443d5b630f4b95b517475403",
+        "KB\\Poppy_KB_v0.6\\Poppy_KB_seed_v0.6.json": "10e054a8f6f2b363a4a991a3adc096604a11ad115c0ddd01f51789f75b5529dd",
+        "courses\\ai-applications\\experiments\\cos-agent\\data\\afa\\stage0-v1\\contract.json": "03d1551b7ee319b8fa5394e81e548573ed1062f161d622e1421575bb786e0456"
+      },
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "5e37b3518ad70e5bed7fd0eb4f2940cb767cff6d4de08696a15a834fdcd9c44f",
+          "bytes": 76604
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-eda.md",
+          "sha256": "35375a37d9cf63d055db4796833c9a7250c481d0b51e5d3f31cdfca74d4fcce5",
+          "bytes": 18619
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "624e7b75b85a05ee21dd90b882ef83fd71f193fa30bf7fc0c18cc8c8fb021e4c",
+          "bytes": 3516
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E20-eda-overview.png",
+          "sha256": "9e33eee88b23748938ec8fc0d73f579dc316b09201e02a3512a41cb288a5ff25",
+          "bytes": 103929
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E20-eda-result.png",
+          "sha256": "a5f21645d0281ae980f38e3e9738ca97a5f291346c66d9d94c3b621c041f152d",
+          "bytes": 99404
+        },
+        {
+          "path": "outputs/afa-eda-v1/final/report.json",
+          "sha256": "c82e2a8b75250b347a10bd6c0169ec81021addea94b24dbe87cc1fdfd081124b",
+          "bytes": 414817
+        },
+        {
+          "path": "outputs/afa-eda-v1/final/report.md",
+          "sha256": "32f7d645d75cea7c8c4508085a3200d04ad70e34621d17521e333edfcfa03c30",
+          "bytes": 18605
+        },
+        {
+          "path": "outputs/afa-eda-v1/final/manual-review.md",
+          "sha256": "fb3d81daefa7ead26c86cd9000fd64225ef2fed1f6239612f650c49ec42e53cb",
+          "bytes": 2123
+        },
+        {
+          "path": "outputs/afa-eda-v1/final/review-samples.json",
+          "sha256": "4327f83910cfabf8f93dfe4de035150798cf029f1e2a30360fb2b25d5367dfaa",
+          "bytes": 118252
+        },
+        {
+          "path": "outputs/afa-eda-v1/base-tests.txt",
+          "sha256": "01a86da5167d3be31815d6481b5d50586be64c332ae636fb5aff36e0f815e365",
+          "bytes": 1073
+        },
+        {
+          "path": "outputs/afa-eda-v1/eda-tests.txt",
+          "sha256": "0e658b1cf5fdc415e724c6e0ad5eaf6a177061c51588c92fb01a90d0667a25d8",
+          "bytes": 100
+        },
+        {
+          "path": "outputs/afa-eda-v1/source-manifest.txt",
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2",
+          "bytes": 31
+        },
+        {
+          "path": "outputs/afa-eda-v1/code-and-commands.json",
+          "sha256": "2a3d2b12f517e8e4533eefa4e354139cb8ac046f511383338f17f250ed6a9cc8",
+          "bytes": 3176
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/eda.py",
+          "sha256": "1e78d1040ca00d4e09f55aca6da355f7f6bc2b0716919234e5447a7db394e97f",
+          "bytes": 9519
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/eda_views.py",
+          "sha256": "cf892d2352c0a817928e63d2dec85ed6dbde767bcb417735e01a47f283197f43",
+          "bytes": 5244
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_eda.py",
+          "sha256": "64f5f5fcdd76284ebbe07e59bbab917e5ffe93a1630daa571cb3e528025f3a4b",
+          "bytes": 2726
+        }
+      ]
+    },
+    {
+      "id": "E21",
+      "title_ko": "라벨 후속 검토·응답 연결 사전 검증·EDA 이슈 분리",
+      "stage_record_date": "2026-11-18",
+      "evidence_kind": "train_recorded_event_diagnostic_and_agent_label_review_not_rl_evaluation",
+      "metrics": {
+        "train_scenarios": 858,
+        "train_turns": 1980,
+        "profile_product_adapter_required": 153,
+        "no_next_record": 351,
+        "target_event_recorded": 567,
+        "terminal_label_needs_separate_judgment": 711,
+        "next_record_has_no_target_response": 99,
+        "product_evidence_adapter_required": 99,
+        "review_items": 5,
+        "implicated_train_turns": 10,
+        "same_input_different_choice_groups": 3,
+        "candidate_priority_patch_proposed": 1,
+        "source_labels_changed": 0,
+        "base_tests_passed": 384,
+        "new_regression_tests_included": 10,
+        "new_policy_training_runs": 0
+      },
+      "limits": [
+        "target event presence is not RL eligibility",
+        "not Gym-integrated or a counterfactual user simulator",
+        "same-input different choices are not all errors",
+        "582 may be an explicit intent change; not automatically excluded",
+        "919 patch proposed only; source and current training unchanged",
+        "optional full suite and original strict suite not rerun"
+      ],
+      "verification_path": "outputs/afa-v67-review-v1/verification.json",
+      "mlflow_run_id": "a20f4496fd2847e08e27ccb3aea1cebb",
+      "eda_issue": "https://linear.app/ppopy/issue/PPO-33",
+      "eda_issue_assignee": "kang kang",
+      "source_sha256": {
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/canonical-candidates-v67.jsonl": "71a25422de8fa139db07249e1676d751ca0b0474bedb7d65e1bd09275bf4907a",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-excluded-scenarios-r1.jsonl": "8e72f2fe65489277f953d975815c7ca54ae2aa8119a2b2d589324a052fe496c0",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-test-internal.jsonl": "e565a376d8c28dc1801f6552e97c72b1b5621a4d90e8f3d0d79ca0540d34b1cc",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-train.jsonl": "4a7e441f16908af6664fc9ff9d7cdb13d4a7567604323a084c54c52a14e40472",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-val-internal.jsonl": "c93110715e72b3dd925a7707fad53bc4648c585a1d78691c406592a24e6a4a67",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-manifest.json": "e66dde9e7ffba0bb5ec29ef89bd76bf773938b2d443d5b630f4b95b517475403"
+      },
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/v67_responses.py",
+          "sha256": "e3da97a4aef335a7b658491ca729cc8a22e8a610a1b5644a4dd0390aa5ee0512",
+          "bytes": 8516
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_v67_responses.py",
+          "sha256": "5d4837ad3e38e71a4bc5dd051a4d07e715d5724da3a0b43d6e0cc6c72465fab4",
+          "bytes": 4707
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-review-v1/response-contract.json",
+          "sha256": "76f2d17dcf35946ac27e0fdfbd98d6f938a86496ff82ff63d3f32d954fa68718",
+          "bytes": 2483
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-review-v1/review-decisions.json",
+          "sha256": "a6af8c5da5d8084c14999a367fa0e8783235881b89fcb3a3994f29cc513f2f30",
+          "bytes": 6159
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-eda.md",
+          "sha256": "fefba732261891526250bc281edb8374cfbc9169b22d6ec059405ef78693ba21",
+          "bytes": 19364
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-response-contract.md",
+          "sha256": "fc46b022212563b9b74c7937a85606a449dd5bf9a4292e6dea738424ed6e53c5",
+          "bytes": 10705
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "2a17172f5160086c72a93c958cdf8e4bb254f93272738e00aa9bdeb58e084db9",
+          "bytes": 81431
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/AGENTS.md",
+          "sha256": "a22602ab4e9169ccc889ba70395eaa8586e7521c91c0da8aa8efc09ab51dbd03",
+          "bytes": 9918
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "a00960cca90a11afa8290ed3999649cbb9e39e9f831ffada452e8f1b771bddc5",
+          "bytes": 4269
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E21-result.png",
+          "sha256": "826011c7862f1b2bc98f2e395acd41ea8389ee758dfaf2a812123f56226c879e",
+          "bytes": 108037
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E21-response-coverage.png",
+          "sha256": "4655ecaaee03e444a3ab05aca95fa1039b81ddfc5dff6398b70609bc1ef8bd05",
+          "bytes": 65404
+        },
+        {
+          "path": "outputs/afa-v67-review-v1/analysis/report.json",
+          "sha256": "a46adc30914f392735393bcb833ebabe0d112d145bb2f76fdbc53e52b2fd270d",
+          "bytes": 506275
+        },
+        {
+          "path": "outputs/afa-v67-review-v1/base-tests.txt",
+          "sha256": "8ba5d5c0c2e4504614bc494a24d93550c8f0b9d9e62afdcbeeeae11414dc10a6",
+          "bytes": 1073
+        },
+        {
+          "path": "outputs/afa-v67-review-v1/response-tests.txt",
+          "sha256": "9bb47da62313219c418f44ade904af0f4274009223424da8407187b522ddea53",
+          "bytes": 101
+        },
+        {
+          "path": "outputs/afa-v67-review-v1/source-manifest.txt",
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2",
+          "bytes": 31
+        },
+        {
+          "path": "outputs/afa-v67-review-v1/code-and-commands.json",
+          "sha256": "a951ce77181d636599179fbaeff6b29b8e9441ada86c6662bdd8171a4b404307",
+          "bytes": 2794
+        }
+      ]
+    },
+    {
+      "id": "E22",
+      "title_ko": "작은 train 파생 응답 자료·누락 검사",
+      "stage_record_date": "2026-11-18",
+      "evidence_kind": "bounded_synthetic_response_data_validation_and_conditional_label_derivation_not_rl_evaluation",
+      "metrics": {
+        "fixture_count": 4,
+        "public_history_nodes": 64,
+        "response_edges": 60,
+        "complete_question_orders": 24,
+        "response_table_slot_count": 12,
+        "derived_label_rows": 1,
+        "source_labels_changed": 0,
+        "new_policy_training_runs": 0,
+        "full_tests_passed": 486,
+        "new_regression_tests": 8
+      },
+      "response_origin_counts": {
+        "author_defined_counterfactual": 8,
+        "recorded_value_retimed_by_fixture_assumption": 4
+      },
+      "initial_visible_slots": [
+        "method.body_site"
+      ],
+      "limitations": [
+        "static retiming is an assumption; 8 responses explicitly authored, not inferred user facts",
+        "all permutations are a data-layer superset; no KB permission override",
+        "no product/candidate/conflict/temporal response worlds or Gym integration",
+        "derived 919 label changes target, evidence refs, rationale only in separate inactive artifact",
+        "full experiment suite 486 passed; original strict suite not rerun and 5 known failures remain"
+      ],
+      "verification_path": "outputs/afa-v67-fixtures-v1/verification.json",
+      "mlflow_run_id": "2f193f1b366e45c18b6c2e7776a64f8a",
+      "source_sha256": {
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/canonical-candidates-v67.jsonl": "71a25422de8fa139db07249e1676d751ca0b0474bedb7d65e1bd09275bf4907a",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-excluded-scenarios-r1.jsonl": "8e72f2fe65489277f953d975815c7ca54ae2aa8119a2b2d589324a052fe496c0",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-test-internal.jsonl": "e565a376d8c28dc1801f6552e97c72b1b5621a4d90e8f3d0d79ca0540d34b1cc",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-train.jsonl": "4a7e441f16908af6664fc9ff9d7cdb13d4a7567604323a084c54c52a14e40472",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-val-internal.jsonl": "c93110715e72b3dd925a7707fad53bc4648c585a1d78691c406592a24e6a4a67",
+        "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-manifest.json": "e66dde9e7ffba0bb5ec29ef89bd76bf773938b2d443d5b630f4b95b517475403",
+        "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/design.json": "70900df2bda923f011338ce9dc9c437cc5040512fa80c4b8a1580201afbc1fa0",
+        "courses/ai-applications/experiments/cos-agent/data/afa/stage0-v1/contract.json": "03d1551b7ee319b8fa5394e81e548573ed1062f161d622e1421575bb786e0456",
+        "courses/ai-applications/experiments/cos-agent/data/afa/v67-review-v1/review-decisions.json": "a6af8c5da5d8084c14999a367fa0e8783235881b89fcb3a3994f29cc513f2f30",
+        "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/v67_fixtures.py": "78f6d0f3da544a23fc1a31160931406e60f7349d2fabc25b0389e3027f4b3502"
+      },
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/v67_fixtures.py",
+          "sha256": "78f6d0f3da544a23fc1a31160931406e60f7349d2fabc25b0389e3027f4b3502",
+          "bytes": 14177
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_v67_fixtures.py",
+          "sha256": "8b84d8beea7564937d6bdb644e06262b1743e95795440a705649f2428a1833a9",
+          "bytes": 6293
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/design.json",
+          "sha256": "70900df2bda923f011338ce9dc9c437cc5040512fa80c4b8a1580201afbc1fa0",
+          "bytes": 2207
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/fixtures.jsonl",
+          "sha256": "eb18ab9be2566b05a853bdab7c17d344937e42d7079a6d66bd8bb31f5105601f",
+          "bytes": 8182
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/responses.jsonl",
+          "sha256": "fa9daabf08eaea950a7d65a3ac8cff6e0379c2a2dc1dbefc0c7845fa4519ec1e",
+          "bytes": 31295
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/derived-labels.jsonl",
+          "sha256": "3abc221aa9c49eabcf7366e16fb92ec7151ddfcfa94df220a33a68fc92b9e66c",
+          "bytes": 6802
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/manifest.json",
+          "sha256": "dc94cbf50ec2466fe624ca23d2db4ceb9766d7ba4317569cb38ec9fb38fe894c",
+          "bytes": 2671
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/README.md",
+          "sha256": "df8b5c18a55a2906a979f3ce9ef58608bb814bb69be40c1c9e06d73579e5b727",
+          "bytes": 2919
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "40e2ca00cc550aa5b8d95291bd2c062164709d76c1d3b90e97ac549ff19ce72d",
+          "bytes": 85376
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-response-contract.md",
+          "sha256": "d5216aeac8a8ce0ca4dd1c9ae3bbc7c49e6597a8c3a9b582e85106b2903e15da",
+          "bytes": 18626
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-eda.md",
+          "sha256": "0b30703c7e9e2dd75b9ee07147a606affe4801b96e389becee9ba8199d5f87a5",
+          "bytes": 19787
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "5131bb4d3715e52bd14968a818be9055b147382ffe2b610b6fbdfa0e6367b39b",
+          "bytes": 5023
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E22-fixture-validation.png",
+          "sha256": "ce008f9b804da1450d2b68ba7a7145267ee2e06dfb7f8c7965cf02a7b53488db",
+          "bytes": 65420
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E22-result.png",
+          "sha256": "556840223b5134019c1070f971615dad6cc511a91818179a97140b1dd708873c",
+          "bytes": 109802
+        },
+        {
+          "path": "outputs/afa-v67-fixtures-v1/report.json",
+          "sha256": "20780811d504a85cc7d3669ced6b7d3bbe2aeb76267305b947ceb4051b99c4ed",
+          "bytes": 2852
+        },
+        {
+          "path": "outputs/afa-v67-fixtures-v1/full-tests.txt",
+          "sha256": "4e472d0f72987a16156ac1ef5f5e3138736d0c3390c4613be83bacbdab922d08",
+          "bytes": 1165
+        },
+        {
+          "path": "outputs/afa-v67-fixtures-v1/fixture-tests.txt",
+          "sha256": "ede13f07dd0a7d366735c8471c2c7d749bb3046a32c6ea677c5b9a77aeeceedf",
+          "bytes": 100
+        },
+        {
+          "path": "outputs/afa-v67-fixtures-v1/source-manifest.txt",
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2",
+          "bytes": 31
+        },
+        {
+          "path": "outputs/afa-v67-fixtures-v1/code-and-commands.json",
+          "sha256": "3f3ee3e326fe9392a27ac5e91227ab183934c7f0566ae8f90987d8e414aecf09",
+          "bytes": 2430
+        }
+      ]
+    },
+    {
+      "id": "E23",
+      "stage_record_date": "2026-11-18",
+      "title_ko": "질문·보류 기준 및 제한된 실행 어댑터 검증",
+      "evidence_kind": "runtime_mechanics",
+      "metrics": {
+        "base_tests": 397,
+        "new_tests": 5,
+        "new_training_runs": 0,
+        "fixtures": 4,
+        "runtime_contexts": 46,
+        "choices": {
+          "ask_user": 42,
+          "hold": 46,
+          "request_draft": 15
+        },
+        "terminal_dispositions": {
+          "hold_with_question_available": 25,
+          "hold_without_available_path": 6,
+          "hold_with_draft_available": 15,
+          "draft_allowed": 15
+        }
+      },
+      "mlflow_run_id": "ed46d58114104bbcba2d24e1f272de70",
+      "verification_path": "outputs/afa-v67-runtime-v1/verification.json",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/acquisition-label-review.json",
+          "sha256": "52d9f2c5edfce45462456e3cc441afd13e26d96b27f1b7a583b58529e6749649",
+          "bytes": 2131
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-response-contract.md",
+          "sha256": "bfd210b98c192eade29845e799c5c0784385b6e0aeeb40ec72e08e6ab1bdd0e9",
+          "bytes": 21810
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "1f7676a25d297819fb33cd37b8544d95143d6cd2202b8db88a893aa107f1c4ab",
+          "bytes": 87096
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E23-result.png",
+          "sha256": "cd425dfe808cdef53529df639390811c27d9815c8e00e943f3234571cdd1cf30",
+          "bytes": 104949
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "f0b9e471356bf86cb6d47215153acd2d37cffffe0ce33fa1b11d1f2724b1939b",
+          "bytes": 5395
+        },
+        {
+          "path": "outputs/afa-v67-runtime-v1/report.json",
+          "sha256": "0a9ef569e447620a5354f81937897c969186f3580f8f4cda94b628f30293c70c",
+          "bytes": 36031
+        },
+        {
+          "path": "outputs/afa-v67-runtime-v1/base.txt",
+          "sha256": "20a801d7481efc8d401ca5dcaf6789858643b204e460e6cec005305609b43dbc",
+          "bytes": 1073
+        },
+        {
+          "path": "outputs/afa-v67-runtime-v1/tests.txt",
+          "sha256": "0a922808697762e6cb755066b18d1d6c4921cb92dde91f57e8371a43841fe91e",
+          "bytes": 100
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/v67_runtime.py",
+          "sha256": "2961e283d95411e843f4391af1c5097a96b9bddca7d4a6e874e0ada8efef8124",
+          "bytes": 10999
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_v67_runtime.py",
+          "sha256": "84c4e5fc1d0172e462176be3cbbc36e33313860ae4660a2b52699ad49cecc206",
+          "bytes": 3979
+        }
+      ]
+    },
+    {
+      "id": "E24",
+      "stage_record_date": "2026-11-18",
+      "title_ko": "질문 비용과 종료 채점",
+      "metrics": {
+        "base_tests": 399,
+        "new_training_runs": 0,
+        "terminal_paths": 61,
+        "premature_hold": 25,
+        "hold_without_available_path": 6,
+        "missed_draft": 15,
+        "draft_allowed": 15
+      },
+      "mlflow_run_id": "3819658801fa4e7db53fe4257a1de694",
+      "verification_path": "outputs/afa-v67-reward-v1/verification.json",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "8fec9b64bb598dab5adc24c4bfdc41934aca8d7616ec96148918e6e79423acf4",
+          "bytes": 88267
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-response-contract.md",
+          "sha256": "3f75f93258b81f0932917a13dc6e4c13597b31f9c24a7e681086adf847e0c418",
+          "bytes": 24666
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E24-result.png",
+          "sha256": "e0b3718a141eafc4c828bb295779d1b264fa307af57b73b14d5a27e833c36468",
+          "bytes": 96561
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "662feeac128f1125e17bdf735d1a8bd1960e6aaf7524aa66639b4ac6bdbfc4a9",
+          "bytes": 5766
+        },
+        {
+          "path": "outputs/afa-v67-reward-v1/final-report.json",
+          "sha256": "34822f74c96e7d1899c457c86db7c228ff712e22cc0812466891d4aa18eab236",
+          "bytes": 36389
+        },
+        {
+          "path": "outputs/afa-v67-reward-v1/base.txt",
+          "sha256": "9272ce5221b793128db09282434bbfa4c82ce7f75b6d852f14b0b489e3a07fbc",
+          "bytes": 1073
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/v67_reward.py",
+          "sha256": "a2b54a30a35e5ca3f0fd7b55d1318ac4b29b6d072218d2c5787a47d5f7c6b95d",
+          "bytes": 7237
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_v67_reward.py",
+          "sha256": "1c050b1eb05691b7d4083a5bab15bcdfe22b2c2a11ee488fa2ce9222f8c25d7b",
+          "bytes": 1280
+        }
+      ]
+    },
+    {
+      "id": "E25",
+      "stage_record_date": "2026-11-18",
+      "title_ko": "공개 정보 기준선 비교",
+      "evidence_kind": "in_sample_development_baseline_comparison",
+      "metrics": {
+        "fixtures": 4,
+        "episodes": 272,
+        "base_tests": 400,
+        "new_ppo_runs": 0,
+        "policies": {
+          "runtime_rule": {
+            "episodes": 4,
+            "mean_questions": 2.25,
+            "correct_terminal_rate": 1,
+            "mean_return": -2.25,
+            "premature_holds": 0,
+            "missed_drafts": 0,
+            "reference_mismatches": 0
+          },
+          "tools_first": {
+            "episodes": 4,
+            "mean_questions": 2.25,
+            "correct_terminal_rate": 1,
+            "mean_return": -2.25,
+            "premature_holds": 0,
+            "missed_drafts": 0,
+            "reference_mismatches": 0
+          },
+          "friction_first": {
+            "episodes": 4,
+            "mean_questions": 2.25,
+            "correct_terminal_rate": 1,
+            "mean_return": -2.25,
+            "premature_holds": 0,
+            "missed_drafts": 0,
+            "reference_mismatches": 0
+          },
+          "random_questions": {
+            "episodes": 128,
+            "mean_questions": 2.25,
+            "correct_terminal_rate": 1,
+            "mean_return": -2.25,
+            "premature_holds": 0,
+            "missed_drafts": 0,
+            "reference_mismatches": 0
+          },
+          "random_enabled": {
+            "episodes": 128,
+            "mean_questions": 1.25,
+            "correct_terminal_rate": 0.2421875,
+            "mean_return": -4.28125,
+            "premature_holds": 72,
+            "missed_drafts": 25,
+            "reference_mismatches": 0
+          },
+          "fitted_public_tree": {
+            "episodes": 4,
+            "mean_questions": 2,
+            "correct_terminal_rate": 1,
+            "mean_return": -2,
+            "premature_holds": 0,
+            "missed_drafts": 0,
+            "reference_mismatches": 0
+          }
+        }
+      },
+      "mlflow_run_id": "b5c128d99c584ca2865819f4c52be6b1",
+      "verification_path": "outputs/afa-v67-baselines-v1/verification.json",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "13e4e2fba6ff7502e9ea897c5047aadd57c1025208a1df741fecd4f297494f09",
+          "bytes": 89726
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-response-contract.md",
+          "sha256": "66f681c5b1605563889c75373a426f0a4e874b656f29aeb0138c4a00aa56fa65",
+          "bytes": 27655
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "4038ce7b6391221679ed43cc262a4d19e75a13eaaf94549d7a22b5f10f66c43e",
+          "bytes": 6511
+        },
+        {
+          "path": "outputs/afa-v67-baselines-v1/final-report.json",
+          "sha256": "47faf47240c47e8de48d6bf9e92f17345d27eb1a4f7e332f85c94e9ff8681f90",
+          "bytes": 175360
+        },
+        {
+          "path": "outputs/afa-v67-baselines-v1/base.txt",
+          "sha256": "7f2c3a456b076a78b2e84ee0141efd235cf2c68690214c4ad486318c8fee225f",
+          "bytes": 1073
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/v67_baselines.py",
+          "sha256": "f5553912b24110b2baa523707a3b3c6823ec5fd393d88e72e20897562f7d7ce0",
+          "bytes": 7989
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_v67_baselines.py",
+          "sha256": "54597b1e02e332aecf6ddefc800a365745c00c8be9bdd3da7ef8fbd97acc5177",
+          "bytes": 1184
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E25-baselines.png",
+          "sha256": "397e28fae8caf95def2eb03153d6096db7c54e6c607827c8aa1392a90d2c272c",
+          "bytes": 47101
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E25-result.png",
+          "sha256": "84725cbf37f16b717aeef4e7d27a13467fe30d4825e65fccf4bfac9c054f558b",
+          "bytes": 100096
+        }
+      ]
+    },
+    {
+      "id": "E26",
+      "stage_record_date": "2026-11-18",
+      "title_ko": "B-C02 PPO 학습 전 검증",
+      "evidence_kind": "family_split_baselines_environment_and_untrained_policy_preflight",
+      "metrics": {
+        "families": 16,
+        "worlds": 64,
+        "terminal_paths": 940,
+        "full_tests": 496,
+        "ppo_timesteps": 0
+      },
+      "dataset_fingerprint": "6464d34263f48d7a5c5260f4f1df5c418ae936739fb2a5fd4013ae5c35020776",
+      "mlflow_run_id": "8e57b90973c146e78e7361f66029a96d",
+      "verification_path": "outputs/afa-ppo-preflight-v1/verification.json",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "2b72994e967cad4a657105fbdb7ef6c3406bfa91d0566a73c1dc795fe354b297",
+          "bytes": 90802
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-response-contract.md",
+          "sha256": "915b5e2773f96434b15dcba2bd6bd5b5533812a2b78a0cb69b80353521ba8394",
+          "bytes": 29681
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-linear-assets.json",
+          "sha256": "8ff5ff59ebc7e661e80110fa3f7766fba8f5b5629cccfde294e73a2489aacc5a",
+          "bytes": 6883
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E26-result.png",
+          "sha256": "18cbcb054f320d987c648a28f8aeffe7fb90b389378db71e6e62297a98620fb7",
+          "bytes": 110171
+        },
+        {
+          "path": "outputs/afa-ppo-preflight-v1/verified-report.json",
+          "sha256": "176c67a68306ad18abe465d7fb7ba873424ea9f1a2c7f30fb58477749118bdcc",
+          "bytes": 46321
+        },
+        {
+          "path": "outputs/afa-ppo-preflight-v1/full-tests.txt",
+          "sha256": "33274a18b1e7d23401b7bda6527ea2f082706cf2ba33e5dad10f31d7787c0ba0",
+          "bytes": 1165
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/ppo_preflight.py",
+          "sha256": "d1225f49c5dbb807bce291b740098ea8b77c3ca6cfdf1b66ab4a59baab871061",
+          "bytes": 14319
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/ppo/test_c02_preflight.py",
+          "sha256": "fa3c915b0cf1426e36baf666f02cd6e481b69d9701f6904bf24b49715d141dfa",
+          "bytes": 1312
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/ppo-preflight-v1/README.md",
+          "sha256": "fa5d15177e9a196f6f92cbee865ac729ce4d694ed42927de590327d254d7c15b",
+          "bytes": 2618
+        }
+      ]
+    },
+    {
+      "id": "E27",
+      "title_ko": "목표 아키텍처와 AFA 역할 문서 정정",
+      "evidence_kind": "documentation_and_issue_alignment",
+      "metrics": {
+        "new_training_runs": 0,
+        "new_pytest_runs": 0
+      },
+      "verification_path": "outputs/afa-architecture-e27/verification.json",
+      "receipts": [
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/agent-runtime-target.md",
+          "sha256": "44f6f6e524983295531729bf70e7c1f943085a2be7cd374a9ab181b3872ee194",
+          "bytes": 5165
+        },
+        {
+          "path": "docs/architecture.md",
+          "sha256": "4b7ea41f1ef6f3f71b645251248baaed4787afef87d88a2a1c8d42e0429c41ed",
+          "bytes": 16718
+        },
+        {
+          "path": "README.md",
+          "sha256": "0a49209e34e2798ae58e9ffed873058b0f44c5e9305bc4e1f5878d1814bc593c",
+          "bytes": 7686
+        },
+        {
+          "path": "courses/ai-applications/README.md",
+          "sha256": "a50ffafd3735a2558575653b9b526ba27a9d73d5015db41f739c8f1521859b17",
+          "bytes": 4041
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/README.md",
+          "sha256": "7c2a3dfc19c16d905fcebd3f21e5b2d8519e61525cf306a3a9ffdbacc7a533d7",
+          "bytes": 8553
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/architecture.md",
+          "sha256": "692a3a45e610f0eefd70398a78d3a71154c6ffebc3c5acd8187ea89044137f10",
+          "bytes": 2554
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/project-guide.md",
+          "sha256": "29e43b4cc7f6d9d4fe9e59f46de424f58999071f3d944ed86fa9ae55b025857e",
+          "bytes": 9755
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/modular-agent-loop.md",
+          "sha256": "a062d873c034ef0d327c11925f653eab9f30a96ac53c361e38c2eb1be64bb78f",
+          "bytes": 18149
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/development-milestones.md",
+          "sha256": "80f567b1368403474991a5aa6aa28c4412022da17dfebb37aeab01efad86f8cd",
+          "bytes": 36910
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-guide.md",
+          "sha256": "830d7841ac68dbeb1d2e18f7586c9f1dfe9200cf80308f5450d4ca3214ed7d13",
+          "bytes": 6728
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-ppo-data-flow.md",
+          "sha256": "63efce7924c1eb9e68b7e0da4d456d735b6bbd5d39131329b35b3cc2e986b033",
+          "bytes": 3442
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-mlflow.md",
+          "sha256": "bdbac39e58f2f990af626cd7940c0ccd2917b97a91e67d27802c5bd1b0dbb7b3",
+          "bytes": 18807
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-eda.md",
+          "sha256": "b486df7cec3632a0e560ea983914ea84044cc16f36bb44ea4dc3481420596c16",
+          "bytes": 19791
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-v67-response-contract.md",
+          "sha256": "f5e1c141b9bd8daaac05f5a3a7877b4094b4ceb401f096839ef6ff3ed0561a1c",
+          "bytes": 29614
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/README.md",
+          "sha256": "d4d47cae2c044ee5cfcd75671dc14b781da8ccb01a99d7e028afcd42e4843d70",
+          "bytes": 3506
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/README.md",
+          "sha256": "7196b479067f205a34b37813d5dc6bdcdaf0a333c5d2d8c530598b355a9367b2",
+          "bytes": 2087
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/README.md",
+          "sha256": "ebb61302d3e181e06c7e5e8a5f00aaf28786125abcd2558ba87197511327cacc",
+          "bytes": 9505
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/README.md",
+          "sha256": "5f6701615608a507a89945c3bc303515d800464fb66077a3a28130ca8b3bd974",
+          "bytes": 3608
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/AGENTS.md",
+          "sha256": "b672af0a096573f50e857baa7a81fcc5de0709c9ba589bdfb90db6f13cb21788",
+          "bytes": 10091
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/benchmark-v2-design/README.md",
+          "sha256": "601a6a555c4821c05e579489a813a1aafd8105100d3436cbad4ef8a9c1ce63e9",
+          "bytes": 6943
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/coverage-repair-v1/README.md",
+          "sha256": "ce4fb8cdf23dd7e508ec683de5abdd585fd4752275b4e19e10e5010109c5f8ab",
+          "bytes": 8696
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/fold-baselines-v1/README.md",
+          "sha256": "4f5dd63b9bdc68c54be7957bf9201760d53b5f020e10792615ea12e1508df235",
+          "bytes": 10040
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/joint-baselines-v1/README.md",
+          "sha256": "6ea62dcb505960733c9c1a09ac9c0fd53653cfe313d279f8cd5b9190ee2a8137",
+          "bytes": 11272
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/joint-v2-v1/README.md",
+          "sha256": "0c70eb6426d165a7f155214a96eb36f6731de2ad88eb7ca45a78b8b00a8d8431",
+          "bytes": 10552
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/ppo-preflight-v1/README.md",
+          "sha256": "257231c84ad0e9ec9006cc912c880d3ed78e7c2c513cbec894453aa9a8df8c21",
+          "bytes": 2769
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/review-v1/README.md",
+          "sha256": "9f06fbdaa767a17b4ea3c659c9aa25b95b74680cc445cbd0494c957ff5e4d0c5",
+          "bytes": 8444
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/scenario-plan-v2-v1/README.md",
+          "sha256": "739303628c7675e4ecbe475babad3ec0cdbada068696b66e1cf7111b787e5048",
+          "bytes": 10265
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/semantic-v2-v1/README.md",
+          "sha256": "a278f7191f11d940b4f78553efeb2e990c5e94ebdbfdef31c03bed7df803db2b",
+          "bytes": 12474
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage0-v1/README.md",
+          "sha256": "3c13be063d8ad9004ca57f506cc4b43717a821155f1de488fee96702781eb681",
+          "bytes": 8991
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage1-v1/README.md",
+          "sha256": "aa2050fb3768ff348c8676f96f9a4af15cef2dcc7b99b25f267cf85164cecd8f",
+          "bytes": 7542
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage2-v1/README.md",
+          "sha256": "908d40ec20271b3c33e253cc3b0a0ba97f7971bf6f80b56f26449182566bbe22",
+          "bytes": 9217
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage3-v1/README.md",
+          "sha256": "47943131a369a025210e19eaa9926fc884471f74d738de56b659a1efc24ea44c",
+          "bytes": 7464
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage4-v1/README.md",
+          "sha256": "36157c5479a523a0cf77c8e13ae3ad49b07679a8c84a74dd02a153ba33f0ecb6",
+          "bytes": 7746
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage5a-trial-v1/README.md",
+          "sha256": "3f6848af302373150c1e5c0236934105bebbb3222f4a4e20d0e7dca6bfe95f89",
+          "bytes": 6550
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/stage5a-v1/README.md",
+          "sha256": "f0b05d3a16a866617a1ee2e0d6b54f22c337da2b1304e0590f6fa568210ab68f",
+          "bytes": 9698
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-fixtures-v1/README.md",
+          "sha256": "178e43fad0b5bc03cd045853fad0362b36616c9d29ae1b4ccdf55cd17cdfeca7",
+          "bytes": 3080
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/v67-review-v1/README.md",
+          "sha256": "d1ca520fbb4855cf66bfbd99ae5877f0ecd698e67ff326fdd5b6eeb56279651a",
+          "bytes": 1040
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/action_policy/v67/FINAL_REVIEW.md",
+          "sha256": "d3da3bbfaec0b1800c5488e1af8e50c11e2baea4f3fd6ad13a8b9bbef3d0a787",
+          "bytes": 5142
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "77eb3aa416b73aaf0170bdf2f154569262c583f1515d3f2240ad6d40f42381e4",
+          "bytes": 91176
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/mvp-scope.md",
+          "sha256": "c98e0ff570a6c54365e73988bd52804be8a7ebd2553897ce988686cfc4f29b6d",
+          "bytes": 2287
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/first-scenario.md",
+          "sha256": "1be2d7add6b687b70763afd412435656f4ec33e9151e33342d70e419c38e8e9b",
+          "bytes": 4873
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/evaluation-plan.md",
+          "sha256": "096a46b470ea2e7480ed2cbf5226476cce6c49f18d554222b347818b2f35b416",
+          "bytes": 1981
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/sft_slm_qlora_plan.md",
+          "sha256": "ef47664c7bd190fe70dc3f6ec2d13e16431bfb6d695e9292a2a230a8fdd2a0be",
+          "bytes": 12411
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/context-and-integration.md",
+          "sha256": "8ceda336a40abbae02f771acf68a8f97c6c7219e1a09cf41be62f68d3019b6bf",
+          "bytes": 4935
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/handoff_modular_agent_loop.md",
+          "sha256": "63524be134d02a7f5f0640570d0f9781e952d0fe72f10e081d1bc1ed5ab531b0",
+          "bytes": 6510
+        }
+      ]
+    },
+    {
+      "id": "E28",
+      "title_ko": "B-C02 첫 PPO 학습과 검증 기준선 비교",
+      "kind": "fresh_synthetic_training_and_internal_comparison",
+      "metrics": {
+        "ppo_training_steps": 4096,
+        "seed": 0,
+        "validation_families": 4,
+        "policy_evaluated_on_test_internal": false,
+        "dataset_fingerprint": "6464d34263f48d7a5c5260f4f1df5c418ae936739fb2a5fd4013ae5c35020776",
+        "validation_question_delta_vs_tools_first_by_case": {
+          "1": 3,
+          "0": 11,
+          "-1": 2
+        },
+        "policy_comparison": {
+          "train": {
+            "runtime_question_order": {
+              "episodes": 32,
+              "correct_terminal_rate": 0.84375,
+              "mean_questions": 2.3125,
+              "mean_return": -2.9375
+            },
+            "tools_first": {
+              "episodes": 32,
+              "correct_terminal_rate": 1,
+              "mean_questions": 2.375,
+              "mean_return": -2.375
+            },
+            "friction_first": {
+              "episodes": 32,
+              "correct_terminal_rate": 0.875,
+              "mean_questions": 2.375,
+              "mean_return": -2.875
+            },
+            "ppo": {
+              "episodes": 32,
+              "correct_terminal_rate": 1,
+              "mean_questions": 2.3125,
+              "mean_return": -2.3125
+            }
+          },
+          "val_internal": {
+            "runtime_question_order": {
+              "episodes": 16,
+              "correct_terminal_rate": 0.9375,
+              "mean_questions": 2.3125,
+              "mean_return": -2.5625
+            },
+            "tools_first": {
+              "episodes": 16,
+              "correct_terminal_rate": 1,
+              "mean_questions": 2.25,
+              "mean_return": -2.25
+            },
+            "friction_first": {
+              "episodes": 16,
+              "correct_terminal_rate": 1,
+              "mean_questions": 2.25,
+              "mean_return": -2.25
+            },
+            "ppo": {
+              "episodes": 16,
+              "correct_terminal_rate": 1,
+              "mean_questions": 2.3125,
+              "mean_return": -2.3125
+            }
+          }
+        },
+        "initial_context_probe_cases": 5,
+        "full_experiment_tests_passed": 496,
+        "root_current_spec_tests_passed": 371,
+        "strict_original_existing_failures": 5
+      },
+      "mlflow": {
+        "experiment_id": "7",
+        "run_id": "0a7d78d561d04d4fa09bf20756979194"
+      },
+      "verification_path": "outputs/afa-e28/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e28/report-seed0.json",
+          "sha256": "1be2341c735c47550c179fd4d3b4fe02a73493ba136ce4c71af9f3e4ff416c19",
+          "bytes": 56269
+        },
+        {
+          "path": "outputs/afa-e28/model-seed0.zip",
+          "sha256": "aa7f9b2f178c3d0e4d2a89d493e6e305c7dca2eff0332cf4897b0e2d967e99b7",
+          "bytes": 70582
+        },
+        {
+          "path": "outputs/afa-e28/command-seed0.txt",
+          "sha256": "90b39165c7484c4f9d5a86ad2c1860003c7ceb1c8e99817e6d6e446d430eece3",
+          "bytes": 186
+        },
+        {
+          "path": "outputs/afa-e28/exit-seed0.txt",
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+          "bytes": 3
+        },
+        {
+          "path": "outputs/afa-e28/stdout-seed0.txt",
+          "sha256": "f51aea8557254277df573f22fa9d50124abe52643bbbfdb619faa5406a42d7c2",
+          "bytes": 94
+        },
+        {
+          "path": "outputs/afa-e28/comparison.csv",
+          "sha256": "90ab2cff58cc51074ec6206e96c74c35d0191e7090fe791efa1b771617b0bb81",
+          "bytes": 427
+        },
+        {
+          "path": "outputs/afa-e28/cases.csv",
+          "sha256": "482d232f2b7fa6eb5b0631ea009a7e7a73f4a115c630a3ba7d38326b9a8f4ef3",
+          "bytes": 13386
+        },
+        {
+          "path": "outputs/afa-e28/initial-context-probe.json",
+          "sha256": "971f010ce5f4255989bdc0bfececd967e4226eef387117fddc1975677c145766",
+          "bytes": 1939
+        },
+        {
+          "path": "outputs/afa-e28/validation-comparison.png",
+          "sha256": "2d7c44f063978870819963dcc6b4f312c355351c9ee8cc43e68b670a62e72d5d",
+          "bytes": 73229
+        },
+        {
+          "path": "outputs/afa-e28/provenance.json",
+          "sha256": "e50bced487917685c11ad41e600d29a83a0879a87ebf762ca2d16d3afb3a662d",
+          "bytes": 3193
+        },
+        {
+          "path": "outputs/afa-e28/mlflow-run.json",
+          "sha256": "683db903c22a98db721fa27d5f6872df7d309564a0cd58007b1c5dee5d488f27",
+          "bytes": 1807
+        },
+        {
+          "path": "outputs/afa-e28/experiment-tests.txt",
+          "sha256": "e30a43825224a908605000bd94ab92c43fbdd0244a2990c326ee9284de9f9741",
+          "bytes": 1165
+        },
+        {
+          "path": "outputs/afa-e28/kb-current.txt",
+          "sha256": "92be21ed7b13cb86fe5b6016778205df09ebd8609ad0fbfc8c6f2e0fdb811dcb",
+          "bytes": 507
+        },
+        {
+          "path": "outputs/afa-e28/kb-strict.txt",
+          "sha256": "04e47eb58b69aa199eb1c4bac1da9ac32a169b84f6b0c2ce7045c2163092a928",
+          "bytes": 6490
+        },
+        {
+          "path": "outputs/afa-e28/kb-audit.txt",
+          "sha256": "5bc307a9bf123dfffba226d724ec23dfacbf46944bf613e4d41f099557f2d031",
+          "bytes": 103
+        },
+        {
+          "path": "outputs/afa-e28/source-manifest.txt",
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2",
+          "bytes": 31
+        },
+        {
+          "path": "outputs/afa-e28/kb-validator.txt",
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30",
+          "bytes": 116
+        },
+        {
+          "path": "outputs/afa-e28/original-acceptance57.json",
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950",
+          "bytes": 62390
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E28-result.png",
+          "sha256": "084e7b1870cc181d8ed98397b49d939153ddc8a0a2277e7e106b6a9055d5cce8",
+          "bytes": 110997
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "80a574f6b78dd5b2740ba96cb662dee06f3426230bf7a6a8fa3e15685f61fc9f",
+          "bytes": 96400
+        }
+      ]
+    },
+    {
+      "id": "E29",
+      "title_ko": "B-C02 동일 seed 재학습 및 AFA 결과 반환 검증",
+      "kind": "local_seed_reproduction_and_checkpoint_adapter_validation",
+      "metrics": {
+        "seed": 0,
+        "ppo_timesteps": 4096,
+        "train_scenarios": 32,
+        "validation_scenarios": 16,
+        "test_policy_evaluated": false,
+        "e28_evaluation_reproduced": true,
+        "real_checkpoint_handoffs": 2,
+        "software_suite_passed": 510,
+        "source_manifest_matches": 27,
+        "ppo_validation": {
+          "correct_terminal_rate": 1,
+          "mean_questions": 2.3125,
+          "mean_return": -2.3125
+        },
+        "tools_first_validation": {
+          "correct_terminal_rate": 1,
+          "mean_questions": 2.25,
+          "mean_return": -2.25
+        }
+      },
+      "mlflow": {
+        "experiment_id": "7",
+        "run_id": "f8b94d4d5710458394c12b05c613b788",
+        "recorded_after_training": true
+      },
+      "verification_path": "outputs/afa-e29/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e29/report-seed0.json",
+          "bytes": 56269,
+          "sha256": "1be2341c735c47550c179fd4d3b4fe02a73493ba136ce4c71af9f3e4ff416c19"
+        },
+        {
+          "path": "outputs/afa-e29/model-seed0.zip",
+          "bytes": 70582,
+          "sha256": "852ffab20130e186ebff3de3d808020ae64f9239d0f3a5be2813fa40ceca7d8e"
+        },
+        {
+          "path": "outputs/afa-e29/command-seed0.txt",
+          "bytes": 203,
+          "sha256": "cf6ac49d8133c583c6865df30e64aa8370b651a93ab036315496a38a7acfd07a"
+        },
+        {
+          "path": "outputs/afa-e29/stdout-seed0.txt",
+          "bytes": 94,
+          "sha256": "f51aea8557254277df573f22fa9d50124abe52643bbbfdb619faa5406a42d7c2"
+        },
+        {
+          "path": "outputs/afa-e29/exit-seed0.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e29/comparison.csv",
+          "bytes": 427,
+          "sha256": "90ab2cff58cc51074ec6206e96c74c35d0191e7090fe791efa1b771617b0bb81"
+        },
+        {
+          "path": "outputs/afa-e29/adapter-probe.json",
+          "bytes": 1092,
+          "sha256": "38511ad4b4c7fbeaa4de1c78297cd85ecf736e101a2be19312841128b5f886ae"
+        },
+        {
+          "path": "outputs/afa-e29/provenance.json",
+          "bytes": 3565,
+          "sha256": "3f0fe492b7550f228b7bfc91a2f5f50f62b4f0e23a9c808fea782fa8ed57ce62"
+        },
+        {
+          "path": "outputs/afa-e29/experiment-tests.txt",
+          "bytes": 1246,
+          "sha256": "61cf0ab5e1a1724678a8f1f2f6bd9142378e8cc560c6d285d0eb909b48da0ea1"
+        },
+        {
+          "path": "outputs/afa-e29/validation-comparison.png",
+          "bytes": 67828,
+          "sha256": "058ba1b41ff9cc179b46e3ed18403c507e8de96fd69fb6a9e1cfff67f8f59c54"
+        },
+        {
+          "path": "outputs/afa-e29/mlflow-run.json",
+          "bytes": 1842,
+          "sha256": "8f0635f3dce7cf6369307623bfbd50e2f11630a8c2b2d695aacc7bb241a85f92"
+        },
+        {
+          "path": "outputs/afa-e29/inline-asset.json",
+          "bytes": 262,
+          "sha256": "615d94209dd383eeac633141b76445aba2caab7c0cf9757e73470cf168eabea9"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/policy_adapter.py",
+          "bytes": 6171,
+          "sha256": "46f4d5a9b40d62a91ffdc51cde6ad0469abb6394f5a356b05054a63672dfbf86"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/ppo/test_policy_adapter.py",
+          "bytes": 5400,
+          "sha256": "23b986d7ced171e1930755cc82c7e6b56e8c9799b641da3a1d3ce3ec561c12b7"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E29-result.png",
+          "bytes": 84312,
+          "sha256": "331d0294b0577f443811a50e0f50f81f5e6c2ddbc507e6312b2136bd074c264b"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 99947,
+          "sha256": "9e1bad8b86b79ec880531038dfc1a471ded33967a75aa9c52739444a040305d8"
+        }
+      ]
+    },
+    {
+      "id": "E30",
+      "title_ko": "B-C02 선행 정보에서 고정 정책 비교",
+      "kind": "fixed_checkpoint_paired_context_evaluation",
+      "metrics": {
+        "unique_scenarios": 16,
+        "families": 4,
+        "targeted_tests_passed": 11,
+        "new_training_steps": 0,
+        "test_internal_evaluated": false,
+        "checkpoint": {
+          "path": "outputs\\afa-e29\\model-seed0.zip",
+          "sha256": "852ffab20130e186ebff3de3d808020ae64f9239d0f3a5be2813fa40ceca7d8e",
+          "bytes": 70582
+        },
+        "paired": {
+          "same_no_context_as_e29": true,
+          "contexts_per_policy": 128,
+          "prefilled_contexts_per_policy": 112,
+          "ppo_fewer_questions": 2,
+          "ppo_equal_questions": 107,
+          "ppo_more_questions": 3,
+          "ppo_loses_correct_stop": 0,
+          "ppo_gains_correct_stop": 0,
+          "ppo_fewer_and_both_correct": 2
+        },
+        "cohorts": {
+          "tools_first": {
+            "per_initial_count": {
+              "0": {
+                "cases": 16,
+                "correct": 16,
+                "questions_total": 36,
+                "mean_questions": 2.25,
+                "mean_return": -2.25,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 10,
+                  "hold_without_available_path": 6
+                }
+              },
+              "1": {
+                "cases": 48,
+                "correct": 47,
+                "questions_total": 61,
+                "mean_questions": 1.2708333333333333,
+                "mean_return": -1.3541666666666667,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 29,
+                  "reference_mismatch": 1,
+                  "hold_without_available_path": 18
+                }
+              },
+              "2": {
+                "cases": 48,
+                "correct": 47,
+                "questions_total": 26,
+                "mean_questions": 0.5416666666666666,
+                "mean_return": -0.625,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 29,
+                  "reference_mismatch": 1,
+                  "hold_without_available_path": 18
+                }
+              },
+              "3": {
+                "cases": 16,
+                "correct": 16,
+                "questions_total": 0,
+                "mean_questions": 0,
+                "mean_return": 0,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 10,
+                  "hold_without_available_path": 6
+                }
+              }
+            },
+            "partial_context": {
+              "cases": 112,
+              "correct": 110,
+              "questions_total": 87,
+              "mean_questions": 0.7767857142857143,
+              "mean_return": -0.8482142857142857,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 68,
+                "reference_mismatch": 2,
+                "hold_without_available_path": 42
+              }
+            },
+            "partial_with_nonanswer": {
+              "cases": 74,
+              "correct": 73,
+              "questions_total": 66,
+              "mean_questions": 0.8918918918918919,
+              "mean_return": -0.9459459459459459,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 37,
+                "reference_mismatch": 1,
+                "hold_without_available_path": 36
+              }
+            },
+            "initially_sufficient": {
+              "cases": 42,
+              "correct": 42,
+              "questions_total": 0,
+              "mean_questions": 0,
+              "mean_return": 0,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 42
+              }
+            }
+          },
+          "ppo": {
+            "per_initial_count": {
+              "0": {
+                "cases": 16,
+                "correct": 16,
+                "questions_total": 37,
+                "mean_questions": 2.3125,
+                "mean_return": -2.3125,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 10,
+                  "hold_without_available_path": 6
+                }
+              },
+              "1": {
+                "cases": 48,
+                "correct": 47,
+                "questions_total": 62,
+                "mean_questions": 1.2916666666666667,
+                "mean_return": -1.375,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 29,
+                  "reference_mismatch": 1,
+                  "hold_without_available_path": 18
+                }
+              },
+              "2": {
+                "cases": 48,
+                "correct": 47,
+                "questions_total": 26,
+                "mean_questions": 0.5416666666666666,
+                "mean_return": -0.625,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 29,
+                  "reference_mismatch": 1,
+                  "hold_without_available_path": 18
+                }
+              },
+              "3": {
+                "cases": 16,
+                "correct": 16,
+                "questions_total": 0,
+                "mean_questions": 0,
+                "mean_return": 0,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 10,
+                  "hold_without_available_path": 6
+                }
+              }
+            },
+            "partial_context": {
+              "cases": 112,
+              "correct": 110,
+              "questions_total": 88,
+              "mean_questions": 0.7857142857142857,
+              "mean_return": -0.8571428571428571,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 68,
+                "reference_mismatch": 2,
+                "hold_without_available_path": 42
+              }
+            },
+            "partial_with_nonanswer": {
+              "cases": 74,
+              "correct": 73,
+              "questions_total": 64,
+              "mean_questions": 0.8648648648648649,
+              "mean_return": -0.918918918918919,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 37,
+                "reference_mismatch": 1,
+                "hold_without_available_path": 36
+              }
+            },
+            "initially_sufficient": {
+              "cases": 42,
+              "correct": 42,
+              "questions_total": 0,
+              "mean_questions": 0,
+              "mean_return": 0,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 42
+              }
+            }
+          }
+        }
+      },
+      "mlflow": {
+        "experiment_id": "7",
+        "run_id": "332a0fc938be420cbc9739322b0bea47"
+      },
+      "verification_path": "outputs/afa-e30/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e30/report.json",
+          "sha256": "9230ea57d5605d0d28106850ee4b3f37adaf54e43a3d98513bf4d3fe08935391",
+          "bytes": 165647
+        },
+        {
+          "path": "outputs/afa-e30/paired.json",
+          "sha256": "d00dce74e551b544958fa38ca6a603935b9948c42e521c31b825c4b046978b73",
+          "bytes": 300
+        },
+        {
+          "path": "outputs/afa-e30/cases.csv",
+          "sha256": "12a94e8ed2e6a67061d53577a166c05fbc6e54070af78487063cbc1ecd4636c5",
+          "bytes": 48176
+        },
+        {
+          "path": "outputs/afa-e30/branch-priority.json",
+          "sha256": "d25be0ee982f7175a184a086fe1e274f90a8ca5ef7f6ef27ef50faf3bfb345d0",
+          "bytes": 3868
+        },
+        {
+          "path": "outputs/afa-e30/command.txt",
+          "sha256": "0b4e026d36690758cf895dd567cb1e5951219e3507e4e02fd275503ecfabd028",
+          "bytes": 176
+        },
+        {
+          "path": "outputs/afa-e30/evaluation.txt",
+          "sha256": "c130e712335081a1d200aea34e5aaa20aafc543f33305025d801435b9e112cdf",
+          "bytes": 3086
+        },
+        {
+          "path": "outputs/afa-e30/exit.txt",
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+          "bytes": 3
+        },
+        {
+          "path": "outputs/afa-e30/tests.txt",
+          "sha256": "1f0e2fe4a530ea276bdf85bb331d0e6891b230d021fb23495fd70a9ff2ff7e12",
+          "bytes": 101
+        },
+        {
+          "path": "outputs/afa-e30/provenance.json",
+          "sha256": "a1600916270d788c7a9a6f8c85c3377de5fe0bde71f3101853964a58f08a4a96",
+          "bytes": 2038
+        },
+        {
+          "path": "outputs/afa-e30/mlflow-run.json",
+          "sha256": "42f365556ced9658081a7c44ef35f7359cd4e0b914b00f96ae2d86eb9319c935",
+          "bytes": 79
+        },
+        {
+          "path": "outputs/afa-e30/partial-context-comparison.png",
+          "sha256": "67a8113c05edc5fd3b2115aeec2cd86bf8c7f99ac6dc092df08e911896674319",
+          "bytes": 48880
+        },
+        {
+          "path": "outputs/afa-e30/inline-asset.json",
+          "sha256": "2d2f613663ee9a8d2949b46a3945ec3024c4c0edacfd5afdd0007d3303360351",
+          "bytes": 262
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/partial_context_eval.py",
+          "sha256": "50f9f0ba85c7f2f683d78a1cda39019bca1ed9c8e9d7e4a99e61588717288c92",
+          "bytes": 7325
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/ppo/test_partial_context_eval.py",
+          "sha256": "ee2d6f08b75376711efabefd21543f974a33cee3080b2297181300d27979fbe7",
+          "bytes": 1111
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "b44894d89df59869263b56a3b48e6517d21aab33a8613f569a56fe3932b9e9ef",
+          "bytes": 103439
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E30-result.png",
+          "sha256": "8e01033dfd1dbbd3a7adba169c5e6d0783784962dca60dd337f95bef104497b1",
+          "bytes": 82280
+        }
+      ]
+    },
+    {
+      "id": "E31",
+      "title_ko": "B-C02 조기 종료 조건 검증 후보",
+      "kind": "termination_rule_paired_diagnostic",
+      "metrics": {
+        "targeted_tests_passed": 14,
+        "source_manifest_matches": 27,
+        "new_training_steps": 0,
+        "test_internal_evaluated": false,
+        "cohorts": {
+          "val_internal": {
+            "tools_first": {
+              "prefilled": {
+                "cases": 112,
+                "correct": 112,
+                "questions_total": 102,
+                "mean_questions": 0.9107142857142857,
+                "mean_return": -0.9107142857142857,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 70,
+                  "hold_without_available_path": 42
+                }
+              },
+              "prior_initially_sufficient": {
+                "cases": 42,
+                "correct": 42,
+                "questions_total": 13,
+                "mean_questions": 0.30952380952380953,
+                "mean_return": -0.30952380952380953,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 42
+                }
+              },
+              "still_correct_without_questions": 29,
+              "corrected_prior_failures": 2,
+              "new_failures": 0
+            },
+            "ppo": {
+              "prefilled": {
+                "cases": 112,
+                "correct": 112,
+                "questions_total": 103,
+                "mean_questions": 0.9196428571428571,
+                "mean_return": -0.9196428571428571,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 70,
+                  "hold_without_available_path": 42
+                }
+              },
+              "prior_initially_sufficient": {
+                "cases": 42,
+                "correct": 42,
+                "questions_total": 13,
+                "mean_questions": 0.30952380952380953,
+                "mean_return": -0.30952380952380953,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 42
+                }
+              },
+              "still_correct_without_questions": 29,
+              "corrected_prior_failures": 2,
+              "new_failures": 0
+            }
+          },
+          "train": {
+            "tools_first": {
+              "prefilled": {
+                "cases": 224,
+                "correct": 224,
+                "questions_total": 216,
+                "mean_questions": 0.9642857142857143,
+                "mean_return": -0.9642857142857143,
+                "reasked": 0,
+                "reasons": {
+                  "draft_allowed": 126,
+                  "hold_without_available_path": 98
+                }
+              }
+            }
+          }
+        }
+      },
+      "mlflow": {
+        "experiment_id": "7",
+        "run_id": "835dc63aebcd4b73a7b71707732ae0c8"
+      },
+      "verification_path": "outputs/afa-e31/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e31/report.json",
+          "sha256": "176c10491117d9db3a03fe1292bad57b3539341cc8420d891b7e56aa32e5ff10",
+          "bytes": 373311
+        },
+        {
+          "path": "outputs/afa-e31/tests.txt",
+          "sha256": "5c587a9dee5e854e964300c1e3bfc114517a42202b3494f3074f1d3d5b097c6f",
+          "bytes": 102
+        },
+        {
+          "path": "outputs/afa-e31/evaluation.txt",
+          "sha256": "4cc62abafd41976f59165b08f88cea2c74172e5f389ed0fbf7b21c61c0a04c48",
+          "bytes": 1345
+        },
+        {
+          "path": "outputs/afa-e31/exit.txt",
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+          "bytes": 3
+        },
+        {
+          "path": "outputs/afa-e31/command.txt",
+          "sha256": "c1c5c4d4bbc3be43e571b3fedc7a5a8cafc65f77aa489062d3d74048377b4991",
+          "bytes": 212
+        },
+        {
+          "path": "outputs/afa-e31/comparison.csv",
+          "sha256": "b68ffe5333ab0cbae4d4e66fe4c0e18e5335d1cea4605aca54697002e097e3a6",
+          "bytes": 634
+        },
+        {
+          "path": "outputs/afa-e31/overlap-diagnostic.json",
+          "sha256": "dbea33866ea12d1b4d7c058e0fb046cc6f2120d2a1fe78dab01432e4e2423bba",
+          "bytes": 1372
+        },
+        {
+          "path": "outputs/afa-e31/termination-comparison.png",
+          "sha256": "fcc4bf8d7193ba3d31f5cecdbdd92ca458e8b21c2d0efdb5bb929a99a630993e",
+          "bytes": 41752
+        },
+        {
+          "path": "outputs/afa-e31/provenance.json",
+          "sha256": "6c31e9d820ba7d68bc45405996aa36d5113977ee0beb4a8e59c11f2ae670039b",
+          "bytes": 1343
+        },
+        {
+          "path": "outputs/afa-e31/mlflow-run.json",
+          "sha256": "be712d704a4a3296c377e9e83dd1582b15b8fb722b0f6f1e93f3a8b91916eef2",
+          "bytes": 79
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "sha256": "1021105b233d8b230f79af561c49fa21d8c13be551ed400915989ff4bf2150db",
+          "bytes": 105843
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E31-result.png",
+          "sha256": "2b4573c16fa89b652d64e6c09dd8e9fe5408723eb1870369c94ebbb2a0f81160",
+          "bytes": 80439
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/afa/termination_check.py",
+          "sha256": "036e21081e3039430eff01bcb207f32de1e36ee090c313911421442d825f750b",
+          "bytes": 6883
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/ppo/test_termination_check.py",
+          "sha256": "e346a94a3d31cfb584806177825c3b8377f241a43d34a19a8ded8eed0e3485be",
+          "bytes": 1312
+        }
+      ]
+    },
+    {
+      "id": "E32",
+      "title_ko": "B-C02 종료 기준에서 사용자 권고 효과 비교",
+      "kind": "synthetic_policy_evaluation",
+      "metrics": {
+        "unique_scenarios": 16,
+        "families": [
+          "declined:gentle",
+          "hands:strong",
+          "scrub_brush:unknown",
+          "unknown:declined"
+        ],
+        "new_training_steps": 0,
+        "prefilled_summary": {
+          "original": {
+            "tools_first": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 87,
+              "mean_questions": 0.7767857142857143,
+              "mean_return": -0.7767857142857143,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 70,
+                "hold_without_available_path": 42
+              }
+            },
+            "ppo": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 88,
+              "mean_questions": 0.7857142857142857,
+              "mean_return": -0.7857142857142857,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 70,
+                "hold_without_available_path": 42
+              }
+            }
+          },
+          "strict": {
+            "tools_first": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 102,
+              "mean_questions": 0.9107142857142857,
+              "mean_return": -0.9107142857142857,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 70,
+                "hold_without_available_path": 42
+              }
+            },
+            "ppo": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 103,
+              "mean_questions": 0.9196428571428571,
+              "mean_return": -0.9196428571428571,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 70,
+                "hold_without_available_path": 42
+              }
+            }
+          },
+          "runtime_outcome": {
+            "tools_first": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 87,
+              "mean_questions": 0.7767857142857143,
+              "mean_return": -0.7767857142857143,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 70,
+                "hold_without_available_path": 42
+              }
+            },
+            "ppo": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 88,
+              "mean_questions": 0.7857142857142857,
+              "mean_return": -0.7857142857142857,
+              "reasked": 0,
+              "reasons": {
+                "draft_allowed": 70,
+                "hold_without_available_path": 42
+              }
+            }
+          }
+        }
+      },
+      "mlflow": {
+        "experiment_id": "7",
+        "run_id": "54e53a255a6a4bd49bd9a9b168b12590"
+      },
+      "verification_path": "outputs/afa-e33/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e32/report.json",
+          "bytes": 553549,
+          "sha256": "6cdeae2b64b20cf80ccedfb11c97ababc63c533880ea3f7e17d98718e2e92fa0"
+        },
+        {
+          "path": "outputs/afa-e32/runtime-probe-final.json",
+          "bytes": 4532,
+          "sha256": "8704cc0bceaa6a639527a26629a7d4e690048928c124fbd44d02620672374b3a"
+        },
+        {
+          "path": "outputs/afa-e32/runtime-probe-final.txt",
+          "bytes": 497,
+          "sha256": "90361e73c21a5e81e83855f489dab01abdd63568df9caca2640f6e81c0e9723e"
+        },
+        {
+          "path": "outputs/afa-e32/outcome-comparison.png",
+          "bytes": 38861,
+          "sha256": "2f5e0aba2c59a9fb849a7289d2db8e7dfed57e84460056f3a693471c9c7997dc"
+        },
+        {
+          "path": "outputs/afa-e32/mlflow-run.json",
+          "bytes": 632,
+          "sha256": "71a4f3e1f26a926bafefeca0e3b57b6269de0f2369fab8d1b95d994f7a376172"
+        },
+        {
+          "path": "outputs/afa-e32/evaluation.txt",
+          "bytes": 1389,
+          "sha256": "ad0f5e882334724041bbf1ea1f6f02921e071e5d8e91421ac439ec9d3ad53788"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E32-result.png",
+          "bytes": 98562,
+          "sha256": "709f86d3fb323cf90caf1cd588c6661511ee3018c90e2bda80192666a25bb0bd"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 110031,
+          "sha256": "0c895de428561bab03417730a7579c2516ae8dd01c97384ea3ecfc4c5204283a"
+        }
+      ]
+    },
+    {
+      "id": "E33",
+      "title_ko": "B-C02 세 seed의 설정 동결 내부 시험과 적용 검토",
+      "kind": "synthetic_policy_evaluation",
+      "metrics": {
+        "unique_scenarios": 16,
+        "families": [
+          "declined:strong",
+          "hands:unknown",
+          "scrub_brush:declined",
+          "unknown:unknown"
+        ],
+        "new_training_steps": 8192,
+        "cohorts": {
+          "unprefilled": {
+            "tools_first": {
+              "cases": 16,
+              "correct": 16,
+              "questions_total": 36,
+              "mean_questions": 2.25,
+              "mean_return": -2.25,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 6,
+                "draft_allowed": 10
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 0,
+              "reasks": 0
+            },
+            "ppo_seed0": {
+              "cases": 16,
+              "correct": 16,
+              "questions_total": 37,
+              "mean_questions": 2.3125,
+              "mean_return": -2.3125,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 6,
+                "draft_allowed": 10
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 1,
+              "reasks": 0
+            },
+            "ppo_seed1": {
+              "cases": 16,
+              "correct": 16,
+              "questions_total": 37,
+              "mean_questions": 2.3125,
+              "mean_return": -2.3125,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 6,
+                "draft_allowed": 10
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 1,
+              "reasks": 0
+            },
+            "ppo_seed2": {
+              "cases": 16,
+              "correct": 16,
+              "questions_total": 37,
+              "mean_questions": 2.3125,
+              "mean_return": -2.3125,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 6,
+                "draft_allowed": 10
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 1,
+              "reasks": 0
+            }
+          },
+          "prefilled": {
+            "tools_first": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 87,
+              "mean_questions": 0.7767857142857143,
+              "mean_return": -0.7767857142857143,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 42,
+                "draft_allowed": 70
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 0,
+              "reasks": 0
+            },
+            "ppo_seed0": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 88,
+              "mean_questions": 0.7857142857142857,
+              "mean_return": -0.7857142857142857,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 42,
+                "draft_allowed": 70
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 1,
+              "reasks": 0
+            },
+            "ppo_seed1": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 88,
+              "mean_questions": 0.7857142857142857,
+              "mean_return": -0.7857142857142857,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 42,
+                "draft_allowed": 70
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 1,
+              "reasks": 0
+            },
+            "ppo_seed2": {
+              "cases": 112,
+              "correct": 112,
+              "questions_total": 88,
+              "mean_questions": 0.7857142857142857,
+              "mean_return": -0.7857142857142857,
+              "reasked": 0,
+              "reasons": {
+                "hold_without_available_path": 42,
+                "draft_allowed": 70
+              },
+              "new_incorrect": 0,
+              "corrected": 0,
+              "question_delta": 1,
+              "reasks": 0
+            }
+          }
+        },
+        "adopt_ppo": false,
+        "software_tests_passed": 533,
+        "runtime_replay": {
+          "val_internal": {
+            "tools_first": {
+              "cases": 128,
+              "matched_reference": 128,
+              "questions": 123,
+              "final_policy": {
+                "rule_baseline": 128
+              }
+            },
+            "ppo_seed0": {
+              "cases": 128,
+              "matched_reference": 128,
+              "questions": 125,
+              "final_policy": {
+                "ppo_model": 128
+              }
+            }
+          },
+          "test_internal": {
+            "tools_first": {
+              "cases": 128,
+              "matched_reference": 128,
+              "questions": 123,
+              "final_policy": {
+                "rule_baseline": 128
+              }
+            },
+            "ppo_seed0": {
+              "cases": 128,
+              "matched_reference": 128,
+              "questions": 125,
+              "final_policy": {
+                "ppo_model": 128
+              }
+            }
+          }
+        }
+      },
+      "mlflow": {
+        "experiment_id": "7",
+        "run_id": "0be2dac1d27449ed8aa4b8a9c5f7a5ed"
+      },
+      "verification_path": "outputs/afa-e33/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e33/frozen.json",
+          "bytes": 3437,
+          "sha256": "e95af98850ac4bbf868a0e423f4a1301dc90fb09c5ff3d205d7e5846ecf244ac"
+        },
+        {
+          "path": "outputs/afa-e33/test-internal.json",
+          "bytes": 332882,
+          "sha256": "600d08a99cddd9f160f1ab3018fadba9ea9dabe7b804c4f1b1d239c7b96c0411"
+        },
+        {
+          "path": "outputs/afa-e33/validation-seed1.json",
+          "bytes": 18569,
+          "sha256": "514731656148e6ee29b98a6f8bc82b6312f3ede0d35359dac201071c4486e41f"
+        },
+        {
+          "path": "outputs/afa-e33/validation-seed2.json",
+          "bytes": 18578,
+          "sha256": "8d7f513bcfe4add0bb5e075d3a4fda27861de7199f175014f2cf851df35310cc"
+        },
+        {
+          "path": "outputs/afa-e33/test-comparison.png",
+          "bytes": 47468,
+          "sha256": "5ba0a3cb518e8b5fdc105a49db5a6c8f6113bd525c13b107f867dbb3b5269566"
+        },
+        {
+          "path": "outputs/afa-e33/training-curves.png",
+          "bytes": 72836,
+          "sha256": "28ab954937de3b6063519944362407cacc6900555522bde3379b1790331f7fa2"
+        },
+        {
+          "path": "outputs/afa-e33/mlflow-run.json",
+          "bytes": 256,
+          "sha256": "24b71b56f164132978084c91548ecf02596d3c84a6edb29539786c2f8ca167a8"
+        },
+        {
+          "path": "outputs/afa-e33/runtime-probe.txt",
+          "bytes": 497,
+          "sha256": "90361e73c21a5e81e83855f489dab01abdd63568df9caca2640f6e81c0e9723e"
+        },
+        {
+          "path": "outputs/afa-e33/test-internal.txt",
+          "bytes": 2286,
+          "sha256": "438d3de321fd3fa7aea273c950282a6759a3e6216924fe7f0cd4af8342d30ebb"
+        },
+        {
+          "path": "outputs/afa-e33/family-comparison.csv",
+          "bytes": 1097,
+          "sha256": "64bceeecbb6629a5e5969f2a747cf64781b1f93178d20c986a211d1ea302f97d"
+        },
+        {
+          "path": "outputs/afa-e33/paired-review.json",
+          "bytes": 1979,
+          "sha256": "b9fa4e4460c2e799b98c70251f7c310c523da8d8d3a0057be6f9df3915c1e482"
+        },
+        {
+          "path": "outputs/afa-e33/runtime-replay.json",
+          "bytes": 490360,
+          "sha256": "574425132da5deeaba5b59440d3ed38b851551c1e3f43315107e050b81a77eed"
+        },
+        {
+          "path": "outputs/afa-e33/runtime-replay.txt",
+          "bytes": 487,
+          "sha256": "532b83d25eacd15d807a756ddfe35fb9bb6497290efd3ce07fc6996f70438e96"
+        },
+        {
+          "path": "outputs/afa-e33/final-suite.txt",
+          "bytes": 1246,
+          "sha256": "2e7750cf480aeaf71c24fc55825b9129b6ede765fccfa414ef93eb27d01dbc3d"
+        },
+        {
+          "path": "outputs/afa-e33/final-suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e33/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "a7287e2a4c84479dfa3e2420f9c494b0ad1c01a0ec9f68f20b58cb968ecbaaed"
+        },
+        {
+          "path": "outputs/afa-e33/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E33-result.png",
+          "bytes": 103195,
+          "sha256": "df58f7f3e15967eafac1fc3378eeaa73e7e4b25a76081d4ca88affa7e1662929"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 110031,
+          "sha256": "0c895de428561bab03417730a7579c2516ae8dd01c97384ea3ecfc4c5204283a"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-release-review.md",
+          "bytes": 6261,
+          "sha256": "57d17a943874695e4bb32789caf6cd927cd2d8d6124a2f05db15122c0ff33a58"
+        }
+      ]
+    },
+    {
+      "id": "E34",
+      "title_ko": "복합 카드 활성화와 제품 근거 부족 종료 조건",
+      "kind": "software_regression",
+      "metrics": {
+        "experiment_tests_passed": 544,
+        "kb_current_spec_tests_passed": 371,
+        "strict_original_existing_failures": 5,
+        "runtime_replays": 512,
+        "runtime_outcomes_matched": 512,
+        "new_training": false
+      },
+      "mlflow": {
+        "experiment_id": "4",
+        "run_id": "3ba95c99831245868eab8de6f9648713"
+      },
+      "verification_path": "outputs/afa-e34/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e34/experiment-tests.txt",
+          "bytes": 1246,
+          "sha256": "3b6182fc8af4ea42535ec189496c6117972b5759805679df3ae02a951e9e604e"
+        },
+        {
+          "path": "outputs/afa-e34/experiment-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e34/e34-cases.txt",
+          "bytes": 115,
+          "sha256": "8d8d3abefcc1e4ac6dac0deb3974ff4273ddcd5e31fc87f3b781b3a9cafd68ca"
+        },
+        {
+          "path": "outputs/afa-e34/runtime-replay.txt",
+          "bytes": 487,
+          "sha256": "532b83d25eacd15d807a756ddfe35fb9bb6497290efd3ce07fc6996f70438e96"
+        },
+        {
+          "path": "outputs/afa-e34/runtime-replay-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e34/runtime-replay.json",
+          "bytes": 490360,
+          "sha256": "574425132da5deeaba5b59440d3ed38b851551c1e3f43315107e050b81a77eed"
+        },
+        {
+          "path": "outputs/afa-e34/mlflow-run.json",
+          "bytes": 142,
+          "sha256": "7ed16b5fd7d85b82518d770e2ad0a4ed0408adda5c4b7347ce8654dd446b9aae"
+        },
+        {
+          "path": "outputs/afa-e34/provenance.json",
+          "bytes": 1395,
+          "sha256": "188267d747a1e15b218c5a277bc56de8b1b304211e346d937d55c1514fa92683"
+        },
+        {
+          "path": "outputs/afa-e34/kb-current.txt",
+          "bytes": 507,
+          "sha256": "5499adc30325a522503100e0c4c65571a0721ca1231625248c2a2e591b56d8a3"
+        },
+        {
+          "path": "outputs/afa-e34/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "053c20276329ba70b582f6ff56f82ea3d343ea88e4feb745c6fdca60f9d997a4"
+        },
+        {
+          "path": "outputs/afa-e34/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e34/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e34/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E34-result.png",
+          "bytes": 80549,
+          "sha256": "6b49d4448cb7ae46b6e3a1c2c3e9f6ed2ecd3c5833da488a00a8809ba03e49f3"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 112474,
+          "sha256": "8246c3932b03107447676c2808e4f2045ef33b008772130bb34b29d5c6b12979"
+        }
+      ]
+    },
+    {
+      "id": "E35",
+      "title_ko": "대기 중 질문 재사용과 카드 간 중복 제거",
+      "kind": "software_regression",
+      "metrics": {
+        "retry_paths": 2,
+        "cards_sharing_one_question": 3
+      },
+      "mlflow": {
+        "experiment_id": "8",
+        "run_id": "fba29bcce14048148e57879f7832b12a"
+      },
+      "verification_path": "outputs/afa-e37/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e35/tests.txt",
+          "bytes": 115,
+          "sha256": "628cd439bfe8d103d102fd34098d12d3825911e275b76b275093e8e2986d23a4"
+        },
+        {
+          "path": "outputs/afa-e37/targeted-final.txt",
+          "bytes": 102,
+          "sha256": "3834cbe37cec5ce589ca32b55bc21e7a5b8d60f65c562e919681f8f0b183c309"
+        }
+      ]
+    },
+    {
+      "id": "E36",
+      "title_ko": "복합 세안 결과 우선 질문 순위 개발 비교",
+      "kind": "synthetic_policy_comparison",
+      "metrics": {
+        "cases": 4,
+        "families": 4,
+        "summary": {
+          "baseline": {
+            "correct": 4,
+            "questions": 25,
+            "status_counts": {
+              "completed": 2,
+              "held": 2
+            }
+          },
+          "ranked": {
+            "correct": 4,
+            "questions": 18,
+            "status_counts": {
+              "completed": 2,
+              "held": 2
+            }
+          }
+        },
+        "questions_saved": 7
+      },
+      "mlflow": {
+        "experiment_id": "8",
+        "run_id": "fba29bcce14048148e57879f7832b12a"
+      },
+      "verification_path": "outputs/afa-e37/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e36/development-final.json",
+          "bytes": 13926,
+          "sha256": "6343d17d1ea43be1ec8b9cbe1e71891a52dc83b8f10bf6c6ee17ee5276db1553"
+        },
+        {
+          "path": "outputs/afa-e36/development-final.txt",
+          "bytes": 352,
+          "sha256": "d6dcc3c85b999aaa78b82b9f0c353ef47a4218b2621fd4dbf24e119665397769"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/compound-v1/development.json",
+          "bytes": 2084,
+          "sha256": "60355b8b4b6e4853f480eec1600332dcd52f992d6898564c2866e786b510d0e4"
+        }
+      ]
+    },
+    {
+      "id": "E37",
+      "title_ko": "동결 후 새 복합 세안 사례와 기본 런타임 검증",
+      "kind": "synthetic_heldout_evaluation",
+      "metrics": {
+        "cases": 12,
+        "families": 12,
+        "summary": {
+          "baseline": {
+            "correct": 12,
+            "questions": 55,
+            "status_counts": {
+              "completed": 5,
+              "held": 7
+            }
+          },
+          "ranked": {
+            "correct": 12,
+            "questions": 41,
+            "status_counts": {
+              "completed": 5,
+              "held": 7
+            }
+          }
+        },
+        "questions_saved": 14,
+        "adopt": true,
+        "heldout_sha256": "0495fc10a49b8afabd9585faa6644aa38fc3b1790d497af97914f2bb529c218e",
+        "freeze_sha256": "f3ce482b47558916684d118414016179a3123f146a1b2b2d9e6f5155e5657aeb",
+        "default_runtime_replay": {
+          "cases": 12,
+          "default_matches_ranked": 12,
+          "saved_in_cases": 6,
+          "tied_in_cases": 6,
+          "more_questions_in_cases": 0
+        },
+        "suite_passed": 547,
+        "c02_runtime_replays_matched": 512,
+        "human_review": "unreviewed"
+      },
+      "mlflow": {
+        "experiment_id": "8",
+        "run_id": "fba29bcce14048148e57879f7832b12a"
+      },
+      "verification_path": "outputs/afa-e37/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e37/locked-policy.json",
+          "bytes": 1474,
+          "sha256": "f3ce482b47558916684d118414016179a3123f146a1b2b2d9e6f5155e5657aeb"
+        },
+        {
+          "path": "outputs/afa-e37/heldout-initial.json",
+          "bytes": 5676,
+          "sha256": "278f35213258f3f5e5cb1ae79d34d796ad86ab5a1936d49cc49478734705ad8a"
+        },
+        {
+          "path": "outputs/afa-e37/heldout-sha256.txt",
+          "bytes": 66,
+          "sha256": "364155f640489eda8789e05e6a0d56acd5afca278e122419eb7e913acc389066"
+        },
+        {
+          "path": "outputs/afa-e37/heldout.txt",
+          "bytes": 1153,
+          "sha256": "8f67e88401db6fcbb46b18c93a927c9ae4a3234933d0e64ba7d6650c1eb52af6"
+        },
+        {
+          "path": "outputs/afa-e37/fixture-audit.txt",
+          "bytes": 252,
+          "sha256": "945645136aef07d4a08b4bd0e4463b1f6b4f887db6e4639cedd0594ee9e5217b"
+        },
+        {
+          "path": "outputs/afa-e37/heldout-final.json",
+          "bytes": 37847,
+          "sha256": "fad48cd58b02080e10092a4a57e7f9edb7ebdd38644c8490b19a26587671466a"
+        },
+        {
+          "path": "outputs/afa-e37/heldout-final.txt",
+          "bytes": 524,
+          "sha256": "c9f7777f67c952b5628123e5b167508dee4d964626d9ac16d838282ca1493665"
+        },
+        {
+          "path": "outputs/afa-e37/release-replay.json",
+          "bytes": 1870,
+          "sha256": "32d16a8bfa7b3b3d1c1ad8041c62f93f4737ea20f87014d10d3ea059ef008605"
+        },
+        {
+          "path": "outputs/afa-e37/question-comparison.png",
+          "bytes": 41942,
+          "sha256": "9df192fa09956b04b6ebdad9b64510b53e1c22c84fca4472a21aa0f3055111cc"
+        },
+        {
+          "path": "outputs/afa-e37/mlflow-run.json",
+          "bytes": 546,
+          "sha256": "db480f718e53361d3344645e59e600724a87b0474860950eb75e50f971482a39"
+        },
+        {
+          "path": "outputs/afa-e37/final-suite.txt",
+          "bytes": 1246,
+          "sha256": "4063c7da53bad43cc4e539f34ed8718fd85d45f390c8933fab19a9a46baa171b"
+        },
+        {
+          "path": "outputs/afa-e37/runtime-replay.json",
+          "bytes": 490360,
+          "sha256": "574425132da5deeaba5b59440d3ed38b851551c1e3f43315107e050b81a77eed"
+        },
+        {
+          "path": "outputs/afa-e37/kb-current.txt",
+          "bytes": 507,
+          "sha256": "24176cb3209e9013928849c7f654ddb754d07c15843137ca5f9555d8f5b21674"
+        },
+        {
+          "path": "outputs/afa-e37/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "df68199d5a10d2b5475f1e65b2ad68242c7f22b0f8cc9cef19b9052d7ba6735b"
+        },
+        {
+          "path": "outputs/afa-e37/original-acceptance57.json",
+          "bytes": 62390,
+          "sha256": "678c53923fd025adf611ca1e4a8a9f24abfaead6d717a97b31b2a12c8b529950"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/data/afa/compound-v1/heldout.json",
+          "bytes": 5671,
+          "sha256": "0495fc10a49b8afabd9585faa6644aa38fc3b1790d497af97914f2bb529c218e"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-release-review.md",
+          "bytes": 7298,
+          "sha256": "cf08003ba1d0560610ca10c61963c5a4a5ebb7a43d9c5f48ef24bfd6a66a3491"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E37-result.png",
+          "bytes": 96457,
+          "sha256": "e006fb4a699fef1a1976b3adbc9f0345b2e380ec35c261e87ed317f874acbf84"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 116401,
+          "sha256": "4e97118cef7fb956516529cd620fcd6af71594fe6969a9e62f27f87310b7d326"
+        }
+      ]
+    },
+    {
+      "id": "E38",
+      "title_ko": "로컬 합성 카탈로그와 AFA 런타임 통합 검사",
+      "kind": "software_regression",
+      "metrics": {
+        "integration_checks_passed": 7,
+        "base_suite_passed": 449,
+        "full_suite_passed": 561,
+        "questions_with_complete_context": 0,
+        "questions_before_resumed_recommendation": 1,
+        "required_evidence_hold_cases": 2,
+        "stale_product_label_rejected_cases": 2,
+        "e37_outcomes_still_match": 12,
+        "e38_before_and_after_traces_match": 12,
+        "cases": 12,
+        "matches_e38_start": 12,
+        "matches_e37_effect": 12,
+        "different_question_trace_from_e37": 3,
+        "kb_current_tests_passed": 371,
+        "kb_documented_strict_mismatches": 5
+      },
+      "mlflow": {
+        "experiment_id": "9",
+        "run_id": "eeb6f5be30de4031802ea814893ae172"
+      },
+      "verification_path": "outputs/afa-e38/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e38/integration-summary.json",
+          "bytes": 2021,
+          "sha256": "fa29a6a49929f21ed64e77026b4e22958900a41da087076c698f6ab808e2b24d"
+        },
+        {
+          "path": "outputs/afa-e38/integration.xml",
+          "bytes": 1346,
+          "sha256": "b10abbf35397a491fbf6461c38fd167ee3c95526733de8778c14f1a9f4238171"
+        },
+        {
+          "path": "outputs/afa-e38/integration.txt",
+          "bytes": 100,
+          "sha256": "62b8af805975f42deaa459e094dccd4a168886f9030c50bc19d14d41f4bef860"
+        },
+        {
+          "path": "outputs/afa-e38/integration-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e38/commands.txt",
+          "bytes": 277,
+          "sha256": "8c9cfd86e965cd542000726f247b0bc774a30254fe3770604b8a9d5b2c055a98"
+        },
+        {
+          "path": "outputs/afa-e38/base-suite.txt",
+          "bytes": 1164,
+          "sha256": "28aaed1caa6651a3384e5e99fd6bb3f444c95fa7580851fb1d4f7d43e5a5fa27"
+        },
+        {
+          "path": "outputs/afa-e38/base-suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e38/suite.txt",
+          "bytes": 1246,
+          "sha256": "70635c4a041a63ccfde78f1768d1ec1806091652d1834c52f849dc8c4f6b324a"
+        },
+        {
+          "path": "outputs/afa-e38/suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e38/stale-reproduced.txt",
+          "bytes": 3807,
+          "sha256": "75376a9dc1fe8bd037f2df873bf1216aa71e109ce81c7ad958a60db690ecbc08"
+        },
+        {
+          "path": "outputs/afa-e38/stale-reproduced-exit.txt",
+          "bytes": 3,
+          "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+        },
+        {
+          "path": "outputs/afa-e38/e37-regression.json",
+          "bytes": 5281,
+          "sha256": "73d58e999e03918a34e99a9ef78a3b31c08ba810ffd36fcfe392f6244ce306c8"
+        },
+        {
+          "path": "outputs/afa-e38/e37-source-drift.json",
+          "bytes": 743,
+          "sha256": "d5326cd32b89bfd534a7554867f571ed3f477a0c29a53718c1e07f3acc430827"
+        },
+        {
+          "path": "outputs/afa-e38/prior-integration-recheck.txt",
+          "bytes": 106,
+          "sha256": "71b178ed1fa99cdc9c5fd3111aaf8e05ebfb7ab56228305b1c6bafd916bad9f3"
+        },
+        {
+          "path": "outputs/afa-e38/mlflow-run.json",
+          "bytes": 462,
+          "sha256": "c34398316bc24a74cde74d0c6364f91bd755270bb34b452b287af8ef79f41a44"
+        },
+        {
+          "path": "outputs/afa-e38/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e38/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e38/kb-current.txt",
+          "bytes": 507,
+          "sha256": "03c951f5ac637f0a277f5e705e78dca945ec99f77f3ade637d1bc0f035d3f393"
+        },
+        {
+          "path": "outputs/afa-e38/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "4d140d4757c9e700395e45716c37632a6521c7d50a3c077780a3177b59c1bddc"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/afa/core/test_runtime_integration.py",
+          "bytes": 6943,
+          "sha256": "5f5c8eaaa80af4c47e962356000b6c9316bd17de5a57ba47b76dfda1d384a448"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E38-result.png",
+          "bytes": 268293,
+          "sha256": "440e1bc25964029fac403c0cc6d44c8d94420e6a090bf8856bec5391307dd5a0"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 119610,
+          "sha256": "5661817dbe479ca33f68d1a4de0a1e5c31e3c070374350dbff19f539ba390e2f"
+        }
+      ]
+    },
+    {
+      "id": "E39",
+      "title_ko": "한국어 세안 대화와 기본 CLI 보완",
+      "kind": "software_regression",
+      "metrics": {
+        "focused_regressions_passed": 6,
+        "software_suite_passed": 567,
+        "documented_cli_dialogues_passed": 4,
+        "questions_with_known_context": 0,
+        "questions_when_only_tools_missing": 1,
+        "questions_for_repeat_wash_case": 2,
+        "unrelated_sunscreen_results": 0,
+        "kb_current_tests_passed": 371,
+        "kb_documented_strict_mismatches": 5
+      },
+      "mlflow": {
+        "experiment_id": "9",
+        "run_id": "68843586fd1749d69e19aee7fddbab72"
+      },
+      "verification_path": "outputs/afa-e39/linear-verification.json",
+      "receipts": [
+        {
+          "path": "outputs/afa-e39/before.txt",
+          "bytes": 5431,
+          "sha256": "81afd12cd5940d4e5c5a2e22365c7623a3ef1bede3ea38814cb2a1520d881247"
+        },
+        {
+          "path": "outputs/afa-e39/before-exit.txt",
+          "bytes": 3,
+          "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+        },
+        {
+          "path": "outputs/afa-e39/focused.txt",
+          "bytes": 115,
+          "sha256": "9a020f5f67a9030b1c121cb54172940c939414e0b2fa4e5b8351459e36730a2b"
+        },
+        {
+          "path": "outputs/afa-e39/focused.xml",
+          "bytes": 1487,
+          "sha256": "352b8ec395b73445d39bae33a30dea744facafea91aed6a5892ebf6a17ee3f4e"
+        },
+        {
+          "path": "outputs/afa-e39/focused-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e39/suite.txt",
+          "bytes": 1246,
+          "sha256": "23307a65f698904c815a511a4aebd8e3fb417c63dfebcac6b6b931ee8dc696be"
+        },
+        {
+          "path": "outputs/afa-e39/suite-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e39/cli-dialogues.json",
+          "bytes": 7293,
+          "sha256": "efadd655f2eeec4304d7be70b9fc6a4f0f5a65b4e2432c62f6bc61744778d437"
+        },
+        {
+          "path": "outputs/afa-e39/cli-dialogues-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        },
+        {
+          "path": "outputs/afa-e39/summary.json",
+          "bytes": 1831,
+          "sha256": "4e2fbc0470b44861126a9c77fb2a6bdaad5b24797028112e0ac5cd8d1dfb77f0"
+        },
+        {
+          "path": "outputs/afa-e39/commands.txt",
+          "bytes": 244,
+          "sha256": "539b6c963ae1465cf602275d4617a81a9b9552a213b7443abfcb0c2f134ae246"
+        },
+        {
+          "path": "outputs/afa-e39/kb-current.txt",
+          "bytes": 507,
+          "sha256": "990ae8e98412d4321daa848a95e1b357e87742c92bb6616ca319f7c6de908439"
+        },
+        {
+          "path": "outputs/afa-e39/kb-strict.txt",
+          "bytes": 6490,
+          "sha256": "2944cae4a8608876eb830c0064c9bf407c4a4e3bcfcb0fb68dffb63e7d1de0aa"
+        },
+        {
+          "path": "outputs/afa-e39/source-manifest.txt",
+          "bytes": 31,
+          "sha256": "9ade13f11177cbf592a76c75b5a14f2e8c00de0cc6db5049991d6ee9de2d40a2"
+        },
+        {
+          "path": "outputs/afa-e39/kb-validator.txt",
+          "bytes": 116,
+          "sha256": "87e2879688fe0fb25b1b71bd34fc689eaa629f2e42360f3ab05157e3186fdc30"
+        },
+        {
+          "path": "outputs/afa-e39/mlflow-run.json",
+          "bytes": 382,
+          "sha256": "19908d661516178c2359761512945c7dc02c654c4bd34b32cb01b3018bab6033"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/cli.py",
+          "bytes": 10046,
+          "sha256": "dd1f19a7918bd0e008284b633ccfadac6fb80fc570377180bce50048df8b8701"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/beauty_agent/nlp_layer.py",
+          "bytes": 16679,
+          "sha256": "6b5d8638d85d94d9df2b46aa31db545008f5c6a002115faf5665d22f93f14b16"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/test_nlp_layer.py",
+          "bytes": 7493,
+          "sha256": "10949e441865232c763bdf8e3493dbafb90bc7052b4dcb46a80b73bc83668a14"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/tests/test_runtime_cli.py",
+          "bytes": 27634,
+          "sha256": "3565953008d6d92ad9dd0444a9a263e8ed6348a69b89ec5122bba49474dd0380"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/images/mlflow/E39-result.png",
+          "bytes": 239874,
+          "sha256": "5949bc8b0cc6cfcad1a1e02efe90e5670136f856b80b3a2c09584ad8565f4454"
+        },
+        {
+          "path": "courses/ai-applications/experiments/cos-agent/docs/afa-policy-progress.md",
+          "bytes": 123257,
+          "sha256": "87b8537f7b96613260816d62b74d19fbef1422e29c4230c9ee0f1dbcdb651527"
+        }
+      ]
+    }
+  ],
+  "latest_record_entry": "E39",
+  "latest_experiment_entry": "E37"
+}

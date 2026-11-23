@@ -1,0 +1,244 @@
+{
+  "version": "afa-stage0-v1",
+  "issue": "https://linear.app/ppopy/issue/PPO-23",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "provenance": {
+    "data_kind": "synthetic_design_fixture",
+    "reference_kind": "existing_engine_derived_signature",
+    "human_review": "unreviewed",
+    "approved_reference": false,
+    "training_ready": false,
+    "v67_derivation": false,
+    "note": "New bounded design grid. Not real reports, expert labels, v67 train/val/test, or a clinical reference."
+  },
+  "source_hashes": {
+    "KB/Poppy_KB_v0.6/Poppy_KB_seed_v0.6.json": "10e054a8f6f2b363a4a991a3adc096604a11ad115c0ddd01f51789f75b5529dd",
+    "skin_engine/kb_preview/engine.py": "4cba04b25d3d707a6d71bd70aac261e64132b9935f40225ebb33f8767a0a9092",
+    "skin_engine/kb_preview/rules.json": "84d4018bb56caba450be9b85d885191890a5b26a95129bad78ec9751d8cded30",
+    "skin_engine/kb_preview/special.py": "525bdc656c2bbb222dd6fe612e82a7155953871ca9abe8450011e4a20906a598",
+    "courses/ai-applications/experiments/cos-agent/beauty_agent/actions.py": "ee2aaaef170d4ca8e5a3d0b2232f666a24eba79617d5d8d13d75abe7913960fa",
+    "courses/ai-applications/experiments/cos-agent/beauty_agent/modules/kb_adapter.py": "37fa71eb2e738a4cd5feaba144a887400199ad3e8e94a15b28a671275828d802",
+    "courses/ai-applications/experiments/cos-agent/beauty_agent/catalog.py": "934d79c3242e915e3f8b2832845ae1ffa70e2e12a6f32093a949231f7a90fddc",
+    "courses/ai-applications/experiments/cos-agent/beauty_agent/agent.py": "319407f29425966f3e32561ea1d3da2e85353162302500d9d62bd1ea629cc1eb",
+    "courses/ai-applications/experiments/cos-agent/beauty_agent/contracts.py": "8beb3860df9afa8e37e00daedc990121985c6cb445aa8459b2e5e200b0634197",
+    "courses/ai-applications/experiments/cos-agent/beauty_agent/action_runtime.py": "05c9c769fb03b8d38db958ed074d9e7ede44eee0ede5b195df2e8e17401c4b36"
+  },
+  "initial_request": {
+    "deployment_context": "synthetic_test",
+    "device": "web",
+    "message": "",
+    "profile": {
+      "confirmed": true,
+      "concerns": [],
+      "excluded_product_ids": []
+    },
+    "products": [
+      {
+        "product_id": "demo-cleanser",
+        "version": "fixture-v1",
+        "confirmed": true
+      }
+    ]
+  },
+  "initial_observations": {},
+  "extraction": "disabled_fixed_empty_candidate_set",
+  "tasks": {
+    "B-C01": {
+      "purpose": "single-slot state/termination smoke check",
+      "world_domains": {
+        "method.body_site": [
+          "face"
+        ],
+        "method.water_temperature": [
+          "cold",
+          "lukewarm",
+          "hot"
+        ]
+      }
+    },
+    "B-C02": {
+      "purpose": "conditional question-order comparison",
+      "world_domains": {
+        "method.body_site": [
+          "face"
+        ],
+        "method.tools": [
+          "hands",
+          "scrub_brush",
+          "washcloth",
+          "sponge"
+        ],
+        "method.friction": [
+          "gentle",
+          "strong"
+        ],
+        "method.drying": [
+          "pat_gently",
+          "rubbing_strongly"
+        ]
+      }
+    }
+  },
+  "action_dictionary": [
+    [
+      "ask_user",
+      "method.body_site"
+    ],
+    [
+      "ask_user",
+      "method.water_temperature"
+    ],
+    [
+      "ask_user",
+      "method.tools"
+    ],
+    [
+      "ask_user",
+      "method.friction"
+    ],
+    [
+      "ask_user",
+      "method.drying"
+    ],
+    [
+      "hold",
+      "insufficient_information"
+    ],
+    [
+      "hold",
+      "safety"
+    ],
+    [
+      "request_draft",
+      "label_draft"
+    ]
+  ],
+  "capabilities": {
+    "supported_actions": [
+      "ask_user",
+      "hold",
+      "request_draft"
+    ],
+    "excluded_actions": [
+      "confirm_candidate",
+      "retrieve_evidence",
+      "resolve_conflict"
+    ],
+    "mask_rule": "task_capability AND current_runtime_offer.enabled AND remaining_question_budget_for_ask",
+    "note": "Transient product lookup offers may exist in the unchanged engine. They are outside this task action space, not evidence resolved. Eligibility requires every supported acquisition order to reach the full-current signature."
+  },
+  "observation_schema": {
+    "encoding_status": "specified_not_implemented",
+    "slot_order": [
+      "method.body_site",
+      "method.water_temperature",
+      "method.tools",
+      "method.friction",
+      "method.drying"
+    ],
+    "state_order": [
+      "not_asked",
+      "known",
+      "unknown",
+      "declined",
+      "not_applicable",
+      "conflicting"
+    ],
+    "state_encoding": "one_hot_per_slot",
+    "value_order": {
+      "method.body_site": [
+        null,
+        "face"
+      ],
+      "method.water_temperature": [
+        null,
+        "cold",
+        "lukewarm",
+        "hot"
+      ],
+      "method.tools": [
+        null,
+        "hands",
+        "scrub_brush",
+        "washcloth",
+        "sponge"
+      ],
+      "method.friction": [
+        null,
+        "gentle",
+        "strong"
+      ],
+      "method.drying": [
+        null,
+        "pat_gently",
+        "rubbing_strongly"
+      ]
+    },
+    "value_encoding": "one_hot_per_slot_none_for_unobserved",
+    "other_fields": [
+      "task_one_hot_B-C01_B-C02",
+      "runtime_enabled_task_action_mask_8",
+      "remaining_question_budget_scalar"
+    ],
+    "dimension": 58,
+    "exclude": [
+      "world_id",
+      "hidden_answers",
+      "reference_signature",
+      "future_events",
+      "authorship_or_review_metadata"
+    ],
+    "scope": "static known-answer grid only; no arbitrary JSON or event history encoder"
+  },
+  "objective": {
+    "design_default": true,
+    "measured_user_burden": false,
+    "gamma": 1.0,
+    "shaping_beta": 0,
+    "ask_cost": 1,
+    "max_questions": 4,
+    "correct_terminal_loss": 0,
+    "incorrect_terminal_loss": 5,
+    "task_budget_exhausted_loss": 5,
+    "loss_rationale": "5 = maximum supported acquisition cost 4 + 1. A wrong exit cannot beat a valid complete path. Synthetic test scale, not empirical calibration.",
+    "return": "negative sum of acquisition cost minus terminal loss",
+    "correct_draft": "runtime gate enables draft AND signature equals full-current reference AND full-current gate enables draft",
+    "correct_hold": "full-current reference requires hold AND current signature equals it AND no supported questions remain",
+    "wrong_hold": "any other policy hold, even if the runtime allows the hold action",
+    "budget_rule": "after the final affordable acquisition, permit a zero-cost valid terminal action; budget exhaustion never overrides a valid completion",
+    "invalid_action": "hard contract error/no valid learning transition; do not relax runtime gate",
+    "external_truncation": "not implemented in Stage 0; future environment must preserve bootstrap semantics"
+  },
+  "reference": {
+    "comparison_fields": [
+      "card_id",
+      "comparison_status",
+      "sorted_action_types",
+      "recommendation_text",
+      "sorted_hold_signals",
+      "overall"
+    ],
+    "trace_only": [
+      "matched_branch_id",
+      "reason"
+    ],
+    "branch_equivalence": "no authored action equivalence map; exact semantic signature only",
+    "eligibility": "exclude world if any reachable supported acquisition order ends with signature/disposition different from full-current reference",
+    "quality_tolerance": 0,
+    "safety_gate_violations_allowed": 0,
+    "performance_claim_threshold": null,
+    "threshold_status": "set before model selection in Stage 4; Stage 0 does not authorize a superiority claim"
+  },
+  "unsupported": [
+    "non-face scope",
+    "combined-card tasks",
+    "unknown/declined/conflicting answers in the initial grid",
+    "product evidence input",
+    "candidate confirmation",
+    "real Jev or Ollama calls",
+    "v67 split construction",
+    "RL/Gym environment and training",
+    "production or collection"
+  ]
+}

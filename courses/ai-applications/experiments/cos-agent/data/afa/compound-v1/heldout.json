@@ -1,0 +1,129 @@
+{
+  "default_answers": {
+    "method.body_site": "face",
+    "method.water_temperature": "lukewarm",
+    "method.tools": "hands",
+    "method.friction": "gentle",
+    "method.drying": "pat_gently",
+    "cleansing.target_load": "no_additional_removal_need",
+    "cleansing.repeat_wash": "habitual_without_reason",
+    "cleansing.steps": "declined",
+    "dose.frequency": "declined",
+    "method.current_routine": "declined"
+  },
+  "cases": [
+    {
+      "id": "test-hot-sponge",
+      "family": "hot-sponge-habitual",
+      "message": "반복 세안과 평소 세안 방법을 같이 점검하고 싶어요.",
+      "prefilled": [],
+      "answers": {"method.water_temperature": "hot", "method.tools": "sponge"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "completed"
+    },
+    {
+      "id": "test-habitual-strong-hands",
+      "family": "strong-hands-habitual",
+      "message": "두 번 세안하는 습관을 점검해 주세요.",
+      "prefilled": ["method.body_site", "cleansing.repeat_wash"],
+      "answers": {"method.friction": "strong"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "completed"
+    },
+    {
+      "id": "test-soil-sponge",
+      "family": "soil-sponge",
+      "message": "이중 세안과 지금 쓰는 세안 도구에 관해 확인하고 싶어요.",
+      "prefilled": ["method.body_site", "method.water_temperature"],
+      "answers": {"method.tools": "sponge", "cleansing.target_load": "heavy_soiling"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "held"
+    },
+    {
+      "id": "test-makeup-cloth",
+      "family": "makeup-cloth",
+      "message": "세안을 두 번 하는 경우랑 도구 사용을 같이 봐 주세요.",
+      "prefilled": ["cleansing.repeat_wash"],
+      "answers": {"method.tools": "washcloth", "cleansing.target_load": "makeup_requires_removal",
+                  "cleansing.repeat_wash": "purpose_matched"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "held"
+    },
+    {
+      "id": "test-purpose-brush",
+      "family": "purpose-brush-removal",
+      "message": "반복 세안 목적과 현재 세안 방법을 점검해 주세요.",
+      "prefilled": ["method.body_site", "cleansing.target_load"],
+      "answers": {"method.tools": "scrub_brush", "cleansing.target_load": "confirmed_removal_need",
+                  "cleansing.repeat_wash": "purpose_matched"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "completed"
+    },
+    {
+      "id": "test-purpose-strong-drying",
+      "family": "purpose-hands-drying",
+      "message": "이중 세안하고 수건을 써요. 정해진 정보만 먼저 전달할게요.",
+      "prefilled": ["method.body_site", "method.tools", "method.friction"],
+      "answers": {"method.drying": "rubbing_strongly", "cleansing.target_load": "confirmed_removal_need",
+                  "cleansing.repeat_wash": "purpose_matched"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "completed"
+    },
+    {
+      "id": "test-repeat-nonanswers",
+      "family": "repeat-two-nonanswers",
+      "message": "세안을 두 번 하는 문제와 마찰을 확인해 주세요.",
+      "prefilled": ["method.body_site", "cleansing.target_load", "method.friction"],
+      "answers": {"method.friction": "strong", "cleansing.target_load": "unknown",
+                  "cleansing.repeat_wash": "declined"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "held"
+    },
+    {
+      "id": "test-declined-tool",
+      "family": "declined-tool-habitual",
+      "message": "반복 세안 방법을 확인하고 싶어요.",
+      "prefilled": ["method.body_site", "method.tools"],
+      "answers": {"method.tools": "declined"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "held"
+    },
+    {
+      "id": "test-site-outside-face",
+      "family": "outside-face-cleansing",
+      "message": "두 번 세안으로 분류된 요청인데 부위부터 확인해 주세요.",
+      "prefilled": [],
+      "answers": {"method.body_site": "hands", "method.water_temperature": "cold"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "completed"
+    },
+    {
+      "id": "test-mandatory-hold",
+      "family": "compound-mandatory-discomfort",
+      "message": "반복 세안하고 나서 불편했던 점까지 같이 확인해 주세요.",
+      "prefilled": ["method.body_site", "skin.current_discomfort"],
+      "answers": {"skin.current_discomfort": "persistent"},
+      "required_cards": ["B-C01", "B-C02", "B-C05", "B-B01"],
+      "expected_status": "held"
+    },
+    {
+      "id": "test-missing-sun-evidence",
+      "family": "compound-sun-label-gap",
+      "message": "야외 일정에 쓸 제품과 반복 세안을 같이 확인해 주세요.",
+      "prefilled": ["method.body_site", "sun.outdoor_time"],
+      "answers": {"sun.outdoor_time": "prolonged", "method.tools": "washcloth"},
+      "required_cards": ["B-C01", "B-C02", "B-C05", "B-P01"],
+      "expected_status": "held"
+    },
+    {
+      "id": "test-sufficient-upfront",
+      "family": "upfront-washcloth-cold",
+      "message": "세안을 두 번 하는데 필요한 정보는 이미 정리했어요.",
+      "prefilled": ["method.body_site", "method.water_temperature", "method.tools",
+                    "cleansing.target_load", "cleansing.repeat_wash"],
+      "answers": {"method.water_temperature": "cold", "method.tools": "washcloth"},
+      "required_cards": ["B-C01", "B-C02", "B-C05"],
+      "expected_status": "held"
+    }
+  ]
+}

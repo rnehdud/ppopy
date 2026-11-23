@@ -1,0 +1,134 @@
+{
+  "provenance": {
+    "data_kind": "synthetic_design_fixture",
+    "reference_kind": "existing_engine_derived_signature",
+    "human_review": "unreviewed",
+    "approved_reference": false,
+    "training_ready": false,
+    "v67_derivation": false,
+    "note": "New bounded design grid. Not real reports, expert labels, v67 train/val/test, or a clinical reference."
+  },
+  "examples": [
+    {
+      "id": "temperature-lukewarm",
+      "card": "B-C01",
+      "world": {
+        "method.body_site": "face",
+        "method.water_temperature": "lukewarm"
+      },
+      "questions": [
+        "method.body_site",
+        "method.water_temperature"
+      ],
+      "terminal": "request_draft",
+      "expected_return": -2
+    },
+    {
+      "id": "temperature-cold-hold",
+      "card": "B-C01",
+      "world": {
+        "method.body_site": "face",
+        "method.water_temperature": "cold"
+      },
+      "questions": [
+        "method.body_site",
+        "method.water_temperature"
+      ],
+      "terminal": "hold",
+      "expected_return": -2
+    },
+    {
+      "id": "tools-shortcut",
+      "card": "B-C02",
+      "world": {
+        "method.body_site": "face",
+        "method.tools": "scrub_brush",
+        "method.friction": "gentle",
+        "method.drying": "pat_gently"
+      },
+      "questions": [
+        "method.body_site",
+        "method.tools"
+      ],
+      "terminal": "request_draft",
+      "expected_return": -2
+    },
+    {
+      "id": "friction-shortcut",
+      "card": "B-C02",
+      "world": {
+        "method.body_site": "face",
+        "method.tools": "hands",
+        "method.friction": "strong",
+        "method.drying": "rubbing_strongly"
+      },
+      "questions": [
+        "method.body_site",
+        "method.friction"
+      ],
+      "terminal": "request_draft",
+      "expected_return": -2
+    },
+    {
+      "id": "friction-long-order",
+      "card": "B-C02",
+      "world": {
+        "method.body_site": "face",
+        "method.tools": "hands",
+        "method.friction": "strong",
+        "method.drying": "pat_gently"
+      },
+      "questions": [
+        "method.body_site",
+        "method.tools",
+        "method.drying",
+        "method.friction"
+      ],
+      "terminal": "request_draft",
+      "expected_return": -4
+    },
+    {
+      "id": "all-aligned",
+      "card": "B-C02",
+      "world": {
+        "method.body_site": "face",
+        "method.tools": "hands",
+        "method.friction": "gentle",
+        "method.drying": "pat_gently"
+      },
+      "questions": [
+        "method.body_site",
+        "method.tools",
+        "method.drying",
+        "method.friction"
+      ],
+      "terminal": "request_draft",
+      "expected_return": -4
+    },
+    {
+      "id": "premature-hold",
+      "card": "B-C02",
+      "world": {
+        "method.body_site": "face",
+        "method.tools": "hands",
+        "method.friction": "gentle",
+        "method.drying": "pat_gently"
+      },
+      "questions": [],
+      "terminal": "hold",
+      "expected_return": -5
+    },
+    {
+      "id": "exclude-mixed-action-meaning",
+      "card": "B-C02",
+      "world": {
+        "method.body_site": "face",
+        "method.tools": "scrub_brush",
+        "method.friction": "strong",
+        "method.drying": "pat_gently"
+      },
+      "eligibility": false,
+      "reason": "tools and friction terminal action_types differ; no equivalence label fabricated"
+    }
+  ]
+}
