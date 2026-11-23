@@ -260,10 +260,25 @@ def load_v67_index(v67_dir: pathlib.Path) -> V67SplitIndex:
     return index
 
 
-def compute_row_content_sha256(req: SLMRequest, assistant_content: str) -> str:
-    """Canonical SHA-256 binding external Critic review to exact input + assistant text."""
+def compute_row_content_sha256(
+    req: SLMRequest,
+    assistant_content: str,
+    *,
+    card_ids: list[str] | None = None,
+    chunk_origins: dict[str, Any] | None = None,
+    is_hard_negative: bool | None = None,
+    hard_negative_type: str | None = None,
+) -> str:
+    """Canonical SHA-256 binding external Critic review to all reviewed fields."""
     canonical = json.dumps(
-        {"user": req.model_dump(mode="json"), "assistant": assistant_content},
+        {
+            "user": req.model_dump(mode="json"),
+            "assistant": assistant_content,
+            "card_ids": sorted(card_ids or []),
+            "chunk_origins": chunk_origins or {},
+            "is_hard_negative": is_hard_negative,
+            "hard_negative_type": hard_negative_type,
+        },
         sort_keys=True,
         ensure_ascii=False,
     )
@@ -785,14 +800,21 @@ def validate_rows(
                     f"{loc}: distractor_ref {dref!r} not backed by any input rag_chunks"
                 )
 
-        # Verify external critic content_sha256 matches exact (SLMRequest, assistant) content
+        # Verify external critic content_sha256 matches all reviewed fields
         if external_reviews is not None and isinstance(row_id, str) and row_id in external_reviews:
             ext = external_reviews[row_id]
-            expected_sha = compute_row_content_sha256(req, asst_content)
+            expected_sha = compute_row_content_sha256(
+                req,
+                asst_content,
+                card_ids=card_ids if isinstance(card_ids, list) else [],
+                chunk_origins=chunk_origins,
+                is_hard_negative=is_hn if isinstance(is_hn, bool) else None,
+                hard_negative_type=hn_type if isinstance(hn_type, str) else None,
+            )
             actual_sha = ext.get("content_sha256")
             if actual_sha != expected_sha:
                 report.errors.append(
-                    f"{loc}: external critic content_sha256 mismatch for {row_id!r} (content modified after review or missing hash)"
+                    f"{loc}: external critic content_sha256 mismatch for {row_id!r} (content/metadata modified after review or missing hash)"
                 )
 
         extra_origin_keys = set(chunk_origins.keys()) - chunk_refs_seen
@@ -835,14 +857,15 @@ def validate_rows(
             if pat.search(asst_content):
                 report.errors.append(f"{loc}: assistant response violated clinical guardrail {pat.pattern!r}")
 
-        # 8b. Pilot canonical uniqueness & real semantic bucket checks
-        if pilot_mode:
-            canonical_user = json.dumps(req.model_dump(mode="json"), sort_keys=True, ensure_ascii=False)
-            if canonical_user in seen_user_inputs:
-                report.errors.append(f"{loc}: pilot check: duplicate canonical SLMRequest payload")
-            else:
-                seen_user_inputs.add(canonical_user)
+        # 8b. Canonical SLMRequest duplicate detection (applies to ALL runs: pilot, batch, and stage1)
+        canonical_user = json.dumps(req.model_dump(mode="json"), sort_keys=True, ensure_ascii=False)
+        if canonical_user in seen_user_inputs:
+            report.errors.append(f"{loc}: duplicate canonical SLMRequest payload (every row must have a distinct input)")
+        else:
+            seen_user_inputs.add(canonical_user)
 
+        # 8c. Pilot real semantic bucket checks
+        if pilot_mode:
             if pilot_bucket == "unknown_or_version":
                 has_unknown_obs = any(obs.state == "unknown" for obs in req.confirmed_observations.values())
                 has_unknown_judgment = any(

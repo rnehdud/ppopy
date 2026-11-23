@@ -239,7 +239,14 @@ def _review_entry(row: dict, critic_model: str = "claude-sonnet-4", decision: st
     req = SLMRequest.model_validate_json(row["messages"][1]["content"])
     return {
         "row_id": row["id"],
-        "content_sha256": val.compute_row_content_sha256(req, row["messages"][2]["content"]),
+        "content_sha256": val.compute_row_content_sha256(
+            req,
+            row["messages"][2]["content"],
+            card_ids=row.get("card_ids", []),
+            chunk_origins=row.get("chunk_origins", {}),
+            is_hard_negative=row.get("is_hard_negative"),
+            hard_negative_type=row.get("hard_negative_type"),
+        ),
         "critic_model": critic_model,
         "decision": decision,
     }
@@ -462,3 +469,24 @@ def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
     )
     assert not rep6.passed
     assert any("100% human_review=='approved'" in e for e in rep6.errors)
+
+    # 7. Duplicate canonical SLMRequest must ALSO fail in non-pilot (batch / stage1) runs
+    dup_non_pilot = [
+        ("ds.jsonl", 1, make_valid_solution_row(num=1)),
+        ("ds.jsonl", 2, make_valid_solution_row(num=2)),
+    ]
+    dup_non_pilot[1][2]["messages"][1]["content"] = dup_non_pilot[0][2]["messages"][1]["content"]
+    dup_non_pilot[1][2]["allowed_evidence_refs"] = list(dup_non_pilot[0][2]["allowed_evidence_refs"])
+    dup_non_pilot[1][2]["messages"][2]["content"] = dup_non_pilot[0][2]["messages"][2]["content"] + " (변형)"
+    rep7 = val.validate_rows(dup_non_pilot, KB_INDEX, V67_INDEX, pilot_mode=False)
+    assert not rep7.passed
+    assert any("duplicate canonical SLMRequest" in e for e in rep7.errors)
+
+    # 8. Modifying card_ids after Critic PASS must fail content_sha256 check
+    edited_cards = copy.deepcopy(rows)
+    edited_cards[0][2]["card_ids"] = ["B-I01"]
+    rep8 = val.validate_rows(
+        edited_cards, KB_INDEX, V67_INDEX, pilot_mode=True, require_review=True, external_reviews=reviews
+    )
+    assert not rep8.passed
+    assert any("content_sha256 mismatch" in e for e in rep8.errors)

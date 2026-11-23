@@ -251,7 +251,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
 ```
 
 ### B. 외부 Cross-Model Critic Prompt (`reviews/*_critic.jsonl` 별도 저장)
-1인 전담 시 자기 모델 편향을 막기 위해 **생성 모델과 다른 AI 모델**(예: 생성 GPT ↔ 검수 Claude/Gemini)로 아래 JSON을 생성해 **별도 파일(`data/qlora/v2/reviews/*_critic.jsonl`)**에 저장합니다. 검증기(`--review-file`)가 `row_id` 중복을 금지하고, 각 행의 정규화 내용 해시(`content_sha256` = `validate_qlora_dataset.compute_row_content_sha256(req, assistant)`)를 대조해 검수 후 무단 수정을 차단합니다. 파일럿(`--pilot --review-file`)은 **24행 100% `human_review == "approved"`**를 요구합니다.
+1인 전담 시 자기 모델 편향을 막기 위해 **생성 모델과 다른 AI 모델**(예: 생성 GPT ↔ 검수 Claude/Gemini)로 아래 JSON을 생성해 **별도 파일(`data/qlora/v2/reviews/*_critic.jsonl`)**에 저장합니다. 검증기(`--review-file`)가 `row_id` 중복을 금지하고, 각 행의 정규화 내용 해시(`content_sha256` = `validate_qlora_dataset.compute_row_content_sha256(req, assistant, card_ids=..., chunk_origins=..., is_hard_negative=..., hard_negative_type=...)`)를 대조해 검수 후 입력·답변·`card_ids`·`chunk_origins` 무단 수정을 모두 차단합니다. 또한 정규화 `SLMRequest` 입력 중복 검사는 파일럿·배치·`--stage1` 전체에 적용되며, 파일럿(`--pilot --review-file`)은 **24행 100% `human_review == "approved"`**를 요구합니다.
 
 ```text
 당신은 Ppopy 합성 데이터 품질 감사관입니다.
