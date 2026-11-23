@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-"""Shared validator for Ppopy v3 QLoRA (SOLUTION_MODE + HOLD_MODE) synthetic datasets.
+"""Validator for Ppopy v3 QLoRA (SOLUTION_MODE + HOLD_MODE) synthetic dataset (Single-Owner).
 
-Validates individual team shards (--shard a|b|c) or merged datasets (--merge) against:
-1. Non-empty files, pilot exact counts (12/shard = 9 sol + 3 hold across 4 buckets; 36 merged across A/B/C)
-2. Outer JSONL row schema, deterministic ID format, and exact SYSTEM_PROMPT_SOLUTION_HOLD
+Validates a single dataset JSONL (or optional multiple files) against:
+1. Non-empty files, 24-row pilot gate (18 sol / 6 hold, 4 buckets x 6, distinct SLMRequest inputs)
+   and 900-row Stage-1 training gate (sol >= 690, hold >= 210, hold 20-25%, HN >= 25%, EN 30-40%)
+2. Outer JSONL row schema, deterministic ID format (syn-sol-0001 / syn-hold-0001), exact system prompt
 3. Inner v3_contracts.SLMRequest Pydantic contract + outer/inner mode & refs alignment
-4. KB v0.6.1 variable registry & value_type compatibility + baseline card registry
-5. Evidence-to-input backing (allowed_evidence_refs must exist in rag_chunks / kb_judgments / product_evidence)
+4. Controlled vocabulary (kb_judgments.status, product_evidence.status) + KB v0.6.1 variable types
+5. Evidence-to-input backing + computed catalog:<product_id>@<version> consistency
 6. KB v0.6.1 source_registry exact metadata match; synthetic_defense_probe excluded from citations & EN ratio
 7. Strict citation integrity, mode headings, hold direct-instruction leak blocking, clinical guardrails
-8. Mandatory v67 index loading, real source_scenario_id/source_turn_id checks, and cross-split leakage
-   checks across group_id, scenario_id, scenario_family_id, source_turn_id, and normalized assistant text
-9. Optional --require-review gate enforcing cross-model critic PASS + human sample review on high-risk rows
+8. Mandatory v67 index loading, real source_scenario_id/source_turn_id/output.action checks,
+   cross-split leakage checks, and non-empty 90/10 val_internal family/group split on new_synthetic
+9. Optional --require-review + --review-file gate verifying external cross-model critic PASS
+   and >= 10% human_review=='approved' on high-risk rows
 """
 from __future__ import annotations
 
@@ -67,16 +69,25 @@ ALLOWED_SOURCE_ORIGINS = frozenset({"new_synthetic", "recycled_v67"})
 ALLOWED_HUMAN_REVIEWS = frozenset({"unreviewed", "approved", "needs_revision"})
 ALLOWED_CRITIC_STATUSES = frozenset({"PASS", "FAIL", "unreviewed"})
 
+# Controlled vocabulary for structured inputs (reduces Train-Inference Skew)
+ALLOWED_KB_JUDGMENT_STATUSES = frozenset({"aligned", "difference", "unknown", "hold", "exception"})
+ALLOWED_PRODUCT_EVIDENCE_STATUSES = frozenset({"verified", "usage_held", "unknown"})
+
 FORBIDDEN_SOURCE_IDS = frozenset({"F01", "F02", "S30", "S31"})
 FORBIDDEN_CARD_IDS = frozenset({"B-P07"})
 V67_ACTION_TO_MODE = {"request_draft": "solution", "hold": "hold"}
-FULL_MERGE_MIN_TARGETS = {
-    "a": {"solution": 600, "hold": 200},
-    "b": {"solution": 500, "hold": 150},
-    "c": {"solution": 500, "hold": 150},
-}
 
-ROW_ID_PATTERN = re.compile(r"^syn-(?P<shard>[abc])-(?P<kind>sol|hold)-(?P<num>\d{4})$")
+PILOT_TOTAL_ROWS = 24
+PILOT_SOLUTION_ROWS = 18
+PILOT_HOLD_ROWS = 6
+PILOT_PER_BUCKET = 6
+
+STAGE1_MIN_TOTAL_ROWS = 900
+STAGE1_MIN_SOLUTION_ROWS = 690
+STAGE1_MIN_HOLD_ROWS = 210
+
+# Supports single-owner IDs (syn-sol-0001 / syn-hold-0001) and optional legacy shard prefix
+ROW_ID_PATTERN = re.compile(r"^syn-(?:[abc]-)?(?P<kind>sol|hold)-(?P<num>\d{4})$")
 BRACKET_CITATION_PATTERN = re.compile(
     r"\[((?:kb|catalog|alternative|ref):[^\]]+|(?:S|U|D|F)\d{2,3}|B-[A-Z]\d{2}(?:@[0-9.]+)?)\]"
 )
@@ -98,7 +109,9 @@ HOLD_RECOMMENDATION_LEAK_PATTERNS = (
     re.compile(r"루틴을\s*(유지|추천|권해)"),
     re.compile(r"(사용해\s*보세요|바르는\s*것을\s*권해|권해드려요|추천해\s*드려요|추천해요)"),
     re.compile(r"(세안하세요|세안해\s*보세요|바르세요|발라\s*보세요|도포하세요|덧바르세요)"),
-    re.compile(r"(클렌징폼|클렌징\s*오일|보습제|선크림|자외선차단제)(?:을|를|으로)\s*\d*\s*(?:회|번|단계)?\s*(?:사용|세안|도포|바르)"),
+    re.compile(
+        r"(클렌징폼|클렌징\s*오일|보습제|선크림|자외선차단제)(?:을|를|으로)\s*\d*\s*(?:회|번|단계)?\s*(?:사용|세안|도포|바르)"
+    ),
 )
 
 
@@ -130,7 +143,6 @@ class ValidationReport:
     hard_negative_rows: int = 0
     english_relevant_solution_rows: int = 0
     split_counts: dict[str, int] = field(default_factory=dict)
-    shard_counts: dict[str, dict[str, int]] = field(default_factory=dict)
     pilot_bucket_counts: dict[str, int] = field(default_factory=dict)
     errors: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
@@ -159,7 +171,6 @@ class ValidationReport:
             "english_relevant_solution_rows": self.english_relevant_solution_rows,
             "english_relevant_solution_ratio": round(en_ratio, 4),
             "split_counts": self.split_counts,
-            "shard_counts": self.shard_counts,
             "pilot_bucket_counts": self.pilot_bucket_counts,
             "error_count": len(self.errors),
             "errors": self.errors,
@@ -248,6 +259,22 @@ def load_v67_index(v67_dir: pathlib.Path) -> V67SplitIndex:
     return index
 
 
+def load_external_reviews(review_path: pathlib.Path) -> dict[str, dict[str, Any]]:
+    """Load external Critic review JSONL keyed by row_id."""
+    if not review_path.exists():
+        raise FileNotFoundError(f"External critic review file not found: {review_path}")
+    reviews: dict[str, dict[str, Any]] = {}
+    for idx, line in enumerate(review_path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        obj = json.loads(line)
+        rid = obj.get("row_id")
+        if not isinstance(rid, str) or not rid.strip():
+            raise ValueError(f"{review_path}:{idx}: missing 'row_id'")
+        reviews[rid] = obj
+    return reviews
+
+
 def _is_valid_kb_value(value_type: str, value: Any) -> bool:
     if value_type == "integer":
         return isinstance(value, int) and not isinstance(value, bool)
@@ -298,11 +325,11 @@ def validate_rows(
     v67_index: V67SplitIndex,
     *,
     input_files: list[str] | None = None,
-    expected_shard: str | None = None,
-    merge_mode: bool = False,
     enforce_ratios: bool = False,
+    enforce_stage1_min_rows: bool = False,
     pilot_mode: bool = False,
     require_review: bool = False,
+    external_reviews: dict[str, dict[str, Any]] | None = None,
 ) -> ValidationReport:
     all_files = sorted(set(input_files or []) | {src for src, _, _ in file_rows})
     report = ValidationReport(files=all_files)
@@ -311,7 +338,6 @@ def validate_rows(
         report.errors.append("dataset has 0 rows; empty input is not allowed")
         return report
 
-    # Check that no individual input file is empty
     file_row_counts = Counter(src for src, _, _ in file_rows)
     for src in all_files:
         if file_row_counts[src] == 0:
@@ -325,10 +351,7 @@ def validate_rows(
     assistant_splits: dict[str, set[str]] = {}
     split_counter: Counter[str] = Counter()
     pilot_bucket_counter: Counter[str] = Counter()
-    shard_stats: dict[str, dict[str, int]] = {}
-    shard_bucket_counts: dict[str, Counter[str]] = {}
-    file_shards: dict[str, set[str]] = {}
-    shard_user_inputs: dict[str, set[str]] = {}
+    seen_user_inputs: set[str] = set()
     new_syn_family_splits: dict[str, set[str]] = {}
     new_syn_group_splits: dict[str, set[str]] = {}
     new_syn_split_counts: Counter[str] = Counter()
@@ -346,7 +369,6 @@ def validate_rows(
         scenario_id = row.get("scenario_id")
         group_id = row.get("group_id")
         family_id = row.get("scenario_family_id")
-        shard_letter: str | None = None
 
         if not isinstance(row_id, str):
             report.errors.append(f"{loc}: missing or non-string 'id'")
@@ -354,13 +376,9 @@ def validate_rows(
             m = ROW_ID_PATTERN.match(row_id)
             if not m:
                 report.errors.append(
-                    f"{loc}: invalid id format {row_id!r} (expected syn-{{a|b|c}}-{{sol|hold}}-0001)"
+                    f"{loc}: invalid id format {row_id!r} (expected syn-sol-0001 or syn-hold-0001)"
                 )
             else:
-                shard_letter = m.group("shard")
-                file_shards.setdefault(src, set()).add(shard_letter)
-                if expected_shard and shard_letter != expected_shard:
-                    report.errors.append(f"{loc}: id shard {shard_letter!r} != expected {expected_shard!r}")
                 expected_kind = "sol" if mode == "solution" else "hold" if mode == "hold" else None
                 if expected_kind and m.group("kind") != expected_kind:
                     report.errors.append(f"{loc}: id kind {m.group('kind')!r} mismatches mode {mode!r}")
@@ -421,8 +439,6 @@ def validate_rows(
                 )
             else:
                 pilot_bucket_counter[pilot_bucket] += 1
-                if shard_letter:
-                    shard_bucket_counts.setdefault(shard_letter, Counter())[pilot_bucket] += 1
                 if pilot_bucket == "hold" and mode != "hold":
                     report.errors.append(f"{loc}: pilot_bucket='hold' requires mode='hold'")
                 if pilot_bucket != "hold" and mode == "hold":
@@ -434,13 +450,14 @@ def validate_rows(
         prov = row.get("provenance")
         source_scenario_id: str | None = None
         source_turn_id: str | None = None
+        src_origin: str | None = None
+        gen_model: str | None = None
         is_high_risk = mode == "hold" or hn_type == "version_mismatch_or_unknown"
         if is_high_risk:
             high_risk_rows += 1
 
         if not isinstance(prov, dict):
             report.errors.append(f"{loc}: missing or non-dict 'provenance'")
-            src_origin = None
         else:
             src_origin = prov.get("source_origin")
             if src_origin not in ALLOWED_SOURCE_ORIGINS:
@@ -493,13 +510,13 @@ def validate_rows(
                     report.errors.append(
                         f"{loc}: provenance.critic_model must differ from generator_model for cross-model critique"
                     )
-            elif require_review:
+            elif require_review and external_reviews is None:
                 report.errors.append(f"{loc}: --require-review requires non-null provenance.critic_model")
 
             critic_status = prov.get("critic_status", "unreviewed")
             if critic_status not in ALLOWED_CRITIC_STATUSES:
                 report.errors.append(f"{loc}: invalid provenance.critic_status {critic_status!r}")
-            elif require_review and critic_status != "PASS":
+            elif require_review and external_reviews is None and critic_status != "PASS":
                 report.errors.append(f"{loc}: --require-review requires provenance.critic_status == 'PASS'")
 
             human_review = prov.get("human_review")
@@ -507,6 +524,24 @@ def validate_rows(
                 report.errors.append(f"{loc}: invalid provenance.human_review {human_review!r}")
             elif is_high_risk and human_review == "approved":
                 high_risk_human_approved += 1
+
+        # External Critic review sidecar verification
+        if external_reviews is not None and isinstance(row_id, str):
+            ext = external_reviews.get(row_id)
+            if ext is None:
+                report.errors.append(f"{loc}: missing external critic review record for row_id {row_id!r}")
+            else:
+                if ext.get("decision") != "PASS":
+                    report.errors.append(
+                        f"{loc}: external critic review decision for {row_id!r} is {ext.get('decision')!r} (expected 'PASS')"
+                    )
+                ext_model = ext.get("critic_model")
+                if not isinstance(ext_model, str) or not ext_model.strip():
+                    report.errors.append(f"{loc}: external critic review missing 'critic_model' for {row_id!r}")
+                elif isinstance(gen_model, str) and ext_model.strip().lower() == gen_model.strip().lower():
+                    report.errors.append(
+                        f"{loc}: external critic_model {ext_model!r} must differ from generator_model {gen_model!r}"
+                    )
 
         # 2. v67 split-preservation & leakage checks
         for sid_check in (scenario_id, source_scenario_id):
@@ -599,12 +634,6 @@ def validate_rows(
         elif req.mode == "hold":
             report.hold_rows += 1
 
-        if shard_letter:
-            s_entry = shard_stats.setdefault(shard_letter, {"total": 0, "solution": 0, "hold": 0})
-            s_entry["total"] += 1
-            if req.mode in ("solution", "hold"):
-                s_entry[req.mode] += 1
-
         # 5. KB variable registry & value_type validation
         for var_key, obs in req.confirmed_observations.items():
             if obs.variable_id != var_key:
@@ -618,7 +647,22 @@ def validate_rows(
                         f"{loc}: variable {var_key!r} expects KB value_type={vtype!r}, got {type(obs.value).__name__} ({obs.value!r})"
                     )
 
-        # 6. Evidence refs, input backing, chunk_origins, and KB source_registry exact metadata
+        # 5b. Controlled vocabulary checks for kb_judgments.status and product_evidence.status
+        for j in req.kb_judgments:
+            if isinstance(j, dict):
+                j_status = j.get("status")
+                if j_status not in ALLOWED_KB_JUDGMENT_STATUSES:
+                    report.errors.append(
+                        f"{loc}: kb_judgment status {j_status!r} not in controlled vocabulary {sorted(ALLOWED_KB_JUDGMENT_STATUSES)}"
+                    )
+        for p in req.product_evidence:
+            if isinstance(p, dict) and "status" in p and p["status"] is not None:
+                if p["status"] not in ALLOWED_PRODUCT_EVIDENCE_STATUSES:
+                    report.errors.append(
+                        f"{loc}: product_evidence status {p['status']!r} not in controlled vocabulary {sorted(ALLOWED_PRODUCT_EVIDENCE_STATUSES)}"
+                    )
+
+        # 6. Evidence refs, input backing, computed catalog versions, chunk_origins, source_registry
         for ref_id in req.allowed_evidence_refs + req.distractor_refs:
             err = _validate_ref_id(ref_id, kb_index)
             if err:
@@ -634,7 +678,6 @@ def validate_rows(
         chunk_refs_seen: set[str] = set()
         has_english_relevant_kb_chunk = False
 
-        # Collect actually present backing evidence from SLMRequest payload
         judgment_card_ids = {
             j.get("card_id") for j in req.kb_judgments if isinstance(j, dict) and isinstance(j.get("card_id"), str)
         }
@@ -699,11 +742,9 @@ def validate_rows(
                         report.errors.append(
                             f"{loc}: rag_chunk {cref!r}.{chunk_field} does not match KB source_registry.{kb_field}"
                         )
-            # Only kb_source_summary chunks in allowed_evidence_refs count for English relevant ratio
             if cref in allowed_set and origin == "kb_source_summary" and _is_english_text(chunk.text):
                 has_english_relevant_kb_chunk = True
 
-        # Verify every allowed_evidence_ref is actually backed by input payload
         for aref in req.allowed_evidence_refs:
             if aref.startswith("ref:") and aref not in chunk_refs_seen:
                 report.errors.append(f"{loc}: allowed_evidence_ref {aref!r} not backed by any input rag_chunks")
@@ -762,22 +803,19 @@ def validate_rows(
             if pat.search(asst_content):
                 report.errors.append(f"{loc}: assistant response violated clinical guardrail {pat.pattern!r}")
 
-        # 8b. Pilot uniqueness and bucket-level structural sanity checks
+        # 8b. Pilot uniqueness & semantic bucket checks
         if pilot_mode:
-            if shard_letter:
-                norm_user = _normalize_text(user_content)
-                seen_inputs = shard_user_inputs.setdefault(shard_letter, set())
-                if norm_user in seen_inputs:
-                    report.errors.append(
-                        f"{loc}: pilot check: duplicate user SLMRequest payload within shard {shard_letter!r}"
-                    )
-                else:
-                    seen_inputs.add(norm_user)
+            norm_user = _normalize_text(user_content)
+            if norm_user in seen_user_inputs:
+                report.errors.append(f"{loc}: pilot check: duplicate user SLMRequest payload")
+            else:
+                seen_user_inputs.add(norm_user)
+
             if pilot_bucket == "unknown_or_version":
                 has_unknown_obs = any(obs.state == "unknown" for obs in req.confirmed_observations.values())
                 has_version_signal = any(
                     isinstance(j, dict)
-                    and (j.get("status") in ("unknown", "usage_held") or "버전" in str(j.get("guidance", "")))
+                    and (j.get("status") == "unknown" or "버전" in str(j.get("guidance", "")))
                     for j in req.kb_judgments
                 ) or any(
                     isinstance(p, dict) and p.get("status") == "usage_held"
@@ -785,7 +823,7 @@ def validate_rows(
                 )
                 if not (has_unknown_obs or has_version_signal or hn_type == "version_mismatch_or_unknown"):
                     report.errors.append(
-                        f"{loc}: pilot_bucket='unknown_or_version' must actually contain unknown observation, usage_held/version signal, or version_mismatch_or_unknown"
+                        f"{loc}: pilot_bucket='unknown_or_version' must include unknown observation, usage_held/version signal, or version_mismatch_or_unknown"
                     )
             elif pilot_bucket == "distractor_or_defense":
                 has_probe = any(v == "synthetic_defense_probe" for v in chunk_origins.values())
@@ -807,18 +845,17 @@ def validate_rows(
                 report.errors.append(f"cross-split leakage: {label} {key!r} appears in multiple splits {sorted(splits)}")
 
     report.split_counts = dict(split_counter)
-    report.shard_counts = shard_stats
     report.pilot_bucket_counts = dict(pilot_bucket_counter)
 
     # Human sample review check when --require-review is enabled
     if require_review and high_risk_rows > 0:
-        min_needed = max(1, (high_risk_rows + 9) // 10)  # >= 10% ceiling
+        min_needed = max(1, (high_risk_rows + 9) // 10)
         if high_risk_human_approved < min_needed:
             report.errors.append(
                 f"review check: high-risk human_review=='approved' count {high_risk_human_approved} < required 10% ({min_needed}/{high_risk_rows})"
             )
 
-    # 9. Pilot & distribution / ratio checks
+    # 9. Pilot & Stage-1 distribution / ratio checks
     hold_ratio = report.hold_rows / report.total_rows
     hn_ratio = report.hard_negative_rows / report.total_rows
     en_ratio = (
@@ -827,72 +864,43 @@ def validate_rows(
         else 0.0
     )
 
-    # File-to-shard 1:1 integrity check in merge mode
-    if merge_mode:
-        if len(all_files) != 3:
-            report.errors.append(f"merge check: expected exactly 3 shard files (a, b, c), got {len(all_files)}")
-        seen_file_shards: set[str] = set()
-        for src in all_files:
-            shards_in_file = file_shards.get(src, set())
-            if len(shards_in_file) != 1:
-                report.errors.append(
-                    f"merge check: file {src!r} must contain rows from exactly 1 shard, got {sorted(shards_in_file)}"
-                )
-            else:
-                only_shard = next(iter(shards_in_file))
-                if only_shard in seen_file_shards:
-                    report.errors.append(f"merge check: duplicate shard {only_shard!r} across multiple files")
-                seen_file_shards.add(only_shard)
-        if seen_file_shards != {"a", "b", "c"}:
-            report.errors.append(f"merge check: expected shards {{'a', 'b', 'c'}}, got {sorted(seen_file_shards)}")
-
     if pilot_mode:
-        if merge_mode:
-            if report.total_rows != 36:
-                report.errors.append(f"pilot merge check: expected 36 total rows, got {report.total_rows}")
-            for s in ("a", "b", "c"):
-                st = shard_stats.get(s, {"total": 0, "solution": 0, "hold": 0})
-                if st["total"] != 12 or st["solution"] != 9 or st["hold"] != 3:
-                    report.errors.append(
-                        f"pilot merge check: shard {s!r} expected 12 rows (9 sol / 3 hold), got {st}"
-                    )
-                sb = shard_bucket_counts.get(s, Counter())
-                for bucket in sorted(ALLOWED_PILOT_BUCKETS):
-                    if sb[bucket] != 3:
-                        report.errors.append(
-                            f"pilot merge check: shard {s!r} bucket {bucket!r} expected 3 rows, got {sb[bucket]}"
-                        )
-        else:
-            if report.total_rows != 12 or report.solution_rows != 9 or report.hold_rows != 3:
+        if (
+            report.total_rows != PILOT_TOTAL_ROWS
+            or report.solution_rows != PILOT_SOLUTION_ROWS
+            or report.hold_rows != PILOT_HOLD_ROWS
+        ):
+            report.errors.append(
+                f"pilot check: expected {PILOT_TOTAL_ROWS} rows ({PILOT_SOLUTION_ROWS} sol / {PILOT_HOLD_ROWS} hold), got total={report.total_rows}, sol={report.solution_rows}, hold={report.hold_rows}"
+            )
+        for bucket in sorted(ALLOWED_PILOT_BUCKETS):
+            if pilot_bucket_counter[bucket] != PILOT_PER_BUCKET:
                 report.errors.append(
-                    f"pilot shard check: expected 12 rows (9 sol / 3 hold), got total={report.total_rows}, sol={report.solution_rows}, hold={report.hold_rows}"
+                    f"pilot check: bucket {bucket!r} expected {PILOT_PER_BUCKET} rows, got {pilot_bucket_counter[bucket]}"
                 )
-            for bucket in sorted(ALLOWED_PILOT_BUCKETS):
-                if pilot_bucket_counter[bucket] != 3:
-                    report.errors.append(
-                        f"pilot shard check: bucket {bucket!r} expected 3 rows, got {pilot_bucket_counter[bucket]}"
-                    )
         if hn_ratio < 0.25:
             report.errors.append(f"pilot check: hard_negative_ratio {hn_ratio:.3f} < 0.25")
     elif enforce_ratios:
-        if merge_mode:
-            if report.total_rows < 2100:
-                report.errors.append(f"final merge check: expected >= 2100 total rows, got {report.total_rows}")
-            for s, req_counts in FULL_MERGE_MIN_TARGETS.items():
-                st = shard_stats.get(s, {"total": 0, "solution": 0, "hold": 0})
-                if st["solution"] < req_counts["solution"] or st["hold"] < req_counts["hold"]:
-                    report.errors.append(
-                        f"final merge check: shard {s!r} requires >= {req_counts}, got {st}"
-                    )
+        if enforce_stage1_min_rows:
+            if report.total_rows < STAGE1_MIN_TOTAL_ROWS:
+                report.errors.append(
+                    f"stage1 check: expected >= {STAGE1_MIN_TOTAL_ROWS} total rows, got {report.total_rows}"
+                )
+            if report.solution_rows < STAGE1_MIN_SOLUTION_ROWS:
+                report.errors.append(
+                    f"stage1 check: expected >= {STAGE1_MIN_SOLUTION_ROWS} solution rows, got {report.solution_rows}"
+                )
+            if report.hold_rows < STAGE1_MIN_HOLD_ROWS:
+                report.errors.append(
+                    f"stage1 check: expected >= {STAGE1_MIN_HOLD_ROWS} hold rows, got {report.hold_rows}"
+                )
         if split_counter["val_internal"] == 0:
             report.errors.append("split check: val_internal must not be empty in final submission")
         total_new_syn = sum(new_syn_split_counts.values())
         if total_new_syn > 0:
-            new_syn_val_rows = new_syn_split_counts["val_internal"]
-            if new_syn_val_rows == 0:
+            if new_syn_split_counts["val_internal"] == 0:
                 report.errors.append("split check: new_synthetic val_internal must not be empty")
             else:
-                # Family-level & group-level 90/10 split check (allow 7%-13% tolerance for indivisible families)
                 val_families = sum(1 for sp in new_syn_family_splits.values() if sp == {"val_internal"})
                 total_families = len(new_syn_family_splits)
                 if total_families >= 10:
@@ -944,16 +952,21 @@ def load_jsonl_files(paths: list[pathlib.Path]) -> tuple[list[tuple[str, int, di
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Validate Ppopy v3 QLoRA synthetic JSONL shards.")
-    parser.add_argument("--input", nargs="+", required=True, help="One or more JSONL shard paths.")
-    parser.add_argument("--shard", choices=("a", "b", "c"), default=None, help="Enforce single-shard ID prefix.")
-    parser.add_argument("--merge", action="store_true", help="Merged multi-shard validation mode.")
-    parser.add_argument("--pilot", action="store_true", help="Pilot mode (12 turns/member, 36 merged across A/B/C).")
-    parser.add_argument("--enforce-ratios", action="store_true", help="Fail if hold/HN/EN ratios are out of target.")
+    parser = argparse.ArgumentParser(description="Validate Ppopy v3 QLoRA synthetic JSONL dataset.")
+    parser.add_argument("--input", nargs="+", required=True, help="Dataset JSONL path(s).")
+    parser.add_argument("--pilot", action="store_true", help="24-row pilot gate (18 sol / 6 hold, 4 buckets x 6).")
+    parser.add_argument("--stage1", action="store_true", help="Stage-1 full training gate (>=900 rows + ratios + 90/10 split).")
+    parser.add_argument("--enforce-ratios", action="store_true", help="Enforce hold/HN/EN/val_internal ratios.")
     parser.add_argument(
         "--require-review",
         action="store_true",
-        help="Final submission gate: require cross-model critic PASS and >=10%% human review on high-risk rows.",
+        help="Require cross-model critic PASS and >=10%% human review on high-risk rows.",
+    )
+    parser.add_argument(
+        "--review-file",
+        type=pathlib.Path,
+        default=None,
+        help="Optional external critic review JSONL file (row_id, critic_model, decision).",
     )
     parser.add_argument(
         "--kb-dir",
@@ -974,17 +987,18 @@ def main(argv: list[str] | None = None) -> int:
     file_rows, parse_errors = load_jsonl_files(paths)
     kb_index = load_kb_index(args.kb_dir)
     v67_index = load_v67_index(args.v67_dir)
+    external_reviews = load_external_reviews(args.review_file) if args.review_file else None
 
     report = validate_rows(
         file_rows,
         kb_index,
         v67_index,
         input_files=[str(p) for p in paths],
-        expected_shard=args.shard,
-        merge_mode=args.merge,
-        enforce_ratios=args.enforce_ratios or (args.merge and not args.pilot),
+        enforce_ratios=args.enforce_ratios or args.stage1,
+        enforce_stage1_min_rows=args.stage1,
         pilot_mode=args.pilot,
-        require_review=args.require_review,
+        require_review=args.require_review or (external_reviews is not None),
+        external_reviews=external_reviews,
     )
     report.errors = parse_errors + report.errors
 

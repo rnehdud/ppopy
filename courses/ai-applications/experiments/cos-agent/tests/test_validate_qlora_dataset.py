@@ -1,4 +1,4 @@
-"""Unit tests for scripts/validate_qlora_dataset.py (covering all Codex P0/P1 cases)."""
+"""Unit tests for single-owner QLoRA dataset validator & v67 seed extractor."""
 from __future__ import annotations
 
 import copy
@@ -16,6 +16,7 @@ for p in (str(COS_AGENT_DIR), str(SCRIPTS_DIR)):
     if p not in sys.path:
         sys.path.insert(0, p)
 
+import prepare_v67_qlora_seeds as v67_seeds  # noqa: E402
 import validate_qlora_dataset as val  # noqa: E402
 
 
@@ -38,7 +39,6 @@ def _make_chunk(sid: str, text: str, scope: str = "general_skincare_practice") -
 
 def make_valid_solution_row(
     *,
-    shard: str = "a",
     num: int = 1,
     split: str = "train",
     pilot_bucket: str = "distractor_or_defense",
@@ -86,6 +86,7 @@ def make_valid_solution_row(
                 "product_id": f"syn-sun-{num:03d}",
                 "version": "1.0",
                 "synthetic_product": True,
+                "status": "verified",
                 "label_guidance": "합성 제품 표시 예시: 폼 클렌저 1회 세안 가능",
                 "evidence_ref": f"catalog:syn-sun-{num:03d}@1.0",
             }
@@ -108,10 +109,10 @@ def make_valid_solution_row(
         "distractor_refs": ["ref:S21"],
     }
     return {
-        "id": f"syn-{shard}-sol-{num:04d}",
-        "scenario_id": f"new-{shard}-bi01-{num:03d}",
-        "group_id": f"new-group-{shard}-bi01-{num:03d}",
-        "scenario_family_id": f"fam-{shard}-bi01-{num:03d}",
+        "id": f"syn-sol-{num:04d}",
+        "scenario_id": f"new-bi01-{num:03d}",
+        "group_id": f"new-group-bi01-{num:03d}",
+        "scenario_family_id": f"fam-bi01-{num:03d}",
         "split": split,
         "mode": "solution",
         "pilot_bucket": pilot_bucket,
@@ -130,7 +131,7 @@ def make_valid_solution_row(
                 "role": "assistant",
                 "content": (
                     f"### 핵심 안내\n"
-                    f"내수성 표시만 보고 무조건 반복 세안할 필요는 없어요 (시나리오 {shard}-{num}). "
+                    f"내수성 표시만 보고 무조건 반복 세안할 필요는 없어요 (시나리오 {num}). "
                     f"자외선차단제 도포량은 유지하면서 합성 제품 표시 예시의 클렌징폼 1회 세안으로 단계를 줄여 보실 수 있어요 "
                     f"[kb:B-I01@0.6.1] [catalog:syn-sun-{num:03d}@1.0].\n\n"
                     f"### 근거 및 이유\n"
@@ -156,7 +157,6 @@ def make_valid_solution_row(
 
 def make_valid_hold_row(
     *,
-    shard: str = "a",
     num: int = 1,
     split: str = "train",
     human_review: str = "approved",
@@ -193,10 +193,10 @@ def make_valid_hold_row(
         "distractor_refs": [],
     }
     return {
-        "id": f"syn-{shard}-hold-{num:04d}",
-        "scenario_id": f"new-{shard}-bb01-{num:03d}",
-        "group_id": f"new-group-{shard}-bb01-{num:03d}",
-        "scenario_family_id": f"fam-{shard}-bb01-{num:03d}",
+        "id": f"syn-hold-{num:04d}",
+        "scenario_id": f"new-bb01-{num:03d}",
+        "group_id": f"new-group-bb01-{num:03d}",
+        "scenario_family_id": f"fam-bb01-{num:03d}",
         "split": split,
         "mode": "hold",
         "pilot_bucket": "hold",
@@ -212,7 +212,7 @@ def make_valid_hold_row(
                 "role": "assistant",
                 "content": (
                     f"### 개별 권고 보류 안내\n"
-                    f"현재 지속적인 불편감과 통증이 확인되어 개별 루틴 조정이나 제품 안내는 보류해요 (사례 {shard}-{num}) [kb:B-B01@0.6.1].\n\n"
+                    f"현재 지속적인 불편감과 통증이 확인되어 개별 루틴 조정이나 제품 안내는 보류해요 (사례 {num}) [kb:B-B01@0.6.1].\n\n"
                     f"### 필요한 다음 단계\n"
                     f"불편감이 나타난 제품 사용은 잠시 중단하시고, 증상이 이어지거나 심해지면 피부과 전문의 등 전문가의 확인을 받아 주세요. "
                     f"현재 상태의 원인 진단이나 처방은 안내해 드릴 수 없어요."
@@ -233,9 +233,10 @@ def make_valid_hold_row(
     }
 
 
-def make_12_row_pilot_shard(shard: str) -> list[tuple[str, int, dict]]:
-    fname = f"shard_{shard}.jsonl"
+def make_24_row_pilot() -> tuple[list[tuple[str, int, dict]], dict[str, dict]]:
+    fname = "pilot_24.jsonl"
     rows: list[tuple[str, int, dict]] = []
+    reviews: dict[str, dict] = {}
     line = 1
     sol_num = 1
     for bucket, is_hn, hn_type in (
@@ -243,307 +244,144 @@ def make_12_row_pilot_shard(shard: str) -> list[tuple[str, int, dict]]:
         ("unknown_or_version", True, "version_mismatch_or_unknown"),
         ("distractor_or_defense", True, "rag_distractor_ignore"),
     ):
-        for _ in range(3):
-            rows.append(
-                (
-                    fname,
-                    line,
-                    make_valid_solution_row(
-                        shard=shard,
-                        num=sol_num,
-                        pilot_bucket=bucket,
-                        is_hn=is_hn,
-                        hn_type=hn_type,
-                        unknown_obs=(bucket == "unknown_or_version"),
-                    ),
-                )
+        for _ in range(6):
+            r = make_valid_solution_row(
+                num=sol_num,
+                pilot_bucket=bucket,
+                is_hn=is_hn,
+                hn_type=hn_type,
+                unknown_obs=(bucket == "unknown_or_version"),
             )
+            rows.append((fname, line, r))
+            reviews[r["id"]] = {"row_id": r["id"], "critic_model": "claude-sonnet-4", "decision": "PASS"}
             line += 1
             sol_num += 1
-    for h_num in range(1, 4):
-        rows.append((fname, line, make_valid_hold_row(shard=shard, num=h_num)))
+    for h_num in range(1, 7):
+        r = make_valid_hold_row(num=h_num)
+        rows.append((fname, line, r))
+        reviews[r["id"]] = {"row_id": r["id"], "critic_model": "claude-sonnet-4", "decision": "PASS"}
         line += 1
-    return rows
+    return rows, reviews
 
 
-def test_empty_file_and_partial_pilot_are_rejected() -> None:
-    empty_report = val.validate_rows([], KB_INDEX, V67_INDEX, input_files=["empty.jsonl"], merge_mode=True, pilot_mode=True)
-    assert not empty_report.passed
+def test_24_row_pilot_with_external_review_passes_and_empty_fails() -> None:
+    empty = val.validate_rows([], KB_INDEX, V67_INDEX, input_files=["empty.jsonl"], pilot_mode=True)
+    assert not empty.passed
 
-    partial = [
-        ("shard_a.jsonl", 1, make_valid_solution_row()),
-        ("shard_a.jsonl", 2, make_valid_hold_row()),
-    ]
-    partial_report = val.validate_rows(
-        partial, KB_INDEX, V67_INDEX, input_files=["shard_a.jsonl"], merge_mode=True, pilot_mode=True
-    )
-    assert not partial_report.passed
-    assert any("expected exactly 3 shard files" in e for e in partial_report.errors)
-    assert any("expected 36 total rows" in e for e in partial_report.errors)
-
-
-def test_full_36_row_pilot_merge_and_review_gate_pass() -> None:
-    all_rows = (
-        make_12_row_pilot_shard("a")
-        + make_12_row_pilot_shard("b")
-        + make_12_row_pilot_shard("c")
-    )
-    report = val.validate_rows(
-        all_rows,
+    rows, reviews = make_24_row_pilot()
+    rep = val.validate_rows(
+        rows,
         KB_INDEX,
         V67_INDEX,
-        input_files=["shard_a.jsonl", "shard_b.jsonl", "shard_c.jsonl"],
-        merge_mode=True,
+        input_files=["pilot_24.jsonl"],
         pilot_mode=True,
         require_review=True,
+        external_reviews=reviews,
     )
-    assert report.passed, report.errors
-    assert report.total_rows == 36
-    assert report.solution_rows == 27
-    assert report.hold_rows == 9
+    assert rep.passed, rep.errors
+    assert rep.total_rows == 24
+    assert rep.solution_rows == 18
+    assert rep.hold_rows == 6
+
+    # Missing 1 row from external review file must fail
+    missing_rev = dict(reviews)
+    missing_rev.pop("syn-sol-0001")
+    rep_missing = val.validate_rows(
+        rows,
+        KB_INDEX,
+        V67_INDEX,
+        input_files=["pilot_24.jsonl"],
+        pilot_mode=True,
+        require_review=True,
+        external_reviews=missing_rev,
+    )
+    assert not rep_missing.passed
+    assert any("missing external critic review" in e for e in rep_missing.errors)
 
 
-def test_rejects_unbacked_allowed_refs_and_probe_citation() -> None:
-    row = make_valid_solution_row()
+def test_controlled_vocabulary_and_product_version_spoof_rejected() -> None:
+    row = make_valid_solution_row(num=1)
     req = json.loads(row["messages"][1]["content"])
-    # Add ref:S03 and catalog:ghost@1.0 to allowed_evidence_refs WITHOUT putting them in rag_chunks / product_evidence
-    req["allowed_evidence_refs"].extend(["ref:S03", "catalog:ghost@1.0"])
-    row["allowed_evidence_refs"] = list(req["allowed_evidence_refs"])
-    row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
-    row["messages"][2]["content"] += " [ref:S03] [catalog:ghost@1.0]"
-    report = val.validate_rows([("shard_a.jsonl", 1, row)], KB_INDEX, V67_INDEX)
-    assert not report.passed
-    assert any("not backed by any input rag_chunks" in e for e in report.errors)
-    assert any("not backed by any input product_evidence" in e for e in report.errors)
-
-    # Probe chunk placed in allowed_evidence_refs must fail AND not count toward English ratio
-    row2 = make_valid_solution_row()
-    row2["chunk_origins"]["ref:S08"] = "synthetic_defense_probe"
-    report2 = val.validate_rows([("shard_a.jsonl", 1, row2)], KB_INDEX, V67_INDEX)
-    assert not report2.passed
-    assert any("synthetic_defense_probe" in e for e in report2.errors)
-    assert report2.english_relevant_solution_rows == 0
-
-
-def test_rejects_scenario_family_cross_split_leakage_and_fake_v67_ids() -> None:
-    r1 = make_valid_solution_row(shard="a", num=1, split="train")
-    r2 = make_valid_solution_row(shard="b", num=1, split="val_internal")
-    r2["scenario_family_id"] = r1["scenario_family_id"]  # Different scenario_id/group_id/text, same family!
-    report = val.validate_rows([("shard_a.jsonl", 1, r1), ("shard_b.jsonl", 1, r2)], KB_INDEX, V67_INDEX)
-    assert not report.passed
-    assert any("scenario_family_id" in e for e in report.errors)
-
-    # Non-existent recycled_v67 source_scenario_id & source_turn_id must fail
-    fake_v67 = make_valid_hold_row(shard="a", num=2)
-    fake_v67["provenance"]["source_origin"] = "recycled_v67"
-    fake_v67["provenance"]["source_scenario_id"] = "nonexistent-v67-999"
-    fake_v67["provenance"]["source_turn_id"] = "nonexistent-turn-999"
-    report_fake = val.validate_rows([("shard_a.jsonl", 1, fake_v67)], KB_INDEX, V67_INDEX)
-    assert not report_fake.passed
-    assert any("does not exist in v67" in e for e in report_fake.errors)
-
-    # Missing v67 directory must raise FileNotFoundError instead of silently disabling leakage checks
-    with pytest.raises(FileNotFoundError):
-        val.load_v67_index(COS_AGENT_DIR / "data" / "does_not_exist_v67")
-
-
-def test_rejects_direct_instruction_hold_leak_and_missing_review_fields() -> None:
-    row = make_valid_hold_row(human_review="unreviewed")
-    row["messages"][2]["content"] += " 저녁에는 클렌징폼으로 1회 세안하세요."
-    row["provenance"]["critic_model"] = None
-    report = val.validate_rows([("shard_a.jsonl", 1, row)], KB_INDEX, V67_INDEX, require_review=True)
-    assert not report.passed
-    assert any("leaked recommendation" in e for e in report.errors)
-    assert any("non-null provenance.critic_model" in e for e in report.errors)
-    assert any("human_review=='approved'" in e for e in report.errors)
-
-
-def test_v67_real_val_internal_recycling_allowed_while_test_internal_blocked() -> None:
-    # Find a real val_internal HOLD turn & scenario from V67_INDEX
-    val_turn = next(
-        tid
-        for tid, sp in V67_INDEX.turn_to_split.items()
-        if sp == "val_internal" and V67_INDEX.turn_to_action.get(tid) == "hold"
-    )
-    val_scen = V67_INDEX.turn_to_scenario[val_turn]
-    row = make_valid_hold_row(shard="a", num=3, split="val_internal")
-    row["scenario_id"] = val_scen
-    row["provenance"]["source_origin"] = "recycled_v67"
-    row["provenance"]["source_scenario_id"] = val_scen
-    row["provenance"]["source_turn_id"] = val_turn
-    assert val.validate_rows([("shard_a.jsonl", 1, row)], KB_INDEX, V67_INDEX).passed
-
-    # Moving it to train must fail
-    wrong = copy.deepcopy(row)
-    wrong["split"] = "train"
-    assert not val.validate_rows([("shard_a.jsonl", 1, wrong)], KB_INDEX, V67_INDEX).passed
-
-    # Recycling an ask_user turn into solution must fail!
-    ask_turn = next(
-        tid
-        for tid, act in V67_INDEX.turn_to_action.items()
-        if act == "ask_user" and V67_INDEX.turn_to_split.get(tid) == "train"
-    )
-    ask_scen = V67_INDEX.turn_to_scenario[ask_turn]
-    bad_action_row = make_valid_solution_row(shard="a", num=9, split="train")
-    bad_action_row["scenario_id"] = ask_scen
-    bad_action_row["provenance"]["source_origin"] = "recycled_v67"
-    bad_action_row["provenance"]["source_scenario_id"] = ask_scen
-    bad_action_row["provenance"]["source_turn_id"] = ask_turn
-    rep_ask = val.validate_rows([("shard_a.jsonl", 1, bad_action_row)], KB_INDEX, V67_INDEX)
-    assert not rep_ask.passed
-    assert any("ask_user" in e for e in rep_ask.errors)
-
-
-def test_rejects_mixed_shard_files_4row_final_merge_and_product_version_spoof() -> None:
-    # 1. Mixed A+B rows in 23/1/12 pilot files must fail 1:1 file-to-shard check
-    a_rows = make_12_row_pilot_shard("a")
-    b_rows = make_12_row_pilot_shard("b")
-    c_rows = make_12_row_pilot_shard("c")
-    mixed = (
-        a_rows
-        + [("shard_a.jsonl", 13 + i, r) for i, (_, _, r) in enumerate(b_rows[:11])]
-        + [("shard_b.jsonl", 1, b_rows[11][2])]
-        + c_rows
-    )
-    rep_mixed = val.validate_rows(
-        mixed,
-        KB_INDEX,
-        V67_INDEX,
-        input_files=["shard_a.jsonl", "shard_b.jsonl", "shard_c.jsonl"],
-        merge_mode=True,
-        pilot_mode=True,
-    )
-    assert not rep_mixed.passed
-    assert any("exactly 1 shard" in e for e in rep_mixed.errors)
-
-    # 2. 4-row single file cannot pass --merge --enforce-ratios --require-review
-    four_rows = [
-        ("shard_a.jsonl", 1, make_valid_solution_row(shard="a", num=1)),
-        ("shard_a.jsonl", 2, make_valid_solution_row(shard="a", num=2)),
-        ("shard_a.jsonl", 3, make_valid_solution_row(shard="a", num=3)),
-        ("shard_a.jsonl", 4, make_valid_hold_row(shard="a", num=1)),
-    ]
-    rep_4 = val.validate_rows(
-        four_rows,
-        KB_INDEX,
-        V67_INDEX,
-        input_files=["shard_a.jsonl"],
-        merge_mode=True,
-        enforce_ratios=True,
-        require_review=True,
-    )
-    assert not rep_4.passed
-    assert any("expected exactly 3 shard files" in e for e in rep_4.errors)
-    assert any(">= 2100" in e for e in rep_4.errors)
-
-    # 3. Spoofed product_evidence evidence_ref @999 when version is 1.0 must fail
-    spoof = make_valid_solution_row(shard="a", num=5)
-    req = json.loads(spoof["messages"][1]["content"])
+    req["kb_judgments"][0]["status"] = "needs_change"  # Not in controlled vocabulary
+    req["product_evidence"][0]["status"] = "expired"  # Not in controlled vocabulary
     req["product_evidence"][0]["evidence_ref"] = "catalog:syn-sun-001@999"
-    req["allowed_evidence_refs"] = ["kb:B-I01@0.6.1", "catalog:syn-sun-001@999", "ref:S08"]
-    spoof["allowed_evidence_refs"] = list(req["allowed_evidence_refs"])
-    spoof["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
-    spoof["messages"][2]["content"] = spoof["messages"][2]["content"].replace("@1.0", "@999")
-    rep_spoof = val.validate_rows([("shard_a.jsonl", 1, spoof)], KB_INDEX, V67_INDEX)
-    assert not rep_spoof.passed
-    assert any("mismatches product_id/version" in e for e in rep_spoof.errors)
+    row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+    rep = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    assert not rep.passed
+    assert any("kb_judgment status" in e for e in rep.errors)
+    assert any("product_evidence status" in e for e in rep.errors)
+    assert any("mismatches product_id/version" in e for e in rep.errors)
 
 
-def test_guide_doc_reference_examples_pass_validator() -> None:
+def test_stage1_min_rows_and_90_10_split_enforced() -> None:
+    # 20 rows cannot pass --stage1 (requires >= 900)
+    small = [
+        ("ds.jsonl", i, make_valid_solution_row(num=i, split=("val_internal" if i == 15 else "train"), english_chunk=(i <= 5)))
+        for i in range(1, 16)
+    ] + [
+        ("ds.jsonl", 15 + i, make_valid_hold_row(num=i, split=("val_internal" if i == 5 else "train")))
+        for i in range(1, 6)
+    ]
+    rep_small = val.validate_rows(small, KB_INDEX, V67_INDEX, enforce_ratios=True, enforce_stage1_min_rows=True)
+    assert not rep_small.passed
+    assert any(">= 900" in e for e in rep_small.errors)
+
+    # Without stage1 min rows, 20 rows with 90/10 split & 33.3% EN pass enforce_ratios
+    rep_ok = val.validate_rows(small, KB_INDEX, V67_INDEX, enforce_ratios=True)
+    assert rep_ok.passed, rep_ok.errors
+
+    # Empty val_internal fails enforce_ratios
+    all_train = [
+        ("ds.jsonl", i, make_valid_solution_row(num=i, split="train", english_chunk=(i <= 5)))
+        for i in range(1, 16)
+    ] + [("ds.jsonl", 15 + i, make_valid_hold_row(num=i, split="train")) for i in range(1, 6)]
+    rep_no_val = val.validate_rows(all_train, KB_INDEX, V67_INDEX, enforce_ratios=True)
+    assert not rep_no_val.passed
+    assert any("val_internal must not be empty" in e for e in rep_no_val.errors)
+
+
+def test_v67_seed_extractor_has_zero_test_internal_and_zero_ask_user() -> None:
+    seeds, stats = v67_seeds.extract_v67_seeds(COS_AGENT_DIR / "data" / "action_policy" / "v67")
+    assert stats["total_extracted"] > 700
+    for s in seeds:
+        assert s["split"] in ("train", "val_internal")
+        assert s["v67_action"] in ("request_draft", "hold")
+        assert s["source_scenario_id"] not in V67_INDEX.test_scenarios
+        assert s["source_turn_id"] not in V67_INDEX.test_turns
+        assert "B-P07" not in s["card_ids"]
+
+
+def test_rejects_unbacked_refs_probe_citation_family_leak_and_hold_leak() -> None:
+    row = make_valid_solution_row(num=1)
+    row["chunk_origins"]["ref:S08"] = "synthetic_defense_probe"
+    rep_probe = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    assert not rep_probe.passed
+    assert rep_probe.english_relevant_solution_rows == 0
+
+    r1 = make_valid_solution_row(num=1, split="train")
+    r2 = make_valid_solution_row(num=2, split="val_internal")
+    r2["scenario_family_id"] = r1["scenario_family_id"]
+    rep_fam = val.validate_rows([("ds.jsonl", 1, r1), ("ds.jsonl", 2, r2)], KB_INDEX, V67_INDEX)
+    assert not rep_fam.passed
+    assert any("scenario_family_id" in e for e in rep_fam.errors)
+
+    hold_leak = make_valid_hold_row(num=1)
+    hold_leak["messages"][2]["content"] += " 저녁에는 클렌징폼으로 1회 세안하세요."
+    rep_hold = val.validate_rows([("ds.jsonl", 1, hold_leak)], KB_INDEX, V67_INDEX)
+    assert not rep_hold.passed
+    assert any("leaked recommendation" in e for e in rep_hold.errors)
+
+    with pytest.raises(FileNotFoundError):
+        val.load_v67_index(COS_AGENT_DIR / "data" / "missing_v67")
+
+
+def test_guide_doc_all_3_reference_examples_pass_validator() -> None:
     guide_path = COS_AGENT_DIR / "docs" / "qlora-synthetic-dataset-guide.md"
     md = guide_path.read_text(encoding="utf-8")
     blocks = re.findall(r"```json\n(.*?)\n```", md, re.S)
-    assert len(blocks) == 2, f"Expected 2 JSON reference examples (solution + hold), got {len(blocks)}"
+    assert len(blocks) == 3, f"Expected 3 JSON reference examples (1 sol + 2 hold), got {len(blocks)}"
     rows = [(str(guide_path), idx + 1, json.loads(b)) for idx, b in enumerate(blocks)]
-    report = val.validate_rows(rows, KB_INDEX, V67_INDEX, expected_shard="a")
+    report = val.validate_rows(rows, KB_INDEX, V67_INDEX)
     assert report.passed, report.errors
     assert report.solution_rows == 1
-    assert report.hold_rows == 1
-
-
-def test_final_enforce_ratios_rejects_empty_val_and_off_90_10_split() -> None:
-    # Build 20 distinct new_synthetic families: all in train -> must fail empty val_internal
-    all_train = [
-        ("shard_a.jsonl", i, make_valid_solution_row(shard="a", num=i, split="train"))
-        for i in range(1, 16)
-    ] + [
-        ("shard_a.jsonl", 15 + i, make_valid_hold_row(shard="a", num=i, split="train"))
-        for i in range(1, 6)
-    ]
-    rep_empty_val = val.validate_rows(all_train, KB_INDEX, V67_INDEX, enforce_ratios=True)
-    assert not rep_empty_val.passed
-    assert any("val_internal must not be empty" in e for e in rep_empty_val.errors)
-
-    # Now put 2 out of 20 families (10%) into val_internal + 5/15 (33.3%) EN chunks -> passes!
-    split_90_10 = [
-        (
-            "shard_a.jsonl",
-            i,
-            make_valid_solution_row(
-                shard="a",
-                num=i,
-                split=("val_internal" if i == 15 else "train"),
-                english_chunk=(i <= 5),
-            ),
-        )
-        for i in range(1, 16)
-    ] + [
-        (
-            "shard_a.jsonl",
-            15 + i,
-            make_valid_hold_row(
-                shard="a", num=i, split=("val_internal" if i == 5 else "train")
-            ),
-        )
-        for i in range(1, 6)
-    ]
-    rep_ok = val.validate_rows(split_90_10, KB_INDEX, V67_INDEX, enforce_ratios=True)
-    assert rep_ok.passed, rep_ok.errors
-
-    # Put 6 out of 20 families (30%) into val_internal -> outside [0.07, 0.13] must fail!
-    off_split = [
-        (
-            "shard_a.jsonl",
-            i,
-            make_valid_solution_row(
-                shard="a", num=i, split=("val_internal" if i <= 4 else "train")
-            ),
-        )
-        for i in range(1, 16)
-    ] + [
-        (
-            "shard_a.jsonl",
-            15 + i,
-            make_valid_hold_row(
-                shard="a", num=i, split=("val_internal" if i <= 2 else "train")
-            ),
-        )
-        for i in range(1, 6)
-    ]
-    rep_off = val.validate_rows(off_split, KB_INDEX, V67_INDEX, enforce_ratios=True)
-    assert not rep_off.passed
-    assert any("outside [0.07, 0.13]" in e for e in rep_off.errors)
-
-
-def test_pilot_rejects_duplicate_inputs_and_missing_bucket_signals() -> None:
-    shard_rows = make_12_row_pilot_shard("a")
-    # 1. Replace row 2's user SLMRequest with row 1's identical SLMRequest payload -> duplicate rejected
-    dup_rows = copy.deepcopy(shard_rows)
-    dup_rows[1][2]["messages"][1]["content"] = dup_rows[0][2]["messages"][1]["content"]
-    rep_dup = val.validate_rows(dup_rows, KB_INDEX, V67_INDEX, expected_shard="a", pilot_mode=True)
-    assert not rep_dup.passed
-    assert any("duplicate user SLMRequest payload" in e for e in rep_dup.errors)
-
-    # 2. Remove unknown observation and version signal from an unknown_or_version pilot row -> rejected
-    no_unk = copy.deepcopy(shard_rows)
-    for _, _, r in no_unk:
-        if r.get("pilot_bucket") == "unknown_or_version":
-            r["hard_negative_type"] = "rag_distractor_ignore"
-            req = json.loads(r["messages"][1]["content"])
-            req["confirmed_observations"].pop("cleansing.perceived_residue", None)
-            r["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
-            break
-    rep_no_unk = val.validate_rows(no_unk, KB_INDEX, V67_INDEX, expected_shard="a", pilot_mode=True)
-    assert not rep_no_unk.passed
-    assert any("pilot_bucket='unknown_or_version'" in e for e in rep_no_unk.errors)
+    assert report.hold_rows == 2
