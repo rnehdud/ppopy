@@ -266,6 +266,23 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
 - R6_FORMAT_TONE: '~해요' 어조 위반 또는 지정 헤더 누락
 ```
 
+### C. Subagent 병렬 배치 실행 절차 (권장 실행 패턴)
+대량 생성(900턴) 시 단일 긴 컨텍스트에서 발생하는 템플릿 반복(Context Rot)을 막기 위해, 메인 에이전트(**Coordinator**)가 **소배치(25~40턴/배치) 단위로 Generator Subagent 3~4개를 병렬 실행**하고 **전담 Verifier/Critic Subagent 1개**로 배치별 게이트를 통과한 행만 병합합니다.
+
+```text
+[Coordinator] 전역 ID 대역 · 담당 카드/v67 시드 · split(90/10) · HN/EN 할당 선분배
+   ├─▶ [Gen Subagent 1~4 (병렬, 25~40턴/배치)] → outputs/batches/batch_XX.jsonl
+   └─▶ [Verifier/Critic Subagent (전담 · 다른 모델 계열)]
+         ① validate_qlora_dataset.py 배치 검증
+         ② 독립 Critic 검수 → outputs/batches/batch_XX_critic.jsonl (content_sha256 포함)
+         ③ PASS 행만 마스터(qlora_solution_hold_v2.jsonl + reviews/stage1_critic.jsonl)에 병합, FAIL만 재생성
+```
+
+1. **ID·가족·시드 선분배**: Generator Subagent는 Coordinator가 할당한 ID 범위(`syn-sol-0001~0030` 등), `scenario_family_id` 접두사, `split`, `v67` 시드 슬라이스만 사용합니다.
+2. **배치 크기 제한**: 1회 배치당 **25~40턴**을 넘기지 않습니다(900턴 = 약 25~30개 소배치).
+3. **Critic Subagent 모델 분리**: Critic Subagent는 Generator와 **다른 모델 계열**로 실행해 자기 편향을 방지하고 `critic_model != generator_model` 규칙을 충족합니다.
+4. **최종 전체 검증**: 모든 배치 병합 후 Coordinator가 마스터 파일 전체에 `--stage1 --review-file`을 실행해 교차 배치 중복·`scenario_family_id` 누수·전체 비율을 최종 확인합니다.
+
 ---
 
 ## 6. 즉시 실행 검증 명령
