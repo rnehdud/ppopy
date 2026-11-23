@@ -328,6 +328,10 @@ def validate_rows(
     shard_stats: dict[str, dict[str, int]] = {}
     shard_bucket_counts: dict[str, Counter[str]] = {}
     file_shards: dict[str, set[str]] = {}
+    shard_user_inputs: dict[str, set[str]] = {}
+    new_syn_family_splits: dict[str, set[str]] = {}
+    new_syn_group_splits: dict[str, set[str]] = {}
+    new_syn_split_counts: Counter[str] = Counter()
 
     high_risk_rows = 0
     high_risk_human_approved = 0
@@ -436,6 +440,7 @@ def validate_rows(
 
         if not isinstance(prov, dict):
             report.errors.append(f"{loc}: missing or non-dict 'provenance'")
+            src_origin = None
         else:
             src_origin = prov.get("source_origin")
             if src_origin not in ALLOWED_SOURCE_ORIGINS:
@@ -557,7 +562,7 @@ def validate_rows(
             report.errors.append(f"{loc}: messages[2].content must be a non-empty string")
             continue
 
-        # Track cross-split leakage across submitted rows
+        # Track cross-split leakage & new_synthetic family/group split distribution
         if split in ALLOWED_SPLITS:
             if isinstance(group_id, str) and group_id:
                 group_splits.setdefault(group_id, set()).add(split)
@@ -568,6 +573,12 @@ def validate_rows(
             if isinstance(source_turn_id, str) and source_turn_id:
                 source_turn_splits.setdefault(source_turn_id, set()).add(split)
             assistant_splits.setdefault(_normalize_text(asst_content), set()).add(split)
+            if src_origin == "new_synthetic":
+                new_syn_split_counts[split] += 1
+                if isinstance(family_id, str) and family_id:
+                    new_syn_family_splits.setdefault(family_id, set()).add(split)
+                if isinstance(group_id, str) and group_id:
+                    new_syn_group_splits.setdefault(group_id, set()).add(split)
 
         # 4. Inner SLMRequest Pydantic validation & outer-inner consistency
         try:
@@ -751,6 +762,38 @@ def validate_rows(
             if pat.search(asst_content):
                 report.errors.append(f"{loc}: assistant response violated clinical guardrail {pat.pattern!r}")
 
+        # 8b. Pilot uniqueness and bucket-level structural sanity checks
+        if pilot_mode:
+            if shard_letter:
+                norm_user = _normalize_text(user_content)
+                seen_inputs = shard_user_inputs.setdefault(shard_letter, set())
+                if norm_user in seen_inputs:
+                    report.errors.append(
+                        f"{loc}: pilot check: duplicate user SLMRequest payload within shard {shard_letter!r}"
+                    )
+                else:
+                    seen_inputs.add(norm_user)
+            if pilot_bucket == "unknown_or_version":
+                has_unknown_obs = any(obs.state == "unknown" for obs in req.confirmed_observations.values())
+                has_version_signal = any(
+                    isinstance(j, dict)
+                    and (j.get("status") in ("unknown", "usage_held") or "버전" in str(j.get("guidance", "")))
+                    for j in req.kb_judgments
+                ) or any(
+                    isinstance(p, dict) and p.get("status") == "usage_held"
+                    for p in req.product_evidence
+                )
+                if not (has_unknown_obs or has_version_signal or hn_type == "version_mismatch_or_unknown"):
+                    report.errors.append(
+                        f"{loc}: pilot_bucket='unknown_or_version' must actually contain unknown observation, usage_held/version signal, or version_mismatch_or_unknown"
+                    )
+            elif pilot_bucket == "distractor_or_defense":
+                has_probe = any(v == "synthetic_defense_probe" for v in chunk_origins.values())
+                if not (req.distractor_refs or has_probe):
+                    report.errors.append(
+                        f"{loc}: pilot_bucket='distractor_or_defense' must include distractor_refs or synthetic_defense_probe"
+                    )
+
     # Cross-split leakage across submitted rows
     for label, mapping in (
         ("group_id", group_splits),
@@ -841,6 +884,31 @@ def validate_rows(
                     report.errors.append(
                         f"final merge check: shard {s!r} requires >= {req_counts}, got {st}"
                     )
+        if split_counter["val_internal"] == 0:
+            report.errors.append("split check: val_internal must not be empty in final submission")
+        total_new_syn = sum(new_syn_split_counts.values())
+        if total_new_syn > 0:
+            new_syn_val_rows = new_syn_split_counts["val_internal"]
+            if new_syn_val_rows == 0:
+                report.errors.append("split check: new_synthetic val_internal must not be empty")
+            else:
+                # Family-level & group-level 90/10 split check (allow 7%-13% tolerance for indivisible families)
+                val_families = sum(1 for sp in new_syn_family_splits.values() if sp == {"val_internal"})
+                total_families = len(new_syn_family_splits)
+                if total_families >= 10:
+                    val_fam_ratio = val_families / total_families
+                    if not (0.07 <= val_fam_ratio <= 0.13):
+                        report.errors.append(
+                            f"split check: new_synthetic val_internal family ratio {val_fam_ratio:.3f} ({val_families}/{total_families}) outside [0.07, 0.13]"
+                        )
+                val_groups = sum(1 for sp in new_syn_group_splits.values() if sp == {"val_internal"})
+                total_groups = len(new_syn_group_splits)
+                if total_groups >= 10:
+                    val_grp_ratio = val_groups / total_groups
+                    if not (0.07 <= val_grp_ratio <= 0.13):
+                        report.errors.append(
+                            f"split check: new_synthetic val_internal group ratio {val_grp_ratio:.3f} ({val_groups}/{total_groups}) outside [0.07, 0.13]"
+                        )
         if not (0.20 <= hold_ratio <= 0.25):
             report.errors.append(f"ratio check: hold_ratio {hold_ratio:.3f} outside [0.20, 0.25]")
         if hn_ratio < 0.25:

@@ -51,7 +51,8 @@ test -f courses/ai-applications/experiments/cos-agent/scripts/validate_qlora_dat
 | **`hold` 비율** | **20% ~ 25%** *(목표 500 / 2,100 = **23.8%**)* | 전체 제출 행(`total_rows`) 대비 `mode == "hold"` 행 비율 |
 | **Hard Negative 비율** | **≥ 25%** | 전체 제출 행(`total_rows`) 대비 `is_hard_negative == true` 행 비율 |
 | **영어 문헌 청크 비율** | **30% ~ 40%** | `mode == "solution"` 행 중 **`allowed_evidence_refs`에 포함되고 `chunk_origins == "kb_source_summary"`인 영어 청크**를 사용한 행 비율 *(방해 청크·합성 방어 청크 제외)* |
-| **파일럿 버킷 (`pilot_bucket`)** | 팀원당 12턴 = 4종 × 3턴 / 병합 36턴 | `normal_guidance`, `hold`, `unknown_or_version`, `distractor_or_defense` 각 3행/팀원 |
+| **파일럿 버킷 (`pilot_bucket`)** | 팀원당 12턴 = 4종 × 3턴 / 병합 36턴 | `normal_guidance`, `hold`, `unknown_or_version`, `distractor_or_defense` 각 3행/팀원 (같은 shard 내 입력 `SLMRequest` 중복 금지, `unknown_or_version`은 실제 `unknown`/`usage_held` 신호 포함, `distractor_or_defense`는 실제 `distractor_refs`/`synthetic_defense_probe` 포함) |
+| **신규 합성 분할 (`split`)** | `val_internal` 비어있음 금지 (`train` 90% / `val_internal` 10%) | `provenance.source_origin == "new_synthetic"`의 `scenario_family_id`·`group_id` 단위 `val_internal` 비율 **7% ~ 13%** (`--enforce-ratios` 시 자동 검증, `v67` 재가공분은 원본 분할 유지) |
 | **`v67` 재가공 가용 풀** | `request_draft` 183턴(`train` 145, `val` 38) · `hold` 616턴(`train` 566, `val` 50) | `v67-sft-test-internal.jsonl` 제외 후 재검증 전 후보 수 |
 
 ### Hard Negative 4종 (`hard_negative_type` 고정 enum)
@@ -236,7 +237,7 @@ test -f courses/ai-applications/experiments/cos-agent/scripts/validate_qlora_dat
 - R2_CLINICAL: 피부 질환 진단, 임상/치료 효과 단정, 소규모 연구 수치의 효능화
 - R3_UNKNOWN_VERSION: 미공개 농도/pH 추측 또는 버전 불일치 제품 사용법 채택
 - R4_HOLD_LEAK: mode="hold"에서 루틴·제품·세안/도포 지시·대체 후보 누출
-- R5_INPUT_JUDGMENT: confirmed_observations와 KB 카드의 실제 comparison_spec·mode 판정 모순
+- R5_INPUT_JUDGMENT: confirmed_observations와 KB 카드의 실제 comparison_spec·mode 판정 모순, 또는 파일럿 버킷(`unknown_or_version`, `distractor_or_defense`)의 실질 시나리오 부재/복붙 중복
 - R6_FORMAT_TONE: '~해요' 어조 위반 또는 지정 헤더 누락
 ```
 

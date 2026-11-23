@@ -44,25 +44,36 @@ def make_valid_solution_row(
     pilot_bucket: str = "distractor_or_defense",
     is_hn: bool = True,
     hn_type: str | None = "rag_distractor_ignore",
+    unknown_obs: bool = False,
+    english_chunk: bool = True,
 ) -> dict:
+    obs = {
+        "cleansing.steps": {
+            "variable_id": "cleansing.steps",
+            "state": "known",
+            "value": 2 + (num % 3),
+            "source": "user_report",
+            "confirmed_by_user": True,
+        },
+        "cleansing.repeat_wash": {
+            "variable_id": "cleansing.repeat_wash",
+            "state": "known",
+            "value": {"automatic_multi_step_for_water_resistant": True, "variant": num},
+            "source": "user_report",
+            "confirmed_by_user": True,
+        },
+    }
+    if unknown_obs:
+        obs["cleansing.perceived_residue"] = {
+            "variable_id": "cleansing.perceived_residue",
+            "state": "unknown",
+            "value": None,
+            "source": "user_report",
+            "confirmed_by_user": True,
+        }
     req = {
         "mode": "solution",
-        "confirmed_observations": {
-            "cleansing.steps": {
-                "variable_id": "cleansing.steps",
-                "state": "known",
-                "value": 3,
-                "source": "user_report",
-                "confirmed_by_user": True,
-            },
-            "cleansing.repeat_wash": {
-                "variable_id": "cleansing.repeat_wash",
-                "state": "known",
-                "value": {"automatic_multi_step_for_water_resistant": True},
-                "source": "user_report",
-                "confirmed_by_user": True,
-            },
-        },
+        "confirmed_observations": obs,
         "kb_judgments": [
             {
                 "card_id": "B-I01",
@@ -72,24 +83,28 @@ def make_valid_solution_row(
         ],
         "product_evidence": [
             {
-                "product_id": "syn-sun-001",
+                "product_id": f"syn-sun-{num:03d}",
                 "version": "1.0",
                 "synthetic_product": True,
                 "label_guidance": "합성 제품 표시 예시: 폼 클렌저 1회 세안 가능",
-                "evidence_ref": "catalog:syn-sun-001@1.0",
+                "evidence_ref": f"catalog:syn-sun-{num:03d}@1.0",
             }
         ],
         "rag_chunks": [
             _make_chunk(
                 "S08",
-                "In a 20-subject imaging study comparing water, facial cleanser, and cleansing oil, cleanser removal performance varied by formulation rather than requiring mandatory multi-step washing for every water-resistant product.",
+                (
+                    "In a 20-subject imaging study comparing water, facial cleanser, and cleansing oil, cleanser removal performance varied by formulation rather than requiring mandatory multi-step washing for every water-resistant product."
+                    if english_chunk
+                    else "20명 대상 영상 비교 연구에서 물·세정제·클렌징오일의 자외선차단제 세정 결과는 제형에 따라 달라졌으며, 모든 내수성 제품에 다단계 세안을 일률적으로 정하지 않았습니다."
+                ),
             ),
             _make_chunk(
                 "S21",
                 "Apply fragrance-free hand cream or ointment immediately after hand washing to help relieve dry hands.",
             ),
         ],
-        "allowed_evidence_refs": ["kb:B-I01@0.6.1", "catalog:syn-sun-001@1.0", "ref:S08"],
+        "allowed_evidence_refs": ["kb:B-I01@0.6.1", f"catalog:syn-sun-{num:03d}@1.0", "ref:S08"],
         "distractor_refs": ["ref:S21"],
     }
     return {
@@ -115,9 +130,9 @@ def make_valid_solution_row(
                 "role": "assistant",
                 "content": (
                     f"### 핵심 안내\n"
-                    f"내수성 표시만 보고 무조건 3단계로 반복 세안할 필요는 없어요 (시나리오 {shard}-{num}). "
+                    f"내수성 표시만 보고 무조건 반복 세안할 필요는 없어요 (시나리오 {shard}-{num}). "
                     f"자외선차단제 도포량은 유지하면서 합성 제품 표시 예시의 클렌징폼 1회 세안으로 단계를 줄여 보실 수 있어요 "
-                    f"[kb:B-I01@0.6.1] [catalog:syn-sun-001@1.0].\n\n"
+                    f"[kb:B-I01@0.6.1] [catalog:syn-sun-{num:03d}@1.0].\n\n"
                     f"### 근거 및 이유\n"
                     f"20명 대상 제한된 제품 조합 영상 비교 연구에서도 제형에 따라 세정 결과가 달라지며 모든 내수성 제품에 이중세안을 일률적으로 확정하지는 않아요 [ref:S08].\n\n"
                     f"### 확인이 필요한 한계\n"
@@ -125,7 +140,7 @@ def make_valid_solution_row(
                 ),
             },
         ],
-        "allowed_evidence_refs": ["kb:B-I01@0.6.1", "catalog:syn-sun-001@1.0", "ref:S08"],
+        "allowed_evidence_refs": ["kb:B-I01@0.6.1", f"catalog:syn-sun-{num:03d}@1.0", "ref:S08"],
         "distractor_refs": ["ref:S21"],
         "provenance": {
             "source_origin": "new_synthetic",
@@ -146,6 +161,7 @@ def make_valid_hold_row(
     split: str = "train",
     human_review: str = "approved",
 ) -> dict:
+    pain_levels = ("mild", "moderate", "severe")
     req = {
         "mode": "hold",
         "confirmed_observations": {
@@ -159,7 +175,7 @@ def make_valid_hold_row(
             "skin.pain": {
                 "variable_id": "skin.pain",
                 "state": "known",
-                "value": "moderate",
+                "value": pain_levels[(num - 1) % len(pain_levels)],
                 "source": "user_report",
                 "confirmed_by_user": True,
             },
@@ -168,7 +184,7 @@ def make_valid_hold_row(
             {
                 "card_id": "B-B01",
                 "status": "hold",
-                "guidance": "지속적인 불편감과 통증이 있어 개별 루틴 권고를 보류하고 전문가 확인을 우선 안내합니다.",
+                "guidance": f"지속적인 불편감과 통증이 있어 개별 루틴 권고를 보류하고 전문가 확인을 우선 안내합니다 (case {num}).",
             }
         ],
         "product_evidence": [],
@@ -238,6 +254,7 @@ def make_12_row_pilot_shard(shard: str) -> list[tuple[str, int, dict]]:
                         pilot_bucket=bucket,
                         is_hn=is_hn,
                         hn_type=hn_type,
+                        unknown_obs=(bucket == "unknown_or_version"),
                     ),
                 )
             )
@@ -443,3 +460,90 @@ def test_guide_doc_reference_examples_pass_validator() -> None:
     assert report.passed, report.errors
     assert report.solution_rows == 1
     assert report.hold_rows == 1
+
+
+def test_final_enforce_ratios_rejects_empty_val_and_off_90_10_split() -> None:
+    # Build 20 distinct new_synthetic families: all in train -> must fail empty val_internal
+    all_train = [
+        ("shard_a.jsonl", i, make_valid_solution_row(shard="a", num=i, split="train"))
+        for i in range(1, 16)
+    ] + [
+        ("shard_a.jsonl", 15 + i, make_valid_hold_row(shard="a", num=i, split="train"))
+        for i in range(1, 6)
+    ]
+    rep_empty_val = val.validate_rows(all_train, KB_INDEX, V67_INDEX, enforce_ratios=True)
+    assert not rep_empty_val.passed
+    assert any("val_internal must not be empty" in e for e in rep_empty_val.errors)
+
+    # Now put 2 out of 20 families (10%) into val_internal + 5/15 (33.3%) EN chunks -> passes!
+    split_90_10 = [
+        (
+            "shard_a.jsonl",
+            i,
+            make_valid_solution_row(
+                shard="a",
+                num=i,
+                split=("val_internal" if i == 15 else "train"),
+                english_chunk=(i <= 5),
+            ),
+        )
+        for i in range(1, 16)
+    ] + [
+        (
+            "shard_a.jsonl",
+            15 + i,
+            make_valid_hold_row(
+                shard="a", num=i, split=("val_internal" if i == 5 else "train")
+            ),
+        )
+        for i in range(1, 6)
+    ]
+    rep_ok = val.validate_rows(split_90_10, KB_INDEX, V67_INDEX, enforce_ratios=True)
+    assert rep_ok.passed, rep_ok.errors
+
+    # Put 6 out of 20 families (30%) into val_internal -> outside [0.07, 0.13] must fail!
+    off_split = [
+        (
+            "shard_a.jsonl",
+            i,
+            make_valid_solution_row(
+                shard="a", num=i, split=("val_internal" if i <= 4 else "train")
+            ),
+        )
+        for i in range(1, 16)
+    ] + [
+        (
+            "shard_a.jsonl",
+            15 + i,
+            make_valid_hold_row(
+                shard="a", num=i, split=("val_internal" if i <= 2 else "train")
+            ),
+        )
+        for i in range(1, 6)
+    ]
+    rep_off = val.validate_rows(off_split, KB_INDEX, V67_INDEX, enforce_ratios=True)
+    assert not rep_off.passed
+    assert any("outside [0.07, 0.13]" in e for e in rep_off.errors)
+
+
+def test_pilot_rejects_duplicate_inputs_and_missing_bucket_signals() -> None:
+    shard_rows = make_12_row_pilot_shard("a")
+    # 1. Replace row 2's user SLMRequest with row 1's identical SLMRequest payload -> duplicate rejected
+    dup_rows = copy.deepcopy(shard_rows)
+    dup_rows[1][2]["messages"][1]["content"] = dup_rows[0][2]["messages"][1]["content"]
+    rep_dup = val.validate_rows(dup_rows, KB_INDEX, V67_INDEX, expected_shard="a", pilot_mode=True)
+    assert not rep_dup.passed
+    assert any("duplicate user SLMRequest payload" in e for e in rep_dup.errors)
+
+    # 2. Remove unknown observation and version signal from an unknown_or_version pilot row -> rejected
+    no_unk = copy.deepcopy(shard_rows)
+    for _, _, r in no_unk:
+        if r.get("pilot_bucket") == "unknown_or_version":
+            r["hard_negative_type"] = "rag_distractor_ignore"
+            req = json.loads(r["messages"][1]["content"])
+            req["confirmed_observations"].pop("cleansing.perceived_residue", None)
+            r["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+            break
+    rep_no_unk = val.validate_rows(no_unk, KB_INDEX, V67_INDEX, expected_shard="a", pilot_mode=True)
+    assert not rep_no_unk.passed
+    assert any("pilot_bucket='unknown_or_version'" in e for e in rep_no_unk.errors)
