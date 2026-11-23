@@ -251,12 +251,12 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
 ```
 
 ### B. 외부 Cross-Model Critic Prompt (`reviews/*_critic.jsonl` 별도 저장)
-1인 전담 시 자기 모델 편향을 막기 위해 **생성 모델과 다른 AI 모델**(예: 생성 GPT ↔ 검수 Claude/Gemini)로 아래 JSON을 생성해 **별도 파일(`data/qlora/v2/reviews/*_critic.jsonl`)**에 저장합니다. 검증기(`--review-file`)가 데이터 행과 `row_id`를 1:1 대조합니다.
+1인 전담 시 자기 모델 편향을 막기 위해 **생성 모델과 다른 AI 모델**(예: 생성 GPT ↔ 검수 Claude/Gemini)로 아래 JSON을 생성해 **별도 파일(`data/qlora/v2/reviews/*_critic.jsonl`)**에 저장합니다. 검증기(`--review-file`)가 `row_id` 중복을 금지하고, 각 행의 정규화 내용 해시(`content_sha256` = `validate_qlora_dataset.compute_row_content_sha256(req, assistant)`)를 대조해 검수 후 무단 수정을 차단합니다. 파일럿(`--pilot --review-file`)은 **24행 100% `human_review == "approved"`**를 요구합니다.
 
 ```text
 당신은 Ppopy 합성 데이터 품질 감사관입니다.
 함께 전달된 [1] SLMRequest 입력 JSON, [2] chunk_origins, [3] card_ids 및 기대 판정 근거, [4] assistant 응답을 아래 6개 규칙으로 검수하고, 행별 JSON을 반환하세요:
-{"row_id": "...", "critic_model": "실제_검수_모델명", "decision": "PASS" | "FAIL", "violated_rule": null | "R1_CITATION" | "R2_CLINICAL" | "R3_UNKNOWN_VERSION" | "R4_HOLD_LEAK" | "R5_INPUT_JUDGMENT" | "R6_FORMAT_TONE", "offending_span": "...", "evidence_ref": "..."}
+{"row_id": "...", "content_sha256": "<compute_row_content_sha256 값>", "critic_model": "실제_검수_모델명", "decision": "PASS" | "FAIL", "violated_rule": null | "R1_CITATION" | "R2_CLINICAL" | "R3_UNKNOWN_VERSION" | "R4_HOLD_LEAK" | "R5_INPUT_JUDGMENT" | "R6_FORMAT_TONE", "offending_span": "...", "evidence_ref": "..."}
 
 - R1_CITATION: 입력에 없는 근거·비표준([S99] 등)·distractor_refs·synthetic_defense_probe 인용
 - R2_CLINICAL: 피부 질환 진단, 임상/치료 효과 단정, 소규모 연구 수치의 효능화

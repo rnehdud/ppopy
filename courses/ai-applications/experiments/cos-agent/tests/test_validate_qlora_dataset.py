@@ -233,6 +233,18 @@ def make_valid_hold_row(
     }
 
 
+def _review_entry(row: dict, critic_model: str = "claude-sonnet-4", decision: str = "PASS") -> dict:
+    from beauty_agent.v3_contracts import SLMRequest
+
+    req = SLMRequest.model_validate_json(row["messages"][1]["content"])
+    return {
+        "row_id": row["id"],
+        "content_sha256": val.compute_row_content_sha256(req, row["messages"][2]["content"]),
+        "critic_model": critic_model,
+        "decision": decision,
+    }
+
+
 def make_24_row_pilot() -> tuple[list[tuple[str, int, dict]], dict[str, dict]]:
     fname = "pilot_24.jsonl"
     rows: list[tuple[str, int, dict]] = []
@@ -252,14 +264,15 @@ def make_24_row_pilot() -> tuple[list[tuple[str, int, dict]], dict[str, dict]]:
                 hn_type=hn_type,
                 unknown_obs=(bucket == "unknown_or_version"),
             )
+            r["provenance"]["human_review"] = "approved"
             rows.append((fname, line, r))
-            reviews[r["id"]] = {"row_id": r["id"], "critic_model": "claude-sonnet-4", "decision": "PASS"}
+            reviews[r["id"]] = _review_entry(r)
             line += 1
             sol_num += 1
     for h_num in range(1, 7):
-        r = make_valid_hold_row(num=h_num)
+        r = make_valid_hold_row(num=h_num, human_review="approved")
         rows.append((fname, line, r))
-        reviews[r["id"]] = {"row_id": r["id"], "critic_model": "claude-sonnet-4", "decision": "PASS"}
+        reviews[r["id"]] = _review_entry(r)
         line += 1
     return rows, reviews
 
@@ -385,3 +398,67 @@ def test_guide_doc_all_3_reference_examples_pass_validator() -> None:
     assert report.passed, report.errors
     assert report.solution_rows == 1
     assert report.hold_rows == 2
+
+
+def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
+    rows, reviews = make_24_row_pilot()
+
+    # 1. Key-reordered identical SLMRequest JSON must fail canonical duplicate check
+    reordered = copy.deepcopy(rows)
+    obj0 = json.loads(reordered[0][2]["messages"][1]["content"])
+    reordered[1][2]["messages"][1]["content"] = json.dumps(dict(reversed(list(obj0.items()))), ensure_ascii=False)
+    rep1 = val.validate_rows(reordered, KB_INDEX, V67_INDEX, pilot_mode=True)
+    assert not rep1.passed
+    assert any("duplicate canonical SLMRequest" in e for e in rep1.errors)
+
+    # 2. unknown_or_version with ONLY hard_negative_type label (no real unknown/usage_held) must fail
+    label_only = copy.deepcopy(rows)
+    for _, _, r in label_only:
+        if r["pilot_bucket"] == "unknown_or_version":
+            req = json.loads(r["messages"][1]["content"])
+            req["confirmed_observations"].pop("cleansing.perceived_residue", None)
+            r["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+            break
+    rep2 = val.validate_rows(label_only, KB_INDEX, V67_INDEX, pilot_mode=True)
+    assert not rep2.passed
+    assert any("pilot_bucket='unknown_or_version'" in e for e in rep2.errors)
+
+    # 3. distractor_refs ID without actual rag_chunks entry must fail
+    ghost_dist = copy.deepcopy(rows[0][2])
+    req_g = json.loads(ghost_dist["messages"][1]["content"])
+    req_g["rag_chunks"] = [c for c in req_g["rag_chunks"] if c["evidence_ref"] != "ref:S21"]
+    ghost_dist["chunk_origins"].pop("ref:S21", None)
+    ghost_dist["messages"][1]["content"] = json.dumps(req_g, ensure_ascii=False)
+    rep3 = val.validate_rows([("ds.jsonl", 1, ghost_dist)], KB_INDEX, V67_INDEX)
+    assert not rep3.passed
+    assert any("distractor_ref 'ref:S21' not backed" in e for e in rep3.errors)
+
+    # 4. Modifying assistant text after Critic PASS must fail content_sha256 check
+    edited = copy.deepcopy(rows)
+    edited[0][2]["messages"][2]["content"] += " (사후 수정)"
+    rep4 = val.validate_rows(
+        edited, KB_INDEX, V67_INDEX, pilot_mode=True, require_review=True, external_reviews=reviews
+    )
+    assert not rep4.passed
+    assert any("content_sha256 mismatch" in e for e in rep4.errors)
+
+    # 5. Duplicate row_id (FAIL then PASS) in external review JSONL must raise ValueError
+    rev_file = tmp_path / "dup_review.jsonl"
+    rev_file.write_text(
+        json.dumps({"row_id": "syn-sol-0001", "decision": "FAIL", "critic_model": "claude"}) + "\n"
+        + json.dumps({"row_id": "syn-sol-0001", "decision": "PASS", "critic_model": "claude"}) + "\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="duplicate review record"):
+        val.load_external_reviews(rev_file)
+
+    # 6. Pilot with only 2/24 human_review=='approved' must fail 100% pilot human review gate
+    partial_human = copy.deepcopy(rows)
+    for idx, (_, _, r) in enumerate(partial_human):
+        if idx >= 2:
+            r["provenance"]["human_review"] = "unreviewed"
+    rep6 = val.validate_rows(
+        partial_human, KB_INDEX, V67_INDEX, pilot_mode=True, require_review=True, external_reviews=reviews
+    )
+    assert not rep6.passed
+    assert any("100% human_review=='approved'" in e for e in rep6.errors)

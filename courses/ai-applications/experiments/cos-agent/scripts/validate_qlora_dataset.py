@@ -18,6 +18,7 @@ Validates a single dataset JSONL (or optional multiple files) against:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import pathlib
 import re
@@ -259,8 +260,18 @@ def load_v67_index(v67_dir: pathlib.Path) -> V67SplitIndex:
     return index
 
 
+def compute_row_content_sha256(req: SLMRequest, assistant_content: str) -> str:
+    """Canonical SHA-256 binding external Critic review to exact input + assistant text."""
+    canonical = json.dumps(
+        {"user": req.model_dump(mode="json"), "assistant": assistant_content},
+        sort_keys=True,
+        ensure_ascii=False,
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
 def load_external_reviews(review_path: pathlib.Path) -> dict[str, dict[str, Any]]:
-    """Load external Critic review JSONL keyed by row_id."""
+    """Load external Critic review JSONL keyed by row_id; rejects duplicate row_ids."""
     if not review_path.exists():
         raise FileNotFoundError(f"External critic review file not found: {review_path}")
     reviews: dict[str, dict[str, Any]] = {}
@@ -271,6 +282,8 @@ def load_external_reviews(review_path: pathlib.Path) -> dict[str, dict[str, Any]
         rid = obj.get("row_id")
         if not isinstance(rid, str) or not rid.strip():
             raise ValueError(f"{review_path}:{idx}: missing 'row_id'")
+        if rid in reviews:
+            raise ValueError(f"{review_path}:{idx}: duplicate review record for row_id {rid!r}")
         reviews[rid] = obj
     return reviews
 
@@ -358,6 +371,7 @@ def validate_rows(
 
     high_risk_rows = 0
     high_risk_human_approved = 0
+    total_human_approved = 0
 
     for src, line_no, row in file_rows:
         loc = f"{src}:{line_no}"
@@ -522,8 +536,10 @@ def validate_rows(
             human_review = prov.get("human_review")
             if human_review not in ALLOWED_HUMAN_REVIEWS:
                 report.errors.append(f"{loc}: invalid provenance.human_review {human_review!r}")
-            elif is_high_risk and human_review == "approved":
-                high_risk_human_approved += 1
+            elif human_review == "approved":
+                total_human_approved += 1
+                if is_high_risk:
+                    high_risk_human_approved += 1
 
         # External Critic review sidecar verification
         if external_reviews is not None and isinstance(row_id, str):
@@ -763,6 +779,22 @@ def validate_rows(
                     f"{loc}: allowed_evidence_ref {aref!r} not backed by input product_evidence/kb_judgments"
                 )
 
+        for dref in req.distractor_refs:
+            if dref.startswith("ref:") and dref not in chunk_refs_seen:
+                report.errors.append(
+                    f"{loc}: distractor_ref {dref!r} not backed by any input rag_chunks"
+                )
+
+        # Verify external critic content_sha256 matches exact (SLMRequest, assistant) content
+        if external_reviews is not None and isinstance(row_id, str) and row_id in external_reviews:
+            ext = external_reviews[row_id]
+            expected_sha = compute_row_content_sha256(req, asst_content)
+            actual_sha = ext.get("content_sha256")
+            if actual_sha != expected_sha:
+                report.errors.append(
+                    f"{loc}: external critic content_sha256 mismatch for {row_id!r} (content modified after review or missing hash)"
+                )
+
         extra_origin_keys = set(chunk_origins.keys()) - chunk_refs_seen
         if extra_origin_keys:
             report.errors.append(
@@ -803,27 +835,27 @@ def validate_rows(
             if pat.search(asst_content):
                 report.errors.append(f"{loc}: assistant response violated clinical guardrail {pat.pattern!r}")
 
-        # 8b. Pilot uniqueness & semantic bucket checks
+        # 8b. Pilot canonical uniqueness & real semantic bucket checks
         if pilot_mode:
-            norm_user = _normalize_text(user_content)
-            if norm_user in seen_user_inputs:
-                report.errors.append(f"{loc}: pilot check: duplicate user SLMRequest payload")
+            canonical_user = json.dumps(req.model_dump(mode="json"), sort_keys=True, ensure_ascii=False)
+            if canonical_user in seen_user_inputs:
+                report.errors.append(f"{loc}: pilot check: duplicate canonical SLMRequest payload")
             else:
-                seen_user_inputs.add(norm_user)
+                seen_user_inputs.add(canonical_user)
 
             if pilot_bucket == "unknown_or_version":
                 has_unknown_obs = any(obs.state == "unknown" for obs in req.confirmed_observations.values())
-                has_version_signal = any(
-                    isinstance(j, dict)
-                    and (j.get("status") == "unknown" or "버전" in str(j.get("guidance", "")))
+                has_unknown_judgment = any(
+                    isinstance(j, dict) and j.get("status") == "unknown"
                     for j in req.kb_judgments
-                ) or any(
-                    isinstance(p, dict) and p.get("status") == "usage_held"
+                )
+                has_version_product = any(
+                    isinstance(p, dict) and p.get("status") in ("usage_held", "unknown")
                     for p in req.product_evidence
                 )
-                if not (has_unknown_obs or has_version_signal or hn_type == "version_mismatch_or_unknown"):
+                if not (has_unknown_obs or has_unknown_judgment or has_version_product):
                     report.errors.append(
-                        f"{loc}: pilot_bucket='unknown_or_version' must include unknown observation, usage_held/version signal, or version_mismatch_or_unknown"
+                        f"{loc}: pilot_bucket='unknown_or_version' requires actual unknown observation, kb_judgment status='unknown', or product_evidence status in ('usage_held', 'unknown')"
                     )
             elif pilot_bucket == "distractor_or_defense":
                 has_probe = any(v == "synthetic_defense_probe" for v in chunk_origins.values())
@@ -847,13 +879,19 @@ def validate_rows(
     report.split_counts = dict(split_counter)
     report.pilot_bucket_counts = dict(pilot_bucket_counter)
 
-    # Human sample review check when --require-review is enabled
-    if require_review and high_risk_rows > 0:
-        min_needed = max(1, (high_risk_rows + 9) // 10)
-        if high_risk_human_approved < min_needed:
-            report.errors.append(
-                f"review check: high-risk human_review=='approved' count {high_risk_human_approved} < required 10% ({min_needed}/{high_risk_rows})"
-            )
+    # Human review check when --require-review is enabled
+    if require_review:
+        if pilot_mode:
+            if total_human_approved != report.total_rows:
+                report.errors.append(
+                    f"review check: pilot mode requires 100% human_review=='approved' ({total_human_approved}/{report.total_rows})"
+                )
+        elif high_risk_rows > 0:
+            min_needed = max(1, (high_risk_rows + 9) // 10)
+            if high_risk_human_approved < min_needed:
+                report.errors.append(
+                    f"review check: high-risk human_review=='approved' count {high_risk_human_approved} < required 10% ({min_needed}/{high_risk_rows})"
+                )
 
     # 9. Pilot & Stage-1 distribution / ratio checks
     hold_ratio = report.hold_rows / report.total_rows
