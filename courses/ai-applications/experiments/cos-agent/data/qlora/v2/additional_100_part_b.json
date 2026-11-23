@@ -1,0 +1,3702 @@
+{
+  "schema_version": "additional-100-part-b-v1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "generator_model": "gpt-6.1-sol",
+  "human_review": "unreviewed",
+  "cases": [
+    {
+      "id": "syn-sol-0063",
+      "title": "그늘을 배제한 장시간 경기 관람",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0063",
+      "group_id": "add100-b-group-feasible-nonproduct-protection",
+      "scenario_family_id": "add100-b-family-feasible-nonproduct-protection",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "prolonged": true,
+              "context": "야외 경기 관람"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.shade_clothing": {
+            "variable_id": "sun.shade_clothing",
+            "state": "known",
+            "value": {
+              "shade_available": true,
+              "shade_used": false,
+              "reason": "선크림만으로 충분하다고 생각함"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P04",
+            "status": "unknown",
+            "guidance": "장시간 야외에서 이용 가능한 그늘을 선크림만으로 충분하다는 생각에 사용하지 않아요. 다른 실행 가능한 수단을 모두 배제했는지는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-protection guidance considers labeled sunscreen use, outdoor exposure, water, sweat, shade and clothing together. It does not calculate an individual's received ultraviolet dose or automatically impose a universal indoor schedule.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P04@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "336ebfb19c3dec93503add4aa4a1ec4ed4bb4cd2f662f224f2b2173b395f2d61",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "작업·복장 등 제약으로 특정 수단이 불가능",
+            "의료진 개별 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "장시간 야외에서 이용 가능한 그늘을 선크림만으로 충분하다는 생각에 사용하지 않아요. 다른 실행 가능한 수단을 모두 배제했는지는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n장시간 야외 경기 관람에서는 선크림만으로 충분하다고 보고 그늘을 배제하기보다, 이용 가능한 그늘을 함께 활용해요 [kb:B-P04@0.6.1].\n\n### 근거 및 이유\n일반 광보호 안내는 제품 표시뿐 아니라 야외 노출과 그늘·의복을 함께 검토해요 [ref:S05]. 그늘을 이용할 수 있다는 확인된 상황을 반영한 안내예요.\n\n### 확인이 필요한 한계\n그늘 이용이나 선크림 사용만으로 실제 받은 자외선량과 보호 수준을 계산할 수는 없어요. 실행 가능한 보완 수단을 선택하되 보호율을 합산하지 않아요.\n다른 실행 가능한 보완 수단을 모두 배제했는지는 확인되지 않았어요.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-sol",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "5258201e3d98bf055fda240638a13fc3e77d3c8746a104e11be84087de89d11a",
+          "input_sha256": "336ebfb19c3dec93503add4aa4a1ec4ed4bb4cd2f662f224f2b2173b395f2d61",
+          "reason": "다른 실행 가능한 수단 전체의 배제는 미확인이에요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0064",
+      "title": "표시 접촉시간보다 오래 붙이는 얼굴 팩",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0064",
+      "group_id": "add100-b-revision1-group-syn-sol-0064",
+      "scenario_family_id": "add100-b-revision1-family-syn-sol-0064",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S26": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "adjunct.care_events": {
+            "variable_id": "adjunct.care_events",
+            "state": "known",
+            "value": {
+              "제품": "합성 얼굴 팩",
+              "표시 접촉시간 분": 10,
+              "실제 접촉시간 분": 30,
+              "취침 중 사용": false,
+              "이유": "오래 붙이면 더 효과적이라고 생각함"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "표시": "얼굴에 10분 사용 후 제거",
+              "현재 버전 확인": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G05",
+            "status": "difference",
+            "guidance": "합성 팩의 확인된 10분 지시보다 실제 30분 사용이 길어 제품별 접촉시간에 맞춘 조정 대상이에요."
+          }
+        ],
+        "product_evidence": [
+          {
+            "product_id": "syn-add100-b-64",
+            "version": "revision1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: 얼굴에 10분 사용 후 제거해요. 취침 중 사용하는 제품이 아니에요.",
+            "evidence_ref": "catalog:syn-add100-b-64@revision1"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S26",
+            "text": "Facial-mask guidance advises following each product's directions for contact time and frequency and checking for overlap with existing exfoliating care. It does not prescribe one duration for every mask or authorize mixing arbitrary products.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/facial-masks-and-skin-care",
+            "locator": "제품별 접촉시간·빈도, 기존 각질관리와 중복 확인, 따갑거나 가려우면 씻어내기.",
+            "checked_on": "2026-11-04",
+            "limitations": "얼굴 팩/마스크의 안내. 모든 추가관리 제품이나 기기에 동일한 수치를 적용하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G05@0.6.1",
+          "catalog:syn-add100-b-64@revision1",
+          "ref:S26"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "07c3b48ffc2c233f3b82cd829e6c38dd82017f383f6e751d9e3ff2ff7fa51a0d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품 지침과 사용 방식이 맞고 중복 목적이 확인됨.",
+          "difference_when": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "합성 팩의 확인된 10분 지시보다 실제 30분 사용이 길어 제품별 접촉시간에 맞춘 조정 대상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n이 합성 팩은 얼굴에 10분 사용 후 제거하도록 표시되어 있는데 실제로는 30분 붙이고 있어요. 오래 쓸수록 더 좋다고 보지 않고 확인된 제품별 접촉시간에 맞춰 조정해요 [kb:B-G05@0.6.1] [catalog:syn-add100-b-64@revision1].\n\n### 근거 및 이유\n팩 안내는 각 제품의 접촉시간과 빈도, 기존 각질관리와의 중복을 함께 살펴요. 모든 팩에 같은 시간을 정하는 원칙은 아니에요 [ref:S26].\n\n### 확인이 필요한 한계\n현재 불편이 없다는 보고가 긴 접촉시간의 효과나 무해성을 입증하지는 않아요. 이 합성 제품의 10분을 다른 팩이나 기기에 공통 기준으로 적용하지 않아요."
+    },
+    {
+      "id": "syn-sol-0065",
+      "title": "수영 후 수건 접촉을 반영한 재도포",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0065",
+      "group_id": "add100-b-group-reapplication-context",
+      "scenario_family_id": "add100-b-family-reapplication-context",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.water_contact": {
+            "variable_id": "sun.water_contact",
+            "state": "known",
+            "value": true,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.towel_contact": {
+            "variable_id": "sun.towel_contact",
+            "state": "known",
+            "value": true,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "continues_after_swimming": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.reapplication": {
+            "variable_id": "sun.reapplication",
+            "state": "known",
+            "value": {
+              "after_swim_and_towel": true,
+              "follows_label": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "aligned",
+            "guidance": "수영 후 수건으로 닦고 야외 노출이 이어지는 상황에서 표시대로 다시 바르고 있어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-protection guidance considers labeled sunscreen use, outdoor exposure, water, sweat, shade and clothing together. It does not calculate an individual's received ultraviolet dose or automatically impose a universal indoor schedule.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "99a7a3e7c8e5f4ae3e52d8dd672f8d7dc86fc152d3e3486c2235ee5bf4091d7f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "수영 후 수건으로 닦고 야외 노출이 이어지는 상황에서 표시대로 다시 바르고 있어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n수영 후 수건으로 닦고 야외 활동이 이어질 때 표시대로 다시 바르는 행동은 유지해요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n물과 닦임, 계속되는 야외 노출을 함께 반영한 재도포예요. 일반 안내도 제품 표시와 물·땀 등 노출 조건을 함께 검토해요 [ref:S05].\n\n### 확인이 필요한 한계\n이는 확인된 행동이 해당 기준과 맞는다는 뜻이에요. 실제 남은 양이나 개인의 보호 성능을 측정한 결과는 아니에요."
+    },
+    {
+      "id": "syn-sol-0066",
+      "title": "야외용 새 후보의 기본 표시 확인",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0066",
+      "group_id": "add100-b-group-basic-label-selection",
+      "scenario_family_id": "add100-b-family-basic-label-selection",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S16": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "compare_new_outdoor_sunscreen",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.spf": {
+            "variable_id": "product.spf",
+            "state": "known",
+            "value": 50,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.uva": {
+            "variable_id": "product.uva",
+            "state": "known",
+            "value": {
+              "broad_spectrum_uva_uvb": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.water_resistance": {
+            "variable_id": "product.water_resistance",
+            "state": "known",
+            "value": {
+              "labeled": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "planned_outdoor_activity": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P01",
+            "status": "aligned",
+            "guidance": "새 야외용 합성 후보에서 SPF 50, UVA·UVB 보호와 내수성 표시가 확인되어 기본 표시 조건에 맞아요."
+          }
+        ],
+        "product_evidence": [
+          {
+            "product_id": "syn-add100-b-66",
+            "version": "v1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: SPF 50, UVA·UVB 광범위 보호, 내수성 표시가 있어요.",
+            "evidence_ref": "catalog:syn-add100-b-66@v1"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S16",
+            "text": "Professional sunscreen guidance discusses SPF 30 or higher, UVA and UVB coverage, water resistance and outdoor reapplication. Exposure conditions and non-product protection also matter. This is not a universal indoor reapplication schedule or a statement of Korean legal minimums.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P01@0.6.1",
+          "catalog:syn-add100-b-66@v1",
+          "ref:S16"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8e759a05a7b22cc3a63af2f1e4b85f0ed8a352e8bd4f90db223e2a75dc251871",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "선택한 기본 성능이 제품 자료로 확인되고 사용 환경에 맞음.",
+          "difference_when": "새 야외용 후보가 기본 성능을 충족하지 않는 것으로 확인됨. 표시 미확인은 unknown.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "피부질환·시술 관련 개별 지시",
+            "확인되지 않은 국가별 표시의 자동 등가 변환이 필요한 상황"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 야외용 합성 후보에서 SPF 50, UVA·UVB 보호와 내수성 표시가 확인되어 기본 표시 조건에 맞아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n새 야외용 합성 후보의 SPF 50, UVA·UVB 광범위 보호와 내수성 표시는 기본 선택 조건에 맞아요. 이 표시 항목에서는 후보로 검토할 수 있어요 [kb:B-P01@0.6.1] [catalog:syn-add100-b-66@v1].\n\n### 근거 및 이유\n제공된 전문기관 안내는 SPF 30 이상, UVA·UVB 보호와 내수성을 일반적인 선택 기준으로 다뤄요 [ref:S16].\n\n### 확인이 필요한 한계\n기본 표시 충족이 개인 적합성이나 제품 전체의 안전·효과를 보증하지는 않아요. 이 기준을 한국의 법적 최소치로 해석하지 않아요."
+    },
+    {
+      "id": "syn-sol-0067",
+      "title": "기한이 지났지만 외관이 같은 보유 선크림",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0067",
+      "group_id": "add100-b-group-expiry-history-quality",
+      "scenario_family_id": "add100-b-family-expiry-history-quality",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S18": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "label_expired": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": false,
+              "separation": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "continues_relying_on_expired_sunscreen": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P08",
+            "status": "difference",
+            "guidance": "표시 기한이 지난 것이 확인되어 외관 변화가 없더라도 계속 광보호를 맡기는 사용은 조정 대상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S18",
+            "text": "자외선차단제의 사용기한과 열 노출, 품질 변화 사례를 다루는 안내예요. 실제 제품의 표시와 보관 이력을 함께 확인해야 해요. 미국의 기한 규칙을 한국의 모든 제품에 적용하거나 정확한 SPF 감소율을 계산할 수는 없어요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/prevent-skin-problems/replace-makeup-sunscreen",
+            "locator": "Sunscreen has an expiration date 및 품질 변화 예시",
+            "checked_on": "2026-11-04",
+            "limitations": "사용기한·열·품질 변화 관리에 참고. 한국 전제품에 미국의 기한 규칙을 자동 적용하지 않고 정확한 SPF 감소율을 추정하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P08@0.6.1",
+          "ref:S18"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "a65707392a6fccf2c8fbe600a5d83cffc250d03730fbbba1221e9480922ec6a5",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "알려진 기간·보관 이력이 제품 지침과 맞고 비정상적인 변화가 보고되지 않음. 실제 SPF나 내부 안정성 인증은 아님.",
+          "difference_when": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "원래 흔들어 쓰는 제품의 정상 분리",
+            "구매일·개봉일을 모르는 경우는 unknown이지 즉시 기한 경과가 아님",
+            "제품의 별도 보관 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "표시 기한이 지난 것이 확인되어 외관 변화가 없더라도 계속 광보호를 맡기는 사용은 조정 대상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n외관이 그대로여도 표시 기한이 지난 선크림에 계속 광보호를 맡기는 사용은 조정이 필요해요. 기한을 확인할 수 있는 대안과 필요한 광보호 방법을 검토해요 [kb:B-P08@0.6.1].\n\n### 근거 및 이유\n사용기한과 품질 변화는 함께 살펴야 하며, 색·냄새 변화가 없다는 관찰이 지난 기한을 무효로 만들지는 않아요 [ref:S18].\n\n### 확인이 필요한 한계\n현재 제품의 SPF가 얼마나 감소했는지, 내부 품질이 어떤지는 미상이에요. 외관만으로 정상이나 변질을 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0068",
+      "title": "같은 키트 두 제제의 명시적 혼합 지시 예외",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0068",
+      "group_id": "add100-b-revision1-group-syn-sol-0068",
+      "scenario_family_id": "add100-b-revision1-family-syn-sol-0068",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S26": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "제조사 지정 2제형 얼굴 팩 키트",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.mixing": {
+            "variable_id": "method.mixing",
+            "state": "known",
+            "value": {
+              "동일 키트 A제와 B제만 혼합": true,
+              "다른 화장품 추가": false,
+              "표시 비율 준수": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "표시": "동봉 A제 한 포와 B제 한 포를 전량 혼합한 뒤 얼굴에 10분 사용 후 제거",
+              "현재 버전 확인": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.care_events": {
+            "variable_id": "adjunct.care_events",
+            "state": "known",
+            "value": {
+              "표시 접촉시간 준수": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G04",
+            "status": "exception",
+            "guidance": "동일 키트의 두 제제를 제조사가 명시한 방법대로 혼합하므로 근거 없는 임의 혼합 기본 금지를 강제하지 않는 예외예요."
+          }
+        ],
+        "product_evidence": [
+          {
+            "product_id": "syn-add100-b-68",
+            "version": "revision1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: 동봉 A제 한 포와 B제 한 포를 전량 혼합한 뒤 얼굴에 10분 사용 후 제거해요. 다른 제품을 추가하지 않아요.",
+            "evidence_ref": "catalog:syn-add100-b-68@revision1"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S26",
+            "text": "Facial-mask guidance advises following each product's directions for contact time and frequency and checking for overlap with existing exfoliating care. It does not prescribe one duration for every mask or authorize mixing arbitrary products.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/facial-masks-and-skin-care",
+            "locator": "제품별 접촉시간·빈도, 기존 각질관리와 중복 확인, 따갑거나 가려우면 씻어내기.",
+            "checked_on": "2026-11-04",
+            "limitations": "얼굴 팩/마스크의 안내. 모든 추가관리 제품이나 기기에 동일한 수치를 적용하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G04@0.6.1",
+          "catalog:syn-add100-b-68@revision1",
+          "ref:S26"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c464771720606d60f0e044f7343c848142db49d4b5dd387e27d5b4bbc4651a1a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "각 제품을 지시에 맞게 사용하고 확인되지 않은 형태 변경을 하지 않음.",
+          "difference_when": "사용 근거 없이 사전 혼합·희석하거나 바르는 제품을 분사형으로 전환함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제조사가 명시적으로 안내한 혼합·희석 사용법",
+            "관련 의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "B-G04의 제조사 명시 혼합 사용법 예외를 적용해요. 혼합 허가는 합성 catalog 표시에만 근거하며 S26은 팩별 접촉시간·빈도와 표시 준수 범위만 뒷받침해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n이 합성 키트는 동봉 A제와 B제를 표시대로 혼합하도록 명시되어 있어요. 확인된 두 제제만 표시 비율로 섞는 행동에 임의 혼합 금지를 강제하지 않아요 [kb:B-G04@0.6.1] [catalog:syn-add100-b-68@revision1].\n\n### 근거 및 이유\n혼합을 허용하는 근거는 이 키트의 확인된 합성 표시예요. 일반 팩 안내는 제품별 접촉시간과 빈도를 따르도록 하는 범위이며, 임의의 제품 혼합을 승인하는 자료는 아니에요 [catalog:syn-add100-b-68@revision1] [ref:S26].\n\n### 확인이 필요한 한계\n이 예외는 같은 키트의 지정된 A제와 B제에만 해당해요. 다른 화장품 추가나 임의 비율 변경으로 확대하지 않으며, 현재 불편이 없다는 보고만으로 개인의 안전성이나 효과를 보증하지 않아요."
+    },
+    {
+      "id": "syn-sol-0069",
+      "title": "밀림은 있지만 선크림 사용을 줄이지 않음",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0069",
+      "group_id": "add100-b-group-layering-versus-behavior",
+      "scenario_family_id": "add100-b-family-layering-versus-behavior",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-I02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S09": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.pilling": {
+            "variable_id": "sun.pilling",
+            "state": "known",
+            "value": {
+              "present": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.mixing": {
+            "variable_id": "method.mixing",
+            "state": "known",
+            "value": {
+              "premixed_in_palm": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.sequence": {
+            "variable_id": "method.sequence",
+            "state": "known",
+            "value": [
+              "moisturizer",
+              "sunscreen"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "sunscreen_use_reduced_due_to_layering": false,
+              "reapplication_omitted_due_to_layering": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-I02",
+            "status": "exception",
+            "guidance": "밀림 때문에 선크림 사용을 줄이거나 재도포를 생략하지 않았다고 보고했어요. 다른 이유에 따른 변화는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S09",
+            "text": "제한된 보습제와 자외선차단제 조합에서 도포 순서를 UV 반사 영상으로 살핀 연구예요. 관찰된 영상 결과는 실제 SPF나 야외 보호 성능을 보증하지 않아요. 각각 층으로 바른 결과를 손바닥에서 미리 섞는 행동에 그대로 적용할 수는 없어요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://onlinelibrary.wiley.com/doi/10.1111/phpp.12745",
+            "locator": "Methods 2.4 / Results / Discussion",
+            "checked_on": "2026-11-04",
+            "limitations": "실험실 조건 및 영상 대리지표. 유의한 차이가 없다는 결과는 모든 조합의 동등성 입증이 아니며, 실제 SPF나 야외 성능의 보증도 아님. 손바닥 사전 혼합과 개별 층 도포는 다름."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-I02@0.6.1",
+          "ref:S09"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8422e8971a6ac2b83ac00986b832edd4ccaf3511c2f713af18224633553a6808",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-I02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "중첩 사용이 불편하지 않고 필요한 광보호 행동이 유지됨.",
+          "difference_when": "중첩 불편 때문에 실제 선크림 사용·재도포를 줄이거나 생략한다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품별 특수 도포 지시",
+            "새 불편감으로 별도 검토 필요",
+            "실제 행동 변화 없이 밀림만 있는 경우 일반 사용성 검토"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "밀림 때문에 선크림 사용을 줄이거나 재도포를 생략하지 않았다고 보고했어요. 다른 이유에 따른 변화는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n밀림은 있지만 중첩 때문에 선크림 사용을 줄이거나 재도포를 생략하지 않았다고 보고됐어요. 다른 이유에 따른 변화는 미상이며, 밀림 자체의 사용성을 따로 검토해요 [kb:B-I02@0.6.1].\n\n### 근거 및 이유\n제한된 조합의 도포 순서 연구는 UV 반사 영상 지표를 살폈어요. 밀림이 곧 실제 SPF 저하라는 결론을 주지는 않아요 [ref:S09].\n\n### 확인이 필요한 한계\n현재 조합의 실제 보호 성능과 밀림 원인은 미상이에요. 각각 층으로 바른 보고를 손바닥에서 미리 섞었다는 뜻으로 바꾸지 않아요.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-sol",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "032e268e0eb3989faa9441f942c95c96c4981f35577b65a41d09389db956387e",
+          "input_sha256": "8422e8971a6ac2b83ac00986b832edd4ccaf3511c2f713af18224633553a6808",
+          "reason": "중첩 때문에 줄이지 않았다는 관찰을 모든 원인으로 넓히지 않아요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0070",
+      "title": "비가스 분무형을 얼굴에 직접 뿌리는 사용",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0070",
+      "group_id": "add100-b-group-syn-sol-0070",
+      "scenario_family_id": "add100-b-family-syn-sol-0070",
+      "split": "val_internal",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P09"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.application_form": {
+            "variable_id": "product.application_form",
+            "state": "known",
+            "value": "non_gas_spray",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "direct_spray_to_face": true,
+              "eyes_closed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P09",
+            "status": "difference",
+            "guidance": "손에 덜어 얼굴에 바르라는 합성 제품 지시와 달리 눈을 감고 얼굴에 직접 분사하고 있어요."
+          }
+        ],
+        "product_evidence": [
+          {
+            "product_id": "syn-add100-b-70",
+            "version": "v1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: 얼굴에 직접 분사하지 않고 손에 덜어 얼굴에 발라요.",
+            "evidence_ref": "catalog:syn-add100-b-70@v1"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-protection guidance considers labeled sunscreen use, outdoor exposure, water, sweat, shade and clothing together. It does not calculate an individual's received ultraviolet dose or automatically impose a universal indoor schedule.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P09@0.6.1",
+          "catalog:syn-add100-b-70@v1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8c94a6bae9078b169f044dd96458f993136dfcad82ec2b24d9aba996e4895e42",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P09",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "눈을 감거나 숨을 참는 방식으로 얼굴 직접 분사를 대체하고 있음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "다른 제품 유형이면 해당 사용법 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "손에 덜어 얼굴에 바르라는 합성 제품 지시와 달리 눈을 감고 얼굴에 직접 분사하고 있어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n눈을 감아도 얼굴 직접 분사를 표시 방법의 대안으로 보지 않아요. 이 합성 제품의 지시대로 손에 덜어 얼굴에 바르는 방식으로 조정해요 [kb:B-P09@0.6.1] [catalog:syn-add100-b-70@v1].\n\n### 근거 및 이유\n비가스 분무형이라는 사실과 얼굴 직접 분사 행동이 확인됐어요. 조정의 구체적인 근거는 이 제품의 확인된 표시예요 [catalog:syn-add100-b-70@v1].\n\n### 확인이 필요한 한계\n방식을 바꾼다고 필요한 도포량을 줄여도 된다는 뜻은 아니에요. 실제 흡입량이나 손상 여부, 보호 성능은 이 입력에서 알 수 없어요."
+    },
+    {
+      "id": "syn-sol-0071",
+      "title": "작업상 긴소매가 어려운 광보호 제약",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0071",
+      "group_id": "add100-b-group-feasible-nonproduct-protection",
+      "scenario_family_id": "add100-b-family-feasible-nonproduct-protection",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S14": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "prolonged": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.burden": {
+            "variable_id": "constraints.burden",
+            "state": "known",
+            "value": {
+              "long_sleeves_not_feasible_due_to_work": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.shade_clothing": {
+            "variable_id": "sun.shade_clothing",
+            "state": "known",
+            "value": {
+              "shade_break_available": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P04",
+            "status": "exception",
+            "guidance": "작업 제약 때문에 긴소매가 어렵다고 확인되어 그 수단을 강제하지 않고 가능한 그늘 휴식을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S14",
+            "text": "햇빛 노출에서 그늘과 의복, 선글라스와 제품 표시를 함께 검토하는 안내예요. 특정 약물의 중단이나 개인별 자외선 손상량을 계산하는 자료는 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/consumers/consumer-updates/tips-stay-safe-sun-sunscreen-sunglasses",
+            "locator": "Sun damage / Read Sunscreen Labels / Risk Factors",
+            "checked_on": "2026-11-04",
+            "limitations": "미국의 표시 규정은 한국 규정과 분리. 관련 약물 유무 확인과 전문가 연결만 고려하며 약물 중단 권고에 쓰지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P04@0.6.1",
+          "ref:S14"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "07401ccd8f6fb9fe27c0ab236508e1b8f115ee0a6d0b4e0ca88bd69ec5da3b71",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "작업·복장 등 제약으로 특정 수단이 불가능",
+            "의료진 개별 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "작업 제약 때문에 긴소매가 어렵다고 확인되어 그 수단을 강제하지 않고 가능한 그늘 휴식을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n작업 때문에 긴소매가 어렵다는 제약을 존중해요. 긴소매를 강제하는 대신 이용 가능한 그늘 휴식을 광보호 보완 수단으로 검토해요 [kb:B-P04@0.6.1].\n\n### 근거 및 이유\n일반 안내는 그늘·의복 등 가능한 보호수단과 제품 표시를 함께 살펴요. 실행할 수 없는 수단을 사용자의 잘못으로 판단하지 않아요 [ref:S14] [kb:B-P04@0.6.1].\n\n### 확인이 필요한 한계\n그늘 휴식을 실제로 이용했는지는 아직 확인되지 않았어요. 이 방법만으로 개인의 자외선 노출량이나 손상량을 계산하지 않아요."
+    },
+    {
+      "id": "syn-sol-0072",
+      "title": "SPF만 읽히는 손상된 새 후보 표시",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0072",
+      "group_id": "add100-b-group-basic-label-selection",
+      "scenario_family_id": "add100-b-family-basic-label-selection",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S16": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "compare_new_outdoor_sunscreen",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.spf": {
+            "variable_id": "product.spf",
+            "state": "known",
+            "value": 50,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "synthetic_candidate": "표시 일부가 손상된 후보"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.uva": {
+            "variable_id": "product.uva",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "product.water_resistance": {
+            "variable_id": "product.water_resistance",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P01",
+            "status": "unknown",
+            "guidance": "SPF 50은 확인되며 UVA·UVB 보호와 내수성 표시는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S16",
+            "text": "Professional sunscreen guidance discusses SPF 30 or higher, UVA and UVB coverage, water resistance and outdoor reapplication. Exposure conditions and non-product protection also matter. This is not a universal indoor reapplication schedule or a statement of Korean legal minimums.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P01@0.6.1",
+          "ref:S16"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2e9439d0128918c5b20ec4c24265a16e05d43fda45dd4ac82994a81a1932b290",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "선택한 기본 성능이 제품 자료로 확인되고 사용 환경에 맞음.",
+          "difference_when": "새 야외용 후보가 기본 성능을 충족하지 않는 것으로 확인됨. 표시 미확인은 unknown.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "피부질환·시술 관련 개별 지시",
+            "확인되지 않은 국가별 표시의 자동 등가 변환이 필요한 상황"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "SPF 50은 확인되며 UVA·UVB 보호와 내수성 표시는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\nSPF 50은 확인됐지만 UVA·UVB 보호와 내수성 표시는 미상이에요. 기본 표시 조건을 모두 충족했다거나 충족하지 못했다고 확정하지 않아요 [kb:B-P01@0.6.1].\n\n### 근거 및 이유\n일반적인 야외용 선택 안내는 SPF뿐 아니라 UVA·UVB 보호와 내수성도 함께 다뤄요 [ref:S16].\n\n### 확인이 필요한 한계\n현재 버전의 읽을 수 있는 포장 표시나 공식 자료로 빠진 항목을 확인해요. 손상된 표시를 근거로 보호 성능이나 안전성을 추정하지 않아요.",
+      "generator_model": "gpt-6.1-sol",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "834fc614111ec48e56d177b797905c325d274f2b540ed95604f7b58799386631",
+          "input_sha256": "2e9439d0128918c5b20ec4c24265a16e05d43fda45dd4ac82994a81a1932b290",
+          "reason": "표시 일부의 손상과 두 항목 미상은 확인되지만 미상의 원인은 확인되지 않았어요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0073",
+      "title": "수건 접촉 뒤 재도포 기억 불명확",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0073",
+      "group_id": "add100-b-group-reapplication-context",
+      "scenario_family_id": "add100-b-family-reapplication-context",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.towel_contact": {
+            "variable_id": "sun.towel_contact",
+            "state": "known",
+            "value": true,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "continued_after_towel": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.reapplication": {
+            "variable_id": "sun.reapplication",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "unknown",
+            "guidance": "수건 접촉 뒤 야외 노출은 이어졌지만 다시 발랐는지 확인되지 않아 미실시 차이로 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "4077ca3e6873b9474601526b36042d2679fb88b5567059c13b8f30d17eb19400",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "수건 접촉 뒤 야외 노출은 이어졌지만 다시 발랐는지 확인되지 않아 미실시 차이로 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n수건 접촉 뒤 야외 노출이 이어졌지만 재도포 여부는 미상이에요. 다시 바르지 않았다고 단정하거나 행동 차이를 만들지 않아요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n물·땀·닦임과 야외 노출, 제품 표시를 함께 검토하는 것이 일반 원칙이에요 [ref:S05].\n\n### 확인이 필요한 한계\n수건으로 닦은 뒤 다시 발랐는지 기억나는 범위에서 확인해요. 기억이 불명확하면 미상으로 남기며, 실제 보호량을 계산하지 않아요."
+    },
+    {
+      "id": "syn-sol-0074",
+      "title": "세정 라벨의 시험 조건을 모르는 후보",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0074",
+      "group_id": "add100-b-group-removal-label-conditions",
+      "scenario_family_id": "add100-b-family-removal-label-conditions",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-I01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S08": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.removal_claim": {
+            "variable_id": "product.removal_claim",
+            "state": "known",
+            "value": {
+              "label_condition": "special",
+              "label_text": "특정 세정 조건에서 제거 확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleansing_method": "milk"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-I01",
+            "status": "unknown",
+            "guidance": "합성 후보의 제거 표시는 특정 세정 조건만 언급하고 실제 조건은 없어 현재 밀크 세안과 일치하는지 미상이에요."
+          }
+        ],
+        "product_evidence": [
+          {
+            "product_id": "syn-add100-b-74",
+            "version": "v1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: 특정 세정 조건에서 제거를 확인했어요. 조건과 구체적 제거 지시는 이 자료에 없어요.",
+            "evidence_ref": "catalog:syn-add100-b-74@v1"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S08",
+            "text": "A small imaging study compared removal of selected sunscreen formulations using water, facial cleanser and cleansing oil. Findings are limited to the tested product-method combinations and do not establish mandatory double cleansing for all water-resistant sunscreens.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://onlinelibrary.wiley.com/doi/10.1111/jocd.12995",
+            "locator": "Abstract: Methods / Results / Conclusion",
+            "checked_on": "2026-11-04",
+            "limitations": "제한된 제품 조합의 영상 기반 잔류 지표. 모든 내수성 제품·오일·밀크·크림으로 일반화하거나 이중세안 필요성을 확정하지 않음. 2019 온라인 공개/2020 권호."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-I01@0.6.1",
+          "catalog:syn-add100-b-74@v1",
+          "ref:S08"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e4323507b5e624a0a135206c45fb639e5a1b3e27520a5ceff158b786c5868da5",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-I01",
+        "comparison_spec": {
+          "specification_language": "authored_case_checked_against_supplemental_condition_outcomes",
+          "source_path": "KB/Poppy_KB_v0.6.1/sunscreen_removal_review.json",
+          "source_version": "B-I01-removal-v1",
+          "condition_outcomes": {
+            "foam_test": {
+              "water": [
+                "adjust",
+                "foam_water"
+              ],
+              "foam": [
+                "keep",
+                "foam_keep"
+              ],
+              "water_rinse": [
+                "adjust",
+                "foam_rinse"
+              ],
+              "milk": [
+                "review",
+                "milk_check",
+                "foam_option"
+              ],
+              "other": [
+                "review",
+                "foam_option"
+              ]
+            },
+            "face_wash": {
+              "foam": [
+                "keep",
+                "wash_keep"
+              ],
+              "water": [
+                "review",
+                "wash_use"
+              ],
+              "water_rinse": [
+                "review",
+                "wash_use"
+              ]
+            },
+            "waterproof": {
+              "resistant_label": [
+                "keep",
+                "resistant_keep"
+              ],
+              "default": [
+                "review",
+                "resistant_check"
+              ]
+            },
+            "plain_water": {
+              "water_rinse": [
+                "keep",
+                "rinse_keep"
+              ],
+              "default": [
+                "review",
+                "rinse_keep"
+              ]
+            },
+            "oil_required": {
+              "oil": [
+                "keep",
+                "oil_keep"
+              ],
+              "default": [
+                "adjust",
+                "oil_use"
+              ]
+            },
+            "special": {
+              "default": [
+                "review",
+                "special_check"
+              ]
+            }
+          }
+        },
+        "rationale": "합성 후보의 제거 표시는 특정 세정 조건만 언급하고 실제 조건은 없어 현재 밀크 세안과 일치하는지 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n표시에 특정 세정 조건에서 제거를 확인했다고만 적혀 있어, 현재 밀크 세안과 그 조건이 맞는지는 미상이에요. 밀크로 충분하다거나 부족하다고 단정하지 않아요 [kb:B-I01@0.6.1] [catalog:syn-add100-b-74@v1].\n\n### 근거 및 이유\n제한된 제거 연구도 시험한 제품과 방법의 조합에 한정돼요. 다른 조합의 제거 성능이나 필요한 단계를 자동으로 확정할 수는 없어요 [ref:S08].\n\n### 확인이 필요한 한계\n해당 버전의 구체적인 제거 지시를 공개 표시나 공식 안내에서 확인해요. 조건을 모른다는 이유만으로 오일이나 추가 세안 단계를 임의로 정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0075",
+      "title": "해외 표시 PA와 UVA 수치 자동 환산 요청",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0075",
+      "group_id": "add100-b-group-syn-sol-0075",
+      "scenario_family_id": "add100-b-family-syn-sol-0075",
+      "split": "val_internal",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S16": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "convert_foreign_uva_label",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.uva": {
+            "variable_id": "product.uva",
+            "state": "known",
+            "value": {
+              "displayed_pa": "PA+++",
+              "uva_pf_not_disclosed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.spf": {
+            "variable_id": "product.spf",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "product.water_resistance": {
+            "variable_id": "product.water_resistance",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P01",
+            "status": "exception",
+            "guidance": "해외 표시 PA+++를 정확한 UVA-PF 수치로 자동 환산할 확인 근거가 없어 해당 환산을 하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S16",
+            "text": "SPF 30 이상, UVA와 UVB 보호, 내수성과 야외 재도포를 다루는 전문기관 안내예요. 실제 노출과 물·땀, 비제품 보호수단도 함께 검토해요. 한국의 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙을 정하는 자료는 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P01@0.6.1",
+          "ref:S16"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "bda32335dbe7c780784556e3e4084ecaa74d7c9a90e41a90bcec37e23fc08bdf",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "선택한 기본 성능이 제품 자료로 확인되고 사용 환경에 맞음.",
+          "difference_when": "새 야외용 후보가 기본 성능을 충족하지 않는 것으로 확인됨. 표시 미확인은 unknown.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "피부질환·시술 관련 개별 지시",
+            "확인되지 않은 국가별 표시의 자동 등가 변환이 필요한 상황"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "해외 표시 PA+++를 정확한 UVA-PF 수치로 자동 환산할 확인 근거가 없어 해당 환산을 하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\nPA+++ 표시는 확인됐지만 정확한 UVA-PF 수치로 자동 환산하지 않아요. 수치가 공개되지 않은 상태는 그대로 남겨요 [kb:B-P01@0.6.1].\n\n### 근거 및 이유\n제공된 일반 선택 안내는 SPF와 UVA·UVB 보호, 내수성을 검토하지만 국가별 표시의 정확한 수치 등가성을 제공하지는 않아요 [ref:S16].\n\n### 확인이 필요한 한계\nSPF와 내수성도 미상이에요. 해당 제품과 국가 표시 체계에 맞는 확인 자료 없이 수치나 기본 조건 충족 여부를 만들어내지 않아요."
+    },
+    {
+      "id": "syn-sol-0076",
+      "title": "개봉일은 알지만 개봉 후 지침을 모름",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0076",
+      "group_id": "add100-b-group-expiry-history-quality",
+      "scenario_family_id": "add100-b-family-expiry-history-quality",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S18": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
+            "state": "known",
+            "value": "2026-10-01",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "printed_expiry": "2027-06-30",
+              "label_expired": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": false,
+              "separation": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.pao": {
+            "variable_id": "storage.pao",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P08",
+            "status": "unknown",
+            "guidance": "개봉일과 인쇄 기한은 알지만 개봉 후 별도 사용 지침이 미확인이라 모든 기간 조건을 충족한다고 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S18",
+            "text": "자외선차단제의 사용기한과 열 노출, 품질 변화 사례를 다루는 안내예요. 실제 제품의 표시와 보관 이력을 함께 확인해야 해요. 미국의 기한 규칙을 한국의 모든 제품에 적용하거나 정확한 SPF 감소율을 계산할 수는 없어요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/prevent-skin-problems/replace-makeup-sunscreen",
+            "locator": "Sunscreen has an expiration date 및 품질 변화 예시",
+            "checked_on": "2026-11-04",
+            "limitations": "사용기한·열·품질 변화 관리에 참고. 한국 전제품에 미국의 기한 규칙을 자동 적용하지 않고 정확한 SPF 감소율을 추정하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P08@0.6.1",
+          "ref:S18"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e29f762a2f59390953e6e52f5102b68cc9d3bf3d15bc83f91c1af3e31bfcd142",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "알려진 기간·보관 이력이 제품 지침과 맞고 비정상적인 변화가 보고되지 않음. 실제 SPF나 내부 안정성 인증은 아님.",
+          "difference_when": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "원래 흔들어 쓰는 제품의 정상 분리",
+            "구매일·개봉일을 모르는 경우는 unknown이지 즉시 기한 경과가 아님",
+            "제품의 별도 보관 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "개봉일과 인쇄 기한은 알지만 개봉 후 별도 사용 지침이 미확인이라 모든 기간 조건을 충족한다고 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n개봉일은 2026년 10월 1일이고 인쇄 기한은 2027년 6월 30일로 확인됐어요. 다만 개봉 후 별도 지침이 미상이라 모든 기간 조건을 충족했다고 확정하지 않아요 [kb:B-P08@0.6.1].\n\n### 근거 및 이유\n기한과 보관 이력, 품질 변화는 함께 확인해야 해요. 인쇄 기한이 남았고 외관 변화가 없다는 사실만으로 전체 품질을 보증하지 않아요 [ref:S18].\n\n### 확인이 필요한 한계\n해당 버전의 개봉 후 사용 지침을 확인해요. 자료에 없는 개봉 후 사용 개월 수나 내부 안정성을 추정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0077",
+      "title": "한 펌프를 정확한 질량으로 바꿀 수 없음",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0077",
+      "group_id": "add100-b-group-syn-sol-0077",
+      "scenario_family_id": "add100-b-family-syn-sol-0077",
+      "split": "val_internal",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "dose.proxy_amount": {
+            "variable_id": "dose.proxy_amount",
+            "state": "known",
+            "value": {
+              "reported": "한 펌프",
+              "measured_mass_known": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.coverage_gaps": {
+            "variable_id": "sun.coverage_gaps",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P02",
+            "status": "exception",
+            "guidance": "한 펌프 사용이라는 보고만으로 토출 질량이나 얼굴 면적당 양을 정확히 계산할 수 없어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P02@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "888b23d74c4150bcad3898670aba3b935c2d314f00fcd4ee6434f83cf52f058a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "적용 부위 누락이 없고 지침과 맞는 충분한 도포를 수행한다고 보고함. 보호 수준은 미측정.",
+          "difference_when": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "용법과 충돌하는 부위",
+            "의료진 개별 지시",
+            "얼굴 크기·토출량 등 자료 부족으로 손가락 길이를 정확 g로 바꿀 수 없는 경우",
+            "해당 제품이 반복 눈시림을 유발하면 B-P06으로 눈가 사용을 조정하고 대체 광보호를 확보함."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "한 펌프 사용이라는 보고만으로 토출 질량이나 얼굴 면적당 양을 정확히 계산할 수 없어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n한 펌프를 썼다는 보고만으로 정확한 질량이나 얼굴 면적당 도포량을 계산할 수는 없어요. 충분하거나 부족하다고 수치 판정을 내리지 않아요 [kb:B-P02@0.6.1].\n\n### 근거 및 이유\n대략적인 사용량 보고는 행동 확인에 활용할 수 있지만 제품별 환산 근거 없이 정확한 양으로 바꿀 수는 없어요. 일반 안내는 제품 표시와 노출 상황을 함께 검토해요 [kb:B-P02@0.6.1] [ref:S05].\n\n### 확인이 필요한 한계\n제품 지침과 누락 부위가 미상이에요. 표시 사용법과 실제 누락 여부를 필요한 범위에서 확인하되, 정확한 얼굴 면적 측정을 필수로 요구하지 않아요."
+    },
+    {
+      "id": "syn-sol-0078",
+      "title": "중첩 불편 이후 행동 변화가 아직 미확인",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0078",
+      "group_id": "add100-b-group-layering-versus-behavior",
+      "scenario_family_id": "add100-b-family-layering-versus-behavior",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-I02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S09": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "moisturizing.comfort": {
+            "variable_id": "moisturizing.comfort",
+            "state": "known",
+            "value": {
+              "comfortable": false,
+              "reported": "답답한 느낌"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.mixing": {
+            "variable_id": "method.mixing",
+            "state": "known",
+            "value": {
+              "premixed_in_palm": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.sequence": {
+            "variable_id": "method.sequence",
+            "state": "known",
+            "value": [
+              "moisturizer",
+              "sunscreen"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-I02",
+            "status": "unknown",
+            "guidance": "중첩의 답답함은 확인됐지만 선크림 도포나 재도포를 줄였는지는 몰라 행동 감소 차이는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S09",
+            "text": "제한된 보습제와 자외선차단제 조합에서 도포 순서를 UV 반사 영상으로 살핀 연구예요. 관찰된 영상 결과는 실제 SPF나 야외 보호 성능을 보증하지 않아요. 각각 층으로 바른 결과를 손바닥에서 미리 섞는 행동에 그대로 적용할 수는 없어요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://onlinelibrary.wiley.com/doi/10.1111/phpp.12745",
+            "locator": "Methods 2.4 / Results / Discussion",
+            "checked_on": "2026-11-04",
+            "limitations": "실험실 조건 및 영상 대리지표. 유의한 차이가 없다는 결과는 모든 조합의 동등성 입증이 아니며, 실제 SPF나 야외 성능의 보증도 아님. 손바닥 사전 혼합과 개별 층 도포는 다름."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-I02@0.6.1",
+          "ref:S09"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "019ea7ef6cde5ff64024d258c94ede4c468718521626ce6903d34e3a527107cb",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-I02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "중첩 사용이 불편하지 않고 필요한 광보호 행동이 유지됨.",
+          "difference_when": "중첩 불편 때문에 실제 선크림 사용·재도포를 줄이거나 생략한다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품별 특수 도포 지시",
+            "새 불편감으로 별도 검토 필요",
+            "실제 행동 변화 없이 밀림만 있는 경우 일반 사용성 검토"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "중첩의 답답함은 확인됐지만 선크림 도포나 재도포를 줄였는지는 몰라 행동 감소 차이는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n겹쳐 바를 때 답답함은 확인됐지만 그 때문에 선크림 도포나 재도포를 줄였는지는 미상이에요. 사용감과 실제 행동을 분리해서 확인해요 [kb:B-I02@0.6.1].\n\n### 근거 및 이유\n제한된 도포 순서 연구는 실제 SPF나 야외 보호 성능을 보증하지 않아요. 답답함만으로 보호 감소나 선크림 생략을 추정하지 않아요 [ref:S09].\n\n### 확인이 필요한 한계\n답답해서 실제 사용량이나 재도포가 달라졌는지 확인해요. 보습제 다음 선크림을 각각 바른 보고를 사전 혼합으로 해석하거나 순서 변경만으로 해결을 보장하지 않아요."
+    },
+    {
+      "id": "syn-sol-0079",
+      "title": "눈가 경험이 없는 새 제형의 개인 적합성",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0079",
+      "group_id": "add100-b-group-personal-eye-experience",
+      "scenario_family_id": "add100-b-family-personal-eye-experience",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S17": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "compare_new_periocular_candidate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.prior_tolerated_products": {
+            "variable_id": "sun.prior_tolerated_products",
+            "state": "known",
+            "value": {
+              "candidate_has_not_been_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.eye_symptom_context": {
+            "variable_id": "skin.eye_symptom_context",
+            "state": "known",
+            "value": {
+              "no_current_ocular_symptoms": true,
+              "direct_eye_exposure": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.eye_stinging": {
+            "variable_id": "skin.eye_stinging",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P06",
+            "status": "unknown",
+            "guidance": "후보를 눈 주변에 써 본 경험이 없어 개인의 눈시림 여부는 미상이며 제형만으로 무자극을 보장하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S17",
+            "text": "Sunscreen guidance considers product choice and avoiding runoff near the eyes. Sticks are one possible option, not a guarantee of no irritation for every person, and the guidance does not identify an individual's cause of eye symptoms.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/choosing-right-sunscreen",
+            "locator": "Step 1 및 Around your eyes 항목",
+            "checked_on": "2026-11-04",
+            "limitations": "눈 주변 스틱 사용은 흘러듦을 줄이기 위한 선택지다. 지용성·고분자량 우월성이나 모든 스틱의 무자극 보장을 뒷받침하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P06@0.6.1",
+          "ref:S17"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "b65ab1b8b74c50c42975ee94c304387929123f648b181e5259c23e7dea13ef3f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함.",
+          "difference_when": "같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "제품의 눈 주변 사용 제한",
+            "개별 의료진 지시",
+            "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "후보를 눈 주변에 써 본 경험이 없어 개인의 눈시림 여부는 미상이며 제형만으로 무자극을 보장하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n후보를 눈 주변에 써 본 경험이 없어 본인에게 눈시림이 생길지는 미상이에요. 현재 안구 증상이 없다는 사실과 새 후보의 개인 적합성은 구분해요 [kb:B-P06@0.6.1].\n\n### 근거 및 이유\n눈 주변 사용에서는 공개된 사용 지침과 실제 경험을 함께 살펴요. 특정 제형만으로 누구에게나 눈시림이 없다고 보장하지 않아요 [kb:B-P06@0.6.1].\n\n### 확인이 필요한 한계\n후보의 눈 주변 사용 제한과 확인 가능한 사용법을 살펴봐요. 비공개 제형이나 원시험 보고서가 없다는 이유로 모든 후보 비교를 중단하지 않아요."
+    },
+    {
+      "id": "syn-sol-0080",
+      "title": "친구의 선크림 불편을 본인에게 전이하지 않음",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0080",
+      "group_id": "add100-b-group-personal-eye-experience",
+      "scenario_family_id": "add100-b-family-personal-eye-experience",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P06"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S17": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.eye_stinging": {
+            "variable_id": "skin.eye_stinging",
+            "state": "known",
+            "value": {
+              "self_repeated": false,
+              "friend_reported": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.eye_symptom_context": {
+            "variable_id": "skin.eye_symptom_context",
+            "state": "known",
+            "value": {
+              "subject_of_stinging": "friend",
+              "self_ocular_symptoms": false,
+              "direct_eye_exposure": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.periocular_application": {
+            "variable_id": "sun.periocular_application",
+            "state": "known",
+            "value": {
+              "self_uses_label_consistent_method": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P06",
+            "status": "aligned",
+            "guidance": "눈시림을 겪은 사람은 친구이며 본인은 같은 조건에서 반복 눈시림이 없다고 확인되어 본인의 불편으로 전이하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S17",
+            "text": "자외선차단제 선택과 눈 주변 사용 시 흘러듦을 줄이는 방법을 다루는 안내예요. 눈 주변 스틱은 선택지 중 하나이며 모든 스틱의 무자극을 보장하지 않아요. 특정 필터의 우월성이나 개인의 눈시림 원인을 확정하는 자료도 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/choosing-right-sunscreen",
+            "locator": "Step 1 및 Around your eyes 항목",
+            "checked_on": "2026-11-04",
+            "limitations": "눈 주변 스틱 사용은 흘러듦을 줄이기 위한 선택지다. 지용성·고분자량 우월성이나 모든 스틱의 무자극 보장을 뒷받침하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P06@0.6.1",
+          "ref:S17"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "775ab52c4fe769eddab8bb2be3f3dfe969a9d61444acb056e0fdfe40207764f1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함.",
+          "difference_when": "같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "제품의 눈 주변 사용 제한",
+            "개별 의료진 지시",
+            "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "눈시림을 겪은 사람은 친구이며 본인은 같은 조건에서 반복 눈시림이 없다고 확인되어 본인의 불편으로 전이하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n눈시림을 겪었다는 사람은 친구이고, 본인은 반복 눈시림 없이 표시대로 사용한다고 확인됐어요. 친구의 경험을 본인의 불편으로 옮기지 않고 현재 확인된 행동은 유지해요 [kb:B-P06@0.6.1].\n\n### 근거 및 이유\n이 항목은 본인의 사용 조건과 반복 불편을 함께 살피는 기준이에요. 타인의 경험만으로 본인에게도 같은 반응이 있다고 판단하지 않아요 [kb:B-P06@0.6.1].\n\n### 확인이 필요한 한계\n현재 불편이 없다는 보고가 이후에도 무자극임을 보장하지는 않아요. 새로 반복 눈시림이 생기면 해당 제품과 방법을 다시 검토해요."
+    },
+    {
+      "id": "syn-sol-0081",
+      "title": "선크림을 안 바른다는 동료 발언과 본인 기록 분리",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0081",
+      "group_id": "add100-b-group-actual-application-versus-reported-other",
+      "scenario_family_id": "add100-b-family-actual-application-versus-reported-other",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "self_follows_labeled_application": true,
+              "coworker_omits_sunscreen": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.coverage_gaps": {
+            "variable_id": "sun.coverage_gaps",
+            "state": "known",
+            "value": [],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.exposed_sites": {
+            "variable_id": "sun.exposed_sites",
+            "state": "known",
+            "value": [
+              "face",
+              "neck"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P02",
+            "status": "aligned",
+            "guidance": "선크림을 생략한다는 발언은 동료의 경험이며 본인은 노출 얼굴과 목에 표시대로 바르고 누락이 없다고 확인했어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P02@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "fd6685e8a93b763014080ea011992aa05fb5a922d1c0eb996a214d0c9e30bb9d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "적용 부위 누락이 없고 지침과 맞는 충분한 도포를 수행한다고 보고함. 보호 수준은 미측정.",
+          "difference_when": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "용법과 충돌하는 부위",
+            "의료진 개별 지시",
+            "얼굴 크기·토출량 등 자료 부족으로 손가락 길이를 정확 g로 바꿀 수 없는 경우",
+            "해당 제품이 반복 눈시림을 유발하면 B-P06으로 눈가 사용을 조정하고 대체 광보호를 확보함."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "선크림을 생략한다는 발언은 동료의 경험이며 본인은 노출 얼굴과 목에 표시대로 바르고 누락이 없다고 확인했어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n본인은 노출되는 얼굴과 목에 표시대로 바르고 누락이 없다고 확인됐어요. 동료가 생략한다는 발언과 분리해 본인의 해당 도포 행동은 유지해요 [kb:B-P02@0.6.1].\n\n### 근거 및 이유\n도포 여부와 누락은 실제 본인의 보고를 기준으로 확인해요. 일반 광보호 안내도 제품 표시와 노출 상황을 함께 살펴요 [kb:B-P02@0.6.1] [ref:S05].\n\n### 확인이 필요한 한계\n행동이 기준과 맞는다는 판단이지 실제 SPF나 개인 보호 수준을 측정한 결과는 아니에요. 동료의 발언을 본인의 사용량 부족 근거로 삼지 않아요."
+    },
+    {
+      "id": "syn-sol-0082",
+      "title": "집 재고와 별도인 직장 비치 목적을 중복 구매로 단정하지 않기",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0082",
+      "group_id": "add100-b-revision1-group-syn-sol-0082",
+      "scenario_family_id": "add100-b-revision1-family-syn-sol-0082",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "clinical_restraint",
+      "chunk_origins": {
+        "ref:S36": "kb_source_summary",
+        "ref:S12": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "commerce.purchase_purpose": {
+            "variable_id": "commerce.purchase_purpose",
+            "state": "known",
+            "value": {
+              "별도 목적": "직장 세면 공간에 보습제 한 통 비치",
+              "집 제품 운반 어려움": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.inventory": {
+            "variable_id": "commerce.inventory",
+            "state": "known",
+            "value": {
+              "집 보습제": "개봉품 한 통",
+              "직장 보유품": "없음"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.planned_start": {
+            "variable_id": "commerce.planned_start",
+            "state": "known",
+            "value": {
+              "예정": "다음 출근일부터 직장에서 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.budget": {
+            "variable_id": "constraints.budget",
+            "state": "known",
+            "value": {
+              "추가 한 통 비용 감당 가능": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.seller": {
+            "variable_id": "commerce.seller",
+            "state": "known",
+            "value": {
+              "브랜드 허가 판매자 목록과 실제 판매자 일치 확인": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q01",
+            "status": "exception",
+            "guidance": "직장 비치라는 별도 사용 목적과 시작 계획이 확인되어 집에 같은 기능 제품이 있다는 이유만으로 불필요한 중복 구매로 판정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S36",
+            "text": "브랜드의 허가 판매자 목록과 실제 판매자를 대조하도록 안내하는 자료예요. 의심되는 제품은 사용하지 않고 공급자에 문의하도록 안내해요. 판매 경로 확인은 개별 제품의 품질이나 개인 적합성 보증과는 다른 판단이에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.hpra.ie/safety-information/how-we-monitor-safety/cosmetics/how-we-monitor-the-safety-of-cosmetic-products/tips-on-how-to-spot-counterfeit-cosmetics",
+            "locator": "신뢰 가능한 판매자·브랜드의 허가 판매자 목록 확인; 의심 제품 사용하지 않고 공급자에 문의",
+            "checked_on": "2026-11-05",
+            "limitations": "EU 주소·신고 연락처를 한국의 필수 표시/국내 신고처로 옮기지 않음. 플랫폼 화이트리스트 보증 근거 아님."
+          },
+          {
+            "evidence_ref": "ref:S12",
+            "text": "특정 식이 중재의 결과가 제시되어 있어요. 이를 근거로 집에 보습제가 있으면 직장용 한 통도 피부에 해롭다고 주장해요.",
+            "scope": "non_clinical_only",
+            "source_url": "https://www.medicaljournals.se/acta/content/abstract/10.2340/00015555-1346",
+            "locator": "Abstract",
+            "checked_on": "2026-11-04",
+            "limitations": "특정 질환·식이패턴·기간의 소규모 연구. 한 번의 음식 섭취와 다음날 증상을 연결하거나 모든 피부 건조·민감 반응에 확장하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-Q01@0.6.1",
+          "ref:S36"
+        ],
+        "distractor_refs": [
+          "ref:S12"
+        ]
+      },
+      "input_sha256": "42f43db72d84a036fbe87564e16b8400039e2b1f7d0dd2be50c42def3a66c0e3",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "충족된 기능을 이유 없이 중복 구매하거나 사용할 계획 없이 과량 구매하려 함. 제품 수만으로 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "다른 부위/가족/직장/여행 등 별도 사용 목적",
+            "기존 제품에 품질/불편 문제가 있어 대체 필요"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "직장 비치라는 별도 사용 목적과 시작 계획이 확인되어 집에 같은 기능 제품이 있다는 이유만으로 불필요한 중복 구매로 판정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n집의 보습제를 운반하기 어려워 직장 세면 공간에 한 통을 따로 비치하려는 목적과 다음 출근일부터 쓸 계획이 확인됐어요. 같은 기능의 제품을 집에 갖고 있다는 사실만으로 불필요한 중복 구매라고 판정하지 않아요 [kb:B-Q01@0.6.1].\n\n### 근거 및 이유\n이 기준은 제품 수만 세기보다 별도 사용 목적·보유 재고·시작 계획과 비용을 함께 검토해요. 추가 한 통의 비용을 감당할 수 있다는 관찰도 있어요 [kb:B-Q01@0.6.1]. 브랜드 허가 판매자 목록과 실제 판매자의 일치를 확인했다는 관찰은 판매 경로 확인에 해당하지만, 제품 품질 전체를 보증하는 것은 아니에요 [ref:S36].\n\n### 확인이 필요한 한계\n실제 소진량이나 남은 제품의 사용 가능 기간은 계산할 정보가 없어요. 별도 목적이 있다는 사실을 임상 효과나 개인 적합성의 증거로 바꾸지 않으며, 이 자료로 구매 자체가 피부에 해롭다고 단정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0083",
+      "title": "외관 정상 선크림의 품질 전체 인증 요구 방어",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0083",
+      "group_id": "add100-b-group-expiry-history-quality",
+      "scenario_family_id": "add100-b-family-expiry-history-quality",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P08"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "clinical_restraint",
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary",
+        "ref:S10": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "label_expired": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.temperature_history": {
+            "variable_id": "storage.temperature_history",
+            "state": "known",
+            "value": {
+              "follows_label": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "follows_label": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": false,
+              "separation": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.pao": {
+            "variable_id": "storage.pao",
+            "state": "known",
+            "value": {
+              "within_labeled_period": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P08",
+            "status": "aligned",
+            "guidance": "확인된 기한과 보관 이력은 표시와 맞고 새로운 외관 변화는 없지만 이를 내부 안정성 인증으로 보지는 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-protection guidance considers labeled sunscreen use, outdoor exposure, water, sweat, shade and clothing together. It does not calculate an individual's received ultraviolet dose or automatically impose a universal indoor schedule.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          },
+          {
+            "evidence_ref": "ref:S10",
+            "text": "수면 관련 관찰 자료가 소개되어 있어요. 충분히 잠든 날에는 보관한 선크림의 내부 품질도 완전히 정상이라고 판단할 수 있다고 주장해요.",
+            "scope": "non_clinical_only",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/25266053/",
+            "locator": "Abstract",
+            "checked_on": "2026-11-04",
+            "limitations": "관찰적 집단 비교. 인종·성별·표본·수면 분류가 제한적. 수면 연장의 개인 피부 개선량을 추정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P08@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": [
+          "ref:S10"
+        ]
+      },
+      "input_sha256": "cdd51f4867ba18a94416769d83541254e217084af2fe74a8ec9d99901beac755",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "알려진 기간·보관 이력이 제품 지침과 맞고 비정상적인 변화가 보고되지 않음. 실제 SPF나 내부 안정성 인증은 아님.",
+          "difference_when": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "원래 흔들어 쓰는 제품의 정상 분리",
+            "구매일·개봉일을 모르는 경우는 unknown이지 즉시 기한 경과가 아님",
+            "제품의 별도 보관 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "확인된 기한과 보관 이력은 표시와 맞고 새로운 외관 변화는 없지만 이를 내부 안정성 인증으로 보지는 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n확인된 사용기한·개봉 후 기간과 보관 이력이 표시에 맞고 새 외관 변화가 없어요. 해당 관리 행동은 유지하되 내부 품질 전체를 인증하지는 않아요 [kb:B-P08@0.6.1].\n\n### 근거 및 이유\n기한과 열·빛·공기 노출 등 보관 조건을 표시와 함께 살피는 기준이에요. 정상 외관은 관찰 사실이지 내부 안정성의 측정값이 아니에요 [kb:B-P08@0.6.1].\n\n### 확인이 필요한 한계\n현재 제품의 실제 SPF 유지율과 내부 안정성은 미측정이에요. 외관이나 관리 이력만으로 완전한 안전과 성능을 보증하지 않아요."
+    },
+    {
+      "id": "syn-sol-0084",
+      "title": "물로 제거 표시인데 임의 삼중세안 요구 방어",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0084",
+      "group_id": "add100-b-group-removal-label-conditions",
+      "scenario_family_id": "add100-b-family-removal-label-conditions",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-I01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S08": "kb_source_summary",
+        "ref:S21": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.removal_claim": {
+            "variable_id": "product.removal_claim",
+            "state": "known",
+            "value": {
+              "label_condition": "plain_water"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleansing_method": "water_rinse"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.steps": {
+            "variable_id": "cleansing.steps",
+            "state": "known",
+            "value": 1,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-I01",
+            "status": "aligned",
+            "guidance": "현재 버전의 합성 제품은 물로 제거하도록 표시되어 있고 실제 방법도 물 헹굼으로 일치해요."
+          }
+        ],
+        "product_evidence": [
+          {
+            "product_id": "syn-add100-b-84",
+            "version": "v1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: 물로 헹구어 제거해요. 추가 세정 단계는 지정하지 않아요.",
+            "evidence_ref": "catalog:syn-add100-b-84@v1"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S08",
+            "text": "20명을 대상으로 시험한 자외선차단제와 세정 방법의 제거 결과를 비교한 연구예요. 결과는 시험한 제품과 방법의 조합에 한정돼요. 모든 내수성 제품에 같은 제거 방법이나 이중세안이 필요하다는 결론은 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://onlinelibrary.wiley.com/doi/10.1111/jocd.12995",
+            "locator": "Abstract: Methods / Results / Conclusion",
+            "checked_on": "2026-11-04",
+            "limitations": "제한된 제품 조합의 영상 기반 잔류 지표. 모든 내수성 제품·오일·밀크·크림으로 일반화하거나 이중세안 필요성을 확정하지 않음. 2019 온라인 공개/2020 권호."
+          },
+          {
+            "evidence_ref": "ref:S21",
+            "text": "손을 씻은 뒤 손 보습제를 바르는 방법을 다뤄요. 얼굴 선크림도 종류와 관계없이 오일과 폼을 포함한 세 단계를 거쳐야 한다고 제안해요.",
+            "scope": "non_clinical_only",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+            "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+            "checked_on": "2026-11-04",
+            "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-I01@0.6.1",
+          "catalog:syn-add100-b-84@v1",
+          "ref:S08"
+        ],
+        "distractor_refs": [
+          "ref:S21"
+        ]
+      },
+      "input_sha256": "dfeb7a7d8cc6be5427a5ac1ec01f6fe095f0889a2bea728a565509651a1909d4",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-I01",
+        "comparison_spec": {
+          "specification_language": "authored_case_checked_against_supplemental_condition_outcomes",
+          "source_path": "KB/Poppy_KB_v0.6.1/sunscreen_removal_review.json",
+          "source_version": "B-I01-removal-v1",
+          "condition_outcomes": {
+            "foam_test": {
+              "water": [
+                "adjust",
+                "foam_water"
+              ],
+              "foam": [
+                "keep",
+                "foam_keep"
+              ],
+              "water_rinse": [
+                "adjust",
+                "foam_rinse"
+              ],
+              "milk": [
+                "review",
+                "milk_check",
+                "foam_option"
+              ],
+              "other": [
+                "review",
+                "foam_option"
+              ]
+            },
+            "face_wash": {
+              "foam": [
+                "keep",
+                "wash_keep"
+              ],
+              "water": [
+                "review",
+                "wash_use"
+              ],
+              "water_rinse": [
+                "review",
+                "wash_use"
+              ]
+            },
+            "waterproof": {
+              "resistant_label": [
+                "keep",
+                "resistant_keep"
+              ],
+              "default": [
+                "review",
+                "resistant_check"
+              ]
+            },
+            "plain_water": {
+              "water_rinse": [
+                "keep",
+                "rinse_keep"
+              ],
+              "default": [
+                "review",
+                "rinse_keep"
+              ]
+            },
+            "oil_required": {
+              "oil": [
+                "keep",
+                "oil_keep"
+              ],
+              "default": [
+                "adjust",
+                "oil_use"
+              ]
+            },
+            "special": {
+              "default": [
+                "review",
+                "special_check"
+              ]
+            }
+          }
+        },
+        "rationale": "현재 버전의 합성 제품은 물로 제거하도록 표시되어 있고 실제 방법도 물 헹굼으로 일치해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n이 합성 제품의 현재 버전은 물로 헹구어 제거하도록 표시되어 있고 실제 방법도 일치해요. 지정되지 않은 추가 단계를 자동으로 늘리지 않아요 [kb:B-I01@0.6.1] [catalog:syn-add100-b-84@v1].\n\n### 근거 및 이유\n제거 연구는 시험한 제품과 세정 방법의 조합에 한정되며 모든 선크림에 동일한 반복 세안을 요구하지 않아요 [ref:S08].\n\n### 확인이 필요한 한계\n물 헹굼 안내는 제공된 합성 제품의 표시 범위에 한정돼요. 모든 제품이 물만으로 제거된다거나 실제 잔류량이 0이라고 일반화하지 않아요."
+    },
+    {
+      "id": "syn-sol-0085",
+      "title": "실내 체류를 야외 두 시간 규칙으로 바꾸지 않음",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0085",
+      "group_id": "add100-b-group-reapplication-context",
+      "scenario_family_id": "add100-b-family-reapplication-context",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary",
+        "ref:S23": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "prolonged_outdoor_exposure": false,
+              "context": "오늘은 실내 체류만 확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.water_contact": {
+            "variable_id": "sun.water_contact",
+            "state": "known",
+            "value": false,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.sweat": {
+            "variable_id": "sun.sweat",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.towel_contact": {
+            "variable_id": "sun.towel_contact",
+            "state": "known",
+            "value": false,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "exception",
+            "guidance": "오늘 확인된 것은 실내 체류이며 물·땀·닦임도 없어 야외 지속 노출의 두 시간 재도포 기준을 자동 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          },
+          {
+            "evidence_ref": "ref:S23",
+            "text": "습식 면도의 도구와 피부 접촉을 다루는 안내예요. 면도 시간표를 모든 실내 선크림 사용자에게 두 시간 간격 알림으로 적용하라고 제안해요.",
+            "scope": "non_clinical_only",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": [
+          "ref:S23"
+        ]
+      },
+      "input_sha256": "598a8185233ca028474a2f4b9d18bf1658a335dde6821d786a2d474b5bb4057b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "오늘 확인된 것은 실내 체류이며 물·땀·닦임도 없어 야외 지속 노출의 두 시간 재도포 기준을 자동 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n오늘은 실내 체류만 확인됐고 물·땀·수건 접촉도 없어요. 야외 지속 노출의 두 시간 재도포 기준을 자동으로 실내 일정에 적용하지 않아요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n일반 안내는 제품 표시와 실제 야외 노출, 물·땀 등 조건을 함께 검토해요. 하나의 시간표를 모든 환경에 일률적으로 적용하는 기준은 아니에요 [ref:S05].\n\n### 확인이 필요한 한계\n실내라는 이유만으로 자외선 노출이 전혀 없다고 확정하지는 않아요. 실제 노출 조건이나 제품 지침이 달라지면 필요한 재도포 안내도 다시 검토해요."
+    },
+    {
+      "id": "syn-sol-0086",
+      "title": "국가 표시 미확인을 독성 판단으로 바꾸지 않음",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0086",
+      "group_id": "add100-b-group-basic-label-selection",
+      "scenario_family_id": "add100-b-family-basic-label-selection",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S16": "kb_source_summary",
+        "ref:S11": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "compare_imported_candidate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "label_language": "외국어",
+              "translation_not_verified": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.spf": {
+            "variable_id": "product.spf",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "product.uva": {
+            "variable_id": "product.uva",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "product.water_resistance": {
+            "variable_id": "product.water_resistance",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P01",
+            "status": "unknown",
+            "guidance": "수입 후보의 표시 번역이 확인되지 않아 기본 표시 성능이 미상이며 독성이나 불법으로 판정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S16",
+            "text": "SPF 30 이상, UVA와 UVB 보호, 내수성과 야외 재도포를 다루는 전문기관 안내예요. 실제 노출과 물·땀, 비제품 보호수단도 함께 검토해요. 한국의 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙을 정하는 자료는 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
+          },
+          {
+            "evidence_ref": "ref:S11",
+            "text": "스트레스와 피부 상태에 대한 관찰 자료예요. 외국어 선크림 표시를 해석하기 어렵다는 이유만으로 해당 제품을 독성 제품으로 분류하라고 제안해요.",
+            "scope": "non_clinical_only",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/11511309/",
+            "locator": "Abstract",
+            "checked_on": "2026-11-04",
+            "limitations": "급성 실험과 테이프 스트리핑 후 회복 지표. 만성 스트레스 점수로 개인 발진의 원인을 확정할 수 없음. 연구별 군/프로토콜을 분리."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P01@0.6.1",
+          "ref:S16"
+        ],
+        "distractor_refs": [
+          "ref:S11"
+        ]
+      },
+      "input_sha256": "ec6e8212f67a4957429c95fa5cc0a6262588c9801a26a48533809a2f1fb5edbc",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "선택한 기본 성능이 제품 자료로 확인되고 사용 환경에 맞음.",
+          "difference_when": "새 야외용 후보가 기본 성능을 충족하지 않는 것으로 확인됨. 표시 미확인은 unknown.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "피부질환·시술 관련 개별 지시",
+            "확인되지 않은 국가별 표시의 자동 등가 변환이 필요한 상황"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "수입 후보의 표시 번역이 확인되지 않아 기본 표시 성능이 미상이며 독성이나 불법으로 판정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n외국어 표시의 번역이 확인되지 않아 SPF, UVA 보호와 내수성은 미상이에요. 표시를 읽기 어렵다는 이유로 독성이나 불법 제품으로 판단하지 않아요 [kb:B-P01@0.6.1].\n\n### 근거 및 이유\n일반적인 선택 안내는 공개된 SPF와 UVA·UVB 보호, 내수성을 검토해요. 미국 전문기관의 선택 기준이 한국의 법적 최소치를 뜻하지는 않아요 [ref:S16].\n\n### 확인이 필요한 한계\n해당 후보의 정확한 버전과 신뢰할 수 있는 표시 번역을 확인해요. 미확인을 성능 부족이나 안전 보증으로 바꾸지 않아요."
+    },
+    {
+      "id": "syn-sol-0087",
+      "title": "안전모 제약 아래 가능한 그늘을 선택",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0087",
+      "group_id": "add100-b-group-feasible-nonproduct-protection",
+      "scenario_family_id": "add100-b-family-feasible-nonproduct-protection",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P04"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S14": "kb_source_summary",
+        "ref:S15": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "prolonged": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.burden": {
+            "variable_id": "constraints.burden",
+            "state": "known",
+            "value": {
+              "wide_brim_hat_conflicts_with_required_safety_helmet": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.shade_clothing": {
+            "variable_id": "sun.shade_clothing",
+            "state": "known",
+            "value": {
+              "shade_break_available": true,
+              "shade_break_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P04",
+            "status": "exception",
+            "guidance": "필수 안전모 때문에 챙 넓은 모자가 어렵고 가능한 그늘 휴식을 활용하므로 불가능한 수단을 강제하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S14",
+            "text": "햇빛 노출에서 그늘과 의복, 선글라스와 제품 표시를 함께 검토하는 안내예요. 특정 약물의 중단이나 개인별 자외선 손상량을 계산하는 자료는 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/consumers/consumer-updates/tips-stay-safe-sun-sunscreen-sunglasses",
+            "locator": "Sun damage / Read Sunscreen Labels / Risk Factors",
+            "checked_on": "2026-11-04",
+            "limitations": "미국의 표시 규정은 한국 규정과 분리. 관련 약물 유무 확인과 전문가 연결만 고려하며 약물 중단 권고에 쓰지 않음."
+          },
+          {
+            "evidence_ref": "ref:S15",
+            "text": "향료 표시와 개인별 회피를 설명해요. 향료가 적은 선크림을 쓴다면 작업용 안전모를 벗어도 된다고 주장해요.",
+            "scope": "non_clinical_only",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P04@0.6.1",
+          "ref:S14"
+        ],
+        "distractor_refs": [
+          "ref:S15"
+        ]
+      },
+      "input_sha256": "023a9ede3ef6d79a0f30f995b8ff983abe6010a27deabd6b1dcdd9b9f47dfa37",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "작업·복장 등 제약으로 특정 수단이 불가능",
+            "의료진 개별 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "필수 안전모 때문에 챙 넓은 모자가 어렵고 가능한 그늘 휴식을 활용하므로 불가능한 수단을 강제하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n필수 안전모와 충돌하는 챙 넓은 모자를 강제하지 않아요. 이미 활용하는 그늘 휴식처럼 가능한 보완 수단은 유지해요 [kb:B-P04@0.6.1].\n\n### 근거 및 이유\n광보호는 제품 표시와 그늘·의복 등 실행 가능한 수단을 함께 살피는 안내예요. 작업상 제약은 고려해야 할 조건이에요 [ref:S14] [kb:B-P04@0.6.1].\n\n### 확인이 필요한 한계\n광보호를 이유로 필수 안전모를 벗도록 안내하지 않아요. 그늘 휴식만으로 실제 노출량이나 보호 수준을 확정할 수는 없어요."
+    },
+    {
+      "id": "syn-sol-0088",
+      "title": "바를 계획과 실제 도포의 차이를 보존",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "add100-b-scenario-syn-sol-0088",
+      "group_id": "add100-b-group-actual-application-versus-reported-other",
+      "scenario_family_id": "add100-b-family-actual-application-versus-reported-other",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "plan_to_follow_label_tomorrow": true,
+              "actual_application_not_reported": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.exposed_sites": {
+            "variable_id": "sun.exposed_sites",
+            "state": "known",
+            "value": [
+              "face",
+              "neck"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "dose.proxy_amount": {
+            "variable_id": "dose.proxy_amount",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "sun.coverage_gaps": {
+            "variable_id": "sun.coverage_gaps",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P02",
+            "status": "unknown",
+            "guidance": "내일 표시대로 바르겠다는 계획만 있고 실제 도포 보고는 없어 이미 충분히 바른 상태로 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P02@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "6170c029c1e7f73073b17a3e0f5f8d082ada10dedda9ca277a720c42a89a54e4",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "적용 부위 누락이 없고 지침과 맞는 충분한 도포를 수행한다고 보고함. 보호 수준은 미측정.",
+          "difference_when": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "용법과 충돌하는 부위",
+            "의료진 개별 지시",
+            "얼굴 크기·토출량 등 자료 부족으로 손가락 길이를 정확 g로 바꿀 수 없는 경우",
+            "해당 제품이 반복 눈시림을 유발하면 B-P06으로 눈가 사용을 조정하고 대체 광보호를 확보함."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "내일 표시대로 바르겠다는 계획만 있고 실제 도포 보고는 없어 이미 충분히 바른 상태로 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 핵심 안내\n내일 표시대로 바르겠다는 계획은 확인됐지만 실제 도포 보고는 없어요. 이미 충분히 발랐거나 얼굴·목을 빠짐없이 발랐다고 판단하지 않아요 [kb:B-P02@0.6.1].\n\n### 근거 및 이유\n도포 항목은 실제 사용과 누락 여부를 확인하는 기준이에요. 제품 표시와 노출 상황을 함께 살피되 계획을 실행 사실로 바꾸지 않아요 [kb:B-P02@0.6.1] [ref:S05].\n\n### 확인이 필요한 한계\n실제 사용 후 대략적인 사용량과 얼굴·목의 누락 여부를 필요한 범위에서 확인해요. 확인 전에는 해당 항목을 미상으로 남겨요."
+    },
+    {
+      "id": "syn-hold-0021",
+      "title": "상충하는 합성 공식 회수 공지의 적용 버전 확인 보류",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "add100-b-scenario-syn-hold-0021",
+      "group_id": "add100-b-revision1-group-syn-hold-0021",
+      "scenario_family_id": "add100-b-revision1-family-syn-hold-0021",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "합성 제품": "확인된 보유품",
+              "동일 제품명과 버전 확인": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.batch": {
+            "variable_id": "storage.batch",
+            "state": "known",
+            "value": {
+              "보유 제조번호": "SYN-B21"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.recall_check": {
+            "variable_id": "commerce.recall_check",
+            "state": "known",
+            "value": {
+              "합성 공식 공지 1": "SYN-B21은 대상에서 제외",
+              "합성 공식 공지 2": "SYN-B21 포함, 범위 확인 전 사용 보류",
+              "두 공지의 최신 적용 버전": "미확인",
+              "조회일": "2026-11-23"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "어느 공지가 최신인지 확인되지 않은 채 보유품 사용 일정 요청",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q05",
+            "status": "hold",
+            "guidance": "같은 제조번호에 관한 합성 공식 공지가 상충하고 한 공지가 확인 전 사용 보류를 명시해요. 최종 회수 대상 여부는 미상으로 남기고 개별 사용 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [
+          {
+            "product_id": "syn-add100-b-hold21",
+            "version": "revision1",
+            "synthetic_product": true,
+            "status": "usage_held",
+            "label_guidance": "합성 제품 표시 예시: 합성 회수 자료의 제조번호 범위가 상충해요. 최신 적용 공지를 확인하기 전 사용 보류가 명시되어 있어요.",
+            "evidence_ref": "catalog:syn-add100-b-hold21@revision1"
+          }
+        ],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q05@0.6.1",
+          "catalog:syn-add100-b-hold21@revision1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "4d258307628c2deb3280ca27ccd2e3bde8987cac3d17e78a5d3f1140ec3c281d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "대상 일치 공지를 무시하거나 제품명만 같은 다른 제조번호를 회수 대상이라 확정함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "공지가 제조번호가 아닌 전 제품/특정 기간을 대상으로 하는 경우 해당 범위 적용"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "B-Q05의 결정 정보 상충·미확인 분기와 공식 절차 확인 원칙을 대조했어요. 제품 일치나 조회 실패만으로 회수 대상을 확정하지 않으며, 보류는 별도로 제시된 합성 공지의 명시적 임시 사용보류에 근거해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 개별 권고 보류 안내\n같은 제조번호에 관한 합성 공식 회수 공지가 상충하고 최신 적용 버전이 확인되지 않았어요. 한 공지가 확인 전 사용 보류를 명시하므로 개별 사용 일정이나 제품 권고는 보류해요. 최종 회수 대상 여부는 미상으로 남겨요 [kb:B-Q05@0.6.1] [catalog:syn-add100-b-hold21@revision1].\n\n### 필요한 다음 단계\n제품 식별 정보와 제조번호, 두 공지의 게시·적용 버전을 공식 문의 경로에서 대조해요. 어느 공지가 현재 유효한지와 임시 보류의 해제 조건을 확인하기 전에는 대상 제외나 사용 재개를 확정하지 않아요. 다른 제조번호나 브랜드 전체로 범위를 넓히지 않아요."
+    },
+    {
+      "id": "syn-hold-0022",
+      "title": "선크림 도포 후 지속 피부 통증",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "add100-b-scenario-syn-hold-0022",
+      "group_id": "add100-b-group-syn-hold-0022",
+      "scenario_family_id": "add100-b-family-syn-hold-0022",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.stinging": {
+            "variable_id": "skin.stinging",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.duration": {
+            "variable_id": "skin.duration",
+            "state": "known",
+            "value": {
+              "reported": "사용 후 계속 이어짐"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "solve_by_reducing_sunscreen_amount",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편감과 통증을 도포량 감량만으로 해결하려는 상황이라 개별 루틴 조정을 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f5fc93fd1034161e9d397a2d0447ed447709ad3b79b6f0b8986b246cf4cc1764",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편감과 통증을 도포량 감량만으로 해결하려는 상황이라 개별 루틴 조정을 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 개별 권고 보류 안내\n사용 후 지속되는 불편감과 중간 정도의 통증·따가움이 보고됐어요. 양을 줄이면 해결된다고 보지 않고 개별 루틴 조정과 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n증상 시작 시점과 지속 양상, 관련 제품 정보를 정리해 피부과 등 전문가에게 확인을 받아요. 현재 정보만으로 원인을 진단하거나 회복을 보장할 수 없어요."
+    },
+    {
+      "id": "syn-hold-0023",
+      "title": "보관 선크림의 새 알갱이와 질감 변화",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "add100-b-scenario-syn-hold-0023",
+      "group_id": "add100-b-group-syn-hold-0023",
+      "scenario_family_id": "add100-b-family-syn-hold-0023",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": false,
+              "separation": false,
+              "new_gritty_texture": true,
+              "previous_texture_was_smooth": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "wants_to_dilute_and_continue": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "기존에 없던 알갱이와 질감 변화가 확인되어 희석해서 계속 쓰는 개별 사용 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "730c85d3c1785ebef245909a69bab62716b9108e9d5f6b2bd1bc7b763359a7fe",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "기존에 없던 알갱이와 질감 변화가 확인되어 희석해서 계속 쓰는 개별 사용 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 개별 권고 보류 안내\n이전에는 없던 알갱이와 질감 변화가 확인됐어요. 색·냄새 변화나 층 분리가 없어도 희석해서 계속 쓰는 방법이나 개별 루틴·제품 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n사용기한·개봉과 보관 이력, 변화가 나타난 시점을 확인하고 제조·판매처에 정상 특성인지와 처리 절차를 문의해요. 오염이나 특정 성분 변화를 단정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0024",
+      "title": "기한 전 제품의 새 용기 팽창",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "add100-b-scenario-syn-hold-0024",
+      "group_id": "add100-b-group-syn-hold-0024",
+      "scenario_family_id": "add100-b-family-syn-hold-0024",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "label_expired": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.seal_integrity": {
+            "variable_id": "storage.seal_integrity",
+            "state": "known",
+            "value": {
+              "new_container_swelling": true,
+              "previous_shape_normal": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "continue_because_not_expired",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "기한은 남았지만 새 용기 팽창이 보고되어 기한만으로 계속 사용하도록 안내하지 않고 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8be41301c84c48d27feb89e7056a0dd96e23cafc59840f6bc5c8a952462049a6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "기한은 남았지만 새 용기 팽창이 보고되어 기한만으로 계속 사용하도록 안내하지 않고 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 개별 권고 보류 안내\n표시 기한은 남았지만 이전에 없던 용기 팽창이 보고됐어요. 기한만으로 계속 사용해도 된다고 판단하지 않고 개별 루틴·제품 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n용기의 변화와 보관 이력, 제품 표시를 확인하고 제조·판매처에 처리 절차를 문의해요. 팽창 원인이나 내부 물질의 종류·농도를 추정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0025",
+      "title": "공지의 전 제품 회수 범위와 보유 선크림 일치",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "add100-b-scenario-syn-hold-0025",
+      "group_id": "add100-b-group-syn-hold-0025",
+      "scenario_family_id": "add100-b-family-syn-hold-0025",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "synthetic_product": "합성 전 제품 회수 대상 선크림"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.recall_check": {
+            "variable_id": "commerce.recall_check",
+            "state": "known",
+            "value": {
+              "synthetic_notice": true,
+              "identity_match": true,
+              "scope": "제조번호 구분 없이 해당 제품 전체",
+              "instructs_stop_use": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.batch": {
+            "variable_id": "storage.batch",
+            "state": "known",
+            "value": {
+              "readable": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q05",
+            "status": "hold",
+            "guidance": "합성 회수 공지가 제조번호 구분 없는 해당 제품 전체를 대상으로 하며 제품 일치가 확인되어 개별 사용을 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q05@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f9e0c4d2967cc78e56752b4c5d6f961ddca21b8bcb61a98c5699a35c3d34c656",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "대상 일치 공지를 무시하거나 제품명만 같은 다른 제조번호를 회수 대상이라 확정함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "공지가 제조번호가 아닌 전 제품/특정 기간을 대상으로 하는 경우 해당 범위 적용"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "합성 회수 공지가 제조번호 구분 없는 해당 제품 전체를 대상으로 하며 제품 일치가 확인되어 개별 사용을 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 개별 권고 보류 안내\n제공된 합성 회수 공지는 제조번호 구분 없이 해당 제품 전체를 대상으로 하고 제품 일치가 확인됐어요. 제조번호를 읽을 수 없더라도 대상에서 제외하지 않고 개별 사용·제품 권고는 보류해요 [kb:B-Q05@0.6.1].\n\n### 필요한 다음 단계\n합성 공지의 사용 중단 안내와 회수 범위에 맞는 절차를 확인해요. 제품 식별 정보와 공지 내용을 바탕으로 판매처 등에 문의하되, 다른 제품이나 브랜드 전체로 회수 범위를 넓히지 않아요."
+    },
+    {
+      "id": "syn-hold-0026",
+      "title": "반복 눈시림에 심한 통증이 새로 동반됨",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "add100-b-scenario-syn-hold-0026",
+      "group_id": "add100-b-group-syn-hold-0026",
+      "scenario_family_id": "add100-b-family-syn-hold-0026",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.eye_stinging": {
+            "variable_id": "skin.eye_stinging",
+            "state": "known",
+            "value": {
+              "repeated": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.eye_symptom_context": {
+            "variable_id": "skin.eye_symptom_context",
+            "state": "known",
+            "value": {
+              "severe_eye_pain": true,
+              "vision_change": false,
+              "direct_eye_exposure": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "switch_filter_to_solve_eye_pain",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P06",
+            "status": "hold",
+            "guidance": "반복 눈시림에 심한 눈 통증이 동반되어 필터 선택만으로 해결하는 개별 권고는 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "947dcbe50de42f37df85fc8c88382957e42b5c0b20a032a092003aaeb5e396a2",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함.",
+          "difference_when": "같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "제품의 눈 주변 사용 제한",
+            "개별 의료진 지시",
+            "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "반복 눈시림에 심한 눈 통증이 동반되어 필터 선택만으로 해결하는 개별 권고는 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 개별 권고 보류 안내\n반복 눈시림에 심한 눈 통증이 동반됐어요. 시야 변화나 직접 눈 노출이 없다는 보고만으로 일반 루틴 문제로 축소하지 않고, 필터 변경을 포함한 개별 루틴·제품 권고는 보류해요 [kb:B-P06@0.6.1].\n\n### 필요한 다음 단계\n심한 눈 통증은 일반적인 제품 순위 조정 대신 신속한 전문 진료로 확인할 필요가 있어요. 증상 시작과 지속 양상, 관련 제품 정보를 의료진에게 전달해요. 특정 필터가 원인이라고 단정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0027",
+      "title": "품질 의심품의 문의 기록을 버리려는 처리 요청 보류",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "add100-b-scenario-syn-hold-0027",
+      "group_id": "add100-b-revision1-group-syn-hold-0027",
+      "scenario_family_id": "add100-b-revision1-family-syn-hold-0027",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.seal_integrity": {
+            "variable_id": "storage.seal_integrity",
+            "state": "known",
+            "value": {
+              "배송 때 내부 봉인 훼손": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.authenticity_concern": {
+            "variable_id": "commerce.authenticity_concern",
+            "state": "known",
+            "value": {
+              "구체적 품질 의심": true,
+              "가품 확정": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.receipt_record": {
+            "variable_id": "commerce.receipt_record",
+            "state": "known",
+            "value": {
+              "주문 정보 확인 가능": true,
+              "제품명과 제조번호 기록": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.end_of_use": {
+            "variable_id": "commerce.end_of_use",
+            "state": "known",
+            "value": {
+              "이미 사용 보류": true,
+              "요청": "문의하기 전에 용기와 제조번호 표시를 모두 버려도 되는지",
+              "공식 즉시 폐기 지시": false,
+              "안전하게 미사용 보관 가능": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q06",
+            "status": "hold",
+            "guidance": "구체적 품질 의심품을 사용 보류한 상태에서 문의에 필요한 식별 자료까지 버리려 해요. 개별 사용·제품 권고는 보류하고 안전하게 남길 수 있는 문의 정보와 공식 처리 절차를 먼저 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3be5b93d3ec9d3b9af29779b2702e94e3e29a59ec515b0357790fb54372817b7",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "가품/변질 의심 제품을 국소 테스트로 검증하거나 문의에 필요한 정보를 남기지 않고 무조건 폐기하려 함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "공식 지시가 즉시 안전한 폐기를 요구함",
+            "응급 반응이면 문의/기록보다 전문 도움 우선"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "B-Q06의 문의에 필요한 정보 없이 무조건 폐기하는 분기를 대조했어요. 피부 시험 요청도 응급 증빙 수집도 아니며, 즉시 폐기 공식 지시 예외도 없어요. 보관 가능성과 공식 지침을 고려해 문의·처리 정보를 확인하는 별도 조건이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "answer": "### 개별 권고 보류 안내\n배송 당시 내부 봉인 훼손이라는 구체적 품질 의심이 있어 이미 사용 보류한 상태예요. 현재 불편이 없어도 개별 사용·제품 권고는 보류하며, 이 정보만으로 가품이나 오염을 확정하지 않아요 [kb:B-Q06@0.6.1].\n\n### 필요한 다음 단계\n문의하기 전에 용기와 식별 정보를 모두 버리기보다 안전하게 남길 수 있는 제품명·제조번호 사진이나 주문 기록으로 판매처에 확인·반품·처리 절차를 문의해요. 자료 확보를 위해 위험한 물건을 보관하도록 강제하지 않으며, 공식 폐기 지시가 있다면 그 범위를 우선 확인해요. 피부에 발라 진위를 시험하는 방법은 제시하지 않아요."
+    }
+  ],
+  "input_encoding_revision": 2,
+  "critic_status": "unreviewed"
+}

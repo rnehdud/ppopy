@@ -42,7 +42,7 @@ def render() -> None:
         f"# 24턴 파일럿 — 전체 입력과 응답 확인 — 개정 {revision}", "",
         "**생성된 초안입니다. 사람의 전수 확인과 다른 모델 계열의 공식 검수는 미완료입니다.**", "",
         "`development_preview`, `production_enabled=false`인 합성 사례입니다. 입력과 KB 판정은 작성자의 설계이며 실제 사용자 기록, 엔진 실행 판정이나 임상적 정답이 아닙니다.",
-        "생성 모델은 `gpt-6.1-sol`입니다. 같은 GPT 계열의 Codex 검토는 내부 검토로 별도 기록합니다.", "",
+        "최초 작성은 `gpt-6.1-sol`이며 원문 감사 후 수정은 `gpt-6.1-terra`가 맡았어요. 행별 `generator_model`은 현재 답변 작성 모델, `original_generator_model`은 원래 작성 모델, `revision_model`은 수정 모델을 구분해요. 같은 GPT 계열 검토는 내부 검토이며 사람·다른 계열 승인이 아니에요.", "",
         f"기준 커밋: `{plan['base_commit']}`. 안내 18턴, 보류 6턴이며 네 유형이 각각 6턴입니다.",
         f"입력 계획 SHA256: `{sha(HERE / 'pilot_24_plan.json')}`",
         f"데이터 SHA256: `{sha(HERE / 'pilot_24.jsonl')}`", "",

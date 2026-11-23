@@ -1,7 +1,7 @@
 {
   "schema_version": "pilot-input-plan-v1",
-  "plan_revision": 5,
-  "revision_note": "개정 5: 출처와 카드의 다양성을 넓히고 한국어 청크를 2~4문장 설명체로 정리했습니다. B-I01 및 활성성분 중첩을 포함하며 S41은 눈 노출 부정 상황의 방해 근거로만 사용합니다. 변경 행은 새 내용 해시로 재검수해야 합니다.",
+  "plan_revision": 6,
+  "revision_note": "61행 원문 감사 지적을 재검토해 사실·판정·인용 귀속을 수정했어요. 관찰값과 과거 감사는 보존했어요.",
   "base_commit": "53a74a013e2e3533c33ec66d3ed80e0a8ce10bc1",
   "mode": "development_preview",
   "production_enabled": false,
@@ -153,8 +153,8 @@
         "kb_judgments": [
           {
             "card_id": "B-I01",
-            "status": "aligned",
-            "guidance": "합성 제품의 일반 세안제 제거 표시와 실제 폼 세안이 일치해요. 별도 제거 지시가 없는 조건에서 표시된 세정 방법을 유지해요."
+            "status": "unknown",
+            "guidance": "일반 세안제 제거 표시와 폼 사용은 확인되지만 광보호 유지 여부는 미확인이어서 현재 방법이 일반 안내와 맞는지는 미상이에요."
           }
         ],
         "product_evidence": [
@@ -185,7 +185,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "e0ac5e2f7fe3a208e573abdc9ba031838b5f3aba2ccd3d61e6b1b248183b44dd",
+      "input_sha256": "a76e8bcb176cc7a17a1e8a4286bdeaf2b4a6a0313158ed49bf7957a65061dfc3",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -269,12 +269,25 @@
             }
           }
         },
-        "rationale": "합성 제품의 일반 세안제 제거 표시와 실제 폼 세안이 일치해요. 별도 제거 지시가 없는 조건에서 표시된 세정 방법을 유지해요."
+        "rationale": "일반 세안제 제거 표시와 폼 사용은 확인되지만 광보호 유지 여부는 미확인이어서 현재 방법이 일반 안내와 맞는지는 미상이에요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "Authored synthetic fixture, not a real user or product record."
+      "source_note": "Authored synthetic fixture, not a real user or product record.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-sol",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "e0ac5e2f7fe3a208e573abdc9ba031838b5f3aba2ccd3d61e6b1b248183b44dd",
+          "input_sha256": "a76e8bcb176cc7a17a1e8a4286bdeaf2b4a6a0313158ed49bf7957a65061dfc3",
+          "reason": "광보호 유지 관찰이 없어 전체 적합을 확정하지 않아요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
     },
     {
       "id": "syn-sol-0003",
@@ -341,8 +354,8 @@
         "kb_judgments": [
           {
             "card_id": "B-M01",
-            "status": "difference",
-            "guidance": "일시적인 가벼운 건조감이 있고 보습제를 쓰지만 피부가 완전히 마른 뒤에만 도포하는 관찰이 있어 시점을 검토해요. 별도 제품 지시는 없어요."
+            "status": "unknown",
+            "guidance": "완전히 마른 뒤 보습하는 사실은 확인되지만 세정 후 오래 방치했는지는 미상이에요. 차이를 확정하지 않아요."
           }
         ],
         "product_evidence": [],
@@ -363,7 +376,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "134c4bbb2fa5c702309c14be542e4a0d392583e6aca8ca393306cfe28b2bce78",
+      "input_sha256": "c0d54aed29241e9c563e8fc76c461abc0726c4a73fe3669d3454cf8d4bf2cf79",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M01",
@@ -379,12 +392,25 @@
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "일시적인 가벼운 건조감이 있고 보습제를 쓰지만 피부가 완전히 마른 뒤에만 도포하는 관찰이 있어 시점을 검토해요. 별도 제품 지시는 없어요."
+        "rationale": "완전히 마른 뒤 보습하는 사실은 확인되지만 세정 후 오래 방치했는지는 미상이에요. 차이를 확정하지 않아요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "Authored synthetic fixture, not a real user or product record."
+      "source_note": "Authored synthetic fixture, not a real user or product record.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-sol",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "134c4bbb2fa5c702309c14be542e4a0d392583e6aca8ca393306cfe28b2bce78",
+          "input_sha256": "c0d54aed29241e9c563e8fc76c461abc0726c4a73fe3669d3454cf8d4bf2cf79",
+          "reason": "오래 방치 여부가 미확인이므로 차이 판단을 미상으로 좁혀요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
     },
     {
       "id": "syn-sol-0004",
@@ -782,7 +808,7 @@
           {
             "card_id": "B-B01",
             "status": "hold",
-            "guidance": "기존 v67 시드에서 얼굴 세안 뒤 지속적인 불편감이 확인되어 개별 권고를 보류하고 전문가 확인을 안내해요. 원인이나 통증을 추가로 추정하지 않아요."
+            "guidance": "기존 v67 시드의 얼굴과 지속적인 불편감 관찰에 따라 개별 권고를 보류하고 전문가 확인을 안내해요. 세안과의 시간 관계, 원인이나 통증은 추정하지 않아요."
           }
         ],
         "product_evidence": [],
@@ -792,7 +818,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "4a7f6608b18ffffe99a40a1a5be7f6f0418cf830b71c629f42a430a9798ad01e",
+      "input_sha256": "e0fa67cfacce8712e403772e7b00acbdf700173c957fdf1e61f0b5a7939454eb",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -806,12 +832,25 @@
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "기존 v67 시드에서 얼굴 세안 뒤 지속적인 불편감이 확인되어 개별 권고를 보류하고 전문가 확인을 안내해요. 원인이나 통증을 추가로 추정하지 않아요."
+        "rationale": "기존 v67 시드의 얼굴과 지속적인 불편감 관찰에 따라 개별 권고를 보류하고 전문가 확인을 안내해요. 세안과의 시간 관계, 원인이나 통증은 추정하지 않아요."
       },
       "source_origin": "recycled_v67",
       "source_scenario_id": "luna-v3-train-025",
       "source_turn_id": "luna-v3-train-025-t01",
-      "source_note": "Original seed observations, split and lineage retained; response and v0.6.1 judgment are newly authored."
+      "source_note": "Original seed observations, split and lineage retained; response and v0.6.1 judgment are newly authored.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-sol",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "4a7f6608b18ffffe99a40a1a5be7f6f0418cf830b71c629f42a430a9798ad01e",
+          "input_sha256": "e0fa67cfacce8712e403772e7b00acbdf700173c957fdf1e61f0b5a7939454eb",
+          "reason": "세안 뒤 발생이라는 미확인 시점을 제거해요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
     },
     {
       "id": "syn-hold-0002",
@@ -919,8 +958,8 @@
         "kb_judgments": [
           {
             "card_id": "B-S04",
-            "status": "hold",
-            "guidance": "제품에 이전에 없던 색 또는 냄새 변화가 확인되어 제품 사용 안내를 보류하고 품질 확인 경로를 안내해요. 오염 여부는 확정하지 않아요."
+            "status": "unknown",
+            "guidance": "색 또는 냄새 변화가 보고됐지만 이전에 없던 변화인지는 미상이에요. 품질 확인 전 사용 안내를 보류하고 오염 여부를 확정하지 않아요."
           }
         ],
         "product_evidence": [],
@@ -930,7 +969,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "cfe4bdef65374c7ea79cabbd01f586581d1202a71e08b04e2eb9bbcc122578f5",
+      "input_sha256": "424a0671a3dd82f72bf276d47ce6d7a148016b347ffd9ebd156c269d84b49d9b",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S04",
@@ -945,12 +984,25 @@
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "제품에 이전에 없던 색 또는 냄새 변화가 확인되어 제품 사용 안내를 보류하고 품질 확인 경로를 안내해요. 오염 여부는 확정하지 않아요."
+        "rationale": "색 또는 냄새 변화가 보고됐지만 이전에 없던 변화인지는 미상이에요. 품질 확인 전 사용 안내를 보류하고 오염 여부를 확정하지 않아요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "Authored synthetic fixture, not a real user or product record."
+      "source_note": "Authored synthetic fixture, not a real user or product record.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-sol",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "cfe4bdef65374c7ea79cabbd01f586581d1202a71e08b04e2eb9bbcc122578f5",
+          "input_sha256": "424a0671a3dd82f72bf276d47ce6d7a148016b347ffd9ebd156c269d84b49d9b",
+          "reason": "신규 여부가 미상이므로 차이 판단은 미상으로 남기고 보수적인 품질 확인을 유지해요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
     },
     {
       "id": "syn-hold-0004",
@@ -1149,8 +1201,8 @@
         "kb_judgments": [
           {
             "card_id": "B-S04",
-            "status": "hold",
-            "guidance": "이전에는 없던 층 분리가 확인되었고 정상적인 흔들어 쓰는 제형이라는 근거는 미확인이므로 사용 안내를 보류하고 제품 표시와 공급자 확인을 우선해요."
+            "status": "unknown",
+            "guidance": "층 분리는 보고됐지만 신규 여부와 정상적인 제형 특성은 미상이에요. 사용 안내를 보류하고 제품 표시와 공급자 확인을 우선해요."
           }
         ],
         "product_evidence": [],
@@ -1160,7 +1212,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "cdcbe31b01991160dac2ae4f1b9dd2eb45274dd1470c81acade393985716f6b9",
+      "input_sha256": "28f10da1820b6cfd907f8e590f8411c03ee7fa33cf9797ed539dcb4d1662e990",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S04",
@@ -1175,12 +1227,25 @@
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "이전에는 없던 층 분리가 확인되었고 정상적인 흔들어 쓰는 제형이라는 근거는 미확인이므로 사용 안내를 보류하고 제품 표시와 공급자 확인을 우선해요."
+        "rationale": "층 분리는 보고됐지만 신규 여부와 정상적인 제형 특성은 미상이에요. 사용 안내를 보류하고 제품 표시와 공급자 확인을 우선해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "Authored synthetic fixture, not a real user or product record."
+      "source_note": "Authored synthetic fixture, not a real user or product record.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-sol",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "cdcbe31b01991160dac2ae4f1b9dd2eb45274dd1470c81acade393985716f6b9",
+          "input_sha256": "28f10da1820b6cfd907f8e590f8411c03ee7fa33cf9797ed539dcb4d1662e990",
+          "reason": "신규 여부와 제형 특성이 미상이므로 차이를 확정하지 않아요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ]
     },
     {
       "id": "syn-sol-0007",

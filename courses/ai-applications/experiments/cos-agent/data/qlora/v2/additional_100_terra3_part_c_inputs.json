@@ -1,0 +1,2301 @@
+{
+  "schema_version": "additional-pilot-shard-v1",
+  "input_revision": 1,
+  "revision_note": "응답 작성 전에 고정한 미검수 합성 입력이에요.",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "cases": [
+    {
+      "id": "syn-sol-0320",
+      "title": "두 야외 후보의 표시 일부만 확인",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0320-scenario",
+      "group_id": "terra3-c-syn-sol-0320-group",
+      "scenario_family_id": "terra3-c-syn-sol-0320-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S16": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "가 후보는 SPF 30과 광범위 표시를 확인했으나 물놀이에 필요한 내수성 표시는 가려져 있어요. 나 후보의 표시는 아직 읽지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P01",
+            "status": "unknown",
+            "guidance": "가의 내수성 및 나의 기본 성능은 미상으로 남겨요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S16",
+            "text": "General sun-protection guidance recommends broad-spectrum, water-resistant sunscreen with SPF 30 or higher for outdoor use. Product labeling should be checked for the relevant characteristics.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P01@0.6.1",
+          "ref:S16"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "fc771f0f96dca9e6f0b26f2756dbf2a7d550beb2ae24fdf5b6238f1d78cadc1a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "선택한 기본 성능이 제품 자료로 확인되고 사용 환경에 맞음.",
+          "difference_when": "새 야외용 후보가 기본 성능을 충족하지 않는 것으로 확인됨. 표시 미확인은 unknown.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "피부질환·시술 관련 개별 지시",
+            "확인되지 않은 국가별 표시의 자동 등가 변환이 필요한 상황"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가의 내수성 및 나의 기본 성능은 미상으로 남겨요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0321",
+      "title": "현재 후보가 아닌 예전 후보의 성능표",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0321-scenario",
+      "group_id": "terra3-c-syn-sol-0321-group",
+      "scenario_family_id": "terra3-c-syn-sol-0321-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S16": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "현재 야외용 후보의 버전은 새 포장이에요. 광범위와 SPF 30 표시는 같은 이름의 이전 버전 자료에서만 확인됐어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P01",
+            "status": "unknown",
+            "guidance": "이전 버전의 표시를 현재 후보에 옮기지 않고 현재 표시를 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S16",
+            "text": "General sun-protection guidance recommends broad-spectrum, water-resistant sunscreen with SPF 30 or higher for outdoor use. Product labeling should be checked for the relevant characteristics.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P01@0.6.1",
+          "ref:S16"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "5650577dc60a1eb499c69f3ed1bbb19cfb9f1ed2c5e18bb16379d384562432c0",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "선택한 기본 성능이 제품 자료로 확인되고 사용 환경에 맞음.",
+          "difference_when": "새 야외용 후보가 기본 성능을 충족하지 않는 것으로 확인됨. 표시 미확인은 unknown.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "피부질환·시술 관련 개별 지시",
+            "확인되지 않은 국가별 표시의 자동 등가 변환이 필요한 상황"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "이전 버전의 표시를 현재 후보에 옮기지 않고 현재 표시를 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0322",
+      "title": "실외 운동 후 계속된 노출과 발한",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0322-scenario",
+      "group_id": "terra3-c-syn-sol-0322-group",
+      "scenario_family_id": "terra3-c-syn-sol-0322-family",
+      "split": "val_internal",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "야외 운동으로 심하게 땀을 흘린 뒤에도 한동안 야외에 있었고 재도포는 하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "difference",
+            "guidance": "발한 이후 노출이 이어진 상황을 반영해 재도포를 고려해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-safety guidance advises reapplying sunscreen at least every two hours and more often after swimming or sweating. It also discusses using shade and protective clothing as complementary measures.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f3ed01fe983c3ab4ede022d86f7a92e1a68047183a12a9af76399435b8524d2b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "발한 이후 노출이 이어진 상황을 반영해 재도포를 고려해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0323",
+      "title": "물놀이 뒤 마른 옷으로 갈아입고 계속 야외에 있음",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0323-scenario",
+      "group_id": "terra3-c-syn-sol-0323-group",
+      "scenario_family_id": "terra3-c-syn-sol-0323-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "물놀이 후 옷을 갈아입고 야외에 더 머물렀어요. 물놀이 전 바른 선크림을 그 뒤 다시 바르지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "difference",
+            "guidance": "물 접촉 후에도 야외에 머문 점을 반영해 재도포를 고려해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-safety guidance advises reapplying sunscreen at least every two hours and more often after swimming or sweating. It also discusses using shade and protective clothing as complementary measures.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "641f268e17b221f17887957e9b375d9dc2dbf2f01aa974837f39f81113634db7",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "물 접촉 후에도 야외에 머문 점을 반영해 재도포를 고려해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0324",
+      "title": "실외 근무 중 지속 노출과 휴식 기록",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0324-scenario",
+      "group_id": "terra-b-group-syn-sol-0141",
+      "scenario_family_id": "terra-b-family-syn-sol-0141",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "실외 근무가 길게 이어졌고 점심 휴식도 야외에서 보냈어요. 아침 이후 재도포는 하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "difference",
+            "guidance": "지속된 야외 노출에 맞춰 재도포할 기회를 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-safety guidance advises reapplying sunscreen at least every two hours and more often after swimming or sweating. It also discusses using shade and protective clothing as complementary measures.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e0c8c059a0a884adab5a938099dcc6c7f7acbf189b03cf4a7af4e6881abf6978",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속된 야외 노출에 맞춰 재도포할 기회를 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-sol-0325",
+      "title": "야외행사에서 손으로 땀을 닦은 뒤",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0325-scenario",
+      "group_id": "terra3-c-syn-sol-0325-group",
+      "scenario_family_id": "terra3-c-syn-sol-0325-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "야외행사에서 얼굴의 땀을 손으로 자주 닦았고 이후에도 야외에 머물렀어요. 재도포는 하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "difference",
+            "guidance": "닦임과 이어지는 노출을 반영해 재도포를 고려해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-safety guidance advises reapplying sunscreen at least every two hours and more often after swimming or sweating. It also discusses using shade and protective clothing as complementary measures.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c6f2d57ccf33114c6db90c7365e4c2a752cc9861296b3dd47de52881d7ca91f6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "닦임과 이어지는 노출을 반영해 재도포를 고려해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0326",
+      "title": "차양이 가능한 긴 야외 대기",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0326-scenario",
+      "group_id": "add100-b-group-feasible-nonproduct-protection",
+      "scenario_family_id": "add100-b-family-feasible-nonproduct-protection",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "긴 야외 대기에서 선크림만 있으면 충분하다고 생각해 바로 옆 차양 아래 대기를 일부러 피했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P04",
+            "status": "difference",
+            "guidance": "가능한 차양을 함께 활용하는 방안을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-safety guidance advises reapplying sunscreen at least every two hours and more often after swimming or sweating. It also discusses using shade and protective clothing as complementary measures.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P04@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "def9c672266cbe4485c2dab1dfd19e9f3036ea552ef018ff79c92d5ba1dfc584",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "작업·복장 등 제약으로 특정 수단이 불가능",
+            "의료진 개별 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가능한 차양을 함께 활용하는 방안을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-sol-0327",
+      "title": "야외 관람 중 옷차림 선택 가능",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0327-scenario",
+      "group_id": "terra3-c-syn-sol-0327-group",
+      "scenario_family_id": "terra3-c-syn-sol-0327-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S05": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "야외 관람이 오래 이어지고 얇은 긴소매를 입을 수 있지만 선크림만 있으면 된다며 보완 수단을 모두 제외했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P04",
+            "status": "difference",
+            "guidance": "가능한 의복을 광보호에 함께 활용하는 방안을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S05",
+            "text": "Sun-safety guidance advises reapplying sunscreen at least every two hours and more often after swimming or sweating. It also discusses using shade and protective clothing as complementary measures.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "checked_on": "2026-11-04",
+            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-P04@0.6.1",
+          "ref:S05"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d2db6b69dac016f1969bb33e91ba6b820b46d0f7e39d9f9c4c27aeba4ec840c8",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "작업·복장 등 제약으로 특정 수단이 불가능",
+            "의료진 개별 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가능한 의복을 광보호에 함께 활용하는 방안을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0328",
+      "title": "표시된 정상 이층과 흔든 뒤 상태",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0328-scenario",
+      "group_id": "add24-group-syn-sol-0034",
+      "scenario_family_id": "add24-family-syn-sol-0034",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림의 표시에는 보관 중 두 층이 생겨 사용 전에 흔들라고 적혀 있어요. 이 제품은 그 안내대로 두 층이 생겼고 새 냄새나 색 변화는 없어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P08",
+            "status": "exception",
+            "guidance": "표시된 정상 분리를 곧바로 품질 이상으로 판정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P08@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "ac5a605aaf084022662ecc5cf49c85c058417dc09c6462c4baccba5285c7d7cf",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "알려진 기간·보관 이력이 제품 지침과 맞고 비정상적인 변화가 보고되지 않음. 실제 SPF나 내부 안정성 인증은 아님.",
+          "difference_when": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "원래 흔들어 쓰는 제품의 정상 분리",
+            "구매일·개봉일을 모르는 경우는 unknown이지 즉시 기한 경과가 아님",
+            "제품의 별도 보관 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "표시된 정상 분리를 곧바로 품질 이상으로 판정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-sol-0329",
+      "title": "기한 지난 선크림과 최근 구매일",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0329-scenario",
+      "group_id": "add100-b-group-expiry-history-quality",
+      "scenario_family_id": "add100-b-family-expiry-history-quality",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림을 최근 구입했지만 용기에 표시된 사용기한은 이미 지났어요. 새 냄새나 색 변화는 보고되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P08",
+            "status": "difference",
+            "guidance": "구매가 최근이어도 표시 기한이 지난 선크림은 사용하지 않는 방향으로 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P08@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "41c2e0e494f33442f9d402592368c342f972788b0882be6ad3e6d2a049cacd03",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "알려진 기간·보관 이력이 제품 지침과 맞고 비정상적인 변화가 보고되지 않음. 실제 SPF나 내부 안정성 인증은 아님.",
+          "difference_when": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "원래 흔들어 쓰는 제품의 정상 분리",
+            "구매일·개봉일을 모르는 경우는 unknown이지 즉시 기한 경과가 아님",
+            "제품의 별도 보관 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "구매가 최근이어도 표시 기한이 지난 선크림은 사용하지 않는 방향으로 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-sol-0330",
+      "title": "두 개 중 개봉일이 확인된 선크림",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0330-scenario",
+      "group_id": "terra3-c-syn-sol-0330-group",
+      "scenario_family_id": "terra3-c-syn-sol-0330-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "가의 개봉일만으로 두 제품의 기간 적합성을 정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "4ac0d72d107b88b7bbf2348e8f3479128af3eaf40e20655b4eaa202be60ddb04",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가의 개봉일만으로 두 제품의 기간 적합성을 정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0331",
+      "title": "여행 파우치의 현재 보관과 과거 열 노출",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0331-scenario",
+      "group_id": "terra-b-group-syn-sol-0162",
+      "scenario_family_id": "terra-b-family-syn-sol-0162",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "현재는 파우치를 직사광선 없는 곳에 두고 있어요. 이전 여행에서 뜨거운 차량에 두었는지는 기억하지 못해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "현재 보관과 별개로 과거 열 노출 여부는 미상으로 남겨요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9bcb0c54620661235151445d4cc4f677f7040b10ec685a9022254809a6e51f28",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "현재 보관과 별개로 과거 열 노출 여부는 미상으로 남겨요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-sol-0332",
+      "title": "두 용기 중 타인 용기의 뜨거운 차 보관",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0332-scenario",
+      "group_id": "terra3-c-syn-sol-0332-group",
+      "scenario_family_id": "terra3-c-syn-sol-0332-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "가족의 선크림은 뜨거운 차에 보관했어요. 본인의 선크림은 그 차에 있었는지 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "가족 용기의 이력을 본인 용기에 그대로 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "21b52fcf9cb85083245e3514ffe060d6da1a5af3e45fb85812df2993ef739b32",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가족 용기의 이력을 본인 용기에 그대로 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0333",
+      "title": "가려진 보관 표시와 알려진 현장 보관",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0333-scenario",
+      "group_id": "terra3-c-syn-sol-0333-group",
+      "scenario_family_id": "terra3-c-syn-sol-0333-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "선크림의 보관 지시 글자는 가려져 있어요. 하지만 며칠 동안 뜨거운 자동차 안에 계속 둔 사실은 확인됐어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "difference",
+            "guidance": "과도한 열을 피하는 쪽으로 보관을 조정해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1ca35b9e550aa7824233ea98a1b726fe4028aaa4e1601b059d0befd45b02b620",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "과도한 열을 피하는 쪽으로 보관을 조정해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0334",
+      "title": "다른 나라 용기의 사용기한 표시",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0334-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "현재 가진 용기에는 사용기한이 지워졌어요. 같은 이름의 다른 국가 용기에 적힌 날짜를 현재 용기의 날짜로 기록하려 해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "difference",
+            "guidance": "다른 국가 용기의 날짜를 현재 보유품에 복사하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d19d2a0241ad848d08fc064f1797a8209b5d595ef8da5210b8db208a8d9a2de3",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "다른 국가 용기의 날짜를 현재 보유품에 복사하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0335",
+      "title": "리필 지침의 대상과 실제 용기 연결 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0335-scenario",
+      "group_id": "terra3-c-syn-sol-0335-group",
+      "scenario_family_id": "terra3-c-syn-sol-0335-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S07"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "판매 페이지의 리필 허용 문구는 확인했어요. 그 페이지가 현재 보유한 용기 버전에 해당하는지는 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S07",
+            "status": "unknown",
+            "guidance": "현재 용기에 해당하는 리필 지침인지 먼저 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S07@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c2362f794da7edb0bded309ef17ace6d6e3864906511a886bdf79d9b7c55c15c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S07",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "직접 피부에 닿은 제품/도구를 공유하거나 원래 지침 없는 용기·잔량 위 덧붓기를 함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품이 허용한 리필 방법",
+            "접촉 경로가 없는 가정 내 사용 등은 실제 사용방법을 구분"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "현재 용기에 해당하는 리필 지침인지 먼저 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0336",
+      "title": "원래 용기에 물을 더하려는 계획",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0336-scenario",
+      "group_id": "terra-a-group-syn-sol-0115",
+      "scenario_family_id": "terra-a-family-0115",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림이 뻑뻑하게 느껴져 원래 용기에 물을 넣었어요. 제조사의 희석 지시는 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S03",
+            "status": "difference",
+            "guidance": "제조사 지시 없이 원제품에 물을 섞지 않는 방향을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d7ce5ec3ff905a46264c1fdfd0d9a99ab34ac823d45415eb023f074b4b0dccb5",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "용도에 맞는 용기·취급을 유지하고 임의 혼입이 없음.",
+          "difference_when": "근거 없이 다른 용기에 옮기거나 물을 섞고 오염 우려가 있는 취급을 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제조사 지시에 따른 리필·소분·희석",
+            "적합한 용기와 관리방법이 확인된 특수 상황"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "제조사 지시 없이 원제품에 물을 섞지 않는 방향을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-sol-0337",
+      "title": "서로 다른 용기의 개봉 이력",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0337-scenario",
+      "group_id": "add100-a-group-syn-sol-0052",
+      "scenario_family_id": "add100-a-family-동일 제품의 두 용기와 개봉 이력 혼동",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "가 용기는 개봉일과 안내 기간이 확인돼요. 나 용기는 같은 제품명이나 개봉일을 알 수 없어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "가의 개봉 이력을 나에 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "ef3067f6e6834918d80faf5c77ee58f1210f61616e7a4fa13a267c62c5b703a2",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가의 개봉 이력을 나에 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-sol-0338",
+      "title": "얼굴 바깥 노출 부위와 제품 범위",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0338-scenario",
+      "group_id": "terra3-c-syn-sol-0338-group",
+      "scenario_family_id": "terra3-c-syn-sol-0338-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림은 얼굴과 귀에 사용할 수 있다고 표시돼 있어요. 야외에서 얼굴에는 바르지만 노출된 귀는 의도적으로 바르지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P02",
+            "status": "difference",
+            "guidance": "표시된 사용 범위 안에서 노출된 귀의 누락을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "6a27cb58832f5d05900670a3920a38f134d82aeea0f1320676eb177d1ffe6654",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "적용 부위 누락이 없고 지침과 맞는 충분한 도포를 수행한다고 보고함. 보호 수준은 미측정.",
+          "difference_when": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "용법과 충돌하는 부위",
+            "의료진 개별 지시",
+            "얼굴 크기·토출량 등 자료 부족으로 손가락 길이를 정확 g로 바꿀 수 없는 경우",
+            "해당 제품이 반복 눈시림을 유발하면 B-P06으로 눈가 사용을 조정하고 대체 광보호를 확보함."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "표시된 사용 범위 안에서 노출된 귀의 누락을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0339",
+      "title": "소량 도포 여부를 다른 제품 기록으로 추정",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0339-scenario",
+      "group_id": "terra3-c-syn-sol-0339-group",
+      "scenario_family_id": "terra3-c-syn-sol-0339-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "보습제는 아주 적게 발랐다고 기록했어요. 선크림 도포량은 기록하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P02",
+            "status": "unknown",
+            "guidance": "보습제 기록만으로 선크림을 적게 발랐다고 판정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9f6583da54e838ef2040f6afd0edc2d7fa7cea429c6af8556603aa3811db24d6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "적용 부위 누락이 없고 지침과 맞는 충분한 도포를 수행한다고 보고함. 보호 수준은 미측정.",
+          "difference_when": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "용법과 충돌하는 부위",
+            "의료진 개별 지시",
+            "얼굴 크기·토출량 등 자료 부족으로 손가락 길이를 정확 g로 바꿀 수 없는 경우",
+            "해당 제품이 반복 눈시림을 유발하면 B-P06으로 눈가 사용을 조정하고 대체 광보호를 확보함."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "보습제 기록만으로 선크림을 적게 발랐다고 판정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0340",
+      "title": "햇빛 차단 의복의 적용 부위 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0340-scenario",
+      "group_id": "terra3-c-syn-sol-0340-group",
+      "scenario_family_id": "terra3-c-syn-sol-0340-family",
+      "split": "val_internal",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P04"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "야외에서 긴소매를 입었다고 했지만 다른 노출 부위와 차양 이용 가능 여부는 기록하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P04",
+            "status": "unknown",
+            "guidance": "기록된 긴소매 외 보완 수단의 적합성은 미상으로 남겨요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "840858bd2a1ac79e87c048dc8f9589d8ebc3abd6ccf3c719b376e47efeeb21dc",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "작업·복장 등 제약으로 특정 수단이 불가능",
+            "의료진 개별 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "기록된 긴소매 외 보완 수단의 적합성은 미상으로 남겨요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0341",
+      "title": "재도포 알림과 실제 행동을 구분",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0341-scenario",
+      "group_id": "terra3-c-syn-sol-0341-group",
+      "scenario_family_id": "terra3-c-syn-sol-0341-family",
+      "split": "val_internal",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "야외 활동 중 재도포 알림이 울렸어요. 알림 이후 실제로 발랐는지는 기록되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P03",
+            "status": "unknown",
+            "guidance": "알림 기록을 실제 재도포로 간주하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "cf6c25e1f6765053398559c488dfba1d595f05527ba44c233eacffb17d9c3010",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "지속 노출과 손실 계기에 맞추어 재도포함.",
+          "difference_when": "장시간 야외 노출·수영·심한 발한·닦임이 있는데 재도포하지 않는다고 확인됨.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "재도포 필요를 바꾸는 실제 노출 환경",
+            "특정 제품 지침",
+            "의료진 개별 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "알림 기록을 실제 재도포로 간주하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0342",
+      "title": "뚜껑을 열어 둔 제품과 별도 선크림",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0342-scenario",
+      "group_id": "terra3-c-syn-sol-0342-group",
+      "scenario_family_id": "terra3-c-syn-sol-0342-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "보습제 뚜껑은 밤새 열려 있었어요. 선크림 용기가 열려 있었는지는 확인하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "보습제의 보관 이력을 선크림에 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "90e50acbf6650cbcef4409ca36d4894e98b88922a5857f6a662f4b1542423eb3",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "보습제의 보관 이력을 선크림에 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0343",
+      "title": "동일명 선크림 두 버전의 분무 여부",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0343-scenario",
+      "group_id": "terra3-c-syn-sol-0343-group",
+      "scenario_family_id": "terra3-c-syn-sol-0343-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P09"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "예전 버전은 분무형이었어요. 같은 이름의 현재 버전이 분무형인지 용기 사진에서 확인되지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P09",
+            "status": "unknown",
+            "guidance": "현재 용기의 형태를 확인하기 전 예전 버전의 사용법을 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P09@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "5b567949fcbf04113f0db4850e41eae13c0a8d4c6839cdb148e144be7c95c82a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P09",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "눈을 감거나 숨을 참는 방식으로 얼굴 직접 분사를 대체하고 있음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "다른 제품 유형이면 해당 사용법 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "현재 용기의 형태를 확인하기 전 예전 버전의 사용법을 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-sol-0344",
+      "title": "사용기한과 다른 용기의 정상 이층 안내",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra3-c-syn-sol-0344-scenario",
+      "group_id": "terra3-c-syn-sol-0344-group",
+      "scenario_family_id": "terra3-c-syn-sol-0344-family",
+      "split": "train",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [
+        "B-P08"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "가 선크림의 사용기한은 보이지 않아요. 나 선크림에는 정상 이층 안내가 있지만 가의 제형 안내는 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-P08",
+            "status": "unknown",
+            "guidance": "나의 제형 안내를 가에 적용하지 않고 가의 기한과 안내를 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-P08@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "acce807067838777f5ae1c0fa867259c710c43a00c0ba0866f76a21fa58526f6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-P08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "알려진 기간·보관 이력이 제품 지침과 맞고 비정상적인 변화가 보고되지 않음. 실제 SPF나 내부 안정성 인증은 아님.",
+          "difference_when": "표시 기한 경과 또는 정상 제형 특성과 다른 분리·냄새·색·질감 변화가 확인됨. 오래 전에 샀다는 정보만으로 기한 경과나 기능 소실은 확정하지 않음.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "exception_when": [
+            "원래 흔들어 쓰는 제품의 정상 분리",
+            "구매일·개봉일을 모르는 경우는 unknown이지 즉시 기한 경과가 아님",
+            "제품의 별도 보관 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "나의 제형 안내를 가에 적용하지 않고 가의 기한과 안내를 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-hold-0099",
+      "title": "수령 뒤 처음 확인한 새 냄새와 누출",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0099-scenario",
+      "group_id": "terra3-c-syn-hold-0099-group",
+      "scenario_family_id": "terra3-c-syn-hold-0099-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림 수령 후 용기에서 내용물이 새고 이전에 사용하던 같은 버전과 다른 새 냄새가 확인됐어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "품질 이상 의심 제품의 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "650a3468607a3a4eac22000f830255afce37581f7d5d8a22fdb1afd6e661c87d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "품질 이상 의심 제품의 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-hold-0100",
+      "title": "기한 표시가 읽히는 용기의 새 변색",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0100-scenario",
+      "group_id": "terra-b-group-syn-sol-0150",
+      "scenario_family_id": "terra-b-family-syn-sol-0150",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "기한이 남은 합성 선크림에서 이전에 없던 색 변화가 확인됐어요. 냄새 변화는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 색 변화가 있는 제품의 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "975cfbdbfbee2182f6d892d8716cdd9028f52a7c2277d5a9a191cb536715e9dc",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 색 변화가 있는 제품의 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-hold-0101",
+      "title": "흔들어 쓰는 선크림에서 새 악취",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0101-scenario",
+      "group_id": "terra-c-syn-hold-0057-group",
+      "scenario_family_id": "terra-c-syn-hold-0057-family",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림은 흔들어 쓰는 정상 이층 제형이에요. 최근 원래 없던 악취가 추가로 생겼어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "정상 이층과 별개인 새 냄새 변화로 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "ab0c18add3781b058a2a6a62257f96cde397fd074cafd250de93f35c1be6c681",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "정상 이층과 별개인 새 냄새 변화로 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-hold-0102",
+      "title": "같은 이름 두 제품 중 한쪽의 새 입자와 색 변화",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0102-scenario",
+      "group_id": "terra3-c-syn-hold-0102-group",
+      "scenario_family_id": "terra3-c-syn-hold-0102-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "같은 이름의 선크림 두 개 중 가에서만 원래 없던 입자와 색 변화가 확인됐어요. 나의 외관은 확인하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "변화가 확인된 가의 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f20301cd53bb26d7bacb56d074686bb5cb355b0a0267aac0ba0a0ce7e557571c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "변화가 확인된 가의 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-hold-0103",
+      "title": "보관 조건 확인 후 발생한 새 질감 변화",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0103-scenario",
+      "group_id": "terra3-c-syn-hold-0103-group",
+      "scenario_family_id": "terra3-c-syn-hold-0103-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림은 표시된 보관 조건에 맞춰 두었어요. 그 후 전에 없던 덩어리와 색 변화가 생겼어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 변화가 확인돼 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "fa381b4a0b3b0f432df8e0bfaa808dd65203d27e5d41d0e09c141b565518e668",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 변화가 확인돼 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-hold-0104",
+      "title": "외관 점검 이후 생긴 새 냄새",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0104-scenario",
+      "group_id": "terra-a-group-syn-hold-0036",
+      "scenario_family_id": "terra-a-hold-family-0036",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "지난주에는 냄새 변화가 없었지만 오늘 같은 선크림에서 새 냄새 변화가 확인됐어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "이전 점검과 별개로 새 변화가 확인돼 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "931ad83df6587982b92645663804a6e755ac107cff3f3e25bf5b092c9b0008c8",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "이전 점검과 별개로 새 변화가 확인돼 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "같은 결정 조건의 기존 사례와 가족 및 분할을 공유하고 추가 맥락을 기록해요."
+    },
+    {
+      "id": "syn-hold-0105",
+      "title": "개봉 전 용기 팽창과 새 누출",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0105-scenario",
+      "group_id": "terra3-c-syn-hold-0105-group",
+      "scenario_family_id": "terra3-c-syn-hold-0105-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "미개봉 선크림 용기가 부풀고 내용물이 새는 상태가 확인됐어요. 원래 포장 상태는 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "확인된 누출을 품질 이상 의심으로 보고 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "dc46094f3cbb431ecc3331ea5fe4e8d2517648a5de398d5aceceb35c71db4bdd",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "확인된 누출을 품질 이상 의심으로 보고 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    },
+    {
+      "id": "syn-hold-0106",
+      "title": "제조번호 확인 후 별도로 발견한 냄새 변화",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra3-c-syn-hold-0106-scenario",
+      "group_id": "terra3-c-syn-hold-0106-group",
+      "scenario_family_id": "terra3-c-syn-hold-0106-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 선크림의 제조번호는 확인했지만 회수 대상 여부는 아직 조회하지 않았어요. 내용물에서는 원래 없던 냄새 변화가 확인됐어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "회수 조회와 별개로 확인된 새 냄새 때문에 사용과 개별 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "fb57c70bc6bbc3176d816a2c33e55e7534b077b884d4772715e31199690b7df4",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "회수 조회와 별개로 확인된 새 냄새 때문에 사용과 개별 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+    }
+  ]
+}

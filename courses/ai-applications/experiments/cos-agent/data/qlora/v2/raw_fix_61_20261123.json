@@ -1,0 +1,1427 @@
+{
+  "revision": "raw-fix-61-20261123",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "reviewed_issues": 61,
+  "changed_rows": 58,
+  "dispositions": {
+    "corrected": 58,
+    "audit_false_positive": 3
+  },
+  "before_dataset_sha256": {
+    "pilot_24": "5386f4107cb1376e01256387f1c96389d5bc985648f4e1d0bc8f1c8f4c3a2bd9",
+    "additional_24": "dc53322b675ec39d50a92af9b4caf33ca9e3b8e2e50127dd69ed09b28221a074",
+    "additional_100": "430a82d8ba76b3ec41a4eba38bece3f02bb4b5d937aa7076642230d892795a5f",
+    "additional_100_terra": "a1b4954823e83c0e60bcad04a60c4d3bed189e9ac6d3743f16aab6e0389a8420",
+    "additional_100_terra2": "0a689600a0cf3aa460ae0d001d9d8e6928e472b774c605cabfa7e918c2de8acc",
+    "additional_100_terra3": "30d5687d25486af2ac3ec050c0dbf7517c03bd3b93f9f44c2da552d3f828766c"
+  },
+  "after_dataset_sha256": {
+    "pilot_24": "ae9d6420659d6cdfa3aa6ae4c8aa31431827b8aa70bf4430622dea72b66c96cd",
+    "additional_24": "fdc5f0ce2e2ac350bba3810baa5738244d8fda25a789f0abe2c05308f0aeafe6",
+    "additional_100": "063007750489ee1ac5edc0e15e0128de283c9cc1b6f0c446ee25f2b47507c381",
+    "additional_100_terra": "23a598a7b73d47a12d9ee4363d794e2c8e1e9b22f9caa71d7a94ae387a6a002e",
+    "additional_100_terra2": "0a689600a0cf3aa460ae0d001d9d8e6928e472b774c605cabfa7e918c2de8acc",
+    "additional_100_terra3": "ee7874dcd3117bca010e6971ce6cfdaed0b4a8c94760e2bc8d24cecd3633ec43"
+  },
+  "rows": [
+    {
+      "old_row_id": "syn-sol-0002",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "6dafbfe6763dd4e6f5b1dc30420beb5170764fedb837108be2d0a3a4672adcb4",
+      "content_sha256": "3e2ffb317404b682158ff5c53f3bfe95f14e6c906c3c80b00e142e84ad8e02ad",
+      "reason_ko": "광보호 유지 관찰이 없어 전체 적합을 확정하지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.body_site\": {\"variable_id\": \"method.body_site\", \"state\": \"known\", \"value\": \"face\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"cleansing.steps\": {\"variable_id\": \"cleansing.steps\", \"state\": \"known\", \"value\": 1, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.removal_claim\": {\"variable_id\": \"product.removal_claim\", \"state\": \"known\", \"value\": {\"label_condition\": \"face_wash\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"cleansing_method\": \"foam\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0003",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "eb7075753ea919592e5ff1985b0fcd92592488100956c8d954c9b47cdf031860",
+      "content_sha256": "78ac8d0a5301e673883233008a8bc17a7892c18b0e3d20b07de8422eeacf0628",
+      "reason_ko": "오래 방치 여부가 미확인이므로 차이 판단을 미상으로 좁혀요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.body_site\": {\"variable_id\": \"method.body_site\", \"state\": \"known\", \"value\": \"face\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"moisturizer_used\": true, \"special_label_instruction\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.dryness\": {\"variable_id\": \"skin.dryness\", \"state\": \"known\", \"value\": \"mild\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"mild_transient\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.skin_wetness\": {\"variable_id\": \"method.skin_wetness\", \"state\": \"known\", \"value\": \"fully_dry_at_moisturizing\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0001",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "1080b9cff660b7d2ff8fa87e8ec90aefd867e45732d8ceaf7bf05091a0e6cb4c",
+      "content_sha256": "805fa358fb345eadfd7651b71b2e4c0510a8d2f0477246326555d8fc776f4873",
+      "reason_ko": "세안 뒤 발생이라는 미확인 시점을 제거해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.body_site\": {\"confirmed_by_user\": true, \"source\": \"synthetic_fixture\", \"state\": \"known\", \"value\": \"face\", \"variable_id\": \"method.body_site\"}, \"skin.current_discomfort\": {\"confirmed_by_user\": true, \"source\": \"synthetic_fixture\", \"state\": \"known\", \"value\": \"persistent\", \"variable_id\": \"skin.current_discomfort\"}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0003",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "16a84eb499775e804cc76db9009238491809984e11db5968918b40b8d0ea5d28",
+      "content_sha256": "be07b9c29773a37468337cf77eef2bd100ad65a542335ef22975821d701313d3",
+      "reason_ko": "신규 여부가 미상이므로 차이 판단은 미상으로 남기고 보수적인 품질 확인을 유지해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"color_or_odor_change\": true, \"separation\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0006",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "b06ecd23a92119c386f00c7dfa8588555df3d65ea646d06a95754b8311f30eb9",
+      "content_sha256": "2618a1326a99333676233d4669526d26602a2ba79c598ce5a366ff55579bb657",
+      "reason_ko": "신규 여부와 제형 특성이 미상이므로 차이를 확정하지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"color_or_odor_change\": false, \"separation\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0020",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "6b0a2c0d2147959971cf3d7abe9547cd5aaa643fc0c0bb09f1824dcc9f95d9be",
+      "content_sha256": "89c6073439f55ae3947c1f8f02cd8ca1766c1a2b03eb5878ba98c49cad1cbf3d",
+      "reason_ko": "관찰되지 않은 혼합 제품 종류를 제거해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.mixing\": {\"variable_id\": \"method.mixing\", \"state\": \"known\", \"value\": {\"premixed_in_palm\": true, \"reason\": \"save_time\", \"label_support_checked\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0011",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "7ab1e962d3d423c0cc4ecd1fbbd3f72c2dd48ba3c3751a0678717c5ecd220e9a",
+      "content_sha256": "9a3045478b9612bb4a3d0b903c71509dc6df63cbf42dfd7757485e5b11144137",
+      "reason_ko": "시야 변화의 지속 여부는 관찰되지 않았어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"skin.eye_symptom_context\": {\"variable_id\": \"skin.eye_symptom_context\", \"state\": \"known\", \"value\": {\"current_eye_exposure\": false, \"persistent_eye_pain\": true, \"vision_change_reported\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"persistent\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0026",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "1d792bc8615efd9116e5e7b5ac5241e6010b8a0639ba411d9d30a17362904318",
+      "content_sha256": "781b83013f68ea08a1761982bbd941a663088905c69c57ccff6cfef665040e35",
+      "reason_ko": "혼합한 제품의 정체는 확인되지 않았어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.mixing\": {\"variable_id\": \"method.mixing\", \"state\": \"known\", \"value\": {\"premixed_in_palm\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"mixture_used\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"dose.proxy_amount\": {\"variable_id\": \"dose.proxy_amount\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"sun.reapplication\": {\"variable_id\": \"sun.reapplication\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0031",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "b7d1540190a68369bd919ea9cb9c2066822aff7defbf29fd51bdd954b4ee89de",
+      "content_sha256": "59185ae129f91514003f5790fd622fbde13f938d7ce220a2bfdc5f529089cdb2",
+      "reason_ko": "밀크의 표시를 만들지 않고 해당 카드의 차이 요건은 미상으로 남겨요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.removal_claim\": {\"variable_id\": \"product.removal_claim\", \"state\": \"known\", \"value\": {\"label_condition\": \"oil_required\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"cleansing_method\": \"milk_label\", \"sunscreen_was_used\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"cleansing.steps\": {\"variable_id\": \"cleansing.steps\", \"state\": \"known\", \"value\": 1, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0032",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "366c8936f14cb5536a3a2a6bc201d4420fd3a718b43af38c2340832c1e8a77a0",
+      "content_sha256": "c36cf6a5fb2cadbd31b9e9bdcc4ec7e274c8fec1bfeee7ad5bb72c751bd1a38d",
+      "reason_ko": "혼합 제품과 불편감이 감량을 유발했다는 인과는 미확인이에요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.mixing\": {\"variable_id\": \"method.mixing\", \"state\": \"known\", \"value\": {\"premixed_in_palm\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"moisturizing.comfort\": {\"variable_id\": \"moisturizing.comfort\", \"state\": \"known\", \"value\": {\"uncomfortable_texture\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"sunscreen_amount_reduced_due_to_layering\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0040",
+      "disposition": "audit_false_positive",
+      "changed": false,
+      "before_content_sha256": "00bcdb5a607053aed64c5f413a976fa31a312b3cb926e4c64ee07028b529f3cd",
+      "content_sha256": "00bcdb5a607053aed64c5f413a976fa31a312b3cb926e4c64ee07028b529f3cd",
+      "reason_ko": "보습 경험에 재발이 보고되지 않았다는 확인값이 있고 별도 재발 항목의 미상은 반대 관찰이 아니에요. 별도 미상도 그대로 보존해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"skin.dryness\": {\"variable_id\": \"skin.dryness\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.tightness\": {\"variable_id\": \"skin.tightness\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"moisturizing.comfort\": {\"variable_id\": \"moisturizing.comfort\", \"state\": \"known\", \"value\": {\"comfortable\": true, \"dryness_return_reported\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"moisturizing.dryness_return\": {\"variable_id\": \"moisturizing.dryness_return\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"moisturizer_used\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0044",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "822fe5e3f314b4c423872a41ec5e9bcc99a8abaa0fe4c8ea3a124950f5bd9ae7",
+      "content_sha256": "0acb1d428a15b3e97ce3aa691540e150ab1544be9cd35ab05fe447500376e37a",
+      "reason_ko": "손상이나 당김을 무시했다는 행동은 미확인이에요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"shaving.method\": {\"variable_id\": \"shaving.method\", \"state\": \"known\", \"value\": \"manual\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"shaving.blade_use_history\": {\"variable_id\": \"shaving.blade_use_history\", \"state\": \"known\", \"value\": {\"uses\": 2}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"shaving.blade_condition\": {\"variable_id\": \"shaving.blade_condition\", \"state\": \"known\", \"value\": {\"damaged\": true, \"pulling_hair\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"shaving.reaction\": {\"variable_id\": \"shaving.reaction\", \"state\": \"known\", \"value\": {\"pain\": \"none\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0063",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "7c151a5c7a16f7cb04a240cd860bb46d61a17e73c536176ecefc8c8e039b3e7b",
+      "content_sha256": "cdfaa58b901d75187fd1b93f5aff91ac239c3ab6034b7f501554276a69fedf39",
+      "reason_ko": "다른 실행 가능한 수단 전체의 배제는 미확인이에요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"sun.outdoor_time\": {\"variable_id\": \"sun.outdoor_time\", \"state\": \"known\", \"value\": {\"prolonged\": true, \"context\": \"야외 경기 관람\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"sun.shade_clothing\": {\"variable_id\": \"sun.shade_clothing\", \"state\": \"known\", \"value\": {\"shade_available\": true, \"shade_used\": false, \"reason\": \"선크림만으로 충분하다고 생각함\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0069",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "fa7972da867828b117701f317a66c5b7407fbb292a3e56c0c613df3e41bbdfe0",
+      "content_sha256": "63a2a9eefea8acd959ab0b7efa7f7e877861fa1c2db6f2fcb93df69f03822385",
+      "reason_ko": "중첩 때문에 줄이지 않았다는 관찰을 모든 원인으로 넓히지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"sun.pilling\": {\"variable_id\": \"sun.pilling\", \"state\": \"known\", \"value\": {\"present\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.mixing\": {\"variable_id\": \"method.mixing\", \"state\": \"known\", \"value\": {\"premixed_in_palm\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.sequence\": {\"variable_id\": \"method.sequence\", \"state\": \"known\", \"value\": [\"moisturizer\", \"sunscreen\"], \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"sunscreen_use_reduced_due_to_layering\": false, \"reapplication_omitted_due_to_layering\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0089",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "dd603ee33c3a20974712664611c7ccd461484b74b632fd6ac31cc6f37b2e7450",
+      "content_sha256": "66b97c16b28c0e798f914bd1863e3ce5df4dc223ab2bc13bf7e9bc173c64a660",
+      "reason_ko": "서비스 선호의 근거는 KB이고 향료 일반 정보와 분리해 인용해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"기존 보습제 유지 여부\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.fragrance\": {\"variable_id\": \"product.fragrance\", \"state\": \"known\", \"value\": {\"현재 제품\": \"향료 포함\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.preferences\": {\"variable_id\": \"constraints.preferences\", \"state\": \"known\", \"value\": {\"내용\": \"현재 제품을 유지하고 싶음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0091",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "50b198b3173175de8c4298131661ca334e0ba990491e90bf593e48fcd5d9f41f",
+      "content_sha256": "e29756053c63b7c2743f585e43c9c1af64d02c690f28715340c795179f89b574",
+      "reason_ko": "새 제품인지가 미확인이라 적합을 확정하지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.type\": {\"variable_id\": \"product.type\", \"state\": \"known\", \"value\": \"일반 성인용 씻어내는 세안제\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"내용\": \"합성 표시: 피부에 오래 두지 않고 헹굼\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"국소 사용 확인\": true, \"매회 표시대로 헹굼\": true, \"현재 관찰 일수\": 8}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"person.known_allergies\": {\"variable_id\": \"person.known_allergies\", \"state\": \"known\", \"value\": {\"내용\": \"확인된 알레르기 없음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"관찰 부위 불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0092",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "151b760d834e81957f25891c6612155bb515ba55b3d395678b8b925a2a91a37a",
+      "content_sha256": "88e79b3fb4815c6cf77f99b87995432d92268833883143d2812116dfb75fdb0a",
+      "reason_ko": "작은 부위 확인의 출처와 변경 이력에 관한 서비스 원칙의 KB 근거를 분리해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"routine.change_log\": {\"variable_id\": \"routine.change_log\", \"state\": \"known\", \"value\": {\"현재 변경\": \"보습제 하나만 도입\", \"다른 제품\": \"변경 없음\", \"기록\": \"실제 사용과 불편 여부 기록 중\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.preferences\": {\"variable_id\": \"constraints.preferences\", \"state\": \"known\", \"value\": {\"내용\": \"사용 부담을 늘리지 않기\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0096",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "227d3773b758740d4dd8f68e5eb6485152c390bec0a6d49b38808bd8c0131fcc",
+      "content_sha256": "27254b9ffd246a923207139a1d9773fa37351d9cf872bfc2d6a755a01116ce4a",
+      "reason_ko": "서비스 기본값의 근거를 KB에 연결하고 출처 요약의 범위를 구분해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.active_care_roles\": {\"variable_id\": \"product.active_care_roles\", \"state\": \"known\", \"value\": {\"제품 가\": \"AHA 각질관리 화장품\", \"제품 나\": \"BHA 각질관리 화장품\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.combination_design\": {\"variable_id\": \"product.combination_design\", \"state\": \"known\", \"value\": {\"내용\": \"별도 두 제품\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.co_use_context\": {\"variable_id\": \"routine.co_use_context\", \"state\": \"known\", \"value\": {\"실제 사용\": true, \"부위\": \"얼굴 동일 부위\", \"사용 기간 겹침\": true, \"일정\": \"하루씩 번갈아 사용\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"person.clinician_plan\": {\"variable_id\": \"person.clinician_plan\", \"state\": \"known\", \"value\": {\"내용\": \"별도 병용 계획 없음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0019",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "0e5b12b0ba7e4dbfd2aaf5f46bcf9e5d7ced08dd1a8e05a5d3d305f1084e3554",
+      "content_sha256": "1befb31a7bfe3c47eee63562a7fe1dba13ec7d743ebb40e709c46c2055820827",
+      "reason_ko": "지속 속성이 통증 자체에 적용된다고 단정하지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"skin.pain\": {\"variable_id\": \"skin.pain\", \"state\": \"known\", \"value\": \"severe\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"persistent\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.change_log\": {\"variable_id\": \"routine.change_log\", \"state\": \"known\", \"value\": {\"new_cosmetic\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0031",
+      "disposition": "audit_false_positive",
+      "changed": false,
+      "before_content_sha256": "8da574e7207895f9bc6ed464dd5316a98f1c03f727c88275be0caf7c1990d9a2",
+      "content_sha256": "8da574e7207895f9bc6ed464dd5316a98f1c03f727c88275be0caf7c1990d9a2",
+      "reason_ko": "반복 통증에 대한 해당 병용 중단은 안전상 중단이며 긍정적 루틴이나 제품 추천이 아니에요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"adjunct.device_use\": {\"variable_id\": \"adjunct.device_use\", \"state\": \"known\", \"value\": {\"임의 강도 증가\": true, \"제품과 병용\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"repeated\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"같은 병용의 더 강한 단계 요청\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"기기 병용 때마다 통증 반복\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        },
+        {
+          "raw": "현재 병용방법과 공개된 기기 지침을 확인해 지침 밖 사용을 줄이고 반응 시 해당 병용을 중단·상담 검토한다. 적합성 정보가 없으면 특정 조합 추천만 보류하고 일반 보습·광보호 안내는 계속한다.",
+          "connection": "반응 시 안전 대응과 일반 사용 권고를 구분해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0032",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "c12e71313b7c0f04fe0b3bb1d2843cd08c3819198fc145e0871030e955d9ee5a",
+      "content_sha256": "e7d67d5b89b1ee20cbdef1e01a4a5df23aec86014a7c01d6026bbd7161da107d",
+      "reason_ko": "카드의 긴급 도움 우선 범위를 반영하되 제공되지 않은 응급 처치 절차는 만들지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"확인된 표시\": \"손에만 사용하는 합성 제품이에요.\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.label_warnings\": {\"variable_id\": \"product.label_warnings\", \"state\": \"known\", \"value\": {\"확인된 주의사항\": \"눈과 눈 주변에는 사용하지 않아요.\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.body_site\": {\"variable_id\": \"method.body_site\", \"state\": \"known\", \"value\": \"손에 사용하던 제품이 실제로 눈에 들어갔어요.\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.pain\": {\"variable_id\": \"skin.pain\", \"state\": \"known\", \"value\": \"severe\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"눈에 들어간 제품을 보습 루틴이나 다른 제품으로 보완하는 방법을 요청해요.\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"현재 눈 통증이 있어요.\"}, {\"source_variable\": \"skin.pain\", \"statement\": \"심한 통증\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "실제 행의 확정 관찰과 미상 값을 다시 읽었어요."
+        },
+        {
+          "raw": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "connection": "카드의 미확인 정보 처리 기준을 확인했어요."
+        },
+        {
+          "raw": "응급 상황은 일반 표시 비교보다 긴급 도움 우선",
+          "connection": "일반 비교보다 긴급 도움을 우선해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0033",
+      "disposition": "audit_false_positive",
+      "changed": false,
+      "before_content_sha256": "cab7e1362eb261ce62e5082d6559246cfbf77a582a789b1ed06dc3325521f8d6",
+      "content_sha256": "cab7e1362eb261ce62e5082d6559246cfbf77a582a789b1ed06dc3325521f8d6",
+      "reason_ko": "재사용 중단은 안전상 보류 경계이며 긍정적인 제품 추천이 아니에요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"새 제품 국소 확인\": \"3일째\", \"현재 반응\": \"붉음과 가려움이 계속됨\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"열흘을 채워야 하는지와 계속 쓰는 일정 요청\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"여러 새 제품을 바로 넓게 사용하거나 국소 무반응을 영구 안전으로 해석함.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"과거 심한 반응·확인 알레르겐\", \"의약품/염모제 등 별도 지침\", \"기한/가품/변질 의심\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"general_guidance\", \"on_known_difference\": \"작은 부위 사용 확인을 안내하되 제품별 빈도·접촉시간을 넘기지 않는다. 이상 반응은 씻어내고 재사용하지 않으며 지속·심한 반응은 상담한다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S35\", \"D04\"], \"source_supported_content\": \"AAD는 일반적인 7–10일 관찰 방법과 반응 시 미사용, 의료 패치테스트와의 구분을 설명한다.\", \"service_interpretation\": \"원문의 일반 하루 2회/5분 지침을 세안제·레티노이드·필링제에 획일적으로 이식하지 않는다. 이 제한은 서비스 정책이다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n국소 확인 중 지속 반응이 있어 확인 기간을 채우기 위한 재사용 일정은 보류해요. 열흘이라는 기간을 반응을 견뎌야 하는 의무로 만들지 않아요. [kb:B-G11@0.6.1]\n\n### 필요한 다음 단계\n반응이 있는 해당 제품은 재사용하지 말고 지속되는 상태를 의료진에게 확인해 주세요. 이 반응을 확정 알레르기 진단으로 부르거나 정해진 확인 기간까지 버티도록 안내하지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0050",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "27864398c1ebe97516538dd3373c51c67eb7645324679b172c7c01e7a3199edb",
+      "content_sha256": "d455e44bfaf9c9c942d92f00595104b46072212bc762af3b1a2df265824c11c6",
+      "reason_ko": "펌프 횟수만 확인되어 대상이 보습제라고 단정할 수 없어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"dose.proxy_amount\": {\"variable_id\": \"dose.proxy_amount\", \"state\": \"known\", \"value\": {\"pump_count\": 1}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.dryness\": {\"variable_id\": \"skin.dryness\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"moisturizing.comfort\": {\"variable_id\": \"moisturizing.comfort\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"현재 보습 루틴으로 일상적인 건조 불편이 관리되고 새로운 불편감이 없음.\", \"difference_when\": \"건조감이 있는데 무조건 감량하거나, 현재 사용 후 불편감이 계속되는데 방법을 검토하지 않음.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"의료진 계획\", \"바를 때 지속되는 통증·따가움\", \"건조가 지속되거나 일반 화장품 범위를 벗어나는 문제\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"general_guidance\", \"on_known_difference\": \"먼저 보유 제품의 실제 사용·시점·빈도를 확인한다. 건조하면 추가 보습을 검토하되 따가움·지속 증상은 별도로 확인한다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S04\", \"D01\"], \"source_supported_content\": \"AAD는 건조할 때 보습하고 지속되는 문제나 도포 시 불편에 대해 피부과 상담하도록 안내한다.\", \"service_interpretation\": \"충분성은 사용자 관찰을 위한 목표이지 수분 측정 정상치가 아니다. 원인을 보습 부족으로 자동 확정하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n보습제를 한 번 펌핑한다는 양의 표현만 확인됐어요. 실제 건조와 편안함은 미상이므로 충분하다거나 부족하다고 정하지 않고 증량·감량 판단도 미뤄요 [kb:B-M02@0.6.1].\n\n### 근거 및 이유\n보습량은 사용 뒤의 건조와 편안함을 함께 검토해야 해요. 일반 자료도 모든 피부와 제품에 동일한 양을 정하지 않아요 [kb:B-M02@0.6.1] [ref:S04].\n\n### 확인이 필요한 한계\n사용 뒤 건조나 당김이 남는지, 편안하게 느끼는지 확인이 필요해요. 한 번의 펌핑을 일정한 질량이나 개인에게 필요한 양으로 환산하지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0072",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "8d2437a34a5d6d0b0f8cf0a25fbdfa1a485cc788cd4ebd88fb5ffbe88fe95468",
+      "content_sha256": "b67ba8ad52987b83cc2bb18ec67f1aac2995e38481fc8bbdf492c510fe057b21",
+      "reason_ko": "표시 일부의 손상과 두 항목 미상은 확인되지만 미상의 원인은 확인되지 않았어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"compare_new_outdoor_sunscreen\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.spf\": {\"variable_id\": \"product.spf\", \"state\": \"known\", \"value\": 50, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.identity\": {\"variable_id\": \"product.identity\", \"state\": \"known\", \"value\": {\"synthetic_candidate\": \"표시 일부가 손상된 후보\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.uva\": {\"variable_id\": \"product.uva\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"product.water_resistance\": {\"variable_id\": \"product.water_resistance\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"선택한 기본 성능이 제품 자료로 확인되고 사용 환경에 맞음.\", \"difference_when\": \"새 야외용 후보가 기본 성능을 충족하지 않는 것으로 확인됨. 표시 미확인은 unknown.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"피부질환·시술 관련 개별 지시\", \"확인되지 않은 국가별 표시의 자동 등가 변환이 필요한 상황\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"selection_preference\", \"on_known_difference\": \"표시 성능을 확인하고 해당 후보들을 비교한다. 기존 제품의 교체 필요는 상황과 대안을 함께 검토한다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"표시 성능을 판단에 필요한 만큼 확인한다. 비공개 피막 기술·원시험 보고서가 없다는 이유로 추천을 중단하지 않는다.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S16\", \"U03\", \"D02\"], \"source_supported_content\": \"AAD의 기본 선택 안내는 SPF 30 이상·광범위 보호·내수성이다.\", \"service_interpretation\": \"미국 기관 기준을 채택한 서비스 후보이며 한국 법적 최소치가 아니다. PA+ 개수의 임의 최소값은 만들지 않는다. FDA S05의 SPF 15 이상 안내와 숫자 차이를 숨기지 않는다. 지용성·상대적 고분자량 선호는 U03의 사용자 정책이며 S16의 기관 권고에 포함되어 있다고 해석하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "Professional sunscreen guidance discusses SPF 30 or higher, UVA and UVB coverage, water resistance and outdoor reapplication. Exposure conditions and non-product protection also matter. This is not a universal indoor reapplication schedule or a statement of Korean legal minimums.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\nSPF 50은 확인됐지만 UVA·UVB 보호와 내수성 표시는 미상이에요. 기본 표시 조건을 모두 충족했다거나 충족하지 못했다고 확정하지 않아요 [kb:B-P01@0.6.1].\n\n### 근거 및 이유\n일반적인 야외용 선택 안내는 SPF뿐 아니라 UVA·UVB 보호와 내수성도 함께 다뤄요 [ref:S16].\n\n### 확인이 필요한 한계\n현재 버전의 읽을 수 있는 포장 표시나 공식 자료로 빠진 항목을 확인해요. 손상된 표시를 근거로 보호 성능이나 안전성을 추정하지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0097",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "8eeaebf10b3425fbfa9dd9a05337e831247a34f0d234a9447d0843e18fd0ea4b",
+      "content_sha256": "347823cbb83069c3ae78437cd278c16b1cda694b801b21580858a04030dc2022",
+      "reason_ko": "냄새 강도에 관한 문장을 제거하고 개인 회피 및 제품 정보 확인의 근거 범위로 좁혀요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"새 로션 후보 비교\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.form_descriptor\": {\"variable_id\": \"product.form_descriptor\", \"state\": \"known\", \"value\": {\"내용\": \"향이 거의 없다는 광고\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.preferences\": {\"variable_id\": \"constraints.preferences\", \"state\": \"known\", \"value\": {\"내용\": \"무향료 선호\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.fragrance\": {\"variable_id\": \"product.fragrance\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"product.inci\": {\"variable_id\": \"product.inci\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"근거가 있는 무향료 후보가 선택됨. 개인 무반응을 보증하지 않음.\", \"difference_when\": \"향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"현재 제품 유지가 합리적인 경우\", \"명시적 선호와 대안의 가용성\", \"향료 정보 불확실\", \"확인된 특정 알레르겐은 무향료 표기만으로 해결되지 않음\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"selection_preference\", \"on_known_difference\": \"새 후보에서는 무향료를 우선하고 민감·손 습진 맥락에서는 향성 에센셜오일을 함께 검토한다. 실제 불편/확인된 알레르기가 있으면 특정 제품의 사용 중단·대안을 검토하되 보습 전체를 끊지 않는다. 무불편 기존 제품의 일괄 폐기·교체는 하지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"U02\", \"S04\", \"S15\", \"U06\", \"S20\", \"S21\", \"S22\", \"S29\"], \"source_supported_content\": \"향료는 FDA가 설명하는 알레르겐 군 중 하나이며 AAD 건조 피부 안내는 무향료 제품을 권한다. 손·습진 관련 AAD 안내는 무향료 보습을 지지한다. 특정 에센셜오일의 접촉감작은 S22의 환자군 자료에 한정한다.\", \"service_interpretation\": \"일반 성인 전체의 기본 선택 순위로 확장하는 부분은 보수적 서비스 정책이다. 자극과 알레르기를 같은 확률로 취급하지 않는다. 향성 에센셜오일 없는 후보 선호는 해당 상황의 서비스 선택 원칙이다. 고정유·일반 보습 유상을 일괄 배제하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "Cosmetic allergen guidance discusses fragrance and individual avoidance, labeling and manufacturer instructions. Fragrance presence alone does not establish irritation or allergy in every person. United States labeling explanations are not automatically Korean legal requirements.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n향이 거의 없다는 광고만으로 무향료가 확인된 후보라고 부르지는 않아요. 현재 후보의 향료와 전성분 정보는 미상으로 남겨요. [kb:B-G01@0.6.1]\n\n### 근거 및 이유\n향료 관련 표시는 개인 회피와 제품 정보 확인의 한 부분이에요. 냄새의 강도와 향료 성분 부재는 같은 정보가 아니에요. [ref:S15]\n\n### 확인이 필요한 한계\n새 후보 선택을 바꾸려면 현재 버전의 전성분이나 제조사 향료 정보를 확인해요. 자료가 없다는 이유로 사용자에게 잘못이 있다고 보지는 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0098",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "0a5910c1f86bd397af81ed757f862f3531d1d34e07222b22659a4d96c07b3011",
+      "content_sha256": "905a48d044c8a261ec951acee761df7cd0461326104320327403bf1dbc669d8f",
+      "reason_ko": "성분 종류의 일반 분류를 S15에 귀속하지 않고 확인되지 않은 성분 정보와 KB 판단을 구분해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"향성 에센셜오일을 피하고 싶은 새 보습제 선택\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.form_descriptor\": {\"variable_id\": \"product.form_descriptor\", \"state\": \"known\", \"value\": {\"내용\": \"식물 오일 로션\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.preferences\": {\"variable_id\": \"constraints.preferences\", \"state\": \"known\", \"value\": {\"내용\": \"향성 에센셜오일은 피하고 싶음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.essential_oils\": {\"variable_id\": \"product.essential_oils\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"product.inci\": {\"variable_id\": \"product.inci\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"근거가 있는 무향료 후보가 선택됨. 개인 무반응을 보증하지 않음.\", \"difference_when\": \"향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"현재 제품 유지가 합리적인 경우\", \"명시적 선호와 대안의 가용성\", \"향료 정보 불확실\", \"확인된 특정 알레르겐은 무향료 표기만으로 해결되지 않음\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"selection_preference\", \"on_known_difference\": \"새 후보에서는 무향료를 우선하고 민감·손 습진 맥락에서는 향성 에센셜오일을 함께 검토한다. 실제 불편/확인된 알레르기가 있으면 특정 제품의 사용 중단·대안을 검토하되 보습 전체를 끊지 않는다. 무불편 기존 제품의 일괄 폐기·교체는 하지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"U02\", \"S04\", \"S15\", \"U06\", \"S20\", \"S21\", \"S22\", \"S29\"], \"source_supported_content\": \"향료는 FDA가 설명하는 알레르겐 군 중 하나이며 AAD 건조 피부 안내는 무향료 제품을 권한다. 손·습진 관련 AAD 안내는 무향료 보습을 지지한다. 특정 에센셜오일의 접촉감작은 S22의 환자군 자료에 한정한다.\", \"service_interpretation\": \"일반 성인 전체의 기본 선택 순위로 확장하는 부분은 보수적 서비스 정책이다. 자극과 알레르기를 같은 확률로 취급하지 않는다. 향성 에센셜오일 없는 후보 선호는 해당 상황의 서비스 선택 원칙이다. 고정유·일반 보습 유상을 일괄 배제하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "화장품의 향료 등 알레르겐과 개인별 회피, 표시 및 제조사 지시 확인을 다루는 안내예요. 향료가 있다는 사실만으로 모든 사람에게 자극이나 알레르기가 생긴다고 단정하지 않아요. 미국 표시 설명을 한국의 법적 의무로 자동 전환하지 않아요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n식물 오일 로션이라는 이름만으로 향성 에센셜오일이 들어 있다고 판정하지 않아요. 원하는 회피 기준에 맞는지는 실제 성분과 용도를 확인해요. [kb:B-G01@0.6.1]\n\n### 근거 및 이유\n향료 관련 알레르겐 안내를 모든 유상 성분의 일괄 금지로 확대하지 않아요. 고정유와 향성 에센셜오일은 이름의 일부만 보고 같은 것으로 세지 않아요. [ref:S15]\n\n### 확인이 필요한 한계\n현재 전성분과 향성 에센셜오일 정보가 미확인이므로 해당 후보를 적합 또는 부적합으로 확정하지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0099",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "12ddae2c2e546f3bbd34861d229bb23720a646c417f632135db25eefd463a372",
+      "content_sha256": "f14934fb4812774b27994d41487003d24272b355c55bca8e14fa83e5fd6062d9",
+      "reason_ko": "원료명과 관리 목적을 분리하는 서비스 해석은 KB에 귀속해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.inci\": {\"variable_id\": \"product.inci\", \"state\": \"known\", \"value\": {\"새 후보의 확인된 이름\": \"Citric Acid\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.active_care_roles\": {\"variable_id\": \"product.active_care_roles\", \"state\": \"known\", \"value\": {\"기존 제품\": \"레티놀 관리 화장품\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.co_use_context\": {\"variable_id\": \"routine.co_use_context\", \"state\": \"known\", \"value\": {\"기존 제품 실제 사용\": \"얼굴\", \"새 후보\": \"아직 도입 전\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.roles\": {\"variable_id\": \"product.roles\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음\", \"단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음\", \"다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음\", \"단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"conservative_default_avoid_co_use\", \"on_known_difference\": \"불필요하게 추가한 화장품의 병용을 줄이고 필요한 관리 한 종류를 우선한다. 이미 사용 중이면 반복 반응·빈도·표시·진료계획을 함께 확인한다. 처방약은 임의 변경하지 않는다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S32\", \"S33\", \"U09\", \"D04\"], \"source_supported_content\": \"AAD의 레티놀/레티노이드+각질관리 주의 및 특정 아다팔렌 0.3% 지침의 AHA 회피.\", \"service_interpretation\": \"일반 화장품에 대한 보수적 기본값으로 확장한 부분은 사용자 정책이다. 원료명 검출과 실제 관리 목적을 구분한다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "General exfoliation guidance cautions about adding exfoliation while using retinol or prescription retinoids. Actual care purpose and contact site matter. This guidance does not establish a universal contraindication or an individual probability of harm.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n새 후보에 Citric Acid가 표시돼도 AHA 각질관리 목적의 제품인지는 아직 미상이에요. 기존 레티놀 사용과 후보의 실제 역할을 나눠 확인해요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n추가 각질관리의 겹침을 볼 때는 성분명뿐 아니라 관리 목적과 실제 접촉 부위가 필요해요. 단순 성분명에서 각질관리 역할을 자동 생성하지 않아요. [ref:S32]\n\n### 확인이 필요한 한계\n후보는 아직 도입 전이에요. 이미 두 제품을 중첩 사용했다고 기록하지 않고, 후보의 관리 목적과 지침을 확인하기 전에는 구체적인 병용 일정을 만들지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0100",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "bf1e811751e8d79082837fd9aeb79a0accda1662cca599fdc8857a1aa5d3fbd6",
+      "content_sha256": "54de0dabe54778ff975434bb2a4cbd2de04c736cefe98477a2658b29d7326cc4",
+      "reason_ko": "유사 문자열의 동일성 판단을 S32에 귀속하지 않고 확인되지 않은 역할에 대한 KB 판단으로 좁혀요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.inci\": {\"variable_id\": \"product.inci\", \"state\": \"known\", \"value\": {\"후보 향수의 표기\": \"Benzyl Salicylate\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.active_care_roles\": {\"variable_id\": \"product.active_care_roles\", \"state\": \"known\", \"value\": {\"기존 제품\": \"레티노이드 관리\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.co_use_context\": {\"variable_id\": \"routine.co_use_context\", \"state\": \"known\", \"value\": {\"후보\": \"구매 검토 중\", \"기존 제품 실제 사용\": \"얼굴\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.roles\": {\"variable_id\": \"product.roles\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"method.body_site\": {\"variable_id\": \"method.body_site\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음\", \"단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음\", \"다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음\", \"단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"conservative_default_avoid_co_use\", \"on_known_difference\": \"불필요하게 추가한 화장품의 병용을 줄이고 필요한 관리 한 종류를 우선한다. 이미 사용 중이면 반복 반응·빈도·표시·진료계획을 함께 확인한다. 처방약은 임의 변경하지 않는다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S32\", \"S34\", \"U09\", \"D04\"], \"source_supported_content\": \"특정 트레티노인 제형 표시에는 살리실릭애씨드 OTC 제품 병용 시 국소 자극 증가 가능성이 명시됨.\", \"service_interpretation\": \"일반 화장품에 대한 보수적 기본값으로 확장한 부분은 사용자 정책이다. 원료명 검출과 실제 관리 목적을 구분한다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "레티놀이나 처방 레티노이드를 쓰는 동안 추가 각질관리를 겹치는 상황과 과도한 각질관리 회피를 다루는 안내예요. 실제 관리 목적과 사용 부위를 구분해 검토해야 해요. 모든 성분 조합의 절대 금기나 개인의 위해확률을 정하는 자료는 아니에요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\nBenzyl Salicylate라는 표기를 살리실릭애씨드 각질관리로 바꿔 읽지 않아요. 후보 향수의 관리 역할과 실제 접촉 부위는 미상으로 남겨요. [kb:B-G14@0.6.1]\n\n### 근거 및 이유\n레티노이드와 추가 각질관리의 중첩을 판단하려면 실제 관리 목적과 부위를 구분해야 해요. 비슷한 문자열만으로 동일 성분·용도를 만들 수는 없어요. [ref:S32]\n\n### 확인이 필요한 한계\n현재는 구매 검토 단계예요. 실제 병용이나 위해를 확정하지 않으며, 향수의 개인 적합성까지 승인하는 답변도 아니에요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0101",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "76c80ffc5b0673c7179b9c53b1a4cf18147f9ba32fdc3209a70617ad01ddb0dc",
+      "content_sha256": "e67f179ed653ad8cfba59e55833831343d5aaae4df6084424ecce120ac5b523a",
+      "reason_ko": "실제 중첩의 서비스 판단 조건을 KB에 귀속해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.inci\": {\"variable_id\": \"product.inci\", \"state\": \"known\", \"value\": {\"제품 가\": \"Retinyl Palmitate 표기\", \"제품 나\": \"Glycolic Acid 표기\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.co_use_context\": {\"variable_id\": \"routine.co_use_context\", \"state\": \"known\", \"value\": {\"제품 수\": 2, \"도입\": \"두 후보 검토 단계\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.active_care_roles\": {\"variable_id\": \"product.active_care_roles\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"dose.co_use\": {\"variable_id\": \"dose.co_use\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음\", \"단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음\", \"다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음\", \"단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"conservative_default_avoid_co_use\", \"on_known_difference\": \"불필요하게 추가한 화장품의 병용을 줄이고 필요한 관리 한 종류를 우선한다. 이미 사용 중이면 반복 반응·빈도·표시·진료계획을 함께 확인한다. 처방약은 임의 변경하지 않는다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S32\", \"S33\", \"U09\", \"D04\"], \"source_supported_content\": \"AAD의 레티놀/레티노이드+각질관리 주의 및 특정 아다팔렌 0.3% 지침의 AHA 회피.\", \"service_interpretation\": \"일반 화장품에 대한 보수적 기본값으로 확장한 부분은 사용자 정책이다. 원료명 검출과 실제 관리 목적을 구분한다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "레티놀이나 처방 레티노이드를 쓰는 동안 추가 각질관리를 겹치는 상황과 과도한 각질관리 회피를 다루는 안내예요. 실제 관리 목적과 사용 부위를 구분해 검토해야 해요. 모든 성분 조합의 절대 금기나 개인의 위해확률을 정하는 자료는 아니에요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\nRetinyl Palmitate와 Glycolic Acid라는 이름은 확인됐지만, 두 후보가 어떤 관리 목적으로 실제 사용될지는 아직 미상이에요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n레티노이드·AHA 관리의 중첩 기준은 제품 역할과 실제 사용을 함께 보는 기준이에요. 성분명 두 개를 확인한 것만으로 실제 중첩 사용이 성립하지는 않아요. [ref:S32]\n\n### 확인이 필요한 한계\n후보별 용도와 실제 사용할 부위·기간을 확인하기 전에는 차이나 개인 안전을 확정하지 않아요. 미공개 함량도 추정하지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0105",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "de0771e33a74e43017bf504d38ddd2cb82d14a322b002553f8c9a110c9aade57",
+      "content_sha256": "8b1edcdc8be79343e4630d47c55fbe92a7ec3f03fb3cb92f2c9a6ac48eea5176",
+      "reason_ko": "제품별 용법 우선은 KB 서비스 정책으로, 일반적인 작은 부위 확인은 문헌 요약으로 구분해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.type\": {\"variable_id\": \"product.type\", \"state\": \"known\", \"value\": \"새 일반 보습 화장품\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"작은 부위 확인\": \"계획만 있음\", \"아직 사용 안 함\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"person.known_allergies\": {\"variable_id\": \"person.known_allergies\", \"state\": \"known\", \"value\": {\"내용\": \"확인된 알레르기 없음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"dose.frequency\": {\"variable_id\": \"dose.frequency\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"여러 새 제품을 바로 넓게 사용하거나 국소 무반응을 영구 안전으로 해석함.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"과거 심한 반응·확인 알레르겐\", \"의약품/염모제 등 별도 지침\", \"기한/가품/변질 의심\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"general_guidance\", \"on_known_difference\": \"작은 부위 사용 확인을 안내하되 제품별 빈도·접촉시간을 넘기지 않는다. 이상 반응은 씻어내고 재사용하지 않으며 지속·심한 반응은 상담한다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S35\", \"D04\"], \"source_supported_content\": \"AAD는 일반적인 7–10일 관찰 방법과 반응 시 미사용, 의료 패치테스트와의 구분을 설명한다.\", \"service_interpretation\": \"원문의 일반 하루 2회/5분 지침을 세안제·레티노이드·필링제에 획일적으로 이식하지 않는다. 이 제한은 서비스 정책이다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "새 피부관리 제품을 작은 부위에서 확인하고 7~10일 관찰하는 일반 안내예요. 제품별 용법을 우선하며 모든 제품에 같은 빈도나 접촉시간을 적용하지 않아요. 이런 사용 확인은 의료기관의 진단용 패치테스트나 영구적인 안전 보증이 아니에요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n작은 부위에서 확인하려는 계획은 실제 실행 기록과 구분해요. 새 보습제의 제품별 지침과 빈도는 아직 미상이에요. [kb:B-G11@0.6.1]\n\n### 근거 및 이유\n일반적인 국소 확인 안내도 제품별 용법을 우선해요. 확인 계획이 있다는 말만으로 이미 무반응을 확인했다고 보지는 않아요. [ref:S35]\n\n### 확인이 필요한 한계\n자료를 확인하기 전에는 임의 횟수나 접촉시간을 지정하지 않아요. 국소 확인 결과가 나중에 생겨도 진단이나 영구 안전 보증으로 바꾸지는 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0055",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "82bf8afba077c2e458726685c6fa12dd155b5304ca03fe318a0a4e833edf9ad3",
+      "content_sha256": "acacbff16dd7aa626c76e2508f9a553082c6f5ebb0e842cafcb620dbe2cf3c4d",
+      "reason_ko": "제품별 no-rinse 예외를 일반 세안 자료가 직접 지지하는 것처럼 공동 인용하지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.type\": {\"variable_id\": \"product.type\", \"state\": \"known\", \"value\": \"no_rinse_cleanser\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"water_rinse_required\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.rinse\": {\"variable_id\": \"method.rinse\", \"state\": \"known\", \"value\": {\"performed\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 제품이 요구하는 헹굼을 수행함.\", \"difference_when\": \"씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"물세안이 필요 없는 제품의 별도 사용법\", \"의료진 지시\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"general_guidance\", \"on_known_difference\": \"제품 유형과 용법을 확인하여 필요한 헹굼을 수행하도록 안내한다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S03\", \"D01\"], \"source_supported_content\": \"AAD는 미온수로 헹구도록 안내한다. 제품별 분기와 헹굼을 충분히 하도록 안내하는 방식은 서비스 설계다.\", \"service_interpretation\": \"미끈거림을 정량 잔류량으로 해석하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "세안 제품은 종류와 관계없이 반드시 물로 다시 씻어야 해요. 잠을 충분히 자더라도 예외는 없어요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n이 제품에는 물 헹굼이 필요 없다는 지시가 확인됐어요. 물로 헹구지 않았다는 사실을 씻어내는 세안제의 헹굼 생략과 구분하고 일괄적으로 추가 물세안을 요구하지 않아요 [kb:B-C06@0.6.1].\n\n### 근거 및 이유\n헹굼 검토에는 해당 제품의 사용법이 중요하며 물세안이 필요 없는 제품은 예외로 검토해요. 일반 세안 안내만으로 이 제품의 별도 지시를 지우지 않아요 [kb:B-C06@0.6.1] [ref:S03].\n\n### 확인이 필요한 한계\n이 예외는 확인된 이 제품 지시에 한정돼요. 다른 제품의 헹굼 필요 여부나 개인의 세정 결과까지 보증하는 것은 아니에요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0060",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "fbeb5df5bb3737ff1fd5d8de422a959602d52f1a9fe31863b4df0421f7f4c706",
+      "content_sha256": "933d940e48c793f2fee0f04341d7e9d930bf76d7e5781f51e08c7d76357d0a07",
+      "reason_ko": "사례의 물 유입과 외관은 입력 관찰이고 위생 일반 안내만 문헌에 귀속해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.handling\": {\"variable_id\": \"storage.handling\", \"state\": \"known\", \"value\": {\"unwashed_finger_contact_once\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"storage.water_ingress\": {\"variable_id\": \"storage.water_ingress\", \"state\": \"known\", \"value\": false, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"color_or_odor_change\": false, \"separation\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"용도에 맞는 용기·취급을 유지하고 임의 혼입이 없음.\", \"difference_when\": \"근거 없이 다른 용기에 옮기거나 물을 섞고 오염 우려가 있는 취급을 함.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"제조사 지시에 따른 리필·소분·희석\", \"적합한 용기와 관리방법이 확인된 특수 상황\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"general_guidance\", \"on_known_difference\": \"불필요한 소분·희석을 피하도록 안내한다. 소분 이력만으로 오염 확정하지 않고 용기 적합성과 취급을 별도 확인한다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"D01\", \"S06\", \"F01\", \"S27\", \"D03\"], \"source_supported_content\": \"FDA는 미생물 유입과 용기·도구 청결을 다룬다. 원래 용기 우선·임의 소분 회피는 보수적 정책으로 구분한다.\", \"service_interpretation\": \"모든 소분이 금지되거나 즉시 오염된다고 주장하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "화장품에 물이나 침을 넣지 않고 손과 용기를 깨끗하게 관리하며 표시 보관조건을 따르는 안내예요. 한 번의 접촉만으로 오염이나 감염을 확정하거나 폐기일까지 계산하지 않아요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "손이 한 번 닿으면 화장품은 정확히 사흘 뒤에 감염을 일으켜요. 스트레스 관리만 하면 그 기간이 두 배로 늘어요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n씻지 않은 손가락이 내용물에 한 번 닿은 취급은 기본 관리와 차이가 있어요. 이후에는 손과 용기를 깨끗하게 관리하고 제품 표시의 취급·보관 지침을 확인해요 [kb:B-S03@0.6.1] [ref:S27].\n\n### 근거 및 이유\n제공된 위생 자료는 깨끗한 취급을 다루지만 단일 접촉만으로 오염이나 감염을 확정하지 않아요. 물 유입, 색·냄새 변화와 층 분리는 없다고 확인됐어요 [ref:S27].\n\n### 확인이 필요한 한계\n이상 징후가 없다는 관찰이 품질 인증은 아니에요. 이 접촉에서 감염 여부나 정확한 폐기일을 계산할 근거는 없어요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0106",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "2c6a63ce92bb55fd7a9cfd81131e5ed0bb8e3212b45c6d1f8f7b0fdb5a5443ef",
+      "content_sha256": "1703f7457a0d3adf7ea974c4983dc6d7af1fb6cd1175b1660d12511252c872b3",
+      "reason_ko": "시간 분리만으로 적합을 확정하지 않는 서비스 기본값을 KB에 귀속해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.active_care_roles\": {\"variable_id\": \"product.active_care_roles\", \"state\": \"known\", \"value\": {\"제품 가\": \"레티놀 관리 화장품\", \"제품 나\": \"AHA 각질관리 화장품\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.co_use_context\": {\"variable_id\": \"routine.co_use_context\", \"state\": \"known\", \"value\": {\"실제 사용\": true, \"부위\": \"목 동일 부위\", \"같은 저녁 사용\": true, \"간격\": \"30분\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"person.clinician_plan\": {\"variable_id\": \"person.clinician_plan\", \"state\": \"known\", \"value\": {\"내용\": \"별도 병용 계획 없음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음\", \"단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음\", \"다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음\", \"단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"conservative_default_avoid_co_use\", \"on_known_difference\": \"불필요하게 추가한 화장품의 병용을 줄이고 필요한 관리 한 종류를 우선한다. 이미 사용 중이면 반복 반응·빈도·표시·진료계획을 함께 확인한다. 처방약은 임의 변경하지 않는다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S32\", \"S33\", \"U09\", \"D04\"], \"source_supported_content\": \"AAD의 레티놀/레티노이드+각질관리 주의 및 특정 아다팔렌 0.3% 지침의 AHA 회피.\", \"service_interpretation\": \"일반 화장품에 대한 보수적 기본값으로 확장한 부분은 사용자 정책이다. 원료명 검출과 실제 관리 목적을 구분한다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "레티놀이나 처방 레티노이드를 쓰는 동안 추가 각질관리를 겹치는 상황과 과도한 각질관리 회피를 다루는 안내예요. 실제 관리 목적과 사용 부위를 구분해 검토해야 해요. 모든 성분 조합의 절대 금기나 개인의 위해확률을 정하는 자료는 아니에요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "두 제품 사이에 30분을 두면 어떤 각질관리 조합도 개인에게 안전하다고 판단해요. 실제 사용 부위와 제품의 관리 목적은 확인하지 않아도 돼요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n목 같은 부위에 별도 레티놀과 AHA 각질관리 화장품을 실제 겹쳐 쓰고 있어요. 30분 간격만으로 자동 적합으로 보지 않고 불필요한 중복을 줄이는 방향을 검토해요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n각질관리 중복을 줄이는 보수적 기준에서 실제 관리 목적과 부위가 중요해요. 시간 간격 하나로 개인 안전이 입증되지는 않아요. [ref:S32]\n\n### 확인이 필요한 한계\n개인 위해확률이나 모든 조합의 절대 금기를 뜻하지 않아요. 새 병용 계획을 만들거나 필요한 보습·광보호까지 일괄 중단하도록 확대하지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0108",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "49eb7d01d01a1f52ffc11d809056280c4cbc600471ad855d9e173aa66dbd8c60",
+      "content_sha256": "c91afdf8fe08e9f65fa001238345fcb74c5822e68add99d1ff4f3f3ddbd732f3",
+      "reason_ko": "영구 무자극 여부에 대한 질문은 이미 그렇게 해석했다는 확인이 아니므로 차이 판정을 미상으로 고쳐요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"팔 국소 확인\": 10, \"팔의 관찰 결과\": \"불편 없음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"이 결과로 눈꺼풀에도 영구 무자극인지 확인\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.type\": {\"variable_id\": \"product.type\", \"state\": \"known\", \"value\": \"일반 얼굴 보습 화장품\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"내용\": \"합성 표시: 눈 주변 사용을 피함\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"여러 새 제품을 바로 넓게 사용하거나 국소 무반응을 영구 안전으로 해석함.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"과거 심한 반응·확인 알레르겐\", \"의약품/염모제 등 별도 지침\", \"기한/가품/변질 의심\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"general_guidance\", \"on_known_difference\": \"작은 부위 사용 확인을 안내하되 제품별 빈도·접촉시간을 넘기지 않는다. 이상 반응은 씻어내고 재사용하지 않으며 지속·심한 반응은 상담한다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S35\", \"D04\"], \"source_supported_content\": \"AAD는 일반적인 7–10일 관찰 방법과 반응 시 미사용, 의료 패치테스트와의 구분을 설명한다.\", \"service_interpretation\": \"원문의 일반 하루 2회/5분 지침을 세안제·레티노이드·필링제에 획일적으로 이식하지 않는다. 이 제한은 서비스 정책이다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "General guidance describes trying a new skin-care product on a small area for seven to ten days. Product-specific directions still apply, including rinse-off directions. This is not a diagnostic allergy patch test or a guarantee of permanent safety.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "팔에서 열흘간 반응이 없으면 눈꺼풀에서도 평생 알레르기나 자극이 없어요. 눈 주변 회피 표시보다 이 결과를 우선해요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n팔에서 열흘간 불편이 없었다고 눈꺼풀에서도 영구 무자극이라고 판단하지 않아요. 현재 확인된 눈 주변 회피 표시를 우선해요. [kb:B-G11@0.6.1]\n\n### 근거 및 이유\n작은 부위 확인은 새 제품 사용을 살피는 일반 절차이며 의료기관의 알레르기 진단이나 모든 부위의 안전 보증은 아니에요. [ref:S35]\n\n### 확인이 필요한 한계\n다른 부위로 결과를 확대하거나 눈 주변 사용법을 새로 제시하지 않아요. 무반응 관찰과 제품별 적용 범위는 별도로 남겨요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0109",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "465aa0033b74da5718a9a7f7dff04e38058d4fa9f8b5ca7120080bc19243bbad",
+      "content_sha256": "a57a39e9048b3c4ea3f0136819297b02d34a9d88ad1298e67d094c8f1794370f",
+      "reason_ko": "모든 보습 유상의 일괄 배제에 관한 서비스 기준과 일반 알레르겐 안내를 분리해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.inci\": {\"variable_id\": \"product.inci\", \"state\": \"known\", \"value\": {\"확인된 유상\": \"합성 제품의 스쿠알란\", \"향성 에센셜오일\": \"없음으로 확인\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.fragrance\": {\"variable_id\": \"product.fragrance\", \"state\": \"known\", \"value\": {\"내용\": \"무향료 확인\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.preferences\": {\"variable_id\": \"constraints.preferences\", \"state\": \"known\", \"value\": {\"내용\": \"향성 에센셜오일은 피하고 싶음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"유상 성분이라는 이유로 현재 보습제를 버릴지 검토\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"근거가 있는 무향료 후보가 선택됨. 개인 무반응을 보증하지 않음.\", \"difference_when\": \"향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"현재 제품 유지가 합리적인 경우\", \"명시적 선호와 대안의 가용성\", \"향료 정보 불확실\", \"확인된 특정 알레르겐은 무향료 표기만으로 해결되지 않음\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"selection_preference\", \"on_known_difference\": \"새 후보에서는 무향료를 우선하고 민감·손 습진 맥락에서는 향성 에센셜오일을 함께 검토한다. 실제 불편/확인된 알레르기가 있으면 특정 제품의 사용 중단·대안을 검토하되 보습 전체를 끊지 않는다. 무불편 기존 제품의 일괄 폐기·교체는 하지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"U02\", \"S04\", \"S15\", \"U06\", \"S20\", \"S21\", \"S22\", \"S29\"], \"source_supported_content\": \"향료는 FDA가 설명하는 알레르겐 군 중 하나이며 AAD 건조 피부 안내는 무향료 제품을 권한다. 손·습진 관련 AAD 안내는 무향료 보습을 지지한다. 특정 에센셜오일의 접촉감작은 S22의 환자군 자료에 한정한다.\", \"service_interpretation\": \"일반 성인 전체의 기본 선택 순위로 확장하는 부분은 보수적 서비스 정책이다. 자극과 알레르기를 같은 확률로 취급하지 않는다. 향성 에센셜오일 없는 후보 선호는 해당 상황의 서비스 선택 원칙이다. 고정유·일반 보습 유상을 일괄 배제하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "화장품의 향료 등 알레르겐과 개인별 회피, 표시 및 제조사 지시 확인을 다루는 안내예요. 향료가 있다는 사실만으로 모든 사람에게 자극이나 알레르기가 생긴다고 단정하지 않아요. 미국 표시 설명을 한국의 법적 의무로 자동 전환하지 않아요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "성분 이름이 오일이나 유상으로 분류되면 모두 향성 에센셜오일로 취급해요. 현재 편안하게 쓰는 보습제도 일괄 폐기해요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n스쿠알란 유상과 향성 에센셜오일은 구분해요. 현재 불편 없이 쓰는 보습제를 유상 성분이라는 이유만으로 버릴 의무는 없어요. [kb:B-G01@0.6.1]\n\n### 근거 및 이유\n향료·향성 오일을 고려하는 선택 기준을 모든 보습 유상의 금지로 확대하지 않아요. 향료의 알레르겐 안내 역시 모든 사람의 반응을 확정하지 않아요. [ref:S15]\n\n### 확인이 필요한 한계\n이번 입력에서 확인된 무향료·향성 에센셜오일 부재는 제품 전체의 무해성 보증과 달라요. 새 개인 반응이 생기면 별도로 검토해요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0112",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "a705081b1f729be797d3da0c1b1d81f94a054ccdd7b52e9675db6218f131020d",
+      "content_sha256": "fb3be88e4ae62ff463ba671001fd069eeb4d280de14ad2bb3f660bdb934c2ba1",
+      "reason_ko": "복합 완제품과 미개봉 재고의 구분은 KB 및 입력에 귀속해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.active_care_roles\": {\"variable_id\": \"product.active_care_roles\", \"state\": \"known\", \"value\": {\"내용\": \"AHA·BHA 관리 목적의 단일 복합 완제품\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.combination_design\": {\"variable_id\": \"product.combination_design\", \"state\": \"known\", \"value\": {\"같은 제품 두 통\": \"동일 버전의 재구매 재고\", \"서로 다른 관리 제품\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.co_use_context\": {\"variable_id\": \"routine.co_use_context\", \"state\": \"known\", \"value\": {\"실제 사용\": \"현재 한 통만 사용\", \"다른 통\": \"미개봉 재고\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.\", \"difference_when\": \"같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.\", \"unknown_when\": \"결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.\", \"exception_when\": [\"의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음\", \"단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음\", \"다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음\", \"단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인\"], \"difference_is_not\": \"위반·질환·원인·개인 위해확률을 자동 확정하지 않음.\"}, \"recommendation\": {\"default_strength\": \"conservative_default_avoid_co_use\", \"on_known_difference\": \"불필요하게 추가한 화장품의 병용을 줄이고 필요한 관리 한 종류를 우선한다. 이미 사용 중이면 반복 반응·빈도·표시·진료계획을 함께 확인한다. 처방약은 임의 변경하지 않는다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"S32\", \"U09\", \"D04\"], \"source_supported_content\": \"AAD의 과도한 각질관리 회피를 바탕으로, 별도 AHA/BHA 중첩을 줄이는 서비스 정책. 조합 전체의 보편 금기를 입증한 비교시험이 아님.\", \"service_interpretation\": \"일반 화장품에 대한 보수적 기본값으로 확장한 부분은 사용자 정책이다. 원료명 검출과 실제 관리 목적을 구분한다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "레티놀이나 처방 레티노이드를 쓰는 동안 추가 각질관리를 겹치는 상황과 과도한 각질관리 회피를 다루는 안내예요. 실제 관리 목적과 사용 부위를 구분해 검토해야 해요. 모든 성분 조합의 절대 금기나 개인의 위해확률을 정하는 자료는 아니에요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "같은 복합 완제품을 두 통 보유하면 별도 AHA와 BHA 제품을 동시에 쓰는 것으로 판정해요. 미개봉 재고도 실제 중첩 사용에 넣어요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n같은 AHA·BHA 관리 목적의 복합 완제품 두 통을 보유해도, 미개봉 재고를 별도 두 관리 제품의 실제 중첩으로 세지는 않아요. [kb:B-G15@0.6.1]\n\n### 근거 및 이유\n별도 제품의 같은 부위 중첩을 줄이는 기준과 단일 복합 완제품의 제품별 검토는 구분해요. 각질관리 회피 안내도 재고 보유를 사용 사실로 바꾸지는 않아요. [ref:S32]\n\n### 확인이 필요한 한계\n관리 목적 표시는 확인됐지만 그것만으로 실제 성분 함량이나 무자극을 보증하지 않아요. 현재 한 통 사용 사실과 다른 통의 미개봉 상태를 그대로 남겨요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0113",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "5657365dc4238349edf2e8a2e232b18caee45f7daa119dfdbef522a6f0cd97dc",
+      "content_sha256": "d006d58f9370daf80a96b6133b2000d74ebd361c65aeba4b604434d15ec86be4",
+      "reason_ko": "개인 알레르겐별 구분은 KB에, 일반 회피와 제품 정보 확인은 문헌 요약에 귀속해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.identity\": {\"variable_id\": \"product.identity\", \"state\": \"known\", \"value\": {\"내용\": \"판매 페이지에 fragrance 단어가 없음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"person.known_allergies\": {\"variable_id\": \"person.known_allergies\", \"state\": \"known\", \"value\": {\"내용\": \"개인에게 확인된 특정 알레르겐이 있음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"전성분 없이 해당 알레르겐 부재를 확정하고 싶음\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.inci\": {\"variable_id\": \"product.inci\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}, \"product.fragrance\": {\"variable_id\": \"product.fragrance\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"근거가 있는 무향료 후보가 선택됨. 개인 무반응을 보증하지 않음.\", \"difference_when\": \"향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"현재 제품 유지가 합리적인 경우\", \"명시적 선호와 대안의 가용성\", \"향료 정보 불확실\", \"확인된 특정 알레르겐은 무향료 표기만으로 해결되지 않음\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"selection_preference\", \"on_known_difference\": \"새 후보에서는 무향료를 우선하고 민감·손 습진 맥락에서는 향성 에센셜오일을 함께 검토한다. 실제 불편/확인된 알레르기가 있으면 특정 제품의 사용 중단·대안을 검토하되 보습 전체를 끊지 않는다. 무불편 기존 제품의 일괄 폐기·교체는 하지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"U02\", \"S04\", \"S15\", \"U06\", \"S20\", \"S21\", \"S22\", \"S29\"], \"source_supported_content\": \"향료는 FDA가 설명하는 알레르겐 군 중 하나이며 AAD 건조 피부 안내는 무향료 제품을 권한다. 손·습진 관련 AAD 안내는 무향료 보습을 지지한다. 특정 에센셜오일의 접촉감작은 S22의 환자군 자료에 한정한다.\", \"service_interpretation\": \"일반 성인 전체의 기본 선택 순위로 확장하는 부분은 보수적 서비스 정책이다. 자극과 알레르기를 같은 확률로 취급하지 않는다. 향성 에센셜오일 없는 후보 선호는 해당 상황의 서비스 선택 원칙이다. 고정유·일반 보습 유상을 일괄 배제하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "화장품의 향료 등 알레르겐과 개인별 회피, 표시 및 제조사 지시 확인을 다루는 안내예요. 향료가 있다는 사실만으로 모든 사람에게 자극이나 알레르기가 생긴다고 단정하지 않아요. 미국 표시 설명을 한국의 법적 의무로 자동 전환하지 않아요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "판매 페이지에 fragrance라는 단어가 없으면 모든 개인 알레르겐도 없다고 확정해요. 전성분 대조 없이 개인 안전을 보증해요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n판매 페이지에 fragrance라는 단어가 없다는 이유로 개인의 특정 알레르겐도 없다고 확정하지 않아요. 전성분과 향료 여부는 미상이에요. [kb:B-G01@0.6.1]\n\n### 근거 및 이유\n향료 관련 안내는 개인별 회피와 제품 정보 확인을 구분해요. 무향료 선호만으로 모든 개인 알레르겐을 해결할 수는 없어요. [ref:S15]\n\n### 확인이 필요한 한계\n정확한 개인 알레르겐 이름과 현재 제품 전성분의 대조가 필요해요. 단어 부재를 성분 부재나 개인 안전 승인으로 바꾸지 않아요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0121",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "e79e0e33aeee101d9e79af661078c5557b5d9ba11e2deb997f671b2b541785a5",
+      "content_sha256": "076d4f15d96e09250d631ba235355150438bcf5f17d42f147959e4df2db22548",
+      "reason_ko": "반복 따가움에도 사용했다는 사실은 소독·흡수 효과라는 동기를 확인하지 않으므로 차이를 확정하지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"shaving.aftercare\": {\"variable_id\": \"shaving.aftercare\", \"state\": \"known\", \"value\": {\"continued_despite_stinging\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"shaving.reaction\": {\"variable_id\": \"shaving.reaction\", \"state\": \"known\", \"value\": {\"repeated_stinging\": true, \"persistent_problem\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.\", \"difference_when\": \"반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.\", \"unknown_when\": \"관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.\", \"exception_when\": [\"개별 의료진 지시와 충돌하면 해당 권고를 별도 검토\"], \"difference_is_not\": \"차이와 위해·질환·원인·개선 확률은 다르다.\"}, \"recommendation\": {\"default_strength\": \"general_guidance\", \"on_known_difference\": \"불편을 유발하는 특정 후처리 제품은 중단·대체를 검토하고 기본 보습을 유지한다. 애프터셰이브라는 별도 상품은 필수가 아니다. 상처·지속 문제는 개별 관리와 상담을 우선한다.\", \"on_aligned\": \"해당 항목 유지. 전체 제품 안전성·적합성 보장은 아님.\", \"on_unknown\": \"일반 안내는 가능하되 개인화된 차이는 만들지 않는다. 필요한 관찰 정보만 선택 질문.\", \"on_exception\": \"개별 지시·적용 범위를 우선하고 진단/처방 변경은 하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"U07\", \"S24\", \"S25\", \"D03\"], \"source_supported_content\": \"S25는 면도 후 보습, S24는 후처리 제품으로 따갑거나 화끈거리면 중단/대안을 안내.\", \"service_interpretation\": \"제품 반응과 면도 원인을 자동 동일시하지 않는다. 선크림 사용이 불편하면 광보호 수단을 함께 검토한다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "General skin-care guidance discusses moisturizing after shaving and fragrance-free choices when irritation is a concern. An additional aftershave product is not established as mandatory for every person.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n후처리 제품을 쓸 때 반복되는 따가움을 효과의 증거로 삼지 않아요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n반복 반응과 면도 후 보습 경험을 함께 검토해요.\n\n### 확인이 필요한 한계\n따가움의 원인이나 치료 효과는 이 기록으로 확정할 수 없어요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0144",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "63e4c31e888ae66d9e3e17a1621d67a0448b8e03cc17cc22416d8ec697390f67",
+      "content_sha256": "1763e3ef58e6f6fe6f901d947a3336cca7a02f77f1d67a7b8f1e949025a33cb8",
+      "reason_ko": "보호용 안경의 자외선 차단 여부가 확인되지 않아 대체 광보호 확보를 확정하지 않아요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"skin.eye_stinging\": {\"variable_id\": \"skin.eye_stinging\", \"state\": \"known\", \"value\": {\"repeated_with_same_product\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"stopped_near_eye_use\": true, \"protective_eyewear_used\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함.\", \"difference_when\": \"같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐.\", \"unknown_when\": \"판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.\", \"exception_when\": [\"제품의 눈 주변 사용 제한\", \"개별 의료진 지시\", \"일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"conditional_adjustment\", \"on_known_difference\": \"해당 제품의 눈 가까운 부위 사용을 피하고 제품 표시를 따른다. 과거 잘 맞는 제품·도포 방식 또는 스틱 등 대안을 비교하며 선글라스·모자 보호를 병행한다. 선호 필터·제조업자라도 실제 반복 불편을 우선한다. 지속되거나 심한 통증·시야 변화는 일반 루틴 조정 대신 전문 진료로 연결한다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"관찰 가능한 사실을 선택적으로 확인한다. 비공개 제형·원시험 보고서는 요구하지 않고 다른 기본 안내와 후보 비교를 계속한다.\", \"on_exception\": \"실제 사용 경험·제품 품질·개별 지시를 우선한다. 해당 선호를 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"U05\", \"S17\", \"S05\", \"D02\"], \"source_supported_content\": \"AAD는 눈으로 흘러드는 것을 줄이기 위한 눈 주변 스틱 선택을 안내한다. FDA는 눈에 들어가지 않도록 적용하고 선글라스·모자 등을 병행하도록 안내한다.\", \"service_interpretation\": \"반복 불편의 우선순위와 특정 제품의 눈가 사용 회피는 사용자 요청을 반영한 서비스 정책. 모든 스틱의 무자극이나 필터 단독 원인을 보장하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "눈 주변 자외선차단 안내는 제품 선택과 눈에 흘러드는 상황을 함께 살펴요. 개인의 눈시림 원인을 특정하지 않아요.",
+          "connection": "제공된 청크의 범위를 인용 귀속과 대조했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n같은 제품에서 반복된 눈시림 이후 눈가 사용을 조정하고 보호용 안경을 사용한다고 보고했어요. [kb:B-P06@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P06@0.6.1]\n\n### 확인이 필요한 한계\n같은 제품이라는 사실만 확인됐고 매번 같은 방식으로 사용했는지는 미상이에요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0036",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "80ebef0be09f3236181099385563fa7ac9d4aa6bb4dd87a1442ee29986c16a32",
+      "content_sha256": "c6f03806db5707af2c28767ff3bd469e1654f23f81e18d22256df998a111d9a5",
+      "reason_ko": "품질 확인 전 해당 제품의 사용을 우선 멈추는 안전 경계를 명시해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"new_odor\": true, \"previously_no_odor\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"odor_change_normal\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.\", \"difference_when\": \"새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨\", \"사용자가 말한 변화가 기존 정상 외관인지 불명확\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"D01\", \"S06\"], \"source_supported_content\": \"FDA 자료에는 분리·냄새·색·질감 변화 등 품질 변화 요인이 설명되어 있다.\", \"service_interpretation\": \"사용 보류는 품질 불확실성에 대한 보수적 조치다. 미생물 오염이나 특정 독성 발생을 진단하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n기존과 다른 새 냄새가 확인돼 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n제품의 표시와 변화 이력을 확인하고 필요하면 제조·판매처에 품질을 문의해요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0039",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "a325f19df85ec13600fbdca2c02774ee24c6cf9c019b073b9de9c410c197f1cd",
+      "content_sha256": "22b5b82de629f9458782a838ba4987b4218983a9d9d7265212385300fb143c5a",
+      "reason_ko": "용기 손상과 누출 시 품질 확인 전 사용을 우선 멈추는 안전 경계를 명시해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"new_leakage\": true, \"container_damage\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"expiry_not_passed\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.\", \"difference_when\": \"새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨\", \"사용자가 말한 변화가 기존 정상 외관인지 불명확\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"D01\", \"S06\"], \"source_supported_content\": \"FDA 자료에는 분리·냄새·색·질감 변화 등 품질 변화 요인이 설명되어 있다.\", \"service_interpretation\": \"사용 보류는 품질 불확실성에 대한 보수적 조치다. 미생물 오염이나 특정 독성 발생을 진단하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n새 누출과 용기 손상이 확인돼 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n기한이 남았다는 사실만으로 품질을 확정할 수 없어요. 표시와 용기 상태를 확인하고 필요하면 제조·판매처에 문의해요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0043",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "d4dbe7329b8d5d4bb679fc5f4e8be095d1f79e6a78aa2e83b709d1ffd76c9b4d",
+      "content_sha256": "7c2d37cbe6dd66a2400b0169534be5fc9c435b71b17fa2c59695329d047b1377",
+      "reason_ko": "품질 이상 징후가 있어 확인 전 해당 제품 사용을 우선 멈추는 안전 경계를 명시해요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"new_particles\": true, \"color_or_odor_change\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"storage.decanting\": {\"variable_id\": \"storage.decanting\", \"state\": \"known\", \"value\": {\"planned\": true, \"already_done\": false}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "확인된 관찰 및 미상 상태를 그대로 유지했어요."
+        },
+        {
+          "raw": "{\"comparison_spec\": {\"specification_language\": \"natural_language_reviewable_not_executable\", \"aligned_when\": \"이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.\", \"difference_when\": \"새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.\", \"unknown_when\": \"해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.\", \"exception_when\": [\"흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨\", \"사용자가 말한 변화가 기존 정상 외관인지 불명확\"], \"difference_is_not\": \"위험·질환·원인·개선 필요성이 자동 확정된 것이 아님.\"}, \"recommendation\": {\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}, \"evidence\": {\"source_ids\": [\"D01\", \"S06\"], \"source_supported_content\": \"FDA 자료에는 분리·냄새·색·질감 변화 등 품질 변화 요인이 설명되어 있다.\", \"service_interpretation\": \"사용 보류는 품질 불확실성에 대한 보수적 조치다. 미생물 오염이나 특정 독성 발생을 진단하지 않는다.\", \"basis_is_not_clinical_effect_probability\": true}}",
+          "connection": "카드의 판정 조건과 서비스 해석을 제안과 대조했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n새 입자와 색 또는 냄새 변화가 확인돼 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n변화 이력과 제품 표시를 확인하고 필요하면 제조·판매처에 품질을 문의해요.",
+          "connection": "기존 응답과 제안의 변경 범위를 대조했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0045",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "e7618f2f0998bfcf3ccdcf3a6dbd9d7b34aa170b11d0f5456d07ac095c7fb120",
+      "content_sha256": "08a3036f575f452c81489b4696293db0a628f7b514a5b452c1d077a52b86c890",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"new_odor\": true, \"separation\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"wants_to_reuse_before_seller_reply\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n새 냄새와 분리의 품질 확인 전에 재사용을 전제로 한 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n관찰된 품질 이상과 해당 용기 정보를 제조·판매처에 전달해 확인해 주세요. 확인 전에는 실제 품질이나 원인을 확정할 수 없어요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0046",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "97f68f7baf402104964a4e9a043c0ca79bd49565ecc5a0816340a6a4ecc9978f",
+      "content_sha256": "e14fab9977757ccb30a5ee991cdb1b1f05378bd4e5d6e2e66274cb161dba1f7c",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"contents_identity_unknown\": true, \"quality_concern\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"commerce.end_of_use\": {\"variable_id\": \"commerce.end_of_use\", \"state\": \"known\", \"value\": {\"seller_requested_return_for_testing\": true, \"official_current_notice_same_product\": \"반송하지 않고 안전 처리 및 공식 창구 확인\", \"instruction_conflict\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"해당 제품을 격리·미사용하고 판매처/브랜드에 확인한다. 보관 가능성과 공식 회수·폐기 지침을 고려해 증빙을 남기며 건강 이상은 별도 상담으로 연결한다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n내용물이 불명확한 합성 제품의 개별 재사용 권고는 보류해요. [kb:B-Q06@0.6.1]\n\n### 필요한 다음 단계\n합성 현행 공식 안내는 반송하지 않고 안전 처리와 공식 창구 확인을 안내하지만, 판매자는 검사를 위한 반송을 요청했어요. [catalog:syn-terra-b46@v1] 두 안내의 대상과 현행성을 공식 창구에 확인해 주세요. 구체적인 반송·보관·처리 방법은 여기서 정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0047",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "ee0646f145e0e1e4d56ddc9365705da9f88d0866963cce3070256e952fe7ae5f",
+      "content_sha256": "26e8e0b6301c860681601ad100abb96f0bda5f7d226259d584cf77e1197e6f24",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"new_odor\": true, \"container_damage\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"wants_to_use_smaller_amount\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n새 냄새와 용기 손상이 보고돼 사용량 조정만으로 해결하는 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n관찰된 냄새와 용기 손상을 제조·판매처에 전달해 품질 확인을 요청해 주세요. 원인은 확정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0048",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "9faaaa066f020bda44c7a0cec194311a53f58faac557244ebf0a72785c635262",
+      "content_sha256": "231d7df628014c968d6b5b15363da9a4fcac2771e72d40926d507abcaffe7b7f",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"new_particles\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"synthetic_recall_lot_match\": false, \"wants_resume_because_not_recalled\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n합성 회수 공지의 대상 로트에는 해당하지 않지만 별도의 새 이물이 보고되어 품질 확인 전 개별 재사용 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n해당 용기의 새 이물과 로트 정보를 제조·판매처에 전달해 품질을 확인해 주세요. 회수 비대상이라는 사실만으로 품질을 확정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0049",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "fa9f71754eb2716a1055a40feefaa943564931fd32355c09789bb6202d27b6e2",
+      "content_sha256": "82866f3d16761747e38981abc419c4ea71f0a6ef8c5a0641c83e7e5d1137bb75",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"one_container_new_separation\": true, \"other_container_unchanged\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"wants_to_mix_containers\": true}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n한 용기에 새로운 분리가 관찰돼 두 용기를 섞는 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n관찰된 품질 이상과 해당 용기 정보를 제조·판매처에 전달해 확인해 주세요. 확인 전에는 실제 품질이나 원인을 확정할 수 없어요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0051",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "a94da9e9a52d834f0c5f3db30f4f5c1f1103fa2fbce66f7b40da6a2ca6aefa26",
+      "content_sha256": "31bd0f80cbdc78ef127cc3d869e488b0f1e904b015fb9d5ae05ba0c2fd3a3e9f",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.identity\": {\"variable_id\": \"product.identity\", \"state\": \"known\", \"value\": {\"가\": \"합성 제품 가 현행 로트\", \"나\": \"다른 합성 제품\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"commerce.recall_check\": {\"variable_id\": \"commerce.recall_check\", \"state\": \"known\", \"value\": {\"용기 가\": \"공식 회수 대상 일치 확인\", \"용기 나\": \"대상 여부 미확인\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"일치하면 공식 절차를 안내한다. 제조번호가 불명확하면 확인/문의하고 조회일·범위·실패 여부를 기록한다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n확인된 회수 대상 용기에 관한 개별 제품 판단은 보류해요. [kb:B-Q05@0.6.1]\n\n### 필요한 다음 단계\n해당 용기와 회수 공지의 일치 여부 및 공지의 범위를 확인하고, 다른 용기는 대상 여부가 미상으로 남아 있어 별도로 확인해요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0054",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "96f2de4f54082aa99be77d3b18e97a6ecb49008d1e561a34d0e42192b1317a7a",
+      "content_sha256": "b4ef5dc224885b5531fb6afaa5f372265f6f15fe5f72d0396dffe1d7c429e26b",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"현재 용기\": \"이전에는 없던 입자 발생\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"용기 표시\": \"입자 발생 시 사용하지 말고 문의\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"storage.seal_integrity\": {\"variable_id\": \"storage.seal_integrity\", \"state\": \"known\", \"value\": {\"판매 안내\": \"모든 입자가 정상이라고 안내\", \"동일 용기 확인 여부\": \"미상\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n새 입자와 입자 발생 시 문의하라는 용기 표시가 확인되어 해당 제품의 개별 판단을 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n상충하는 판매 안내가 이 용기에 적용되는지 제조·판매처에 확인해요. 변질의 원인이나 제품 전체의 안전성을 확정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0056",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "3bfc9d290457d258937b755ee80bef368e8b455644e4a612884bb518e9c90574",
+      "content_sha256": "1559da2df1bf4a571ea2ddba1aeac01b5b9b2d491ee0c77b5b235871bc45495b",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"adjunct.device_use\": {\"variable_id\": \"adjunct.device_use\", \"state\": \"known\", \"value\": {\"이전\": \"합성 피부 기기와 제품을 함께 사용\", \"현재\": \"같은 조합 재사용 계획\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"persistent\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"person.clinician_plan\": {\"variable_id\": \"person.clinician_plan\", \"state\": \"known\", \"value\": {\"개별 기기 사용 지시\": \"확인되지 않음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"사용 뒤 지속되는 통증\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"현재 병용방법과 공개된 기기 지침을 확인해 지침 밖 사용을 줄이고 반응 시 해당 병용을 중단·상담 검토한다. 적합성 정보가 없으면 특정 조합 추천만 보류하고 일반 보습·광보호 안내는 계속한다.\", \"on_aligned\": \"해당 항목 유지. 전체 제품 안전성·적합성 보장은 아님.\", \"on_unknown\": \"일반 안내는 가능하되 개인화된 차이는 만들지 않는다. 필요한 관찰 정보만 선택 질문.\", \"on_exception\": \"개별 지시·적용 범위를 우선하고 진단/처방 변경은 하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n기기 병용 뒤 지속되는 통증이 있어 개별 기기 사용이나 제품 권고는 보류해요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n현재 불편을 의료 전문가에게 확인받고 기존 사용 상황을 전달해요. 원인이나 적절한 기기 설정을 추정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0057",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "354e7f01844e27fceeb984ddb6397fff86158e1175b410dcfd967e541301ceb1",
+      "content_sha256": "ec735dd940a3c05c25df2b72e7a10eb0410d10a95f6c5f14b9e514743313413d",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"storage.sensory_change\": {\"variable_id\": \"storage.sensory_change\", \"state\": \"known\", \"value\": {\"정상 표시\": \"사용 전 흔드는 2층 제형\", \"새 관찰\": \"이전과 다른 강한 냄새 발생\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"표시\": \"흔들어 사용\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"storage.expiry\": {\"variable_id\": \"storage.expiry\", \"state\": \"known\", \"value\": {\"표시 기한\": \"남음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"quality_check\", \"on_known_difference\": \"해당 제품의 사용을 우선 멈추고 표시·제조사에 확인하는 보수적 대응을 안내한다. 단순 보관 장소 변경만으로 기존 품질이 회복되었다고 보지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n제품에서 새롭게 다른 강한 냄새가 관찰되어 해당 제품에 대한 개별 권고는 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n제품 상태와 표시를 제조·판매처에 확인해요. 정상적인 두 층 표시와 새 냄새 변화는 별도로 살펴요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0176",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "1246298fce43d14369113e5e5f23ae33ef625225505198141f88cb0daf2957bf",
+      "content_sha256": "c61fd39feb4c1f2039b65fb7235242e392d75f999e1b17505e8792c9246d83c7",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"표시\": \"10분 후 제거\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"adjunct.care_events\": {\"variable_id\": \"adjunct.care_events\", \"state\": \"known\", \"value\": {\"실제\": \"팩 사용은 확인\", \"제거 시각\": \"기억하지 못함\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"제품 지침에 맞게 조정하고 불필요한 중복을 줄일 후보를 검토한다. 팩 사용 중 가려움·화끈거림·따가움이 발생하면 해당 팩을 씻어내고 사용을 멈추며 필요 시 상담한다.\", \"on_aligned\": \"해당 항목 유지. 전체 제품 안전성·적합성 보장은 아님.\", \"on_unknown\": \"일반 안내는 가능하되 개인화된 차이는 만들지 않는다. 필요한 관찰 정보만 선택 질문.\", \"on_exception\": \"개별 지시·적용 범위를 우선하고 진단/처방 변경은 하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n팩의 표시 시간은 확인됐지만 실제 제거 시각은 미상이에요. [kb:B-G05@0.6.1]\n\n### 근거 및 이유\n제품 표시만으로 사용자가 시간을 넘겼다고 판정하지 않아요. [ref:S26]\n\n### 확인이 필요한 한계\n기억하지 못하는 시간을 추정하지 않고 필요한 경우 실제 사용 정보를 확인해요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "Facial-mask guidance advises following each product's directions for contact time and frequency and checking for overlap with existing exfoliating care. It does not prescribe one duration for every mask or authorize mixing arbitrary products.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0180",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "f0915372e44a1c7d3b9af7d9dfea7535ad4b501a80513ec656681f4401b6aa11",
+      "content_sha256": "4ddeb94c2b86e6632e0c2b4be2261d2289237f693d863be4151a2ddc456add36",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"person.clinician_plan\": {\"variable_id\": \"person.clinician_plan\", \"state\": \"known\", \"value\": {\"문구\": \"저녁 관리 조정\", \"대상 제품\": \"확인되지 않음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.active_care_roles\": {\"variable_id\": \"product.active_care_roles\", \"state\": \"known\", \"value\": {\"가\": \"처방 레티노이드\", \"나\": \"살리실릭애씨드 관리 화장품\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"routine.co_use_context\": {\"variable_id\": \"routine.co_use_context\", \"state\": \"known\", \"value\": {\"동일 부위 실제 중첩\": \"확인되지 않음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"conservative_default_avoid_co_use\", \"on_known_difference\": \"불필요하게 추가한 화장품의 병용을 줄이고 필요한 관리 한 종류를 우선한다. 이미 사용 중이면 반복 반응·빈도·표시·진료계획을 함께 확인한다. 처방약은 임의 변경하지 않는다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n대상 제품이 불명확한 진료 지시를 두 제품 중 어느 하나에 임의 적용하지 않아요. [kb:B-G14@0.6.1]\n\n### 근거 및 이유\n확인된 처방과 별도 관리 제품의 실제 부위와 지시 범위를 구분해야 해요. [ref:S34]\n\n### 확인이 필요한 한계\n같은 부위의 중첩은 미상이며 처방은 임의 변경하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "The labeling for a specific tretinoin medicine describes possible increased local irritation with salicylic-acid and other over-the-counter acne products. The caution is specific to the medicine and use context. It does not authorize stopping a prescription or changing its dose.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0182",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "8724f8ca44a24f87923ea1f65509caf29f36017e7b732a0a170cfcbd041c601a",
+      "content_sha256": "915836a08106ea3f99de0e00fe47a687834f906310e69cdedcfef7ab809190ab",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"introduction.local_trial\": {\"variable_id\": \"introduction.local_trial\", \"state\": \"known\", \"value\": {\"얼굴 일부\": \"합성 신제품의 국소 확인 후 불편 없음\", \"목 사용\": \"확인되지 않음\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.instructions\": {\"variable_id\": \"product.instructions\", \"state\": \"known\", \"value\": {\"대상\": \"얼굴과 목\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"none\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.distribution\": {\"variable_id\": \"skin.distribution\", \"state\": \"known\", \"value\": {\"reported_symptom_statements\": [{\"source_variable\": \"skin.current_discomfort\", \"statement\": \"현재 보고된 불편 없음\"}]}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"작은 부위 사용 확인을 안내하되 제품별 빈도·접촉시간을 넘기지 않는다. 이상 반응은 씻어내고 재사용하지 않으며 지속·심한 반응은 상담한다.\", \"on_aligned\": \"해당 항목 유지. 전체 안전/효과/정품 보증은 아님.\", \"on_unknown\": \"관련 정보만 선택 확인하고 필요시 일반 기준을 안내한다. 미확인을 정상·0·위반으로 대체하지 않는다.\", \"on_exception\": \"확인된 제품 지시·진료 계획·범위를 검토하며 자동으로 예외를 추정하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n얼굴 일부에서의 확인 결과를 목의 사용 결과로 확장하지 않아요. [kb:B-G11@0.6.1]\n\n### 근거 및 이유\n관찰한 부위와 아직 확인되지 않은 부위를 구분해요. [ref:S35]\n\n### 확인이 필요한 한계\n목 사용과 반응은 미상이며 얼굴의 결과가 전체 무반응이나 알레르기 검사 결과는 아니에요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "새 피부관리 제품을 작은 부위에서 확인하고 7~10일 관찰하는 일반 안내예요. 제품별 용법을 우선하며 모든 제품에 같은 빈도나 접촉시간을 적용하지 않아요. 이런 사용 확인은 의료기관의 진단용 패치테스트나 영구적인 안전 보증이 아니에요.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-hold-0086",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "651769ad261422e28e1effeb815c30f3e65d6a5f06ff76b6bfbcd5471c7f2f51",
+      "content_sha256": "1c6214b208ffa21d01236d6d48da01ade066fcaeaab99f43f0de0834e1931d81",
+      "reason_ko": "버전 답변 거절을 unknown이 아닌 declined로 기록해 거절 상태를 보존했어요. 값 null은 그대로이며 관찰 값은 바꾸지 않았어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"constraints.decision_context\": {\"variable_id\": \"constraints.decision_context\", \"state\": \"known\", \"value\": \"얼굴의 따가움과 불편감이 지속되며 사용 제품의 버전 답변은 원하지 않습니다.\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.body_site\": {\"variable_id\": \"method.body_site\", \"state\": \"known\", \"value\": \"face\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.current_discomfort\": {\"variable_id\": \"skin.current_discomfort\", \"state\": \"known\", \"value\": \"persistent\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"skin.stinging\": {\"variable_id\": \"skin.stinging\", \"state\": \"known\", \"value\": \"moderate\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"product.version\": {\"variable_id\": \"product.version\", \"state\": \"unknown\", \"value\": null, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": false}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"scope_review\", \"on_known_difference\": \"충돌하는 해당 권고를 보류하고 기존 지시·전문 상담을 확인한다. 진단·처방 변경·응급 중증도 분류는 하지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 개별 권고 보류 안내\n얼굴의 따가움과 불편감이 지속되어 개별 루틴과 제품 안내는 보류해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 제품 버전은 미상이며 원인을 단정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0294",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "fc6340fadd253a208d9cb242bfce5381a3f76ea53eae2b995e85e6fb74bba809",
+      "content_sha256": "07fdd35b03e9fcdc6dc609d18adbeb160dd3c8b98686ee8711db1297685af530",
+      "reason_ko": "물기 관찰에 없는 부위 또는 시점을 추가한 판정과 답변을 좁히고 미상은 유지했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"face\": \"moisturizes_after_wash\", \"neck\": \"moisturizes_after_wash\", \"neck_skin_wetness\": \"unknown\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.skin_wetness\": {\"variable_id\": \"method.skin_wetness\", \"state\": \"known\", \"value\": \"slightly_damp\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"현재 보유 보습제를 사용하는 시점을 앞당기는 방법을 안내한다. 몇 초·몇 분이라는 임의의 강제 제한은 두지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n얼굴과 목의 사용 시점은 따로 확인해요. [kb:B-M01@0.6.1]\n\n### 근거 및 이유\n얼굴 기록은 촉촉할 때 보습하는 일반 기준과 맞지만 목의 상태는 미상이에요. [ref:S04]\n\n### 확인이 필요한 한계\n목의 물기나 제품별 지시를 추정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "General dry-skin guidance discusses moisturizing after washing while skin remains slightly damp. It does not prescribe the same amount for every skin type or formulation and does not establish an individual treatment effect.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0296",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "b5433cb708aa6ce62e7d4e03afe27445551f4d2ccbcb4a0012b5324fcc964043",
+      "content_sha256": "0e2da2fdba2adb8c772cdb1bbad2ee395f04d2b0ed1c60b30002d8ca7700cfcc",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"hand.protection_hygiene\": {\"variable_id\": \"hand.protection_hygiene\", \"state\": \"known\", \"value\": {\"self\": \"handwashing\", \"colleague\": \"handwashing\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"hand.moisturizing_pattern\": {\"variable_id\": \"hand.moisturizing_pattern\", \"state\": \"known\", \"value\": {\"self\": \"unknown\", \"colleague\": \"after_washing\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"보습 전체 중단 대신 해당 제품의 향료·향성 에센셜오일·확인된 알레르겐과 실제 반응을 검토해 견딜 수 있는 대안을 찾는다. 불편이 재현되는 해당 제품은 중단·대체를 검토하고, 지속·악화하거나 치료 중이면 의료진과 상의한다. 필요한 손 위생은 유지하며 작업 후 오래 젖어 있는 상황을 별도 관리한다.\", \"on_aligned\": \"해당 항목 유지. 전체 제품 안전성·적합성 보장은 아님.\", \"on_unknown\": \"일반 안내는 가능하되 개인화된 차이는 만들지 않는다. 필요한 관찰 정보만 선택 질문.\", \"on_exception\": \"개별 지시·적용 범위를 우선하고 진단/처방 변경은 하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n본인의 손 보습 여부는 아직 미상이에요. [kb:B-M04@0.6.1]\n\n### 근거 및 이유\n동료의 기록과 본인의 관찰은 구분하며 필요한 손 위생은 유지해요. [ref:S21]\n\n### 확인이 필요한 한계\n보습 여부를 확인하기 전 차이가 있다고 단정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "Hand-care guidance discusses moisturizing after handwashing and fragrance-free creams or ointments. It does not replace necessary hand hygiene or guarantee individual tolerance.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0298",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "c2387fec2986357a6ef32b1323ea73e694126cf7462a37ab9a442b40e946a6a2",
+      "content_sha256": "44e2f0be1e73a45ce8fcbc53b71b38ee843dee74fc87033b3f4d544e19432c1b",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"face_moisturizer\": \"used\", \"neck_moisturizer\": \"unknown\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"moisturizing.dryness_return\": {\"variable_id\": \"moisturizing.dryness_return\", \"state\": \"known\", \"value\": {\"face\": \"none_reported\", \"neck\": \"reported\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"먼저 보유 제품의 실제 사용·시점·빈도를 확인한다. 건조하면 추가 보습을 검토하되 따가움·지속 증상은 별도로 확인한다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n목의 실제 사용 여부는 미상이에요. [kb:B-M02@0.6.1]\n\n### 근거 및 이유\n부위별 건조 경험과 사용 기록을 구분해 살펴봐요. [ref:S04]\n\n### 확인이 필요한 한계\n건조의 원인이나 적절한 사용량을 이 기록만으로 확정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "General dry-skin guidance discusses moisturizing after washing while skin remains slightly damp. It does not prescribe the same amount for every skin type or formulation and does not establish an individual treatment effect.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0300",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "f7bc173afc3b181c48a7325f9ee8624094ec8ab9fe9ee529974961aff66c5226",
+      "content_sha256": "9fa7e3fb7f3fbf974df0157c358a4be0ff39e5fa0df3ee59b56a324279f39817",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"shaving.aftercare\": {\"variable_id\": \"shaving.aftercare\", \"state\": \"known\", \"value\": {\"face\": \"moisturizer_used\", \"neck\": \"moisturizer_used\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"shaving.reaction\": {\"variable_id\": \"shaving.reaction\", \"state\": \"known\", \"value\": {\"face\": \"comfortable\", \"neck\": \"unknown\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"불편을 유발하는 특정 후처리 제품은 중단·대체를 검토하고 기본 보습을 유지한다. 애프터셰이브라는 별도 상품은 필수가 아니다. 상처·지속 문제는 개별 관리와 상담을 우선한다.\", \"on_aligned\": \"해당 항목 유지. 전체 제품 안전성·적합성 보장은 아님.\", \"on_unknown\": \"일반 안내는 가능하되 개인화된 차이는 만들지 않는다. 필요한 관찰 정보만 선택 질문.\", \"on_exception\": \"개별 지시·적용 범위를 우선하고 진단/처방 변경은 하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n얼굴과 목의 사용 경험을 구분해요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n얼굴은 편안했다고 보고됐지만 목의 반응은 미상이에요. [ref:S25]\n\n### 확인이 필요한 한계\n목의 반응을 임의로 정상으로 채우지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "General skin-care guidance discusses moisturizing after shaving and fragrance-free choices when irritation is a concern. An additional aftershave product is not established as mandatory for every person.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0302",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "7aed5e6db22bb1dae8fd717a4c7a1d45a235f833052467a596df1e332771d8e6",
+      "content_sha256": "a44d551cfda123e768e36b20bd3123ee5a6d64d1f728cbfd7ba256c004c58f40",
+      "reason_ko": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"shaving.aftercare\": {\"variable_id\": \"shaving.aftercare\", \"state\": \"known\", \"value\": {\"self\": \"moisturizer_used\", \"friend\": \"aftershave_used\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"shaving.reaction\": {\"variable_id\": \"shaving.reaction\", \"state\": \"known\", \"value\": {\"friend\": \"stinging\", \"self\": \"unknown\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"불편을 유발하는 특정 후처리 제품은 중단·대체를 검토하고 기본 보습을 유지한다. 애프터셰이브라는 별도 상품은 필수가 아니다. 상처·지속 문제는 개별 관리와 상담을 우선한다.\", \"on_aligned\": \"해당 항목 유지. 전체 제품 안전성·적합성 보장은 아님.\", \"on_unknown\": \"일반 안내는 가능하되 개인화된 차이는 만들지 않는다. 필요한 관찰 정보만 선택 질문.\", \"on_exception\": \"개별 지시·적용 범위를 우선하고 진단/처방 변경은 하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n친구와 본인의 사용 반응을 구분해요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n본인의 면도 후 보습 반응은 확인되지 않았어요. [ref:S25]\n\n### 확인이 필요한 한계\n친구의 경험으로 본인 제품의 적합성을 결정하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        },
+        {
+          "raw": "General skin-care guidance discusses moisturizing after shaving and fragrance-free choices when irritation is a concern. An additional aftershave product is not established as mandatory for every person.",
+          "connection": "일반 근거는 해당 청크가 뒷받침하는 범위로만 귀속해요."
+        }
+      ]
+    },
+    {
+      "old_row_id": "syn-sol-0314",
+      "disposition": "corrected",
+      "changed": true,
+      "before_content_sha256": "d3cc2b535e887a7fd38109d04ea3b982f22c5fc9cf59c0a28400a4bdbdc5dcdd",
+      "content_sha256": "9a8ef1e0b0f4f96d4c39224d917500849e10e20296fc2bec1b1e6df23e1c4ae1",
+      "reason_ko": "물기 관찰에 없는 부위 또는 시점을 추가한 판정과 답변을 좁히고 미상은 유지했어요.",
+      "raw_evidence": [
+        {
+          "raw": "{\"method.skin_wetness\": {\"variable_id\": \"method.skin_wetness\", \"state\": \"known\", \"value\": \"slightly_damp\", \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}, \"method.current_routine\": {\"variable_id\": \"method.current_routine\", \"state\": \"known\", \"value\": {\"moisturizer_actual_use\": \"unknown\"}, \"source\": \"synthetic_fixture\", \"confirmed_by_user\": true}}",
+          "connection": "원래 확인된 관찰과 미상을 구분해 유지해요."
+        },
+        {
+          "raw": "{\"default_strength\": \"general_guidance\", \"on_known_difference\": \"현재 보유 보습제를 사용하는 시점을 앞당기는 방법을 안내한다. 몇 초·몇 분이라는 임의의 강제 제한은 두지 않는다.\", \"on_aligned\": \"해당 항목은 유지. 기준에 맞는다는 사실이 제품 전체의 무해성·효능을 보증하지는 않는다.\", \"on_unknown\": \"판단을 바꿀 때만 추가 질문/제품 근거 조회. 개인의 잘못으로 표현하지 않고 필요시 일반 원칙만 안내.\", \"on_exception\": \"개별 지시·상황을 우선 검토하여 유지 또는 별도 검토. 기본값을 강제하지 않는다.\", \"preventive_guidance_without_symptoms\": true, \"automatic_product_replacement\": false, \"estimated_improvement_probability\": null}",
+          "connection": "해당 KB 카드의 범위와 보수적 조치를 확인했어요."
+        },
+        {
+          "raw": "### 핵심 안내\n세정 직후 물기와 보습제 사용을 구분해요. [kb:B-M01@0.6.1]\n\n### 근거 및 이유\n실제 보습제 사용은 미상이에요. [kb:B-M01@0.6.1]\n\n### 확인이 필요한 한계\n그 기록 없이 보습 시점의 차이를 판단하지 않아요.",
+          "connection": "원래 응답에서 수정이 필요한 범위를 확인했어요."
+        }
+      ]
+    }
+  ],
+  "critic_file": "reviews/raw_fix_61_20261123.jsonl",
+  "human_review": "unreviewed",
+  "external_cross_family_gate_satisfied": false,
+  "unresolved_original_audit_rows": 44
+}

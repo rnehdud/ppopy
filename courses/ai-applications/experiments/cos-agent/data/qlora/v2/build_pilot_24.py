@@ -265,8 +265,8 @@ def assemble():
         row["allowed_evidence_refs"] = c["request"]["allowed_evidence_refs"]
         row["distractor_refs"] = c["request"]["distractor_refs"]
         row["provenance"] = {"source_origin": c["source_origin"], "source_scenario_id": c["source_scenario_id"], "source_turn_id": c["source_turn_id"],
-                             "generator_model": "gpt-6.1-sol", "critic_model": None, "critic_status": "unreviewed", "human_review": "unreviewed"}
-    (HERE / "pilot_24.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+                             "generator_model": c.get("generator_model", "gpt-6.1-sol"), **({k: c[k] for k in ("original_generator_model", "revision_model")} if "revision_model" in c else {}), "critic_model": None, "critic_status": "unreviewed", "human_review": "unreviewed"}
+    (HERE / "pilot_24.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8", newline="\n")
     print("24턴 초안을 조립했습니다. 모델과 사람의 검수 상태는 미검수로 유지합니다.")
 
 

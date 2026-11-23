@@ -1,0 +1,2861 @@
+{
+  "schema_version": "additional-pilot-shard-v1",
+  "input_revision": 9,
+  "revision_note": "부위별 개별 지시 범위를 구분해 고정한 미검수 입력이에요.",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "cases": [
+    {
+      "id": "syn-sol-0243",
+      "title": "씻어내는 팩에 다른 제품의 밤 사용 지시 적용",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0243-scenario",
+      "group_id": "terra2-c-syn-sol-0243-group",
+      "scenario_family_id": "terra2-c-syn-sol-0243-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S26": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "가": "합성 씻어내는 팩",
+              "나": "합성 수면팩"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "가": "10분 뒤 씻어냄",
+              "나": "밤새 두고 아침에 씻어냄"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.care_events": {
+            "variable_id": "adjunct.care_events",
+            "state": "known",
+            "value": {
+              "실제": "가를 밤새 둠",
+              "중복 관리": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G05",
+            "status": "difference",
+            "guidance": "가의 실제 사용은 가의 표시와 달라요. 나의 사용법을 가에 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S26",
+            "text": "Facial-mask guidance advises following each product's directions for contact time and frequency and checking for overlap with existing exfoliating care. It does not prescribe one duration for every mask or authorize mixing arbitrary products.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/facial-masks-and-skin-care",
+            "locator": "제품별 접촉시간·빈도, 기존 각질관리와 중복 확인, 따갑거나 가려우면 씻어내기.",
+            "checked_on": "2026-11-04",
+            "limitations": "얼굴 팩/마스크의 안내. 모든 추가관리 제품이나 기기에 동일한 수치를 적용하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G05@0.6.1",
+          "ref:S26"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8329696e2be71b30da7ba4d19123df506dda3c2c1834242612bed904dfde4372",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품 지침과 사용 방식이 맞고 중복 목적이 확인됨.",
+          "difference_when": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "가의 실제 사용은 가의 표시와 달라요. 나의 사용법을 가에 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0190과 달리 씻어내는 팩을 실제 밤새 사용해 어느 표시가 적용되는지 확인해요."
+    },
+    {
+      "id": "syn-sol-0244",
+      "title": "다른 상자에서 나온 두 제형의 혼합",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0244-scenario",
+      "group_id": "terra2-c-syn-sol-0244-group",
+      "scenario_family_id": "terra2-c-syn-sol-0244-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "가": "합성 키트 첫 제형",
+              "나": "다른 상자의 둘째 제형"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "표시": "상자에 포함된 두 제형을 섞어 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.mixing": {
+            "variable_id": "method.mixing",
+            "state": "known",
+            "value": {
+              "실제": "다른 상자에서 나온 제형을 섞음",
+              "상자 간 호환": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G04",
+            "status": "unknown",
+            "guidance": "서로 다른 상자의 조합에도 표시가 적용되는지는 미상이에요. 호환 여부를 확인하기 전에는 차이나 안전성을 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "b3b7dab6fd83d2e91a37418f7e40bfba4edcd94978011c83861606e8352df248",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "각 제품을 지시에 맞게 사용하고 확인되지 않은 형태 변경을 하지 않음.",
+          "difference_when": "사용 근거 없이 사전 혼합·희석하거나 바르는 제품을 분사형으로 전환함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제조사가 명시적으로 안내한 혼합·희석 사용법",
+            "관련 의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "서로 다른 상자의 조합에도 표시가 적용되는지는 미상이에요. 호환 여부를 확인하기 전에는 차이나 안전성을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0167은 확인된 희석비 차이이고 이 사례는 상자 간 호환 안내가 미상이에요."
+    },
+    {
+      "id": "syn-sol-0245",
+      "title": "같은 용기의 교체된 펌프 헤드",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0245-scenario",
+      "group_id": "terra2-c-syn-sol-0245-group",
+      "scenario_family_id": "terra2-c-syn-sol-0245-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.dispensing_unit_context": {
+            "variable_id": "product.dispensing_unit_context",
+            "state": "known",
+            "value": {
+              "용기": "같은 합성 용기",
+              "변경": "펌프 헤드 교체",
+              "이전 헤드 토출량": "확인됨",
+              "새 헤드 토출량": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "dose.proxy_amount": {
+            "variable_id": "dose.proxy_amount",
+            "state": "known",
+            "value": {
+              "주장": "새 헤드의 한 번 토출량도 이전과 같음"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G08",
+            "status": "unknown",
+            "guidance": "용기가 같아도 새 헤드의 토출량은 미상이에요. 이전 수치를 새 헤드에 그대로 적용할 수 없어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G08@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "28c37d8125e9b06b72d30cc0e0f51842c64b9a7ade39e4ac8cb355358e6703af",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품·용기 단위의 사용량과 용도를 구분함.",
+          "difference_when": "다른 용기 한 펌프를 같은 g으로 계산하거나 상품명만으로 사용 순서·기능을 결정함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "용기가 같아도 새 헤드의 토출량은 미상이에요. 이전 수치를 새 헤드에 그대로 적용할 수 없어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0177은 용기를 교체했지만 이 사례는 용기는 같고 헤드만 바뀌어 새 토출량 확인이 필요해요."
+    },
+    {
+      "id": "syn-sol-0246",
+      "title": "면도 준비 기록의 방식 귀속 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0246-scenario",
+      "group_id": "terra2-c-syn-sol-0246-group",
+      "scenario_family_id": "terra2-c-syn-sol-0246-family",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G09"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "가능한 방식": "습식 수동 날면도와 건식 전용 전기면도",
+              "기록 대상": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.preparation": {
+            "variable_id": "shaving.preparation",
+            "state": "known",
+            "value": {
+              "기록": "물과 면도 젤 사용",
+              "어느 방식에 적용했는지": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "전기면도기": "건식 전용",
+              "젤": "습식 날면도에 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G09",
+            "status": "unknown",
+            "guidance": "준비 기록이 어느 방식에 적용됐는지 몰라 적합성은 미상이에요. 각 방식과 지시의 연결을 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Wet-shaving guidance discusses preparation, rinsing blades and dry storage, with a reference number of uses for manual blade replacement. The manual-blade reference is not an electric-head replacement interval.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G09@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "13dfec86249ec498540ce775f6fde3d037ba43cdfac5dd4fc0be62209beb7910",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G09",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "면도 방식에 맞게 준비하고 윤활제품 지시를 따름.",
+          "difference_when": "습식 날면도에서 준비 없이 강행하거나 건식 전용 전기면도기에 임의로 물·크림을 사용함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "준비 기록이 어느 방식에 적용됐는지 몰라 적합성은 미상이에요. 각 방식과 지시의 연결을 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0169는 방식별 준비가 확인됐지만 이 사례는 준비 기록의 대상을 확인해야 해요."
+    },
+    {
+      "id": "syn-sol-0247",
+      "title": "일반 주의 문구와 특정 원료 함유",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0247-scenario",
+      "group_id": "terra2-c-syn-sol-0247-group",
+      "scenario_family_id": "terra2-c-syn-sol-0247-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "person.known_allergies": {
+            "variable_id": "person.known_allergies",
+            "state": "known",
+            "value": {
+              "회피 원료": "리날룰"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "현행 전성분표": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.fragrance": {
+            "variable_id": "product.fragrance",
+            "state": "known",
+            "value": {
+              "확인된 문구": "향료 알레르겐 주의",
+              "개별 원료 함유": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "unknown",
+            "guidance": "일반 주의 문구만으로 특정 원료의 함유나 부재를 확정할 수 없어요. 현행 전성분과 버전을 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "0481a098bda9fb9c079cb205da929c1923abaa04f28a483282271774a78f1585",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "일반 주의 문구만으로 특정 원료의 함유나 부재를 확정할 수 없어요. 현행 전성분과 버전을 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0170은 현행 성분표의 일치가 확인됐지만 이 사례는 주의 문구뿐이라 함유 여부가 미상이에요."
+    },
+    {
+      "id": "syn-sol-0248",
+      "title": "서로 다른 시작 뒤 같은 날 재개",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0248-scenario",
+      "group_id": "terra2-c-syn-sol-0248-group",
+      "scenario_family_id": "terra2-c-syn-sol-0248-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G12"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "제품 가": "먼저 시작 후 중단하고 재개",
+              "제품 나": "다른 날 시작 후 중단하고 가와 같은 날 재개",
+              "관찰": "재개 후 변화 기록",
+              "원인": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G12",
+            "status": "unknown",
+            "guidance": "서로 다른 최초 시작일에도 재개가 겹쳐 변화 원인을 분리할 수 없어요. 특정 제품의 원인으로 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G12@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c0a19ac9fd1e7e4f7d5a56b7c7a32aba75b4c6a81b6d59f11134620a7049421e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G12",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동시에 많은 변경을 하고 이후 변화를 특정 한 제품/성분 탓으로 확정함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진의 동시 치료 계획",
+            "여러 제품이 동시에 품질/반응 문제"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "서로 다른 최초 시작일에도 재개가 겹쳐 변화 원인을 분리할 수 없어요. 특정 제품의 원인으로 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0171은 관찰 기간이 겹쳤지만 이 사례는 중단 뒤 재개 시점이 같아 재개 이력을 확인해야 해요."
+    },
+    {
+      "id": "syn-sol-0249",
+      "title": "각질관리와 레티놀의 사용 부위 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0249-scenario",
+      "group_id": "terra2-c-syn-sol-0249-group",
+      "scenario_family_id": "terra2-c-syn-sol-0249-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "각질관리": "저녁에 실제 사용",
+              "레티놀": "다른 날 저녁에 실제 사용",
+              "같은 부위": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "다른 날 사용만으로 전체 정렬을 확정하지 않아요. 제품 역할과 사용 부위를 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "General exfoliation guidance cautions about additional exfoliation while using retinol or prescription retinoids. Product purpose and application context matter. It does not establish a universal prohibition for every ingredient combination or an individual risk probability.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "6cf021be124c18b3032c7a2c00d823b93cd35f5bd251a34f34b92b8a6d1c93f7",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "다른 날 사용만으로 전체 정렬을 확정하지 않아요. 제품 역할과 사용 부위를 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0172는 분리 사용 조건이 확인됐지만 이 사례는 같은 부위가 미상이어서 확인이 필요해요."
+    },
+    {
+      "id": "syn-sol-0250",
+      "title": "복합 완제품 보유와 별도 관리 사용",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0250-scenario",
+      "group_id": "terra2-c-syn-sol-0250-group",
+      "scenario_family_id": "terra2-c-syn-sol-0250-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G15"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "가": "합성 복합 관리제",
+              "나": "합성 별도 각질관리제"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "가": "보유만 하고 미사용",
+              "나": "얼굴에 실제 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G15",
+            "status": "unknown",
+            "guidance": "미사용 제품을 실제 중첩으로 세지 않아요. 다른 관리의 존재는 별도로 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "General exfoliation guidance cautions about additional exfoliation while using retinol or prescription retinoids. Product purpose and application context matter. It does not establish a universal prohibition for every ingredient combination or an individual risk probability.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G15@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2b203f78128e2fd0b20335ceb19768604ba989b506fce97d0c9cccc123048765",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G15",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "미사용 제품을 실제 중첩으로 세지 않아요. 다른 관리의 존재는 별도로 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0173은 두 제품을 실제 사용했지만 이 사례는 복합 제품을 보유만 했어요."
+    },
+    {
+      "id": "syn-sol-0251",
+      "title": "처방과 화장품의 시간 관계 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0251-scenario",
+      "group_id": "terra2-c-syn-sol-0251-group",
+      "scenario_family_id": "terra2-c-syn-sol-0251-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G14"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "처방 제품": "얼굴에 실제 사용",
+              "화장품": "얼굴에 실제 사용",
+              "시간 관계": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "처방": "합성 의약품",
+              "화장품": "합성 각질관리 제품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G14",
+            "status": "unknown",
+            "guidance": "같은 부위 사용은 확인됐지만 시간 관계와 처방 지시는 미상이에요. 처방을 변경하지 않고 적용 지시를 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G14@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8bd10c43dc62c2016d681894f49a4c00a6c886829d69497cfe2e25e6a1b01d09",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G14",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "같은 부위 사용은 확인됐지만 시간 관계와 처방 지시는 미상이에요. 처방을 변경하지 않고 적용 지시를 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0174는 같은 부위가 미상이지만 여기서는 부위가 확인되고 시간 관계가 미상이에요."
+    },
+    {
+      "id": "syn-sol-0252",
+      "title": "성분표와 실제 관리 목적의 구별",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0252-scenario",
+      "group_id": "terra2-c-syn-sol-0252-group",
+      "scenario_family_id": "terra2-c-syn-sol-0252-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "현행 성분표": "살리실릭애씨드 표기"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "표시 목적": "보습",
+              "실제 각질관리 목적": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "사용": "실제 사용",
+              "다른 각질관리와의 관계": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "성분명과 표시 목적은 확인됐지만 실제 관리 역할과 중첩 맥락은 미상이에요. 성분명만으로 농도나 사용 목적을 정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "General exfoliation guidance cautions about additional exfoliation while using retinol or prescription retinoids. Product purpose and application context matter. It does not establish a universal prohibition for every ingredient combination or an individual risk probability.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c7a8eaf4cdbb972a8919d4a4aa4ab9e4683abfebbb400c1279760737f421f3a9",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "성분명과 표시 목적은 확인됐지만 실제 관리 역할과 중첩 맥락은 미상이에요. 성분명만으로 농도나 사용 목적을 정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0179는 성분표 자체가 없지만 이 사례는 성분표가 있고 실제 역할이 미상이에요."
+    },
+    {
+      "id": "syn-sol-0253",
+      "title": "의료진 지시의 적용 기간 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0253-scenario",
+      "group_id": "terra2-c-syn-sol-0253-group",
+      "scenario_family_id": "terra2-c-syn-sol-0253-family",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G14"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "내용": "합성 설정에서 특정 화장품과 처방을 함께 사용해도 된다는 지시",
+              "적용 기간": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "처방": "현재 사용",
+              "화장품": "현재 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G14",
+            "status": "unknown",
+            "guidance": "대상 화장품은 확인됐지만 지시가 현재에도 적용되는지는 미상이에요. 처방을 변경하지 않고 적용 기간을 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G14@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "bc9242e46bdab47a290cf56b9bdcb503e6c9f4d08964df6ee935f0b2bc696690",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G14",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "대상 화장품은 확인됐지만 지시가 현재에도 적용되는지는 미상이에요. 처방을 변경하지 않고 적용 기간을 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0180은 지시의 대상이 불명확하지만 이 사례는 대상은 특정되고 기간이 미상이에요."
+    },
+    {
+      "id": "syn-sol-0254",
+      "title": "이전 제형의 국소 확인과 새 제형",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0254-scenario",
+      "group_id": "terra2-c-syn-sol-0254-group",
+      "scenario_family_id": "terra2-c-syn-sol-0254-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G11"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "이전": "합성 제품 이전 제형",
+              "현재": "같은 이름의 새 제형"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "이전 제형": "작은 부위 사용 기록",
+              "새 제형": "사용 여부 미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G11",
+            "status": "unknown",
+            "guidance": "이전 제형의 기록을 새 제형의 사용 경험으로 옮길 수 없어요. 새 제형의 실제 사용 여부를 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G11@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e62825d639082dbff884ca9254c50826620d02f9560929900f0ee5f8ab3f67bd",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G11",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "여러 새 제품을 바로 넓게 사용하거나 국소 무반응을 영구 안전으로 해석함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "과거 심한 반응·확인 알레르겐",
+            "의약품/염모제 등 별도 지침",
+            "기한/가품/변질 의심"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "이전 제형의 기록을 새 제형의 사용 경험으로 옮길 수 없어요. 새 제형의 실제 사용 여부를 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0182는 같은 제품의 부위를 구별하지만 이 사례는 제품 제형 버전이 달라요."
+    },
+    {
+      "id": "syn-sol-0255",
+      "title": "향 이름과 각질관리 성분의 혼동",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0255-scenario",
+      "group_id": "terra2-c-syn-sol-0255-group",
+      "scenario_family_id": "terra2-c-syn-sol-0255-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G15"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "확인된 문구": "향 이름에 산이라는 단어가 있음",
+              "전성분": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "제품": "실제 사용",
+              "각질관리 목적": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G15",
+            "status": "unknown",
+            "guidance": "향 이름만으로 각질관리 성분의 함유나 역할을 확정하지 않아요. 현행 전성분과 사용 목적을 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G15@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2935534d0e91f37c47d8372b5d9f3b55014501d14ac13db619f37c5c8472a61e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G15",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "향 이름만으로 각질관리 성분의 함유나 역할을 확정하지 않아요. 현행 전성분과 사용 목적을 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0183은 확인된 향의 명칭이 성분과 다르다는 상황이고 여기서는 전성분 자체가 없어 확인이 필요해요."
+    },
+    {
+      "id": "syn-sol-0256",
+      "title": "가족의 처방 지시와 본인의 관리",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0256-scenario",
+      "group_id": "terra2-c-syn-sol-0256-group",
+      "scenario_family_id": "terra2-c-syn-sol-0256-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G14"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "본인": "처방 지시 미확인",
+              "가족": "각질관리 제품 회피 지시"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "본인": "합성 화장품 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G14",
+            "status": "unknown",
+            "guidance": "가족의 지시는 본인의 처방 지시로 옮길 수 없어요. 본인에게 적용되는 개별 지시는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G14@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f46b6facff46397b0dc17e0aa5959861483cbbb1d2ec6e31e96e6cdc46260265",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G14",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "가족의 지시는 본인의 처방 지시로 옮길 수 없어요. 본인에게 적용되는 개별 지시는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0184는 동거인의 약 사용을 구별하지만 여기서는 가족의 회피 지시의 대상이 달라요."
+    },
+    {
+      "id": "syn-sol-0257",
+      "title": "동일 부위 각질관리 사용 기록의 충돌",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0257-scenario",
+      "group_id": "terra2-c-syn-sol-0257-group",
+      "scenario_family_id": "terra2-c-syn-sol-0257-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G15"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "가": "합성 복합 각질관리제",
+              "나": "별도 합성 각질관리제"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "가": "얼굴에 실제 사용",
+              "나": "얼굴 사용 기록과 미사용 기록이 상충",
+              "같은 시기 사용": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G15",
+            "status": "unknown",
+            "guidance": "복합 제품의 실제 사용은 확인됐지만 별도 제품의 사용 기록이 상충해 중첩은 미상이에요. 기록을 확인하고 차이를 만들지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G15@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "86b3a7d59fce3f934b5b0c35af915488ec4a69ce1cb5165ed205dcee60baf480",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G15",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "복합 제품의 실제 사용은 확인됐지만 별도 제품의 사용 기록이 상충해 중첩은 미상이에요. 기록을 확인하고 차이를 만들지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 syn-sol-0250은 복합 제품의 미사용이 확인됐지만 이 사례는 실제 사용 중인 복합제와 별도 제품의 상충 기록을 대조해야 해요."
+    },
+    {
+      "id": "syn-sol-0258",
+      "title": "처방의 중단 계획과 실제 사용 확인",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0258-scenario",
+      "group_id": "terra2-c-syn-sol-0258-group",
+      "scenario_family_id": "terra2-c-syn-sol-0258-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G14"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "의료진 지시": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "처방": "중단을 생각 중",
+              "실제": "현재까지 사용 중"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G14",
+            "status": "unknown",
+            "guidance": "중단을 생각하는 것과 실제 중단은 달라요. 처방 변경은 의료진과 상의할 사항이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G14@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f62cb7b01d8d873240ef6305a4291802bb20a7b95288b93122b8d0be789b8b27",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G14",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "중단을 생각하는 것과 실제 중단은 달라요. 처방 변경은 의료진과 상의할 사항이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0186의 계획과 구별해 이 사례는 현재까지 실제 사용이 명시돼 있어요."
+    },
+    {
+      "id": "syn-sol-0259",
+      "title": "다른 사람의 팩 사용기와 개인 경험",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0259-scenario",
+      "group_id": "terra2-c-syn-sol-0259-group",
+      "scenario_family_id": "terra2-c-syn-sol-0259-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "adjunct.care_events": {
+            "variable_id": "adjunct.care_events",
+            "state": "known",
+            "value": {
+              "다른 사람": "팩 사용 후 불편을 보고",
+              "본인": "같은 제품 사용 경험 미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "제품": "합성 팩"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G05",
+            "status": "unknown",
+            "guidance": "다른 사람의 경험을 본인의 반응으로 기록하지 않아요. 본인의 사용 여부와 경험은 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G05@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "ed33b4941914703471da58a4e464a9bfe31d36cf1633e68667db049cbafee0b3",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품 지침과 사용 방식이 맞고 중복 목적이 확인됨.",
+          "difference_when": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "다른 사람의 경험을 본인의 반응으로 기록하지 않아요. 본인의 사용 여부와 경험은 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0187은 다른 사람의 반응 귀속을 다루며 이 사례는 본인의 사용 여부 자체가 확인되지 않았어요."
+    },
+    {
+      "id": "syn-sol-0260",
+      "title": "헤드 교체 계획과 현재 토출량",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0260-scenario",
+      "group_id": "terra2-c-syn-sol-0260-group",
+      "scenario_family_id": "terra2-c-syn-sol-0260-family",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.dispensing_unit_context": {
+            "variable_id": "product.dispensing_unit_context",
+            "state": "known",
+            "value": {
+              "현재": "기존 펌프 사용",
+              "계획": "새 펌프 헤드로 교체 예정",
+              "새 헤드 토출량": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "dose.proxy_amount": {
+            "variable_id": "dose.proxy_amount",
+            "state": "known",
+            "value": {
+              "현재": "기존 헤드의 양 기록"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G08",
+            "status": "unknown",
+            "guidance": "교체 예정은 실제 교체가 아니에요. 새 헤드의 토출량을 현재 기록에서 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G08@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "751df58250c1219e6992199d9cba13ba254ea5b6425e7a1917603836c570168e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품·용기 단위의 사용량과 용도를 구분함.",
+          "difference_when": "다른 용기 한 펌프를 같은 g으로 계산하거나 상품명만으로 사용 순서·기능을 결정함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "교체 예정은 실제 교체가 아니에요. 새 헤드의 토출량을 현재 기록에서 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0188은 용기 교체 계획이고 이 사례는 같은 용기의 헤드 교체 계획이에요."
+    },
+    {
+      "id": "syn-sol-0261",
+      "title": "처방명과 같은 이름의 제품 용도",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0261-scenario",
+      "group_id": "terra2-c-syn-sol-0261-group",
+      "scenario_family_id": "terra2-c-syn-sol-0261-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "가": "합성 처방 의약품",
+              "나": "같은 이름을 포함한 합성 화장품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "나의 현행 성분표": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "가": "사용 중",
+              "나": "보유 여부 미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "이름이 같아도 의약품과 화장품의 역할은 자동으로 같지 않아요. 화장품 성분과 실제 사용은 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9d941743858566bab69ddfa6d6023bb0fa2fde2b3446c259a0ff3589d6e23d8a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "이름이 같아도 의약품과 화장품의 역할은 자동으로 같지 않아요. 화장품 성분과 실제 사용은 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0189는 제품 역할 구별이며 이 사례는 화장품 보유 자체가 미상이어서 사용을 추정할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0262",
+      "title": "팩 표시 시간과 실제 제거 시각 누락",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0262-scenario",
+      "group_id": "terra2-c-syn-sol-0262-group",
+      "scenario_family_id": "terra2-c-syn-sol-0262-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S26": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "제품": "합성 씻어내는 팩",
+              "표시": "10분 후 씻어냄"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.care_events": {
+            "variable_id": "adjunct.care_events",
+            "state": "known",
+            "value": {
+              "도포": "확인됨",
+              "제거 시점": "기록하지 않음",
+              "다른 관리 중복": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G05",
+            "status": "unknown",
+            "guidance": "제거 시점이 없어 표시 시간과 실제 사용을 비교할 수 없어요. 중복 관리도 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S26",
+            "text": "Facial-mask guidance advises following each product's directions for contact time and frequency and checking for overlap with existing exfoliating care. It does not prescribe one duration for every mask or authorize mixing arbitrary products.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/facial-masks-and-skin-care",
+            "locator": "제품별 접촉시간·빈도, 기존 각질관리와 중복 확인, 따갑거나 가려우면 씻어내기.",
+            "checked_on": "2026-11-04",
+            "limitations": "얼굴 팩/마스크의 안내. 모든 추가관리 제품이나 기기에 동일한 수치를 적용하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G05@0.6.1",
+          "ref:S26"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "20b69450c71155e303c9b1d5055216527678a49f49f56c0ec749bbbc8849cbf9",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품 지침과 사용 방식이 맞고 중복 목적이 확인됨.",
+          "difference_when": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "제거 시점이 없어 표시 시간과 실제 사용을 비교할 수 없어요. 중복 관리도 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0176은 실제 제거 시간이 미상이고 이 사례는 제거 시각이 기록되지 않은 관찰 공백을 확인해요."
+    },
+    {
+      "id": "syn-sol-0263",
+      "title": "면도 젤 사용 계획과 다른 면도 기록",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0263-scenario",
+      "group_id": "terra2-c-syn-sol-0263-group",
+      "scenario_family_id": "terra2-c-syn-sol-0263-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G09"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "기록": "습식 날면도"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.preparation": {
+            "variable_id": "shaving.preparation",
+            "state": "known",
+            "value": {
+              "젤": "다음 면도 때 사용할 계획",
+              "이번 면도 사용": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G09",
+            "status": "unknown",
+            "guidance": "다음 사용 계획은 이번 면도 준비의 증거가 아니에요. 이번 준비를 확인해야 해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Wet-shaving guidance discusses preparation, rinsing blades and dry storage, with a reference number of uses for manual blade replacement. The manual-blade reference is not an electric-head replacement interval.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G09@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "92f14b27c6d9605f42148546342fb0e6b15dbe47fa61a3392a997e8b7e67a2a3",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G09",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "면도 방식에 맞게 준비하고 윤활제품 지시를 따름.",
+          "difference_when": "습식 날면도에서 준비 없이 강행하거나 건식 전용 전기면도기에 임의로 물·크림을 사용함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "다음 사용 계획은 이번 면도 준비의 증거가 아니에요. 이번 준비를 확인해야 해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0178과 달리 계획은 다음 면도에 관한 것이며 이번 기록의 준비 여부를 묻는 상황이에요."
+    },
+    {
+      "id": "syn-sol-0264",
+      "title": "같은 제품의 새 포장과 사용시간 표시",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0264-scenario",
+      "group_id": "terra2-c-syn-sol-0264-group",
+      "scenario_family_id": "terra2-c-syn-sol-0264-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "기존": "합성 팩 이전 포장",
+              "현재": "같은 제품명 새 포장"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "이전 포장": "10분",
+              "현재 포장": "읽지 못함"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.care_events": {
+            "variable_id": "adjunct.care_events",
+            "state": "known",
+            "value": {
+              "현재 포장 제품 사용": "확인",
+              "사용시간": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G05",
+            "status": "unknown",
+            "guidance": "이전 포장의 시간을 새 포장의 표시로 확정하지 않아요. 현재 표시와 실제 시간을 확인해야 해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G05@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "4f67f871f987cdab1720d92438bcff5735d7d37be651e331673c1ef360af8d71",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품 지침과 사용 방식이 맞고 중복 목적이 확인됨.",
+          "difference_when": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "이전 포장의 시간을 새 포장의 표시로 확정하지 않아요. 현재 표시와 실제 시간을 확인해야 해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0181은 새 용기의 표시 이력이 미상이며 이 사례는 이전 시간만 알고 새 표시를 읽지 못했어요."
+    },
+    {
+      "id": "syn-sol-0265",
+      "title": "이전 성분표와 현재 사용 제품의 버전",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0265-scenario",
+      "group_id": "terra2-c-syn-sol-0265-group",
+      "scenario_family_id": "terra2-c-syn-sol-0265-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "이전 판": "레티놀 표기",
+              "현행 판": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "현재 사용 제품": "합성 제품",
+              "성분표와 버전 일치": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "실제": "현재 제품 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "이전 판의 성분을 현재 버전에 그대로 적용할 수 없어요. 현재 제품과 성분표의 버전을 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "253b55dfda86c4317bc8f112e9359e8a681fc81090515738d2e0df85aebe3013",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "이전 판의 성분을 현재 버전에 그대로 적용할 수 없어요. 현재 제품과 성분표의 버전을 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0175는 역할 표시의 개정 여부가 문제이고 이 사례는 현재 사용 용기와 성분표의 버전 연결이 미상이에요."
+    },
+    {
+      "id": "syn-sol-0266",
+      "title": "제품 이름과 실제 사용 용도의 분리",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0266-scenario",
+      "group_id": "terra2-c-syn-sol-0266-group",
+      "scenario_family_id": "terra2-c-syn-sol-0266-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "제품": "합성 제품 이름에 보호라는 표현이 있음",
+              "제형과 유형": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "확인된 사용법": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "실제 사용 목적": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G08",
+            "status": "unknown",
+            "guidance": "이름의 보호라는 표현만으로 제품 유형이나 실제 사용 용도를 확정하지 않아요. 제품 표시와 실제 사용을 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G08@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f77029927b80c416b5804b987a527550a86a73e05a960b25f5135eeeb74de205",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품·용기 단위의 사용량과 용도를 구분함.",
+          "difference_when": "다른 용기 한 펌프를 같은 g으로 계산하거나 상품명만으로 사용 순서·기능을 결정함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "이름의 보호라는 표현만으로 제품 유형이나 실제 사용 용도를 확정하지 않아요. 제품 표시와 실제 사용을 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 syn-sol-0245는 교체된 펌프의 토출량 문제지만 이 사례는 상품명에서 제품 유형과 실제 용도를 추정하는 문제예요."
+    },
+    {
+      "id": "syn-sol-0267",
+      "title": "수면팩의 사용 방식은 확인되고 빈도는 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-c-syn-sol-0267-scenario",
+      "group_id": "terra2-c-syn-sol-0267-group",
+      "scenario_family_id": "terra2-c-syn-sol-0267-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S26": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "표시": "밤에 바르고 아침에 씻어냄",
+              "빈도": "표시에 있음"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.care_events": {
+            "variable_id": "adjunct.care_events",
+            "state": "known",
+            "value": {
+              "실제 방식": "밤에 바르고 아침에 씻어냄",
+              "실제 빈도": "미확인",
+              "중복 관리": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G05",
+            "status": "unknown",
+            "guidance": "확인된 사용 방식은 표시와 맞아요. 실제 빈도와 중복은 미상이므로 전체 정렬은 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S26",
+            "text": "Facial-mask guidance advises following each product's directions for contact time and frequency and checking for overlap with existing exfoliating care. It does not prescribe one duration for every mask or authorize mixing arbitrary products.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/facial-masks-and-skin-care",
+            "locator": "제품별 접촉시간·빈도, 기존 각질관리와 중복 확인, 따갑거나 가려우면 씻어내기.",
+            "checked_on": "2026-11-04",
+            "limitations": "얼굴 팩/마스크의 안내. 모든 추가관리 제품이나 기기에 동일한 수치를 적용하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G05@0.6.1",
+          "ref:S26"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c5b2259f73adf6209c6591320e75c6671aa02822501c6f5fdad739594a6142a0",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품 지침과 사용 방식이 맞고 중복 목적이 확인됨.",
+          "difference_when": "권장시간을 넘겨 붙이거나 취침 중 임의 사용, 용도 밖 반복 닦기, 유사 각질관리를 이유 없이 중첩함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "확인된 사용 방식은 표시와 맞아요. 실제 빈도와 중복은 미상이므로 전체 정렬은 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0166은 중복 여부가 미상이고 이 사례는 실제 빈도도 별도로 확인해야 해요."
+    },
+    {
+      "id": "syn-hold-0074",
+      "title": "회수 공지의 제품과 제조번호 대조 미완료",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0074-scenario",
+      "group_id": "terra2-c-syn-hold-0074-group",
+      "scenario_family_id": "terra2-c-syn-hold-0074-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "용기": "합성 제품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.recall_check": {
+            "variable_id": "commerce.recall_check",
+            "state": "known",
+            "value": {
+              "공지": "제품과 특정 제조번호가 대상",
+              "용기 번호": "지워져 확인 불가"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q05",
+            "status": "hold",
+            "guidance": "제조번호가 확인되지 않아 대상 여부를 보류해요. 공지와 용기 정보를 확인해야 해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q05@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f4d23782190b924b16594960911c5d211e33f09b1863ba1d800d052ac91edf0c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "대상 일치 공지를 무시하거나 제품명만 같은 다른 제조번호를 회수 대상이라 확정함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "공지가 제조번호가 아닌 전 제품/특정 기간을 대상으로 하는 경우 해당 범위 적용"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "제조번호가 확인되지 않아 대상 여부를 보류해요. 공지와 용기 정보를 확인해야 해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0051은 한 용기의 회수 일치가 확인됐지만 이 사례는 번호가 지워져 대상 자체가 미상이에요."
+    },
+    {
+      "id": "syn-hold-0075",
+      "title": "회수 공지의 기간과 구매일 미상",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0075-scenario",
+      "group_id": "terra2-c-syn-hold-0075-group",
+      "scenario_family_id": "terra2-c-syn-hold-0075-family",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "용기": "합성 제품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "commerce.recall_check": {
+            "variable_id": "commerce.recall_check",
+            "state": "known",
+            "value": {
+              "공지": "특정 판매 기간에 판매된 제품 대상",
+              "용기의 구매일": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q05",
+            "status": "hold",
+            "guidance": "구매 시점이 미상이라 공지의 대상 여부를 보류해요. 공식 공지의 확인 방법을 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q05@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3186f4389c027ad1533e27c3ffdf0884e72ba4fb4bbcc14a1dceccfe6135d532",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "대상 일치 공지를 무시하거나 제품명만 같은 다른 제조번호를 회수 대상이라 확정함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "공지가 제조번호가 아닌 전 제품/특정 기간을 대상으로 하는 경우 해당 범위 적용"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "구매 시점이 미상이라 공지의 대상 여부를 보류해요. 공식 공지의 확인 방법을 살펴요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0052는 제조번호를 읽지 못했지만 이 사례는 판매 기간과 구매일의 관계가 미상이에요."
+    },
+    {
+      "id": "syn-hold-0076",
+      "title": "기기 부속품과 허용 제품의 관계 미상",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0076-scenario",
+      "group_id": "terra2-c-syn-hold-0076-group",
+      "scenario_family_id": "terra2-c-syn-hold-0076-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "기기": "합성 피부관리 기기",
+              "부속품": "별도 교체 부속품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "기기": "특정 부속품과 함께 사용 안내",
+              "현재 부속품의 호환": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "hold",
+            "guidance": "현재 부속품의 호환이 확인될 때까지 해당 기기 사용 판단을 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "59475dc579bf11d83c69def8c7d2576139d36814e8fea13764229f8facd75b7d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "현재 부속품의 호환이 확인될 때까지 해당 기기 사용 판단을 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0053은 기기 모드가 미상이지만 이 사례는 교체 부속품 호환이 미상이에요."
+    },
+    {
+      "id": "syn-hold-0077",
+      "title": "용기 손상과 내용물 상태 미상",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0077-scenario",
+      "group_id": "terra2-c-syn-hold-0077-group",
+      "scenario_family_id": "terra2-c-syn-hold-0077-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "제품": "합성 화장품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.seal_integrity": {
+            "variable_id": "storage.seal_integrity",
+            "state": "known",
+            "value": {
+              "상태": "용기 뚜껑 손상",
+              "내용물 오염": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "손상된 용기의 내용물 상태를 확인할 수 없어 해당 제품의 사용 판단을 보류해요. 오염을 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "97e67eb3eebb96690c9993855aded2fd5643c2f78b72839d5fcc3b5ec1505bab",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "손상된 용기의 내용물 상태를 확인할 수 없어 해당 제품의 사용 판단을 보류해요. 오염을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0054는 이상 입자와 상반된 안내지만 이 사례는 손상 후 내용물 상태가 미상이에요."
+    },
+    {
+      "id": "syn-hold-0078",
+      "title": "얼굴 지시와 목 부위의 제품 사용 범위",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0078-scenario",
+      "group_id": "terra2-c-syn-hold-0078-group",
+      "scenario_family_id": "terra2-c-syn-hold-0078-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "제품": "합성 얼굴과 목 겸용 관리 제품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "표시": "얼굴과 목에 매일 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "확인된 지시": "이 제품을 얼굴에 사용하지 않도록 안내받음",
+              "목에 적용되는 지시": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G03",
+            "status": "hold",
+            "guidance": "해당 제품의 얼굴 사용에 관한 개별 지시는 확인됐지만 목에 적용되는 지시는 미상이에요. 제품 표시를 얼굴의 개별 지시보다 우선하지 않고 목의 개별 권고는 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "307b80dda51590a8206379904382de01fca73b9be5dffdcee0e833fb376abe28",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품 유형·확인된 지시와 일반 기준이 모순되지 않음.",
+          "difference_when": "일반 세안제 사용법을 팩·필링·의약품에 그대로 적용하거나 알려진 별도 지시를 무시함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "자료 충돌·버전 불명확",
+            "개별 의료진 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "해당 제품의 얼굴 사용에 관한 개별 지시는 확인됐지만 목에 적용되는 지시는 미상이에요. 제품 표시를 얼굴의 개별 지시보다 우선하지 않고 목의 개별 권고는 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 syn-hold-0055는 처방 설계 요청이지만 이 사례는 같은 제품의 얼굴 지시와 목 부위의 적용 범위를 구분해 확인해야 해요."
+    },
+    {
+      "id": "syn-hold-0079",
+      "title": "반응이 보고된 제품의 다른 기기 재사용 계획",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0079-scenario",
+      "group_id": "terra2-c-syn-hold-0079-group",
+      "scenario_family_id": "terra2-c-syn-hold-0079-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "제품": "합성 제품",
+              "기기": "별도의 합성 기기"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "계획": "다른 기기와 함께 다시 사용"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_symptom_statements": [
+                {
+                  "source_variable": "skin.current_discomfort",
+                  "statement": "제품 사용 후 불편 보고"
+                }
+              ]
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "hold",
+            "guidance": "반응이 보고된 제품을 기기와 재사용하는 판단은 보류해요. 불편의 원인을 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "6cdaf21198f89cc7ba4e02f0443de1b330e7af38b6e98b9427e7953c30b8c722",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "반응이 보고된 제품을 기기와 재사용하는 판단은 보류해요. 불편의 원인을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0056과 달리 원래 기기가 아니라 별도 기기를 쓰려는 계획으로 기기 변경을 확인해야 해요.",
+      "normalization_history": [
+        {
+          "old_row_id": "syn-hold-0079",
+          "row_id": "syn-hold-0079",
+          "variable": "skin.current_discomfort",
+          "before": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "제품 사용 후 불편 보고",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "after": {
+            "variable_id": "skin.current_discomfort",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "reason": "지속·반복·일시적 불편의 구분이 원문에 없어 미상으로 유지해요. 별도 관찰의 통증과 실제 사용 사실은 보존해요."
+        }
+      ]
+    },
+    {
+      "id": "syn-hold-0080",
+      "title": "같은 이름의 두 제품 중 하나에 대한 개별 중지 지시",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0080-scenario",
+      "group_id": "terra2-c-syn-hold-0080-group",
+      "scenario_family_id": "terra2-c-syn-hold-0080-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "가": "합성 제품 가",
+              "나": "같은 이름을 가진 별도 합성 제품 나"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "확인된 지시": "가의 사용을 중지하도록 안내받음",
+              "나에 대한 지시": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "가와 나의 동일 여부": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G03",
+            "status": "hold",
+            "guidance": "확인된 중지 지시는 가에만 귀속해요. 나에 대한 지시는 미상이며 두 제품의 개별 권고를 지시 확인 전 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "bff2ac3747a9c7cd33d1a6b243b0343ad2434ee9ba970236b294773ff4d05638",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품 유형·확인된 지시와 일반 기준이 모순되지 않음.",
+          "difference_when": "일반 세안제 사용법을 팩·필링·의약품에 그대로 적용하거나 알려진 별도 지시를 무시함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "자료 충돌·버전 불명확",
+            "개별 의료진 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "확인된 중지 지시는 가에만 귀속해요. 나에 대한 지시는 미상이며 두 제품의 개별 권고를 지시 확인 전 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 syn-hold-0077은 손상된 용기의 품질 확인이지만 이 사례는 동일명 제품 중 개별 중지 지시의 대상을 구분해야 해요."
+    },
+    {
+      "id": "syn-hold-0081",
+      "title": "회피 원료와 성분표의 버전 불일치",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-c-syn-hold-0081-scenario",
+      "group_id": "terra2-c-syn-hold-0081-group",
+      "scenario_family_id": "terra2-c-syn-hold-0081-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G11"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "person.known_allergies": {
+            "variable_id": "person.known_allergies",
+            "state": "known",
+            "value": {
+              "회피 원료": "리날룰"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "이전 성분표": "해당 원료 표기",
+              "현행 성분표": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.identity": {
+            "variable_id": "product.identity",
+            "state": "known",
+            "value": {
+              "제품": "합성 제품 현행 용기"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G11",
+            "status": "hold",
+            "guidance": "현행 제품의 회피 원료 함유 여부를 확인하기 전까지 해당 제품의 사용 판단을 보류해요. 이전 표기를 현행 함유의 확정으로 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G11@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d550ac2242562852cff1a202fa72fd770149acb24487795dc7247f93009a3125",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G11",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "여러 새 제품을 바로 넓게 사용하거나 국소 무반응을 영구 안전으로 해석함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "과거 심한 반응·확인 알레르겐",
+            "의약품/염모제 등 별도 지침",
+            "기한/가품/변질 의심"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "현행 제품의 회피 원료 함유 여부를 확인하기 전까지 해당 제품의 사용 판단을 보류해요. 이전 표기를 현행 함유의 확정으로 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 0058은 가능성 문구만 있고 이 사례는 이전 성분표의 표기와 현행 용기의 버전 연결이 미상이에요."
+    }
+  ],
+  "correction_revision": "2026-11-23-fixed-vocabulary-and-quality-hold"
+}

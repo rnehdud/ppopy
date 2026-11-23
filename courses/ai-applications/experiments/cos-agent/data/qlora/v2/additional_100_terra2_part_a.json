@@ -1,0 +1,3050 @@
+{
+  "schema_version": "additional-100-terra2-part-a-inputs-v1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "cases": [
+    {
+      "id": "syn-sol-0191",
+      "title": "뜨거운 물 체감",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0191",
+      "group_id": "terra2-a-group-syn-sol-0191",
+      "scenario_family_id": "terra2-a-family-syn-sol-0191",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": {
+              "perceived_hot": true,
+              "numeric_temperature_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C01",
+            "status": "difference",
+            "guidance": "뜨겁게 느껴지는 물 사용을 검토하되 정확한 온도는 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "General face-washing guidance supports lukewarm water and gentle fingertip cleansing rather than vigorous rubbing. It does not establish a precise water temperature or an individual clinical outcome.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C01@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "a8d65c2828b22aefaf262b19cc551ae9a644d6869eaaa1f964dfa0c1b72f3b69",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+          "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도 의료진 지시나 특수 처치 상황."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "뜨겁게 느껴지는 물 사용을 검토하되 정확한 온도는 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0125과 비교: 수도꼭지 위치만 알던 사례와 달리 뜨거운 체감이 확인돼요.",
+      "answer": "### 핵심 안내\n뜨겁게 느껴지는 물 대신 뜨겁지 않은 미온수로 세안하는 방향을 살펴요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n뜨거운 체감은 세안 수온을 검토할 근거예요. 정확한 온도 수치는 확인되지 않았어요.\n\n### 확인이 필요한 한계\n별도 의료진 지시가 있다면 함께 확인해요."
+    },
+    {
+      "id": "syn-sol-0192",
+      "title": "의도적인 세정제 방치",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0192",
+      "group_id": "terra2-a-group-syn-sol-0192",
+      "scenario_family_id": "terra2-a-family-syn-sol-0192",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "special_contact_time_instruction": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "intentionally_left_on_for_long_time": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C03",
+            "status": "difference",
+            "guidance": "별도 지시 없이 일부러 오래 올려두는 방법을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C03@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "0d21c94109b1550407cedcdc91f1080e5eb808517eac08dc92ea3921d0f34ea8",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "오래 문지르지 않고 부드럽게 사용하며 제품 지시와 일치함.",
+          "difference_when": "별도 지시 없이 오래 문지르거나 일부러 올려둔다고 확인됨. 경과 시간만으로 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품별 별도 접촉시간 지시",
+            "의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "별도 지시 없이 일부러 오래 올려두는 방법을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0126과 비교: 헹굼 지시 충돌과 달리 접촉시간 지시가 없고 의도적인 방치가 확인돼요.",
+      "answer": "### 핵심 안내\n제품에 별도 접촉시간 지시가 없다면 일부러 오래 올려두는 행동을 줄여요. [kb:B-C03@0.6.1]\n\n### 근거 및 이유\n의도적 방치가 확인된 점을 제품 지시와 함께 살펴요.\n\n### 확인이 필요한 한계\n이 관찰만으로 손상이나 특정한 적정 초 수를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0193",
+      "title": "씻어내는 지시와 헹굼 생략",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0193",
+      "group_id": "terra2-a-group-syn-sol-0193",
+      "scenario_family_id": "terra2-a-family-syn-sol-0193",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "cleanser",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": false,
+              "reason": "save_time"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C06",
+            "status": "difference",
+            "guidance": "씻어내라는 제품 지시와 헹굼 생략을 비교해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C06@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c82d38eac1edc0c6f4d6b17891eb37561243bc94d0d66d2ee00d981841fe7c51",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
+          "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "물세안이 필요 없는 제품의 별도 사용법",
+            "의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "씻어내라는 제품 지시와 헹굼 생략을 비교해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0126과 비교: 충돌하는 지시와 달리 씻어내라는 지시가 확인돼요.",
+      "answer": "### 핵심 안내\n씻어내라는 해당 제품 지시에 따라 헹굼을 생략하지 않는 방향을 살펴요. [kb:B-C06@0.6.1]\n\n### 근거 및 이유\n시간을 아끼려고 헹굼을 생략한 행동이 확인된 표시 지시와 달라요.\n\n### 확인이 필요한 한계\n다른 제품의 헹굼 지시까지 같다고 추정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0194",
+      "title": "실제 보습과 세정 시간 관계 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0194",
+      "group_id": "terra2-a-group-syn-sol-0194",
+      "scenario_family_id": "terra2-a-family-syn-sol-0194",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "mild",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.skin_wetness": {
+            "variable_id": "method.skin_wetness",
+            "state": "known",
+            "value": "slightly_damp_at_moisturizing",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_used": true,
+              "special_label_instruction": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M01",
+            "status": "unknown",
+            "guidance": "실제 보습 사용과 도포 당시 물기 상태는 확인됐지만 세정과 도포의 시간 관계는 미확인이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M01@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f72119485555c8dcd26f840209f9f4d5399f77e418ae30b472f66d66f86b00bf",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 맥락에서 세정 후 피부가 아직 약간 촉촉할 때 보습함.",
+          "difference_when": "보습이 필요한 맥락인데 세정 후 오래 방치하고 완전히 마른 뒤에만 도포함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "건조한 피부에 바르라는 특정 제품·의약품 지시",
+            "다른 의료진 관리 계획",
+            "별도 보습 제품이 불필요하고 불편감도 없는 경우"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "실제 보습 사용과 도포 당시 물기 상태는 확인됐지만 세정과 도포의 시간 관계는 미확인이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0119와 비교: 계획만 있던 사례와 달리 실제 사용과 도포 당시 물기는 확인됐지만 세정과의 시간 관계는 여전히 미상이에요.",
+      "answer": "### 핵심 안내\n가벼운 건조가 있고 보습제를 바를 때 피부가 약간 촉촉했다는 관찰이 확인돼요 [kb:B-M01@0.6.1].\n\n### 근거 및 이유\n실제 사용과 당시 물기 상태는 확인됐지만, 세정과 도포의 시간 관계는 아직 확인되지 않았어요.\n\n### 확인이 필요한 한계\n세정 뒤의 보습 시점을 확인하기 전에는 그 시간 관계를 추정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0195",
+      "title": "찬물 체감",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0195",
+      "group_id": "terra2-a-group-syn-sol-0195",
+      "scenario_family_id": "terra2-a-family-syn-sol-0195",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": {
+              "perceived_cold": true,
+              "perceived_hot": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C01",
+            "status": "unknown",
+            "guidance": "차갑다는 보고만으로 뜨거운 물 사용 차이를 만들지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C01@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "b8f80da58ee5018ce90adc4c760d93c2292b0efbb6755d969f6304c25e1ea415",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+          "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도 의료진 지시나 특수 처치 상황."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "차갑다는 보고만으로 뜨거운 물 사용 차이를 만들지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0125과 비교: 체감이 없던 사례와 달리 찬물 체감은 확인됐으나 뜨거운 물 차이는 아니에요.",
+      "answer": "### 핵심 안내\n차갑다는 보고만으로 뜨거운 물 사용 차이를 만들지 않아요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0196",
+      "title": "경과 시간과 접촉 행동",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0196",
+      "group_id": "terra2-a-group-syn-sol-0196",
+      "scenario_family_id": "terra2-a-family-syn-sol-0196",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "contact_time_instruction_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "dose.contact_time": {
+            "variable_id": "dose.contact_time",
+            "state": "known",
+            "value": 60,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "intentional_long_rubbing_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C03",
+            "status": "unknown",
+            "guidance": "경과 시간만으로 일부러 오래 문지르거나 방치했는지 판단하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C03@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "86b166c53ae4b7d8dd5268a3886a3f61b0297eed46283422e26a193ac2349e74",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "오래 문지르지 않고 부드럽게 사용하며 제품 지시와 일치함.",
+          "difference_when": "별도 지시 없이 오래 문지르거나 일부러 올려둔다고 확인됨. 경과 시간만으로 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품별 별도 접촉시간 지시",
+            "의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "경과 시간만으로 일부러 오래 문지르거나 방치했는지 판단하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 아닌 접촉 행동과 경과 시간의 구분이 필요해요.",
+      "answer": "### 핵심 안내\n경과 시간만으로 일부러 오래 문지르거나 방치했는지 판단하지 않아요. [kb:B-C03@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0197",
+      "title": "보습 사용과 시점 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0197",
+      "group_id": "terra2-a-group-syn-sol-0197",
+      "scenario_family_id": "terra2-a-family-syn-sol-0197",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "mild",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.skin_wetness": {
+            "variable_id": "method.skin_wetness",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M01",
+            "status": "unknown",
+            "guidance": "보습제 사용은 확인됐지만 도포 당시 물기 상태는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M01@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "249ae4146b0e4ee2ea4c9b853628c45d54ca2eca6c3caa0d47d48cdaa4b3f828",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 맥락에서 세정 후 피부가 아직 약간 촉촉할 때 보습함.",
+          "difference_when": "보습이 필요한 맥락인데 세정 후 오래 방치하고 완전히 마른 뒤에만 도포함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "건조한 피부에 바르라는 특정 제품·의약품 지시",
+            "다른 의료진 관리 계획",
+            "별도 보습 제품이 불필요하고 불편감도 없는 경우"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "보습제 사용은 확인됐지만 도포 당시 물기 상태는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0119과 비교: 계획만 있던 사례와 달리 실제 사용은 확인됐지만 물기 상태가 미상이에요.",
+      "answer": "### 핵심 안내\n보습제 사용은 확인됐지만 도포 당시 물기 상태는 미상이에요. [kb:B-M01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0198",
+      "title": "수건의 강한 마찰",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0198",
+      "group_id": "terra2-a-group-syn-sol-0198",
+      "scenario_family_id": "terra2-a-family-syn-sol-0198",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "towel_rubbing_strong": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C02",
+            "status": "difference",
+            "guidance": "도구 사용과 별개로 수건으로 강하게 비비는 행동을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C02@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "eec46a7fd064e355e24111f46e267bfe8c548ac102d1834156406541fd1e0cea",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
+          "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "도구 사용과 별개로 수건으로 강하게 비비는 행동을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0128과 비교: 도구만 확인되고 마찰이 미상이던 사례와 달리 강한 수건 마찰이 확인돼요.",
+      "answer": "### 핵심 안내\n수건으로 강하게 비비기보다 물기를 가볍게 눌러 닦는 방향을 살펴요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n확인된 강한 수건 마찰을 세안 도구 사용 여부와 구분해요.\n\n### 확인이 필요한 한계\n마찰 관찰만으로 피부 손상이나 원인을 단정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0199",
+      "title": "화장 제거 목적의 두 단계",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0199",
+      "group_id": "terra2-a-group-syn-sol-0199",
+      "scenario_family_id": "terra2-a-family-syn-sol-0199",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "cleansing.steps": {
+            "variable_id": "cleansing.steps",
+            "state": "known",
+            "value": 2,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.repeat_wash": {
+            "variable_id": "cleansing.repeat_wash",
+            "state": "known",
+            "value": {
+              "second_step_for_makeup_removal": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "makeup_present": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C05",
+            "status": "aligned",
+            "guidance": "두 단계의 추가 목적이 화장 제거로 확인돼요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C05@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "14d7f17ab63f58c7641f74c426d6f9aba43b8dfd7ea730351a1c79460fe32326",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "반복의 목적이 설명되고 제거 필요·활동과 모순되지 않음.",
+          "difference_when": "메이크업·땀·표시 사용법 등 추가 이유 없이 습관적으로 반복 세안을 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "심한 발한·오염·메이크업 등 추가 세정 목적",
+            "해당 제품 사용법·의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "두 단계의 추가 목적이 화장 제거로 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0129과 비교: 두 번째 목적이 미상이던 사례와 달리 화장 제거 목적이 확인돼요.",
+      "answer": "### 핵심 안내\n화장 제거라는 추가 목적이 확인됐으므로 두 단계라는 수만으로 불필요한 반복이라고 판단하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n단계의 목적과 제거 필요를 함께 살펴요.\n\n### 확인이 필요한 한계\n이 정보만으로 모든 상황에 두 단계가 필요하다고 일반화하지 않아요."
+    },
+    {
+      "id": "syn-sol-0200",
+      "title": "현재 보습과 편안함",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0200",
+      "group_id": "terra2-a-group-syn-sol-0200",
+      "scenario_family_id": "terra2-a-family-syn-sol-0200",
+      "split": "val_internal",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "moisturizing.comfort": {
+            "variable_id": "moisturizing.comfort",
+            "state": "known",
+            "value": {
+              "comfortable": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M02",
+            "status": "aligned",
+            "guidance": "현재 실제 보습 사용과 편안한 상태가 확인돼요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M02@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d14f8e592eb110f00dd9e551e893b2a2f02d8ee7d78d24166c2ad02bd017f959",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "현재 보습 루틴으로 일상적인 건조 불편이 관리되고 새로운 불편감이 없음.",
+          "difference_when": "건조감이 있는데 무조건 감량하거나, 현재 사용 후 불편감이 계속되는데 방법을 검토하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "의료진 계획",
+            "바를 때 지속되는 통증·따가움",
+            "건조가 지속되거나 일반 화장품 범위를 벗어나는 문제"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "현재 실제 보습 사용과 편안한 상태가 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0134과 비교: 보유만 확인됐던 사례와 달리 실제 사용과 편안함이 확인돼요.",
+      "answer": "### 핵심 안내\n현재 보습 사용이 편안하고 건조가 없다는 보고는 이 카드의 부합 조건에 맞아요. [kb:B-M02@0.6.1]\n\n### 근거 및 이유\n실제 사용과 현재 경험을 확인했으므로 무조건 사용량을 바꿀 이유를 만들지 않아요.\n\n### 확인이 필요한 한계\n이 관찰은 미래의 불편이 없다는 보증이 아니에요."
+    },
+    {
+      "id": "syn-sol-0201",
+      "title": "부드러운 손가락 세정",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0201",
+      "group_id": "terra2-a-group-syn-sol-0201",
+      "scenario_family_id": "terra2-a-family-syn-sol-0201",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "gentle_fingertip_cleansing": true,
+              "towel_patted_gently": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C02",
+            "status": "aligned",
+            "guidance": "손가락으로 부드럽게 씻고 물기를 가볍게 닦는 관찰이 확인돼요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C02@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "a51f7a5b76d7ced9845d50cb6a5c08ea89ad7ca9eb6ffe175361718bf0c0c5ca",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
+          "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "손가락으로 부드럽게 씻고 물기를 가볍게 닦는 관찰이 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0128과 비교: 도구 사용만 확인됐던 사례와 달리 손가락 세정과 가벼운 닦기가 확인돼요.",
+      "answer": "### 핵심 안내\n손가락으로 부드럽게 씻고 수건으로 가볍게 닦는 현재 방법은 이 카드에 부합해요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n손가락 세정과 가벼운 닦기가 각각 확인됐어요.\n\n### 확인이 필요한 한계\n제품별 지시나 의료진 계획이 있다면 함께 확인해요."
+    },
+    {
+      "id": "syn-sol-0202",
+      "title": "헹굼 불필요 표시",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0202",
+      "group_id": "terra2-a-group-syn-sol-0202",
+      "scenario_family_id": "terra2-a-family-syn-sol-0202",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "cleanser",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "no_water_rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C06",
+            "status": "exception",
+            "guidance": "확인된 물 헹굼 불필요 표시를 제품별 예외로 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C06@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d132351211bd4e331006f1eda59fdd1228b5462cd7136c1c0420534102447bf9",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
+          "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "물세안이 필요 없는 제품의 별도 사용법",
+            "의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "확인된 물 헹굼 불필요 표시를 제품별 예외로 살펴요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 상충하던 사례와 달리 물 헹굼 불필요 표시가 확인돼요.",
+      "answer": "### 핵심 안내\n확인된 물 헹굼 불필요 표시를 제품별 예외로 살펴요. [kb:B-C06@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 카드의 조건을 구분해 살펴요.\n\n### 확인이 필요한 한계\n별도 제품 지시나 의료진 계획이 있다면 함께 확인해 주세요. 이 내용만으로 원인이나 효과를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0203",
+      "title": "보습제 보유와 사용 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0203",
+      "group_id": "terra2-a-group-syn-sol-0203",
+      "scenario_family_id": "terra2-a-family-syn-sol-0203",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M03"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_available": true,
+              "actual_use_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M03",
+            "status": "unknown",
+            "guidance": "보습제 보유만으로 실제 사용이나 목표 충족을 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M03@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f77c31e90715893fe8fd3ce8f224d5ac75c1978ba4ada1215b0fb4dbc36124de",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "보유 제품의 실제 사용으로 보습 목표가 충족되어 불필요한 추가 단계가 없음.",
+          "difference_when": "수분공급·차폐·장벽개선 각각을 반드시 별도 제품으로 채우려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "실제 건조 불편이 남음",
+            "의료진이 별도 보습을 지시함",
+            "광보호를 위한 도포 요건을 보습량과 별도로 확보해야 함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "보습제 보유만으로 실제 사용이나 목표 충족을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0136과 비교: 기능마다 별도 제품을 요구하던 사례와 달리 실제 사용과 충족 여부가 미상이에요.",
+      "answer": "### 핵심 안내\n보습제 보유만으로 실제 사용이나 목표 충족을 확정하지 않아요. [kb:B-M03@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0204",
+      "title": "두 단계의 목적 미확인",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0204",
+      "group_id": "terra2-a-group-syn-sol-0204",
+      "scenario_family_id": "terra2-a-family-syn-sol-0204",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C05"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "cleansing.steps": {
+            "variable_id": "cleansing.steps",
+            "state": "known",
+            "value": 2,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.repeat_wash": {
+            "variable_id": "cleansing.repeat_wash",
+            "state": "known",
+            "value": {
+              "purpose_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "makeup_and_sweat_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C05",
+            "status": "unknown",
+            "guidance": "단계 수만으로 추가 목적의 유무를 판단하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C05@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d6d21eb6199342483cf8b5f84ec3c170b3c9de47fa45d0f0c956796ef1dfb3dc",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "반복의 목적이 설명되고 제거 필요·활동과 모순되지 않음.",
+          "difference_when": "메이크업·땀·표시 사용법 등 추가 이유 없이 습관적으로 반복 세안을 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "심한 발한·오염·메이크업 등 추가 세정 목적",
+            "해당 제품 사용법·의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "단계 수만으로 추가 목적의 유무를 판단하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0129과 비교: 화장 제거가 확인된 사례와 달리 활동 및 제거 목적 자체가 미상이에요.",
+      "answer": "### 핵심 안내\n단계 수만으로 추가 목적의 유무를 판단하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0205",
+      "title": "수건 사용과 마찰 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0205",
+      "group_id": "terra2-a-group-syn-sol-0205",
+      "scenario_family_id": "terra2-a-family-syn-sol-0205",
+      "split": "val_internal",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "towel_used": true,
+              "rubbing_intensity_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C02",
+            "status": "unknown",
+            "guidance": "수건 사용만으로 강한 비빔을 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C02@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "16532b2a10bb9324dfb1d4d787c7b9228cd039eee0cf6b52d6361556661a381e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
+          "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "수건 사용만으로 강한 비빔을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0128과 비교: 세안 도구가 아닌 물기 닦기에서 마찰 정도를 확인해야 해요.",
+      "answer": "### 핵심 안내\n수건 사용만으로 강한 비빔을 확정하지 않아요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0206",
+      "title": "보습 사용과 반응 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0206",
+      "group_id": "terra2-a-group-syn-sol-0206",
+      "scenario_family_id": "terra2-a-family-syn-sol-0206",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "moisturizing.comfort": {
+            "variable_id": "moisturizing.comfort",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M02",
+            "status": "unknown",
+            "guidance": "실제 사용만으로 건조 불편의 충족을 확인할 수 없어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M02@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d932491e2a48d131fbb55add894104a20e445f011174e611dcdd77936dd89b60",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "현재 보습 루틴으로 일상적인 건조 불편이 관리되고 새로운 불편감이 없음.",
+          "difference_when": "건조감이 있는데 무조건 감량하거나, 현재 사용 후 불편감이 계속되는데 방법을 검토하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "의료진 계획",
+            "바를 때 지속되는 통증·따가움",
+            "건조가 지속되거나 일반 화장품 범위를 벗어나는 문제"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "실제 사용만으로 건조 불편의 충족을 확인할 수 없어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0130과 비교: 무거움과 펌프 횟수가 아닌 실제 사용은 확인되나 건조와 편안함은 미상이에요.",
+      "answer": "### 핵심 안내\n실제 사용만으로 건조 불편의 충족을 확인할 수 없어요. [kb:B-M02@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0207",
+      "title": "헹굼 수행과 지시 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0207",
+      "group_id": "terra2-a-group-syn-sol-0207",
+      "scenario_family_id": "terra2-a-family-syn-sol-0207",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "cleanser",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C06",
+            "status": "unknown",
+            "guidance": "헹굼은 확인됐지만 해당 제품의 지시가 미상이라 부합을 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C06@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "5511b8008ce0e5c083c9534855bced976f60f7b1616b2002440ab390057fb5a1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
+          "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "물세안이 필요 없는 제품의 별도 사용법",
+            "의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "헹굼은 확인됐지만 해당 제품의 지시가 미상이라 부합을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0126과 비교: 상충 지시가 아니라 지시 자체가 없어 헹굼만으로 부합을 확정하지 않아요.",
+      "answer": "### 핵심 안내\n헹굼은 확인됐지만 해당 제품의 지시가 미상이라 부합을 확정하지 않아요. [kb:B-C06@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0208",
+      "title": "물기 상태와 사용 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0208",
+      "group_id": "terra2-a-group-syn-sol-0208",
+      "scenario_family_id": "terra2-a-family-syn-sol-0208",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "mild",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.skin_wetness": {
+            "variable_id": "method.skin_wetness",
+            "state": "known",
+            "value": "slightly_damp",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_use_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M01",
+            "status": "unknown",
+            "guidance": "피부 물기만으로 실제 보습제 사용이나 도포 시점을 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M01@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "65bf7552314e940cc97e2da5152a3229114938caf714cec895597c0a87e03973",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 맥락에서 세정 후 피부가 아직 약간 촉촉할 때 보습함.",
+          "difference_when": "보습이 필요한 맥락인데 세정 후 오래 방치하고 완전히 마른 뒤에만 도포함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "건조한 피부에 바르라는 특정 제품·의약품 지시",
+            "다른 의료진 관리 계획",
+            "별도 보습 제품이 불필요하고 불편감도 없는 경우"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "피부 물기만으로 실제 보습제 사용이나 도포 시점을 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0119과 비교: 계획이 아닌 물기 상태가 확인됐지만 실제 도포 여부가 미상이에요.",
+      "answer": "### 핵심 안내\n피부 물기만으로 실제 보습제 사용이나 도포 시점을 추정하지 않아요. [kb:B-M01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0209",
+      "title": "가족의 뜨거운 물과 본인의 미온수",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0209",
+      "group_id": "terra2-a-group-syn-sol-0209",
+      "scenario_family_id": "terra2-a-family-syn-sol-0209",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": {
+              "self_perceived_lukewarm": true,
+              "family_member_perceived_hot": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C01",
+            "status": "aligned",
+            "guidance": "가족의 체감을 본인의 관찰로 옮기지 않고 본인의 미온수 사용을 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "General face-washing guidance supports lukewarm water and gentle fingertip cleansing rather than vigorous rubbing. It does not establish a precise water temperature or an individual clinical outcome.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C01@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d4b85208829aec13f5b7e134bc0ffe133f601774f8267b0ea786a4774a8a84ad",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+          "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도 의료진 지시나 특수 처치 상황."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가족의 체감을 본인의 관찰로 옮기지 않고 본인의 미온수 사용을 살펴요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0125과 비교: 가족과 본인의 체감이 구분되어 본인에게 차이를 만들지 않아요.",
+      "answer": "### 핵심 안내\n본인이 미온수를 쓴다는 보고는 이 카드의 수온 기준에 부합해요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n가족이 뜨겁게 느낀 물을 본인의 관찰로 옮기지 않아요.\n\n### 확인이 필요한 한계\n본인의 정확한 물 온도는 확인되지 않았어요."
+    },
+    {
+      "id": "syn-sol-0210",
+      "title": "타인의 마찰과 본인의 손가락",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0210",
+      "group_id": "terra2-a-group-syn-sol-0210",
+      "scenario_family_id": "terra2-a-family-syn-sol-0210",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "self_gentle_fingertip_cleansing": true,
+              "other_person_rubs_strongly": true,
+              "self_towel_patted_gently": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C02",
+            "status": "aligned",
+            "guidance": "다른 사람의 마찰을 본인에게 옮기지 않고 본인의 부드러운 방법을 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "General face-washing guidance supports lukewarm water and gentle fingertip cleansing rather than vigorous rubbing. It does not establish a precise water temperature or an individual clinical outcome.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C02@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e866bf377cd8ef74edd7a05f9f88fd692726ded2cc8c9c1a70c142ed6473deb7",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
+          "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "다른 사람의 마찰을 본인에게 옮기지 않고 본인의 부드러운 방법을 살펴요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0128과 비교: 본인은 손가락으로 부드럽게 씻고 타인의 마찰을 구분해요.",
+      "answer": "### 핵심 안내\n본인이 손가락으로 부드럽게 씻고 수건으로 가볍게 닦는 방법은 이 카드에 부합해요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n다른 사람의 강한 마찰을 본인의 행동으로 판단하지 않아요.\n\n### 확인이 필요한 한계\n이 관찰만으로 다른 사람이나 본인의 피부 상태를 진단하지 않아요."
+    },
+    {
+      "id": "syn-sol-0211",
+      "title": "본인과 타인의 건조",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0211",
+      "group_id": "terra2-a-group-syn-sol-0211",
+      "scenario_family_id": "terra2-a-family-syn-sol-0211",
+      "split": "val_internal",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "moisturizing.comfort": {
+            "variable_id": "moisturizing.comfort",
+            "state": "known",
+            "value": {
+              "comfortable": true,
+              "other_person_dryness": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M02",
+            "status": "aligned",
+            "guidance": "타인의 건조를 본인에게 옮기지 않고 본인의 사용 경험을 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "General dry-skin guidance discusses moisturizing after washing while skin remains slightly damp. It does not prescribe the same amount for every skin type or formulation and does not establish an individual treatment effect.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M02@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "823c8fe59034bf760311c8c8465464014d897575636b1ee3ff7c41ad37053512",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "현재 보습 루틴으로 일상적인 건조 불편이 관리되고 새로운 불편감이 없음.",
+          "difference_when": "건조감이 있는데 무조건 감량하거나, 현재 사용 후 불편감이 계속되는데 방법을 검토하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "의료진 계획",
+            "바를 때 지속되는 통증·따가움",
+            "건조가 지속되거나 일반 화장품 범위를 벗어나는 문제"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "타인의 건조를 본인에게 옮기지 않고 본인의 사용 경험을 살펴요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0130과 비교: 본인은 편안하고 타인의 건조가 구분돼요.",
+      "answer": "### 핵심 안내\n본인은 건조가 없고 보습 사용이 편안하다고 보고해 이 카드의 부합 조건에 맞아요. [kb:B-M02@0.6.1]\n\n### 근거 및 이유\n다른 사람의 건조를 본인의 증상으로 옮기지 않아요.\n\n### 확인이 필요한 한계\n현재 보고가 미래에도 불편이 없다는 보증은 아니에요."
+    },
+    {
+      "id": "syn-sol-0212",
+      "title": "미온수 사용",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0212",
+      "group_id": "terra2-a-group-syn-sol-0212",
+      "scenario_family_id": "terra2-a-family-syn-sol-0212",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary",
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": {
+              "perceived_lukewarm": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C01",
+            "status": "aligned",
+            "guidance": "본인의 미온수 사용이 확인돼요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "General face-washing guidance supports lukewarm water and gentle fingertip cleansing rather than vigorous rubbing. It does not establish a precise water temperature or an individual clinical outcome.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          },
+          {
+            "evidence_ref": "ref:S15",
+            "text": "화장품의 향료 등 알레르겐과 개인별 회피, 표시 및 제조사 지시 확인을 다루는 안내예요. 향료가 있다는 사실만으로 모든 사람에게 자극이나 알레르기가 생긴다고 단정하지 않아요. 미국 표시 설명을 한국의 법적 의무로 자동 전환하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C01@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": [
+          "ref:S15"
+        ]
+      },
+      "input_sha256": "9898f7b42f9b89c0c8e121cd7708e705c29f00478e245914a1e98636e9feea2e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+          "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도 의료진 지시나 특수 처치 상황."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "본인의 미온수 사용이 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0125과 비교: 체감이 없던 사례와 달리 미온수 사용이 확인돼요.",
+      "answer": "### 핵심 안내\n본인의 미온수 사용은 이 카드의 수온 기준에 부합해요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n확인된 본인의 체감을 기준으로 판단해요.\n\n### 확인이 필요한 한계\n정확한 온도 수치는 확인되지 않았어요."
+    },
+    {
+      "id": "syn-sol-0213",
+      "title": "건조한 피부까지 기다리는 보습",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0213",
+      "group_id": "terra2-a-group-syn-sol-0213",
+      "scenario_family_id": "terra2-a-family-syn-sol-0213",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary",
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "mild",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.skin_wetness": {
+            "variable_id": "method.skin_wetness",
+            "state": "known",
+            "value": "fully_dry_at_moisturizing",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_used": true,
+              "waits_long_after_cleansing": true,
+              "special_label_instruction": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M01",
+            "status": "difference",
+            "guidance": "경미한 건조가 있고 세정 후 오래 기다려 완전히 마른 뒤에만 보습해 시점을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "General dry-skin guidance discusses moisturizing after washing while skin remains slightly damp. It does not prescribe the same amount for every skin type or formulation and does not establish an individual treatment effect.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          },
+          {
+            "evidence_ref": "ref:S15",
+            "text": "화장품의 향료 등 알레르겐과 개인별 회피, 표시 및 제조사 지시 확인을 다루는 안내예요. 향료가 있다는 사실만으로 모든 사람에게 자극이나 알레르기가 생긴다고 단정하지 않아요. 미국 표시 설명을 한국의 법적 의무로 자동 전환하지 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M01@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": [
+          "ref:S15"
+        ]
+      },
+      "input_sha256": "6afcdbd0823d98412516fa87ea30901f189a7b4df104355f1a8cfbf71aa30f9c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 맥락에서 세정 후 피부가 아직 약간 촉촉할 때 보습함.",
+          "difference_when": "보습이 필요한 맥락인데 세정 후 오래 방치하고 완전히 마른 뒤에만 도포함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "건조한 피부에 바르라는 특정 제품·의약품 지시",
+            "다른 의료진 관리 계획",
+            "별도 보습 제품이 불필요하고 불편감도 없는 경우"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "경미한 건조가 있고 세정 후 오래 기다려 완전히 마른 뒤에만 보습해 시점을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0194와 비교: 실제 사용은 같지만 오래 기다려 완전히 마른 뒤에만 바르는 관찰로 시점 조정이 필요해요.",
+      "answer": "### 핵심 안내\n가벼운 건조가 있고 세정 후 오래 기다려 완전히 마른 뒤에만 보습한다면, 피부가 약간 촉촉할 때 보습하는 방향을 살펴요. [kb:B-M01@0.6.1]\n\n### 근거 및 이유\n실제 사용과 오래 기다리는 습관이 확인됐고 별도 제품 지시는 없다고 보고됐어요.\n\n### 확인이 필요한 한계\n개별 의료진 계획이 있다면 함께 확인하며 건조의 원인이나 효과는 단정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0214",
+      "title": "장갑을 낀 손가락 사용과 마찰 정도 미상",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0214",
+      "group_id": "terra2-a-group-syn-sol-0214",
+      "scenario_family_id": "terra2-a-family-syn-sol-0214",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "gloves"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleansing_with_clean_wet_gloved_fingers": true,
+              "friction_intensity_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C02",
+            "status": "unknown",
+            "guidance": "장갑을 낀 손가락 사용이 확인됐지만 마찰 강도는 미상이에요. 장갑 사용만으로 강한 마찰을 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "General face-washing guidance supports lukewarm water and gentle fingertip cleansing rather than vigorous rubbing. It does not establish a precise water temperature or an individual clinical outcome.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C02@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "396b5a1f867a71e6604e92f05722f37af18d9ffbb6ebe4f90e5d07ef84b9ff13",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
+          "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "장갑을 낀 손가락 사용이 확인됐지만 마찰 강도는 미상이에요. 장갑 사용만으로 강한 마찰을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0128과 비교: 세안 브러시가 아닌 깨끗하고 젖은 장갑 낀 손가락 사용이 확인됐지만 마찰 강도는 미상이라 도구 분류와 실제 마찰을 별도로 확인해야 해요.",
+      "answer": "### 핵심 안내\n깨끗하고 젖은 장갑을 낀 손가락으로 씻었다는 관찰은 있지만 실제 마찰 강도는 미상이에요 [kb:B-C02@0.6.1].\n\n### 근거 및 이유\n장갑 사용 여부와 세정할 때 얼마나 강하게 문질렀는지는 다른 정보예요. 장갑만으로 강한 마찰이나 문지르는 도구 사용을 확정하지 않아요.\n\n### 확인이 필요한 한계\n손가락을 어떻게 움직였는지와 마찰 정도를 확인하기 전에는 마찰 항목의 부합이나 차이를 확정하지 않아요."
+    },
+    {
+      "id": "syn-sol-0215",
+      "title": "건조에도 무조건 보습 감량",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0215",
+      "group_id": "terra2-a-group-syn-sol-0215",
+      "scenario_family_id": "terra2-a-family-syn-sol-0215",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S04": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "mild",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.stinging": {
+            "variable_id": "skin.stinging",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "moisturizer_used": true,
+              "reduces_regardless_of_dryness": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M02",
+            "status": "difference",
+            "guidance": "가벼운 건조가 있지만 따가움은 없고 건조 여부와 관계없이 보습을 줄이고 있어 사용 방법을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S04",
+            "text": "General dry-skin guidance discusses moisturizing after washing while skin remains slightly damp. It does not prescribe the same amount for every skin type or formulation and does not establish an individual treatment effect.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+            "checked_on": "2026-11-04",
+            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M02@0.6.1",
+          "ref:S04"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "ce80b38477d3f972c02804cb5cf1ca392a0064978618e01b6fab32ef5976d7a7",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "현재 보습 루틴으로 일상적인 건조 불편이 관리되고 새로운 불편감이 없음.",
+          "difference_when": "건조감이 있는데 무조건 감량하거나, 현재 사용 후 불편감이 계속되는데 방법을 검토하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "의료진 계획",
+            "바를 때 지속되는 통증·따가움",
+            "건조가 지속되거나 일반 화장품 범위를 벗어나는 문제"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가벼운 건조가 있지만 따가움은 없고 건조 여부와 관계없이 보습을 줄이고 있어 사용 방법을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0200과 비교: 편안하게 유지 중인 사례와 달리 건조가 있는데도 무조건 감량하며 따가움은 부정해요.",
+      "answer": "### 핵심 안내\n가벼운 건조가 있는데도 무조건 보습을 감량하기보다 현재 건조감과 편안함을 함께 살펴 사용 방법을 검토해요. [kb:B-M02@0.6.1]\n\n### 근거 및 이유\n따가움은 없다고 보고했으므로 이를 만들어내지 않아요. 건조 관찰과 무조건 감량 행동은 별도로 확인됐어요.\n\n### 확인이 필요한 한계\n건조의 원인이나 필요한 정확한 사용량은 알 수 없어요."
+    },
+    {
+      "id": "syn-sol-0216",
+      "title": "과거 체감과 현재 미상",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra2-a-scenario-syn-sol-0216",
+      "group_id": "terra2-a-group-syn-sol-0216",
+      "scenario_family_id": "terra2-a-family-syn-sol-0216",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S03": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": {
+              "past_perceived_hot": true,
+              "current_temperature_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C01",
+            "status": "unknown",
+            "guidance": "과거 체감으로 현재 수온을 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S03",
+            "text": "General face-washing guidance supports lukewarm water and gentle fingertip cleansing rather than vigorous rubbing. It does not establish a precise water temperature or an individual clinical outcome.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
+            "locator": "세안 방법 권고",
+            "checked_on": "2026-11-04",
+            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-C01@0.6.1",
+          "ref:S03"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2ee49d2486013ed4e53d03c95be630b8fc2210da2edddb95e834c842460b579c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+          "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도 의료진 지시나 특수 처치 상황."
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "과거 체감으로 현재 수온을 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-sol-0125과 비교: 과거 뜨거운 체감은 확인됐지만 현재 수온은 미상이라 시점을 구분해요.",
+      "answer": "### 핵심 안내\n과거 체감으로 현재 수온을 추정하지 않아요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0059",
+      "title": "변화한 제품에서 입자를 걸러 사용하려는 요청",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0059",
+      "group_id": "terra2-a-group-syn-hold-0059",
+      "scenario_family_id": "terra2-a-family-syn-hold-0059",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": true,
+              "separation": false,
+              "new_particles": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.handling": {
+            "variable_id": "storage.handling",
+            "state": "known",
+            "value": {
+              "wants_filter_particles_and_continue": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "색 또는 냄새 변화와 입자가 보고돼 걸러서 계속 사용하기보다 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "5b00f8abcac842830430355cd507114a4e7229d2d4a1823a6f44ea05fbacf655",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "색 또는 냄새 변화와 입자가 보고돼 걸러서 계속 사용하기보다 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0043과 비교: 용기 이동 계획이 아니라 입자를 걸러 계속 쓰려는 요청이라 품질 확인 전 사용 보류가 필요해요.",
+      "answer": "### 개별 권고 보류 안내\n색 또는 냄새 변화와 입자가 보고돼 해당 제품의 사용과 개별 권고를 보류해요. 입자를 걸러 계속 사용해도 품질이 확인되는 것은 아니에요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n제품 표시와 관찰된 변화를 제조·판매처에 확인해 주세요. 변화의 원인이나 현재 안전성은 확정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0060",
+      "title": "색 또는 냄새 변화와 기한",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0060",
+      "group_id": "terra2-a-group-syn-hold-0060",
+      "scenario_family_id": "terra2-a-family-syn-hold-0060",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": true,
+              "separation": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "expiry_not_passed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "기한 이내라도 색 또는 냄새 변화가 보고돼 품질 확인 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "7fc5dd0223e0e9e336e8e8ef286d6c8fb79a9322f2a89234121f2b0ec03388a7",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "기한 이내라도 색 또는 냄새 변화가 보고돼 품질 확인 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0039와 비교: 누출과 용기 손상 대신 색 또는 냄새 변화가 보고됐고 정확히 어느 변화인지는 미상이에요.",
+      "answer": "### 개별 권고 보류 안내\n사용기한 이내라도 색 또는 냄새 변화가 보고돼 해당 제품 사용과 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n제품 표시와 관찰된 변화를 제조·판매처에 확인해 주세요. 색과 냄새 중 어느 변화인지는 확인되지 않았어요."
+    },
+    {
+      "id": "syn-hold-0061",
+      "title": "지속 불편과 통증 미상",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0061",
+      "group_id": "terra2-a-group-syn-hold-0061",
+      "scenario_family_id": "terra2-a-family-syn-hold-0061",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 권고를 보류해요. 통증의 정도는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d5c2b463d98fa7ea0881df18dcfc785c7c50f6aab122257e7b99cce2541f8318",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편이 보고되어 개별 권고를 보류해요. 통증의 정도는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0037과 비교: 통증 정도가 확인된 사례와 달리 지속 불편만 확인돼요.",
+      "answer": "### 개별 권고 보류 안내\n지속 불편이 보고되어 개별 권고를 보류해요. 통증의 정도는 미상이에요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+    },
+    {
+      "id": "syn-hold-0062",
+      "title": "지속 불편과 진료 대체 요청",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0062",
+      "group_id": "terra2-a-group-syn-hold-0062",
+      "scenario_family_id": "terra2-a-family-syn-hold-0062",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "follow_up_advised": true,
+              "wants_product_adjustment_instead": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 있고 통증 여부는 미상이에요. 안내받은 진료 확인을 제품 조정만으로 대체하려는 요청에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1491bea0875e54598bafe95486559a9351d34fad3d5d44181a8bfa68022fc73e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편이 있고 통증 여부는 미상이에요. 안내받은 진료 확인을 제품 조정만으로 대체하려는 요청에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0061과 비교: 지속 불편에 더해 안내받은 진료 확인을 제품 조정으로 대체하려는 요청이 있어 진료 경로를 확인해야 해요.",
+      "answer": "### 개별 권고 보류 안내\n지속 불편이 있어 개별 권고를 보류해요. 통증 여부는 미상이에요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n안내받은 진료 확인을 제품 조정으로 대체하지 말고 관련 상황을 전문가에게 전달해 주세요. 원인은 확정할 수 없어요."
+    },
+    {
+      "id": "syn-hold-0063",
+      "title": "피부 관통 장치 사용 계획",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0063",
+      "group_id": "terra2-a-group-syn-hold-0063",
+      "scenario_family_id": "terra2-a-family-syn-hold-0063",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "skin_penetrating": true,
+              "planned": true,
+              "already_used": false,
+              "cleaning_unknown": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "hold",
+            "guidance": "피부 관통 장치의 개인 시술 절차 안내를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f2cd569ad1ec3dd1bafaf66d4f4c8b092de9ef1c1fdf05e8d2d2054555d0e448",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "피부 관통 장치의 개인 시술 절차 안내를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0040과 비교: 세척 후 재사용한 사례와 달리 사용 전 계획이며 세척 여부는 미상이에요.",
+      "answer": "### 개별 권고 보류 안내\n피부 관통 장치의 개인 시술 절차 안내를 보류해요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+    },
+    {
+      "id": "syn-hold-0064",
+      "title": "의료진 기기 회피 지시",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0064",
+      "group_id": "terra2-a-group-syn-hold-0064",
+      "scenario_family_id": "terra2-a-family-syn-hold-0064",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "plans_combination": true,
+              "already_used": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "avoid_device": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "hold",
+            "guidance": "의료진의 기기 회피 지시가 있는 상태에서 개인 병용 설계를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c59563fabbd54b526a24310f15b599a39585cb14a6154e754b9c646f5ca0ae11",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "의료진의 기기 회피 지시가 있는 상태에서 개인 병용 설계를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0041과 비교: 제품 허용 여부가 없고 아직 병용하지 않았어요.",
+      "answer": "### 개별 권고 보류 안내\n의료진의 기기 회피 지시가 있는 상태에서 개인 병용 설계를 보류해요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+    },
+    {
+      "id": "syn-hold-0065",
+      "title": "변화한 제품의 사용 지속 요청",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0065",
+      "group_id": "terra2-a-group-syn-hold-0065",
+      "scenario_family_id": "terra2-a-family-syn-hold-0065",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": true,
+              "separation": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.handling": {
+            "variable_id": "storage.handling",
+            "state": "known",
+            "value": {
+              "wants_to_continue_despite_new_odor": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "색 또는 냄새 변화가 보고된 제품의 사용과 개별 권고를 품질 확인 전 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "262e4ffc55472f31805beb8e5be64bbe069a4b58f9c05edddfd9229ef7d099aa",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "색 또는 냄새 변화가 보고된 제품의 사용과 개별 권고를 품질 확인 전 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0036과 비교: 변화가 보고됐고 계속 사용하려는 요청이 있어 해당 제품의 사용 보류를 명시해야 해요.",
+      "answer": "### 개별 권고 보류 안내\n색 또는 냄새 변화가 보고된 해당 제품은 품질 확인 전 사용과 개별 권고를 보류해요. [kb:B-S04@0.6.1]\n\n### 필요한 다음 단계\n계속 사용하기 전 표시와 관찰된 변화를 제조·판매처에 확인해 주세요. 원인이나 안전성을 확정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0066",
+      "title": "지속 불편과 진료 계획 미상",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra2-a-scenario-syn-hold-0066",
+      "group_id": "terra2-a-group-syn-hold-0066",
+      "scenario_family_id": "terra2-a-family-syn-hold-0066",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "skin.stinging": {
+            "variable_id": "skin.stinging",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편에 대한 개별 권고를 보류해요. 진료 계획과 따가움 여부는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "b0f6644a9066d2d23477a5bddac08982a5191a0fa2fb406063777dd20ddbba10",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편에 대한 개별 권고를 보류해요. 진료 계획과 따가움 여부는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "syn-hold-0037과 비교: 확인된 후속 진료를 취소하려던 사례와 달리 진료 계획과 따가움은 미상이에요.",
+      "answer": "### 개별 권고 보류 안내\n지속 불편에 대한 개별 권고를 보류해요. 진료 계획과 따가움 여부는 미상이에요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+    }
+  ]
+}

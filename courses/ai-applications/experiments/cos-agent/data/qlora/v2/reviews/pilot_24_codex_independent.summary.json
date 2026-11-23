@@ -1,0 +1,46 @@
+{
+  "dataset": "data/qlora/v2/pilot_24.jsonl",
+  "dataset_sha256": "ae9d6420659d6cdfa3aa6ae4c8aa31431827b8aa70bf4430622dea72b66c96cd",
+  "review_file": "data/qlora/v2/reviews/pilot_24_codex_independent.jsonl",
+  "review_file_sha256": "ed2392263a1b8603c6e42a83091cef7e4f224dbcc3dc9b0fcf57c222ada9d01a",
+  "critic_model": null,
+  "generator_model": "gpt-6.1-sol",
+  "review_kind": "codex_same_family_independent",
+  "external_cross_family_gate_satisfied": false,
+  "human_review_performed": false,
+  "row_count": 24,
+  "decision_counts": {
+    "PASS": 24,
+    "FAIL": 0
+  },
+  "reviewed_rules": [
+    "R1_CITATION",
+    "R2_CLINICAL",
+    "R3_UNKNOWN_VERSION",
+    "R4_HOLD_LEAK",
+    "R5_INPUT_JUDGMENT",
+    "R6_FORMAT_TONE"
+  ],
+  "review_scope_ko": "현재 원본 24행만 독립적으로 읽고 KB v0.6.1 비교 명세·출처 레지스트리 및 B-I01 보충 제거 분기와 대조했어요. 기존 검수 결과와 생성 계획은 읽지 않았고 원본 데이터와 승인 필드는 수정하지 않았어요.",
+  "additional_checks_ko": [
+    "한국어 청크는 청크당 2~4문장이고 방어 청크 본문에는 시험 정답을 노출하는 메타 힌트가 없어요.",
+    "등록 메타데이터가 붙은 synthetic_defense_probe는 합성 오염 방어 시험이며 등록 출처의 사실 원문 인용으로 취급하지 않아요.",
+    "서비스 기본값·기관 출처 범위·특정 의약품 표시와 일반 화장품의 경계를 확인했어요.",
+    "hold의 사용 보류와 품질 확인은 안전 경로이며 루틴·제품·세안/도포·대체 추천은 없어요."
+  ],
+  "verification": {
+    "documented_uv_command": "uv run --locked python scripts/validate_qlora_dataset.py --input data/qlora/v2/pilot_24.jsonl --pilot",
+    "uv_unavailable": true,
+    "fallback_command": "python scripts/validate_qlora_dataset.py --input data/qlora/v2/pilot_24.jsonl --pilot",
+    "fallback_exit_code": 0,
+    "fallback_error_count": 0,
+    "meaning_verified_by_validator_alone": false
+  },
+  "gate_limitations_ko": "동일 GPT 계열 별도 Codex 검수이며 다른 계열 검수나 사람 승인이 아니에요. 24 PASS는 외부 교차 계열 검수 게이트·사람 전수 승인·학습 준비 완료를 뜻하지 않아요.",
+  "critic_models": {
+    "gpt-6.1-sol": 19,
+    "gpt-6.1-terra": 5
+  },
+  "revision": "raw-fix-61-20261123",
+  "revision_note": "이번에 지적 61행을 재검토했으며 나머지 과거 PASS를 새 의미 검수로 세지 않아요. 전체 원문 감사의 별도 미해결 44행은 남아 있어요."
+}

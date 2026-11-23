@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-11-23T07:52:53.031496+00:00",
+  "review_kind": "codex_same_family_independent",
+  "critic_model": "gpt-6.1-sol",
+  "rows": 48,
+  "counts": {
+    "PASS": 48
+  },
+  "datasets": [
+    {
+      "dataset": "pilot_24",
+      "rows": 24,
+      "dataset_sha256": "5386f4107cb1376e01256387f1c96389d5bc985648f4e1d0bc8f1c8f4c3a2bd9",
+      "review_file_sha256": "ed2392263a1b8603c6e42a83091cef7e4f224dbcc3dc9b0fcf57c222ada9d01a",
+      "counts": {
+        "PASS": 24
+      }
+    },
+    {
+      "dataset": "additional_24",
+      "rows": 24,
+      "dataset_sha256": "dc53322b675ec39d50a92af9b4caf33ca9e3b8e2e50127dd69ed09b28221a074",
+      "review_file_sha256": "b196f68ac32ce15823307f6dce684b29a46b22099889c9f2f9833871f0c955cc",
+      "counts": {
+        "PASS": 24
+      }
+    }
+  ],
+  "failed_rows": [],
+  "all_content_hashes_match": true,
+  "dataset_files_match_reviewed_hashes": true,
+  "prior_FAIL_record_preserved": true,
+  "resolved_rows": [
+    {
+      "row_id": "syn-sol-0036",
+      "prior_decision": "FAIL",
+      "current_decision": "PASS",
+      "change": "성분 함유 단정을 관리 목적·제품 분류 표시로 한정함",
+      "input_unchanged": true
+    }
+  ],
+  "human_approved_rows": 0,
+  "external_cross_family_gate_satisfied": false,
+  "commit_performed": false,
+  "push_performed": false,
+  "linear_modified": false
+}

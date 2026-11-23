@@ -1,0 +1,2418 @@
+{
+  "schema_version": "additional-pilot-shard-v1",
+  "input_revision": 3,
+  "revision_note": "독립 재검토 뒤 대체 합성 상황과 한국어 표현을 정정하여 응답 이전에 동결했어요.",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "cases": [
+    {
+      "id": "syn-sol-0473",
+      "title": "고온 운반 뒤 현재 보관",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0473-scenario",
+      "group_id": "add24-group-hot-car-storage-not-degradation",
+      "scenario_family_id": "add24-family-hot-car-storage-not-degradation",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품이 뜨거운 차 안에 있었어요. 정확한 온도와 시간은 모르고 지금은 닫아서 직사광선을 피해 보관해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "difference",
+            "guidance": "과거의 뜨거운 차 보관과 현재의 보관을 구분하고 현재 품질은 따로 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d081ae044462717fc70e0f1898f6e499628ba2070052a2b545218ccd0c2fe29e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "과거의 뜨거운 차 보관과 현재의 보관을 구분하고 현재 품질은 따로 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새로 작성한 합성 사례이며 실제 사용자·제품·회수 공지나 엔진 실행 결과가 아닙니다.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n과거의 뜨거운 차 보관과 현재의 보관을 구분하고 현재 품질은 따로 확인해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0474",
+      "title": "친구 용기와 본인 용기",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0474-scenario",
+      "group_id": "terra3-c-syn-sol-0332-group",
+      "scenario_family_id": "terra3-c-syn-sol-0332-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "친구의 합성 화장품 용기는 뜨거운 차에 있었어요. 본인 용기의 과거 운송 온도는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "친구의 보관 이력을 본인 제품에 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "38e8e16c3dc9f5a0535ea8665803d13ca6f775eeb37db2e35efbb0e0ef7bac8c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "친구의 보관 이력을 본인 제품에 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n친구의 보관 이력을 본인 제품에 옮기지 않아요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0475",
+      "title": "장시간 열린 뚜껑",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0475-scenario",
+      "group_id": "terra-a-group-syn-sol-0114",
+      "scenario_family_id": "terra-a-family-0114",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품을 햇빛은 피해서 보관했지만 뚜껑을 지속적으로 열어 두었어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "difference",
+            "guidance": "직사광선을 피한 보관은 유지하고 지속적으로 열어 둔 용기는 제품 보관 지침에 맞춰 닫아 보관해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "cd4c1a529ea663b19b707c893bbd83e435c9a524d8749e7fe26af68352e1167d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "직사광선 회피와 지속적으로 열린 용기를 분리해 살펴요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "QUALITY_NOTE",
+          "old_input_sha256": "3cd32913bffadd0a99f4ce735521fdd223a8c3691772bfd73a3431fb273f2e0d",
+          "new_input_sha256": "cd4c1a529ea663b19b707c893bbd83e435c9a524d8749e7fe26af68352e1167d",
+          "observation_change": "기존 관찰 보존"
+        }
+      ],
+      "answer": "### 핵심 안내\n직사광선을 피한 보관은 유지하고 지속적으로 열어 둔 용기는 제품 보관 지침에 맞춰 닫아 보관해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0476",
+      "title": "배송 중 온도와 현재 위치",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0476-scenario",
+      "group_id": "add100-a-group-syn-sol-0051",
+      "scenario_family_id": "add100-a-family-택배 이동 중 과거 온도 이력 미확인",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "현재 보관과 미확인 배송 온도를 구별해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "a16dc20adf4c7691308b69fb9613bb36447881fa50e772af9e0545cc3c2e4377",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "현재 보관과 미확인 배송 온도를 구별해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n현재 보관과 미확인 배송 온도를 구별해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0477",
+      "title": "가려진 지침과 보관 이력",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0477-scenario",
+      "group_id": "terra3-c-syn-sol-0333-group",
+      "scenario_family_id": "terra3-c-syn-sol-0333-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 보관 표시가 가려져 읽히지 않아요. 운반 중 열에 노출됐는지도 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "가려진 표시와 운반 이력은 미상으로 남겨요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d4e6a755ef4710e2ea48ebcdfb8a562b46fc16548e5ecbc920cd911abbb1cc8c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가려진 표시와 운반 이력은 미상으로 남겨요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n가려진 표시와 운반 이력은 미상으로 남겨요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0478",
+      "title": "현재 서랍과 과거 노출",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0478-scenario",
+      "group_id": "terra-b-group-syn-sol-0162",
+      "scenario_family_id": "terra-b-family-syn-sol-0162",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품을 지금은 서랍에 닫아 보관해요. 지난 여행 중 뜨거운 차에 둔 적이 있는지는 기억나지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "현재 서랍 보관이 과거 노출 여부를 증명하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "4b8de13e5f74aae8e16b914be1abdca1d46021eb6305a2f3520ea9b7131c3514",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "현재 서랍 보관이 과거 노출 여부를 증명하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n현재 서랍 보관이 과거 노출 여부를 증명하지 않아요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0479",
+      "title": "열어 둔 가와 닫힌 나",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0479-scenario",
+      "group_id": "terra3-c-syn-sol-0342-group",
+      "scenario_family_id": "terra3-c-syn-sol-0342-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품 가의 뚜껑은 계속 열려 있었어요. 나의 뚜껑은 닫혀 있었고 두 제품의 내용물 상태는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "difference",
+            "guidance": "열려 있던 가의 용기는 보관 지침에 맞춰 닫아 두고 이미 닫혀 있던 나와 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "62d60ef59fbe785ba5b1255e7f9b721943f3db004815aa39506753acda4d100f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가의 열린 보관과 나의 닫힌 보관을 구분해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "QUALITY_NOTE",
+          "old_input_sha256": "689f78e4d47a51e6132917399ae73cd02895c954aaaa29e1813d7eb2858a327b",
+          "new_input_sha256": "62d60ef59fbe785ba5b1255e7f9b721943f3db004815aa39506753acda4d100f",
+          "observation_change": "기존 관찰 보존"
+        }
+      ],
+      "answer": "### 핵심 안내\n열려 있던 가의 용기는 보관 지침에 맞춰 닫아 두고 이미 닫혀 있던 나와 구분해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0480",
+      "title": "현재 밀봉과 열 이력",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0480-scenario",
+      "group_id": "terra-a-group-syn-sol-0118",
+      "scenario_family_id": "terra-a-family-0118",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "현재 닫힌 상태로 과거 이력이나 표시를 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d23c4af3db8d8b95bbe9f44d9c12acb5fc7a4ba475dbd72ac23ceeeaf3e296b9",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "현재 닫힌 상태로 과거 이력이나 표시를 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n현재 닫힌 상태로 과거 이력이나 표시를 추정하지 않아요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0481",
+      "title": "직사광선과 품질 미측정",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0481-scenario",
+      "group_id": "add24-group-hot-car-storage-not-degradation",
+      "scenario_family_id": "add24-family-hot-car-storage-not-degradation",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S06": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품을 창가의 직사광선 아래에 계속 두었어요. 온도와 내용물의 현재 안정성은 측정하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "difference",
+            "guidance": "제품 보관 지침을 확인하고 직사광선을 피해 보관해요. 현재 내용물의 안정성은 별도로 미확인 상태예요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S06",
+            "text": "Cosmetic shelf-life guidance discusses temperature, light, air, microorganisms, handling and packaging. Product-specific stability cannot be certified from a reported storage event alone. The guidance does not provide one expiry period for all cosmetics or a numerical degradation rate for an individual product.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1",
+          "ref:S06"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3bb0958a4bdf00b69657b54fac001e199056b5239f0235d67cbd170ee5fd7bd1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "직사광선 보관은 확인됐으나 현재 안정성은 별도예요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새로 작성한 합성 사례이며 실제 사용자·제품·회수 공지나 엔진 실행 결과가 아닙니다.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "QUALITY_NOTE",
+          "old_input_sha256": "c474783f2c553e2e3c683d01f40d404d48d38c562d4877aa14fa4af476d77372",
+          "new_input_sha256": "3bb0958a4bdf00b69657b54fac001e199056b5239f0235d67cbd170ee5fd7bd1",
+          "observation_change": "기존 관찰 보존"
+        }
+      ],
+      "answer": "### 핵심 안내\n제품 보관 지침을 확인하고 직사광선을 피해 보관해요. 현재 내용물의 안정성은 별도로 미확인 상태예요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0482",
+      "title": "두 용기의 개봉일",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0482-scenario",
+      "group_id": "add100-a-group-syn-sol-0052",
+      "scenario_family_id": "add100-a-family-동일 제품의 두 용기와 개봉 이력 혼동",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "같은 이름의 합성 화장품 가는 지난달 개봉했어요. 나의 개봉일은 모르며 가의 날짜를 나에게 적용하려고 해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "가의 날짜와 나의 미확인 개봉일을 분리해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9bf82e5cd20625a182f45f89f5b8e421260dfb176e89b25e45d1fbff81f5ad50",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가의 날짜와 나의 미확인 개봉일을 분리해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n가의 날짜와 나의 미확인 개봉일을 분리해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0483",
+      "title": "기한과 개봉 후 기간",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0483-scenario",
+      "group_id": "add100-a-group-syn-sol-0052",
+      "scenario_family_id": "add100-a-family-동일 제품의 두 용기와 개봉 이력 혼동",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 인쇄 기한은 읽혔지만 개봉 날짜와 개봉 후 사용기간 표시는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "인쇄 기한으로 미확인 개봉 후 기간을 대신하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "6441d9dfb594f55751d67ea0e171725c2ade9b7e3a6ba7119b0ac3f2a7620e10",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "인쇄 기한으로 미확인 개봉 후 기간을 대신하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n인쇄 기한으로 미확인 개봉 후 기간을 대신하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0484",
+      "title": "개봉일과 표시 가림",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0484-scenario",
+      "group_id": "terra-a-group-syn-sol-0123",
+      "scenario_family_id": "terra-a-family-0123",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "알려진 개봉일과 가려진 사용기간 표시를 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c8c6df9ef166cd667dfc1e540298d1c6e54cec52ad7dcf83efd11397eb088919",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "알려진 개봉일과 가려진 사용기간 표시를 구분해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n알려진 개봉일과 가려진 사용기간 표시를 구분해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0485",
+      "title": "구매일과 개봉일",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0485-scenario",
+      "group_id": "terra3-c-syn-sol-0330-group",
+      "scenario_family_id": "terra3-c-syn-sol-0330-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 구매일은 알지만 개봉일은 기록하지 않았어요. 구매일부터 개봉 후 기간을 계산하려고 해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "구매일을 개봉일로 바꾸지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "596dd70ba408fbd9dc0531904adad52517d2c3be99b8e8e1ba60b658fff429ae",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "구매일을 개봉일로 바꾸지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n구매일을 개봉일로 바꾸지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0486",
+      "title": "빈 용기와 새 용기",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0486-scenario",
+      "group_id": "add100-a-group-syn-sol-0052",
+      "scenario_family_id": "add100-a-family-동일 제품의 두 용기와 개봉 이력 혼동",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "이전에 다 쓴 합성 화장품 용기의 개봉 날짜는 알아요. 새로 산 같은 이름의 용기 개봉 날짜는 기록하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "이전 용기의 개봉일을 새 용기에 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "55660c63f1a37b3d680db6291dc2be7fe14d399cc9647f161d406675ca1e6c31",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "이전 용기의 개봉일을 새 용기에 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n이전 용기의 개봉일을 새 용기에 적용하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0487",
+      "title": "개봉 전 상태 미확인",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0487-scenario",
+      "group_id": "add100-a-group-syn-sol-0052",
+      "scenario_family_id": "add100-a-family-동일 제품의 두 용기와 개봉 이력 혼동",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "기억나지 않는 개봉 여부를 미개봉으로 단정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d3c4c0a4bd8a4baec035eeb3130108288d50561c78a2f8e2dbd5beaafbdc3101",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "기억나지 않는 개봉 여부를 미개봉으로 단정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n기억나지 않는 개봉 여부를 미개봉으로 단정하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0488",
+      "title": "타인의 개봉 기록",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0488-scenario",
+      "group_id": "terra3-c-syn-sol-0330-group",
+      "scenario_family_id": "terra3-c-syn-sol-0330-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "친구가 같은 이름의 합성 화장품을 지난주 개봉했다고 말했어요. 본인 용기의 개봉일은 몰라요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "친구의 개봉일은 본인 용기의 기록이 아니에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9f3fed4dbb8b77a7b1c5737e7536d512ee5259f9a634b01ce334edb08d2bc24a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "친구의 개봉일은 본인 용기의 기록이 아니에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n친구의 개봉일은 본인 용기의 기록이 아니에요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0489",
+      "title": "다른 나라 용기의 날짜",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0489-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품 가의 해외 용기에 기한이 적혀 있어요. 국내에서 보유한 나의 표시와 두 버전의 일치는 아직 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "unknown",
+            "guidance": "해외 용기의 기한을 현재 보유품에 자동으로 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "45d33fd9768124bd09818c74910467043097c014af5ffdf75f5c377ad052931c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "해외 용기의 기한을 현재 보유품에 자동으로 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n해외 용기의 기한을 현재 보유품에 자동으로 옮기지 않아요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0490",
+      "title": "용량 다른 두 용기",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0490-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "unknown",
+            "guidance": "대용량 지침과 소용량 보유품의 버전 연결은 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "22bd8f0401a1f7a1436afa723cebd448b7f19e8d9adc59da9866b7d4a650d287",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "대용량 지침과 소용량 보유품의 버전 연결은 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n대용량 지침과 소용량 보유품의 버전 연결은 미상이에요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0491",
+      "title": "이전 포장과 새 포장",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0491-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 이전 포장 사진에는 사용 안내가 보여요. 새 포장 보유품의 버전과 같은지 모르고 현재 표시를 아직 읽지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "unknown",
+            "guidance": "예전 포장 안내를 현재 보유품에 자동 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2ad33a5036f7f8d3b75b8fd69e467e6fdf79c8b288e5a9a53564c1500fdc763c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "예전 포장 안내를 현재 보유품에 자동 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n예전 포장 안내를 현재 보유품에 자동 적용하지 않아요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0492",
+      "title": "실제 용기와 판매 페이지",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0492-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 판매 페이지와 실제 용기에 서로 다른 사용 안내가 있어요. 두 자료가 같은 버전인지 모르겠어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "unknown",
+            "guidance": "기록의 차이와 동일 버전 여부 미확인을 구별해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "572aab94999080cc5df0afec817501ceb6add9e1371e21050aae2876533ca4a9",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "기록의 차이와 동일 버전 여부 미확인을 구별해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n기록의 차이와 동일 버전 여부 미확인을 구별해요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0493",
+      "title": "재구매와 성분표",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0493-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "unknown",
+            "guidance": "같은 이름만으로 이전 성분표를 새 제품에 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "7e6603d4e8d2251dfc90be501c9d1950b6d346e4d8c5e3a00fc018c54c7dd785",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "같은 이름만으로 이전 성분표를 새 제품에 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n같은 이름만으로 이전 성분표를 새 제품에 옮기지 않아요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0494",
+      "title": "타 용기의 표시 복사 계획",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0494-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "해외에서 산 합성 화장품 용기의 날짜를 국내 보유 용기 기록에 옮길 계획이에요. 아직 옮기지는 않았고 두 용기의 버전 일치는 몰라요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "unknown",
+            "guidance": "계획과 실행을 구분하고 버전 연결은 미상으로 남겨요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1db0e6de26360e69e9b1040db10be39cf348bb22245efd1ea294712e6c7e81d7",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "계획과 실행을 구분하고 버전 연결은 미상으로 남겨요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n계획과 실행을 구분하고 버전 연결은 미상으로 남겨요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0495",
+      "title": "인쇄 날짜의 일부 가림",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0495-scenario",
+      "group_id": "terra-a-group-syn-sol-0123",
+      "scenario_family_id": "terra-a-family-0123",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 인쇄 날짜 중 연도가 가려져 있어요. 개봉일도 기록하지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "날짜의 보이는 부분만으로 기한 경과를 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1f10de8c3c91f11971c552af4776617854bcfca3175fe4ab725740920e3717d3",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "날짜의 보이는 부분만으로 기한 경과를 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n날짜의 보이는 부분만으로 기한 경과를 확정하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0496",
+      "title": "두 용기의 구매 이력",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0496-scenario",
+      "group_id": "terra3-c-syn-sol-0330-group",
+      "scenario_family_id": "terra3-c-syn-sol-0330-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S02"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품 가의 구매일은 알지만 나의 구매일은 몰라요. 두 용기의 개봉일도 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S02",
+            "status": "unknown",
+            "guidance": "가의 구매일과 두 용기의 미확인 개봉일을 분리해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "5fd229eb43b8da8f72c52b660ef87b70995d155e430603fe2a28a87de6749db1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인 가능한 표시 기간과 용기 이력이 부합함. 이것만으로 현재 품질을 보증하지는 않음.",
+          "difference_when": "표시된 사용기한을 지났음이 확인되거나 명시된 개봉 후 사용 안내와 불일치함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개봉일·기간 표시 미확인",
+            "서로 다른 시장·버전 정보 충돌"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "가의 구매일과 두 용기의 미확인 개봉일을 분리해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n가의 구매일과 두 용기의 미확인 개봉일을 분리해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0497",
+      "title": "보관 지침과 옛 사진",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0497-scenario",
+      "group_id": "terra-a-group-syn-sol-0118",
+      "scenario_family_id": "terra-a-family-0118",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 현재 용기는 닫혀 있어요. 예전 포장 사진의 보관 문구가 현재 버전에 적용되는지 몰라요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S01",
+            "status": "unknown",
+            "guidance": "현재 닫힌 상태와 옛 보관 지침의 버전 미확인을 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f9052b9aee3152cd4c33cc07daa611ba38d25ee42ed69d11269b13352b70316e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+          "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품에 별도로 명시된 온도·보관방법",
+            "기간·온도를 모르는 과거 노출"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "현재 닫힌 상태와 옛 보관 지침의 버전 미확인을 구분해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n현재 닫힌 상태와 옛 보관 지침의 버전 미확인을 구분해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-sol-0498",
+      "title": "표시 충돌과 버전 불명",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-f-0498-scenario",
+      "group_id": "terra3-c-syn-sol-0334-group",
+      "scenario_family_id": "terra3-c-syn-sol-0334-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-Q03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품 상자와 판매 페이지에 서로 다른 사용기한이 표시돼 있어요. 같은 버전인지 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-Q03",
+            "status": "unknown",
+            "guidance": "두 기록의 차이를 남기고 어느 쪽이 현재 버전인지 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-Q03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f33b42606e5119874da617ff3a62a2b143a1a4a09bb440dca33c0963a6b242d1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-Q03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "동명/리뉴얼 전후 제품을 자동 동일시하거나 다른 국가 제품의 정보를 덮어씀.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "제품 식별과 정보가 이미 일치함"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "두 기록의 차이를 남기고 어느 쪽이 현재 버전인지 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 핵심 안내\n두 기록의 차이를 남기고 어느 쪽이 현재 버전인지 확인해요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+    },
+    {
+      "id": "syn-hold-0146",
+      "title": "정상 분리와 새 냄새",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-f-hold-0146-scenario",
+      "group_id": "terra-c-syn-hold-0057-group",
+      "scenario_family_id": "terra-c-syn-hold-0057-family",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "흔들어 쓰는 정상 두 층이 표시된 합성 화장품에서 최근 원래 없던 악취가 생겼어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c1bec6c89dec411ad6de6725268399b40780e43c8e1aae3181e85e23de287c2f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n정상적으로 표시된 두 층과 새로 생긴 악취는 구분해서 확인해야 해요. 개별 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n악취가 생긴 용기의 사용을 멈추고 제조·판매처에 확인해 주세요. 원래 두 층이라는 표시가 새 냄새의 안전성을 증명하지는 않아요."
+    },
+    {
+      "id": "syn-hold-0147",
+      "title": "기한 전 새 변색",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-f-hold-0147-scenario",
+      "group_id": "terra-b-group-syn-sol-0150",
+      "scenario_family_id": "terra-b-family-syn-sol-0150",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품의 인쇄 기한은 남았지만 내용물이 최근 원래 색과 다르게 변했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "55b86ae2135769a6163ce5e0caf8078f101310c2e9e76e7fc311912831c90771",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n인쇄 기한이 남았어도 새로 변한 내용물의 색은 별도 확인이 필요해요. 개별 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n해당 용기의 사용을 멈추고 제품 표시와 제조·판매처에 확인해 주세요. 변색의 원인이나 안전성은 이 기록만으로 알 수 없어요."
+    },
+    {
+      "id": "syn-hold-0148",
+      "title": "새 균열과 누출",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-f-hold-0148-scenario",
+      "group_id": "terra-a-group-syn-hold-0039",
+      "scenario_family_id": "terra-a-hold-family-0039",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품 용기에 최근 새 균열과 누출이 생겼어요. 내용물의 오염 여부는 몰라요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9b33fb20c6ed16d8fdf40f4d6f643ca521418af5702f9d07aa1f09f6e51acb50",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "8d63214efe112849de4e1b3397cc53cd926dfd568181c55eb4ffbf8a42055c76",
+          "input_sha256": "8d63214efe112849de4e1b3397cc53cd926dfd568181c55eb4ffbf8a42055c76",
+          "reason": "용기 손상과 누출 시 품질 확인 전 사용을 우선 멈추는 안전 경계를 명시해요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ],
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n최근 생긴 용기 균열과 누출을 확인하기 전 개별 사용 안내를 보류해요. 개별 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n누출된 용기의 사용을 멈추고 제조·판매처에 상태를 확인해 주세요. 오염 여부는 아직 확인되지 않았어요."
+    },
+    {
+      "id": "syn-hold-0149",
+      "title": "한 용기의 새 분리",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-f-hold-0149-scenario",
+      "group_id": "terra-b-group-syn-hold-0049",
+      "scenario_family_id": "terra-b-family-syn-hold-0049",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "같은 이름의 합성 화장품 두 용기 중 가에서 최근 원래 없던 분리가 생겼어요. 나의 상태는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f701aa3f1facb1c1d79523914884fcb2389bbbd190cf4a3e37e5e955a0a03071",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "df8c51834b235a91d574a087d0649b221caea9cc67baaaaa85e32d41d9b7f940",
+          "input_sha256": "df8c51834b235a91d574a087d0649b221caea9cc67baaaaa85e32d41d9b7f940",
+          "reason": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ],
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n가 용기에서 새 분리가 관찰됐지만 나 용기의 상태는 확인되지 않았어요. 개별 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n가의 사용을 멈추고 그 용기의 표시와 제조·판매처에 확인해 주세요. 나도 이상이 있거나 안전하다고 추정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0150",
+      "title": "새 입자 걸러 사용",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-f-hold-0150-scenario",
+      "group_id": "add100-b-group-syn-hold-0023",
+      "scenario_family_id": "add100-b-family-syn-hold-0023",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품에 최근 원래 없던 입자가 생겼어요. 걸러서 계속 쓰는 방법을 물어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f85e147b5865cdbbd1c8945060bc9689e48a0fa22f78a9607b4be34ddbb1757f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n새로 생긴 입자를 걸러내는 것으로 제품 상태가 확인되지는 않아요. 개별 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n해당 제품의 사용을 멈추고 제조·판매처에 새 입자를 확인해 주세요. 입자의 정체와 원인은 미상이에요."
+    },
+    {
+      "id": "syn-hold-0151",
+      "title": "회수 비대상과 새 이물",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-f-hold-0151-scenario",
+      "group_id": "terra-b-group-syn-hold-0048",
+      "scenario_family_id": "terra-b-family-syn-hold-0048",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "확인한 합성 회수 목록에 해당 번호는 없지만 해당 화장품에서 최근 원래 없던 이물이 보였어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d76bb6c796ede88c07b25dfe23bd0ba8cf0b64c0ba2e84cdb5b7516d19ad0416",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "1bd6bc3b8673a1af4a300090a6ed99d57e36ba7682dd627bb5f53181b78313ba",
+          "input_sha256": "1bd6bc3b8673a1af4a300090a6ed99d57e36ba7682dd627bb5f53181b78313ba",
+          "reason": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ],
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n회수 목록에 해당 번호가 없는 것과 새 이물의 관찰은 별개예요. 개별 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n이물이 나타난 제품의 사용을 멈추고 제조·판매처에 확인해 주세요. 목록 확인만으로 현재 품질이나 이물의 정체를 확정하지 않아요."
+    },
+    {
+      "id": "syn-hold-0152",
+      "title": "보관 변경과 새 악취",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-f-hold-0152-scenario",
+      "group_id": "terra-b-group-syn-hold-0045",
+      "scenario_family_id": "terra-b-family-syn-hold-0045",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "합성 화장품에서 전에 없던 악취가 최근 생겼어요. 서늘한 곳으로 옮겨 계속 쓰고 싶어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "fd2a671a68d7bf023de9bb5d842833f8d1a83a6b470b9b7753fb653054c67d5c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-S04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+          "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+            "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 품질 이상을 확인하기 전 해당 제품 사용과 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "original_generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "raw-fix-61-20261123",
+          "previous_input_sha256": "b7aadb39087e9da71c58605b500d85d6aec0d3d08423fbeb092240089aeb8a25",
+          "input_sha256": "b7aadb39087e9da71c58605b500d85d6aec0d3d08423fbeb092240089aeb8a25",
+          "reason": "관찰과 KB 범위를 대조해 누락된 보수적 사용 중단 또는 근거 귀속을 바로잡고 개인 관찰은 문헌과 분리했어요.",
+          "editor_model": "gpt-6.1-terra",
+          "human_review": "unreviewed"
+        }
+      ],
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n새로 생긴 악취는 서늘한 곳으로 옮기는 것만으로 해결됐다고 볼 수 없어요. 개별 권고는 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n해당 제품의 사용을 멈추고 냄새 변화에 관해 제조·판매처에 확인해 주세요. 원인이나 오염 여부는 아직 몰라요."
+    }
+  ]
+}

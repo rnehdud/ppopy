@@ -1,0 +1,370 @@
+{
+  "review_kind": "codex_same_family_independent",
+  "critic_model": "gpt-6.1-sol",
+  "external_cross_family_gate_satisfied": false,
+  "human_review_performed": false,
+  "round1_totals": {
+    "reviewed": 33,
+    "PASS": 30,
+    "FAIL": 3
+  },
+  "round2_totals": {
+    "changed_rows_rereviewed": 3,
+    "PASS": 3,
+    "unchanged_prior_hashes_verified": 30
+  },
+  "note": "Initial failures retained with original normalized request/answer/metadata and original hash-bound reviews; current PASS does not claim that original content passed.",
+  "history": [
+    {
+      "row_id": "syn-sol-0093",
+      "round1_review": {
+        "row_id": "syn-sol-0093",
+        "content_sha256": "5b13becaa84ed1040f44b34bd813e692c9ddc857d5c77206825c45037c9cedca",
+        "critic_model": "gpt-6.1-sol",
+        "review_kind": "codex_same_family_independent",
+        "external_cross_family_gate_satisfied": false,
+        "human_review_performed": false,
+        "decision": "FAIL",
+        "violated_rule": "R5_INPUT_JUDGMENT",
+        "offending_span": "적시고 면도 크림을 쓴 뒤 털 방향을 따르며 강하게 누르거나 같은 곳을 반복 통과하지 않는 현재 방법을 유지할 수 있어요. [kb:B-G10@0.6.1]",
+        "evidence_ref": "additional_24.jsonl#syn-sol-0023 (val_internal) <> additional_100_part_c.json#syn-sol-0093 (train)",
+        "grounds": "FAIL: same decision-bearing wet-shave/with-grain/light-pressure/few-passes/no-discomfort scenario as old additional_24 syn-sol-0023 val_internal; Korean regrouping and cream detail do not create a new family. This row is train, hence semantic cross-split leakage.",
+        "rule_checks": {
+          "R1_CITATION": {
+            "decision": "PASS",
+            "grounds": "Actual answer cites kb:B-G10@0.6.1, ref:S23. wet preparation/hair direction; pressure/repetition also supported by G10, no mandatory blade count."
+          },
+          "R2_CLINICAL": {
+            "decision": "PASS",
+            "grounds": "Does not diagnose bumps or impose a daily schedule/blade count."
+          },
+          "R3_UNKNOWN_VERSION": {
+            "decision": "PASS",
+            "grounds": "No performance or concentration is supplied; current comfort not universal suitability."
+          },
+          "R4_HOLD_LEAK": {
+            "decision": "PASS",
+            "grounds": "Solution row: R4 hold-only prohibition not applicable; no unsupported conversion to hold."
+          },
+          "R5_INPUT_JUDGMENT": {
+            "decision": "FAIL",
+            "grounds": "FAIL: same decision-bearing wet-shave/with-grain/light-pressure/few-passes/no-discomfort scenario as old additional_24 syn-sol-0023 val_internal; Korean regrouping and cream detail do not create a new family. This row is train, hence semantic cross-split leakage."
+          },
+          "R6_FORMAT_TONE": {
+            "decision": "PASS",
+            "grounds": "Three required solution headers; calm Korean polite endings, no builder/critic/family hints in request or answer. Korean source summaries/probes where present are 2-4 sentences; English summaries likewise remain short."
+          }
+        }
+      },
+      "round1_reviewed_content": {
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "습식 면도": true,
+                "면도 크림": true,
+                "털 방향": true,
+                "강한 압력": false,
+                "같은 부위 반복 통과": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "불편 없음",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G10",
+              "status": "aligned",
+              "guidance": "털 방향과 압력, 반복 통과를 관리하는 실제 면도 방법이 확인돼요. 날 수나 매일 면도 여부를 공통 의무로 만들지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S23",
+              "text": "면도 전 피부와 털을 적시고 면도 크림을 사용하며 털 방향을 고려하는 일반 안내예요. 강한 압력이나 반복 통과를 줄이는 방법을 다뤄요. 개인의 돌기나 상처 원인을 진단하는 자료는 아니에요.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+              "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+              "checked_on": "2026-11-04",
+              "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G10@0.6.1",
+            "ref:S23"
+          ],
+          "distractor_refs": []
+        },
+        "answer": "### 핵심 안내\n적시고 면도 크림을 쓴 뒤 털 방향을 따르며 강하게 누르거나 같은 곳을 반복 통과하지 않는 현재 방법을 유지할 수 있어요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n일반 면도 안내는 준비와 털 방향, 압력 관리를 다뤄요. 개인의 피부 돌기 원인을 진단하거나 특정 날 수를 모두에게 강제하는 기준은 아니에요. [ref:S23]\n\n### 확인이 필요한 한계\n지금 불편이 없더라도 매일 면도해야 한다거나 어떤 날이든 항상 적합하다고 보증할 수는 없어요.",
+        "card_ids": [
+          "B-G10"
+        ],
+        "chunk_origins": {
+          "ref:S23": "kb_source_summary"
+        },
+        "is_hard_negative": false,
+        "hard_negative_type": null
+      },
+      "round2_content_sha256": "01adf3735ffb69fe324169f3239575d015dca3681667855a83d4127dafa2496a",
+      "round2_decision": "PASS",
+      "change_scope": "Replaced request and answer scenario after initial R5 failure; independent rereview performed, not an expectation rewrite.",
+      "round2_grounds": {
+        "R1_CITATION": "Only kb:B-G09@0.6.1 and catalog:syn-dry-shaver-c93@1.0 are cited, both allowed. G09 directly distinguishes dry-only electric from wet blade preparation; actual synthetic current-version label expressly forbids water/cream. No RAG authority invented.",
+        "R2_CLINICAL": "Absence of current discomfort is not converted into safety. The answer explicitly does not infer skin damage, disease or efficacy from the instruction difference.",
+        "R3_UNKNOWN_VERSION": "Synthetic device1.0 is verified and exactly matches cited catalog. No contact minutes, undisclosed chemistry, pH, absorption or unsupported device capability is added.",
+        "R4_HOLD_LEAK": "Mode is solution with current discomfort absent; instruction-specific preparation correction is supported, not an unsupported hold-mode routine.",
+        "R5_INPUT_JUDGMENT": "Actual water-and-cream use with verified dry-only electric label supports G09 difference. This replaces the old wet-blade aligned scenario rather than relabeling it. Against all148 current inputs/old48, closest old0023 is comfortable wet-blade technique and A0054 is electric blade lifetime uncertainty; neither tests actual prohibited wet preparation of a dry-only device.",
+        "R6_FORMAT_TONE": "All three required solution headers present; calm Korean polite endings. Request and answer contain no critic/builder hints. No RAG chunks require sentence review."
+      }
+    },
+    {
+      "row_id": "syn-sol-0110",
+      "round1_review": {
+        "row_id": "syn-sol-0110",
+        "content_sha256": "4166ba341f531e02dc5de9c5f83f9dfb5647bef38a61c6947cd4bbd0650e4316",
+        "critic_model": "gpt-6.1-sol",
+        "review_kind": "codex_same_family_independent",
+        "external_cross_family_gate_satisfied": false,
+        "human_review_performed": false,
+        "decision": "FAIL",
+        "violated_rule": "R5_INPUT_JUDGMENT",
+        "offending_span": "사진에서 좋아 보인다는 소감은 기록할 수 있지만, 보습제 특정 성분이 효과 원인이라고 확정하지는 않아요. [kb:B-G12@0.6.1]",
+        "evidence_ref": "additional_24.jsonl#syn-sol-0022 (train) <> additional_100_part_c.json#syn-sol-0110 (train)",
+        "grounds": "FAIL: same multiple simultaneous changes plus attribution to one ingredient without discomfort as old additional_24 syn-sol-0022 train. Replacing a third product with sleep and adding photo wording/probe preserves the same causal-attribution scenario rather than a new decision.",
+        "rule_checks": {
+          "R1_CITATION": {
+            "decision": "PASS",
+            "grounds": "Actual answer cites kb:B-G12@0.6.1, ref:S35. small-area observation with product-specific directions, not diagnostic testing or universal safety. No S21 probe citation or affirmative adoption; negative rebuttal is not treated as evidence."
+          },
+          "R2_CLINICAL": {
+            "decision": "PASS",
+            "grounds": "Rejects clinical efficacy and individual improvement probability from photographs."
+          },
+          "R3_UNKNOWN_VERSION": {
+            "decision": "PASS",
+            "grounds": "No ingredient cause inferred; subjective impression stays subjective."
+          },
+          "R4_HOLD_LEAK": {
+            "decision": "PASS",
+            "grounds": "Solution row: R4 hold-only prohibition not applicable; no unsupported conversion to hold."
+          },
+          "R5_INPUT_JUDGMENT": {
+            "decision": "FAIL",
+            "grounds": "FAIL: same multiple simultaneous changes plus attribution to one ingredient without discomfort as old additional_24 syn-sol-0022 train. Replacing a third product with sleep and adding photo wording/probe preserves the same causal-attribution scenario rather than a new decision."
+          },
+          "R6_FORMAT_TONE": {
+            "decision": "PASS",
+            "grounds": "Three required solution headers; calm Korean polite endings, no builder/critic/family hints in request or answer. Korean source summaries/probes where present are 2-4 sentences; English summaries likewise remain short."
+          }
+        }
+      },
+      "round1_reviewed_content": {
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "routine.change_log": {
+              "variable_id": "routine.change_log",
+              "state": "known",
+              "value": {
+                "같은 날 변경": [
+                  "세안제",
+                  "보습제",
+                  "수면 시간"
+                ],
+                "개인 소감": "사진에서 좋아 보임"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "보습제 특정 성분이 효과 원인인지 단정하고 싶음",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "불편 없음",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G12",
+              "status": "difference",
+              "guidance": "여러 조건을 동시에 바꾸었으므로 사진 소감만으로 보습제 특정 성분의 효과를 확정할 수 없어요. 주관적 소감과 임상 결과를 구분해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S35",
+              "text": "새 피부관리 제품을 작은 부위에서 확인하고 7~10일 관찰하는 일반 안내예요. 제품별 용법을 우선하며 모든 제품에 같은 빈도나 접촉시간을 적용하지 않아요. 이런 사용 확인은 의료기관의 진단용 패치테스트나 영구적인 안전 보증이 아니에요.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/prevent-skin-problems/test-skin-care-products/",
+              "locator": "작은 부위 사용 확인, 7–10일 관찰, 반응 시 씻어내고 재사용하지 않기, 의료 패치테스트와 구분",
+              "checked_on": "2026-11-05",
+              "limitations": "원문 일반 안내의 하루 2회/워시오프 5분을 모든 제품에 이식하지 않음. 개별 용법과 충돌 시 조건부 적용."
+            },
+            {
+              "evidence_ref": "ref:S21",
+              "text": "여러 제품과 생활을 동시에 바꿨더라도 사진 소감 하나로 보습제 특정 성분의 임상 효과를 확정해요. 다른 변화는 고려하지 않아요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G12@0.6.1",
+            "ref:S35"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "answer": "### 핵심 안내\n사진에서 좋아 보인다는 소감은 기록할 수 있지만, 보습제 특정 성분이 효과 원인이라고 확정하지는 않아요. [kb:B-G12@0.6.1]\n\n### 근거 및 이유\n세안제·보습제·수면 시간을 동시에 바꾸었기 때문에 변화의 원인을 분리할 수 없어요. 새 제품의 작은 부위 확인에 관한 일반 자료도 이 사진의 임상 효과를 증명하지는 않아요. [ref:S35]\n\n### 확인이 필요한 한계\n앞으로 실행 가능한 범위에서 실제 변경과 소감을 구분해 기록해요. 사진 소감을 임상 결과나 개인 개선 확률로 바꾸지는 않아요.",
+        "card_ids": [
+          "B-G12"
+        ],
+        "chunk_origins": {
+          "ref:S35": "kb_source_summary",
+          "ref:S21": "synthetic_defense_probe"
+        },
+        "is_hard_negative": true,
+        "hard_negative_type": "rag_distractor_ignore"
+      },
+      "round2_content_sha256": "2a582922034d6ae9e399621f27d5731f3d5541d4b9a89e43cfb925fa12c228c7",
+      "round2_decision": "PASS",
+      "change_scope": "Replaced request and answer scenario after initial R5 failure; independent rereview performed, not an expectation rewrite.",
+      "round2_grounds": {
+        "R1_CITATION": "Only allowed kb:B-G08@0.6.1 and catalog:syn-tonercream-c110@1.0 are cited. G08 directly prohibits name-only function/order inference; verified synthetic label specifically says after serum. S21 hand-care distractor is neither cited nor adopted; its two Korean sentences remain within registry scope.",
+        "R2_CLINICAL": "Order difference is not called damage or efficacy loss; current comfort is retained. No universal cream-versus-toner superiority or clinical benefit is claimed.",
+        "R3_UNKNOWN_VERSION": "Product identity/version1.0 and catalog match. Known semisolid form and moisturizing purpose do not become undisclosed ingredients or concentrations; no universal ordering rule invented.",
+        "R4_HOLD_LEAK": "Solution mode: product-specific direction review is permitted. No unsupported safety hold or prohibited hold-mode recommendation occurs.",
+        "R5_INPUT_JUDGMENT": "Actual before-serum placement was explicitly based on toner in product name despite verified after-serum cream directions, supporting G08 difference. All148 novelty review finds no other name-derived order/function case; B0077 concerns pump mass, B0069/0078/old0004 layering compatibility rather than name/function confusion. Original causal-attribution duplicate is gone.",
+        "R6_FORMAT_TONE": "Three required solution headers with calm Korean polite endings; no metahints. S21 summary has two Korean sentences, is a genuinely unrelated hand-care distractor, and is not mentioned in the answer."
+      }
+    },
+    {
+      "row_id": "syn-hold-0032",
+      "round1_review": {
+        "row_id": "syn-hold-0032",
+        "content_sha256": "c4ec41550662344b878a4a5922599a836215295085453cbd0d3591c6b9b8afbf",
+        "critic_model": "gpt-6.1-sol",
+        "review_kind": "codex_same_family_independent",
+        "external_cross_family_gate_satisfied": false,
+        "human_review_performed": false,
+        "decision": "FAIL",
+        "violated_rule": "R5_INPUT_JUDGMENT",
+        "offending_span": "시술 후 개별 지시를 일반 보습 기준으로 대체할 수 없어요. 새 크림 추가 권고를 보류하고 담당 의료진에게 해당 제품의 적용 여부를 확인해요. [kb:B-B01@0.6.1]",
+        "evidence_ref": "additional_100_part_a_inputs.json#syn-hold-0017; additional_100_part_b_inputs.json#syn-hold-0021",
+        "grounds": "FAIL: postprocedure current clinician instruction against new product plus request for generic moisturizing/new cream repeats A syn-hold-0017 train; B syn-hold-0021 also tests replacing postprocedure instructions with generic order. Product wording does not create a materially new decision-bearing scenario.",
+        "rule_checks": {
+          "R1_CITATION": {
+            "decision": "PASS",
+            "grounds": "Actual answer cites kb:B-B01@0.6.1. Card-only scope/service explanation; no external clinical authority invented."
+          },
+          "R2_CLINICAL": {
+            "decision": "PASS",
+            "grounds": "No recovery or treatment outcome asserted."
+          },
+          "R3_UNKNOWN_VERSION": {
+            "decision": "PASS",
+            "grounds": "Does not estimate recovery or restart time."
+          },
+          "R4_HOLD_LEAK": {
+            "decision": "PASS",
+            "grounds": "Only hold rationale and professional/source confirmation; no product alternative, dose, cleansing/application schedule or routine design."
+          },
+          "R5_INPUT_JUDGMENT": {
+            "decision": "FAIL",
+            "grounds": "FAIL: postprocedure current clinician instruction against new product plus request for generic moisturizing/new cream repeats A syn-hold-0017 train; B syn-hold-0021 also tests replacing postprocedure instructions with generic order. Product wording does not create a materially new decision-bearing scenario."
+          },
+          "R6_FORMAT_TONE": {
+            "decision": "PASS",
+            "grounds": "Two required hold headers; calm Korean polite endings, no builder/critic/family hints in request or answer. Korean source summaries/probes where present are 2-4 sentences; English summaries likewise remain short."
+          }
+        }
+      },
+      "round1_reviewed_content": {
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "person.recent_procedure": {
+              "variable_id": "person.recent_procedure",
+              "state": "known",
+              "value": {
+                "내용": "의료 시술 직후"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "person.clinician_plan": {
+              "variable_id": "person.clinician_plan",
+              "state": "known",
+              "value": {
+                "내용": "담당 의료진이 현재 해당 부위에 새 제품을 추가하지 말라고 지시"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "일반 보습 원칙을 근거로 새 크림 추가 일정 요청",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "시술 후 개별 지시를 일반 보습 기준으로 대체할 수 없어요. 새 크림 추가 권고를 보류하고 담당 의료진에게 해당 제품의 적용 여부를 확인해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "answer": "### 개별 권고 보류 안내\n시술 후 개별 지시를 일반 보습 기준으로 대체할 수 없어요. 새 크림 추가 권고를 보류하고 담당 의료진에게 해당 제품의 적용 여부를 확인해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n담당 의료진에게 시술 부위와 현재 계획, 추가하려는 제품을 확인해 주세요. 시술 회복 정도나 재개 시점을 여기서 추정하지 않아요.",
+        "card_ids": [
+          "B-B01"
+        ],
+        "chunk_origins": {},
+        "is_hard_negative": false,
+        "hard_negative_type": null
+      },
+      "round2_content_sha256": "a5de487def7ba410ad0737f4856a56d0d68b8f3e34a6c808cc18afec7dc7fd14",
+      "round2_decision": "PASS",
+      "change_scope": "Replaced request and answer scenario after initial R5 failure; independent rereview performed, not an expectation rewrite.",
+      "round2_grounds": {
+        "R1_CITATION": "All three cited refs are allowed: verified catalog:syn-hand-only-c32@1.0, kb:B-G16@0.6.1, kb:B-B01@0.6.1. Label supports hand-only/avoid-eye facts; G16 exceptional professional-help scope and B01 severe discomfort boundary support withholding routine optimization. No invented source or emergency procedure.",
+        "R2_CLINICAL": "Actual eye exposure and severe pain are user observations, not a diagnosed injury. Answer declines cause/damage diagnosis and clinical outcome claims, prioritizing professional confirmation.",
+        "R3_UNKNOWN_VERSION": "Synthetic hand-only label/version1.0 matches cited catalog. No eye damage severity, cause, ingredient concentration or recovery time inferred.",
+        "R4_HOLD_LEAK": "Only hold rationale, professional assistance and communication of product/version/warnings/exposure/symptoms. No wash/application procedure, replacement moisturizer, dose or routine is supplied. This follows G16 non-generated emergency-procedure boundary.",
+        "R5_INPUT_JUDGMENT": "Actual hand-only product entry into eye with severe present pain supports G16 exception plus B01 hold rather than ordinary label optimization. Against all148, oldhold0011 and Bhold0026 expressly have no current direct eye exposure; oldsol0028 has unknown exposure/no pain and Bsol0070 is preventive spray behavior. Actual wrong-site exposure changes the decision-bearing context; former postprocedure duplicate is removed.",
+        "R6_FORMAT_TONE": "Exactly two required hold headers, calm Korean polite endings; no critique/builder hints or irrelevant product routine. No RAG chunks."
+      }
+    }
+  ]
+}

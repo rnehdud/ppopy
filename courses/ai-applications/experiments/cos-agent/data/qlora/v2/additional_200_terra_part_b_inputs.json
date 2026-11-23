@@ -1,0 +1,2431 @@
+{
+  "schema_version": "additional-200-terra-part-b-inputs-v1",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "cases": [
+    {
+      "id": "syn-sol-0371",
+      "title": "서로 다른 버전의 얼굴 팩 지시",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-hn2-syn-sol-0371-scenario",
+      "group_id": "terra200-b-group-syn-sol-0381",
+      "scenario_family_id": "terra200-b-family-syn-sol-0381",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴에 실제 사용하는 씻어내는 팩의 용기 버전은 2.0으로 확인했습니다. 보관한 1.0 표시에는 5분 뒤 씻으라고 적혀 있지만 현재 2.0의 사용 시간은 확인하지 못했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G03",
+            "status": "unknown",
+            "guidance": "현재 2.0 용기에 이전 1.0의 시간을 그대로 적용하지 않고 해당 버전의 표시를 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "ba7b8e82e5ad324e1eb154c6b207a0fd5f37bf5f60803b0e20ca3fc36c89cf3e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품 유형·확인된 지시와 일반 기준이 모순되지 않음.",
+          "difference_when": "일반 세안제 사용법을 팩·필링·의약품에 그대로 적용하거나 알려진 별도 지시를 무시함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "자료 충돌·버전 불명확",
+            "개별 의료진 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "서로 다른 버전이 명시되고 현재 사용 제품 지시는 미확인이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0372",
+      "title": "새 얼굴 세정제의 비공개 pH",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-hn2-syn-sol-0372-scenario",
+      "group_id": "terra200-hn2-syn-sol-0372-group",
+      "scenario_family_id": "terra200-hn2-syn-sol-0372-family",
+      "split": "train",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C04"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "새로 고를 얼굴용 씻어내는 세정제의 합성 성분표는 확인했지만 제품의 pH는 공개되지 않았습니다. 아직 사용하지 않았고 표시만으로 약산성 여부를 알려 달라고 요청합니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C04",
+            "status": "unknown",
+            "guidance": "성분표만으로 공개되지 않은 pH나 약산성 여부를 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "579ba21252ca89607d3f010e31f3946e751c6274960715583a1c7d5659ed87fa",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-C04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "약산성이라는 제품 근거가 있고 목적에 맞는 후보임. pH만으로 순함은 확정하지 않음.",
+          "difference_when": "약산성 기본 선호와 다른 pH 특성이 확인됨. pH 미확인은 차이가 아니라 unknown.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "문제없이 사용하는 기존 제품으로 교체 실익이 확인되지 않음",
+            "목적별 제품 지시·의료진 지시",
+            "pH 자료 충돌·미확인"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "새 얼굴 세정제 선택 맥락과 비공개 pH가 확인됐어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0373",
+      "title": "용기 크기와 실제 사용량 분리",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0373",
+      "group_id": "terra200-b-group-syn-sol-0373",
+      "scenario_family_id": "terra200-b-family-syn-sol-0373",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G08"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S23": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 로션 두 개의 용기 크기는 다르지만 실제로 얼마나 사용하는지는 기록하지 않았습니다. 이름만으로 용도나 순서를 결정하지도 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G08",
+            "status": "unknown",
+            "guidance": "용기 크기만으로 실제 사용량이나 순서를 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "습식 면도 전에는 털을 물에 적시고 준비할 수 있어요. 면도할 때 털이 난 방향을 따르고 날을 헹구는 방법이 안내돼요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G08@0.6.1"
+        ],
+        "distractor_refs": [
+          "ref:S23"
+        ]
+      },
+      "input_sha256": "3d5006b21b90676af90bc8865a516ae3ebbf5ccf1c31ae80ded16bc46252910f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품·용기 단위의 사용량과 용도를 구분함.",
+          "difference_when": "다른 용기 한 펌프를 같은 g으로 계산하거나 상품명만으로 사용 순서·기능을 결정함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "실제 양이 기록되지 않았어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "HN_REVIEW_NEEDED",
+          "old_input_sha256": "73d0a3b30e1771ade486b9158f2923aca36d982c5b890406b86ee2b2a6cc4911",
+          "new_input_sha256": "3d5006b21b90676af90bc8865a516ae3ebbf5ccf1c31ae80ded16bc46252910f",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0374",
+      "title": "동일 용기 펌프의 양도 미측정",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0374",
+      "group_id": "terra200-b-group-syn-sol-0374",
+      "scenario_family_id": "terra200-b-family-syn-sol-0374",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G08"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "같은 얼굴용 펌프 제품을 아침 한 번, 저녁 두 번 누릅니다. 한 번의 배출 질량은 측정하지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G08",
+            "status": "unknown",
+            "guidance": "누른 횟수는 구분하되 질량으로 환산하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G08@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "25e7838c69ec3ec490696b06e784723ce4b288c9ee5ea6a55c9571cdbe8f6a70",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G08",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품·용기 단위의 사용량과 용도를 구분함.",
+          "difference_when": "다른 용기 한 펌프를 같은 g으로 계산하거나 상품명만으로 사용 순서·기능을 결정함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "펌프 한 번의 질량이 없어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0375",
+      "title": "세정제 양과 농도 혼동",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0375",
+      "group_id": "terra200-b-group-syn-sol-0375",
+      "scenario_family_id": "terra200-b-family-syn-sol-0375",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴에 사용하는 헹굼형 세정제를 두 배로 쓰면 제형의 성분 농도도 두 배가 된다고 생각해 사용량을 늘렸습니다. 농도는 공개되지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G02",
+            "status": "unknown",
+            "guidance": "사용량을 두 배로 늘려도 제품 제형의 성분 농도가 두 배가 되는 것은 아니에요. 사용량과 공개되지 않은 농도는 별개로 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3b1cca42ccafecdbc532ec1a56200922355b6b9fbcef6e1fe3dd24f935e20b9c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "목적과 지침에 맞추어 양·빈도를 사용하며 농도와 사용량을 별개로 취급함.",
+          "difference_when": "모든 제품을 동일하게 감량하거나 많이 바르면 좋다는 이유만으로 임의 증량함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개별 치료·제품 지시",
+            "농도가 미공개인 경우 수치 비교 보류"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "농도가 두 배라는 생각은 확인되지만 많이 바르면 좋다는 증량 이유는 확인되지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "QUALITY_NOTE",
+          "old_input_sha256": "426c00df631b6b5be83a1d89c5f158c261b79c5f24774b5e38b7c422965ec060",
+          "new_input_sha256": "3b1cca42ccafecdbc532ec1a56200922355b6b9fbcef6e1fe3dd24f935e20b9c",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0376",
+      "title": "본인의 사용량 검토와 친구의 증량",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-replacement-syn-sol-0376-scenario",
+      "group_id": "terra200-replacement-syn-sol-0376-group",
+      "scenario_family_id": "terra200-replacement-syn-sol-0376-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "본인은 얼굴용 제품의 현재 표시된 양과 빈도를 따르고 있으며 사용량을 바꿀지 검토합니다. 친구는 얼굴용 제품을 많이 바를수록 좋다고 임의 증량합니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G02",
+            "status": "aligned",
+            "guidance": "본인의 표시 사용과 사용량 검토를 친구의 임의 증량과 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "fb511ca35931b0eeb68b4b8abda9929f790ca76be40442870de4ff082cd3c991",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "목적과 지침에 맞추어 양·빈도를 사용하며 농도와 사용량을 별개로 취급함.",
+          "difference_when": "모든 제품을 동일하게 감량하거나 많이 바르면 좋다는 이유만으로 임의 증량함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개별 치료·제품 지시",
+            "농도가 미공개인 경우 수치 비교 보류"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "본인이 사용량 변경을 검토하며 타인의 증량을 본인에게 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0377",
+      "title": "사용량과 성분 농도 미확인",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0377",
+      "group_id": "terra200-b-group-syn-sol-0377",
+      "scenario_family_id": "terra200-b-family-syn-sol-0377",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S21": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품의 사용량을 줄일지 검토하지만 현재 양과 제품의 성분 농도는 알려지지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G02",
+            "status": "unknown",
+            "guidance": "현재 사용량과 미확인 농도를 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S21",
+            "text": "손을 씻은 뒤 손 보습제를 사용할 수 있어요. 손 보습에는 무향료 크림이나 연고를 선택하는 안내가 있어요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+            "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+            "checked_on": "2026-11-04",
+            "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G02@0.6.1"
+        ],
+        "distractor_refs": [
+          "ref:S21"
+        ]
+      },
+      "input_sha256": "cfc98d9806f7ff785b3ad4a9e64d1082488653299f2fc7ddcda9e8d3d4866b30",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "목적과 지침에 맞추어 양·빈도를 사용하며 농도와 사용량을 별개로 취급함.",
+          "difference_when": "모든 제품을 동일하게 감량하거나 많이 바르면 좋다는 이유만으로 임의 증량함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개별 치료·제품 지시",
+            "농도가 미공개인 경우 수치 비교 보류"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "현재 사용량과 성분 농도가 미확인이므로 차이와 수치를 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "ISSUE",
+          "old_input_sha256": "ca926364e8e1a3cd045ea02a3244785d112b3a9c930605b55734de81ef5675c7",
+          "new_input_sha256": "cfc98d9806f7ff785b3ad4a9e64d1082488653299f2fc7ddcda9e8d3d4866b30",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0378",
+      "title": "얼굴 로션 사용량과 비공개 농도",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-hn2-syn-sol-0378-scenario",
+      "group_id": "terra200-b-group-syn-sol-0377",
+      "scenario_family_id": "terra200-b-family-syn-sol-0377",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "현재 얼굴용 로션을 한 번에 두 펌프 사용하고 있으며 사용량을 바꾸려 합니다. 성분 농도는 공개되지 않았고 펌프 수에서 농도를 계산할 수 있는 자료도 없습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G02",
+            "status": "unknown",
+            "guidance": "사용량 변경과 공개되지 않은 성분 농도를 구분하고 농도 수치를 추정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "fa03d347c8f8608d2b1a95bdfe7dca066d430d3f0883f699a01be25dbd6d6b94",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G02",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "목적과 지침에 맞추어 양·빈도를 사용하며 농도와 사용량을 별개로 취급함.",
+          "difference_when": "모든 제품을 동일하게 감량하거나 많이 바르면 좋다는 이유만으로 임의 증량함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "개별 치료·제품 지시",
+            "농도가 미공개인 경우 수치 비교 보류"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "실제 얼굴용 로션 사용과 사용량 변경 검토, 비공개 농도가 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0379",
+      "title": "알레르겐 표시와 현재 얼굴 제품 확인",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0379",
+      "group_id": "terra200-b-group-syn-sol-0379",
+      "scenario_family_id": "terra200-b-family-syn-sol-0379",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품의 현재 성분표에서 특정 향료명을 확인했습니다. 개인 알레르기 여부에 대한 답변은 거절했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "unknown",
+            "guidance": "확인된 표시와 답변을 거절한 개인 알레르기 여부를 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "198773e8ecfde44d712d25aee908c72e1b5e710ff77488efd9aff0eb86563a5e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "성분표는 개인 반응을 알려주지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0380",
+      "title": "두 제품의 향료 표시 구분",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0380",
+      "group_id": "terra200-b-group-syn-sol-0380",
+      "scenario_family_id": "terra200-b-family-syn-sol-0380",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품 A에는 특정 향료명이 표시되어 있지만 실제 고르는 얼굴용 제품 B의 성분표는 확인하지 못했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "unknown",
+            "guidance": "제품 A의 표시를 제품 B의 표시로 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "b4263a3bef6bdf1beb4b4f539aeabd141dc0096ec8ac89825dab985c105e8a6a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "제품별 성분표가 다를 수 있어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0381",
+      "title": "다른 버전의 사용 지시",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0381",
+      "group_id": "terra200-b-group-syn-sol-0381",
+      "scenario_family_id": "terra200-b-family-syn-sol-0381",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G03"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 헹굼형 팩을 사용했지만 용기의 버전을 확인하지 못했습니다. 웹에서 본 다른 버전의 사용 시간이 이 용기에도 같은지는 모릅니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G03",
+            "status": "unknown",
+            "guidance": "다른 버전의 지시를 현재 용기에 그대로 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G03@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "6357cd845d30c34331fbd494d7329bb92e96371d347989f705e162347ac4e5eb",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G03",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "제품 유형·확인된 지시와 일반 기준이 모순되지 않음.",
+          "difference_when": "일반 세안제 사용법을 팩·필링·의약품에 그대로 적용하거나 알려진 별도 지시를 무시함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "자료 충돌·버전 불명확",
+            "개별 의료진 계획"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "사용 제품의 버전과 표시가 일치하는지 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0382",
+      "title": "두 얼굴 제품 사전 혼합",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0382",
+      "group_id": "terra200-b-group-syn-sol-0382",
+      "scenario_family_id": "terra200-b-family-syn-sol-0382",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 로션 두 개를 같은 용기에 미리 섞어 사용합니다. 두 제품 모두 혼합 사용 지시가 확인되지 않았고 의료진 지시도 보고되지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G04",
+            "status": "difference",
+            "guidance": "확인되지 않은 사전 혼합을 기본 사용법으로 삼지 않도록 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "571cd118922bdaada1b9625a573daba7173037432291b4437eb37be36f256911",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "각 제품을 지시에 맞게 사용하고 확인되지 않은 형태 변경을 하지 않음.",
+          "difference_when": "사용 근거 없이 사전 혼합·희석하거나 바르는 제품을 분사형으로 전환함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제조사가 명시적으로 안내한 혼합·희석 사용법",
+            "관련 의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "실제 사전 혼합과 지시 미확인이 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0383",
+      "title": "표시에 따라 두 제품을 혼합",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-replacement-syn-sol-0383-scenario",
+      "group_id": "terra200-replacement-syn-sol-0383-group",
+      "scenario_family_id": "terra200-replacement-syn-sol-0383-family",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "합성 얼굴용 제품 A의 확인된 사용 표시에는 지정된 제품 B와 사용 직전에 섞으라고 적혀 있습니다. 본인은 얼굴에 쓰기 직전 표시대로 A와 B를 섞어 사용합니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G04",
+            "status": "exception",
+            "guidance": "확인된 해당 제품의 혼합 지시와 실제 사용을 함께 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1eb0d6185c3877696d44521ad11aca1255223ccdbb74510da3384c258fe84fee",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "각 제품을 지시에 맞게 사용하고 확인되지 않은 형태 변경을 하지 않음.",
+          "difference_when": "사용 근거 없이 사전 혼합·희석하거나 바르는 제품을 분사형으로 전환함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제조사가 명시적으로 안내한 혼합·희석 사용법",
+            "관련 의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "제조사 명시 혼합 지시와 실제 혼합을 함께 확인한 예외예요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0384",
+      "title": "얼굴 로션을 분사형으로 전환",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-replacement-syn-sol-0384-scenario",
+      "group_id": "terra200-replacement-syn-sol-0384-group",
+      "scenario_family_id": "terra200-replacement-syn-sol-0384-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴에 바르도록 만들어진 로션을 분사 용기에 옮겨 얼굴에 분사해 사용합니다. 해당 제품의 분사 전환 지시는 확인되지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G04",
+            "status": "difference",
+            "guidance": "분사 용기로 바꿔 쓰기보다 확인된 원래 제품의 도포 용법에 맞춰 사용해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c1dee6d07e34d93244c08808c9df336d112ae1a737ed467b3cb2a12a261c2546",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G04",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "각 제품을 지시에 맞게 사용하고 확인되지 않은 형태 변경을 하지 않음.",
+          "difference_when": "사용 근거 없이 사전 혼합·희석하거나 바르는 제품을 분사형으로 전환함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제조사가 명시적으로 안내한 혼합·희석 사용법",
+            "관련 의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "바르는 제품의 실제 분사 전환과 지시 미확인이 확인됐어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "QUALITY_NOTE",
+          "old_input_sha256": "0c15522d62c1e736a6e76e6d05471c2ebe21e90332569e298a96b58d18b83e4f",
+          "new_input_sha256": "c1dee6d07e34d93244c08808c9df336d112ae1a737ed467b3cb2a12a261c2546",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0385",
+      "title": "미용기기 버전별 젤 병용 지시",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-hn2-syn-sol-0385-scenario",
+      "group_id": "terra200-hn2-syn-sol-0385-group",
+      "scenario_family_id": "terra200-hn2-syn-sol-0385-family",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 미용기기 2.0을 얼굴용 젤과 실제로 함께 사용합니다. 기기 1.0의 합성 표시에는 그 젤과 병용 가능하다고 적혀 있지만 2.0의 병용 지시는 확인하지 못했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "unknown",
+            "guidance": "이전 1.0의 병용 지시를 실제 사용 중인 2.0 기기에 그대로 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9d4c9c43ad01e5705c6052715478410946ece419e1f0253b9772a64ab0bce1cd",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "실제 얼굴 기기·젤 병용과 서로 다른 기기 버전이 확인되지만 현재 버전 지시는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0386",
+      "title": "기기의 제품 병용 제한 확인",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0386",
+      "group_id": "terra200-b-group-syn-sol-0386",
+      "scenario_family_id": "terra200-b-family-syn-sol-0386",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 미용기기와 로션을 실제로 함께 씁니다. 기기 표시에는 해당 로션을 병용하지 말라고 적혀 있으나 이를 무시하고 사용했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "difference",
+            "guidance": "확인된 기기의 병용 제한을 따르도록 사용 방법을 재검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8cd4733b60730444f6cb1282e4582b149a2c081b0fa8a29d845b45cd1cefc548",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "실제 병용과 해당 표시의 불일치가 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0387",
+      "title": "실제 병용과 기기 지시 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0387",
+      "group_id": "terra200-b-group-syn-sol-0387",
+      "scenario_family_id": "terra200-b-family-syn-sol-0387",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 미용기기와 얼굴용 로션을 실제로 함께 사용했습니다. 기기의 로션 병용 지시는 확인하지 못했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "unknown",
+            "guidance": "기기와 로션을 함께 쓴 사실은 확인됐지만 병용 적합성은 미확인이에요. 해당 조합의 사용을 추천하기는 보류하고 기기의 공개 사용 지침을 확인해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2f82b8c0d28b22f9c7ebd2b54b860697f024b07b8d5933fea4531115dcadcd37",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "병용은 확인됐지만 지시는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "QUALITY_NOTE",
+          "old_input_sha256": "771c9c96b87b8ab84e84e64fbed52d30f8370f007075cbb1860f5d1affb44c60",
+          "new_input_sha256": "2f82b8c0d28b22f9c7ebd2b54b860697f024b07b8d5933fea4531115dcadcd37",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0388",
+      "title": "기기 병용과 제품 버전 미상",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0388",
+      "group_id": "terra200-b-group-syn-sol-0388",
+      "scenario_family_id": "terra200-b-family-syn-sol-0388",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 미용기기와 얼굴용 젤을 함께 사용했습니다. 사용한 젤의 버전을 몰라 기기에 허용된 젤과 같은지 확인하지 못했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "unknown",
+            "guidance": "실제 병용 사실과 허용된 제품 버전의 일치 여부를 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "5b8815b9b0588311df0d5bb652704273f845786b8128691bf9421e5bd9143a2b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "버전이 미상이라 일치 여부를 확인하지 못했어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0389",
+      "title": "기기 지시와 실제 얼굴 사용 일치",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0389",
+      "group_id": "terra200-b-group-syn-sol-0389",
+      "scenario_family_id": "terra200-b-family-syn-sol-0389",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 미용기기와 합성 얼굴용 젤을 실제로 함께 사용합니다. 확인된 해당 기기의 표시에는 그 젤과 얼굴 부위의 병용이 명시되어 있고 실제 사용도 그 지시와 일치합니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G06",
+            "status": "aligned",
+            "guidance": "확인된 해당 기기와 젤의 얼굴 사용은 표시된 지시와 일치하므로 그 지시 범위에서 유지할 수 있어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3dec81f2402db31e29ebe7ced790c99c9b1992b8371da75295485697e5abbee2",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G06",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+          "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "제품별 지시와 그 범위의 사용이 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "QUALITY_NOTE",
+          "old_input_sha256": "9291db0ec1ec0a54d2cd0fe284870de1b058c5d80b0861e7f020a14ecc3cbe14",
+          "new_input_sha256": "3dec81f2402db31e29ebe7ced790c99c9b1992b8371da75295485697e5abbee2",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0390",
+      "title": "표시 향료와 모두에게 금지라는 주장",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0390",
+      "group_id": "terra200-b-group-syn-sol-0390",
+      "scenario_family_id": "terra200-b-family-syn-sol-0390",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품을 고르는 중 향료가 표시된 것을 보고 그 성분을 모든 사람에게 금지해야 한다고 생각합니다. 본인의 알레르기 여부는 알려지지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "difference",
+            "guidance": "표시에 있다는 이유만으로 모든 사람에게 금지된다고 판단하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e64c9a5e1fad9f4988a3f8c3601426eed4ca81b7732a7bc29a7d9bcc58535b6b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "표시와 개인 알레르기 여부를 구분해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0391",
+      "title": "미표시와 성분 부재 구분",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0391",
+      "group_id": "terra200-b-group-syn-sol-0391",
+      "scenario_family_id": "terra200-b-family-syn-sol-0391",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품의 확인된 성분표에 특정 향료명이 보이지 않아 그 물질이 제품에 전혀 없다고 단정했습니다. 목록의 적용 범위는 확인하지 못했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "difference",
+            "guidance": "표시에서 보이지 않는 사실만으로 성분이 전혀 없다고 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9f4efe1b232c2f31a8deef60a8c7a479f02e53416d0b8c74b863e0af2f915448",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "표시 여부와 실제 부재는 같지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0392",
+      "title": "가족의 알레르기와 본인의 선호",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0392",
+      "group_id": "terra200-b-group-syn-sol-0392",
+      "scenario_family_id": "terra200-b-family-syn-sol-0392",
+      "split": "val_internal",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "가족은 특정 향료에 알레르기가 있다고 말합니다. 본인은 향 없는 얼굴용 제품을 선호하지만 본인 알레르기 여부는 알려지지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "unknown",
+            "guidance": "가족의 알레르기와 본인의 향 선호를 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "388bb8315bcae2c804de3b29f396b66a35c6e9b468a9a68ee6f844a34e351cde",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "가족의 병력을 본인에게 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0393",
+      "title": "향 무선호와 확인된 개인 알레르기 구분",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0393",
+      "group_id": "terra200-b-group-syn-sol-0393",
+      "scenario_family_id": "terra200-b-family-syn-sol-0393",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품에서 향을 피하고 싶다는 선호를 밝혔지만 의학적으로 확인된 알레르기 여부는 밝히지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "unknown",
+            "guidance": "향을 피하고 싶은 선호는 존중하되 알레르기 진단으로 바꾸지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3da8e8fdb8235996b4ee01fdfbbdff1122b0358f90a92b2c018b4374d4b28f81",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "선호와 개인 알레르기는 달라요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0394",
+      "title": "현재 제품과 다른 버전의 향료 표시",
+      "pilot_bucket": "distractor_or_defense",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0394",
+      "group_id": "terra200-b-group-syn-sol-0394",
+      "scenario_family_id": "terra200-b-family-syn-sol-0394",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품을 고르는 중 같은 이름의 이전 버전 성분표에서 향료명을 봤습니다. 손에 든 현재 용기의 버전과 성분표는 확인하지 못했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "unknown",
+            "guidance": "이전 성분표의 표시를 현재 용기의 성분으로 확정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "a58f6d14dac8339f62f17d5abb8af508287c42bd941d84d475d1608063b610d6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "해당 용기의 버전이 미확인이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-sol-0395",
+      "title": "향료 표시와 개인 반응 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-b-scenario-syn-sol-0395",
+      "group_id": "terra200-b-group-syn-sol-0395",
+      "scenario_family_id": "terra200-b-family-syn-sol-0395",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G17"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S15": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품의 현재 확인된 성분표에 향료가 표시되어 있습니다. 본인의 해당 성분에 대한 반응과 알레르기는 알려지지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G17",
+            "status": "unknown",
+            "guidance": "확인된 표시는 기록하되 개인의 반응이나 알레르기는 미상으로 남겨요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic fragrance ingredients and allergens are discussed in labeling guidance. A label alone does not establish an individual allergic reaction.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
+            "checked_on": "2026-11-04",
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G17@0.6.1",
+          "ref:S15"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "02474a186ef09497ced5140cbbd73b5dd6c74da9142c2b07b23422854b137eb6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G17",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "표시목록에 있다는 이유만으로 전 사용자 금지하거나 미표시를 성분 부재로 처리함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "알레르겐 정체가 불명확",
+            "첨부판 이후 변경 여부가 아직 완전히 대조되지 않음"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "표시 정보로 개인 반응을 확정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품별 지시와 실제 사용, 확인되지 않은 사실을 분리해요."
+    },
+    {
+      "id": "syn-hold-0115",
+      "title": "로션 사용 후 지속된 얼굴 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0115",
+      "group_id": "terra200-b-group-syn-hold-0115",
+      "scenario_family_id": "terra200-b-family-syn-hold-0115",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 로션을 사용한 후 얼굴 불편감이 지속됩니다. 정확한 제품 버전은 모릅니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "b1e3d6c80d5af04255a80a76dcc77feb8b051547fe9ebee1ff7997dc4a279709",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    },
+    {
+      "id": "syn-hold-0116",
+      "title": "미용기기 사용 전부터 있던 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0116",
+      "group_id": "terra200-b-group-syn-hold-0116",
+      "scenario_family_id": "terra200-b-family-syn-hold-0116",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴 불편감이 지속되는 가운데 얼굴용 미용기기를 사용했습니다. 불편감은 기기 사용 전부터 있었습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "cda97fdef08edc4be900a238e6a3018548f4659c8807371e731c9f3583ca3844",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    },
+    {
+      "id": "syn-hold-0117",
+      "title": "얼굴 제품 중단 뒤 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0117",
+      "group_id": "terra200-b-group-syn-hold-0117",
+      "scenario_family_id": "terra200-b-family-syn-hold-0117",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품을 쓰고 불편해 사용을 중단했지만 얼굴 불편감이 계속됩니다. 원인은 확인되지 않았습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "89a9ee2288536eed6c0656ad60d964bf67db5a9aea2679da992a82371b89504b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    },
+    {
+      "id": "syn-hold-0118",
+      "title": "두 얼굴용 제품과 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0118",
+      "group_id": "terra200-b-group-syn-hold-0118",
+      "scenario_family_id": "terra200-b-family-syn-hold-0118",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품 두 개를 같은 날 사용했고 얼굴 불편감이 지속됩니다. 어느 제품이 원인인지는 모릅니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e52d14edc0370973c79fb76f0e7a69e340f3a0c495df33cc1ce38cf1859b2fa6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    },
+    {
+      "id": "syn-hold-0119",
+      "title": "사용량 변경 문의와 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0119",
+      "group_id": "terra200-b-group-syn-hold-0119",
+      "scenario_family_id": "terra200-b-family-syn-hold-0119",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 제품을 사용하는 동안 불편감이 지속됩니다. 양을 절반으로 줄여 계속 써도 되는지 묻습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e27b3774e77f5b2d3e75039e2a947167c5e626c5b892035a84221ad33c25384b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    },
+    {
+      "id": "syn-hold-0120",
+      "title": "제품 순서 문의와 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0120",
+      "group_id": "terra200-b-group-syn-hold-0120",
+      "scenario_family_id": "terra200-b-family-syn-hold-0120",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴 불편감이 지속되는 상태에서 얼굴용 제품 순서를 바꾸면 되는지 묻습니다. 제품 순서가 원인인지 모릅니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "80fdd56a29ac1ec532684a5563f1708e172a373a920b3931b29cdc120616f906",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    },
+    {
+      "id": "syn-hold-0121",
+      "title": "얼굴용 기기 후 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0121",
+      "group_id": "terra200-b-group-syn-hold-0121",
+      "scenario_family_id": "terra200-b-family-syn-hold-0121",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴용 미용기기를 사용한 후 얼굴 불편감이 지속됩니다. 함께 쓴 제품은 기억하지 못합니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "11a7232f77d758f057519ab4a4f3ba333ea0d5376465d9b8aad3fad48fd32af2",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    },
+    {
+      "id": "syn-hold-0122",
+      "title": "얼굴 제품과 지속 불편의 정보 거절",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-b-scenario-syn-hold-0122",
+      "group_id": "terra200-b-group-syn-hold-0122",
+      "scenario_family_id": "terra200-b-family-syn-hold-0122",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "얼굴 불편감이 지속됩니다. 사용한 얼굴 제품의 성분표에 대한 답변은 거절했습니다.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "be2187532f3a27052dea8c269562bfbd76497659feac924ed1b35100bee5c448",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속되는 불편에 대해 개별 루틴 판단을 보류하고 전문가 상담을 안내해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
+      "novelty_note": "제품·기기 사용과 지속 불편의 원인을 분리해요."
+    }
+  ]
+}

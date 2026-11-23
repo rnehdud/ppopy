@@ -1,0 +1,94 @@
+{
+  "dataset": "data/qlora/v2/additional_100_terra2.jsonl",
+  "dataset_sha256": "0a689600a0cf3aa460ae0d001d9d8e6928e472b774c605cabfa7e918c2de8acc",
+  "critic_model": null,
+  "review_kind": "codex_same_family_independent",
+  "external_cross_family_gate_satisfied": false,
+  "human_review_performed": false,
+  "total_rows": 100,
+  "pass_count": 100,
+  "fail_count": 0,
+  "failed_rows": [],
+  "scope": "작성 담당과 다른 독립 문맥의 Codex 담당자가 100행의 입력·답변·카드·출처 범위 및 R1–R6를 대조했어요. 다른 모델 계열의 공식 검수와 사람 승인은 아니에요.",
+  "limitations": [
+    "등록 출처와 KB 비교 명세를 대조한 개발 검토이며 외부 원문 전체 재검증이나 임상 검증이 아니에요.",
+    "구조 검사는 별도 보고서로 기록하며 감사 판정을 자동으로 만들지 않아요.",
+    "기존 248턴과 추가 후보의 의미 중복은 카드·관찰 유사 후보 및 개별 확인 대상에 대해 대조했으며 모든 쌍의 의미 중복 전수 증명을 수행했다고 주장하지 않아요."
+  ],
+  "additional_100_terra2_structural": {
+    "passed": true,
+    "files": [
+      "data\\qlora\\v2\\additional_100_terra2.jsonl"
+    ],
+    "total_rows": 100,
+    "solution_rows": 76,
+    "hold_rows": 24,
+    "hold_ratio": 0.24,
+    "hard_negative_rows": 34,
+    "hard_negative_ratio": 0.34,
+    "english_relevant_solution_rows": 26,
+    "english_relevant_solution_ratio": 0.3421,
+    "split_counts": {
+      "train": 90,
+      "val_internal": 10
+    },
+    "pilot_bucket_counts": {},
+    "error_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "combined_348_structural": {
+    "passed": true,
+    "files": [
+      "data\\qlora\\v2\\additional_100.jsonl",
+      "data\\qlora\\v2\\additional_100_terra.jsonl",
+      "data\\qlora\\v2\\additional_100_terra2.jsonl",
+      "data\\qlora\\v2\\additional_24.jsonl",
+      "data\\qlora\\v2\\pilot_24.jsonl"
+    ],
+    "total_rows": 348,
+    "solution_rows": 265,
+    "hold_rows": 83,
+    "hold_ratio": 0.2385,
+    "hard_negative_rows": 152,
+    "hard_negative_ratio": 0.4368,
+    "english_relevant_solution_rows": 89,
+    "english_relevant_solution_ratio": 0.3358,
+    "split_counts": {
+      "train": 314,
+      "val_internal": 34
+    },
+    "pilot_bucket_counts": {},
+    "error_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "review_history": [
+    {
+      "file": "additional_100_terra2_round1.jsonl",
+      "file_sha256": "06afb88ca2055344ad2cb880881c993c2c25fc37050a84a910be555e3fbf76c6",
+      "total_rows": 100,
+      "pass_count": 62,
+      "fail_count": 38
+    },
+    {
+      "file": "additional_100_terra2_round2.jsonl",
+      "file_sha256": "51e412e943ebf1325b4faa7a254563a546f173bc3379ccd231bca5924146a4c8",
+      "total_rows": 100,
+      "pass_count": 96,
+      "fail_count": 4
+    },
+    {
+      "file": "additional_100_terra2_round3.jsonl",
+      "file_sha256": "6f6804586c1564ef54c5c15b656ecb07b16c1b0b4d7a1b258184d997ccf94ee5",
+      "total_rows": 100,
+      "pass_count": 99,
+      "fail_count": 1
+    }
+  ],
+  "critic_models": {
+    "gpt-6.1-terra": 100
+  },
+  "revision": "raw-fix-61-20261123",
+  "revision_note": "이번에 지적 61행을 재검토했으며 나머지 과거 PASS를 새 의미 검수로 세지 않아요. 전체 원문 감사의 별도 미해결 44행은 남아 있어요."
+}

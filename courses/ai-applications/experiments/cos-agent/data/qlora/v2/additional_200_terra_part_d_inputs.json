@@ -1,0 +1,2783 @@
+{
+  "schema_version": "additional-pilot-shard-v1",
+  "input_revision": 3,
+  "revision_note": "독립 검토에서 기존 상황에 사실만 덧붙인 두 행을 지적하여 서로 다른 새 합성 상황과 새 식별자로 교체했어요. 응답 작성 전에 고정했어요.",
+  "mode": "development_preview",
+  "production_enabled": false,
+  "cases": [
+    {
+      "id": "syn-sol-0422",
+      "title": "얼굴 수동 면도의 털 방향",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0422-scenario",
+      "group_id": "add24-group-wet-shaving-technique",
+      "scenario_family_id": "add24-family-wet-shaving-technique",
+      "split": "val_internal",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "aligned",
+            "guidance": "확인된 부드러운 수동 면도 방법을 유지해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1ddfbc5dae34f4badc7b00a70962fcb2480606cb870dff72e32732c3e1e129cb",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "확인된 부드러운 수동 면도 방법을 유지해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "기존 수동 면도 기술 가족·분할 재사용",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0423",
+      "title": "목 수동 면도의 압력",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0423-scenario",
+      "group_id": "add24-group-wet-shaving-technique",
+      "scenario_family_id": "add24-family-wet-shaving-technique",
+      "split": "val_internal",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목을 수동 날면도로 깎으며 강하게 누르지 않고 털 방향으로 움직여요. 같은 곳을 반복하지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "aligned",
+            "guidance": "확인된 압력과 방향, 반복 관리에 한정해 유지해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "664f3a5ca6e550b48d57260e4e3bb066aac460c0417a62b5ce5bdb30e6d8de6b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "확인된 압력과 방향, 반복 관리에 한정해 유지해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "기존 수동 면도 기술 가족·분할 재사용",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0424",
+      "title": "턱 수동 면도의 반복 통과",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0424-scenario",
+      "group_id": "add24-group-wet-shaving-technique",
+      "scenario_family_id": "add24-family-wet-shaving-technique",
+      "split": "val_internal",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴의 턱을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 같은 곳의 반복 통과를 줄여요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "aligned",
+            "guidance": "확인된 얼굴 수동 면도 방법을 유지해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "558cb39d9cac8ff388afb78e269f926bad3a1af981c54ab532e59158b5b2165f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "확인된 얼굴 수동 면도 방법을 유지해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "기존 수동 면도 기술 가족·분할 재사용",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0425",
+      "title": "동료의 목 면도와 본인의 볼 면도",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-r2-syn-sol-0425-scenario",
+      "group_id": "terra200-d-r2-syn-sol-0425-group",
+      "scenario_family_id": "terra200-d-r2-syn-sol-0425-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "본인은 볼을 수동 날면도해요. 이때 본인의 방향과 압력은 기억나지 않아요. 직장 동료는 다른 날 목을 수동 날면도할 때 강하게 누른다고 해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "unknown",
+            "guidance": "동료의 목 면도 압력을 본인의 볼 면도 압력으로 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "be99959b70b7b5ba7652d426d95f529e8b3af293b160336918320a754a5b7c92",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "동료의 목 면도 압력을 본인의 볼 면도 압력으로 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "replaced_case": {
+        "previous_input_sha256": "f78149582c09edc8ce0e9b6d02aadd2dab2aaef2d1dbc899b97723170d617ed8",
+        "initial_input_sha256": "807ded8536eb3510b97b7dc2cd4e95c15ed5bf04781f621135e035ddca31d03c",
+        "reason": "이전 수정이 기존 사례에 적용 사실만 추가한 문제를 남겨 실제 면도 주체·부위·다른 사람의 상황이 구별되는 새 합성 상황과 새 가족으로 교체했어요. 이전 관찰의 누락 사실을 추론하지 않았어요."
+      },
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "범위 불명 사례를 본인 실제 면도가 명시된 새 합성 입력으로 교체",
+          "human_review": "unreviewed"
+        },
+        {
+          "revision": "200-cd-round2",
+          "reason": "기존 입력 사실 추가 방식 대신 새 합성 상황 및 식별자로 교체했어요.",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0426",
+      "title": "목의 수동 면도 방향 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0426-scenario",
+      "group_id": "terra200-d-syn-sol-0426-group",
+      "scenario_family_id": "terra200-d-syn-sol-0426-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "unknown",
+            "guidance": "사용 부위와 도구는 알려져 있으나 세부 동작은 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2869c2e7613f1c8fc1a6b685536e104cb21526134bf2bd2086e0955a3d4c4df0",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "사용 부위와 도구는 알려져 있으나 세부 동작은 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0427",
+      "title": "얼굴 면도 불편을 무시한 강한 압력",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0427-scenario",
+      "group_id": "terra200-d-syn-sol-0427-group",
+      "scenario_family_id": "terra200-d-syn-sol-0427-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "difference",
+            "guidance": "불편을 무시한 강한 압력과 반복 통과를 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "91e60a98e0a4474063fcd154f516a716f93007938d6335e45f125c3c9be0db46",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "불편을 무시한 강한 압력과 반복 통과를 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+    },
+    {
+      "id": "syn-sol-0428",
+      "title": "목 면도의 역방향 고수",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0428-scenario",
+      "group_id": "terra200-d-syn-sol-0428-group",
+      "scenario_family_id": "terra200-d-syn-sol-0428-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강한 역방향 면도를 계속해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "difference",
+            "guidance": "불편을 무시한 강한 역방향 면도를 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "cab4ca5fefb8804d0464c912743ee1251402440264d93373badc0ceabe0c6750",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "불편을 무시한 강한 역방향 면도를 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+    },
+    {
+      "id": "syn-sol-0429",
+      "title": "얼굴 면도의 압력 답변 거절",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0429-scenario",
+      "group_id": "terra200-d-syn-sol-0429-group",
+      "scenario_family_id": "terra200-d-syn-sol-0429-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴을 수동 날면도로 깎아요. 면도 압력과 방향에 대해서는 답하고 싶지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "unknown",
+            "guidance": "답변 거절을 강한 면도로 바꾸지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "298d135bedf0b3de33ec40e2b3e5bd17809ddddcdf9f720e89e9c8cb259fbd25",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "답변 거절을 강한 면도로 바꾸지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0430",
+      "title": "이전과 현재 수동 면도 분리",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0430-scenario",
+      "group_id": "add24-group-wet-shaving-technique",
+      "scenario_family_id": "add24-family-wet-shaving-technique",
+      "split": "val_internal",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "예전에 얼굴 수동 날면도에서 강하게 눌렀어요. 현재는 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "aligned",
+            "guidance": "이전 동작과 확인된 현재 동작을 나누어 살펴요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "Manual shaving guidance discusses shaving with the direction of hair growth and using a gentle technique. It also discusses preparation and care of the blade.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8787dbb12ce84e0d36bbde0e2016776dc9190e5620d38bd9b78b3e786ad6ba50",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "이전 동작과 확인된 현재 동작을 나누어 살펴요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "기존 수동 면도 기술 가족·분할 재사용 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0431",
+      "title": "면도기 날 개수 미상",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0431-scenario",
+      "group_id": "add24-group-wet-shaving-technique",
+      "scenario_family_id": "add24-family-wet-shaving-technique",
+      "split": "val_internal",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G10"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S23": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G10",
+            "status": "aligned",
+            "guidance": "확인된 방법을 살피며 날 개수를 추측하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S23",
+            "text": "수동 날면도 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. 준비와 면도날 관리도 함께 안내해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/how-to-shave",
+            "locator": "습식 면도 준비·털 방향·날 헹굼·5–7회 후 교체 참고·건조 보관.",
+            "checked_on": "2026-11-04",
+            "limitations": "면도 횟수와 경과 일수는 다르다. 전기면도기 헤드의 교체 주기로 일반화하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G10@0.6.1",
+          "ref:S23"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3cbcfdd489d49d4c20b14f4ef75f459992c27f5e31a05cf9e4ee1f037afddced",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G10",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "강하게 누르지 않고 털 방향·반복 통과를 관리함.",
+          "difference_when": "매끈함을 위해 강한 역방향/압력/반복 통과를 고수하면서 불편을 무시함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "확인된 방법을 살피며 날 개수를 추측하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "기존 수동 면도 기술 가족·분할 재사용 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0432",
+      "title": "얼굴 면도 후 편안한 보습",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0432-scenario",
+      "group_id": "add100-a-group-syn-sol-0045",
+      "scenario_family_id": "add100-a-family-면도 후 편안한 보습에 별도 상품 의무 없음",
+      "split": "val_internal",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴 면도 후 현재 보습제를 바르고 편안해요. 별도의 애프터셰이브는 쓰지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "aligned",
+            "guidance": "견딜 수 있는 면도 후 보습을 유지해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "69a45b888e9aa56e2634b27ee1fe0c3d8b9212533b9cbd4bf67a7d8f0808112c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "견딜 수 있는 면도 후 보습을 유지해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "기존 면도 후 편안한 보습 가족·분할 재사용",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0433",
+      "title": "목 면도 후 특정 제품의 반복 따가움",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0433-scenario",
+      "group_id": "terra200-d-syn-sol-0433-group",
+      "scenario_family_id": "terra200-d-syn-sol-0433-family",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목 면도 후 후처리 제품을 바를 때마다 따갑지만 흡수되는 느낌이라며 계속 사용해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "difference",
+            "guidance": "반복 따가움을 흡수 효과로 해석해 계속 사용하는 행동을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8d0513e2fb403920d832f8aae990993ed6d7b101958df24fc8c55c4c58d4fff4",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "반복 따가움을 흡수 효과로 해석해 계속 사용하는 행동을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+    },
+    {
+      "id": "syn-sol-0434",
+      "title": "얼굴 후처리 반응 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0434-scenario",
+      "group_id": "terra200-d-syn-sol-0434-group",
+      "scenario_family_id": "terra200-d-syn-sol-0434-family",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴 면도 후 보습제를 발라요. 바른 뒤의 반응은 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "unknown",
+            "guidance": "보습 사용 사실과 사용 반응의 미확인을 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "505a654592c7d598dc0b919517bfd4f7d81598d4eda10b51f3b120211f4a303f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "보습 사용 사실과 사용 반응의 미확인을 구분해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0435",
+      "title": "목 면도 뒤 보습 거절 답변",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0435-scenario",
+      "group_id": "terra200-d-syn-sol-0435-group",
+      "scenario_family_id": "terra200-d-syn-sol-0435-family",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "unknown",
+            "guidance": "답변 거절을 보습 중단으로 바꾸지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "7ea840468ec8084351c25bd8fd3123d93d173b88143b5a5ce45f8c0dd619326b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "답변 거절을 보습 중단으로 바꾸지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0436",
+      "title": "동거인의 얼굴 후처리와 본인의 목 보습",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-r2-syn-sol-0436-scenario",
+      "group_id": "terra200-d-r2-syn-sol-0436-group",
+      "scenario_family_id": "terra200-d-r2-syn-sol-0436-family",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "본인은 목을 면도해요. 목 면도 후의 보습 사용 여부와 반응은 확인되지 않았어요. 동거인은 별도로 얼굴 면도 후 사용한 후처리 제품이 따갑다고 해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "unknown",
+            "guidance": "동거인의 얼굴 제품 반응을 본인의 목 면도 후 반응으로 옮기지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e7a83ec0e2c1f93b06c9802ce07e86ccb3d8d2551afbd7ec5939332eada851bf",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "동거인의 얼굴 제품 반응을 본인의 목 면도 후 반응으로 옮기지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "replaced_case": {
+        "previous_input_sha256": "5cdaa4491c63c581b087fc9b2fde2180eae94eccf8a72b389f2585cc2fa7e3d4",
+        "initial_input_sha256": "81a7cf9d9a15fc727981d68b7195cdd24f6454ee2e774c180ee25dd69e52e865",
+        "reason": "이전 수정이 기존 사례에 적용 사실만 추가한 문제를 남겨 실제 면도 주체·부위·다른 사람의 상황이 구별되는 새 합성 상황과 새 가족으로 교체했어요. 이전 관찰의 누락 사실을 추론하지 않았어요."
+      },
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "범위 불명 사례를 본인 실제 면도가 명시된 새 합성 입력으로 교체",
+          "human_review": "unreviewed"
+        },
+        {
+          "revision": "200-cd-round2",
+          "reason": "기존 입력 사실 추가 방식 대신 새 합성 상황 및 식별자로 교체했어요.",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0437",
+      "title": "목 면도 뒤 모든 보습 중단",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0437-scenario",
+      "group_id": "terra200-d-syn-sol-0437-group",
+      "scenario_family_id": "terra200-d-syn-sol-0437-family",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "difference",
+            "guidance": "특정 후처리 제품의 반응과 보습 전체 중단을 분리해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "198db3c6e22d8eb23fd540ca66f6151aaa08a759f6104bb744504ad06a93c45b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "특정 후처리 제품의 반응과 보습 전체 중단을 분리해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+    },
+    {
+      "id": "syn-sol-0438",
+      "title": "얼굴 면도 뒤 예전 제품과 현재 제품",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0438-scenario",
+      "group_id": "terra200-d-syn-sol-0438-group",
+      "scenario_family_id": "terra200-d-syn-sol-0438-family",
+      "split": "train",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴 면도 뒤 예전 후처리 제품은 따가웠어요. 다른 현재 보습제는 사용 후 편안해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "aligned",
+            "guidance": "예전 후처리 제품과 현재 견디는 보습제를 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "bd86e0ae3d27253f075df531b2be0ae3d21dac594c5abd092b992aa1f51e6bc2",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "예전 후처리 제품과 현재 견디는 보습제를 구분해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0439",
+      "title": "목 면도 뒤 별도 상품 미사용",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0439-scenario",
+      "group_id": "add100-a-group-syn-sol-0045",
+      "scenario_family_id": "add100-a-family-면도 후 편안한 보습에 별도 상품 의무 없음",
+      "split": "val_internal",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-M05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S25": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목 면도 후 보습제를 사용해 편안해요. 별도 애프터셰이브는 사용하지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-M05",
+            "status": "aligned",
+            "guidance": "확인된 편안한 보습을 살피며 별도 상품을 강제하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S25",
+            "text": "일반적인 피부 관리 안내는 면도 후 보습을 다뤄요. 자극이 우려될 때는 무향료 제품 선택도 설명해요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-for-men",
+            "locator": "면도 후 보습, 자극에 민감할 때 무향료 제품 선택, 면도 방법.",
+            "checked_on": "2026-11-04",
+            "limitations": "기본 면도 모듈은 성별 대신 실제 면도행위로 활성화하는 서비스 설계다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-M05@0.6.1",
+          "ref:S25"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e8d78da39a245d354586a35e7bbbbe2ef1e5825456c93edc4d57ab92fd5a2129",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-M05",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "견딜 수 있는 보습을 유지하고 후처리 반응을 확인함.",
+          "difference_when": "반복 따가움을 소독/흡수 효과라며 견디거나 모든 보습을 중단함.",
+          "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+          "exception_when": [
+            "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+          ],
+          "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+        },
+        "rationale": "확인된 편안한 보습을 살피며 별도 상품을 강제하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "기존 면도 후 편안한 보습 가족·분할 재사용",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0440",
+      "title": "얼굴 레티놀과 AHA 제품 동시 사용",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0440-scenario",
+      "group_id": "terra200-d-syn-sol-0440-group",
+      "scenario_family_id": "terra200-d-syn-sol-0440-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "difference",
+            "guidance": "같은 부위의 별도 관리제품 중첩을 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "442f8367ae51c3b961fd7a43d252d1c73f38cd56e17747851009bdeb97088358",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "같은 부위의 별도 관리제품 중첩을 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+    },
+    {
+      "id": "syn-sol-0441",
+      "title": "목 레티놀과 AHA 겹치는 기간",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0441-scenario",
+      "group_id": "terra200-d-syn-sol-0441-group",
+      "scenario_family_id": "terra200-d-syn-sol-0441-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목에 레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 사용하는 날은 달라요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "difference",
+            "guidance": "같은 부위와 겹치는 사용기간을 확인하고 날짜 분리만으로 적합하다고 정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8b548f17ff72d91e001a813d92d3006b9515c4b23e62abbef0cc4d66d06038ec",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "같은 부위와 겹치는 사용기간을 확인하고 날짜 분리만으로 적합하다고 정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+    },
+    {
+      "id": "syn-sol-0442",
+      "title": "레티놀과 AHA 접촉 부위 미상",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0442-scenario",
+      "group_id": "terra200-d-syn-sol-0442-group",
+      "scenario_family_id": "terra200-d-syn-sol-0442-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 각각 바르는 부위는 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "같은 부위에 접촉하는지 미상으로 남겨요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "dcd7f6c8cc2ec16af01e561141fe66c19460338c1ab5e9d8ce9fab4691db0891",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "같은 부위에 접촉하는지 미상으로 남겨요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0443",
+      "title": "AHA 포함만 확인된 제품",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0443-scenario",
+      "group_id": "terra200-d-syn-sol-0443-group",
+      "scenario_family_id": "terra200-d-syn-sol-0443-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "성분 포함과 각질관리 목적을 구분해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d86b96df1b2dfae7cb4ef90d3a512180129f4cc49a4cd31ec1c73627dade7a12",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "성분 포함과 각질관리 목적을 구분해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0444",
+      "title": "관리 목적만 알려진 제품",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0444-scenario",
+      "group_id": "terra200-d-syn-sol-0444-group",
+      "scenario_family_id": "terra200-d-syn-sol-0444-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴에 레티놀 관리 제품과 별도 각질관리 제품을 같은 기간에 사용해요. 각질관리 제품의 성분은 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "각질관리 제품의 AHA 해당 여부가 미확인이므로 레티노이드와 AHA 특정 조합의 개별 판정은 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "6336f445f8ea2774c338e27936ff0dbc18e93e6e6cdf818dae832a56a531367b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "카드 전체 제목은 레티노이드와 AHA 중첩이며 combination_pair는 retinoid와 aha_exfoliating이에요. 관리 목적은 확인됐지만 AHA 해당 여부는 미확인이므로 이 특정 조합의 판정은 미상이에요. 앞선 범위 의문과 차이 판정은 카드 전체의 제한 조건을 반영해 정정해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        },
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "SPEC_GAP",
+          "old_input_sha256": "b053296311415b5414602477bddb17c2f2acbf5308c19e4efc2d4e03b62c2783",
+          "new_input_sha256": "e608eaf2bfa754f7e4306350c885ce356e0f0fbe757a011a44233d4a30e08ddc",
+          "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "카드 전체 제목과 combination_pair의 AHA 적용 조건을 반영해 앞선 범위 의문과 차이 판정을 미상으로 정정해요.",
+          "old_input_sha256": "e608eaf2bfa754f7e4306350c885ce356e0f0fbe757a011a44233d4a30e08ddc",
+          "new_input_sha256": "6336f445f8ea2774c338e27936ff0dbc18e93e6e6cdf818dae832a56a531367b",
+          "observation_change": "기존 관찰 보존"
+        }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra"
+    },
+    {
+      "id": "syn-sol-0445",
+      "title": "서로 다른 부위의 두 제품",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0445-scenario",
+      "group_id": "terra200-d-syn-sol-0445-group",
+      "scenario_family_id": "terra200-d-syn-sol-0445-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary",
+        "ref:S06": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "레티놀 관리용 화장품은 얼굴에, AHA 각질관리용 별도 화장품은 손에 같은 기간 사용해요. 두 제품의 실제 접촉 부위는 겹치지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "exception",
+            "guidance": "확인된 다른 부위에 동일 부위 중첩을 적용하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          },
+          {
+            "evidence_ref": "ref:S06",
+            "text": "화장품은 열과 빛, 공기에 노출되는 보관 조건에 영향을 받을 수 있어요. 용기와 취급 방식도 품질 관리에서 살펴볼 요소예요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": [
+          "ref:S06"
+        ]
+      },
+      "input_sha256": "50e40d7ec106bdbf5bed87dd7553937b88ea666bd7b7a6836beea91b214ccd4d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "확인된 다른 부위에 동일 부위 중첩을 적용하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "HN_REVIEW_NEEDED",
+          "old_input_sha256": "f632732f1588d23bf1754b14faa42f23eefc572d21c76a56a6354cd37943a8a4",
+          "new_input_sha256": "50e40d7ec106bdbf5bed87dd7553937b88ea666bd7b7a6836beea91b214ccd4d",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0446",
+      "title": "단일 복합 완제품",
+      "pilot_bucket": "normal_guidance",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0446-scenario",
+      "group_id": "terra200-d-syn-sol-0446-group",
+      "scenario_family_id": "terra200-d-syn-sol-0446-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary",
+        "ref:S06": "synthetic_defense_probe"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "exception",
+            "guidance": "단일 복합 완제품은 별도 제품 중첩과 나누어 제품별로 검토해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          },
+          {
+            "evidence_ref": "ref:S06",
+            "text": "화장품은 열과 빛, 공기에 노출되는 보관 조건에 영향을 받을 수 있어요. 용기와 취급 방식도 품질 관리에서 살펴볼 요소예요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+            "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+            "checked_on": "2026-11-04",
+            "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": [
+          "ref:S06"
+        ]
+      },
+      "input_sha256": "5b1b246e78d3ad29d2a15a60d6c2fb39990ba1c21aec53433f3bba006018336c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "단일 복합 완제품은 별도 제품 중첩과 나누어 제품별로 검토해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision_model": "gpt-6.1-terra",
+          "reason": "HN_REVIEW_NEEDED",
+          "old_input_sha256": "d3eb08aff8a7eab0d65de8348cdf973a831e967ba4fd8fd92c24aafec83baafd",
+          "new_input_sha256": "5b1b246e78d3ad29d2a15a60d6c2fb39990ba1c21aec53433f3bba006018336c",
+          "observation_change": "기존 관찰 보존"
+        }
+      ]
+    },
+    {
+      "id": "syn-sol-0447",
+      "title": "처방 레티노이드와 AHA의 계획",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "terra200-d-syn-sol-0447-scenario",
+      "group_id": "terra200-d-syn-sol-0447-group",
+      "scenario_family_id": "terra200-d-syn-sol-0447-family",
+      "split": "train",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [
+        "B-G13"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴에 처방 레티노이드와 별도 AHA 각질관리 화장품을 같은 기간 사용해요. 의료진의 병용 지시 여부는 아직 확인하지 못했어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G13",
+            "status": "unknown",
+            "guidance": "처방 여부와 미확인 병용 지시를 구분하고 처방을 임의 변경하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "일반 각질관리 안내는 레티놀이나 처방 레티노이드를 사용하는 중 각질제거를 추가할 때 주의를 권해요. 모든 조합의 개인별 위해 확률을 제시하지는 않아요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G13@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "be811c128c55bb38e2b801b73a536b4b5b3c5ddfedd85853709862239b7c35af",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G13",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "처방 여부와 미확인 병용 지시를 구분하고 처방을 임의 변경하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "revision_history": [
+        {
+          "revision": "200-cd-round1",
+          "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
+          "human_review": "unreviewed"
+        }
+      ]
+    },
+    {
+      "id": "syn-hold-0131",
+      "title": "얼굴 면도 부위 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-d-syn-hold-0131-scenario",
+      "group_id": "terra200-d-syn-hold-0131-group",
+      "scenario_family_id": "terra200-d-syn-hold-0131-family",
+      "split": "train",
+      "domains": [
+        "general_safety",
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴 면도 부위의 불편이 지속돼요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 루틴 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "a9c37fe177df068396ee033ba1d8406a4f50fc998190b7bba733116dd88832c8",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편을 개별 루틴 조정으로 해결했다고 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "면도 또는 관리 제품 사용과 지속 불편의 원인을 구분해요."
+    },
+    {
+      "id": "syn-hold-0132",
+      "title": "목 면도 후 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-d-syn-hold-0132-scenario",
+      "group_id": "terra200-d-syn-hold-0132-group",
+      "scenario_family_id": "terra200-d-syn-hold-0132-family",
+      "split": "train",
+      "domains": [
+        "general_safety",
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목 면도 후 불편이 계속돼요. 원인은 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 루틴 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "aa6bedc05169c218918fd06f77f821550223051f0640d211e78490ba85a3e63d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편을 개별 루틴 조정으로 해결했다고 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "면도 또는 관리 제품 사용과 지속 불편의 원인을 구분해요."
+    },
+    {
+      "id": "syn-hold-0133",
+      "title": "면도 후 제품과 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-d-syn-hold-0133-scenario",
+      "group_id": "terra200-d-syn-hold-0133-group",
+      "scenario_family_id": "terra200-d-syn-hold-0133-family",
+      "split": "train",
+      "domains": [
+        "general_safety",
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴 면도 후 제품을 바른 뒤 불편이 계속돼요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 루틴 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e4823a4f351e3a9b52923474643ec4e0c605ad4433185a4637f210d7c159b707",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편을 개별 루틴 조정으로 해결했다고 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "면도 또는 관리 제품 사용과 지속 불편의 원인을 구분해요."
+    },
+    {
+      "id": "syn-hold-0134",
+      "title": "면도 방법 질문과 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-d-syn-hold-0134-scenario",
+      "group_id": "terra200-d-syn-hold-0134-group",
+      "scenario_family_id": "terra200-d-syn-hold-0134-family",
+      "split": "train",
+      "domains": [
+        "general_safety",
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "수동 날면도하는 얼굴 부위에 불편이 지속돼서 압력을 어떻게 바꿀지 묻고 있어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 루틴 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "79c8f46987bd62d6ad9ae7b10cc443680e4b396de3acd9ec426bbb9e049cd124",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편을 개별 루틴 조정으로 해결했다고 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "면도 또는 관리 제품 사용과 지속 불편의 원인을 구분해요."
+    },
+    {
+      "id": "syn-hold-0135",
+      "title": "목 보습 질문과 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-d-syn-hold-0135-scenario",
+      "group_id": "terra200-d-syn-hold-0135-group",
+      "scenario_family_id": "terra200-d-syn-hold-0135-family",
+      "split": "train",
+      "domains": [
+        "general_safety",
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "목 면도 부위에 불편이 지속되어 보습 횟수를 묻고 있어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 루틴 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d87bf1eeb0142d210268e06080e1346c38e6ea9c2fc639ac1a408372d7658e12",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편을 개별 루틴 조정으로 해결했다고 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "면도 또는 관리 제품 사용과 지속 불편의 원인을 구분해요."
+    },
+    {
+      "id": "syn-hold-0136",
+      "title": "얼굴 관리 제품과 지속 불편",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-d-syn-hold-0136-scenario",
+      "group_id": "terra200-d-syn-hold-0136-group",
+      "scenario_family_id": "terra200-d-syn-hold-0136-family",
+      "split": "train",
+      "domains": [
+        "general_safety",
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴에 쓰는 두 관리 제품의 사용 기간 중 불편이 지속돼요. 어느 제품 때문인지는 몰라요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 루틴 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f3bd81deac53ae09514ea743094f3b3e50e97f53e40597c764b0eb7c00c9045f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편을 개별 루틴 조정으로 해결했다고 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "면도 또는 관리 제품 사용과 지속 불편의 원인을 구분해요."
+    },
+    {
+      "id": "syn-hold-0137",
+      "title": "면도 후 지속 불편과 원인 미상",
+      "pilot_bucket": "hold",
+      "mode": "hold",
+      "scenario_id": "terra200-d-syn-hold-0137-scenario",
+      "group_id": "terra200-d-syn-hold-0137-group",
+      "scenario_family_id": "terra200-d-syn-hold-0137-family",
+      "split": "train",
+      "domains": [
+        "general_safety",
+        "moisturizing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": "얼굴 면도 후 불편이 계속돼요. 면도와 제품 중 원인은 확인되지 않았어요.",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편이 보고되어 개별 루틴 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "8d3a2c26425377142eb02be1cf26838a1f023ca62ca8b8af8e126e9c9702df6b",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-B01",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+          "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        },
+        "rationale": "지속 불편을 개별 루틴 조정으로 해결했다고 추정하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
+      "novelty_note": "면도 또는 관리 제품 사용과 지속 불편의 원인을 구분해요."
+    }
+  ]
+}
