@@ -1,0 +1,47 @@
+{
+  "source": "drlee1/kotraj",
+  "revision": "dffbf2552bcd6b93ab0a3d50947499a9d688c66d",
+  "sha256": "e2ce7225896347da30c297f7d7de5219f4447272590a9c890778543b54b6f0eb",
+  "seed": 862410,
+  "splits": {
+    "train": {
+      "rows": 200,
+      "call": 100,
+      "no_tool": 100,
+      "later_user_turn": 5,
+      "domains": {
+        "travel": 88,
+        "commerce": 56,
+        "calendar": 56
+      }
+    },
+    "dev": {
+      "rows": 40,
+      "call": 20,
+      "no_tool": 20,
+      "later_user_turn": 0,
+      "domains": {
+        "travel": 18,
+        "calendar": 13,
+        "commerce": 9
+      }
+    },
+    "test": {
+      "rows": 60,
+      "call": 30,
+      "no_tool": 30,
+      "later_user_turn": 2,
+      "domains": {
+        "calendar": 17,
+        "travel": 21,
+        "commerce": 22
+      }
+    }
+  },
+  "filter_counts": {
+    "too_long_excluded": 876,
+    "parallel_excluded": 237,
+    "unconfirmed_mutation_excluded": 10
+  },
+  "limitations": "single observed next action per conversation; full history must fit; no parallel calls; fixed catalog; labels not independently verified"
+}

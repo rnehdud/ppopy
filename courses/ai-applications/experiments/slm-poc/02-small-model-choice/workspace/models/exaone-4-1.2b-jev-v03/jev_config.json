@@ -1,0 +1,17 @@
+{
+  "version": "v0.3",
+  "base_model": "LGAI-EXAONE/EXAONE-4.0-1.2B",
+  "temperature": 1.079,
+  "temperature_by_type": {
+    "choice_2": 1.0,
+    "choice_3_5": 1.079,
+    "choice_6+": 1.079,
+    "noul": 1.166
+  },
+  "labels": "ABCDEFGHIJKLMNOPQRSTUVWX",
+  "max_labels_per_read": 24,
+  "temperature_fit_on": "v0.3 calibration split (12,237 rows, own data)",
+  "permute": 2,
+  "readout": "softmax over the option-label logprobs at the answer position, divided by the per-type temperature; read in the original and the reversed option order and averaged",
+  "prompt": "EXAONE chat template, thinking disabled; system prompt + tev1 JSON {state, question, options:[{label,key,description}]}"
+}

@@ -1,0 +1,6054 @@
+[
+  {
+    "id": "v60:final:sum:read:0",
+    "split": "final",
+    "family": "sum",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590059,
+    "turns": [
+      {
+        "text": "금액 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:read:1",
+    "split": "final",
+    "family": "sum",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590060,
+    "turns": [
+      {
+        "text": "부탁해요. 금액 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:read:2",
+    "split": "final",
+    "family": "sum",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590061,
+    "turns": [
+      {
+        "text": "이번에는 금액 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:read:3",
+    "split": "final",
+    "family": "sum",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590062,
+    "turns": [
+      {
+        "text": "지금 금액 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:read_process:0",
+    "split": "final",
+    "family": "sum",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590063,
+    "turns": [
+      {
+        "text": "먼저 금액 목록 파일을 읽고, 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:read_process:1",
+    "split": "final",
+    "family": "sum",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590064,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 금액 목록 파일을 읽고, 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:read_process:2",
+    "split": "final",
+    "family": "sum",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590065,
+    "turns": [
+      {
+        "text": "이번에는 먼저 금액 목록 파일을 읽고, 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:read_process:3",
+    "split": "final",
+    "family": "sum",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590066,
+    "turns": [
+      {
+        "text": "지금 먼저 금액 목록 파일을 읽고, 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:conditional:0",
+    "split": "final",
+    "family": "sum",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590067,
+    "turns": [
+      {
+        "text": "먼저 금액 목록 파일을 읽고 항목이 있으면 금액을 모두 더한 합계를 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:conditional:1",
+    "split": "final",
+    "family": "sum",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590068,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 금액 목록 파일을 읽고 항목이 있으면 금액을 모두 더한 합계를 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:conditional:2",
+    "split": "final",
+    "family": "sum",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590069,
+    "turns": [
+      {
+        "text": "먼저 금액 목록 파일을 읽고 항목이 있으면 금액을 모두 더한 합계를 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:conditional:3",
+    "split": "final",
+    "family": "sum",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590070,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 금액 목록 파일을 읽고 항목이 있으면 금액을 모두 더한 합계를 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:no_call:0",
+    "split": "final",
+    "family": "sum",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590071,
+    "turns": [
+      {
+        "text": "금액 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:no_call:1",
+    "split": "final",
+    "family": "sum",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590072,
+    "turns": [
+      {
+        "text": "부탁해요. 금액 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:no_call:2",
+    "split": "final",
+    "family": "sum",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c"
+    ],
+    "order_seed": 590073,
+    "turns": [
+      {
+        "text": "이번에는 금액을 모두 더한 합계를 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:no_call:3",
+    "split": "final",
+    "family": "sum",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590074,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:two_turns:0",
+    "split": "final",
+    "family": "sum",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590075,
+    "turns": [
+      {
+        "text": "금액 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:two_turns:1",
+    "split": "final",
+    "family": "sum",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590076,
+    "turns": [
+      {
+        "text": "부탁해요. 금액 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:two_turns:2",
+    "split": "final",
+    "family": "sum",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590077,
+    "turns": [
+      {
+        "text": "이번에는 금액 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sum:two_turns:3",
+    "split": "final",
+    "family": "sum",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590078,
+    "turns": [
+      {
+        "text": "지금 금액 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 금액을 모두 더한 합계를 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "sum": 13
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read:0",
+    "split": "final",
+    "family": "range",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590079,
+    "turns": [
+      {
+        "text": "측정값 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read:1",
+    "split": "final",
+    "family": "range",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590080,
+    "turns": [
+      {
+        "text": "부탁해요. 측정값 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read:2",
+    "split": "final",
+    "family": "range",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590081,
+    "turns": [
+      {
+        "text": "이번에는 측정값 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read:3",
+    "split": "final",
+    "family": "range",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590082,
+    "turns": [
+      {
+        "text": "지금 측정값 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read_process:0",
+    "split": "final",
+    "family": "range",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590083,
+    "turns": [
+      {
+        "text": "먼저 측정값 목록 파일을 읽고, 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read_process:1",
+    "split": "final",
+    "family": "range",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590084,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 측정값 목록 파일을 읽고, 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read_process:2",
+    "split": "final",
+    "family": "range",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590085,
+    "turns": [
+      {
+        "text": "이번에는 먼저 측정값 목록 파일을 읽고, 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:read_process:3",
+    "split": "final",
+    "family": "range",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590086,
+    "turns": [
+      {
+        "text": "지금 먼저 측정값 목록 파일을 읽고, 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:conditional:0",
+    "split": "final",
+    "family": "range",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590087,
+    "turns": [
+      {
+        "text": "먼저 측정값 목록 파일을 읽고 항목이 있으면 최솟값과 최댓값을 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:conditional:1",
+    "split": "final",
+    "family": "range",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590088,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 측정값 목록 파일을 읽고 항목이 있으면 최솟값과 최댓값을 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:conditional:2",
+    "split": "final",
+    "family": "range",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590089,
+    "turns": [
+      {
+        "text": "먼저 측정값 목록 파일을 읽고 항목이 있으면 최솟값과 최댓값을 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:conditional:3",
+    "split": "final",
+    "family": "range",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590090,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 측정값 목록 파일을 읽고 항목이 있으면 최솟값과 최댓값을 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:no_call:0",
+    "split": "final",
+    "family": "range",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590091,
+    "turns": [
+      {
+        "text": "측정값 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:no_call:1",
+    "split": "final",
+    "family": "range",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590092,
+    "turns": [
+      {
+        "text": "부탁해요. 측정값 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:no_call:2",
+    "split": "final",
+    "family": "range",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c"
+    ],
+    "order_seed": 590093,
+    "turns": [
+      {
+        "text": "이번에는 최솟값과 최댓값을 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:no_call:3",
+    "split": "final",
+    "family": "range",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590094,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:two_turns:0",
+    "split": "final",
+    "family": "range",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590095,
+    "turns": [
+      {
+        "text": "측정값 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:two_turns:1",
+    "split": "final",
+    "family": "range",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590096,
+    "turns": [
+      {
+        "text": "부탁해요. 측정값 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:two_turns:2",
+    "split": "final",
+    "family": "range",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590097,
+    "turns": [
+      {
+        "text": "이번에는 측정값 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:range:two_turns:3",
+    "split": "final",
+    "family": "range",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        4,
+        7,
+        2
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590098,
+    "turns": [
+      {
+        "text": "지금 측정값 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 최솟값과 최댓값을 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "min": 2,
+          "max": 7
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read:0",
+    "split": "final",
+    "family": "positive",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590099,
+    "turns": [
+      {
+        "text": "정수 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read:1",
+    "split": "final",
+    "family": "positive",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590100,
+    "turns": [
+      {
+        "text": "부탁해요. 정수 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read:2",
+    "split": "final",
+    "family": "positive",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590101,
+    "turns": [
+      {
+        "text": "이번에는 정수 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read:3",
+    "split": "final",
+    "family": "positive",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590102,
+    "turns": [
+      {
+        "text": "지금 정수 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read_process:0",
+    "split": "final",
+    "family": "positive",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590103,
+    "turns": [
+      {
+        "text": "먼저 정수 목록 파일을 읽고, 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read_process:1",
+    "split": "final",
+    "family": "positive",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590104,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 정수 목록 파일을 읽고, 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read_process:2",
+    "split": "final",
+    "family": "positive",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590105,
+    "turns": [
+      {
+        "text": "이번에는 먼저 정수 목록 파일을 읽고, 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:read_process:3",
+    "split": "final",
+    "family": "positive",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590106,
+    "turns": [
+      {
+        "text": "지금 먼저 정수 목록 파일을 읽고, 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:conditional:0",
+    "split": "final",
+    "family": "positive",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590107,
+    "turns": [
+      {
+        "text": "먼저 정수 목록 파일을 읽고 항목이 있으면 양수만 원래 순서대로 골라 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:conditional:1",
+    "split": "final",
+    "family": "positive",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590108,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 정수 목록 파일을 읽고 항목이 있으면 양수만 원래 순서대로 골라 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:conditional:2",
+    "split": "final",
+    "family": "positive",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590109,
+    "turns": [
+      {
+        "text": "먼저 정수 목록 파일을 읽고 항목이 있으면 양수만 원래 순서대로 골라 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:conditional:3",
+    "split": "final",
+    "family": "positive",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590110,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 정수 목록 파일을 읽고 항목이 있으면 양수만 원래 순서대로 골라 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:no_call:0",
+    "split": "final",
+    "family": "positive",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590111,
+    "turns": [
+      {
+        "text": "정수 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:no_call:1",
+    "split": "final",
+    "family": "positive",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590112,
+    "turns": [
+      {
+        "text": "부탁해요. 정수 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:no_call:2",
+    "split": "final",
+    "family": "positive",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c"
+    ],
+    "order_seed": 590113,
+    "turns": [
+      {
+        "text": "이번에는 양수만 원래 순서대로 골라 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:no_call:3",
+    "split": "final",
+    "family": "positive",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590114,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:two_turns:0",
+    "split": "final",
+    "family": "positive",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590115,
+    "turns": [
+      {
+        "text": "정수 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:two_turns:1",
+    "split": "final",
+    "family": "positive",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590116,
+    "turns": [
+      {
+        "text": "부탁해요. 정수 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:two_turns:2",
+    "split": "final",
+    "family": "positive",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590117,
+    "turns": [
+      {
+        "text": "이번에는 정수 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:positive:two_turns:3",
+    "split": "final",
+    "family": "positive",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        -2,
+        4,
+        0,
+        7
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590118,
+    "turns": [
+      {
+        "text": "지금 정수 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 양수만 원래 순서대로 골라 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "positive": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read:0",
+    "split": "final",
+    "family": "sort",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590119,
+    "turns": [
+      {
+        "text": "날짜 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read:1",
+    "split": "final",
+    "family": "sort",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590120,
+    "turns": [
+      {
+        "text": "부탁해요. 날짜 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read:2",
+    "split": "final",
+    "family": "sort",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590121,
+    "turns": [
+      {
+        "text": "이번에는 날짜 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read:3",
+    "split": "final",
+    "family": "sort",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590122,
+    "turns": [
+      {
+        "text": "지금 날짜 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read_process:0",
+    "split": "final",
+    "family": "sort",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590123,
+    "turns": [
+      {
+        "text": "먼저 날짜 목록 파일을 읽고, 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read_process:1",
+    "split": "final",
+    "family": "sort",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590124,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 날짜 목록 파일을 읽고, 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read_process:2",
+    "split": "final",
+    "family": "sort",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590125,
+    "turns": [
+      {
+        "text": "이번에는 먼저 날짜 목록 파일을 읽고, 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:read_process:3",
+    "split": "final",
+    "family": "sort",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590126,
+    "turns": [
+      {
+        "text": "지금 먼저 날짜 목록 파일을 읽고, 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:conditional:0",
+    "split": "final",
+    "family": "sort",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590127,
+    "turns": [
+      {
+        "text": "먼저 날짜 목록 파일을 읽고 항목이 있으면 날짜를 이른 순서로 정렬해 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:conditional:1",
+    "split": "final",
+    "family": "sort",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590128,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 날짜 목록 파일을 읽고 항목이 있으면 날짜를 이른 순서로 정렬해 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:conditional:2",
+    "split": "final",
+    "family": "sort",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590129,
+    "turns": [
+      {
+        "text": "먼저 날짜 목록 파일을 읽고 항목이 있으면 날짜를 이른 순서로 정렬해 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:conditional:3",
+    "split": "final",
+    "family": "sort",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590130,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 날짜 목록 파일을 읽고 항목이 있으면 날짜를 이른 순서로 정렬해 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:no_call:0",
+    "split": "final",
+    "family": "sort",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590131,
+    "turns": [
+      {
+        "text": "날짜 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:no_call:1",
+    "split": "final",
+    "family": "sort",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590132,
+    "turns": [
+      {
+        "text": "부탁해요. 날짜 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:no_call:2",
+    "split": "final",
+    "family": "sort",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a"
+    ],
+    "order_seed": 590133,
+    "turns": [
+      {
+        "text": "이번에는 날짜를 이른 순서로 정렬해 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:no_call:3",
+    "split": "final",
+    "family": "sort",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590134,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:two_turns:0",
+    "split": "final",
+    "family": "sort",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590135,
+    "turns": [
+      {
+        "text": "날짜 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:two_turns:1",
+    "split": "final",
+    "family": "sort",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590136,
+    "turns": [
+      {
+        "text": "부탁해요. 날짜 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:two_turns:2",
+    "split": "final",
+    "family": "sort",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590137,
+    "turns": [
+      {
+        "text": "이번에는 날짜 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:sort:two_turns:3",
+    "split": "final",
+    "family": "sort",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        "2026-11-03",
+        "2026-11-01"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590138,
+    "turns": [
+      {
+        "text": "지금 날짜 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 날짜를 이른 순서로 정렬해 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "dates": [
+            "2026-11-01",
+            "2026-11-03"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read:0",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590139,
+    "turns": [
+      {
+        "text": "문자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read:1",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590140,
+    "turns": [
+      {
+        "text": "부탁해요. 문자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read:2",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590141,
+    "turns": [
+      {
+        "text": "이번에는 문자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read:3",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590142,
+    "turns": [
+      {
+        "text": "지금 문자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read_process:0",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590143,
+    "turns": [
+      {
+        "text": "먼저 문자 목록 파일을 읽고, 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read_process:1",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590144,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 문자 목록 파일을 읽고, 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read_process:2",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590145,
+    "turns": [
+      {
+        "text": "이번에는 먼저 문자 목록 파일을 읽고, 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:read_process:3",
+    "split": "final",
+    "family": "reverse",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590146,
+    "turns": [
+      {
+        "text": "지금 먼저 문자 목록 파일을 읽고, 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:conditional:0",
+    "split": "final",
+    "family": "reverse",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590147,
+    "turns": [
+      {
+        "text": "먼저 문자 목록 파일을 읽고 항목이 있으면 목록의 순서를 거꾸로 바꿔 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:conditional:1",
+    "split": "final",
+    "family": "reverse",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590148,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 문자 목록 파일을 읽고 항목이 있으면 목록의 순서를 거꾸로 바꿔 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:conditional:2",
+    "split": "final",
+    "family": "reverse",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590149,
+    "turns": [
+      {
+        "text": "먼저 문자 목록 파일을 읽고 항목이 있으면 목록의 순서를 거꾸로 바꿔 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:conditional:3",
+    "split": "final",
+    "family": "reverse",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590150,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 문자 목록 파일을 읽고 항목이 있으면 목록의 순서를 거꾸로 바꿔 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:no_call:0",
+    "split": "final",
+    "family": "reverse",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590151,
+    "turns": [
+      {
+        "text": "문자 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:no_call:1",
+    "split": "final",
+    "family": "reverse",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590152,
+    "turns": [
+      {
+        "text": "부탁해요. 문자 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:no_call:2",
+    "split": "final",
+    "family": "reverse",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a"
+    ],
+    "order_seed": 590153,
+    "turns": [
+      {
+        "text": "이번에는 목록의 순서를 거꾸로 바꿔 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:no_call:3",
+    "split": "final",
+    "family": "reverse",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590154,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:two_turns:0",
+    "split": "final",
+    "family": "reverse",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590155,
+    "turns": [
+      {
+        "text": "문자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:two_turns:1",
+    "split": "final",
+    "family": "reverse",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590156,
+    "turns": [
+      {
+        "text": "부탁해요. 문자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:two_turns:2",
+    "split": "final",
+    "family": "reverse",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590157,
+    "turns": [
+      {
+        "text": "이번에는 문자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:reverse:two_turns:3",
+    "split": "final",
+    "family": "reverse",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590158,
+    "turns": [
+      {
+        "text": "지금 문자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 목록의 순서를 거꾸로 바꿔 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "reversed": [
+            "c",
+            "b",
+            "a"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read:0",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590159,
+    "turns": [
+      {
+        "text": "단어 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read:1",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590160,
+    "turns": [
+      {
+        "text": "부탁해요. 단어 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read:2",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590161,
+    "turns": [
+      {
+        "text": "이번에는 단어 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read:3",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590162,
+    "turns": [
+      {
+        "text": "지금 단어 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read_process:0",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590163,
+    "turns": [
+      {
+        "text": "먼저 단어 목록 파일을 읽고, 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read_process:1",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590164,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 단어 목록 파일을 읽고, 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read_process:2",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590165,
+    "turns": [
+      {
+        "text": "이번에는 먼저 단어 목록 파일을 읽고, 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:read_process:3",
+    "split": "final",
+    "family": "lengths",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590166,
+    "turns": [
+      {
+        "text": "지금 먼저 단어 목록 파일을 읽고, 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:conditional:0",
+    "split": "final",
+    "family": "lengths",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590167,
+    "turns": [
+      {
+        "text": "먼저 단어 목록 파일을 읽고 항목이 있으면 각 단어의 글자 수를 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:conditional:1",
+    "split": "final",
+    "family": "lengths",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590168,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 단어 목록 파일을 읽고 항목이 있으면 각 단어의 글자 수를 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:conditional:2",
+    "split": "final",
+    "family": "lengths",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590169,
+    "turns": [
+      {
+        "text": "먼저 단어 목록 파일을 읽고 항목이 있으면 각 단어의 글자 수를 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:conditional:3",
+    "split": "final",
+    "family": "lengths",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590170,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 단어 목록 파일을 읽고 항목이 있으면 각 단어의 글자 수를 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:no_call:0",
+    "split": "final",
+    "family": "lengths",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590171,
+    "turns": [
+      {
+        "text": "단어 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:no_call:1",
+    "split": "final",
+    "family": "lengths",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590172,
+    "turns": [
+      {
+        "text": "부탁해요. 단어 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:no_call:2",
+    "split": "final",
+    "family": "lengths",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c"
+    ],
+    "order_seed": 590173,
+    "turns": [
+      {
+        "text": "이번에는 각 단어의 글자 수를 같은 순서로 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:no_call:3",
+    "split": "final",
+    "family": "lengths",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590174,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:two_turns:0",
+    "split": "final",
+    "family": "lengths",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590175,
+    "turns": [
+      {
+        "text": "단어 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:two_turns:1",
+    "split": "final",
+    "family": "lengths",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590176,
+    "turns": [
+      {
+        "text": "부탁해요. 단어 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:two_turns:2",
+    "split": "final",
+    "family": "lengths",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590177,
+    "turns": [
+      {
+        "text": "이번에는 단어 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:final:lengths:two_turns:3",
+    "split": "final",
+    "family": "lengths",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        "ab",
+        "c"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590178,
+    "turns": [
+      {
+        "text": "지금 단어 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 단어의 글자 수를 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "lengths": [
+            2,
+            1
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read:0",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590179,
+    "turns": [
+      {
+        "text": "숫자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read:1",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590180,
+    "turns": [
+      {
+        "text": "부탁해요. 숫자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read:2",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590181,
+    "turns": [
+      {
+        "text": "이번에는 숫자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read:3",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590182,
+    "turns": [
+      {
+        "text": "지금 숫자 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read_process:0",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590183,
+    "turns": [
+      {
+        "text": "먼저 숫자 목록 파일을 읽고, 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read_process:1",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590184,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 숫자 목록 파일을 읽고, 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read_process:2",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590185,
+    "turns": [
+      {
+        "text": "이번에는 먼저 숫자 목록 파일을 읽고, 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:read_process:3",
+    "split": "dev",
+    "family": "squares",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590186,
+    "turns": [
+      {
+        "text": "지금 먼저 숫자 목록 파일을 읽고, 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:conditional:0",
+    "split": "dev",
+    "family": "squares",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590187,
+    "turns": [
+      {
+        "text": "먼저 숫자 목록 파일을 읽고 항목이 있으면 각 숫자의 제곱을 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:conditional:1",
+    "split": "dev",
+    "family": "squares",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590188,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 숫자 목록 파일을 읽고 항목이 있으면 각 숫자의 제곱을 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:conditional:2",
+    "split": "dev",
+    "family": "squares",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590189,
+    "turns": [
+      {
+        "text": "먼저 숫자 목록 파일을 읽고 항목이 있으면 각 숫자의 제곱을 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:conditional:3",
+    "split": "dev",
+    "family": "squares",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590190,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 숫자 목록 파일을 읽고 항목이 있으면 각 숫자의 제곱을 같은 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:no_call:0",
+    "split": "dev",
+    "family": "squares",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590191,
+    "turns": [
+      {
+        "text": "숫자 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:no_call:1",
+    "split": "dev",
+    "family": "squares",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590192,
+    "turns": [
+      {
+        "text": "부탁해요. 숫자 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:no_call:2",
+    "split": "dev",
+    "family": "squares",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c"
+    ],
+    "order_seed": 590193,
+    "turns": [
+      {
+        "text": "이번에는 각 숫자의 제곱을 같은 순서로 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:no_call:3",
+    "split": "dev",
+    "family": "squares",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590194,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:two_turns:0",
+    "split": "dev",
+    "family": "squares",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590195,
+    "turns": [
+      {
+        "text": "숫자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:two_turns:1",
+    "split": "dev",
+    "family": "squares",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590196,
+    "turns": [
+      {
+        "text": "부탁해요. 숫자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:two_turns:2",
+    "split": "dev",
+    "family": "squares",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590197,
+    "turns": [
+      {
+        "text": "이번에는 숫자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:squares:two_turns:3",
+    "split": "dev",
+    "family": "squares",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        2,
+        -3
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590198,
+    "turns": [
+      {
+        "text": "지금 숫자 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 각 숫자의 제곱을 같은 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "squares": [
+            4,
+            9
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read:0",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590199,
+    "turns": [
+      {
+        "text": "항목 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read:1",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590200,
+    "turns": [
+      {
+        "text": "부탁해요. 항목 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read:2",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590201,
+    "turns": [
+      {
+        "text": "이번에는 항목 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read:3",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590202,
+    "turns": [
+      {
+        "text": "지금 항목 목록 파일 내용을 읽어 보여 주세요. 결과는 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read_process:0",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read_process",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590203,
+    "turns": [
+      {
+        "text": "먼저 항목 목록 파일을 읽고, 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read_process:1",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read_process",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590204,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 항목 목록 파일을 읽고, 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read_process:2",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read_process",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590205,
+    "turns": [
+      {
+        "text": "이번에는 먼저 항목 목록 파일을 읽고, 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:read_process:3",
+    "split": "dev",
+    "family": "unique",
+    "kind": "read_process",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590206,
+    "turns": [
+      {
+        "text": "지금 먼저 항목 목록 파일을 읽고, 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:conditional:0",
+    "split": "dev",
+    "family": "unique",
+    "kind": "conditional",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590207,
+    "turns": [
+      {
+        "text": "먼저 항목 목록 파일을 읽고 항목이 있으면 중복을 제거하고 처음 나온 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:conditional:1",
+    "split": "dev",
+    "family": "unique",
+    "kind": "conditional",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "c",
+      "a"
+    ],
+    "order_seed": 590208,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 항목 목록 파일을 읽고 항목이 있으면 중복을 제거하고 처음 나온 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a",
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:conditional:2",
+    "split": "dev",
+    "family": "unique",
+    "kind": "conditional",
+    "style": 2,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590209,
+    "turns": [
+      {
+        "text": "먼저 항목 목록 파일을 읽고 항목이 있으면 중복을 제거하고 처음 나온 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:conditional:3",
+    "split": "dev",
+    "family": "unique",
+    "kind": "conditional",
+    "style": 3,
+    "payload": {
+      "items": []
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590210,
+    "turns": [
+      {
+        "text": "부탁해요. 먼저 항목 목록 파일을 읽고 항목이 있으면 중복을 제거하고 처음 나온 순서로 저장해 주세요. 항목이 없으면 저장하지 말고 끝내 주세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:no_call:0",
+    "split": "dev",
+    "family": "unique",
+    "kind": "no_call",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590211,
+    "turns": [
+      {
+        "text": "항목 목록라는 말의 뜻만 설명해 주세요. 도구는 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:no_call:1",
+    "split": "dev",
+    "family": "unique",
+    "kind": "no_call",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a",
+      "b"
+    ],
+    "order_seed": 590212,
+    "turns": [
+      {
+        "text": "부탁해요. 항목 목록 원본 파일을 삭제해 주세요. 삭제 도구가 없으면 아무 작업도 하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:no_call:2",
+    "split": "dev",
+    "family": "unique",
+    "kind": "no_call",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "c"
+    ],
+    "order": [
+      "c",
+      "a"
+    ],
+    "order_seed": 590213,
+    "turns": [
+      {
+        "text": "이번에는 중복을 제거하고 처음 나온 순서로 저장해 주세요. 저장 도구가 없으면 다른 도구도 실행하지 마세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:no_call:3",
+    "split": "dev",
+    "family": "unique",
+    "kind": "no_call",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590214,
+    "turns": [
+      {
+        "text": "지금 제가 원하는 작업을 아직 정하지 않았어요. 먼저 무엇을 할지 물어봐 주세요.",
+        "roles": [],
+        "output": null
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:two_turns:0",
+    "split": "dev",
+    "family": "unique",
+    "kind": "two_turns",
+    "style": 0,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "b",
+      "a",
+      "c"
+    ],
+    "order_seed": 590215,
+    "turns": [
+      {
+        "text": "항목 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:two_turns:1",
+    "split": "dev",
+    "family": "unique",
+    "kind": "two_turns",
+    "style": 1,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "c",
+      "b"
+    ],
+    "order_seed": 590216,
+    "turns": [
+      {
+        "text": "부탁해요. 항목 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:two_turns:2",
+    "split": "dev",
+    "family": "unique",
+    "kind": "two_turns",
+    "style": 2,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "c",
+      "b",
+      "a"
+    ],
+    "order_seed": 590217,
+    "turns": [
+      {
+        "text": "이번에는 항목 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  },
+  {
+    "id": "v60:dev:unique:two_turns:3",
+    "split": "dev",
+    "family": "unique",
+    "kind": "two_turns",
+    "style": 3,
+    "payload": {
+      "items": [
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    "available": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order": [
+      "a",
+      "b",
+      "c"
+    ],
+    "order_seed": 590218,
+    "turns": [
+      {
+        "text": "지금 항목 목록 파일 내용을 읽어 주세요. 지금은 저장하지 마세요.",
+        "roles": [
+          "a"
+        ],
+        "output": null
+      },
+      {
+        "text": "방금 읽은 자료로 중복을 제거하고 처음 나온 순서로 저장해 주세요.",
+        "roles": [
+          "b"
+        ],
+        "output": {
+          "unique": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "label_source": "assistant-authored, frozen before model scoring; not independently reviewed"
+  }
+]

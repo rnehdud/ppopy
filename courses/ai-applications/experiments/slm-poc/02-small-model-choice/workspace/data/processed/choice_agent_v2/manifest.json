@@ -1,0 +1,27 @@
+{
+  "seed": 819721,
+  "counts": {
+    "train": 3235,
+    "tool_train": 1290,
+    "symptom_train": 1600,
+    "previous_stress_in_train": 345,
+    "dev": 10,
+    "tool_test": 24
+  },
+  "train_unique_texts": 1519,
+  "tool_target_counts": {
+    "none": 240,
+    "ask": 330,
+    "record": 240,
+    "search": 240,
+    "show": 240
+  },
+  "test_exact_text_overlap": 0,
+  "labels": "assistant-authored templates and automatic synthetic labels, no independent review",
+  "source": "6000 decision synthetic/KLUE train subset; old stress examples explicitly repurposed as training",
+  "files": {
+    "train.jsonl": "0194dbd273a3a6c19b799731c083b2f504143cb71f7c80e09e1326b5568ec9a6",
+    "dev.jsonl": "75757270459b7704024747e6632a1150c490c2bf843f3c5704d1de9797623e51",
+    "tool_test.jsonl": "e5b2d96fcc78ebb2c9108646871cee1b877e123822a541d9a0c9646e969003d7"
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "directory": "07-v67-and-qwen",
+  "copied": {
+    "workspace/requirements.txt": {
+      "source": "requirements.txt",
+      "bytes": 156,
+      "sha256": "7119baefcc4d080d50a72c0089905cb3b96af56012edb474cd263a864e8c2e25"
+    },
+    "workspace/requirements-train.txt": {
+      "source": "requirements-train.txt",
+      "bytes": 182,
+      "sha256": "082653edf1e6e465fc2f36a50af278d8738ec3dc7e8702b609a80f36fcab7bc8"
+    },
+    "workspace/scripts/validate_v67_two_rerankers50_memory.py": {
+      "source": "scripts/validate_v67_two_rerankers50_memory.py",
+      "bytes": 15849,
+      "sha256": "71d182c8055f8365a14e9cf66637819b4bea8cb5ec28bc99b4c3e063477ba964"
+    },
+    "workspace/scripts/audit_v67_rerankers50_memory.py": {
+      "source": "scripts/audit_v67_rerankers50_memory.py",
+      "bytes": 8727,
+      "sha256": "445c7decef9f7cda7e6fda097cace2054ee4b49c291684de9fac00cb9aa0fbc2"
+    },
+    "workspace/scripts/diagnose_qwen_v67_errors.py": {
+      "source": "scripts/diagnose_qwen_v67_errors.py",
+      "bytes": 9556,
+      "sha256": "30a73de642e48fadc8cc77ee51f55f6d58d4f8838b2856de0af4076856039a19"
+    },
+    "workspace/scripts/check_qwen_v67_learning_signal.py": {
+      "source": "scripts/check_qwen_v67_learning_signal.py",
+      "bytes": 4995,
+      "sha256": "bb061a127bf2f7bbe43faab2ce55a5ad07af97ce6cf287bdbacec3babe559e82"
+    },
+    "workspace/output/qwen-v67-kaggle.ipynb": {
+      "source": "output/qwen-v67-kaggle.ipynb",
+      "bytes": 13064,
+      "sha256": "4a210b2b3ae87bee9c9cf63ed0cade7c74400eac4efe8006c0ec6d442c1852bb"
+    },
+    "workspace/output/qwen-v67-kaggle-input.zip": {
+      "source": "output/qwen-v67-kaggle-input.zip",
+      "bytes": 4632812,
+      "sha256": "c32d4e48abb61fe60ce0a208fc3d8fa7845ea362f9831a60166cf138c2983002"
+    },
+    "workspace/output/qwen-v67-loss-compare.ipynb": {
+      "source": "output/qwen-v67-loss-compare.ipynb",
+      "bytes": 20399,
+      "sha256": "0bf4d2b2a326779b766d3ebaab2dff8e6a711462b1f8437b127ebd92fd4b6464"
+    },
+    "workspace/output/qwen-v67-loss-compare-input.zip": {
+      "source": "output/qwen-v67-loss-compare-input.zip",
+      "bytes": 4634455,
+      "sha256": "591a4a1c94429572dc743d15a9fab84432509293cfcb6a36cb0700ef7f493cb2"
+    },
+    "workspace/output/v67-roberta-internal-val-v1/prepared-inputs.json": {
+      "source": "output/v67-roberta-internal-val-v1/prepared-inputs.json",
+      "bytes": 3048372,
+      "sha256": "3e4e9df8987c6cebcbd290dadbb481def3bf1fff84ac43299287e47576e60fb8"
+    },
+    "workspace/kaggle/qwen_v67_reranker/common.py": {
+      "source": "kaggle/qwen_v67_reranker/common.py",
+      "bytes": 5255,
+      "sha256": "8fbbfc0d39e6936bfcca13bfd374518c1956de064f0dc92767b184f120f597ce"
+    },
+    "workspace/kaggle/qwen_v67_reranker/launcher.py": {
+      "source": "kaggle/qwen_v67_reranker/launcher.py",
+      "bytes": 9124,
+      "sha256": "182e7eb834139f2bd252d0f622449c111a6c810d33375b7368e04210d2a03d5d"
+    },
+    "workspace/kaggle/qwen_v67_reranker/learning.py": {
+      "source": "kaggle/qwen_v67_reranker/learning.py",
+      "bytes": 475,
+      "sha256": "5ab49740ff9b4a722d29d8e67e79c5785f5ac942cf771569be3857a4ca19b838"
+    },
+    "workspace/kaggle/qwen_v67_reranker/requirements.txt": {
+      "source": "kaggle/qwen_v67_reranker/requirements.txt",
+      "bytes": 149,
+      "sha256": "c4973241a3268370a15be1d61fb29d5a9e022495c194517cdab114824046786c"
+    },
+    "workspace/kaggle/qwen_v67_reranker/train.py": {
+      "source": "kaggle/qwen_v67_reranker/train.py",
+      "bytes": 16809,
+      "sha256": "468a13ae5132951c5fcaff0001de60f574b7c4f061c40c664a78212e7699a082"
+    },
+    "workspace/kaggle/qwen_v67_loss_compare/common.py": {
+      "source": "kaggle/qwen_v67_loss_compare/common.py",
+      "bytes": 5255,
+      "sha256": "8fbbfc0d39e6936bfcca13bfd374518c1956de064f0dc92767b184f120f597ce"
+    },
+    "workspace/kaggle/qwen_v67_loss_compare/learning.py": {
+      "source": "kaggle/qwen_v67_loss_compare/learning.py",
+      "bytes": 475,
+      "sha256": "5ab49740ff9b4a722d29d8e67e79c5785f5ac942cf771569be3857a4ca19b838"
+    },
+    "workspace/kaggle/qwen_v67_loss_compare/paired.py": {
+      "source": "kaggle/qwen_v67_loss_compare/paired.py",
+      "bytes": 1658,
+      "sha256": "73a6c8d61de8e765df9f68b036c085dffa296f67267c1e259e4a7ce63ea84d6d"
+    },
+    "workspace/kaggle/qwen_v67_loss_compare/requirements.txt": {
+      "source": "kaggle/qwen_v67_loss_compare/requirements.txt",
+      "bytes": 149,
+      "sha256": "c4973241a3268370a15be1d61fb29d5a9e022495c194517cdab114824046786c"
+    },
+    "workspace/kaggle/qwen_v67_loss_compare/runner_extra.py": {
+      "source": "kaggle/qwen_v67_loss_compare/runner_extra.py",
+      "bytes": 12127,
+      "sha256": "45ea63f5dcdc8859e508964b5db46038d8d07c8349719a77c7f925a971b5102d"
+    },
+    "workspace/kaggle/qwen_v67_loss_compare/train.py": {
+      "source": "kaggle/qwen_v67_loss_compare/train.py",
+      "bytes": 19228,
+      "sha256": "c01a900cf917d1a79e6af80e7aff549cfc25507b052d72c204f2a6cf95d024ff"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/config.json": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/config.json",
+      "bytes": 727,
+      "sha256": "d479c427a9ca5295218063d4f9aca4f297ab4ac27487cca7af42c84643d51ef0"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/merges.txt": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/metadata.json": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/metadata.json",
+      "bytes": 6360,
+      "sha256": "71f0e46c9fdab483115d4608e67513270bfd4367b759a37734527ce3448cc852"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/README.md": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/README.md",
+      "bytes": 14742,
+      "sha256": "5bba8c734f6dd3ae48317b4139317e45a7fce48fc55e15670b23a0dd15492ab6"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/tokenizer-files.json": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/tokenizer-files.json",
+      "bytes": 536,
+      "sha256": "f97a67b07634080c229af8d48e6a145cc86a3ecae4d5bb5ce03e1ad9b5c5b943"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/tokenizer.json": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/tokenizer.json",
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/tokenizer_config.json": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/tokenizer_config.json",
+      "bytes": 9706,
+      "sha256": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/v67-token-lengths.json": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/v67-token-lengths.json",
+      "bytes": 32398,
+      "sha256": "abfa05d713c7ee81a6199f03ea1130080607c93a091873804db8ccee7e9525b1"
+    },
+    "workspace/output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/vocab.json": {
+      "source": "output/v67-model-search-20261116/Qwen__Qwen3-Reranker-0.6B/vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/config.json": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/config.json",
+      "bytes": 808,
+      "sha256": "a1d675becc0aa53d579723d7842dc25bea0797fecdc5004f55b9bdb43394d69a"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/metadata.json": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/metadata.json",
+      "bytes": 2453,
+      "sha256": "2ec87a95230aa7de71990391f9c900b32711c6799408e0bdf0340485a08ab428"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/README.md": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/README.md",
+      "bytes": 9665,
+      "sha256": "367583a8f96b5d7b557c0d61f692a18e6ad2a086d33bdb01100a4cc8abdebed0"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/sentencepiece.bpe.model": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/sentencepiece.bpe.model",
+      "bytes": 5069051,
+      "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/special_tokens_map.json": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/special_tokens_map.json",
+      "bytes": 964,
+      "sha256": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/tokenizer-files.json": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/tokenizer-files.json",
+      "bytes": 558,
+      "sha256": "4b787ed30a6f1d53a0cc0b56ec23e7c21cab7c121c8f5568d97071a3c0d57eac"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/tokenizer.json": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/tokenizer.json",
+      "bytes": 17098251,
+      "sha256": "b74659c780d49afad7a7b9799868f75cbd3014fb6c34956e85a793028d38094a"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/tokenizer_config.json": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/tokenizer_config.json",
+      "bytes": 1173,
+      "sha256": "7e4c1cc848840aeccdd763458c18dd525eb0f795c992e00ebe9c28554e7db2d4"
+    },
+    "workspace/output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/v67-token-lengths.json": {
+      "source": "output/v67-model-search-20261116/dragonkue__bge-reranker-v2-m3-ko/v67-token-lengths.json",
+      "bytes": 32398,
+      "sha256": "8ec33e5b0af730e10b7daf07cc7a6fda27b375e2ae6a494229f8dd989f64139b"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/config.json": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/config.json",
+      "bytes": 727,
+      "sha256": "d479c427a9ca5295218063d4f9aca4f297ab4ac27487cca7af42c84643d51ef0"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/manifest.json": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/manifest.json",
+      "bytes": 454,
+      "sha256": "547d64d51c1ca323ef88ffbf35140b5f8f3dfa9af0535526e6fc83262b57294b"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/merges.txt": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/model.safetensors": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/model.safetensors",
+      "bytes": 1191588280,
+      "sha256": "27cd75a405b9c1b46b59abfd88aaa209e6fed2a1972cde9b70e7659537c5e65b"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/range-download-verification.json": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/range-download-verification.json",
+      "bytes": 260,
+      "sha256": "29b9a19ddf224dda36a8e641acff850b04e8a5862821347a5bc36d848b08cd4f"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/tokenizer.json": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/tokenizer.json",
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/tokenizer_config.json": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/tokenizer_config.json",
+      "bytes": 9706,
+      "sha256": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0"
+    },
+    "workspace/models/qwen3-reranker-0.6b-e61197ed/vocab.json": {
+      "source": "models/qwen3-reranker-0.6b-e61197ed/vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/config.json": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/config.json",
+      "bytes": 808,
+      "sha256": "a1d675becc0aa53d579723d7842dc25bea0797fecdc5004f55b9bdb43394d69a"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/manifest.json": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/manifest.json",
+      "bytes": 461,
+      "sha256": "f4722e4e8d0f4f86f70df50f32eaf7aec84f8768fe27782d759e244f895cd1e5"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/model.safetensors": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/model.safetensors",
+      "bytes": 2271071852,
+      "sha256": "aba51b69d97bfff4cd2c1d8eb6c57764e350231850f712b75ae426270f265a43"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/range-download-verification.json": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/range-download-verification.json",
+      "bytes": 268,
+      "sha256": "6bbd99bc57cc4248ed0d8140b36555d1d4ed48691f1d78af78e5ee69e2f6c631"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/sentencepiece.bpe.model": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/sentencepiece.bpe.model",
+      "bytes": 5069051,
+      "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/special_tokens_map.json": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/special_tokens_map.json",
+      "bytes": 964,
+      "sha256": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/tokenizer.json": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/tokenizer.json",
+      "bytes": 17098251,
+      "sha256": "b74659c780d49afad7a7b9799868f75cbd3014fb6c34956e85a793028d38094a"
+    },
+    "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/tokenizer_config.json": {
+      "source": "models/dragon-bge-reranker-v2-m3-ko-2aca5884/tokenizer_config.json",
+      "bytes": 1173,
+      "sha256": "7e4c1cc848840aeccdd763458c18dd525eb0f795c992e00ebe9c28554e7db2d4"
+    },
+    "ppopy/courses/ai-applications/experiments/cos-agent/data/action_policy/v67/v67-sft-val-internal.jsonl": {
+      "source": "ppopy v67/v67-sft-val-internal.jsonl",
+      "bytes": 2143432,
+      "sha256": "c93110715e72b3dd925a7707fad53bc4648c585a1d78691c406592a24e6a4a67"
+    },
+    "workspace/adapters/qwen-v67-epoch03/adapter_config.json": {
+      "source": "results.zip:final_adapter/adapter_config.json",
+      "bytes": 1093,
+      "sha256": "a8fcf73b3ba92af74c59156b1d47a5ec6259a42319331ed2d89ae02888cca153"
+    },
+    "workspace/adapters/qwen-v67-epoch03/adapter_model.safetensors": {
+      "source": "results.zip:final_adapter/adapter_model.safetensors",
+      "bytes": 40422168,
+      "sha256": "3bc1b0fe18e553a6b5a7c876f522062e0c103e035cb84b23b6b4ff67a856a9ad"
+    },
+    "workspace/adapters/qwen-v67-epoch03/README.md": {
+      "source": "results.zip:final_adapter/README.md",
+      "bytes": 5368,
+      "sha256": "747784b9b01536565e11d941b329de517650bb177dead4820dd11e527f776e07"
+    },
+    "workspace/scripts/evaluate_v67_poc_adapter.py": {
+      "source": "scripts/evaluate_v67_poc_adapter.py",
+      "bytes": 4498,
+      "sha256": "6040023a50b72360e124c02d9e1b65fa4deb992bf23261b7b4a657f467ee090c"
+    },
+    "workspace/data/v67/val_internal.jsonl": {
+      "source": "output/qwen-v67-kaggle-prepared/data/val.jsonl",
+      "bytes": 2143432,
+      "sha256": "c93110715e72b3dd925a7707fad53bc4648c585a1d78691c406592a24e6a4a67"
+    },
+    "workspace/data/v67/previous50.json": {
+      "source": "output/qwen-v67-kaggle-prepared/data/previous50.json",
+      "bytes": 1873,
+      "sha256": "b05fbac7773fea75dc461d9b014f6a4f7b15658774835c641166fe363bb949e3"
+    },
+    "workspace/scripts/bootstrap_training.ps1": {
+      "source": "scripts/bootstrap_training.ps1",
+      "bytes": 1525,
+      "sha256": "55327b4ccfcb9f171e3b5c24dbe1066913ac490e8c5687d12b2e4350d4e09ad1"
+    },
+    "workspace/scripts/parallel_download.py": {
+      "source": "scripts/parallel_download.py",
+      "bytes": 5910,
+      "sha256": "5d5a697aa2aa277b6d7c853c42e0ca0f58276ad575af36dab4bafadb29f148f0"
+    },
+    "workspace/scripts/check_training_env.py": {
+      "source": "scripts/check_training_env.py",
+      "bytes": 1412,
+      "sha256": "da4ca5ef2771295330a17ed65aa8be3c2aa69e548b085f05e3d90e1653eb51f7"
+    }
+  },
+  "missing": [],
+  "requires_manual_review": [],
+  "environment": {
+    "python_venv": "not copied; install the appropriate requirements in a new environment",
+    "gpu": "real GPU operation has not been checked in these new folders",
+    "git_ignored_large_files": [
+      "workspace/models/dragon-bge-reranker-v2-m3-ko-2aca5884/model.safetensors",
+      "workspace/models/qwen3-reranker-0.6b-e61197ed/model.safetensors"
+    ],
+    "no_keys_or_conversation_logs_intentionally_included": true,
+    "imports": "Only static top-level local module imports resolved; dynamic imports and runtime data paths need individual checks.",
+    "historical_coverage": "Representative runnable paths for this theme, not all historical experiment conditions."
+  },
+  "commands": [
+    "Kaggleに output/qwen-v67-kaggle.ipynb をImportし output/qwen-v67-kaggle-input.zip をDatasetとして追加",
+    "Kaggleに output/qwen-v67-loss-compare.ipynb をImportし output/qwen-v67-loss-compare-input.zip をDatasetとして追加"
+  ],
+  "limitations": [
+    "現行の評価対象は行動＋対象ID。返答文・引数の生成や実ツール実行は未評価。",
+    "元データのtest252はKaggle入力にも、この代表コピーにも含めない。",
+    "50件比較の完全な再実行は旧RoBERTa結果・周辺メタデータも要し、ここでは未検証。",
+    "学習済みアダプターは指定の公開ベースモデルに適用する。"
+  ],
+  "actual_execution_verified": false,
+  "supplemental_trace": "結果JSON内のLoRA参照、xLAMの凍結ハッシュ一覧、v67 val専用実行入口を追加確認。"
+}

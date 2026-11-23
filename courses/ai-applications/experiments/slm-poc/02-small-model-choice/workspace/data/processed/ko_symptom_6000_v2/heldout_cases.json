@@ -1,0 +1,691 @@
+[
+  {
+    "id": "case-01",
+    "turns": [
+      {
+        "input": "오늘 얼굴이 너무 푸석해요.",
+        "expected": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "dryness": "present"
+        }
+      },
+      {
+        "input": "밖에 잠깐 다녀왔어요.",
+        "expected": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      },
+      {
+        "input": "이제 건조한 느낌은 없어요.",
+        "expected": {
+          "dryness": "absent",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "dryness": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-02",
+    "turns": [
+      {
+        "input": "볼이 간지러워요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {
+          "itching": "present"
+        }
+      },
+      {
+        "input": "오늘 일정이 많네요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {}
+      },
+      {
+        "input": "지금은 안 가려워요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "absent"
+        },
+        "gold_patch": {
+          "itching": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-03",
+    "turns": [
+      {
+        "input": "뺨이 빨갛게 올라왔어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "present",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "redness": "present"
+        }
+      },
+      {
+        "input": "얼굴이 따끔거려요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "present",
+          "stinging": "present",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "stinging": "present"
+        }
+      },
+      {
+        "input": "붉은기는 없어졌어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "absent",
+          "stinging": "present",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "redness": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-04",
+    "turns": [
+      {
+        "input": "이마에 뾰루지가 났어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "present",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "present"
+        }
+      },
+      {
+        "input": "아직도 트러블이 있어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "present",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "present"
+        }
+      },
+      {
+        "input": "여드름은 이제 없어졌습니다.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "absent",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-05",
+    "turns": [
+      {
+        "input": "오늘 얼굴이 건조하고 가려워요.",
+        "expected": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {
+          "dryness": "present",
+          "itching": "present"
+        }
+      },
+      {
+        "input": "가려운 건 나았어요.",
+        "expected": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "absent"
+        },
+        "gold_patch": {
+          "itching": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-06",
+    "turns": [
+      {
+        "input": "붉은기는 없는데 볼이 따가워요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "absent",
+          "stinging": "present",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "redness": "absent",
+          "stinging": "present"
+        }
+      },
+      {
+        "input": "지금은 따갑지도 않아요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "absent",
+          "stinging": "absent",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "stinging": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-07",
+    "turns": [
+      {
+        "input": "여드름은 없고 얼굴이 건조해요.",
+        "expected": {
+          "dryness": "present",
+          "breakout": "absent",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "absent",
+          "dryness": "present"
+        }
+      },
+      {
+        "input": "다른 이야기를 해볼까요?",
+        "expected": {
+          "dryness": "present",
+          "breakout": "absent",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-08",
+    "turns": [
+      {
+        "input": "볼이 간지럽고 빨개졌어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "present",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {
+          "itching": "present",
+          "redness": "present"
+        }
+      },
+      {
+        "input": "빨간 건 그대로예요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "present",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {
+          "redness": "present"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-09",
+    "turns": [
+      {
+        "input": "제 친구는 여드름이 심하대요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      },
+      {
+        "input": "제 얼굴에는 여드름이 없어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "absent",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-10",
+    "turns": [
+      {
+        "input": "동생은 피부가 건조하지만 저는 안 건조해요.",
+        "expected": {
+          "dryness": "absent",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "dryness": "absent"
+        }
+      },
+      {
+        "input": "저는 가려움이 있어요.",
+        "expected": {
+          "dryness": "absent",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {
+          "itching": "present"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-11",
+    "turns": [
+      {
+        "input": "엄마 얼굴은 빨간데 제 피부는 안 빨개요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "absent",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "redness": "absent"
+        }
+      },
+      {
+        "input": "어제 영화를 봤어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "absent",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-12",
+    "turns": [
+      {
+        "input": "친구가 따갑다고 했어요. 제 피부 이야기는 아니에요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      },
+      {
+        "input": "저도 이제 얼굴이 따가워요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "present",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "stinging": "present"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-13",
+    "turns": [
+      {
+        "input": "혹시 화장품을 바르면 뾰루지가 생길 수도 있나요?",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      },
+      {
+        "input": "저는 아직 여드름이 없어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "absent",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-14",
+    "turns": [
+      {
+        "input": "만약 피부가 가렵다면 어떻게 해야 하나요?",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      },
+      {
+        "input": "실제로는 가렵지 않아요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "absent"
+        },
+        "gold_patch": {
+          "itching": "absent"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-15",
+    "turns": [
+      {
+        "input": "안녕하세요. 피부 이야기를 해볼게요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      },
+      {
+        "input": "아직 증상은 말하지 않았어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {}
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-16",
+    "turns": [
+      {
+        "input": "제 얼굴이 빨개요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "present",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "redness": "present"
+        }
+      },
+      {
+        "input": "빨간지 아닌지 지금은 잘 모르겠어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "redness": "unknown"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-17",
+    "turns": [
+      {
+        "input": "제 피부가 따가워요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "present",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "stinging": "present"
+        }
+      },
+      {
+        "input": "따가운 건지 이제는 잘 모르겠어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "stinging": "unknown"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-18",
+    "turns": [
+      {
+        "input": "제 얼굴에 여드름이 올라왔어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "present",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "present"
+        }
+      },
+      {
+        "input": "정정할게요. 여드름이 있는지 모르겠어요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "breakout": "unknown"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-19",
+    "turns": [
+      {
+        "input": "얼굴이 가렵지 않아요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "absent"
+        },
+        "gold_patch": {
+          "itching": "absent"
+        }
+      },
+      {
+        "input": "아, 지금은 오히려 가려워요.",
+        "expected": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {
+          "itching": "present"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  },
+  {
+    "id": "case-20",
+    "turns": [
+      {
+        "input": "제 얼굴이 너무 건조한 상태예요.",
+        "expected": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "dryness": "present"
+        }
+      },
+      {
+        "input": "아까 말한 걸 고칠게요. 지금은 건조하지 않아요.",
+        "expected": {
+          "dryness": "absent",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        },
+        "gold_patch": {
+          "dryness": "absent"
+        }
+      },
+      {
+        "input": "볼이 가렵기 시작했어요.",
+        "expected": {
+          "dryness": "absent",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        },
+        "gold_patch": {
+          "itching": "present"
+        }
+      }
+    ],
+    "label_status": "assistant-authored, not independently reviewed"
+  }
+]

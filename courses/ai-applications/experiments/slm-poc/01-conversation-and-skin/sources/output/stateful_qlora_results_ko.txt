@@ -1,0 +1,163 @@
+﻿목적
+
+한국어 입력을 받은 Qwen이 외부 세션 상태를 읽고, 상태 갱신/KB 검색 도구를 선택·호출하는
+최소 Stateful Agent를 구현하고, 소규모 QLoRA 학습·저장·재로딩 및 학습 전후 비교를 검증합니다.
+STT → Jev의 7개 필드 분류 PoC와는 별도 실험입니다.
+
+팀원용 한눈에 보기
+
+한국어 입력 + 현재 상태 → Qwen → 도구 호출 JSON → Python 검증/실행 → 상태 저장
+                                    ↘ 검색 결과 → Qwen 답변
+고정 평가 59개 시나리오(84턴) → 학습 전/후 동일 조건 비교
+
+모델과 런타임의 역할
+
+- Qwen: 입력과 상태를 해석하여 도구/인자 또는 답변을 생성합니다.
+- Python: 세션 상태 보관, 스키마 검증, 실제 도구 실행을 담당합니다.
+- 모델 가중치에 사용자별 상태를 저장하거나, 모델이 직접 DB를 변경하지 않습니다.
+- 매 턴 현재 상태를 명시적으로 전달합니다. 과거 전체 대화 이력을 재투입하는 방식은 아닙니다.
+
+범위
+
+상태 5개: skin_condition, severity, usage_time, product_used, symptom_onset
+도구 2개: update_session_state, search_knowledge_base
+KB는 합성 fixture 태그 검색이며 실제 스킨케어 KB/RAG 성능 평가가 아닙니다.
+intent, routine_change_requested를 포함한 원래 7필드 Jev 평가를 완료한 것은 아닙니다.
+
+데이터
+
+- 공개 한국어 도구 데이터: 정형화 14,609개(train 13,074 / validation 812 / test 723).
+- 신규 합성 Stateful 데이터: train 209시나리오/529판단예, validation 30/80, holdout 59/143.
+- 실제 이번 학습: Stateful 100판단예 + 공개 train의 도구호출/응답 20판단예 = 120개.
+- 100개의 완전한 대화를 모두 학습했다는 의미가 아닙니다.
+- 모든 정답 궤적을 실제 도구 구현으로 실행 검증. 첫 100개 궤적도 재검증했습니다.
+- 데이터 분할 간 표면 템플릿 계열과 완전히 같은 사용자 문장을 분리했습니다.
+- 사람 수집 음성·AIHub 데이터가 아닌 합성 한국어 데이터입니다. 독립 한국어 라벨 검수는 미실시입니다.
+
+구현 체크리스트
+
+[x] Qwen 공식 템플릿에 맞춘 messages/tools 변환
+[x] assistant 최종 판단 위치만 학습하는 손실 마스크
+[x] 잘못된 도구/인자, 반복 호출, 비정상 응답 처리
+[x] 세션별 외부 상태, 수정/부정/누락/검색 실패 시나리오
+[x] 고정 holdout과 학습 데이터 분리, 파일 hash 보존
+[x] CUDA NF4 forward/backward 및 실제 LoRA 가중치 변경
+[x] 어댑터 저장 후 베이스 모델부터 재로딩, 결정적 probe 토큰 일치
+[x] 학습 전후 동일 GGUF 실행계로 59개 평가
+[ ] 실제 한국어 사용자/음성 데이터에 대한 일반화 검증
+[ ] 별도 구축 중인 실제 knowledge base 연동
+
+학습 설정 및 실행 결과
+
+GPU: NVIDIA GeForce RTX 4070 Laptop GPU
+학습: Qwen2.5-3B NF4 frozen base + q_proj/v_proj LoRA r=8, alpha=16, dropout=0.05
+학습 가능 파라미터: 1,843,200
+optimizer steps: 60, microbatches: 120
+learning rate: 0.0002, seed: 20261104
+NF4 검증 loss(20판단예의 평균): 1.592306 → 0.114952
+가중치 변경: True; 저장/재로딩 probe 일치: True
+재로딩 검증 범위: 저장된 어댑터를 두 번 독립 로딩하여 최대 24토큰 probe를 비교했습니다.
+저장 직후 로깅 인자 충돌로 프로세스가 종료되어, 저장 전 메모리 출력과의 비교는 남아 있지 않습니다.
+저장된 가중치와 완료된 60스텝 로그로 검증만 재개했으며 재학습하지 않았습니다.
+어댑터: adapters\qlora-smoke-v3
+
+평가 설계
+
+A: 공식 Q4_K_M GGUF, 어댑터 없음, 고정 59시나리오
+B: 동일 GGUF + NF4로 학습한 LoRA를 F32 GGUF로 변환해 적용, 동일 59시나리오
+두 실험의 모델·평가 hash, system/tools, 생성 설정, 엔진 경로를 자동 대조했습니다.
+학습은 NF4, Agent 비교는 두 단계 모두 Q4_K_M입니다. 이전 개발 10건과 직접 비교하지 않습니다.
+정답/정답 도구는 모델 입력에 전달하지 않습니다.
+
+평가 결과
+
+시나리오 전체 성공: 20/59 (33.9%) → 42/59 (71.2%), 차이 +22개
+턴 전체 성공: 39/84 → 57/84
+5필드 상태 완전 일치: 71/84 → 58/84
+실제 실행 턴: 84/84 → 84/84
+paired 시나리오: {"fail_to_pass": 27, "pass_to_pass": 15, "fail_to_fail": 12, "pass_to_fail": 5}
+
+중요: 시나리오 성공 증가와 상태 추출 개선은 같은 의미가 아닙니다.
+응답/실행 완료는 55/84 → 84/84로 늘었지만,
+상태 완전 일치는 71/84 → 58/84로 악화했습니다.
+특히 product_used 누락과 usage_time 오분류가 남아 있습니다. 전체 품질 향상으로 단정하지 않습니다.
+
+필드별 일치(실행 턴 기준; 미실행 턴이 있으면 별도 확인 필요)
+- skin_condition: 82/84 → 81/84
+- severity: 84/84 → 84/84
+- usage_time: 84/84 → 76/84
+- product_used: 73/84 → 59/84
+- symptom_onset: 84/84 → 84/84
+
+완료 시간 기록이 있는 턴의 지연시간(조기 실패는 제외)
+- 학습 전: n=55, 평균 2.494초, P95 5.712초
+- 학습 후: n=84, 평균 1.750초, P95 2.342초
+
+호출 비용: 로컬 실행이므로 API 청구는 없음. 전력/하드웨어 비용은 측정하지 않았습니다.
+
+대표 잔존 실패 사례
+
+1. holdout-conflicting_events-003 / conflicting_events
+입력: 오후에 제품을 바른 건 어제의 일이야. 따가움이 생기기 시작한 건 오늘이고.
+실패 조건: state
+정답 상태: {"skin_condition": ["stinging"], "severity": "unknown", "usage_time": "afternoon", "product_used": "yes", "symptom_onset": "today"}
+실제 상태: {"skin_condition": ["itching"], "severity": "unknown", "usage_time": "afternoon", "product_used": "unknown", "symptom_onset": "today"}
+오류/답변: 기록을 반영했습니다.
+
+2. holdout-report-002 / report
+입력: 메모를 새로 남겨줘. 피부가 건조해. 발생은 어제이고, 바른 시간대는 아침, 정도 표시는 중등도이야.
+실패 조건: state
+정답 상태: {"skin_condition": ["dryness"], "severity": "moderate", "usage_time": "morning", "product_used": "yes", "symptom_onset": "yesterday"}
+실제 상태: {"skin_condition": ["dryness"], "severity": "moderate", "usage_time": "morning", "product_used": "unknown", "symptom_onset": "yesterday"}
+오류/답변: 기록을 반영했습니다.
+
+3. holdout-no_product-002 / no_product
+입력: 화장품 사용은 없었다고 적어줘. 건조함이 생기기 시작한 건 오늘이야.
+실패 조건: state
+정답 상태: {"skin_condition": ["dryness"], "severity": "unknown", "usage_time": "unknown", "product_used": "no", "symptom_onset": "today"}
+실제 상태: {"skin_condition": ["dryness"], "severity": "unknown", "usage_time": "unknown", "product_used": "unknown", "symptom_onset": "today"}
+오류/답변: 기록을 반영했습니다.
+
+4. holdout-negation-003 / negation
+입력: 증상을 구별해서 적어줘. 피부가 붉지는 않아. "피부가 따가워"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.
+실패 조건: state
+정답 상태: {"skin_condition": ["stinging"], "severity": "unknown", "usage_time": "unknown", "product_used": "unknown", "symptom_onset": "unknown"}
+실제 상태: {"skin_condition": ["itching"], "severity": "unknown", "usage_time": "unknown", "product_used": "unknown", "symptom_onset": "unknown"}
+오류/답변: 기록을 반영했습니다.
+
+5. holdout-change_time-003 / change_time
+입력: 최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.
+실패 조건: source_id
+정답 상태: {"skin_condition": ["stinging"], "severity": "unknown", "usage_time": "afternoon", "product_used": "yes", "symptom_onset": "today"}
+실제 상태: {"skin_condition": ["stinging"], "severity": "unknown", "usage_time": "afternoon", "product_used": "yes", "symptom_onset": "today"}
+오류/답변: 출처: 합성 테스트 문서
+
+산출물 / 완료 조건
+
+[x] README 실행 방법 및 환경 분리
+[x] 상태 정의/합성 라벨/원본 hash
+[x] 테스트별 정답·예측·도구 호출·실패 판정·시간 JSON/CSV
+[x] 학습/저장/재로딩 증거 및 학습 전후 결과
+[x] 대표 실패와 제한사항 기록
+
+결론과 다음 단계
+
+Stateful 도구 Agent와 QLoRA 파이프라인의 실제 실행 가능성은 확인했습니다.
+도구 호출/응답 완료는 개선되었으나 상태 추출은 악화했으므로, 현 어댑터를 기본 품질 개선판으로 채택하지 않습니다.
+도구 선택과 인자 의미 정확도를 분리해 보고, product_used 누락·시간·증상 혼동을 먼저 보강해야 합니다.
+기존 3턴 데모도 실행은 완료했지만 첫 턴에서 product_used=yes를 빠뜨렸습니다.
+이 데모를 3/3 의미 정확도로 집계하지 않으며, 로그는 output/runs/qlora-demo-final/에 있습니다.
+위 수치는 고정된 소규모 합성 평가 결과이며 일반 한국어/스킨케어 서비스 정확도가 아닙니다.
+다음은 독립 사람이 작성·검수한 한국어 대화와 실제 KB 도구 계약을 먼저 고정한 뒤,
+수정·부정·미언급 및 검색 응답을 중심으로 별도 미사용 평가를 실행하는 단계입니다.
+현 holdout은 이미 결과를 관찰했으므로 반복 튜닝용 개발셋으로 쓸 경우 새 test를 마련해야 합니다.
+이 결과만으로 Jev 대체, 의료적 안전성 또는 QLoRA의 일반적 우월성을 단정하지 않습니다.
+
+주요 파일
+
+- output/stateful_qlora_comparison.json
+- output/training/gguf-holdout-before/results.json, turns.csv, metadata.json
+- output/training/gguf-holdout-after/results.json, turns.csv, metadata.json
+- output/training/qlora-smoke-v3/comparison.json, progress.jsonl, metadata.json
+- data/stateful/v2/README.md, manifest.json
+- adapters/qlora-smoke-v3/adapter_model.safetensors, adapter-f32.gguf

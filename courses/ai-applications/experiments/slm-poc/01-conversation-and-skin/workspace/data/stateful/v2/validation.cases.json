@@ -1,0 +1,1779 @@
+[
+  {
+    "id": "validation-report-001",
+    "category": "report",
+    "split": "validation",
+    "surface_template_family": "validation/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "기록 부탁해. 피부가 가려워. 시작일은 오늘, 화장품은 저녁 사용, 강도는 경미함이야.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "mild",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ],
+                "usage_time": "evening",
+                "product_used": "yes",
+                "symptom_onset": "today",
+                "severity": "mild"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "mild",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-change_onset-000",
+    "category": "change_onset",
+    "split": "validation",
+    "surface_template_family": "validation/change_onset",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "mild"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "시작 시점만 고쳐줘. 증상은 어제 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "yesterday"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-conflicting_events-002",
+    "category": "conflicting_events",
+    "split": "validation",
+    "surface_template_family": "validation/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "어제 아침 제품을 사용했고, 오늘부터 피부가 붉어. 두 시점을 구분해서 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ],
+                "usage_time": "morning",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-conflicting_events-001",
+    "category": "conflicting_events",
+    "split": "validation",
+    "surface_template_family": "validation/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "어제 저녁 제품을 사용했고, 오늘부터 피부가 가려워. 두 시점을 구분해서 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ],
+                "usage_time": "evening",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-failed_search-001",
+    "category": "failed_search",
+    "split": "validation",
+    "surface_template_family": "validation/failed_search",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "recent",
+      "severity": "moderate"
+    },
+    "fail_search": true,
+    "turns": [
+      {
+        "input": "기록된 조건에 맞는 문서를 조회해서 출처 번호를 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "expect_search_failure": true,
+        "final_response": "조회 도구 오류로 문서를 가져오지 못했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-negation-001",
+    "category": "negation",
+    "split": "validation",
+    "surface_template_family": "validation/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "피부가 가려워. 하지만 뾰루지는 없어. 나머지 정보는 모르는 상태로 둬.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-greeting-001",
+    "category": "greeting",
+    "split": "validation",
+    "surface_template_family": "validation/greeting",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "recent",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "반갑습니다. 상태 변경이나 조회는 필요 없어요.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "안녕하세요."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-conflicting_events-000",
+    "category": "conflicting_events",
+    "split": "validation",
+    "surface_template_family": "validation/conflicting_events",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "어제 오후 제품을 사용했고, 오늘부터 피부가 따가워. 두 시점을 구분해서 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ],
+                "usage_time": "afternoon",
+                "product_used": "yes",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "today"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-failed_search-000",
+    "category": "failed_search",
+    "split": "validation",
+    "surface_template_family": "validation/failed_search",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "mild"
+    },
+    "fail_search": true,
+    "turns": [
+      {
+        "input": "기록된 조건에 맞는 문서를 조회해서 출처 번호를 보여줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "expect_search_failure": true,
+        "final_response": "조회 도구 오류로 문서를 가져오지 못했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-change_time-002",
+    "category": "change_time",
+    "split": "validation",
+    "surface_template_family": "validation/change_time",
+    "initial": {
+      "skin_condition": [
+        "redness"
+      ],
+      "usage_time": "afternoon",
+      "product_used": "yes",
+      "symptom_onset": "recent",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용한 시간대만 고칠게. 오후 기록은 취소하고 아침에 사용했다고 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "morning"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-clarify-001",
+    "category": "clarify",
+    "split": "validation",
+    "surface_template_family": "validation/clarify",
+    "initial": {
+      "skin_condition": [],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "recent",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "그 상태라는 말을 썼지만 증상 설명은 아직 하지 않았어. 뭘 찾을지 먼저 확인해줘.",
+        "expected": {
+          "skin_condition": [],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "어떤 피부 증상을 조회할까요?"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-greeting-000",
+    "category": "greeting",
+    "split": "validation",
+    "surface_template_family": "validation/greeting",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "mild"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "반갑습니다. 상태 변경이나 조회는 필요 없어요.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "안녕하세요."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-remove_symptom-001",
+    "category": "remove_symptom",
+    "split": "validation",
+    "surface_template_family": "validation/remove_symptom",
+    "initial": {
+      "skin_condition": [
+        "breakout",
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "recent",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "기록에서 그 증상은 지워줘. 뾰루지는 없어. \"피부가 가려워\"라는 말은 맞아.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-missing_information-001",
+    "category": "missing_information",
+    "split": "validation",
+    "surface_template_family": "validation/missing_information",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "현재 증상으로 \"피부가 가려워\"라는 것만 추가해줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-no_product-001",
+    "category": "no_product",
+    "split": "validation",
+    "surface_template_family": "validation/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품을 바른 적은 없어. 오늘 피부가 가려워.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "itching"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-clarify-000",
+    "category": "clarify",
+    "split": "validation",
+    "surface_template_family": "validation/clarify",
+    "initial": {
+      "skin_condition": [],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "mild"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "그 상태라는 말을 썼지만 증상 설명은 아직 하지 않았어. 뭘 찾을지 먼저 확인해줘.",
+        "expected": {
+          "skin_condition": [],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "oracle_actions": [],
+        "no_tools": true,
+        "final_response": "어떤 피부 증상을 조회할까요?"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-negation-002",
+    "category": "negation",
+    "split": "validation",
+    "surface_template_family": "validation/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "피부가 붉어. 하지만 피부가 건조하지 않아. 나머지 정보는 모르는 상태로 둬.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-report-002",
+    "category": "report",
+    "split": "validation",
+    "surface_template_family": "validation/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "기록 부탁해. 피부가 붉어. 시작일은 어제, 화장품은 아침 사용, 강도는 중등도이야.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "moderate",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ],
+                "usage_time": "morning",
+                "product_used": "yes",
+                "symptom_onset": "yesterday",
+                "severity": "moderate"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "moderate",
+          "usage_time": "morning",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "morning"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "morning"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-no_product-002",
+    "category": "no_product",
+    "split": "validation",
+    "surface_template_family": "validation/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품을 바른 적은 없어. 오늘 피부가 붉어.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "redness"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-search-000",
+    "category": "search",
+    "split": "validation",
+    "surface_template_family": "validation/search",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "mild"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-negation-000",
+    "category": "negation",
+    "split": "validation",
+    "surface_template_family": "validation/negation",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "피부가 따가워. 하지만 피부가 붉지는 않아. 나머지 정보는 모르는 상태로 둬.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-change_time-001",
+    "category": "change_time",
+    "split": "validation",
+    "surface_template_family": "validation/change_time",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "morning",
+      "product_used": "yes",
+      "symptom_onset": "recent",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용한 시간대만 고칠게. 아침 기록은 취소하고 저녁에 사용했다고 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "evening"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-report-000",
+    "category": "report",
+    "split": "validation",
+    "surface_template_family": "validation/report",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "기록 부탁해. 피부가 따가워. 시작일은 어제, 화장품은 오후 사용, 강도는 심함이야.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "severe",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ],
+                "usage_time": "afternoon",
+                "product_used": "yes",
+                "symptom_onset": "yesterday",
+                "severity": "severe"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "severe",
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "yesterday"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-missing_information-000",
+    "category": "missing_information",
+    "split": "validation",
+    "surface_template_family": "validation/missing_information",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "현재 증상으로 \"피부가 따가워\"라는 것만 추가해줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "unknown",
+          "symptom_onset": "unknown"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-no_product-000",
+    "category": "no_product",
+    "split": "validation",
+    "surface_template_family": "validation/no_product",
+    "initial": {
+      "skin_condition": [],
+      "severity": "unknown",
+      "usage_time": "unknown",
+      "product_used": "unknown",
+      "symptom_onset": "unknown"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "화장품을 바른 적은 없어. 오늘 피부가 따가워.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "severity": "unknown",
+          "usage_time": "unknown",
+          "product_used": "no",
+          "symptom_onset": "today"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ],
+                "product_used": "no",
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-change_onset-002",
+    "category": "change_onset",
+    "split": "validation",
+    "surface_template_family": "validation/change_onset",
+    "initial": {
+      "skin_condition": [
+        "redness"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "today",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "시작 시점만 고쳐줘. 증상은 어제 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "moderate"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "yesterday"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "moderate"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "redness"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-change_onset-001",
+    "category": "change_onset",
+    "split": "validation",
+    "surface_template_family": "validation/change_onset",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "시작 시점만 고쳐줘. 증상은 오늘 시작됐어.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "moderate"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "symptom_onset": "today"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "today",
+          "severity": "moderate"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-change_time-000",
+    "category": "change_time",
+    "split": "validation",
+    "surface_template_family": "validation/change_time",
+    "initial": {
+      "skin_condition": [
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "mild"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "사용한 시간대만 고칠게. 저녁 기록은 취소하고 오후에 사용했다고 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "usage_time": "afternoon"
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "afternoon"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-remove_symptom-000",
+    "category": "remove_symptom",
+    "split": "validation",
+    "surface_template_family": "validation/remove_symptom",
+    "initial": {
+      "skin_condition": [
+        "redness",
+        "stinging"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "yesterday",
+      "severity": "mild"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "기록에서 그 증상은 지워줘. 피부가 붉지는 않아. \"피부가 따가워\"라는 말은 맞아.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "oracle_actions": [
+          {
+            "name": "update_session_state",
+            "arguments": {
+              "patch": {
+                "skin_condition": [
+                  "stinging"
+                ]
+              }
+            }
+          }
+        ],
+        "required_tool": "update_session_state",
+        "final_response": "기록을 반영했습니다."
+      },
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "yesterday",
+          "severity": "mild"
+        },
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "stinging"
+          ],
+          "usage_time": "evening"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "기록된 상태 문서 조회",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "document_id": "FIXTURE-STING-001",
+        "final_response": "조회 문서: 따가움 테스트 문서. 출처: FIXTURE-STING-001"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  },
+  {
+    "id": "validation-search-001",
+    "category": "search",
+    "split": "validation",
+    "surface_template_family": "validation/search",
+    "initial": {
+      "skin_condition": [
+        "itching"
+      ],
+      "usage_time": "evening",
+      "product_used": "yes",
+      "symptom_onset": "recent",
+      "severity": "moderate"
+    },
+    "fail_search": false,
+    "turns": [
+      {
+        "input": "저장된 최신 조건으로 조회해줘. 검색된 자료의 식별자도 적어줘.",
+        "expected": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening",
+          "product_used": "yes",
+          "symptom_onset": "recent",
+          "severity": "moderate"
+        },
+        "oracle_actions": [
+          {
+            "name": "search_knowledge_base",
+            "arguments": {
+              "query": "현재 상태 문서 조회",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "evening"
+            }
+          }
+        ],
+        "required_tool": "search_knowledge_base",
+        "search_arguments": {
+          "skin_condition": [
+            "itching"
+          ],
+          "usage_time": "evening"
+        },
+        "document_id": "FIXTURE-ITCH-003",
+        "final_response": "조회 문서: 가려움과 붉어짐 테스트 문서. 출처: FIXTURE-ITCH-003"
+      }
+    ],
+    "provenance": "parameterized synthetic scenario authored for this experiment, not human collected"
+  }
+]

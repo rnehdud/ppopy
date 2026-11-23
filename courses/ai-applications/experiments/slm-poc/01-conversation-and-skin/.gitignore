@@ -1,0 +1,22 @@
+/workspace/models/**/*.safetensors
+/workspace/models/**/*.gguf
+/workspace/hf-cache/
+/workspace/external/
+/workspace/.venv*/
+**/__pycache__/
+*.pyc
+/workspace/models/qwen2.5-3b-instruct/qwen2.5-3b-instruct-q4_k_m.gguf
+/workspace/external/llama-cpp/cublasLt64_13.dll
+/workspace/external/llama-cpp/ggml-cuda.dll
+/workspace/data/processed/aihub_ablation_v1/
+/workspace/data/processed/qwen_tool_use/
+
+# Keep local model assets, third-party datasets and generated training data out.
+/workspace/models/
+/workspace/adapters/
+/workspace/data/raw/
+/workspace/data/processed/
+
+# Selected, reviewed experiment evidence is not a runtime output directory.
+!/sources/output/
+!/sources/output/**

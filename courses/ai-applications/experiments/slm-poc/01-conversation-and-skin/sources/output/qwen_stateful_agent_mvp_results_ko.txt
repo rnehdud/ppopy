@@ -1,0 +1,362 @@
+﻿한국어 Qwen Stateful Tool-Calling Agent MVP 구현·평가 결과
+작성 기준일: 2026-11-04
+상태: 데이터 정형화 및 학습 전 최소 Agent 동작 검증 완료
+
+목적
+
+한국어 도구 사용 데이터를 Qwen 학습 형식으로 정형화하고, 추가 학습하지 않은
+Qwen2.5-3B-Instruct로 상태를 유지·수정하며 도구를 호출하는 최소 Stateful Agent를 구현·평가했습니다.
+
+이번 단계는 "학습 전 모델로 최소 Agent를 실제로 동작시킬 수 있는가"를 확인하는 PoC입니다.
+기존의 STT → Jev → 7개 Field 분류 PoC를 완료한 결과가 아닙니다.
+STT, Jev API, 실제 스킨케어 KB 연동, QLoRA 학습, 제품 DB 저장, 추천 품질 검증은 미실시입니다.
+
+핵심 결과
+
+- 한국어 원본 15,170건 중 14,609건을 Qwen 형식으로 정형화했습니다.
+- 최소 데모 1개 시나리오의 3개 턴이 모두 통과했습니다.
+- 확장된 개발 테스트는 4/10개 시나리오,
+  6/14개 턴이 전체 판정 조건을 통과했습니다.
+- 추가 학습 없이 상태 등록 → 정정 → 정정된 상태로 도구 호출 → 결과 응답이 가능함을 확인했습니다.
+- 다만 날짜 혼동, 부정문 오류, 미언급 정보 추정, 빈 응답, 출처 누락이 남았습니다.
+- "최소 동작 가능"은 확인했지만, "안정적인 실사용 정확도 확보"나 "QLoRA 개선 효과"는 증명하지 않았습니다.
+
+팀원용 한눈에 보기
+
+한국어 텍스트 + 최신 세션 상태 + 도구 명세
+                    ↓
+       Qwen2.5-3B-Instruct (Q4_K_M, 추가 학습 없음)
+                    ↓
+      상태 갱신 / 검색을 위한 tool call 생성
+                    ↓
+       백엔드 검증 → Python 도구 실제 실행
+                    ↓
+       상태 저장 / 모의 KB 결과 반환
+                    ↓
+       최신 상태 + 현재 턴 도구 결과 → Qwen 응답
+
+개발 시나리오의 정답 상태·기대 도구 ─────→ 실제 상태·호출·응답 비교
+
+역할 구분:
+- Qwen: 발화 해석, 상태 patch 및 도구·인자 선택, 도구 결과를 읽고 응답 생성.
+- 백엔드: 상태 보관, 스키마 검증, 허용 도구 실행, 결과·오류·로그 반환.
+- 모델 가중치에 세션 상태를 저장하는 방식이 아닙니다.
+- 이전 턴 전체 이력은 로그로 보존하되, 추론에는 최신 명시 상태와 현재 턴 메시지를 전달합니다.
+  따라서 상태에 기록되지 않은 장기 대화 내용을 기억하는 기능은 없습니다.
+
+예시 입력 및 실제 성공 결과
+
+1) 사용자: "피부가 건조해. 크림은 아침에 발랐어."
+   결과: dryness / morning / product_used=yes를 기록.
+   말하지 않은 severity와 symptom_onset은 unknown으로 유지.
+
+2) 사용자: "크림을 바른 시간은 아침이 아니라 저녁이야."
+   실제 Qwen이 생성한 도구 요청:
+
+{
+  "name": "update_session_state",
+  "arguments": {
+    "patch": {
+      "usage_time": "evening"
+    }
+  }
+}
+
+   실행 후 실제 세션 상태:
+
+{
+  "skin_condition": [
+    "dryness"
+  ],
+  "severity": "unknown",
+  "usage_time": "evening",
+  "product_used": "yes",
+  "symptom_onset": "unknown"
+}
+
+3) 사용자: "현재 상태로 검색하고, 검색된 문서의 제목과 ID를 알려줘."
+   결과: search_knowledge_base를 호출하고 dryness / evening을 인자로 전달.
+   실제 반환된 문서 제목과 ID(FIXTURE-DRY-002)를 응답에 포함.
+
+위 JSON은 백엔드가 관리하는 실제 5개 Field 상태입니다.
+Jev 응답이나 7개 Field 전체 분류 결과가 아닙니다.
+정답 라벨을 모델 입력으로 전달하거나, 정답 인자를 백엔드에서 대입하지 않았습니다.
+스키마 검증은 값의 형식만 확인하며 의미가 틀린 정상 형식의 값까지 교정하지는 않습니다.
+
+분류·상태 관리 대상 Field
+
+Field | 후보 값 | 현재 구현 상태 및 규칙
+intent | record, recommend, question, modify_routine, other | 미구현·미평가
+skin_condition | dryness, breakout, redness, stinging, itching | 구현. 복수 선택. 부정된 증상 제외, 정정 시 목록 갱신
+severity | mild, moderate, severe, unknown | 구현. 명시되지 않으면 unknown. 이번 기대값은 전부 unknown으로, 등급 분류 능력은 검증하지 못함
+usage_time | morning, afternoon, evening, unknown | 구현. 제품 사용 시간대. 증상 발생 시점과 구분
+product_used | yes, no, unknown | 구현. 사용 명시=yes, 비사용 명시=no, 미언급=기존 값 유지/초기 unknown
+symptom_onset | today, yesterday, recent, unknown | 구현. 증상 시작 시점. 제품 사용일과 혼동하는 오류 관찰
+routine_change_requested | true, false | 미구현·미평가
+
+공통 누락·정정 규칙:
+- 미언급은 기존 상태 유지. 초기 미언급은 unknown 또는 빈 배열([]).
+- 명시적 정정은 해당 값 갱신. 다른 상태는 유지.
+- 인자의 타입·enum·허용 키를 검증하며, 잘못된 요청은 실행하지 않고 오류를 반환.
+- 7개 Field 전체 Exact Match는 계산하지 않았습니다. 구현된 5개 상태 항목만 비교했습니다.
+
+사용한 모델 및 실행 환경
+
+항목 | 내용
+모델 | 공식 Qwen/Qwen2.5-3B-Instruct-GGUF
+양자화 | Q4_K_M
+추가 학습 / LoRA | 없음 / 없음
+모델 파일 크기 | 2,104,932,768 bytes (약 2.1GB)
+무결성 | 공식 저장소 LFS SHA256과 일치 확인
+추론 엔진 | 로컬 GPU 대응 llama.cpp (기존 Jan 동봉 실행 파일)
+GPU | NVIDIA GeForce RTX 4070 Laptop GPU, VRAM 약 8GB
+모델 접속 주소 | http://127.0.0.1:18080
+생성 설정 | temperature=0, seed=42, max_tokens=384, cache_prompt=false
+도구 스펙 및 추론 템플릿 | 공식 Qwen tokenizer의 tools 지원 채팅 템플릿 사용
+
+주의:
+- GGUF 양자화는 추가 학습이 아닙니다.
+- 정형화한 한국어 데이터를 현재 모델에 학습시키지 않았습니다.
+- 이번 결과는 기존 Qwen 능력, 프롬프트, 상태 관리 및 실행 코드가 함께 만든 결과입니다.
+
+도구 명세
+
+도구 | 역할 | 구현 범위
+update_session_state | patch로 세션 상태 등록·정정 | Python 메모리 상태 갱신, version과 갱신 상태 반환
+search_knowledge_base | 모델이 선택한 조건으로 모의 문서 조회 | 합성 fixture의 skin_condition 태그로 문서 선택
+
+모의 검색에서 query와 usage_time은 수신·기록되지만, 실제 문서 선택은 증상 태그를 기준으로 합니다.
+벡터 검색, 의미 검색, 실제 RAG 또는 기존 스킨케어 KB의 검색 품질을 구현·검증한 것은 아닙니다.
+한 번에 하나의 도구 호출을 처리하며, 알 수 없는 도구·잘못된 인자·중복 호출 등을 차단합니다.
+도구 오류와 반복 실행 상한을 로그에 기록합니다.
+
+데이터 준비 결과
+
+데이터 | 용도 | 현재 상태
+heegyu/glaive-function-calling-v2-ko | 일반 한국어 도구 사용 학습 후보 | 다운로드·정형화 완료. 모델 학습에는 아직 미사용
+kakao/FunctionChat-Bench | 독립적인 한국어 tool-use 외부 평가 후보 | 다운로드 완료. 이번 실행 결과에는 미포함
+직접 작성한 합성 피부 상태 시나리오 | 로컬 Agent 동작 검증 | 개발용 10개 시나리오·14턴 + 별도 최소 데모 1개·3턴 실행
+
+정형화 내역:
+- 원본: 15,170건
+- 채택: 14,609건
+- 제외: 561건
+- 분할: train 13,074 / validation 812 / test 723
+- 방식: 원본 대화 SHA256 기반 90/5/5 결정적 분할, 정형화 후 완전 중복 제거
+- 동일 원본 대화의 split 중복 없음, 채택 데이터의 완전 중복 없음 확인
+- 변환: messages + tools, assistant.tool_calls, tool 결과 role 및 call ID 연결
+- 원본의 문자열 arguments를 JSON 객체로 변환, 인자 스키마와 도구 응답 연결 확인
+- 모든 채택 예제를 공식 Qwen 채팅 템플릿으로 렌더링·토큰화 확인
+- 토큰 수: 중앙값 494 / P95 1,463 / 최대 2,070
+- 2,048 토큰 초과 2건은 삭제·절단하지 않고 별도 플래그로 식별
+
+주요 제외 사유:
+- 정의되지 않은 도구 호출: 205건
+- 인자 스키마 불일치: 140건
+- 호출 후 도구 응답 누락: 57건
+- 충돌하는 도구 정의: 52건
+- 그 외 JSON·role·응답 연결·중복 등: 107건
+
+정형화는 구조 검증입니다. 번역과 의미의 전수 검수는 아닙니다.
+공개 일반 도구 데이터에 현재 스킨케어 상태 스키마의 정답 라벨을 새로 만든 것은 아닙니다.
+학습에 필요한 assistant-only loss mask 및 Trainer 구현은 이번 범위에 포함하지 않았습니다.
+
+구현 체크리스트
+
+- [x] 공개 한국어 도구 사용 데이터 및 외부 평가 후보 다운로드
+- [x] 데이터 출처·revision·체크섬 기록
+- [x] Qwen messages/tools 형식 정형화 및 공식 템플릿 검증
+- [x] train/validation/test 분리, 중복 및 원본 대화 split 겹침 확인
+- [x] 공식 Qwen 모델 다운로드 및 무결성 확인
+- [x] 추가 학습 전 Qwen의 로컬 GPU 추론 실행
+- [x] 5개 상태 Field와 누락·정정 규칙 구현
+- [x] 상태 등록·수정 도구 및 모의 KB 조회 도구 구현
+- [x] 인자 검증, 미허용 도구 차단, 오류·중복 호출·실행 횟수 상한 처리
+- [x] 실제 모델 응답·도구 인자·결과·상태·시간을 JSONL로 기록
+- [x] 최소 3턴 데모 성공 확인
+- [x] 10개 개발 시나리오의 성공·실패를 모두 기록
+- [x] 데이터 파싱·상태·실행 계약 단위 테스트 8개 통과
+- [ ] intent, routine_change_requested 구현 및 7개 Field 전체 평가
+- [ ] STT 제공 방식 선정 및 실제 한국어 음성 전사
+- [ ] Jev API 호출·질문 정의·공통 JSON 정규화
+- [ ] 동의받은 실제 음성 및 정답 전사문 확보
+- [ ] 독립적인 Golden Dataset 50~100문장 작성·고정
+- [ ] 실제 스킨케어 KB 연결
+- [ ] FunctionChat-Bench 공식 평가 실행
+- [ ] QLoRA 학습 및 동일 조건의 학습 전후 비교
+
+평가 설계 및 실행 결과
+
+실험 | 입력 | 목적 | 결과
+A0 | 단순한 한국어 3턴 → Qwen Agent → 모의 도구 | 상태 등록·정정·조회·응답의 최소 동작 | 1/1개 시나리오, 3/3턴 전체 조건 통과
+A1 | 한국어 개발 시나리오 → Qwen Agent → 모의 도구 | 부정·시간·미언급·정정·오류·출처 등 점검 | 4/10개 시나리오, 6/14턴 전체 조건 통과
+B | 음성 → STT → Agent 또는 Jev | 음성 포함 End-to-End 평가 | 미실시
+C | 음성 → STT | 전사 품질 | 미실시
+D | 한국어 공개 데이터 → 정형화 → Qwen 템플릿 | 학습 후보 데이터의 구조 적합성 | 14,609건 채택, 561건 제외
+
+A0와 A1은 별도 개발용 평가입니다. 합쳐서 일반화 성능으로 제시하지 않습니다.
+프롬프트·구조 조정에 사용했으므로 고정 독립 테스트나 학습 개선 효과를 나타내는 결과가 아닙니다.
+과거 pilot/baseline 기록은 조건이 달라 단순 비교하지 않고, 아래 최종 기록을 기준으로 합니다.
+
+A1 상태 Field별 결과 (14턴, 도구 실행 후 상태 기준)
+
+Field | 정답 턴/전체 턴 | Accuracy
+skin_condition | 13/14 | 92.86%
+severity | 14/14 | 100.00%
+usage_time | 14/14 | 100.00%
+product_used | 14/14 | 100.00%
+symptom_onset | 10/14 | 71.43%
+
+- skin_condition Accuracy는 증상 목록 전체가 일치한 턴 비율입니다.
+- skin_condition micro Precision: 0.9231
+- skin_condition micro Recall: 0.9231
+- skin_condition micro F1: 0.9231
+- 집계값: TP=12, FP=1, FN=1
+- 5개 상태 Field Exact Match: 10/14턴 (71.43%)
+- 7개 Field Exact Match: 미측정 (2개 Field 미구현)
+- 시나리오 전체 통과: 4/10 (40.00%)
+- 턴의 모든 해당 조건 통과: 6/14 (42.86%)
+- 상태가 맞아도 도구 미호출·빈 응답·출처 누락 등이 있으면 턴/시나리오는 실패 처리했습니다.
+- severity 기대값은 전부 unknown입니다. 100%가 심각도 분류 전반의 우수함을 뜻하지 않습니다.
+- 100%인 다른 항목도 14개 개발 턴에서의 관측값일 뿐 일반 성능을 단정하지 않습니다.
+
+응답 시간 및 비용
+
+- A1에서 최종 응답까지 완료한 12개 턴의 평균: 1.851초
+- 동일한 완료 턴의 P95: 2.261초 (nearest-rank)
+- 상태·도구 루프를 포함한 턴 처리 시간입니다.
+- 실패한 2개 턴은 위 완료 응답 지연시간 통계에서 제외했습니다.
+  따라서 전체 요청 기준 SLA나 전체 End-to-End P95가 아닙니다.
+- 로컬 추론이므로 이번 실험에서는 Jev·STT·외부 LLM API를 호출하지 않았습니다.
+- 전력·GPU 감가·모델 다운로드 등의 총비용은 산정하지 않았습니다. 무료 운영을 의미하지 않습니다.
+- STT CER/WER, Jev intent Accuracy, Jev Field별 Accuracy는 미측정입니다.
+- 미언급/부정 오분류의 독립된 비율 지표는 아직 산출하지 않았으며 사례로 기록했습니다.
+
+A1 시나리오별 판정
+
+시나리오 | 결과
+stinging_correction_search | FAIL
+dryness_preserve_onset | PASS
+negative_symptom | FAIL
+explicit_no_product | PASS
+remove_negated_symptom | FAIL
+greeting_no_tool | PASS
+clarify_empty_search | FAIL
+counterfactual_morning | FAIL
+counterfactual_evening | FAIL
+kb_failure | PASS
+
+대표 실패 사례 및 해석
+
+1. 증상 발생일과 제품 사용일 혼동
+   "오늘 볼이 따가워. 어젯밤에 로션을 발랐어."에서 증상 발생일을 제품 사용일과 혼동.
+   형식은 유효하여 스키마 검증만으로는 교정되지 않았습니다.
+
+2. 부정문에서 증상 오등록
+   "가렵지는 않고 따가워."를 포함한 입력에서 기대한 증상 목록과 다른 값이 기록되었습니다.
+   부정과 실제 양성 증상을 분리하는 의미 이해가 불안정합니다.
+
+3. 미언급 증상 발생일을 추정
+   제품을 어젯밤에 사용했다는 정보만으로 증상 시작도 yesterday로 기록하는 사례가 있었습니다.
+   이후 다른 상태를 정정해도 잘못된 발생일이 유지되는 문제가 있습니다.
+
+4. 빈 모델 응답
+   일부 검색 요청이나 모호한 요청에서 도구 호출도 설명도 없는 빈 응답이 발생했습니다.
+   백엔드는 이를 성공으로 위장하지 않고 empty_model_response로 기록했습니다.
+
+5. 검색 결과를 받은 뒤 출처 누락
+   동일한 요청에서 초기 상태가 다르면 올바르게 다른 검색 인자를 만들 수 있었습니다.
+   하지만 실제 반환 문서 ID를 답변에 포함하지 않아 전체 판정은 실패했습니다.
+
+6. 상태·검색 결과 밖의 자유문장 추가
+   일부 응답에서 제품이 증상을 유발했다는 식의 근거 없는 인과 표현이 관찰되었습니다.
+   이번 PoC는 자유 응답의 의료적 타당성을 보장하지 않습니다.
+
+산출물 / 완료 조건 (Definition of Done)
+
+이번 단계의 완료 기준
+- [x] 공개 한국어 데이터의 Qwen용 정형화를 재현할 실행 방법 제공
+- [x] 추가 학습 전 실제 Qwen 모델로 최소 Agent 실행
+- [x] 상태를 Python 백엔드에서 유지하고 정정을 반영하는 동작 확인
+- [x] 모델이 생성한 tool call을 실제 함수로 실행하고 결과를 되돌리는 동작 확인
+- [x] 최소 데모 3턴의 기대 상태·도구·결과 응답 전체 통과
+- [x] 확장 개발 테스트의 정답·실제값·실패·시간 CSV/JSON 기록
+- [x] 구현된 Field별 지표 및 대표 실패 유형 5개 이상 정리
+- [x] 충분한 판단 근거가 확보되어 이번 동작 검증을 종료하고 보고
+
+기존 STT/Jev PoC의 완료 여부
+- [ ] STT → Jev → 7개 Field JSON 실험 완료
+- [ ] 실제 음성·정답 전사·동의 절차를 포함한 평가 데이터 확보
+- [ ] Jev 유지 / 추출기 추가 / QLoRA 대체 중 최종 선택
+  이번에는 Jev와 비교하지 않았으므로 위 선택의 우열을 결론 내릴 수 없습니다.
+
+파일 위치
+
+실행 안내:
+- README.md
+
+데이터:
+- data/raw/download_manifest.json
+- data/processed/qwen_tool_use/train.jsonl
+- data/processed/qwen_tool_use/validation.jsonl
+- data/processed/qwen_tool_use/test.jsonl
+- data/processed/qwen_tool_use/preparation_report.json
+- data/processed/qwen_tool_use/rejected.jsonl
+- data/processed/qwen_tool_use/rendered_samples.json
+
+개발용 정답·모의 입력:
+- data/fixtures/smoke.json
+- data/fixtures/scenarios.json
+- data/fixtures/knowledge_base.json
+
+실행·평가 근거:
+- output/runs/smoke-final/results.json
+- output/runs/smoke-final/turns.csv
+- output/runs/verification-final/results.json
+- output/runs/verification-final/turns.csv
+- output/runs/*/*.events.jsonl
+- output/runs/*/run_metadata.json
+- output/verification_summary.json
+
+재현 명령 (프로젝트 루트의 PowerShell)
+
+python scripts/download_agent_data.py
+python scripts/setup_qwen.py
+python scripts/prepare_qwen_data.py
+powershell -ExecutionPolicy Bypass -File scripts/start_qwen.ps1
+python scripts/run_agent.py --demo
+python scripts/evaluate_agent.py --run-name new-development-run
+python scripts/evaluate_agent.py --run-name new-smoke-run --scenarios data/fixtures/smoke.json
+python -m unittest discover -s tests -v
+
+서버 중지:
+powershell -ExecutionPolicy Bypass -File scripts/stop_qwen.ps1
+
+run-name은 기존 결과를 덮어쓰지 않도록 새 이름을 지정합니다.
+Python 패키지와 실행 엔진 경로 등은 README.md를 참조합니다.
+
+다음 단계 제안
+
+1. 현재 개발 케이스와 분리된 한국어 holdout을 먼저 고정합니다.
+2. 상태 갱신·시간 정정·부정·미언급·질문·도구 미사용·오류 대응의 결합 학습 예제를 만듭니다.
+3. 정형화된 일반 도구 데이터와 결합 예제를 사용해 QLoRA 학습을 진행합니다.
+4. 동일 모델 계열·양자화·프롬프트·실행 기반으로 학습 전후를 비교합니다.
+5. Agent가 안정화되면 기존 KB를 연결하고, 필요 시 STT·Jev와 별도로 비교합니다.
+
+현재 판단:
+- Stateful Agent의 최소 동작 가능성은 확인했습니다.
+- 현재 학습 전 3B 모델을 안정적인 스킨케어 서비스로 사용하기에는 오류가 남아 있습니다.
+- QLoRA를 실험할 근거는 확보했지만, QLoRA가 개선한다는 사실은 아직 검증하지 않았습니다.
+- 실제 스킨케어 지식 자체를 새로 학습시키기보다 상태·행동·도구 선택을 우선 학습 대상으로 제안합니다.
+
+참고
+
+- 참고 GitHub: https://github.com/DdingDDing0103/koculture-slm-finetuning
+- 모델: https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF
+- 한국어 학습 후보: https://huggingface.co/datasets/heegyu/glaive-function-calling-v2-ko
+- 외부 평가 후보: https://github.com/kakao/FunctionChat-Bench
+- 공식 tool calling 문서: https://qwen.readthedocs.io/en/v2.5/framework/function_call.html
+- TypeSafe 콘솔(이번 미사용): https://console.typesafe.ai/keys
+- 모델 라이선스 표기는 qwen-research, 한국어 데이터 카드 표기는 Apache-2.0입니다.
+- 이번 피부 상태 입력과 모의 KB는 합성 테스트 자료입니다.
+- 실제 사용자 기록을 동의 없이 공개 데이터나 모델 학습에 사용하지 않습니다.

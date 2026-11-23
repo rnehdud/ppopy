@@ -1,0 +1,158 @@
+[
+  {
+    "id": "E01",
+    "phase": "Qwen最初の試作",
+    "title": "学習前のQwen2.5で状態更新と検索",
+    "change": "Qwen2.5-3B GGUFに2つのツールを接続。",
+    "result": "最小例3/3ターン。広げた開発例では4/10会話、6/14ターンが全条件一致。",
+    "scope": "未学習モデル・合成の開発例・模擬検索。独立した最終テストではない。",
+    "decision": "配線が動くことと、広い会話で正しく動くことを分ける。",
+    "sources": [
+      {
+        "source": "README.md",
+        "status": "copied",
+        "path": "sources/README.md",
+        "bytes": 34372,
+        "sha256": "317060102ba215ac45f3e31a0d4da5d7a7451958d4bc6f80212da9c4d7cfba07"
+      },
+      {
+        "source": "output/qwen_stateful_agent_mvp_results_ko.txt",
+        "status": "copied",
+        "path": "sources/output/qwen_stateful_agent_mvp_results_ko.txt",
+        "bytes": 19679,
+        "sha256": "ad452987f4428b95408d43347639bd698fe8b0e59f864bb49395fc0217206f3f"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E02",
+    "phase": "Qwen追加学習",
+    "title": "Qwen2.5 QLoRA：完了は増えたが状態は悪化",
+    "change": "120判断を用いて60回更新。固定59会話で前後比較。",
+    "result": "会話全条件20/59→42/59。ターン全条件39/84→57/84。状態完全一致71/84→58/84。",
+    "scope": "学習はNF4、評価は前後とも同じQ4_K_Mベース。合成の固定評価。出力完了と状態の正しさは別。",
+    "decision": "学習効果はあるが、状態保存の改善とは言えない。",
+    "sources": [
+      {
+        "source": "output/stateful_qlora_comparison.json",
+        "status": "copied",
+        "path": "sources/output/stateful_qlora_comparison.json",
+        "bytes": 18683,
+        "sha256": "84bbb63d6338595f87b2a8dedcdbeb9bbb1871e5de90cc4ae00c1e6928dd2466"
+      },
+      {
+        "source": "output/stateful_qlora_results_ko.txt",
+        "status": "copied",
+        "path": "sources/output/stateful_qlora_results_ko.txt",
+        "bytes": 10141,
+        "sha256": "f0d3cc3562bda94f95cead7e90aab29f78285b88df4bea02ed3b896a1d75c345"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E03",
+    "phase": "Qwen交換",
+    "title": "未学習Qwen3への交換",
+    "change": "Qwen2.5-3BからQwen3-4B-Instruct-2507へ交換。",
+    "result": "会話全条件20/59→41/59。状態は71/84→56/83。",
+    "scope": "モデルの大きさ・テンプレート・量子化も違う。Qwen3はHTTP500で1ターン未完了のため分母が違う。",
+    "decision": "モデル交換による観測差。追加学習の効果とは呼ばない。",
+    "sources": [
+      {
+        "source": "output/qwen3_evaluation_summary.json",
+        "status": "copied",
+        "path": "sources/output/qwen3_evaluation_summary.json",
+        "bytes": 61745,
+        "sha256": "44691ebc34914b5553d1714f8b3ca1329967c987a1374559f1744f650463731c"
+      },
+      {
+        "source": "output/qwen3_baseline_and_data_review_ja.txt",
+        "status": "copied",
+        "path": "sources/output/qwen3_baseline_and_data_review_ja.txt",
+        "bytes": 5541,
+        "sha256": "a6228fc57b1ea6a892dc6541f56c0e2ef8ffcee8c2f56ad693b5094002d96c57"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E04",
+    "phase": "公開会話で学習",
+    "title": "KLUE-WoS：対象課題は改善、肌の課題は悪化",
+    "change": "Qwen3へ200判断の状態追跡学習。",
+    "result": "WoS状態完全一致9/60→35/60、項目値F1 0.5993→0.9384。肌の会話41/59→30/59。",
+    "scope": "WoSは正しい直前状態を与える1ターン評価。自由な連続実行ではない。",
+    "decision": "別分野での改善を、元の課題の改善と置き換えない。",
+    "sources": [
+      {
+        "source": "output/klue_wos_pilot_summary.json",
+        "status": "copied",
+        "path": "sources/output/klue_wos_pilot_summary.json",
+        "bytes": 2505,
+        "sha256": "3fa372c9379e9a1dd816dea03122c01251e990605b8babc25f1358dcb0bd37e0"
+      },
+      {
+        "source": "output/klue_wos_pilot_report_ja.txt",
+        "status": "copied",
+        "path": "sources/output/klue_wos_pilot_report_ja.txt",
+        "bytes": 2323,
+        "sha256": "5b6fa5e375331acf7764279e37d5c0ff8bf3dc7ac2b6aed6eab90fbbee571f00"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E05",
+    "phase": "公開会話で学習",
+    "title": "AI Hub SNS・肌・混合を各2000判断",
+    "change": "Qwen3で学習教材を3条件に分けた。",
+    "result": "会話全条件：学習前41/59、SNS15/59、肌38/59、混合13/59。状態：前56/83、SNS19/83、肌51/84、混合19/84。",
+    "scope": "同じ肌の評価。損失が下がっても、この課題の正解は増えなかった。",
+    "decision": "この3条件を改善済みとして採用しない。",
+    "sources": [
+      {
+        "source": "output/aihub_ablation_v1_summary.json",
+        "status": "copied",
+        "path": "sources/output/aihub_ablation_v1_summary.json",
+        "bytes": 12999,
+        "sha256": "99bba4e872b6a71f2d4430e0bbc33a34e3b0fd0272b10717afc76b2846e13834"
+      },
+      {
+        "source": "output/aihub_ablation_v1_report_ja.txt",
+        "status": "copied",
+        "path": "sources/output/aihub_ablation_v1_report_ja.txt",
+        "bytes": 2422,
+        "sha256": "739cd503ced1727316e8d65886ee3d0848b0275c2d81ce3e0eabd91d024a7977"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E06",
+    "phase": "失敗に沿った小規模学習",
+    "title": "Qwen3の動作判断例を学習",
+    "change": "動作例200判断、または動作100＋AI Hub100を比較。",
+    "result": "修正後val20/30→22/30・21/30。失敗に沿った12例7/12→9/12・8/12。",
+    "scope": "後者は既知の失敗を踏まえた合成確認。元ラベルと修正ラベルの得点を混同しない。",
+    "decision": "小さい改善は確認。未知の会話全般の精度は未証明。",
+    "sources": [
+      {
+        "source": "output/agent_audit_v1_report_ja.txt",
+        "status": "copied",
+        "path": "sources/output/agent_audit_v1_report_ja.txt",
+        "bytes": 5013,
+        "sha256": "b657055182ddcd2230f30e3ffac3626dcf7d2b6c24e954dcd868a8127e933800"
+      },
+      {
+        "source": "output/agent_audit_v1_summary.json",
+        "status": "copied",
+        "path": "sources/output/agent_audit_v1_summary.json",
+        "bytes": 28591,
+        "sha256": "4842749f960914fbfcbdfcdcde3c41327abde299744ca303a797cd2d31c3350f"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  }
+]

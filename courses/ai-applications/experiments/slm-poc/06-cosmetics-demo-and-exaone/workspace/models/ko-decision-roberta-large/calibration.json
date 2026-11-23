@@ -1,0 +1,55 @@
+{
+ "temperatures": {
+  "kobest_boolq": 4.7,
+  "klue_nli": 4.15,
+  "kobest_copa": 2.65,
+  "klue_sts": 3.3,
+  "klue_ynat": 3.4
+ },
+ "fit_split": "calibration (599 rows)",
+ "grid": "0.50..5.00 step 0.05",
+ "objective": "soft-target NLL per task",
+ "report_split": "project test",
+ "report": {
+  "kobest_boolq": {
+   "temperature": 4.7,
+   "test_rows": 200,
+   "nll_t1": 0.617,
+   "nll_fitted": 0.229,
+   "ece10_t1": 0.098,
+   "ece10_fitted": 0.051
+  },
+  "klue_nli": {
+   "temperature": 4.15,
+   "test_rows": 600,
+   "nll_t1": 0.647,
+   "nll_fitted": 0.243,
+   "ece10_t1": 0.07,
+   "ece10_fitted": 0.029
+  },
+  "kobest_copa": {
+   "temperature": 2.65,
+   "test_rows": 200,
+   "nll_t1": 0.607,
+   "nll_fitted": 0.33,
+   "ece10_t1": 0.102,
+   "ece10_fitted": 0.056
+  },
+  "klue_sts": {
+   "temperature": 3.3,
+   "test_rows": 200,
+   "nll_t1": 1.436,
+   "nll_fitted": 1.016
+  },
+  "klue_ynat": {
+   "temperature": 3.4,
+   "test_rows": 700,
+   "nll_t1": 1.19,
+   "nll_fitted": 0.506,
+   "ece10_t1": 0.126,
+   "ece10_fitted": 0.015
+  }
+ },
+ "device": "mps",
+ "note": "Fitted for the five tasks that have calibration rows only (not the note-taking questions, KLUE-RE, KoBEST-HellaSwag or the English tasks)."
+}

@@ -1,0 +1,8 @@
+{
+  "base": "models/ko-decision-roberta-large",
+  "roles": {
+    "selector": {"path": "output/diagnostics/result-loop-split-v27/selector/final-adapter", "sha256": "9b37bb7262f21ee7f5f033ef55349963ed4e7a0c34b6a8dbbc51179a9db4c081"},
+    "gate": {"path": "output/diagnostics/gate-pair-v29/control/final-adapter", "sha256": "89cb044112ce9f24d7a58a478ccc9dd4d1be4852b4896765eb3efb9b318347aa"},
+    "symptom": {"path": "adapters/cosmetics-chat-v1/step-0100", "sha256": "12feecff4a7d8897d9deb47479d568af3f0e9ed5f9325b47c8ce58f097ee9232"}
+  }
+}

@@ -1,0 +1,1939 @@
+{
+  "prior_qwen25_baseline": {
+    "phase": "gguf-before",
+    "additional_training": false,
+    "scenarios": 59,
+    "passed_scenarios": 20,
+    "executed_turns": 84,
+    "planned_turns": 84,
+    "passed_turns": 39,
+    "state_exact_turns": 71,
+    "elapsed_seconds": 150.35640160000185,
+    "fields_exact": {
+      "skin_condition": 82,
+      "severity": 84,
+      "usage_time": 84,
+      "product_used": 73,
+      "symptom_onset": 84
+    },
+    "categories": {
+      "clarify": {
+        "total": 4,
+        "passed": 0
+      },
+      "failed_search": {
+        "total": 5,
+        "passed": 2
+      },
+      "change_onset": {
+        "total": 5,
+        "passed": 0
+      },
+      "negation": {
+        "total": 5,
+        "passed": 5
+      },
+      "change_time": {
+        "total": 5,
+        "passed": 0
+      },
+      "search": {
+        "total": 5,
+        "passed": 0
+      },
+      "conflicting_events": {
+        "total": 5,
+        "passed": 0
+      },
+      "missing_information": {
+        "total": 5,
+        "passed": 5
+      },
+      "remove_symptom": {
+        "total": 5,
+        "passed": 0
+      },
+      "report": {
+        "total": 5,
+        "passed": 0
+      },
+      "greeting": {
+        "total": 5,
+        "passed": 4
+      },
+      "no_product": {
+        "total": 5,
+        "passed": 4
+      }
+    },
+    "failed_checks": {
+      "completed": 29,
+      "required_tool": 25,
+      "search_arguments": 31,
+      "source_id": 23,
+      "state": 13,
+      "error_disclosed": 2
+    }
+  },
+  "qwen3_baseline": {
+    "phase": "qwen3-baseline",
+    "additional_training": false,
+    "scenarios": 59,
+    "passed_scenarios": 41,
+    "executed_turns": 83,
+    "planned_turns": 84,
+    "passed_turns": 55,
+    "state_exact_turns": 56,
+    "elapsed_seconds": 280.704458799999,
+    "fields_exact": {
+      "skin_condition": 66,
+      "severity": 83,
+      "usage_time": 69,
+      "product_used": 69,
+      "symptom_onset": 83
+    },
+    "categories": {
+      "clarify": {
+        "total": 4,
+        "passed": 4
+      },
+      "failed_search": {
+        "total": 5,
+        "passed": 5
+      },
+      "change_onset": {
+        "total": 5,
+        "passed": 5
+      },
+      "negation": {
+        "total": 5,
+        "passed": 4
+      },
+      "change_time": {
+        "total": 5,
+        "passed": 5
+      },
+      "search": {
+        "total": 5,
+        "passed": 5
+      },
+      "conflicting_events": {
+        "total": 5,
+        "passed": 0
+      },
+      "missing_information": {
+        "total": 5,
+        "passed": 4
+      },
+      "remove_symptom": {
+        "total": 5,
+        "passed": 4
+      },
+      "report": {
+        "total": 5,
+        "passed": 0
+      },
+      "greeting": {
+        "total": 5,
+        "passed": 5
+      },
+      "no_product": {
+        "total": 5,
+        "passed": 0
+      }
+    },
+    "failed_checks": {
+      "state": 27,
+      "search_arguments": 9,
+      "source_id": 4,
+      "completed": 1
+    }
+  },
+  "paired_scenarios": {
+    "fail_to_pass": 27,
+    "pass_to_pass": 14,
+    "fail_to_fail": 12,
+    "pass_to_fail": 6
+  },
+  "matching_conditions_checked": [
+    "holdout_sha256",
+    "system",
+    "tools",
+    "generation",
+    "runtime_sha256",
+    "evaluation_sha256"
+  ],
+  "qwen3_model_manifest": {
+    "model_repo": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+    "model_revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+    "filename": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "bytes": 2497281120,
+    "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+    "lfs_sha256_verified": true,
+    "tokenizer_repo": "Qwen/Qwen3-4B-Instruct-2507",
+    "tokenizer_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "quantization": "Q4_K_M",
+    "adapter": null,
+    "additional_training": false,
+    "template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326"
+  },
+  "limitations": [
+    "Existing holdout was previously inspected and is not an untouched test.",
+    "Synthetic controlled Korean; Korean linguistic labels not independently reviewed.",
+    "Qwen3 4B and Qwen2.5 3B use different model weights, tokenizers, templates and GGUF sources.",
+    "Both are Q4_K_M, but GGUF conversion details may differ; not an isolation of architecture alone.",
+    "The symptom_onset prompt conflates current-day symptoms with onset; labels require review."
+  ],
+  "failures": [
+    {
+      "scenario_id": "holdout-conflicting_events-003",
+      "category": "conflicting_events",
+      "turn": 1,
+      "input": "오후에 제품을 바른 건 어제의 일이야. 따가움이 생기기 시작한 건 오늘이고.",
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "따가움이 생겼다는 증상이 아직 기록되지 않았습니다. 따가움이 있는지 확인해 주세요. (따가움=stinging)",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "usage_time": "afternoon",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "afternoon",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "afternoon",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-003",
+      "category": "conflicting_events",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments",
+        "source_id"
+      ],
+      "model_error": null,
+      "answer": "조회 결과: 합성 테스트 문서이며 의료 지식베이스가 아닙니다. 관련 문서는 없습니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 사용 시간에 따른 정보",
+            "skin_condition": [],
+            "usage_time": "afternoon"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 사용 시간에 따른 정보",
+              "skin_condition": [],
+              "usage_time": "afternoon"
+            },
+            "documents": [],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "afternoon",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-remove_symptom-001",
+      "category": "remove_symptom",
+      "turn": 1,
+      "input": "다른 항목은 건드리지 마. 피부가 따갑지는 않아. \"뾰루지가 생겼어\"라는 것만 증상 목록에 남겨줘.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "completed"
+      ],
+      "model_error": "model_request_failed",
+      "answer": "",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "breakout"
+              ]
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "breakout"
+              ],
+              "severity": "unknown",
+              "usage_time": "afternoon",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "breakout"
+            ],
+            "severity": "unknown",
+            "usage_time": "afternoon",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-004",
+      "category": "conflicting_events",
+      "turn": 1,
+      "input": "저녁에 제품을 바른 건 어제의 일이야. 가려움이 생기기 시작한 건 오늘이고.",
+      "expected_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "unknown",
+        "usage_time": "evening",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "가려움이 생겼다고 말씀하셨습니다. 제품을 사용한 시간은 어제, 증상은 오늘 처음 나타났습니다. 추가로 피부 증상을 알려주시면, 현재 상태를 업데이트하여 도움을 드릴 수 있습니다.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-004",
+      "category": "conflicting_events",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "unknown",
+        "usage_time": "evening",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments",
+        "source_id"
+      ],
+      "model_error": null,
+      "answer": "조회 결과는 없습니다. 합성 테스트 문서이며, 실제 의료 지식베이스가 아닙니다. 피부 증상이나 화장품 사용 정보를 알려주시면 추가로 확인해 드리겠습니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+            "skin_condition": [],
+            "usage_time": "unknown"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+              "skin_condition": [],
+              "usage_time": "unknown"
+            },
+            "documents": [],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-002",
+      "category": "report",
+      "turn": 1,
+      "input": "메모를 새로 남겨줘. 피부가 건조해. 발생은 어제이고, 바른 시간대는 아침, 정도 표시는 중등도이야.",
+      "expected_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "moderate",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "yesterday"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "moderate",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "yesterday"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "제품 사용 시간대와 사용 여부를 알려주시면 도움 드릴 수 있어요. 아침에 사용하셨는지, 어떤 제품을 사용하셨는지 알려주시겠어요?",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "dryness"
+              ],
+              "severity": "moderate",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "dryness"
+              ],
+              "severity": "moderate",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "dryness"
+            ],
+            "severity": "moderate",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "yesterday"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-002",
+      "category": "report",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "moderate",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "yesterday"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "moderate",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "yesterday"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments"
+      ],
+      "model_error": null,
+      "answer": "검색 결과:  \n- 문서 ID: FIXTURE-DRY-002  \n- 문서 이름: 건조함 테스트 문서  \n- 내용: 모의 검색 결과: 건조함 증상을 사용 이력과 함께 조회했습니다. 이 문서는 도구 실행 검증용 합성 자료입니다.  \n\n※ 합성 테스트 문서이며 의료 지식베이스가 아닙니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 건조함에 대한 대처 방법",
+            "skin_condition": [
+              "dryness"
+            ],
+            "usage_time": "unknown"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 건조함에 대한 대처 방법",
+              "skin_condition": [
+                "dryness"
+              ],
+              "usage_time": "unknown"
+            },
+            "documents": [
+              {
+                "id": "FIXTURE-DRY-002",
+                "tags": [
+                  "dryness"
+                ],
+                "title": "건조함 테스트 문서",
+                "content": "모의 검색 결과: 건조함 증상을 사용 이력과 함께 조회했습니다. 이 문서는 도구 실행 검증용 합성 자료입니다."
+              }
+            ],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [
+              "dryness"
+            ],
+            "severity": "moderate",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "yesterday"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-001",
+      "category": "conflicting_events",
+      "turn": 1,
+      "input": "오후에 제품을 바른 건 어제의 일이야. 뾰루지가 생기기 시작한 건 오늘이고.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "뾰루지 증상이 오늘 처음 생겼고, 오후에 제품을 바른 것으로 보입니다. 현재 피부에 다른 증상이 없으므로, 추가 정보를 알려주시면 도움을 드리겠습니다.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "usage_time": "afternoon",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "afternoon",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "afternoon",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-001",
+      "category": "conflicting_events",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "afternoon",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments"
+      ],
+      "model_error": null,
+      "answer": "조회 결과: 합성 테스트 문서이며 의료 지식베이스가 아닙니다. 관련 문서는 없습니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 사용 시간에 따른 정보",
+            "skin_condition": [],
+            "usage_time": "afternoon"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 사용 시간에 따른 정보",
+              "skin_condition": [],
+              "usage_time": "afternoon"
+            },
+            "documents": [],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "afternoon",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-000",
+      "category": "conflicting_events",
+      "turn": 1,
+      "input": "아침에 제품을 바른 건 어제의 일이야. 붉어짐이 생기기 시작한 건 오늘이고.",
+      "expected_state": {
+        "skin_condition": [
+          "redness"
+        ],
+        "severity": "unknown",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "붉어짐은 오늘 처음 생겼고, 제품을 바른 건 어제였습니다. 현재 피부 증상은 아직 기록되지 않았습니다. 추가 증상이 있으면 알려주세요.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-000",
+      "category": "conflicting_events",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "redness"
+        ],
+        "severity": "unknown",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments",
+        "source_id"
+      ],
+      "model_error": null,
+      "answer": "조회 결과는 없습니다. 합성 테스트 문서이며, 실제 의료 지식베이스가 아닙니다. 피부 증상이나 화장품 사용 정보를 알려주시면 추가로 확인해 드리겠습니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+            "skin_condition": [],
+            "usage_time": "unknown"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+              "skin_condition": [],
+              "usage_time": "unknown"
+            },
+            "documents": [],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-no_product-002",
+      "category": "no_product",
+      "turn": 1,
+      "input": "화장품 사용은 없었다고 적어줘. 건조함이 생기기 시작한 건 오늘이야.",
+      "expected_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "건조함은 없고, 화장품은 사용하지 않았습니다. 증상은 오늘부터 시작된 것으로 기록했습니다. 추가 정보가 있으면 알려주세요.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "no",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-no_product-001",
+      "category": "no_product",
+      "turn": 1,
+      "input": "화장품 사용은 없었다고 적어줘. 뾰루지가 생기기 시작한 건 오늘이야.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "현재 화장품을 사용하지 않았고, 뾰루지가 생기기 시작한 날은 오늘입니다. 추가 정보가 필요하면 말씀해주세요.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "no",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-no_product-000",
+      "category": "no_product",
+      "turn": 1,
+      "input": "화장품 사용은 없었다고 적어줘. 붉어짐이 생기기 시작한 건 오늘이야.",
+      "expected_state": {
+        "skin_condition": [
+          "redness"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "붉어짐은 없고, 화장품을 사용하지 않았다고 기록했습니다. 추가 증상이나 정보가 있으면 알려주세요!",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "no",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-negation-001",
+      "category": "negation",
+      "turn": 1,
+      "input": "증상을 구별해서 적어줘. 피부가 따갑지는 않아. \"뾰루지가 생겼어\"라는 게 맞아. 날짜나 제품 이야기는 하지 않았어.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "unknown"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "dryness",
+          "itching"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "unknown"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "뾰루지가 생겼다며 말씀하신 내용을 기준으로, 피부 증상은 '뾰루지'로 해석됩니다. 하지만 피부가 따갑지는 않다는 점을 고려하면, '따갑니다'는 'stinging'이 아니라 'dryness'나 'itching'과 관련이 있을 수 있습니다.  \n\n현재 기록된 증상은 다음과 같습니다:  \n- **뾰루지** → 이는 일반적으로 'breakout'로 분류되며, 현재 세션 상태에 'breakout'가 포함되어 있지 않습니다.  \n- **피부가 따갑지 않다** → 'stinging' 증상은 제외합니다.  \n\n따라서, 현재 상태를 정리하면:  \n- **증상**: dryness, itching (건조함, 가려움)  \n- **breakout**는 언급되지 않았고, 제외합니다.  \n\n피부가 따갑지 않다는 점을 반영하여, 증상은 '건조함'과 '가려움'으로 정리됩니다.  \n제품 사용이나 날짜는 언급되지 않았습니다.  \n\n다시 확인해 보시겠어요?",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "dryness",
+                "itching"
+              ],
+              "symptom_onset": "unknown"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "dryness",
+                "itching"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "dryness",
+              "itching"
+            ],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-003",
+      "category": "report",
+      "turn": 1,
+      "input": "메모를 새로 남겨줘. 피부가 따가워. 발생은 오늘이고, 바른 시간대는 오후, 정도 표시는 심함이야.",
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "severe",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "severe",
+        "usage_time": "afternoon",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "피부가 따가워서 메모를 남겼어요. 증상은 오늘 발생했고, 오후에 나타났습니다. 심각도는 심함입니다. 제품 사용 여부는 아직 알려지지 않았어요.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "severe",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "severe",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "stinging"
+            ],
+            "severity": "severe",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        },
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "usage_time": "afternoon"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 3,
+            "state": {
+              "skin_condition": [
+                "stinging"
+              ],
+              "severity": "severe",
+              "usage_time": "afternoon",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "stinging"
+            ],
+            "severity": "severe",
+            "usage_time": "afternoon",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-003",
+      "category": "report",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "severe",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "severe",
+        "usage_time": "afternoon",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "- 문서 ID: FIXTURE-STING-001  \n- 문서 이름: 따가움 테스트 문서  \n- 내용: 모의 검색 결과: 따가움 증상과 제품 사용 시점은 별도 항목으로 기록합니다. 이 문서는 도구 실행 검증용 합성 자료이며 치료 지침이 아닙니다.  \n- 참고: 합성 테스트 문서이며 의료 지식베이스가 아닙니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 사용 시간에 따른 정보",
+            "skin_condition": [
+              "stinging"
+            ],
+            "usage_time": "afternoon"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 사용 시간에 따른 정보",
+              "skin_condition": [
+                "stinging"
+              ],
+              "usage_time": "afternoon"
+            },
+            "documents": [
+              {
+                "id": "FIXTURE-STING-001",
+                "tags": [
+                  "stinging"
+                ],
+                "title": "따가움 테스트 문서",
+                "content": "모의 검색 결과: 따가움 증상과 제품 사용 시점은 별도 항목으로 기록합니다. 이 문서는 도구 실행 검증용 합성 자료이며 치료 지침이 아닙니다."
+              }
+            ],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [
+              "stinging"
+            ],
+            "severity": "severe",
+            "usage_time": "afternoon",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-002",
+      "category": "conflicting_events",
+      "turn": 1,
+      "input": "아침에 제품을 바른 건 어제의 일이야. 건조함이 생기기 시작한 건 오늘이고.",
+      "expected_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "unknown",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "건조함이 생기기 시작한 날과 제품 사용 시간이 다릅니다. 현재 상태를 확인했습니다. 추가 증상이나 다른 정보가 있으신가요?",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "yes",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-conflicting_events-002",
+      "category": "conflicting_events",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "unknown",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments",
+        "source_id"
+      ],
+      "model_error": null,
+      "answer": "조회 결과는 없습니다. 합성 테스트 문서이며, 실제 의료 지식베이스가 아닙니다. 피부 증상이나 화장품 사용 정보를 알려주시면 추가로 확인해 드리겠습니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+            "skin_condition": [],
+            "usage_time": "unknown"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+              "skin_condition": [],
+              "usage_time": "unknown"
+            },
+            "documents": [],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "yes",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-no_product-003",
+      "category": "no_product",
+      "turn": 1,
+      "input": "화장품 사용은 없었다고 적어줘. 따가움이 생기기 시작한 건 오늘이야.",
+      "expected_state": {
+        "skin_condition": [
+          "stinging"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "따가움은 생겼지만, 화장품을 사용하지 않았고, 증상이 오늘 시작되었다는 정보를 기록했습니다. 추가로 피부 상태나 다른 증상이 있으면 알려주세요.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "no",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-no_product-004",
+      "category": "no_product",
+      "turn": 1,
+      "input": "화장품 사용은 없었다고 적어줘. 가려움이 생기기 시작한 건 오늘이야.",
+      "expected_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "no",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "가려움 증상이 오늘 처음 생겼고, 화장품을 사용하지 않았습니다. 추가 정보가 필요하면 알려주세요.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "no",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "no",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-004",
+      "category": "report",
+      "turn": 1,
+      "input": "메모를 새로 남겨줘. 피부가 가려워. 발생은 어제이고, 바른 시간대는 저녁, 정도 표시는 경미함이야.",
+      "expected_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "mild",
+        "usage_time": "evening",
+        "product_used": "yes",
+        "symptom_onset": "yesterday"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "mild",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "yesterday"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "제품 사용 시간대와 사용 여부를 알려주시면 도움 드릴 수 있어요. 저녁에 가려움이 생겼다고 하셨는데, 그 제품을 사용했는지, 언제 사용했는지 알려주시겠어요?",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "itching"
+              ],
+              "severity": "mild",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "itching"
+            ],
+            "severity": "mild",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "yesterday"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-004",
+      "category": "report",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "mild",
+        "usage_time": "evening",
+        "product_used": "yes",
+        "symptom_onset": "yesterday"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "itching"
+        ],
+        "severity": "mild",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "yesterday"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments"
+      ],
+      "model_error": null,
+      "answer": "검색 결과:  \n- 문서 ID: FIXTURE-ITCH-003  \n- 문서 이름: 가려움과 붉어짐 테스트 문서  \n- 태그: itching, redness  \n- 내용: 모의 검색 결과: 가려움과 붉어짐은 독립적인 증상 항목입니다. 이 문서는 도구 실행 검증용 합성 자료입니다.  \n- 참고: 합성 테스트 문서이며 의료 지식베이스가 아닙니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+            "skin_condition": [
+              "itching"
+            ],
+            "usage_time": "unknown"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+              "skin_condition": [
+                "itching"
+              ],
+              "usage_time": "unknown"
+            },
+            "documents": [
+              {
+                "id": "FIXTURE-ITCH-003",
+                "tags": [
+                  "itching",
+                  "redness"
+                ],
+                "title": "가려움과 붉어짐 테스트 문서",
+                "content": "모의 검색 결과: 가려움과 붉어짐은 독립적인 증상 항목입니다. 이 문서는 도구 실행 검증용 합성 자료입니다."
+              }
+            ],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [
+              "itching"
+            ],
+            "severity": "mild",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "yesterday"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-000",
+      "category": "report",
+      "turn": 1,
+      "input": "메모를 새로 남겨줘. 피부가 붉어. 발생은 어제이고, 바른 시간대는 아침, 정도 표시는 심함이야.",
+      "expected_state": {
+        "skin_condition": [
+          "redness"
+        ],
+        "severity": "severe",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "yesterday"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "redness"
+        ],
+        "severity": "severe",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "yesterday"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "제품 사용 시간대와 사용 여부를 알려주시면 도움 드릴 수 있어요. 아침에 바른 제품이 있나요?",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "redness"
+              ],
+              "severity": "severe",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "redness"
+              ],
+              "severity": "severe",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "yesterday"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "redness"
+            ],
+            "severity": "severe",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "yesterday"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-000",
+      "category": "report",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "redness"
+        ],
+        "severity": "severe",
+        "usage_time": "morning",
+        "product_used": "yes",
+        "symptom_onset": "yesterday"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "redness"
+        ],
+        "severity": "severe",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "yesterday"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments"
+      ],
+      "model_error": null,
+      "answer": "검색 결과:  \n- 문서 ID: FIXTURE-ITCH-003  \n- 문서 이름: 가려움과 붉어짐 테스트 문서  \n- 내용: 모의 검색 결과: 가려움과 붉어짐은 독립적인 증상 항목입니다. 이 문서는 도구 실행 검증용 합성 자료입니다.  \n- 참고: 합성 테스트 문서이며 의료 지식베이스가 아닙니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+            "skin_condition": [
+              "redness"
+            ],
+            "usage_time": "unknown"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+              "skin_condition": [
+                "redness"
+              ],
+              "usage_time": "unknown"
+            },
+            "documents": [
+              {
+                "id": "FIXTURE-ITCH-003",
+                "tags": [
+                  "itching",
+                  "redness"
+                ],
+                "title": "가려움과 붉어짐 테스트 문서",
+                "content": "모의 검색 결과: 가려움과 붉어짐은 독립적인 증상 항목입니다. 이 문서는 도구 실행 검증용 합성 자료입니다."
+              }
+            ],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [
+              "redness"
+            ],
+            "severity": "severe",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "yesterday"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-001",
+      "category": "report",
+      "turn": 1,
+      "input": "메모를 새로 남겨줘. 뾰루지가 생겼어. 발생은 오늘이고, 바른 시간대는 오후, 정도 표시는 경미함이야.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "mild",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "mild",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "제품 사용 시간대와 사용 여부는 아직 알려지지 않았습니다. 제품을 사용했는지, 언제 사용했는지 알려주시겠어요?",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "breakout"
+              ],
+              "severity": "mild",
+              "symptom_onset": "today"
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "breakout"
+              ],
+              "severity": "mild",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "today"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "breakout"
+            ],
+            "severity": "mild",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-report-001",
+      "category": "report",
+      "turn": 2,
+      "input": "최신 상태를 조건으로 자료를 찾아봐 줘. 반환된 문서 이름과 ID까지 보여줘.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "mild",
+        "usage_time": "afternoon",
+        "product_used": "yes",
+        "symptom_onset": "today"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "mild",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "today"
+      },
+      "failed_checks": [
+        "state",
+        "search_arguments"
+      ],
+      "model_error": null,
+      "answer": "조회 결과: 합성 테스트 문서이며 의료 지식베이스가 아닙니다. 관련 문서는 없습니다.",
+      "calls": [
+        {
+          "name": "search_knowledge_base",
+          "arguments": {
+            "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+            "skin_condition": [
+              "breakout"
+            ],
+            "usage_time": "unknown"
+          },
+          "result": {
+            "ok": true,
+            "fixture": true,
+            "received_arguments": {
+              "query": "피부 증상과 화장품 사용 시간에 따른 정보",
+              "skin_condition": [
+                "breakout"
+              ],
+              "usage_time": "unknown"
+            },
+            "documents": [],
+            "notice": "합성 테스트 문서이며 의료 지식베이스가 아닙니다."
+          },
+          "state_after": {
+            "skin_condition": [
+              "breakout"
+            ],
+            "severity": "mild",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "today"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "holdout-missing_information-001",
+      "category": "missing_information",
+      "turn": 1,
+      "input": "제품을 썼는지나 언제부터인지는 말한 적 없어. \"뾰루지가 생겼어\"라는 점만 기억해줘.",
+      "expected_state": {
+        "skin_condition": [
+          "breakout"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "unknown"
+      },
+      "actual_state": {
+        "skin_condition": [
+          "dryness"
+        ],
+        "severity": "unknown",
+        "usage_time": "unknown",
+        "product_used": "unknown",
+        "symptom_onset": "unknown"
+      },
+      "failed_checks": [
+        "state"
+      ],
+      "model_error": null,
+      "answer": "뾰루지가 생겼다는 증상은 현재 상태에 기록되었습니다. 하지만 피부 건조함(dryness)이 기록된 것으로, 블루지가 생겼다는 점은 추가로 확인이 필요합니다. 제품 사용 여부나 증상 발생 시점은 아직 명확하지 않아요. 추가 정보를 알려주시면 도움을 드리겠습니다.",
+      "calls": [
+        {
+          "name": "update_session_state",
+          "arguments": {
+            "patch": {
+              "skin_condition": [
+                "dryness"
+              ]
+            }
+          },
+          "result": {
+            "ok": true,
+            "version": 2,
+            "state": {
+              "skin_condition": [
+                "dryness"
+              ],
+              "severity": "unknown",
+              "usage_time": "unknown",
+              "product_used": "unknown",
+              "symptom_onset": "unknown"
+            }
+          },
+          "state_after": {
+            "skin_condition": [
+              "dryness"
+            ],
+            "severity": "unknown",
+            "usage_time": "unknown",
+            "product_used": "unknown",
+            "symptom_onset": "unknown"
+          }
+        }
+      ]
+    }
+  ]
+}

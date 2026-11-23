@@ -1,0 +1,34 @@
+{
+  "version": "context-paired-kaggle-v2",
+  "seed": 739018,
+  "source_splits": "data/processed/kotraj-200-v1",
+  "stats": {
+    "train": {
+      "groups": 200,
+      "short_no_tool": 100,
+      "long_min_tokens": 777,
+      "long_max_tokens": 1004
+    },
+    "dev": {
+      "groups": 40,
+      "short_no_tool": 20,
+      "long_min_tokens": 797,
+      "long_max_tokens": 994
+    },
+    "test": {
+      "groups": 60,
+      "short_no_tool": 30,
+      "long_min_tokens": 786,
+      "long_max_tokens": 996
+    }
+  },
+  "files": {
+    "dev.jsonl": "6a41e1d2b85e110241f0542d9bf54ab763ee071ffd9af1ae946e167e15046b75",
+    "review_sample.csv": "6fa1e78a40d8b8462984f879b79c23bd499e7b9c634ad9211f920c80b9c774df",
+    "test.jsonl": "94f66e149d293ae7237a0fefd90a8f4e607a975264ef01301b2dd06e11bff0fd",
+    "train.jsonl": "7c5697731032f73bc3eae9de0eb5901e9fad87ea0d7ba333009cd466a8691e08",
+    "adapter/adapter_config.json": "2cd56ae60ef72e890bd393c4a6a3ee0a97ee074f6d9122de1183e4684a46a5fb",
+    "adapter/adapter_model.safetensors": "1cccc63a743f4dbced54f3ec05e3c5aa9188192ce3a52507f96273ec9ecdaffa"
+  },
+  "warning": "Synthetic observed actions; human review incomplete; dev/test have been inspected in earlier work. Same meaning under filler is an assumption requiring review. No claim of independent generalization."
+}

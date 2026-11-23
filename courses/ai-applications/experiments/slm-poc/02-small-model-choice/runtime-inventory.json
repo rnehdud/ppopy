@@ -1,0 +1,640 @@
+{
+  "directory": "02-small-model-choice",
+  "copied": {
+    "workspace/requirements.txt": {
+      "source": "requirements.txt",
+      "bytes": 156,
+      "sha256": "7119baefcc4d080d50a72c0089905cb3b96af56012edb474cd263a864e8c2e25"
+    },
+    "workspace/requirements-train.txt": {
+      "source": "requirements-train.txt",
+      "bytes": 182,
+      "sha256": "082653edf1e6e465fc2f36a50af278d8738ec3dc7e8702b609a80f36fcab7bc8"
+    },
+    "workspace/scripts/compare_korean_decision_pilot.py": {
+      "source": "scripts/compare_korean_decision_pilot.py",
+      "bytes": 13122,
+      "sha256": "dd5b09012b2500cbc44c2e78eb673e3f132a71a6e3ea1cad8203993d6e1a8f32"
+    },
+    "workspace/scripts/train_ko_symptom_6000_v1.py": {
+      "source": "scripts/train_ko_symptom_6000_v1.py",
+      "bytes": 10039,
+      "sha256": "379df3557cd946e9f5dd6508e2b7faf56ce52c3e3fbc37b4603030c7649cd26d"
+    },
+    "workspace/scripts/build_ko_symptom_6000_v1.py": {
+      "source": "scripts/build_ko_symptom_6000_v1.py",
+      "bytes": 13602,
+      "sha256": "c37e5275e281b88ddd387c7f1e74b6cb0575d383279b536fb9024067a35a13f6"
+    },
+    "workspace/scripts/report_ko_symptom_6000.py": {
+      "source": "scripts/report_ko_symptom_6000.py",
+      "bytes": 7247,
+      "sha256": "bb0830d5f481a10d1b210fd156d970e154105b76f4271e5bc2c90776c50d4c21"
+    },
+    "workspace/scripts/train_choice_agent_v1.py": {
+      "source": "scripts/train_choice_agent_v1.py",
+      "bytes": 10825,
+      "sha256": "1640feadf394ce4c706c680bc1b645e0c88a0aa854272345c746119ac96d5954"
+    },
+    "workspace/scripts/build_choice_agent_data_v1.py": {
+      "source": "scripts/build_choice_agent_data_v1.py",
+      "bytes": 9947,
+      "sha256": "e2d9f2e6cf15f3e36e1027464dc3eb9da72dd21121eaaad5b0e16e8b35f96167"
+    },
+    "workspace/scripts/build_choice_agent_eval_v1.py": {
+      "source": "scripts/build_choice_agent_eval_v1.py",
+      "bytes": 4663,
+      "sha256": "f00e4c7b911bbc7577b1a04fc2a2654357cb52da8077f91bc1b9d00d584cfa58"
+    },
+    "workspace/scripts/run_choice_agent_v1.py": {
+      "source": "scripts/run_choice_agent_v1.py",
+      "bytes": 1977,
+      "sha256": "66e3a7b42ca4df558d2ea8096dc41f6626ad9defed6b7ccc3303e89294069256"
+    },
+    "workspace/scripts/train_kotraj_200_v1.py": {
+      "source": "scripts/train_kotraj_200_v1.py",
+      "bytes": 7539,
+      "sha256": "9713f5c5d667fee3ddccdcc65a01f56fb833c5e7e7b89f6399140a7a38f38f16"
+    },
+    "workspace/agent/__init__.py": {
+      "source": "agent/__init__.py",
+      "bytes": 74,
+      "sha256": "c0f8939a0919250f24d8e8b2f5c773c1c863c377171be71a04078090bd9e61da"
+    },
+    "workspace/agent/choice_agent_v1.py": {
+      "source": "agent/choice_agent_v1.py",
+      "bytes": 5058,
+      "sha256": "9c494f9e572931c1d8d72bb6db275be7e7b19982a93bd9dc307785f02e8a4a36"
+    },
+    "workspace/agent/local_choice_scorer_v1.py": {
+      "source": "agent/local_choice_scorer_v1.py",
+      "bytes": 1613,
+      "sha256": "38bc64094581af52f5e3efea15742e8a04865e2ae09702dd697bf98ce765806e"
+    },
+    "workspace/agent/symptom_state_v1.py": {
+      "source": "agent/symptom_state_v1.py",
+      "bytes": 1440,
+      "sha256": "b9fc2575161375e8bc8d730081120c9b37fe8c27897408679caa44e163350a17"
+    },
+    "workspace/scripts/analyze_symptom_score_margins_v1.py": {
+      "source": "scripts/analyze_symptom_score_margins_v1.py",
+      "bytes": 12335,
+      "sha256": "d627620397ca4d4d02e615fb2b6441fcc5b44d6dfe9a80062826e9c1b4ce77d6"
+    },
+    "workspace/scripts/evaluate_jev_style_qwen_pilot.py": {
+      "source": "scripts/evaluate_jev_style_qwen_pilot.py",
+      "bytes": 8125,
+      "sha256": "a2ed7fe6dbefe9ae32f4407a5c2ae9a51d6da5fbe0af83f939e4138135575030"
+    },
+    "workspace/scripts/evaluate_symptom_state_v1.py": {
+      "source": "scripts/evaluate_symptom_state_v1.py",
+      "bytes": 6070,
+      "sha256": "73d219a67dd4623e4b84c04aa21e91b8af6bc21185aa49cbda6bbf7386a3743b"
+    },
+    "workspace/scripts/train_ko_decision_qlora_pilot.py": {
+      "source": "scripts/train_ko_decision_qlora_pilot.py",
+      "bytes": 12396,
+      "sha256": "967dcd4338f0c9ba827311792e94425311bd794769e490c4a06dfa9e3fa1a62a"
+    },
+    "workspace/scripts/train_question_conditioning_v1.py": {
+      "source": "scripts/train_question_conditioning_v1.py",
+      "bytes": 11430,
+      "sha256": "372fa545acd78b0cf9c88d66dcec1d6ff3993e52c070ad2352bcbef83755dc03"
+    },
+    "workspace/data/processed/ko_symptom_6000_v2/heldout_cases.json": {
+      "source": "data/processed/ko_symptom_6000_v2/heldout_cases.json",
+      "bytes": 17926,
+      "sha256": "56bdfc9e89f2b9ddbe2e5674af90e080964ecb2c544abc1d653b1f8482b879b6"
+    },
+    "workspace/data/processed/ko_symptom_6000_v2/manifest.json": {
+      "source": "data/processed/ko_symptom_6000_v2/manifest.json",
+      "bytes": 855,
+      "sha256": "b6650e5c589ae30daf76b2eb01f7b4d3dd19a8496c10092eb3e8ac692fa66be2"
+    },
+    "workspace/data/processed/ko_symptom_6000_v2/README.md": {
+      "source": "data/processed/ko_symptom_6000_v2/README.md",
+      "bytes": 1489,
+      "sha256": "cc78b5a4faab34de2536442c7b5b3a6758455c0b7bb505c78abc73f5da1cfc75"
+    },
+    "workspace/data/processed/ko_symptom_6000_v2/train.jsonl": {
+      "source": "data/processed/ko_symptom_6000_v2/train.jsonl",
+      "bytes": 1214606,
+      "sha256": "178345ba009e63546d729d6954294dce324522650d1ff31b9ec979b1edb45152"
+    },
+    "workspace/data/processed/choice_agent_v2/dev.jsonl": {
+      "source": "data/processed/choice_agent_v2/dev.jsonl",
+      "bytes": 9094,
+      "sha256": "75757270459b7704024747e6632a1150c490c2bf843f3c5704d1de9797623e51"
+    },
+    "workspace/data/processed/choice_agent_v2/manifest.json": {
+      "source": "data/processed/choice_agent_v2/manifest.json",
+      "bytes": 879,
+      "sha256": "75247990fc64ad7e5a9ffa7b7b52853347fc3905ea247ee75127065d4ee60476"
+    },
+    "workspace/data/processed/choice_agent_v2/tool_test.jsonl": {
+      "source": "data/processed/choice_agent_v2/tool_test.jsonl",
+      "bytes": 21910,
+      "sha256": "e5b2d96fcc78ebb2c9108646871cee1b877e123822a541d9a0c9646e969003d7"
+    },
+    "workspace/data/processed/choice_agent_v2/train.jsonl": {
+      "source": "data/processed/choice_agent_v2/train.jsonl",
+      "bytes": 2894915,
+      "sha256": "0194dbd273a3a6c19b799731c083b2f504143cb71f7c80e09e1326b5568ec9a6"
+    },
+    "workspace/data/processed/choice_agent_eval_v2/manifest.json": {
+      "source": "data/processed/choice_agent_eval_v2/manifest.json",
+      "bytes": 406,
+      "sha256": "cddfa7e0a82671091c3fce7fd866aedad46b9b45d4ffbd21284c9ba9c6af4a1d"
+    },
+    "workspace/data/processed/choice_agent_eval_v2/pipeline_cases.json": {
+      "source": "data/processed/choice_agent_eval_v2/pipeline_cases.json",
+      "bytes": 6552,
+      "sha256": "8a62221eea12f26c4b82b9a28fbcc397a3b9bfbdce3ecd94ed1ae1c6da9e1b24"
+    },
+    "workspace/data/processed/choice_agent_eval_v2/question_cases.jsonl": {
+      "source": "data/processed/choice_agent_eval_v2/question_cases.jsonl",
+      "bytes": 4684,
+      "sha256": "e98334a4d89e33aaf4e527a968c2dd3dce22fd121e352c105d71bf93dc24b378"
+    },
+    "workspace/data/processed/kotraj-200-v1/dev.jsonl": {
+      "source": "data/processed/kotraj-200-v1/dev.jsonl",
+      "bytes": 155135,
+      "sha256": "0ff887a7142cfb02042ff0f2c9c885fad6a6ba576f05b537ba5dccda5c015166"
+    },
+    "workspace/data/processed/kotraj-200-v1/manifest.json": {
+      "source": "data/processed/kotraj-200-v1/manifest.json",
+      "bytes": 1142,
+      "sha256": "b7703b1ad03a8123f56880102ea4f8078e2cabe5211e8c9f5f02abb9b89a2015"
+    },
+    "workspace/data/processed/kotraj-200-v1/test.jsonl": {
+      "source": "data/processed/kotraj-200-v1/test.jsonl",
+      "bytes": 228390,
+      "sha256": "a2f61afa44de1b7f2903920b7622c914ceefb816f8ac885ba660bad3cc042332"
+    },
+    "workspace/data/processed/kotraj-200-v1/train.jsonl": {
+      "source": "data/processed/kotraj-200-v1/train.jsonl",
+      "bytes": 762710,
+      "sha256": "c46c2fd7d8df22cd058a2c0925f51c30fc35168212aafcbe066f1c210b1c7aa2"
+    },
+    "workspace/adapters/ko-symptom-6000-v1/step-1500/adapter_config.json": {
+      "source": "adapters/ko-symptom-6000-v1/step-1500/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/ko-symptom-6000-v1/step-1500/adapter_model.safetensors": {
+      "source": "adapters/ko-symptom-6000-v1/step-1500/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "ec4a80d56c9708e5ab40d2a894fe569ceb6dbdee5ae9f3a3d5f4eccefa94d7fa"
+    },
+    "workspace/adapters/ko-symptom-6000-v1/step-1500/README.md": {
+      "source": "adapters/ko-symptom-6000-v1/step-1500/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/choice-agent-v2/step-0000/adapter_config.json": {
+      "source": "adapters/choice-agent-v2/step-0000/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "f28a2679fc659b026867c8a33dc732c0590989cc694265acdced7c14a0f1d449"
+    },
+    "workspace/adapters/choice-agent-v2/step-0000/adapter_model.safetensors": {
+      "source": "adapters/choice-agent-v2/step-0000/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "ec4a80d56c9708e5ab40d2a894fe569ceb6dbdee5ae9f3a3d5f4eccefa94d7fa"
+    },
+    "workspace/adapters/choice-agent-v2/step-0000/README.md": {
+      "source": "adapters/choice-agent-v2/step-0000/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/choice-agent-v2/step-0269/adapter_config.json": {
+      "source": "adapters/choice-agent-v2/step-0269/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "f28a2679fc659b026867c8a33dc732c0590989cc694265acdced7c14a0f1d449"
+    },
+    "workspace/adapters/choice-agent-v2/step-0269/adapter_model.safetensors": {
+      "source": "adapters/choice-agent-v2/step-0269/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "86226ec7ef523ef5bcdfe3cbb97378ddc07a4269cb919bc64327ddb90e3d798b"
+    },
+    "workspace/adapters/choice-agent-v2/step-0269/README.md": {
+      "source": "adapters/choice-agent-v2/step-0269/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/choice-agent-v2/step-0539/adapter_config.json": {
+      "source": "adapters/choice-agent-v2/step-0539/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "f28a2679fc659b026867c8a33dc732c0590989cc694265acdced7c14a0f1d449"
+    },
+    "workspace/adapters/choice-agent-v2/step-0539/adapter_model.safetensors": {
+      "source": "adapters/choice-agent-v2/step-0539/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "dfeb00234e571c0601a454dd9c1dbe7e6d9ae2244a14220e135fe6a1bcf0296d"
+    },
+    "workspace/adapters/choice-agent-v2/step-0539/README.md": {
+      "source": "adapters/choice-agent-v2/step-0539/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/choice-agent-v2/step-0809/adapter_config.json": {
+      "source": "adapters/choice-agent-v2/step-0809/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "f28a2679fc659b026867c8a33dc732c0590989cc694265acdced7c14a0f1d449"
+    },
+    "workspace/adapters/choice-agent-v2/step-0809/adapter_model.safetensors": {
+      "source": "adapters/choice-agent-v2/step-0809/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "0512b839531cb2ab262c2f803fdfa742bf20e6cb70546616b1cbc94dbedafbd7"
+    },
+    "workspace/adapters/choice-agent-v2/step-0809/README.md": {
+      "source": "adapters/choice-agent-v2/step-0809/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_config.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_config.json",
+      "bytes": 1172,
+      "sha256": "2cd56ae60ef72e890bd393c4a6a3ee0a97ee074f6d9122de1183e4684a46a5fb"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_model.safetensors": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "1cccc63a743f4dbced54f3ec05e3c5aa9188192ce3a52507f96273ec9ecdaffa"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/README.md": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/README.md",
+      "bytes": 5194,
+      "sha256": "aba568fa620fb37bcc7faa75f06dc6264f797db259798d2a2f3456fe827e86ac"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/special_tokens_map.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/special_tokens_map.json",
+      "bytes": 971,
+      "sha256": "63cd5b53789b3b5ae2c3d7aa377bcba1557ff0b41dc69ce07b94350ea32291c2"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer.json",
+      "bytes": 752154,
+      "sha256": "3eaa9c422ff9796cfceed83c613a0fd0a1648551a7618d28759dc95ad9b5a416"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer_config.json": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/tokenizer_config.json",
+      "bytes": 1651,
+      "sha256": "96bd773dd505cf0e78d02c47a201f47e907653da4d9d5b7ce294d911b0b69d39"
+    },
+    "workspace/output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/vocab.txt": {
+      "source": "output/training/kotraj-kaggle-complete-v1/kotraj_choice/kotraj-choice-full-gpu-v1/final_adapter/vocab.txt",
+      "bytes": 248477,
+      "sha256": "1ad4978b5dbe269dcc402a3c6eb71ceab21d712bca3b7d3b9994845e54cdcb39"
+    },
+    "workspace/models/ko-decision-roberta-large/calibration.json": {
+      "source": "models/ko-decision-roberta-large/calibration.json",
+      "bytes": 1202,
+      "sha256": "ff1edf03f9e548fb55b376823fc9bc35abefb433cefe41c2ecb300d6e3193f72"
+    },
+    "workspace/models/ko-decision-roberta-large/config.json": {
+      "source": "models/ko-decision-roberta-large/config.json",
+      "bytes": 789,
+      "sha256": "1f7092ef468dc9f841f5bfbb9d60095b8057f40d9179c437a743d1aa044fe9d0"
+    },
+    "workspace/models/ko-decision-roberta-large/DATA_LICENSE_CC-BY-SA-4.0.txt": {
+      "source": "models/ko-decision-roberta-large/DATA_LICENSE_CC-BY-SA-4.0.txt",
+      "bytes": 20131,
+      "sha256": "7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297"
+    },
+    "workspace/models/ko-decision-roberta-large/DATA_NOTICE.md": {
+      "source": "models/ko-decision-roberta-large/DATA_NOTICE.md",
+      "bytes": 3475,
+      "sha256": "a37cab0e266e139a305623890e417c9d4120493b5ce2fac2ab568534e4fda7e9"
+    },
+    "workspace/models/ko-decision-roberta-large/model.safetensors": {
+      "source": "models/ko-decision-roberta-large/model.safetensors",
+      "bytes": 1346677820,
+      "sha256": "7b6ac5dbac2c1bad001f730b019d0e416ffdeb9e487a996fb36440323b605655"
+    },
+    "workspace/models/ko-decision-roberta-large/README.md": {
+      "source": "models/ko-decision-roberta-large/README.md",
+      "bytes": 29401,
+      "sha256": "bfced9cd6d29deda61e37362c33c0b140b38997d7d58d1d51ed58e4539e0c22e"
+    },
+    "workspace/models/ko-decision-roberta-large/special_tokens_map.json": {
+      "source": "models/ko-decision-roberta-large/special_tokens_map.json",
+      "bytes": 971,
+      "sha256": "63cd5b53789b3b5ae2c3d7aa377bcba1557ff0b41dc69ce07b94350ea32291c2"
+    },
+    "workspace/models/ko-decision-roberta-large/tokenizer.json": {
+      "source": "models/ko-decision-roberta-large/tokenizer.json",
+      "bytes": 752250,
+      "sha256": "dacfab652386ca05c69f0639e623c71754ae01e2a5d3c88ed16e86ba11ce9dc3"
+    },
+    "workspace/models/ko-decision-roberta-large/tokenizer_config.json": {
+      "source": "models/ko-decision-roberta-large/tokenizer_config.json",
+      "bytes": 1647,
+      "sha256": "8c335996b382be0daf5ca42ddf4a91efbecf76826ccf26c9e46dd4bb424ded96"
+    },
+    "workspace/models/ko-decision-roberta-large/vocab.txt": {
+      "source": "models/ko-decision-roberta-large/vocab.txt",
+      "bytes": 248477,
+      "sha256": "1ad4978b5dbe269dcc402a3c6eb71ceab21d712bca3b7d3b9994845e54cdcb39"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/chat_template.jinja": {
+      "source": "models/exaone-4-1.2b-jev-v03/chat_template.jinja",
+      "bytes": 5487,
+      "sha256": "de64119ec8394ec3619221283a05fc8019c9a319cbdf2a471fe1ee8c36119616"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/config.json": {
+      "source": "models/exaone-4-1.2b-jev-v03/config.json",
+      "bytes": 1524,
+      "sha256": "6dd22b4ceae0a91696cc6b4923879b9478c27e7cafd9af617ffb0ad4545bd9fa"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/generation_config.json": {
+      "source": "models/exaone-4-1.2b-jev-v03/generation_config.json",
+      "bytes": 134,
+      "sha256": "4e7a6b14af4964f9a876c4b3ed1478978de83227e57f75d535cd311eec347780"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/jev_config.json": {
+      "source": "models/exaone-4-1.2b-jev-v03/jev_config.json",
+      "bytes": 688,
+      "sha256": "7ad212a8a66078d669c94867b601e26d8be9c41b86a7ea95e902449a4676c3f9"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/LICENSE": {
+      "source": "models/exaone-4-1.2b-jev-v03/LICENSE",
+      "bytes": 13288,
+      "sha256": "8c1762fb4bd94c8f17e114c5caa567e0948e1da7d02b79b55e99be9616e0f9e3"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/model.safetensors": {
+      "source": "models/exaone-4-1.2b-jev-v03/model.safetensors",
+      "bytes": 2558821288,
+      "sha256": "a3da4e8f0725328f09ce55b75819b590b112934548a42361cbd09f6fafe09b87"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/README.md": {
+      "source": "models/exaone-4-1.2b-jev-v03/README.md",
+      "bytes": 9156,
+      "sha256": "748ee327168def5b528f364c501692b7306d1b629a77f9aed844757a901acbd0"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/tokenizer.json": {
+      "source": "models/exaone-4-1.2b-jev-v03/tokenizer.json",
+      "bytes": 7909232,
+      "sha256": "523b110391fc95d5c90ee3eaa05d65d21da1ef25b5766254307aceda9eb24a5b"
+    },
+    "workspace/models/exaone-4-1.2b-jev-v03/tokenizer_config.json": {
+      "source": "models/exaone-4-1.2b-jev-v03/tokenizer_config.json",
+      "bytes": 6566,
+      "sha256": "4b8047bd9f7866afb4809c3a00453970d755a1ebf877aa4f8711fc3e2118e8d2"
+    },
+    "workspace/output/training/choice-agent-v2/results.json": {
+      "source": "output/training/choice-agent-v2/results.json",
+      "bytes": 219425,
+      "sha256": "aee5e15a01aaa4088b02fc117f1862063c14453750f96b047428f32cf85f07df"
+    },
+    "workspace/output/training/question-conditioning-v1/results.json": {
+      "source": "output/training/question-conditioning-v1/results.json",
+      "bytes": 248695,
+      "sha256": "4d6699e445ea9e1e0bba1ffc044be5457e26038889edd2d9580bfdbecfe149be"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0000/adapter_config.json": {
+      "source": "adapters/question-conditioning-v1/step-0000/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0000/adapter_model.safetensors": {
+      "source": "adapters/question-conditioning-v1/step-0000/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "dfeb00234e571c0601a454dd9c1dbe7e6d9ae2244a14220e135fe6a1bcf0296d"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0000/README.md": {
+      "source": "adapters/question-conditioning-v1/step-0000/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0200/adapter_config.json": {
+      "source": "adapters/question-conditioning-v1/step-0200/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0200/adapter_model.safetensors": {
+      "source": "adapters/question-conditioning-v1/step-0200/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "c8aa1987b033897ccce19272cc6525baee42506fd5fb908be9a4df409c729f4e"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0200/README.md": {
+      "source": "adapters/question-conditioning-v1/step-0200/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0400/adapter_config.json": {
+      "source": "adapters/question-conditioning-v1/step-0400/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0400/adapter_model.safetensors": {
+      "source": "adapters/question-conditioning-v1/step-0400/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "42c15ab976ac6100ce493cf31db3cfb31848ba97eb79ce65ec9476aaf5573ae3"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0400/README.md": {
+      "source": "adapters/question-conditioning-v1/step-0400/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0600/adapter_config.json": {
+      "source": "adapters/question-conditioning-v1/step-0600/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0600/adapter_model.safetensors": {
+      "source": "adapters/question-conditioning-v1/step-0600/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "7f9a82fcc2398dd2f14c0bb19458f9576d008cef4bf5c9d1ee1347b237361df1"
+    },
+    "workspace/adapters/question-conditioning-v1/step-0600/README.md": {
+      "source": "adapters/question-conditioning-v1/step-0600/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/data/processed/question_conditioning_v1/manifest.json": {
+      "source": "data/processed/question_conditioning_v1/manifest.json",
+      "bytes": 742,
+      "sha256": "5f0c5eebd7c564feefda6b8654ba5af6472710d3e58903d27e1f621cd9244b8a"
+    },
+    "workspace/data/processed/question_conditioning_v1/question_dev.jsonl": {
+      "source": "data/processed/question_conditioning_v1/question_dev.jsonl",
+      "bytes": 7420,
+      "sha256": "4780328a15f9517ed2389b0b0aae6d3803df74ee7d94bcd27e7f51cd7360ebbc"
+    },
+    "workspace/data/processed/question_conditioning_v1/question_test.jsonl": {
+      "source": "data/processed/question_conditioning_v1/question_test.jsonl",
+      "bytes": 7926,
+      "sha256": "d7d06d1d4a812d2da70d77ace398d0d6082e8c3be08b7d31228d7a5bcecff2f5"
+    },
+    "workspace/data/processed/question_conditioning_v1/train.jsonl": {
+      "source": "data/processed/question_conditioning_v1/train.jsonl",
+      "bytes": 1698077,
+      "sha256": "6d86b8dbfa458f0e02c0685f95bbdb9e81cdfb8948906cf817d59ea37744dcee"
+    },
+    "workspace/scripts/bootstrap_training.ps1": {
+      "source": "scripts/bootstrap_training.ps1",
+      "bytes": 1525,
+      "sha256": "55327b4ccfcb9f171e3b5c24dbe1066913ac490e8c5687d12b2e4350d4e09ad1"
+    },
+    "workspace/scripts/parallel_download.py": {
+      "source": "scripts/parallel_download.py",
+      "bytes": 5910,
+      "sha256": "5d5a697aa2aa277b6d7c853c42e0ca0f58276ad575af36dab4bafadb29f148f0"
+    },
+    "workspace/scripts/check_training_env.py": {
+      "source": "scripts/check_training_env.py",
+      "bytes": 1412,
+      "sha256": "da4ca5ef2771295330a17ed65aa8be3c2aa69e548b085f05e3d90e1653eb51f7"
+    },
+    "workspace/scripts/train_exaone_jev_qlora_pilot.py": {
+      "source": "scripts/train_exaone_jev_qlora_pilot.py",
+      "bytes": 10731,
+      "sha256": "4899e079e1de96e88dd47fd38310715bb593026089fe236c012d7635853034e1"
+    },
+    "workspace/scripts/build_decision_qlora_pilot.py": {
+      "source": "scripts/build_decision_qlora_pilot.py",
+      "bytes": 3116,
+      "sha256": "512b85366f19aa696d5232f87323211d817770b8438d9117673ff0d29238c1d9"
+    },
+    "workspace/scripts/summarize_decision_qlora_pilot.py": {
+      "source": "scripts/summarize_decision_qlora_pilot.py",
+      "bytes": 7326,
+      "sha256": "6537354a1711c7a503e17b7a450759691ad0ff6e33f4f589d529806ab5d2a0a2"
+    },
+    "workspace/data/processed/ko_decision_qlora_pilot_v1/manifest.json": {
+      "source": "data/processed/ko_decision_qlora_pilot_v1/manifest.json",
+      "bytes": 428,
+      "sha256": "16dcb46b5070dd792b920bc0a13b9ef9d4fce103287ec091b863c8ef7611e5d3"
+    },
+    "workspace/data/processed/ko_decision_qlora_pilot_v1/train.jsonl": {
+      "source": "data/processed/ko_decision_qlora_pilot_v1/train.jsonl",
+      "bytes": 63122,
+      "sha256": "d4ee78145420465b236dda81676ae5a60216cd0e1aebb11165a23f57578edbef"
+    },
+    "workspace/data/processed/ko_decision_qlora_pilot_v1/validation.jsonl": {
+      "source": "data/processed/ko_decision_qlora_pilot_v1/validation.jsonl",
+      "bytes": 32581,
+      "sha256": "225bead682cf1ea19ab8d3bc0495b9baf2a1f7743e94021ca5cc1df10e48c590"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-20/adapter_config.json": {
+      "source": "adapters/ko-decision-qlora-v1/step-20/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-20/adapter_model.safetensors": {
+      "source": "adapters/ko-decision-qlora-v1/step-20/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "2d79526d1c28e04f06d3a82591c13f5ebd3302956dc297a03dcaf52ab6a826af"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-20/README.md": {
+      "source": "adapters/ko-decision-qlora-v1/step-20/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-40/adapter_config.json": {
+      "source": "adapters/ko-decision-qlora-v1/step-40/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-40/adapter_model.safetensors": {
+      "source": "adapters/ko-decision-qlora-v1/step-40/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "3178cb6e46be7abd2b0e363bc520a68298d717a2aff9abd8d2695d5d587dc9cf"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-40/README.md": {
+      "source": "adapters/ko-decision-qlora-v1/step-40/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-60/adapter_config.json": {
+      "source": "adapters/ko-decision-qlora-v1/step-60/adapter_config.json",
+      "bytes": 1215,
+      "sha256": "af15d6ae16bca8b50e63d5fd2e1c9b1d70934947063ca0e0cc891fca9e7fad8b"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-60/adapter_model.safetensors": {
+      "source": "adapters/ko-decision-qlora-v1/step-60/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "b498183991f514435abccbb803e7edd482325ca5e8580b2082190cb7359a57fe"
+    },
+    "workspace/adapters/ko-decision-qlora-v1/step-60/README.md": {
+      "source": "adapters/ko-decision-qlora-v1/step-60/README.md",
+      "bytes": 5282,
+      "sha256": "32a9e4189ee55d55388db46b139be4e1e3013f5228b98cc2e8e728103d2c2ef9"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-20/adapter_config.json": {
+      "source": "adapters/exaone-jev-qlora-v1/step-20/adapter_config.json",
+      "bytes": 1087,
+      "sha256": "7a57dcb32cd65f0f531ea1648d32eeb71db775745da4f97da4a18c60a05db62b"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-20/adapter_model.safetensors": {
+      "source": "adapters/exaone-jev-qlora-v1/step-20/adapter_model.safetensors",
+      "bytes": 6405528,
+      "sha256": "1292528741d1adc72e515173a859fa10b51522ae64e7fbec12b0a5cf33ad8baa"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-20/README.md": {
+      "source": "adapters/exaone-jev-qlora-v1/step-20/README.md",
+      "bytes": 5304,
+      "sha256": "e13a7c1c85004e8896b9e9432a1c8dec8ed0e66159bb8358d689e0d1b2a8bfe0"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-40/adapter_config.json": {
+      "source": "adapters/exaone-jev-qlora-v1/step-40/adapter_config.json",
+      "bytes": 1087,
+      "sha256": "7a57dcb32cd65f0f531ea1648d32eeb71db775745da4f97da4a18c60a05db62b"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-40/adapter_model.safetensors": {
+      "source": "adapters/exaone-jev-qlora-v1/step-40/adapter_model.safetensors",
+      "bytes": 6405528,
+      "sha256": "4df6e5179801a09bfd34bf3c5be0dfefd957fd04db123411102102b8fc5a8102"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-40/README.md": {
+      "source": "adapters/exaone-jev-qlora-v1/step-40/README.md",
+      "bytes": 5304,
+      "sha256": "e13a7c1c85004e8896b9e9432a1c8dec8ed0e66159bb8358d689e0d1b2a8bfe0"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-60/adapter_config.json": {
+      "source": "adapters/exaone-jev-qlora-v1/step-60/adapter_config.json",
+      "bytes": 1087,
+      "sha256": "7a57dcb32cd65f0f531ea1648d32eeb71db775745da4f97da4a18c60a05db62b"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-60/adapter_model.safetensors": {
+      "source": "adapters/exaone-jev-qlora-v1/step-60/adapter_model.safetensors",
+      "bytes": 6405528,
+      "sha256": "14e5562018bef35d20f95a8162d4e77c50ba8ce97b2af4cd705ea3d43bd636b7"
+    },
+    "workspace/adapters/exaone-jev-qlora-v1/step-60/README.md": {
+      "source": "adapters/exaone-jev-qlora-v1/step-60/README.md",
+      "bytes": 5304,
+      "sha256": "e13a7c1c85004e8896b9e9432a1c8dec8ed0e66159bb8358d689e0d1b2a8bfe0"
+    },
+    "workspace/scripts/exaone_tokenizer_compat.py": {
+      "source": "scripts/exaone_tokenizer_compat.py",
+      "bytes": 687,
+      "sha256": "06c0f1cd1182e3bafc8130b8e593eaa272f04ef675b5e7cdb723ec6649863c69"
+    }
+  },
+  "missing": [],
+  "requires_manual_review": [],
+  "environment": {
+    "python_venv": "not copied; install the appropriate requirements in a new environment",
+    "gpu": "real GPU operation has not been checked in these new folders",
+    "git_ignored_large_files": [
+      "workspace/models/exaone-4-1.2b-jev-v03/model.safetensors",
+      "workspace/models/ko-decision-roberta-large/model.safetensors"
+    ],
+    "no_keys_or_conversation_logs_intentionally_included": true,
+    "imports": "Only static top-level local module imports resolved; dynamic imports and runtime data paths need individual checks.",
+    "historical_coverage": "Representative runnable paths for this theme, not all historical experiment conditions."
+  },
+  "commands": [
+    "python -m pip install -r requirements-train.txt",
+    "python scripts/compare_korean_decision_pilot.py --help",
+    "python scripts/run_choice_agent_v1.py --help"
+  ],
+  "limitations": [
+    "症状・候補選択は別試験。評価条件や保存点が異なるため一つの再現コマンドではない。",
+    "本体重みは大容量・利用条件あり。学習済みLoRAはベースとセットで必要。",
+    "学習スクリプトは既存の出力やアダプターがある場合、上書きを防ぐため停止する。"
+  ],
+  "actual_execution_verified": false,
+  "supplemental_trace": "結果JSON内のLoRA参照、xLAMの凍結ハッシュ一覧、v67 val専用実行入口を追加確認。"
+}

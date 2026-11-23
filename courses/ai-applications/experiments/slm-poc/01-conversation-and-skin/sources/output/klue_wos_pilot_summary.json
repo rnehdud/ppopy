@@ -1,0 +1,79 @@
+{
+  "training": {
+    "examples": 200,
+    "optimizer_steps": 100,
+    "validation_examples": 40,
+    "validation_loss_before": 0.8358044620603323,
+    "validation_loss_after": 0.06619345977087505,
+    "training_seconds": 435.35397629998624,
+    "trainable_parameters": 2949120,
+    "adapter_path": "adapters\\klue-wos-qwen3-pilot-v1",
+    "adapter_weights_changed": true,
+    "reload_probe_equal": true,
+    "adapter_sha256": "31cef2dc4334513a428b340b5e43f8380b4a5632cb6d826ead04747a4a7290f1",
+    "limits": [
+      "Pilot: 200 examples only; single randomly selected turn per training conversation.",
+      "Uses gold prior state, not an autonomous multi-turn agent.",
+      "Training NF4; subsequent evaluation on same Q4_K_M GGUF with and without converted LoRA.",
+      "No skincare-domain data or tool-call supervision in this run."
+    ]
+  },
+  "klue_before": {
+    "phase": "before",
+    "n": 60,
+    "exact": 9,
+    "invalid": 15,
+    "micro_f1": 0.5993340732519423,
+    "seconds": 216.00757529999828
+  },
+  "klue_after": {
+    "phase": "after",
+    "n": 60,
+    "exact": 35,
+    "invalid": 0,
+    "micro_f1": 0.9383886255924171,
+    "seconds": 152.49218010000186
+  },
+  "paired": {
+    "fail_to_fail": 24,
+    "fail_to_pass": 27,
+    "pass_to_pass": 8,
+    "pass_to_fail": 1
+  },
+  "state_change_breakdown": {
+    "changed": {
+      "n": 34,
+      "before_exact": 2,
+      "after_exact": 13
+    },
+    "unchanged": {
+      "n": 26,
+      "before_exact": 7,
+      "after_exact": 22
+    }
+  },
+  "skincare_before": {
+    "scenarios": 59,
+    "passed_scenarios": 41,
+    "planned_turns": 84,
+    "executed_turns": 83,
+    "passed_turns": 55,
+    "state_exact_turns": 56
+  },
+  "skincare_after": {
+    "scenarios": 59,
+    "passed_scenarios": 30,
+    "planned_turns": 84,
+    "executed_turns": 84,
+    "passed_turns": 36,
+    "state_exact_turns": 36
+  },
+  "limitations": [
+    "200 training decisions from 200 distinct conversations; not all 58,792 turns.",
+    "KLUE evaluation: one teacher-forced turn per held-out validation conversation, not full rollouts.",
+    "Skincare evaluation is a previously observed synthetic development set, not a new blind test.",
+    "KLUE data does not have skincare labels or tool-call annotations.",
+    "NF4 trained adapter evaluated against identical Q4_K_M GGUF in both phases.",
+    "One seed and one short run; no claims of broad generalization or clinical reliability."
+  ]
+}

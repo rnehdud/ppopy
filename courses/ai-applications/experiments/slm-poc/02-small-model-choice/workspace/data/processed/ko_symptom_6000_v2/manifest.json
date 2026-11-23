@@ -1,0 +1,28 @@
+{
+  "seed": 601106,
+  "examples": 6000,
+  "unique_utterances": 2464,
+  "synthetic": 5000,
+  "klue_wos": 1000,
+  "outcomes": {
+    "unchanged": 2252,
+    "present": 1611,
+    "absent": 1137,
+    "unknown": 1000
+  },
+  "categories": {
+    "single": 4000,
+    "wos_no_symptom": 1000,
+    "multiple": 500,
+    "other_person": 500
+  },
+  "heldout_scenarios": 20,
+  "heldout_turns": 45,
+  "exact_utterance_overlap": 0,
+  "wos_file_sha256": "36003fc8ef605306180591e708ace9043b30ec8fbc0c657ed1f01d53cd4a8a01",
+  "caveat": "Automatically generated labels and fixed templates; not independently human reviewed. WoS is not skin-labeled.",
+  "files": {
+    "train.jsonl": "178345ba009e63546d729d6954294dce324522650d1ff31b9ec979b1edb45152",
+    "heldout_cases.json": "56bdfc9e89f2b9ddbe2e5674af90e080964ecb2c544abc1d653b1f8482b879b6"
+  }
+}

@@ -1,0 +1,41 @@
+﻿# 実行に必要なもの
+
+## コピー済み
+
+- コード、指定された入力、モデル・アダプターのファイル：48件。
+- ファイルごとの元の場所・サイズ・SHA-256は [runtime-inventory.json](runtime-inventory.json) を参照。
+- 100 MB以上の重み等もローカルにはコピー済み。GitHubへ誤って追加しないよう `.gitignore` 対象にした。
+
+## 実行の入口
+
+作業ディレクトリをこのフォルダの `workspace` にして実行する。
+
+```powershell
+python -m pip install -r requirements-train.txt
+python scripts/eval_kure_multiturn_heldout_v2.py
+```
+
+これは候補コマンドであり、コピー先での実モデル実行成功はまだ検証していない。
+
+## 不足・別途必要
+
+- Python環境と依存ライブラリのインストール。GPUを使うものは対応GPU・ドライバー。
+- 指定した代表ファイルに、ファイル単位で見つからなかったものはない。
+- KUREの代表検証と過去のKaggle入力を収録。全ての長さ・複数モデル試験の完全再現は未確認。
+- 過去のKaggle入力にはその実験のdev/testがあり、今回のv67 testとは別。
+
+## 範囲
+
+共通：コマンドはこのPOCの workspace を作業ディレクトリとする。元のスクリプトは既存出力を保護して停止する場合がある。実モデル・GPU・外部サーバーの実行は今回検査していない。
+静的import以外の動的参照・各歴史的実験の全保存点は網羅を証明できていない。全54条件が単独再現できるとは主張しない。
+モデルやデータのGitHubへの再配布は、それぞれのライセンス・公開範囲を確認する。APIキー・会話ログは意図的に含めない。
+
+
+
+## 追加で確認した依存
+
+追加調査で照合した依存（既にコピー済みのものを含む）：3ファイル。詳細はruntime-inventory.json。
+
+CUDA環境について：requirements-train.txtだけのinstallではCUDA版PyTorchが入るとは限らない。
+コピーしたscripts/bootstrap_training.ps1は元のWindows/Python3.11向け構築手順。uvとPython3.11が別途必要で、実行環境の構築は今回未検証。
+Kaggle Notebookを使う場合はNotebook内の個別環境構築手順を使う。

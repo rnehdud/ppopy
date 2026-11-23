@@ -1,0 +1,54 @@
+[
+  {
+    "id": "E33",
+    "phase": "コード全体確認v43–v44",
+    "title": "研究用重みと標準肌デモの接続差を確認",
+    "change": "実際に読み込む重みと実行経路を見直し、同じ処理で比較。",
+    "result": "旧87/120のkotraj重みは標準肌デモで未使用。v44の動作＋状態25/34→11/34、状態だけは31/34→31/34。",
+    "scope": "Qwenの返答と小型モデルの判断は別。状態だけでは誤ったツールを見逃す。",
+    "decision": "共通の接続とログは残す。悪化した重みを改善済みとしてデモへ採用しない。",
+    "sources": [
+      {
+        "source": "output/コードを見直した判断-v43.txt",
+        "status": "copied",
+        "path": "sources/output/コードを見直した判断-v43.txt",
+        "bytes": 9160,
+        "sha256": "9df1d22768feb80e48ceb52fee1d1d276350056e5cb1a912a60e114fb97f077f"
+      },
+      {
+        "source": "output/デモと同じ処理で比較した結果-v44.txt",
+        "status": "copied",
+        "path": "sources/output/デモと同じ処理で比較した結果-v44.txt",
+        "bytes": 6390,
+        "sha256": "91476ec0a28df3f80eaa7065ba9675434c42faec714a89f22b77221201630db5"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  },
+  {
+    "id": "E51",
+    "phase": "ローカルWebデモ",
+    "title": "EXAONE API用Webチャットを作成",
+    "change": "韓国語UI、ツールの引数/結果表示、SQLite記録、複数回呼び出しを実装。",
+    "result": "単体・HTTP検査6件と画面確認。実API呼び出しは未実施。キー未設定の状態まで確認。",
+    "scope": "模擬応答での機能検査。EXAONE単体で、JEV・Qwen・xLAMを裏で使用していない。",
+    "decision": "表示・保存・通信の土台はある。学習した学生モデルの成果とは分け、実API精度も主張しない。",
+    "sources": [
+      {
+        "source": "output/exaone-web-demo/verification.json",
+        "status": "copied",
+        "path": "sources/output/exaone-web-demo/verification.json",
+        "bytes": 416,
+        "sha256": "8f85c18368567ddba395b5417dcdf39e666ed847148ceb50a28792b9f7a76fe8"
+      },
+      {
+        "source": "demo/EXAONE_DEMO.txt",
+        "status": "copied",
+        "path": "sources/demo/EXAONE_DEMO.txt",
+        "bytes": 3157,
+        "sha256": "9671abb606b89d3d63ea4ac3c12d0a6fce60423fc6454a792c375e983e6479af"
+      }
+    ],
+    "note": "保存記録の整理。再実行や新たな精度検証ではない。日時不明のものは推定しない。"
+  }
+]

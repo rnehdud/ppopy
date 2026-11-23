@@ -1,0 +1,240 @@
+[
+  {
+    "id": "chain-record-show-search",
+    "turns": [
+      {
+        "input": "지금 제 얼굴이 건조한 걸 적어 주세요.",
+        "expected_action": "record",
+        "expected_state": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "지금까지 남긴 제 증상 목록을 볼 수 있을까요?",
+        "expected_action": "show",
+        "expected_state": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "피부 진정에 쓰이는 성분을 자료에서 검색해 줘요.",
+        "expected_action": "search",
+        "expected_state": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      }
+    ]
+  },
+  {
+    "id": "record-greeting",
+    "turns": [
+      {
+        "input": "피부가 가려우니 기록을 남겨 주세요.",
+        "expected_action": "record",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        }
+      },
+      {
+        "input": "좋은 아침이에요.",
+        "expected_action": "none",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        }
+      }
+    ]
+  },
+  {
+    "id": "absent-show",
+    "turns": [
+      {
+        "input": "뾰루지가 없다고 제 상태에 써 주세요.",
+        "expected_action": "record",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "absent",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "제가 기록해 둔 피부 상태를 보여 주세요.",
+        "expected_action": "show",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "absent",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      }
+    ]
+  },
+  {
+    "id": "stinging-ambiguous",
+    "turns": [
+      {
+        "input": "제 얼굴이 따가운 상태를 저장해 주세요.",
+        "expected_action": "record",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "present",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "그거 해줘.",
+        "expected_action": "ask",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "present",
+          "itching": "unknown"
+        }
+      }
+    ]
+  },
+  {
+    "id": "dry-correct-show",
+    "turns": [
+      {
+        "input": "제 볼이 건조해요. 제 기록에 적어 주세요.",
+        "expected_action": "record",
+        "expected_state": {
+          "dryness": "present",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "이제 볼이 건조하지 않아요. 기록을 바꿔 주세요.",
+        "expected_action": "record",
+        "expected_state": {
+          "dryness": "absent",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "제 피부에 대해 저장한 것을 볼래요.",
+        "expected_action": "show",
+        "expected_state": {
+          "dryness": "absent",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      }
+    ]
+  },
+  {
+    "id": "symptom-direct",
+    "turns": [
+      {
+        "input": "제 얼굴이 지금 많이 가려워요.",
+        "expected_action": "record",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        }
+      },
+      {
+        "input": "지금 저장된 상태가 뭐예요?",
+        "expected_action": "show",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "present"
+        }
+      }
+    ]
+  },
+  {
+    "id": "search-without-symptom",
+    "turns": [
+      {
+        "input": "만약 가렵다면 어떻게 관리하는지 지식베이스에서 찾아주세요.",
+        "expected_action": "search",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "현재 저장된 증상 정보를 알려주세요.",
+        "expected_action": "show",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      }
+    ]
+  },
+  {
+    "id": "other-person",
+    "turns": [
+      {
+        "input": "친구는 여드름이 있지만 제 상태는 기록하지 마세요.",
+        "expected_action": "none",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      },
+      {
+        "input": "내 기록은 지금 어떻게 돼 있나요?",
+        "expected_action": "show",
+        "expected_state": {
+          "dryness": "unknown",
+          "breakout": "unknown",
+          "redness": "unknown",
+          "stinging": "unknown",
+          "itching": "unknown"
+        }
+      }
+    ]
+  }
+]

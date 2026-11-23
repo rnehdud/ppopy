@@ -1,0 +1,268 @@
+{
+  "directory": "04-long-context-and-models",
+  "copied": {
+    "workspace/requirements.txt": {
+      "source": "requirements.txt",
+      "bytes": 156,
+      "sha256": "7119baefcc4d080d50a72c0089905cb3b96af56012edb474cd263a864e8c2e25"
+    },
+    "workspace/requirements-train.txt": {
+      "source": "requirements-train.txt",
+      "bytes": 182,
+      "sha256": "082653edf1e6e465fc2f36a50af278d8738ec3dc7e8702b609a80f36fcab7bc8"
+    },
+    "workspace/scripts/eval_kure_multiturn_heldout_v1.py": {
+      "source": "scripts/eval_kure_multiturn_heldout_v1.py",
+      "bytes": 8382,
+      "sha256": "a3d21863fb26a42e557ecedc5b270a57a7cf335ee033d740a7db6323b88c647f"
+    },
+    "workspace/scripts/eval_kure_multiturn_heldout_v2.py": {
+      "source": "scripts/eval_kure_multiturn_heldout_v2.py",
+      "bytes": 8506,
+      "sha256": "5e13cc763cbc764631455fe8673ae9ef4f68b58ac487392ba38b72459bc7560a"
+    },
+    "workspace/scripts/build_kure_multiturn_eval_v1.py": {
+      "source": "scripts/build_kure_multiturn_eval_v1.py",
+      "bytes": 5274,
+      "sha256": "515006eeddaa41a1f800c6d34f5e593dc60cddc361ceca05d387c56d16ecb52b"
+    },
+    "workspace/scripts/build_kaggle_context_pilot_v2.py": {
+      "source": "scripts/build_kaggle_context_pilot_v2.py",
+      "bytes": 5249,
+      "sha256": "87306680d8ee1187ffe7b50da73abdf3b8eae6c7e2b93de95739bef087cbcf97"
+    },
+    "workspace/scripts/analyze_context_paired_kaggle_result.py": {
+      "source": "scripts/analyze_context_paired_kaggle_result.py",
+      "bytes": 3856,
+      "sha256": "d66763051cb715bf61c284668bd82f807c8ed432866a7d7b46ec88c3bb33aca5"
+    },
+    "workspace/scripts/build_tool_split_pilot_v1.py": {
+      "source": "scripts/build_tool_split_pilot_v1.py",
+      "bytes": 10140,
+      "sha256": "18f571937254648d579f0d4ca699a79b9384d5af6adf002540172c86e829518d"
+    },
+    "workspace/scripts/train_tool_split_pilot_v1.py": {
+      "source": "scripts/train_tool_split_pilot_v1.py",
+      "bytes": 8558,
+      "sha256": "44437123c26faaad943ceaf52fc5b9ea332fb7e25dfedf0237563f5eb8d1b00c"
+    },
+    "workspace/output/kaggle_context_paired_v2.py": {
+      "source": "output/kaggle_context_paired_v2.py",
+      "bytes": 11708,
+      "sha256": "9104cb74c7a972aaf985cbdad688cd29696c8502ac11c1231c6dd2499304b11d"
+    },
+    "workspace/output/context-paired-kaggle-input-v2.zip": {
+      "source": "output/context-paired-kaggle-input-v2.zip",
+      "bytes": 3019558,
+      "sha256": "f2a19f92fb03888dbc0943249ac1521a3aee705e528481dd10e168b2e4343d6a"
+    },
+    "workspace/scripts/build_tool_decision_mix_v1.py": {
+      "source": "scripts/build_tool_decision_mix_v1.py",
+      "bytes": 29087,
+      "sha256": "915fdbedabe24cc50d20f640b2aa21ee279a19632b70829e0b73df6434682191"
+    },
+    "workspace/scripts/tool_split_data_v1.py": {
+      "source": "scripts/tool_split_data_v1.py",
+      "bytes": 2079,
+      "sha256": "c245ac59c1cb28da395eb9b4bf63012a9843c1af15c5b6d3bba48f83712c2203"
+    },
+    "workspace/scripts/when2call_operational_data_v1.py": {
+      "source": "scripts/when2call_operational_data_v1.py",
+      "bytes": 3517,
+      "sha256": "b4a9d66e93bca4a06a5c24edd6355d7bbf7e3357e95aa72ed3ce6028e6818d59"
+    },
+    "workspace/data/processed/kure-multiturn-heldout-v1/fits512.jsonl": {
+      "source": "data/processed/kure-multiturn-heldout-v1/fits512.jsonl",
+      "bytes": 36213,
+      "sha256": "b050060dbb7449b4261c4cfd96a8bd6815a6b8441a5c37ce9968c2512881e318"
+    },
+    "workspace/data/processed/kure-multiturn-heldout-v1/manifest.json": {
+      "source": "data/processed/kure-multiturn-heldout-v1/manifest.json",
+      "bytes": 681,
+      "sha256": "73d3be8207f192c8669bf63e1d2c4cfa7e7fd1513f96de9182794236c5f2c555"
+    },
+    "workspace/data/processed/kure-multiturn-heldout-v1/over512.jsonl": {
+      "source": "data/processed/kure-multiturn-heldout-v1/over512.jsonl",
+      "bytes": 2593500,
+      "sha256": "4bd9dab09f23946ef6287c0ee36ea3c0ebc5105e85c43f151cfc696abec45a3b"
+    },
+    "workspace/data/processed/context-paired-kaggle-v2/adapter/adapter_config.json": {
+      "source": "data/processed/context-paired-kaggle-v2/adapter/adapter_config.json",
+      "bytes": 1172,
+      "sha256": "2cd56ae60ef72e890bd393c4a6a3ee0a97ee074f6d9122de1183e4684a46a5fb"
+    },
+    "workspace/data/processed/context-paired-kaggle-v2/adapter/adapter_model.safetensors": {
+      "source": "data/processed/context-paired-kaggle-v2/adapter/adapter_model.safetensors",
+      "bytes": 3159576,
+      "sha256": "1cccc63a743f4dbced54f3ec05e3c5aa9188192ce3a52507f96273ec9ecdaffa"
+    },
+    "workspace/data/processed/context-paired-kaggle-v2/dev.jsonl": {
+      "source": "data/processed/context-paired-kaggle-v2/dev.jsonl",
+      "bytes": 296985,
+      "sha256": "6a41e1d2b85e110241f0542d9bf54ab763ee071ffd9af1ae946e167e15046b75"
+    },
+    "workspace/data/processed/context-paired-kaggle-v2/manifest.json": {
+      "source": "data/processed/context-paired-kaggle-v2/manifest.json",
+      "bytes": 1342,
+      "sha256": "4cf5710c64b566e52915de5f16a78aff3fc7c360b27e439aa9fbccfb7c18e72c"
+    },
+    "workspace/data/processed/context-paired-kaggle-v2/review_sample.csv": {
+      "source": "data/processed/context-paired-kaggle-v2/review_sample.csv",
+      "bytes": 203235,
+      "sha256": "6fa1e78a40d8b8462984f879b79c23bd499e7b9c634ad9211f920c80b9c774df"
+    },
+    "workspace/data/processed/context-paired-kaggle-v2/test.jsonl": {
+      "source": "data/processed/context-paired-kaggle-v2/test.jsonl",
+      "bytes": 423835,
+      "sha256": "94f66e149d293ae7237a0fefd90a8f4e607a975264ef01301b2dd06e11bff0fd"
+    },
+    "workspace/data/processed/context-paired-kaggle-v2/train.jsonl": {
+      "source": "data/processed/context-paired-kaggle-v2/train.jsonl",
+      "bytes": 1454474,
+      "sha256": "7c5697731032f73bc3eae9de0eb5901e9fad87ea0d7ba333009cd466a8691e08"
+    },
+    "workspace/data/processed/kotraj-200-v1/dev.jsonl": {
+      "source": "data/processed/kotraj-200-v1/dev.jsonl",
+      "bytes": 155135,
+      "sha256": "0ff887a7142cfb02042ff0f2c9c885fad6a6ba576f05b537ba5dccda5c015166"
+    },
+    "workspace/data/processed/kotraj-200-v1/manifest.json": {
+      "source": "data/processed/kotraj-200-v1/manifest.json",
+      "bytes": 1142,
+      "sha256": "b7703b1ad03a8123f56880102ea4f8078e2cabe5211e8c9f5f02abb9b89a2015"
+    },
+    "workspace/data/processed/kotraj-200-v1/test.jsonl": {
+      "source": "data/processed/kotraj-200-v1/test.jsonl",
+      "bytes": 228390,
+      "sha256": "a2f61afa44de1b7f2903920b7622c914ceefb816f8ac885ba660bad3cc042332"
+    },
+    "workspace/data/processed/kotraj-200-v1/train.jsonl": {
+      "source": "data/processed/kotraj-200-v1/train.jsonl",
+      "bytes": 762710,
+      "sha256": "c46c2fd7d8df22cd058a2c0925f51c30fc35168212aafcbe066f1c210b1c7aa2"
+    },
+    "workspace/models/ko-decision-roberta-large/calibration.json": {
+      "source": "models/ko-decision-roberta-large/calibration.json",
+      "bytes": 1202,
+      "sha256": "ff1edf03f9e548fb55b376823fc9bc35abefb433cefe41c2ecb300d6e3193f72"
+    },
+    "workspace/models/ko-decision-roberta-large/config.json": {
+      "source": "models/ko-decision-roberta-large/config.json",
+      "bytes": 789,
+      "sha256": "1f7092ef468dc9f841f5bfbb9d60095b8057f40d9179c437a743d1aa044fe9d0"
+    },
+    "workspace/models/ko-decision-roberta-large/DATA_LICENSE_CC-BY-SA-4.0.txt": {
+      "source": "models/ko-decision-roberta-large/DATA_LICENSE_CC-BY-SA-4.0.txt",
+      "bytes": 20131,
+      "sha256": "7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297"
+    },
+    "workspace/models/ko-decision-roberta-large/DATA_NOTICE.md": {
+      "source": "models/ko-decision-roberta-large/DATA_NOTICE.md",
+      "bytes": 3475,
+      "sha256": "a37cab0e266e139a305623890e417c9d4120493b5ce2fac2ab568534e4fda7e9"
+    },
+    "workspace/models/ko-decision-roberta-large/model.safetensors": {
+      "source": "models/ko-decision-roberta-large/model.safetensors",
+      "bytes": 1346677820,
+      "sha256": "7b6ac5dbac2c1bad001f730b019d0e416ffdeb9e487a996fb36440323b605655"
+    },
+    "workspace/models/ko-decision-roberta-large/README.md": {
+      "source": "models/ko-decision-roberta-large/README.md",
+      "bytes": 29401,
+      "sha256": "bfced9cd6d29deda61e37362c33c0b140b38997d7d58d1d51ed58e4539e0c22e"
+    },
+    "workspace/models/ko-decision-roberta-large/special_tokens_map.json": {
+      "source": "models/ko-decision-roberta-large/special_tokens_map.json",
+      "bytes": 971,
+      "sha256": "63cd5b53789b3b5ae2c3d7aa377bcba1557ff0b41dc69ce07b94350ea32291c2"
+    },
+    "workspace/models/ko-decision-roberta-large/tokenizer.json": {
+      "source": "models/ko-decision-roberta-large/tokenizer.json",
+      "bytes": 752250,
+      "sha256": "dacfab652386ca05c69f0639e623c71754ae01e2a5d3c88ed16e86ba11ce9dc3"
+    },
+    "workspace/models/ko-decision-roberta-large/tokenizer_config.json": {
+      "source": "models/ko-decision-roberta-large/tokenizer_config.json",
+      "bytes": 1647,
+      "sha256": "8c335996b382be0daf5ca42ddf4a91efbecf76826ccf26c9e46dd4bb424ded96"
+    },
+    "workspace/models/ko-decision-roberta-large/vocab.txt": {
+      "source": "models/ko-decision-roberta-large/vocab.txt",
+      "bytes": 248477,
+      "sha256": "1ad4978b5dbe269dcc402a3c6eb71ceab21d712bca3b7d3b9994845e54cdcb39"
+    },
+    "workspace/models/kure-reranker-nano/added_tokens.json": {
+      "source": "models/kure-reranker-nano/added_tokens.json",
+      "bytes": 21,
+      "sha256": "d80078ea0a345ef295e9b15efa9e83a836d342bb8d412262a0fb0dfd36720ba3"
+    },
+    "workspace/models/kure-reranker-nano/config.json": {
+      "source": "models/kure-reranker-nano/config.json",
+      "bytes": 1409,
+      "sha256": "cadec3925724ceb3c25e8338c3f1a9ccf1090293936c31ab8e7172a9f3a7cfd9"
+    },
+    "workspace/models/kure-reranker-nano/model.safetensors": {
+      "source": "models/kure-reranker-nano/model.safetensors",
+      "bytes": 597306212,
+      "sha256": "41e752090da96fcab4813a9ba82259c31c6d28453c18189322ae63d5599a30c0"
+    },
+    "workspace/models/kure-reranker-nano/special_tokens_map.json": {
+      "source": "models/kure-reranker-nano/special_tokens_map.json",
+      "bytes": 969,
+      "sha256": "b2e1eb3be501860648066506fbb9b207b84d378b72f0177f72ff2deeadf1ff71"
+    },
+    "workspace/models/kure-reranker-nano/tokenizer.json": {
+      "source": "models/kure-reranker-nano/tokenizer.json",
+      "bytes": 1087443,
+      "sha256": "74b2c7ee06335147e64df0c8047f68416658253db4d3e1dfff300c931dd61f61"
+    },
+    "workspace/models/kure-reranker-nano/tokenizer_config.json": {
+      "source": "models/kure-reranker-nano/tokenizer_config.json",
+      "bytes": 6945,
+      "sha256": "a42c407527bae67da131f993977c4e79bb25773e9832e27596941a09474aa28a"
+    },
+    "workspace/models/kure-reranker-nano/vocab.txt": {
+      "source": "models/kure-reranker-nano/vocab.txt",
+      "bytes": 289725,
+      "sha256": "7bc1893aa4a63f4ca0001dcb8cd7eb9bb11b731875329bd457d447028dbd79d1"
+    },
+    "workspace/scripts/bootstrap_training.ps1": {
+      "source": "scripts/bootstrap_training.ps1",
+      "bytes": 1525,
+      "sha256": "55327b4ccfcb9f171e3b5c24dbe1066913ac490e8c5687d12b2e4350d4e09ad1"
+    },
+    "workspace/scripts/parallel_download.py": {
+      "source": "scripts/parallel_download.py",
+      "bytes": 5910,
+      "sha256": "5d5a697aa2aa277b6d7c853c42e0ca0f58276ad575af36dab4bafadb29f148f0"
+    },
+    "workspace/scripts/check_training_env.py": {
+      "source": "scripts/check_training_env.py",
+      "bytes": 1412,
+      "sha256": "da4ca5ef2771295330a17ed65aa8be3c2aa69e548b085f05e3d90e1653eb51f7"
+    }
+  },
+  "missing": [],
+  "requires_manual_review": [],
+  "environment": {
+    "python_venv": "not copied; install the appropriate requirements in a new environment",
+    "gpu": "real GPU operation has not been checked in these new folders",
+    "git_ignored_large_files": [
+      "workspace/models/ko-decision-roberta-large/model.safetensors",
+      "workspace/models/kure-reranker-nano/model.safetensors"
+    ],
+    "no_keys_or_conversation_logs_intentionally_included": true,
+    "imports": "Only static top-level local module imports resolved; dynamic imports and runtime data paths need individual checks.",
+    "historical_coverage": "Representative runnable paths for this theme, not all historical experiment conditions."
+  },
+  "commands": [
+    "python -m pip install -r requirements-train.txt",
+    "python scripts/eval_kure_multiturn_heldout_v2.py"
+  ],
+  "limitations": [
+    "KUREの代表検証と過去のKaggle入力を収録。全ての長さ・複数モデル試験の完全再現は未確認。",
+    "過去のKaggle入力にはその実験のdev/testがあり、今回のv67 testとは別。"
+  ],
+  "actual_execution_verified": false,
+  "supplemental_trace": "結果JSON内のLoRA参照、xLAMの凍結ハッシュ一覧、v67 val専用実行入口を追加確認。"
+}

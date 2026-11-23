@@ -1,0 +1,23 @@
+{
+  "seed": 781202,
+  "counts": {
+    "train": 2400,
+    "binary": 1200,
+    "tool_retention": 600,
+    "symptom_retention": 600,
+    "question_dev": 16,
+    "question_test": 16
+  },
+  "binary_targets": {
+    "yes": 400,
+    "no": 400,
+    "unknown": 400
+  },
+  "train_unique_texts": 1616,
+  "caveat": "synthetic choices and labels; prior probe used as dev; test is new assistant-authored cases, not independently reviewed",
+  "files": {
+    "train.jsonl": "6d86b8dbfa458f0e02c0685f95bbdb9e81cdfb8948906cf817d59ea37744dcee",
+    "question_dev.jsonl": "4780328a15f9517ed2389b0b0aae6d3803df74ee7d94bcd27e7f51cd7360ebbc",
+    "question_test.jsonl": "d7d06d1d4a812d2da70d77ace398d0d6082e8c3be08b7d31228d7a5bcecff2f5"
+  }
+}
