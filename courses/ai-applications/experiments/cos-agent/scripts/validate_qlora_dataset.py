@@ -2,14 +2,16 @@
 """Shared validator for Ppopy v3 QLoRA (SOLUTION_MODE + HOLD_MODE) synthetic datasets.
 
 Validates individual team shards (--shard a|b|c) or merged datasets (--merge) against:
-1. Outer JSONL row schema, deterministic ID format, and exact SYSTEM_PROMPT_SOLUTION_HOLD
-2. Inner v3_contracts.SLMRequest Pydantic contract + outer/inner mode & refs alignment
-3. KB v0.6.1 variable registry & value_type compatibility + baseline card registry
-4. KB v0.6.1 source_registry exact metadata match (url, locator, checked_on, limitations)
-5. Strict citation integrity (catches unprefixed/unknown [S99] and distractor citations)
-6. Mode structure, hold recommendation-leak prevention, and clinical/diagnosis guardrails
-7. v67 split-preservation & cross-split leakage prevention (test_internal strictly blocked)
-8. Denominator-explicit distribution checks (hold 20-25%, hard negative >=25%, EN relevant 30-40%)
+1. Non-empty files, pilot exact counts (12/shard = 9 sol + 3 hold across 4 buckets; 36 merged across A/B/C)
+2. Outer JSONL row schema, deterministic ID format, and exact SYSTEM_PROMPT_SOLUTION_HOLD
+3. Inner v3_contracts.SLMRequest Pydantic contract + outer/inner mode & refs alignment
+4. KB v0.6.1 variable registry & value_type compatibility + baseline card registry
+5. Evidence-to-input backing (allowed_evidence_refs must exist in rag_chunks / kb_judgments / product_evidence)
+6. KB v0.6.1 source_registry exact metadata match; synthetic_defense_probe excluded from citations & EN ratio
+7. Strict citation integrity, mode headings, hold direct-instruction leak blocking, clinical guardrails
+8. Mandatory v67 index loading, real source_scenario_id/source_turn_id checks, and cross-split leakage
+   checks across group_id, scenario_id, scenario_family_id, source_turn_id, and normalized assistant text
+9. Optional --require-review gate enforcing cross-model critic PASS + human sample review on high-risk rows
 """
 from __future__ import annotations
 
@@ -54,15 +56,21 @@ ALLOWED_HARD_NEGATIVE_TYPES = frozenset({
     "version_mismatch_or_unknown",
     "negation_or_other_subject",
 })
+ALLOWED_PILOT_BUCKETS = frozenset({
+    "normal_guidance",
+    "hold",
+    "unknown_or_version",
+    "distractor_or_defense",
+})
 ALLOWED_CHUNK_ORIGINS = frozenset({"kb_source_summary", "synthetic_defense_probe"})
 ALLOWED_SOURCE_ORIGINS = frozenset({"new_synthetic", "recycled_v67"})
 ALLOWED_HUMAN_REVIEWS = frozenset({"unreviewed", "approved", "needs_revision"})
+ALLOWED_CRITIC_STATUSES = frozenset({"PASS", "FAIL", "unreviewed"})
 
 FORBIDDEN_SOURCE_IDS = frozenset({"F01", "F02", "S30", "S31"})
 FORBIDDEN_CARD_IDS = frozenset({"B-P07"})
 
 ROW_ID_PATTERN = re.compile(r"^syn-(?P<shard>[abc])-(?P<kind>sol|hold)-(?P<num>\d{4})$")
-# Catches both prefixed ([ref:S08], [kb:B-I01@0.6.1]) and bare ID-like brackets ([S99], [B-C01]).
 BRACKET_CITATION_PATTERN = re.compile(
     r"\[((?:kb|catalog|alternative|ref):[^\]]+|(?:S|U|D|F)\d{2,3}|B-[A-Z]\d{2}(?:@[0-9.]+)?)\]"
 )
@@ -83,6 +91,8 @@ HOLD_RECOMMENDATION_LEAK_PATTERNS = (
     re.compile(r"대체\s*후보"),
     re.compile(r"루틴을\s*(유지|추천|권해)"),
     re.compile(r"(사용해\s*보세요|바르는\s*것을\s*권해|권해드려요|추천해\s*드려요|추천해요)"),
+    re.compile(r"(세안하세요|세안해\s*보세요|바르세요|발라\s*보세요|도포하세요|덧바르세요)"),
+    re.compile(r"(클렌징폼|클렌징\s*오일|보습제|선크림|자외선차단제)(?:을|를|으로)\s*\d*\s*(?:회|번|단계)?\s*(?:사용|세안|도포|바르)"),
 )
 
 
@@ -97,8 +107,11 @@ class KBReferenceIndex:
 class V67SplitIndex:
     scenario_to_split: dict[str, str] = field(default_factory=dict)
     group_to_split: dict[str, str] = field(default_factory=dict)
+    turn_to_split: dict[str, str] = field(default_factory=dict)
+    turn_to_scenario: dict[str, str] = field(default_factory=dict)
     test_scenarios: set[str] = field(default_factory=set)
     test_groups: set[str] = field(default_factory=set)
+    test_turns: set[str] = field(default_factory=set)
 
 
 @dataclass
@@ -110,6 +123,8 @@ class ValidationReport:
     hard_negative_rows: int = 0
     english_relevant_solution_rows: int = 0
     split_counts: dict[str, int] = field(default_factory=dict)
+    shard_counts: dict[str, dict[str, int]] = field(default_factory=dict)
+    pilot_bucket_counts: dict[str, int] = field(default_factory=dict)
     errors: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
@@ -137,6 +152,8 @@ class ValidationReport:
             "english_relevant_solution_rows": self.english_relevant_solution_rows,
             "english_relevant_solution_ratio": round(en_ratio, 4),
             "split_counts": self.split_counts,
+            "shard_counts": self.shard_counts,
+            "pilot_bucket_counts": self.pilot_bucket_counts,
             "error_count": len(self.errors),
             "errors": self.errors,
             "warnings": self.warnings,
@@ -145,6 +162,8 @@ class ValidationReport:
 
 def load_kb_index(kb_dir: pathlib.Path) -> KBReferenceIndex:
     seed_path = kb_dir / "Poppy_KB_seed_v0.6.1.json"
+    if not seed_path.exists():
+        raise FileNotFoundError(f"KB seed file not found: {seed_path}")
     kb = json.loads(seed_path.read_text(encoding="utf-8"))
     variable_types = {
         v["id"]: v.get("value_type", "unknown")
@@ -181,10 +200,11 @@ def load_kb_index(kb_dir: pathlib.Path) -> KBReferenceIndex:
     )
 
 
-def load_v67_index(v67_dir: pathlib.Path | None) -> V67SplitIndex:
+def load_v67_index(v67_dir: pathlib.Path) -> V67SplitIndex:
+    """Strictly load v67 split reference files; missing files fail loudly."""
+    if not v67_dir.exists():
+        raise FileNotFoundError(f"v67 reference directory not found: {v67_dir}")
     index = V67SplitIndex()
-    if v67_dir is None or not v67_dir.exists():
-        return index
     split_files = (
         ("train", v67_dir / "v67-sft-train.jsonl"),
         ("val_internal", v67_dir / "v67-sft-val-internal.jsonl"),
@@ -192,13 +212,15 @@ def load_v67_index(v67_dir: pathlib.Path | None) -> V67SplitIndex:
     )
     for split_name, path in split_files:
         if not path.exists():
-            continue
-        for line in path.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
+            raise FileNotFoundError(f"Required v67 split file not found: {path}")
+        lines = [ln for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
+        if not lines:
+            raise ValueError(f"Required v67 split file is empty: {path}")
+        for line in lines:
             row = json.loads(line)
             sid = row.get("scenario_id")
             gid = row.get("group_id")
+            tid = row.get("id")
             if sid:
                 index.scenario_to_split[sid] = split_name
                 if split_name == "test_internal":
@@ -207,6 +229,12 @@ def load_v67_index(v67_dir: pathlib.Path | None) -> V67SplitIndex:
                 index.group_to_split[gid] = split_name
                 if split_name == "test_internal":
                     index.test_groups.add(gid)
+            if tid:
+                index.turn_to_split[tid] = split_name
+                if sid:
+                    index.turn_to_scenario[tid] = sid
+                if split_name == "test_internal":
+                    index.test_turns.add(tid)
     return index
 
 
@@ -225,13 +253,11 @@ def _is_valid_kb_value(value_type: str, value: Any) -> bool:
         return isinstance(value, str) or (isinstance(value, int) and not isinstance(value, bool))
     if value_type == "datetime":
         return isinstance(value, str)
-    # structured, latent, derived, research_only allow structured JSON values
     return value is not None
 
 
 def _is_english_text(text: str) -> bool:
-    words = ENGLISH_WORD_PATTERN.findall(text)
-    return len(words) >= 8
+    return len(ENGLISH_WORD_PATTERN.findall(text)) >= 8
 
 
 def _normalize_text(text: str) -> str:
@@ -261,37 +287,64 @@ def validate_rows(
     kb_index: KBReferenceIndex,
     v67_index: V67SplitIndex,
     *,
+    input_files: list[str] | None = None,
     expected_shard: str | None = None,
+    merge_mode: bool = False,
     enforce_ratios: bool = False,
     pilot_mode: bool = False,
+    require_review: bool = False,
 ) -> ValidationReport:
-    report = ValidationReport(files=sorted({src for src, _, _ in file_rows}))
+    all_files = sorted(set(input_files or []) | {src for src, _, _ in file_rows})
+    report = ValidationReport(files=all_files)
+
+    if not file_rows:
+        report.errors.append("dataset has 0 rows; empty input is not allowed")
+        return report
+
+    # Check that no individual input file is empty
+    file_row_counts = Counter(src for src, _, _ in file_rows)
+    for src in all_files:
+        if file_row_counts[src] == 0:
+            report.errors.append(f"{src}: file has 0 rows")
+
     seen_ids: dict[str, str] = {}
     group_splits: dict[str, set[str]] = {}
     scenario_splits: dict[str, set[str]] = {}
+    family_splits: dict[str, set[str]] = {}
+    source_turn_splits: dict[str, set[str]] = {}
     assistant_splits: dict[str, set[str]] = {}
     split_counter: Counter[str] = Counter()
+    pilot_bucket_counter: Counter[str] = Counter()
+    shard_stats: dict[str, dict[str, int]] = {}
+    shard_bucket_counts: dict[str, Counter[str]] = {}
+
+    high_risk_rows = 0
+    high_risk_human_approved = 0
 
     for src, line_no, row in file_rows:
         loc = f"{src}:{line_no}"
         report.total_rows += 1
 
-        # 1. Outer row required keys & types
         row_id = row.get("id")
         mode = row.get("mode")
         split = row.get("split")
         scenario_id = row.get("scenario_id")
         group_id = row.get("group_id")
+        family_id = row.get("scenario_family_id")
+        shard_letter: str | None = None
 
         if not isinstance(row_id, str):
             report.errors.append(f"{loc}: missing or non-string 'id'")
         else:
             m = ROW_ID_PATTERN.match(row_id)
             if not m:
-                report.errors.append(f"{loc}: invalid id format {row_id!r} (expected syn-{{a|b|c}}-{{sol|hold}}-0001)")
+                report.errors.append(
+                    f"{loc}: invalid id format {row_id!r} (expected syn-{{a|b|c}}-{{sol|hold}}-0001)"
+                )
             else:
-                if expected_shard and m.group("shard") != expected_shard:
-                    report.errors.append(f"{loc}: id shard {m.group('shard')!r} != expected {expected_shard!r}")
+                shard_letter = m.group("shard")
+                if expected_shard and shard_letter != expected_shard:
+                    report.errors.append(f"{loc}: id shard {shard_letter!r} != expected {expected_shard!r}")
                 expected_kind = "sol" if mode == "solution" else "hold" if mode == "hold" else None
                 if expected_kind and m.group("kind") != expected_kind:
                     report.errors.append(f"{loc}: id kind {m.group('kind')!r} mismatches mode {mode!r}")
@@ -303,7 +356,9 @@ def validate_rows(
         if mode not in ALLOWED_MODES:
             report.errors.append(f"{loc}: invalid outer mode {mode!r} (allowed: {sorted(ALLOWED_MODES)})")
         if split not in ALLOWED_SPLITS:
-            report.errors.append(f"{loc}: invalid split {split!r} (allowed: {sorted(ALLOWED_SPLITS)}; test_internal forbidden)")
+            report.errors.append(
+                f"{loc}: invalid split {split!r} (allowed: {sorted(ALLOWED_SPLITS)}; test_internal forbidden)"
+            )
         else:
             split_counter[split] += 1
 
@@ -311,6 +366,8 @@ def validate_rows(
             report.errors.append(f"{loc}: missing or empty 'scenario_id'")
         if not isinstance(group_id, str) or not group_id.strip():
             report.errors.append(f"{loc}: missing or empty 'group_id'")
+        if not isinstance(family_id, str) or not family_id.strip():
+            report.errors.append(f"{loc}: missing or empty 'scenario_family_id'")
 
         domains = row.get("domains")
         if not isinstance(domains, list) or not domains or not all(d in ALLOWED_DOMAINS for d in domains):
@@ -333,13 +390,38 @@ def validate_rows(
         elif is_hn:
             report.hard_negative_rows += 1
             if hn_type not in ALLOWED_HARD_NEGATIVE_TYPES:
-                report.errors.append(f"{loc}: invalid 'hard_negative_type' {hn_type!r} when is_hard_negative=True")
+                report.errors.append(
+                    f"{loc}: invalid 'hard_negative_type' {hn_type!r} when is_hard_negative=True"
+                )
         elif hn_type is not None:
             report.errors.append(f"{loc}: 'hard_negative_type' must be null when is_hard_negative=False")
 
-        # Provenance checks
+        # Pilot bucket check
+        pilot_bucket = row.get("pilot_bucket")
+        if pilot_mode:
+            if pilot_bucket not in ALLOWED_PILOT_BUCKETS:
+                report.errors.append(
+                    f"{loc}: pilot mode requires 'pilot_bucket' in {sorted(ALLOWED_PILOT_BUCKETS)}, got {pilot_bucket!r}"
+                )
+            else:
+                pilot_bucket_counter[pilot_bucket] += 1
+                if shard_letter:
+                    shard_bucket_counts.setdefault(shard_letter, Counter())[pilot_bucket] += 1
+                if pilot_bucket == "hold" and mode != "hold":
+                    report.errors.append(f"{loc}: pilot_bucket='hold' requires mode='hold'")
+                if pilot_bucket != "hold" and mode == "hold":
+                    report.errors.append(f"{loc}: mode='hold' requires pilot_bucket='hold'")
+        elif pilot_bucket is not None and pilot_bucket not in ALLOWED_PILOT_BUCKETS:
+            report.errors.append(f"{loc}: invalid 'pilot_bucket' {pilot_bucket!r}")
+
+        # Provenance & review checks
         prov = row.get("provenance")
         source_scenario_id: str | None = None
+        source_turn_id: str | None = None
+        is_high_risk = mode == "hold" or hn_type == "version_mismatch_or_unknown"
+        if is_high_risk:
+            high_risk_rows += 1
+
         if not isinstance(prov, dict):
             report.errors.append(f"{loc}: missing or non-dict 'provenance'")
         else:
@@ -347,19 +429,56 @@ def validate_rows(
             if src_origin not in ALLOWED_SOURCE_ORIGINS:
                 report.errors.append(f"{loc}: invalid provenance.source_origin {src_origin!r}")
             source_scenario_id = prov.get("source_scenario_id")
-            if src_origin == "recycled_v67" and (not isinstance(source_scenario_id, str) or not source_scenario_id.strip()):
-                report.errors.append(f"{loc}: provenance.source_scenario_id required for recycled_v67")
+            source_turn_id = prov.get("source_turn_id")
+            if src_origin == "recycled_v67":
+                if not isinstance(source_scenario_id, str) or not source_scenario_id.strip():
+                    report.errors.append(f"{loc}: provenance.source_scenario_id required for recycled_v67")
+                elif source_scenario_id not in v67_index.scenario_to_split:
+                    report.errors.append(
+                        f"{loc}: provenance.source_scenario_id {source_scenario_id!r} does not exist in v67"
+                    )
+                if not isinstance(source_turn_id, str) or not source_turn_id.strip():
+                    report.errors.append(f"{loc}: provenance.source_turn_id required for recycled_v67")
+                elif source_turn_id not in v67_index.turn_to_split:
+                    report.errors.append(
+                        f"{loc}: provenance.source_turn_id {source_turn_id!r} does not exist in v67"
+                    )
+                elif (
+                    isinstance(source_scenario_id, str)
+                    and v67_index.turn_to_scenario.get(source_turn_id)
+                    and v67_index.turn_to_scenario[source_turn_id] != source_scenario_id
+                ):
+                    report.errors.append(
+                        f"{loc}: provenance.source_turn_id {source_turn_id!r} does not belong to scenario {source_scenario_id!r}"
+                    )
+
             gen_model = prov.get("generator_model")
             if not isinstance(gen_model, str) or not gen_model.strip() or "/" in gen_model:
-                report.errors.append(f"{loc}: provenance.generator_model must be a concrete model name, got {gen_model!r}")
+                report.errors.append(
+                    f"{loc}: provenance.generator_model must be a concrete model name, got {gen_model!r}"
+                )
             critic_model = prov.get("critic_model")
             if critic_model is not None:
                 if not isinstance(critic_model, str) or not critic_model.strip():
                     report.errors.append(f"{loc}: provenance.critic_model must be non-empty string or null")
                 elif isinstance(gen_model, str) and critic_model.strip().lower() == gen_model.strip().lower():
-                    report.errors.append(f"{loc}: provenance.critic_model must differ from generator_model for cross-model critique")
-            if prov.get("human_review") not in ALLOWED_HUMAN_REVIEWS:
-                report.errors.append(f"{loc}: invalid provenance.human_review {prov.get('human_review')!r}")
+                    report.errors.append(
+                        f"{loc}: provenance.critic_model must differ from generator_model for cross-model critique"
+                    )
+            elif require_review:
+                report.errors.append(f"{loc}: --require-review requires non-null provenance.critic_model")
+
+            critic_status = prov.get("critic_status", "unreviewed")
+            if critic_status not in ALLOWED_CRITIC_STATUSES:
+                report.errors.append(f"{loc}: invalid provenance.critic_status {critic_status!r}")
+            elif require_review and critic_status != "PASS":
+                report.errors.append(f"{loc}: --require-review requires provenance.critic_status == 'PASS'")
+
+            human_review = prov.get("human_review")
+            if human_review not in ALLOWED_HUMAN_REVIEWS:
+                report.errors.append(f"{loc}: invalid provenance.human_review {human_review!r}")
+            elif is_high_risk and human_review == "approved":
+                high_risk_human_approved += 1
 
         # 2. v67 split-preservation & leakage checks
         for sid_check in (scenario_id, source_scenario_id):
@@ -372,6 +491,15 @@ def validate_rows(
                         report.errors.append(
                             f"{loc}: v67 split mismatch for scenario {sid_check!r}: got {split!r}, expected {expected_split!r}"
                         )
+        if isinstance(source_turn_id, str) and source_turn_id:
+            if source_turn_id in v67_index.test_turns:
+                report.errors.append(f"{loc}: v67 test_internal source_turn_id leakage: {source_turn_id!r}")
+            elif source_turn_id in v67_index.turn_to_split and split in ALLOWED_SPLITS:
+                expected_split = v67_index.turn_to_split[source_turn_id]
+                if split != expected_split:
+                    report.errors.append(
+                        f"{loc}: v67 split mismatch for source_turn_id {source_turn_id!r}: got {split!r}, expected {expected_split!r}"
+                    )
         if isinstance(group_id, str) and group_id:
             if group_id in v67_index.test_groups:
                 report.errors.append(f"{loc}: v67 test_internal group_id leakage: {group_id!r}")
@@ -412,6 +540,10 @@ def validate_rows(
                 group_splits.setdefault(group_id, set()).add(split)
             if isinstance(scenario_id, str) and scenario_id:
                 scenario_splits.setdefault(scenario_id, set()).add(split)
+            if isinstance(family_id, str) and family_id:
+                family_splits.setdefault(family_id, set()).add(split)
+            if isinstance(source_turn_id, str) and source_turn_id:
+                source_turn_splits.setdefault(source_turn_id, set()).add(split)
             assistant_splits.setdefault(_normalize_text(asst_content), set()).add(split)
 
         # 4. Inner SLMRequest Pydantic validation & outer-inner consistency
@@ -433,6 +565,12 @@ def validate_rows(
         elif req.mode == "hold":
             report.hold_rows += 1
 
+        if shard_letter:
+            s_entry = shard_stats.setdefault(shard_letter, {"total": 0, "solution": 0, "hold": 0})
+            s_entry["total"] += 1
+            if req.mode in ("solution", "hold"):
+                s_entry[req.mode] += 1
+
         # 5. KB variable registry & value_type validation
         for var_key, obs in req.confirmed_observations.items():
             if obs.variable_id != var_key:
@@ -446,7 +584,7 @@ def validate_rows(
                         f"{loc}: variable {var_key!r} expects KB value_type={vtype!r}, got {type(obs.value).__name__} ({obs.value!r})"
                     )
 
-        # 6. Evidence refs & chunk_origins & KB source_registry exact metadata check
+        # 6. Evidence refs, input backing, chunk_origins, and KB source_registry exact metadata
         for ref_id in req.allowed_evidence_refs + req.distractor_refs:
             err = _validate_ref_id(ref_id, kb_index)
             if err:
@@ -460,16 +598,44 @@ def validate_rows(
         allowed_set = set(req.allowed_evidence_refs)
         distractor_set = set(req.distractor_refs)
         chunk_refs_seen: set[str] = set()
-        has_english_relevant_chunk = False
+        has_english_relevant_kb_chunk = False
+
+        # Collect actually present backing evidence from SLMRequest payload
+        judgment_card_ids = {
+            j.get("card_id") for j in req.kb_judgments if isinstance(j, dict) and isinstance(j.get("card_id"), str)
+        }
+        product_refs = {
+            p.get("evidence_ref")
+            for p in req.product_evidence
+            if isinstance(p, dict) and isinstance(p.get("evidence_ref"), str)
+        }
+        for p in req.product_evidence:
+            if isinstance(p, dict) and isinstance(p.get("product_id"), str) and isinstance(p.get("version"), str):
+                product_refs.add(f"catalog:{p['product_id']}@{p['version']}")
+        alternative_refs = {
+            r for r in product_refs if r.startswith("alternative:")
+        } | {
+            j.get("alternative_ref")
+            for j in req.kb_judgments
+            if isinstance(j, dict) and isinstance(j.get("alternative_ref"), str)
+        }
 
         for chunk in req.rag_chunks:
             cref = chunk.evidence_ref
             chunk_refs_seen.add(cref)
             if cref not in allowed_set and cref not in distractor_set:
-                report.errors.append(f"{loc}: rag_chunk {cref!r} is in neither allowed_evidence_refs nor distractor_refs")
+                report.errors.append(
+                    f"{loc}: rag_chunk {cref!r} is in neither allowed_evidence_refs nor distractor_refs"
+                )
             origin = chunk_origins.get(cref)
             if origin not in ALLOWED_CHUNK_ORIGINS:
-                report.errors.append(f"{loc}: chunk_origins[{cref!r}] must be in {sorted(ALLOWED_CHUNK_ORIGINS)}, got {origin!r}")
+                report.errors.append(
+                    f"{loc}: chunk_origins[{cref!r}] must be in {sorted(ALLOWED_CHUNK_ORIGINS)}, got {origin!r}"
+                )
+            elif origin == "synthetic_defense_probe" and cref in allowed_set:
+                report.errors.append(
+                    f"{loc}: synthetic_defense_probe chunk {cref!r} must NOT be in allowed_evidence_refs"
+                )
 
             sid = cref.split(":", 1)[1] if cref.startswith("ref:") else ""
             src_meta = kb_index.source_registry.get(sid)
@@ -488,14 +654,36 @@ def validate_rows(
                         report.errors.append(
                             f"{loc}: rag_chunk {cref!r}.{chunk_field} does not match KB source_registry.{kb_field}"
                         )
-            if cref in allowed_set and _is_english_text(chunk.text):
-                has_english_relevant_chunk = True
+            # Only kb_source_summary chunks in allowed_evidence_refs count for English relevant ratio
+            if cref in allowed_set and origin == "kb_source_summary" and _is_english_text(chunk.text):
+                has_english_relevant_kb_chunk = True
+
+        # Verify every allowed_evidence_ref is actually backed by input payload
+        for aref in req.allowed_evidence_refs:
+            if aref.startswith("ref:") and aref not in chunk_refs_seen:
+                report.errors.append(f"{loc}: allowed_evidence_ref {aref!r} not backed by any input rag_chunks")
+            elif aref.startswith("kb:"):
+                card_part = aref.split(":", 1)[1].split("@", 1)[0]
+                if card_part not in judgment_card_ids:
+                    report.errors.append(
+                        f"{loc}: allowed_evidence_ref {aref!r} not backed by any input kb_judgments"
+                    )
+            elif aref.startswith("catalog:") and aref not in product_refs:
+                report.errors.append(
+                    f"{loc}: allowed_evidence_ref {aref!r} not backed by any input product_evidence"
+                )
+            elif aref.startswith("alternative:") and aref not in alternative_refs:
+                report.errors.append(
+                    f"{loc}: allowed_evidence_ref {aref!r} not backed by input product_evidence/kb_judgments"
+                )
 
         extra_origin_keys = set(chunk_origins.keys()) - chunk_refs_seen
         if extra_origin_keys:
-            report.errors.append(f"{loc}: chunk_origins has keys not present in rag_chunks: {sorted(extra_origin_keys)}")
+            report.errors.append(
+                f"{loc}: chunk_origins has keys not present in rag_chunks: {sorted(extra_origin_keys)}"
+            )
 
-        if req.mode == "solution" and has_english_relevant_chunk:
+        if req.mode == "solution" and has_english_relevant_kb_chunk:
             report.english_relevant_solution_rows += 1
 
         # 7. Strict citation integrity in assistant output
@@ -506,6 +694,9 @@ def validate_rows(
         distractor_cited = cited & distractor_set
         if distractor_cited:
             report.errors.append(f"{loc}: assistant cited distractor_refs: {sorted(distractor_cited)}")
+        probe_cited = {c for c in cited if chunk_origins.get(c) == "synthetic_defense_probe"}
+        if probe_cited:
+            report.errors.append(f"{loc}: assistant cited synthetic_defense_probe refs: {sorted(probe_cited)}")
         if req.mode == "solution" and not cited:
             report.errors.append(f"{loc}: solution response must cite at least one allowed_evidence_ref")
 
@@ -527,42 +718,77 @@ def validate_rows(
                 report.errors.append(f"{loc}: assistant response violated clinical guardrail {pat.pattern!r}")
 
     # Cross-split leakage across submitted rows
-    for gid, splits in group_splits.items():
-        if len(splits) > 1:
-            report.errors.append(f"cross-split leakage: group_id {gid!r} appears in multiple splits {sorted(splits)}")
-    for sid, splits in scenario_splits.items():
-        if len(splits) > 1:
-            report.errors.append(f"cross-split leakage: scenario_id {sid!r} appears in multiple splits {sorted(splits)}")
-    for text_key, splits in assistant_splits.items():
-        if len(splits) > 1:
-            report.errors.append(f"cross-split leakage: duplicate normalized assistant text across splits {sorted(splits)}")
+    for label, mapping in (
+        ("group_id", group_splits),
+        ("scenario_id", scenario_splits),
+        ("scenario_family_id", family_splits),
+        ("source_turn_id", source_turn_splits),
+        ("normalized assistant text", assistant_splits),
+    ):
+        for key, splits in mapping.items():
+            if len(splits) > 1:
+                report.errors.append(f"cross-split leakage: {label} {key!r} appears in multiple splits {sorted(splits)}")
 
     report.split_counts = dict(split_counter)
+    report.shard_counts = shard_stats
+    report.pilot_bucket_counts = dict(pilot_bucket_counter)
 
-    # 9. Distribution / ratio checks
-    if report.total_rows > 0:
-        hold_ratio = report.hold_rows / report.total_rows
-        hn_ratio = report.hard_negative_rows / report.total_rows
-        en_ratio = (
-            report.english_relevant_solution_rows / report.solution_rows
-            if report.solution_rows
-            else 0.0
-        )
-        min_hn = 0.25
-        if pilot_mode:
-            if report.solution_rows == 0 or report.hold_rows == 0:
-                report.errors.append("pilot check: must include both solution and hold rows")
-            if hn_ratio < min_hn:
-                report.errors.append(f"pilot check: hard_negative_ratio {hn_ratio:.3f} < {min_hn:.2f}")
-        elif enforce_ratios:
-            if not (0.20 <= hold_ratio <= 0.25):
-                report.errors.append(f"ratio check: hold_ratio {hold_ratio:.3f} outside [0.20, 0.25]")
-            if hn_ratio < min_hn:
-                report.errors.append(f"ratio check: hard_negative_ratio {hn_ratio:.3f} < {min_hn:.2f}")
-            if not (0.30 <= en_ratio <= 0.40):
+    # Human sample review check when --require-review is enabled
+    if require_review and high_risk_rows > 0:
+        min_needed = max(1, (high_risk_rows + 9) // 10)  # >= 10% ceiling
+        if high_risk_human_approved < min_needed:
+            report.errors.append(
+                f"review check: high-risk human_review=='approved' count {high_risk_human_approved} < required 10% ({min_needed}/{high_risk_rows})"
+            )
+
+    # 9. Pilot & distribution / ratio checks
+    hold_ratio = report.hold_rows / report.total_rows
+    hn_ratio = report.hard_negative_rows / report.total_rows
+    en_ratio = (
+        report.english_relevant_solution_rows / report.solution_rows
+        if report.solution_rows
+        else 0.0
+    )
+
+    if pilot_mode:
+        if merge_mode:
+            if len(all_files) != 3:
+                report.errors.append(f"pilot merge check: expected 3 shard files (a, b, c), got {len(all_files)}")
+            if report.total_rows != 36:
+                report.errors.append(f"pilot merge check: expected 36 total rows, got {report.total_rows}")
+            for s in ("a", "b", "c"):
+                st = shard_stats.get(s, {"total": 0, "solution": 0, "hold": 0})
+                if st["total"] != 12 or st["solution"] != 9 or st["hold"] != 3:
+                    report.errors.append(
+                        f"pilot merge check: shard {s!r} expected 12 rows (9 sol / 3 hold), got {st}"
+                    )
+                sb = shard_bucket_counts.get(s, Counter())
+                for bucket in sorted(ALLOWED_PILOT_BUCKETS):
+                    if sb[bucket] != 3:
+                        report.errors.append(
+                            f"pilot merge check: shard {s!r} bucket {bucket!r} expected 3 rows, got {sb[bucket]}"
+                        )
+        else:
+            if report.total_rows != 12 or report.solution_rows != 9 or report.hold_rows != 3:
                 report.errors.append(
-                    f"ratio check: english_relevant_solution_ratio {en_ratio:.3f} outside [0.30, 0.40]"
+                    f"pilot shard check: expected 12 rows (9 sol / 3 hold), got total={report.total_rows}, sol={report.solution_rows}, hold={report.hold_rows}"
                 )
+            for bucket in sorted(ALLOWED_PILOT_BUCKETS):
+                if pilot_bucket_counter[bucket] != 3:
+                    report.errors.append(
+                        f"pilot shard check: bucket {bucket!r} expected 3 rows, got {pilot_bucket_counter[bucket]}"
+                    )
+        if hn_ratio < 0.25:
+            report.errors.append(f"pilot check: hard_negative_ratio {hn_ratio:.3f} < 0.25")
+    elif enforce_ratios:
+        if not (0.20 <= hold_ratio <= 0.25):
+            report.errors.append(f"ratio check: hold_ratio {hold_ratio:.3f} outside [0.20, 0.25]")
+        if hn_ratio < 0.25:
+            report.errors.append(f"ratio check: hard_negative_ratio {hn_ratio:.3f} < 0.25")
+        if not (0.30 <= en_ratio <= 0.40):
+            report.errors.append(
+                f"ratio check: english_relevant_solution_ratio {en_ratio:.3f} outside [0.30, 0.40]"
+            )
 
     return report
 
@@ -594,8 +820,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--input", nargs="+", required=True, help="One or more JSONL shard paths.")
     parser.add_argument("--shard", choices=("a", "b", "c"), default=None, help="Enforce single-shard ID prefix.")
     parser.add_argument("--merge", action="store_true", help="Merged multi-shard validation mode.")
-    parser.add_argument("--pilot", action="store_true", help="Pilot mode (12 turns/member, 36 merged).")
+    parser.add_argument("--pilot", action="store_true", help="Pilot mode (12 turns/member, 36 merged across A/B/C).")
     parser.add_argument("--enforce-ratios", action="store_true", help="Fail if hold/HN/EN ratios are out of target.")
+    parser.add_argument(
+        "--require-review",
+        action="store_true",
+        help="Final submission gate: require cross-model critic PASS and >=10%% human review on high-risk rows.",
+    )
     parser.add_argument(
         "--kb-dir",
         type=pathlib.Path,
@@ -620,9 +851,12 @@ def main(argv: list[str] | None = None) -> int:
         file_rows,
         kb_index,
         v67_index,
+        input_files=[str(p) for p in paths],
         expected_shard=args.shard,
+        merge_mode=args.merge,
         enforce_ratios=args.enforce_ratios or (args.merge and not args.pilot),
         pilot_mode=args.pilot,
+        require_review=args.require_review,
     )
     report.errors = parse_errors + report.errors
 
