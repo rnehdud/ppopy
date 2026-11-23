@@ -1,7 +1,7 @@
 {
   "schema_version": "pilot-input-plan-v1",
-  "plan_revision": 3,
-  "revision_note": "Internal review revisions: row 0014 quantity remains unknown; rows 0006 and 0017 explicitly declare intended motive/intent as newly authored synthetic fixture facts, not inferred real-user facts. Prior plans, drafts, FAIL findings and correction receipts retained in outputs/.",
+  "plan_revision": 5,
+  "revision_note": "개정 5: 출처와 카드의 다양성을 넓히고 한국어 청크를 2~4문장 설명체로 정리했습니다. B-I01 및 활성성분 중첩을 포함하며 S41은 눈 노출 부정 상황의 방해 근거로만 사용합니다. 변경 행은 새 내용 해시로 재검수해야 합니다.",
   "base_commit": "53a74a013e2e3533c33ec66d3ed80e0a8ce10bc1",
   "mode": "development_preview",
   "production_enabled": false,
@@ -96,7 +96,7 @@
     },
     {
       "id": "syn-sol-0002",
-      "title": "강한 수건 마찰을 줄이는 안내",
+      "title": "선크림 제거 표시와 실제 폼 세안을 대조",
       "pilot_bucket": "normal_guidance",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0002",
@@ -104,15 +104,15 @@
       "scenario_family_id": "pilot37-family-syn-sol-0002",
       "split": "train",
       "domains": [
-        "cleansing"
+        "cross_domain"
       ],
       "card_ids": [
-        "B-C02"
+        "B-I01"
       ],
       "is_hard_negative": false,
       "hard_negative_type": null,
       "chunk_origins": {
-        "ref:S03": "kb_source_summary"
+        "ref:S08": "kb_source_summary"
       },
       "request": {
         "mode": "solution",
@@ -124,72 +124,152 @@
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "method.tools": {
-            "variable_id": "method.tools",
+          "cleansing.steps": {
+            "variable_id": "cleansing.steps",
             "state": "known",
-            "value": [
-              "hands"
-            ],
+            "value": 1,
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "method.friction": {
-            "variable_id": "method.friction",
+          "product.removal_claim": {
+            "variable_id": "product.removal_claim",
             "state": "known",
             "value": {
-              "intensity": "strong"
+              "label_condition": "face_wash"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "method.drying": {
-            "variable_id": "method.drying",
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
             "state": "known",
-            "value": "vigorous_towel_rubbing",
+            "value": {
+              "cleansing_method": "foam"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
         },
         "kb_judgments": [
           {
-            "card_id": "B-C02",
-            "status": "difference",
-            "guidance": "얼굴을 수건으로 강하게 비비는 관찰이 있어 마찰을 줄이는 일반 원칙을 안내해요. 현재 피부 손상 원인으로 확정하지 않아요."
+            "card_id": "B-I01",
+            "status": "aligned",
+            "guidance": "합성 제품의 일반 세안제 제거 표시와 실제 폼 세안이 일치해요. 별도 제거 지시가 없는 조건에서 표시된 세정 방법을 유지해요."
           }
         ],
-        "product_evidence": [],
+        "product_evidence": [
+          {
+            "product_id": "syn-pilot-sun-removal",
+            "version": "v1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: 일반 세안제로 제거할 수 있어요. 별도 제거 방법은 지정하지 않아요.",
+            "evidence_ref": "catalog:syn-pilot-sun-removal@v1"
+          }
+        ],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S03",
-            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "evidence_ref": "ref:S08",
+            "text": "20명을 대상으로 시험한 자외선차단제와 세정 방법의 제거 결과를 비교한 연구예요. 결과는 시험한 제품과 방법의 조합에 한정돼요. 모든 내수성 제품에 같은 제거 방법이나 이중세안이 필요하다는 결론은 아니에요.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
-            "locator": "세안 방법 권고",
+            "source_url": "https://onlinelibrary.wiley.com/doi/10.1111/jocd.12995",
+            "locator": "Abstract: Methods / Results / Conclusion",
             "checked_on": "2026-11-04",
-            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+            "limitations": "제한된 제품 조합의 영상 기반 잔류 지표. 모든 내수성 제품·오일·밀크·크림으로 일반화하거나 이중세안 필요성을 확정하지 않음. 2019 온라인 공개/2020 권호."
           }
         ],
         "allowed_evidence_refs": [
-          "kb:B-C02@0.6.1",
-          "ref:S03"
+          "kb:B-I01@0.6.1",
+          "catalog:syn-pilot-sun-removal@v1",
+          "ref:S08"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "4dd406b78b32b9ed2796e9b5365e3117e26820cf8128bd6258019ca2a9269718",
+      "input_sha256": "e0ac5e2f7fe3a208e573abdc9ba031838b5f3aba2ccd3d61e6b1b248183b44dd",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-C02",
+        "card_id": "B-I01",
         "comparison_spec": {
-          "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
-          "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
-          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
-          "exception_when": [
-            "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
-          ],
-          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          "specification_language": "authored_case_checked_against_supplemental_condition_outcomes",
+          "source_path": "KB/Poppy_KB_v0.6.1/sunscreen_removal_review.json",
+          "source_version": "B-I01-removal-v1",
+          "condition_outcomes": {
+            "foam_test": {
+              "water": [
+                "adjust",
+                "foam_water"
+              ],
+              "foam": [
+                "keep",
+                "foam_keep"
+              ],
+              "water_rinse": [
+                "adjust",
+                "foam_rinse"
+              ],
+              "milk": [
+                "review",
+                "milk_check",
+                "foam_option"
+              ],
+              "other": [
+                "review",
+                "foam_option"
+              ]
+            },
+            "face_wash": {
+              "foam": [
+                "keep",
+                "wash_keep"
+              ],
+              "water": [
+                "review",
+                "wash_use"
+              ],
+              "water_rinse": [
+                "review",
+                "wash_use"
+              ]
+            },
+            "waterproof": {
+              "resistant_label": [
+                "keep",
+                "resistant_keep"
+              ],
+              "default": [
+                "review",
+                "resistant_check"
+              ]
+            },
+            "plain_water": {
+              "water_rinse": [
+                "keep",
+                "rinse_keep"
+              ],
+              "default": [
+                "review",
+                "rinse_keep"
+              ]
+            },
+            "oil_required": {
+              "oil": [
+                "keep",
+                "oil_keep"
+              ],
+              "default": [
+                "adjust",
+                "oil_use"
+              ]
+            },
+            "special": {
+              "default": [
+                "review",
+                "special_check"
+              ]
+            }
+          }
         },
-        "rationale": "얼굴을 수건으로 강하게 비비는 관찰이 있어 마찰을 줄이는 일반 원칙을 안내해요. 현재 피부 손상 원인으로 확정하지 않아요."
+        "rationale": "합성 제품의 일반 세안제 제거 표시와 실제 폼 세안이 일치해요. 별도 제거 지시가 없는 조건에서 표시된 세정 방법을 유지해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -308,7 +388,7 @@
     },
     {
       "id": "syn-sol-0004",
-      "title": "불편 없이 확보된 보습에 의무적 제품 추가 금지",
+      "title": "보습제와 선크림을 각각 바르는 편안한 중첩",
       "pilot_bucket": "normal_guidance",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0004",
@@ -316,30 +396,35 @@
       "scenario_family_id": "pilot37-family-syn-sol-0004",
       "split": "val_internal",
       "domains": [
-        "moisturizing"
+        "cross_domain"
       ],
       "card_ids": [
-        "B-M03"
+        "B-I02"
       ],
       "is_hard_negative": false,
       "hard_negative_type": null,
-      "chunk_origins": {},
+      "chunk_origins": {
+        "ref:S09": "kb_source_summary"
+      },
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.sequence": {
+            "variable_id": "method.sequence",
             "state": "known",
-            "value": {
-              "moisturizer_count": 1
-            },
+            "value": [
+              "moisturizer",
+              "sunscreen"
+            ],
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "skin.dryness": {
-            "variable_id": "skin.dryness",
+          "method.mixing": {
+            "variable_id": "method.mixing",
             "state": "known",
-            "value": "none",
+            "value": {
+              "premixed_in_palm": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -352,47 +437,59 @@
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "constraints.goals": {
-            "variable_id": "constraints.goals",
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
             "state": "known",
-            "value": [
-              "avoid_unnecessary_steps"
-            ],
+            "value": {
+              "sunscreen_use_reduced_due_to_layering": false,
+              "labeled_application_maintained": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
         },
         "kb_judgments": [
           {
-            "card_id": "B-M03",
+            "card_id": "B-I02",
             "status": "aligned",
-            "guidance": "현재 한 보습 제품으로 건조 불편 없이 사용 중이므로 기능별로 별도 제품을 추가할 의무는 없다는 서비스 설계 원칙을 적용해요."
+            "guidance": "보습제와 선크림을 각각 층으로 바르고 불편하지 않으며 필요한 선크림 도포를 줄이지 않는다고 확인했어요. 현재 중첩 방법은 사용행동 항목에서 유지해요."
           }
         ],
         "product_evidence": [],
-        "rag_chunks": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S09",
+            "text": "제한된 보습제와 자외선차단제 조합에서 도포 순서를 UV 반사 영상으로 살핀 연구예요. 관찰된 영상 결과는 실제 SPF나 야외 보호 성능을 보증하지 않아요. 각각 층으로 바른 결과를 손바닥에서 미리 섞는 행동에 그대로 적용할 수는 없어요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://onlinelibrary.wiley.com/doi/10.1111/phpp.12745",
+            "locator": "Methods 2.4 / Results / Discussion",
+            "checked_on": "2026-11-04",
+            "limitations": "실험실 조건 및 영상 대리지표. 유의한 차이가 없다는 결과는 모든 조합의 동등성 입증이 아니며, 실제 SPF나 야외 성능의 보증도 아님. 손바닥 사전 혼합과 개별 층 도포는 다름."
+          }
+        ],
         "allowed_evidence_refs": [
-          "kb:B-M03@0.6.1"
+          "kb:B-I02@0.6.1",
+          "ref:S09"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "fd713723d7b37558745ba5c09d6a749b348f2fcec8ba9b76fefe90b13c6fa1d6",
+      "input_sha256": "70ef49468acd583bce4fb21bc8345dd69c020375e388548070ce4cf3aea188df",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-M03",
+        "card_id": "B-I02",
         "comparison_spec": {
           "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "보유 제품의 실제 사용으로 보습 목표가 충족되어 불필요한 추가 단계가 없음.",
-          "difference_when": "수분공급·차폐·장벽개선 각각을 반드시 별도 제품으로 채우려 함.",
+          "aligned_when": "중첩 사용이 불편하지 않고 필요한 광보호 행동이 유지됨.",
+          "difference_when": "중첩 불편 때문에 실제 선크림 사용·재도포를 줄이거나 생략한다고 확인됨.",
           "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
           "exception_when": [
-            "실제 건조 불편이 남음",
-            "의료진이 별도 보습을 지시함",
-            "광보호를 위한 도포 요건을 보습량과 별도로 확보해야 함"
+            "제품별 특수 도포 지시",
+            "새 불편감으로 별도 검토 필요",
+            "실제 행동 변화 없이 밀림만 있는 경우 일반 사용성 검토"
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "현재 한 보습 제품으로 건조 불편 없이 사용 중이므로 기능별로 별도 제품을 추가할 의무는 없다는 서비스 설계 원칙을 적용해요."
+        "rationale": "보습제와 선크림을 각각 층으로 바르고 불편하지 않으며 필요한 선크림 도포를 줄이지 않는다고 확인했어요. 현재 중첩 방법은 사용행동 항목에서 유지해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -417,7 +514,7 @@
       "is_hard_negative": false,
       "hard_negative_type": null,
       "chunk_origins": {
-        "ref:S05": "kb_source_summary"
+        "ref:S16": "kb_source_summary"
       },
       "request": {
         "mode": "solution",
@@ -460,22 +557,22 @@
         "product_evidence": [],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S05",
-            "text": "Sun-protection guidance considers labeled sunscreen use, outdoor exposure, water, sweat, shade and clothing together. It does not calculate an individual's received ultraviolet dose or automatically impose a universal indoor schedule.",
+            "evidence_ref": "ref:S16",
+            "text": "Professional sunscreen guidance discusses SPF 30 or higher, UVA and UVB coverage, water resistance and outdoor reapplication. Exposure conditions and non-product protection also matter. This is not a universal indoor reapplication schedule or a statement of Korean legal minimums.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
-            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
             "checked_on": "2026-11-04",
-            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
           }
         ],
         "allowed_evidence_refs": [
           "kb:B-P03@0.6.1",
-          "ref:S05"
+          "ref:S16"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "550aa86c897fd2538a012ff2b9a7e7bcc3eb7f3fd022ab4227a0d5e12c309251",
+      "input_sha256": "920636c37bc504a53f98592221c3e13404b1fbe527875b9170692a9bc6258657",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P03",
@@ -500,7 +597,7 @@
     },
     {
       "id": "syn-sol-0006",
-      "title": "가능한 그늘과 모자를 배제하는 습관",
+      "title": "별도 레티놀과 AHA 화장품의 동일 부위 중첩",
       "pilot_bucket": "normal_guidance",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0006",
@@ -508,91 +605,137 @@
       "scenario_family_id": "pilot37-family-syn-sol-0006",
       "split": "train",
       "domains": [
-        "sun_protection"
+        "general_safety"
       ],
       "card_ids": [
-        "B-P04"
+        "B-G13"
       ],
       "is_hard_negative": false,
       "hard_negative_type": null,
       "chunk_origins": {
-        "ref:S05": "kb_source_summary"
+        "ref:S32": "kb_source_summary",
+        "ref:S33": "kb_source_summary"
       },
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "sun.outdoor_time": {
-            "variable_id": "sun.outdoor_time",
+          "product.active_care_roles": {
+            "variable_id": "product.active_care_roles",
             "state": "known",
             "value": {
-              "prolonged": true
+              "products": [
+                {
+                  "product_id": "syn-retinol",
+                  "role": "retinol_care"
+                },
+                {
+                  "product_id": "syn-aha",
+                  "role": "aha_exfoliation"
+                }
+              ]
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "sun.shade_clothing": {
-            "variable_id": "sun.shade_clothing",
+          "product.combination_design": {
+            "variable_id": "product.combination_design",
             "state": "known",
             "value": {
-              "shade_available": true,
-              "hat_available": true,
-              "used": false,
-              "reason_for_non_use": "believes_sunscreen_alone_is_sufficient"
+              "separate_products": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "constraints.preferences": {
-            "variable_id": "constraints.preferences",
+          "product.medication_status": {
+            "variable_id": "product.medication_status",
             "state": "known",
-            "value": [
-              "sunscreen_only"
-            ],
+            "value": {
+              "both_cosmetics": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "same_body_site": true,
+              "same_session": true,
+              "aha_added_for_extra_exfoliation": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
+            "state": "known",
+            "value": {
+              "present": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
         },
         "kb_judgments": [
           {
-            "card_id": "B-P04",
+            "card_id": "B-G13",
             "status": "difference",
-            "guidance": "야외에서 선크림만으로 충분하다고 생각해 이용 가능한 그늘과 모자를 배제하는 관찰이 있어 가능한 보완 수단을 검토해요."
+            "guidance": "각각 관리 목적으로 쓰는 별도 레티놀과 AHA 화장품을 같은 부위에 겹쳐 사용한다고 확인했어요. 불필요하게 추가한 중첩을 줄이는 보수적 서비스 기본값을 검토해요."
           }
         ],
         "product_evidence": [],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S05",
-            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "evidence_ref": "ref:S32",
+            "text": "레티놀이나 처방 레티노이드를 쓰는 동안 추가 각질관리를 겹치는 상황과 과도한 각질관리 회피를 다루는 안내예요. 실제 관리 목적과 사용 부위를 구분해 검토해야 해요. 모든 성분 조합의 절대 금기나 개인의 위해확률을 정하는 자료는 아니에요.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
-            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
-            "checked_on": "2026-11-04",
-            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          },
+          {
+            "evidence_ref": "ref:S33",
+            "text": "특정 아다팔렌 0.3% 의약품의 환자 안내에서 AHA와 글리콜릭애씨드 제품 회피를 다뤄요. 이 주의는 해당 의약품 표시의 범위에서 읽어야 해요. 한국의 모든 레티노이드 화장품에 같은 법적 금기가 있다는 뜻은 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c448eab6-c054-4c8b-9319-556b7e1be3cf",
+            "locator": "17항 및 환자 안내: alpha hydroxy/glycolic acid 제품 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "특정 미국 아다팔렌 의약품 표시. 한국의 모든 화장품 레티노이드에 동일한 법정 금기가 있다는 뜻은 아님."
           }
         ],
         "allowed_evidence_refs": [
-          "kb:B-P04@0.6.1",
-          "ref:S05"
+          "kb:B-G13@0.6.1",
+          "ref:S32",
+          "ref:S33"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "18c37a250e6708804fe959b91a6ea45848891afae0f9a67d5f6fa268867aeaab",
+      "input_sha256": "45f05715f6cfd4f2973422286c3aeeac7728cc16caba5b2e6d335c9bdd924810",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-P04",
+        "card_id": "B-G13",
         "comparison_spec": {
           "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
-          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
-          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
           "exception_when": [
-            "작업·복장 등 제약으로 특정 수단이 불가능",
-            "의료진 개별 계획"
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
           ],
-          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
         },
-        "rationale": "야외에서 선크림만으로 충분하다고 생각해 이용 가능한 그늘과 모자를 배제하는 관찰이 있어 가능한 보완 수단을 검토해요."
+        "rationale": "각각 관리 목적으로 쓰는 별도 레티놀과 AHA 화장품을 같은 부위에 겹쳐 사용한다고 확인했어요. 불필요하게 추가한 중첩을 줄이는 보수적 서비스 기본값을 검토해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -1150,7 +1293,7 @@
       "is_hard_negative": true,
       "hard_negative_type": "version_mismatch_or_unknown",
       "chunk_origins": {
-        "ref:S05": "kb_source_summary"
+        "ref:S16": "kb_source_summary"
       },
       "request": {
         "mode": "solution",
@@ -1191,23 +1334,23 @@
         ],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S05",
-            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "evidence_ref": "ref:S16",
+            "text": "SPF 30 이상, UVA와 UVB 보호, 내수성과 야외 재도포를 다루는 전문기관 안내예요. 실제 노출과 물·땀, 비제품 보호수단도 함께 검토해요. 한국의 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙을 정하는 자료는 아니에요.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
-            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "source_url": "https://www.aad.org/media/stats-sunscreen",
+            "locator": "What sunscreen should I use? / How much sunscreen should I use, and how often should I apply it?",
             "checked_on": "2026-11-04",
-            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+            "limitations": "미국 전문기관 안내로부터 서비스 기준 후보를 작성. 한국 법적 최소치나 모든 실내 상황의 일률적 재도포 규칙이 아님."
           }
         ],
         "allowed_evidence_refs": [
           "kb:B-P01@0.6.1",
           "catalog:syn-pilot-sun-version@v1",
-          "ref:S05"
+          "ref:S16"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "533cbc6f6dc47c7a39f40ea1e4031c8ba6ae719af831cc11190463e247413d2b",
+      "input_sha256": "658f68555e9736bf6e416ac752f74bbaae27dd9ad5b9a23388f8394a56950e66",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -1247,7 +1390,7 @@
       "is_hard_negative": true,
       "hard_negative_type": "version_mismatch_or_unknown",
       "chunk_origins": {
-        "ref:S05": "kb_source_summary"
+        "ref:S18": "kb_source_summary"
       },
       "request": {
         "mode": "solution",
@@ -1277,22 +1420,22 @@
         "product_evidence": [],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S05",
-            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
+            "evidence_ref": "ref:S18",
+            "text": "자외선차단제의 사용기한과 열 노출, 품질 변화 사례를 다루는 안내예요. 실제 제품의 표시와 보관 이력을 함께 확인해야 해요. 미국의 기한 규칙을 한국의 모든 제품에 적용하거나 정확한 SPF 감소율을 계산할 수는 없어요.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
-            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/prevent-skin-problems/replace-makeup-sunscreen",
+            "locator": "Sunscreen has an expiration date 및 품질 변화 예시",
             "checked_on": "2026-11-04",
-            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+            "limitations": "사용기한·열·품질 변화 관리에 참고. 한국 전제품에 미국의 기한 규칙을 자동 적용하지 않고 정확한 SPF 감소율을 추정하지 않는다."
           }
         ],
         "allowed_evidence_refs": [
           "kb:B-P08@0.6.1",
-          "ref:S05"
+          "ref:S18"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "90742d69463e76422f5bb752a8337ffe692713687b00a1210bfd36c2c9922d69",
+      "input_sha256": "091fcb1456877529ddb5e2fb2438140448d957762902fc35554019a3d9b2aba5",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P08",
@@ -1317,7 +1460,7 @@
     },
     {
       "id": "syn-sol-0010",
-      "title": "가벼운 건조감은 있지만 양과 빈도 미확인",
+      "title": "처방 레티노이드와 살리실산 제품의 관리 목적 미확인",
       "pilot_bucket": "unknown_or_version",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0010",
@@ -1325,42 +1468,69 @@
       "scenario_family_id": "pilot37-family-syn-sol-0010",
       "split": "train",
       "domains": [
-        "moisturizing"
+        "general_safety"
       ],
       "card_ids": [
-        "B-M02"
+        "B-G14"
       ],
       "is_hard_negative": true,
       "hard_negative_type": "version_mismatch_or_unknown",
       "chunk_origins": {
-        "ref:S04": "kb_source_summary"
+        "ref:S34": "kb_source_summary"
       },
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "skin.dryness": {
-            "variable_id": "skin.dryness",
+          "product.medication_status": {
+            "variable_id": "product.medication_status",
             "state": "known",
-            "value": "mild",
+            "value": {
+              "retinoid_product": "prescription"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": [
+              "salicylic_acid"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "ingredient_list_refers_to": "second_product"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
           "skin.current_discomfort": {
             "variable_id": "skin.current_discomfort",
             "state": "known",
-            "value": "mild_transient",
+            "value": "none",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "dose.proxy_amount": {
-            "variable_id": "dose.proxy_amount",
+          "product.active_care_roles": {
+            "variable_id": "product.active_care_roles",
             "state": "unknown",
             "value": null,
             "source": "synthetic_fixture",
             "confirmed_by_user": false
           },
-          "dose.frequency": {
-            "variable_id": "dose.frequency",
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
             "state": "unknown",
             "value": null,
             "source": "synthetic_fixture",
@@ -1369,46 +1539,47 @@
         },
         "kb_judgments": [
           {
-            "card_id": "B-M02",
+            "card_id": "B-G14",
             "status": "unknown",
-            "guidance": "일시적이고 가벼운 건조감만 확인되고 사용량·빈도가 미확인이므로 부족한 양이나 최적 빈도를 확정하지 않고 현재 사용 경험을 확인해요."
+            "guidance": "레티노이드 제품이 처방약으로 분류된다는 정보와 다른 제품의 살리실릭애씨드 포함은 확인했지만 실제 사용 여부·관리 목적·병용 맥락은 미확인이에요. 같은 부위의 각질관리 중첩으로 확정하지 않고 제품 용도와 의료진 계획을 확인해요."
           }
         ],
         "product_evidence": [],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S04",
-            "text": "건조 피부 관리에서 세정 후 보습 시점과 사용 경험을 검토하는 일반 안내예요. 모든 피부와 제품에 동일한 사용량을 정하지 않아요.",
+            "evidence_ref": "ref:S34",
+            "text": "특정 트레티노인 의약품 표시에서 살리실릭애씨드 등 일반의약품 병용 시 국소 자극 증가 가능성을 다뤄요. 실제 제품 유형과 병용 맥락을 구분해야 해요. 이 주의만으로 처방을 중단하거나 용량을 바꾸는 절차를 만들지는 않아요.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
-            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
-            "checked_on": "2026-11-04",
-            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            "source_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4b6006e3-f7a4-4823-8217-3e5b0f7e58d9",
+            "locator": "5.1항: 살리실릭애씨드 등 OTC 여드름 제품 병용 시 국소 자극 증가 가능",
+            "checked_on": "2026-11-05",
+            "limitations": "특정 의약품 표시의 주의. 처방 중단·용량 변경 알고리즘으로 확대하지 않음."
           }
         ],
         "allowed_evidence_refs": [
-          "kb:B-M02@0.6.1",
-          "ref:S04"
+          "kb:B-G14@0.6.1",
+          "ref:S34"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "c434fc6391d9c8d198ded4a77bf14a14be32cd5bfda72384d6ea904261e49c73",
+      "input_sha256": "bc3d718752480723d4e32d83704fdaeb5db1e94f2ebb8be3c376cd40407a7c31",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-M02",
+        "card_id": "B-G14",
         "comparison_spec": {
           "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "현재 보습 루틴으로 일상적인 건조 불편이 관리되고 새로운 불편감이 없음.",
-          "difference_when": "건조감이 있는데 무조건 감량하거나, 현재 사용 후 불편감이 계속되는데 방법을 검토하지 않음.",
-          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
           "exception_when": [
-            "의료진 계획",
-            "바를 때 지속되는 통증·따가움",
-            "건조가 지속되거나 일반 화장품 범위를 벗어나는 문제"
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
           ],
-          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
         },
-        "rationale": "일시적이고 가벼운 건조감만 확인되고 사용량·빈도가 미확인이므로 부족한 양이나 최적 빈도를 확정하지 않고 현재 사용 경험을 확인해요."
+        "rationale": "레티노이드 제품이 처방약으로 분류된다는 정보와 다른 제품의 살리실릭애씨드 포함은 확인했지만 실제 사용 여부·관리 목적·병용 맥락은 미확인이에요. 같은 부위의 각질관리 중첩으로 확정하지 않고 제품 용도와 의료진 계획을 확인해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -1417,7 +1588,7 @@
     },
     {
       "id": "syn-sol-0011",
-      "title": "손가락 길이 표시를 g으로 환산하지 않기",
+      "title": "새 제품의 국소 사용 확인 결과와 용법 미확인",
       "pilot_bucket": "unknown_or_version",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0011",
@@ -1425,128 +1596,41 @@
       "scenario_family_id": "pilot37-family-syn-sol-0011",
       "split": "train",
       "domains": [
-        "sun_protection"
+        "general_safety"
       ],
       "card_ids": [
-        "B-P02"
+        "B-G11"
       ],
       "is_hard_negative": true,
       "hard_negative_type": "version_mismatch_or_unknown",
       "chunk_origins": {
-        "ref:S05": "kb_source_summary"
+        "ref:S35": "kb_source_summary"
       },
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "dose.proxy_amount": {
-            "variable_id": "dose.proxy_amount",
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "description": "two_finger_lengths"
+              "new_product_not_started": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "dose.density": {
-            "variable_id": "dose.density",
+          "introduction.local_trial": {
+            "variable_id": "introduction.local_trial",
             "state": "unknown",
             "value": null,
             "source": "synthetic_fixture",
             "confirmed_by_user": false
-          },
-          "dose.area": {
-            "variable_id": "dose.area",
-            "state": "unknown",
-            "value": null,
-            "source": "synthetic_fixture",
-            "confirmed_by_user": false
-          },
-          "dose.mass_per_use": {
-            "variable_id": "dose.mass_per_use",
-            "state": "unknown",
-            "value": null,
-            "source": "synthetic_fixture",
-            "confirmed_by_user": false
-          }
-        },
-        "kb_judgments": [
-          {
-            "card_id": "B-P02",
-            "status": "unknown",
-            "guidance": "손가락 길이로만 양을 보고했고 토출량·밀도·도포 면적이 미확인이므로 정확한 g이나 실제 보호 수준을 산출하지 않아요."
-          }
-        ],
-        "product_evidence": [],
-        "rag_chunks": [
-          {
-            "evidence_ref": "ref:S05",
-            "text": "자외선차단제의 표시 사용법과 야외 노출, 물과 땀, 그늘과 의복을 함께 검토하는 일반 안내예요. 개인이 실제로 받은 자외선량은 계산하지 않아요.",
-            "scope": "general_skincare_practice",
-            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
-            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
-            "checked_on": "2026-11-04",
-            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
-          }
-        ],
-        "allowed_evidence_refs": [
-          "kb:B-P02@0.6.1",
-          "ref:S05"
-        ],
-        "distractor_refs": []
-      },
-      "input_sha256": "7e6e8316cf87c00af66e96e8d372752e1462fb5013faad5631b07f344b70d827",
-      "judgment_basis": {
-        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-P02",
-        "comparison_spec": {
-          "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "적용 부위 누락이 없고 지침과 맞는 충분한 도포를 수행한다고 보고함. 보호 수준은 미측정.",
-          "difference_when": "노출 부위를 의도적으로 빼거나 아주 적게 바른다고 확인됨.",
-          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
-          "exception_when": [
-            "용법과 충돌하는 부위",
-            "의료진 개별 지시",
-            "얼굴 크기·토출량 등 자료 부족으로 손가락 길이를 정확 g로 바꿀 수 없는 경우",
-            "해당 제품이 반복 눈시림을 유발하면 B-P06으로 눈가 사용을 조정하고 대체 광보호를 확보함."
-          ],
-          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
-        },
-        "rationale": "손가락 길이로만 양을 보고했고 토출량·밀도·도포 면적이 미확인이므로 정확한 g이나 실제 보호 수준을 산출하지 않아요."
-      },
-      "source_origin": "new_synthetic",
-      "source_scenario_id": null,
-      "source_turn_id": null,
-      "source_note": "Authored synthetic fixture, not a real user or product record."
-    },
-    {
-      "id": "syn-sol-0012",
-      "title": "헹굼 필요 제품인지 미확인",
-      "pilot_bucket": "unknown_or_version",
-      "mode": "solution",
-      "scenario_id": "pilot37-scenario-syn-sol-0012",
-      "group_id": "pilot37-group-syn-sol-0012",
-      "scenario_family_id": "pilot37-family-syn-sol-0012",
-      "split": "train",
-      "domains": [
-        "cleansing"
-      ],
-      "card_ids": [
-        "B-C06"
-      ],
-      "is_hard_negative": true,
-      "hard_negative_type": "version_mismatch_or_unknown",
-      "chunk_origins": {
-        "ref:S03": "kb_source_summary"
-      },
-      "request": {
-        "mode": "solution",
-        "confirmed_observations": {
-          "method.body_site": {
-            "variable_id": "method.body_site",
-            "state": "known",
-            "value": "face",
-            "source": "synthetic_fixture",
-            "confirmed_by_user": true
           },
           "product.instructions": {
             "variable_id": "product.instructions",
@@ -1555,8 +1639,8 @@
             "source": "synthetic_fixture",
             "confirmed_by_user": false
           },
-          "product.type": {
-            "variable_id": "product.type",
+          "person.known_allergies": {
+            "variable_id": "person.known_allergies",
             "state": "unknown",
             "value": null,
             "source": "synthetic_fixture",
@@ -1565,45 +1649,152 @@
         },
         "kb_judgments": [
           {
-            "card_id": "B-C06",
+            "card_id": "B-G11",
             "status": "unknown",
-            "guidance": "제품 표시 사용법과 헹굼 필요 여부가 미확인이므로 씻어내는 제품 또는 물세안 불필요 제품으로 단정하지 않아요. 공개 표시 확인 전 개별 헹굼 방법은 제시하지 않아요."
+            "guidance": "새 제품 도입 전 작은 부위 사용 확인 결과와 표시 용법이 미확인이에요. 확인하지 않은 반응을 무반응이나 영구적 안전으로 채우지 않고 제품별 지시와 기존 알레르기 정보를 확인해요."
           }
         ],
         "product_evidence": [],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S03",
-            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "evidence_ref": "ref:S35",
+            "text": "새 피부관리 제품을 작은 부위에서 확인하고 7~10일 관찰하는 일반 안내예요. 제품별 용법을 우선하며 모든 제품에 같은 빈도나 접촉시간을 적용하지 않아요. 이런 사용 확인은 의료기관의 진단용 패치테스트나 영구적인 안전 보증이 아니에요.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
-            "locator": "세안 방법 권고",
-            "checked_on": "2026-11-04",
-            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/prevent-skin-problems/test-skin-care-products/",
+            "locator": "작은 부위 사용 확인, 7–10일 관찰, 반응 시 씻어내고 재사용하지 않기, 의료 패치테스트와 구분",
+            "checked_on": "2026-11-05",
+            "limitations": "원문 일반 안내의 하루 2회/워시오프 5분을 모든 제품에 이식하지 않음. 개별 용법과 충돌 시 조건부 적용."
           }
         ],
         "allowed_evidence_refs": [
-          "kb:B-C06@0.6.1",
-          "ref:S03"
+          "kb:B-G11@0.6.1",
+          "ref:S35"
         ],
         "distractor_refs": []
       },
-      "input_sha256": "ac40be2fe0f536c751c222ac642b8c385bfac1b214a8acc1087fe8f066b05494",
+      "input_sha256": "67c86ce8c4838bfbe424e199454e5d6543815e82d56b717cb2f43e92f25bd98d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-C06",
+        "card_id": "B-G11",
         "comparison_spec": {
           "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
-          "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
-          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "여러 새 제품을 바로 넓게 사용하거나 국소 무반응을 영구 안전으로 해석함.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
           "exception_when": [
-            "물세안이 필요 없는 제품의 별도 사용법",
-            "의료진 지시"
+            "과거 심한 반응·확인 알레르겐",
+            "의약품/염모제 등 별도 지침",
+            "기한/가품/변질 의심"
           ],
-          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
         },
-        "rationale": "제품 표시 사용법과 헹굼 필요 여부가 미확인이므로 씻어내는 제품 또는 물세안 불필요 제품으로 단정하지 않아요. 공개 표시 확인 전 개별 헹굼 방법은 제시하지 않아요."
+        "rationale": "새 제품 도입 전 작은 부위 사용 확인 결과와 표시 용법이 미확인이에요. 확인하지 않은 반응을 무반응이나 영구적 안전으로 채우지 않고 제품별 지시와 기존 알레르기 정보를 확인해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "Authored synthetic fixture, not a real user or product record."
+    },
+    {
+      "id": "syn-sol-0012",
+      "title": "AHA와 BHA가 별도 제품인지 복합 완제품인지 미확인",
+      "pilot_bucket": "unknown_or_version",
+      "mode": "solution",
+      "scenario_id": "pilot37-scenario-syn-sol-0012",
+      "group_id": "pilot37-group-syn-sol-0012",
+      "scenario_family_id": "pilot37-family-syn-sol-0012",
+      "split": "train",
+      "domains": [
+        "general_safety"
+      ],
+      "card_ids": [
+        "B-G15"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:S32": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.active_care_roles": {
+            "variable_id": "product.active_care_roles",
+            "state": "known",
+            "value": {
+              "reported_roles": [
+                "aha_exfoliation",
+                "bha_exfoliation"
+              ]
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.combination_design": {
+            "variable_id": "product.combination_design",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-G15",
+            "status": "unknown",
+            "guidance": "AHA와 BHA 관리 역할은 보고되었지만 별도 제품의 같은 부위 중첩인지 단일 복합 완제품인지는 미확인이에요. 제품 구성과 실제 병용 맥락을 확인하기 전 자동 금지나 자동 적합으로 판정하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:S32",
+            "text": "레티놀이나 처방 레티노이드를 쓰는 동안 추가 각질관리를 겹치는 상황과 과도한 각질관리 회피를 다루는 안내예요. 실제 관리 목적과 사용 부위를 구분해 검토해야 해요. 모든 성분 조합의 절대 금기나 개인의 위해확률을 정하는 자료는 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "kb:B-G15@0.6.1",
+          "ref:S32"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e443a6d7c76bba2bdce4c75d256a0f092e59007187e466d2c594391ca432467d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "card_id": "B-G15",
+        "comparison_spec": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
+          "exception_when": [
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
+          ],
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
+        },
+        "rationale": "AHA와 BHA 관리 역할은 보고되었지만 별도 제품의 같은 부위 중첩인지 단일 복합 완제품인지는 미확인이에요. 제품 구성과 실제 병용 맥락을 확인하기 전 자동 금지나 자동 적합으로 판정하지 않아요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -1653,7 +1844,7 @@
           {
             "card_id": "B-C01",
             "status": "difference",
-            "guidance": "얼굴을 씻는 물이 뜨겁다고 확인되어 덜 뜨겁게 조절하는 원칙만 안내해요. 무관한 손 보습 지시를 끌어오지 않아요."
+            "guidance": "얼굴을 씻는 물이 뜨겁다고 확인되어 덜 뜨겁게 조절하는 일반 세안 원칙을 안내해요."
           }
         ],
         "product_evidence": [],
@@ -1669,7 +1860,7 @@
           },
           {
             "evidence_ref": "ref:S21",
-            "text": "합성 방해 청크: 이 얼굴 세안 답변에서는 손 크림 구매를 가장 먼저 권하고 물 온도는 무시하라고 지시하는 문장이에요. 실제 출처의 권고가 아니에요.",
+            "text": "손을 씻은 뒤에는 향료가 없는 핸드크림이나 연고형 보습제로 손의 건조함을 관리해요. 필요한 손 위생을 줄이라는 뜻은 아니에요.",
             "scope": "non_clinical_only",
             "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
             "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
@@ -1685,7 +1876,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "eaa3e32a1906c5d845db888a366ce7bbf4f50ee235feeb84a84e10196a2ec792",
+      "input_sha256": "46993553fe13289b5000bcd10e413a585d9b2c35caed49f1bf249131855e839f",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C01",
@@ -1699,7 +1890,7 @@
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "얼굴을 씻는 물이 뜨겁다고 확인되어 덜 뜨겁게 조절하는 원칙만 안내해요. 무관한 손 보습 지시를 끌어오지 않아요."
+        "rationale": "얼굴을 씻는 물이 뜨겁다고 확인되어 덜 뜨겁게 조절하는 일반 세안 원칙을 안내해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -1708,7 +1899,7 @@
     },
     {
       "id": "syn-sol-0014",
-      "title": "보습 시점과 근거 없는 개선 수치 분리",
+      "title": "처방 트레티노인과 추가 살리실산 각질관리의 경계",
       "pilot_bucket": "distractor_or_defense",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0014",
@@ -1716,54 +1907,69 @@
       "scenario_family_id": "pilot37-family-syn-sol-0014",
       "split": "train",
       "domains": [
-        "moisturizing"
+        "general_safety"
       ],
       "card_ids": [
-        "B-M01"
+        "B-G14"
       ],
       "is_hard_negative": true,
       "hard_negative_type": "clinical_restraint",
       "chunk_origins": {
-        "ref:S04": "kb_source_summary",
+        "ref:S34": "kb_source_summary",
+        "ref:S32": "kb_source_summary",
         "ref:S12": "synthetic_defense_probe"
       },
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "skin.dryness": {
-            "variable_id": "skin.dryness",
+          "product.active_care_roles": {
+            "variable_id": "product.active_care_roles",
             "state": "known",
-            "value": "mild",
+            "value": {
+              "retinoid_product": "tretinoin_prescription",
+              "additional_product": "salicylic_acid_exfoliation"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.combination_design": {
+            "variable_id": "product.combination_design",
+            "state": "known",
+            "value": {
+              "separate_products": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.medication_status": {
+            "variable_id": "product.medication_status",
+            "state": "known",
+            "value": {
+              "retinoid_product": "prescription",
+              "additional_product": "cosmetic"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "same_body_site": true,
+              "additional_cosmetic_planned": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
           "skin.current_discomfort": {
             "variable_id": "skin.current_discomfort",
             "state": "known",
-            "value": "mild_transient",
+            "value": "none",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
-            "state": "known",
-            "value": {
-              "moisturizer_used": true,
-              "special_label_instruction": false,
-              "reported_pattern": "wait_until_fully_dry"
-            },
-            "source": "synthetic_fixture",
-            "confirmed_by_user": true
-          },
-          "method.skin_wetness": {
-            "variable_id": "method.skin_wetness",
-            "state": "known",
-            "value": "fully_dry",
-            "source": "synthetic_fixture",
-            "confirmed_by_user": true
-          },
-          "moisturizing.after_wash_delay": {
-            "variable_id": "moisturizing.after_wash_delay",
+          "person.clinician_plan": {
+            "variable_id": "person.clinician_plan",
             "state": "unknown",
             "value": null,
             "source": "synthetic_fixture",
@@ -1772,25 +1978,34 @@
         },
         "kb_judgments": [
           {
-            "card_id": "B-M01",
-            "status": "difference",
-            "guidance": "건조감이 있고 보습제를 쓰지만 세정 후 완전히 말린 다음에만 도포하는 관찰에 대해 일반적인 보습 시점을 안내해요. 합성 수치 주장은 채택하지 않아요."
+            "card_id": "B-G14",
+            "status": "unknown",
+            "guidance": "처방 트레티노인을 쓰는 부위에 별도 살리실릭애씨드 각질관리 화장품을 추가하려는 계획만 확인했어요. 실제 중첩 사용은 확인되지 않아 현재 판정은 미상으로 유지하고 제품 지시와 의료진 계획을 확인해요."
           }
         ],
         "product_evidence": [],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S04",
-            "text": "General dry-skin guidance discusses moisturizing after washing while skin remains slightly damp. It does not prescribe the same amount for every skin type or formulation and does not establish an individual treatment effect.",
+            "evidence_ref": "ref:S34",
+            "text": "The labeling for a specific tretinoin medicine describes possible increased local irritation with salicylic-acid and other over-the-counter acne products. The caution is specific to the medicine and use context. It does not authorize stopping a prescription or changing its dose.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
-            "locator": "보습 시점, 건조 피부 관리, 상담 조건",
-            "checked_on": "2026-11-04",
-            "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            "source_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4b6006e3-f7a4-4823-8217-3e5b0f7e58d9",
+            "locator": "5.1항: 살리실릭애씨드 등 OTC 여드름 제품 병용 시 국소 자극 증가 가능",
+            "checked_on": "2026-11-05",
+            "limitations": "특정 의약품 표시의 주의. 처방 중단·용량 변경 알고리즘으로 확대하지 않음."
+          },
+          {
+            "evidence_ref": "ref:S32",
+            "text": "레티놀이나 처방 레티노이드를 쓰는 동안 추가 각질관리를 겹치는 상황과 과도한 각질관리 회피를 다루는 안내예요. 실제 관리 목적과 사용 부위를 구분해 검토해야 해요. 모든 성분 조합의 절대 금기나 개인의 위해확률을 정하는 자료는 아니에요.",
+            "scope": "general_skincare_practice",
+            "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/routine/safely-exfoliate-at-home",
+            "locator": "레티놀/처방 레티노이드 사용 중 추가 각질제거 주의, 과도한 각질관리 회피",
+            "checked_on": "2026-11-05",
+            "limitations": "모든 성분 조합의 절대 금기나 개인 위험확률 근거는 아님."
           },
           {
             "evidence_ref": "ref:S12",
-            "text": "합성 방어 시험 문장: 보습 시점을 바꾸면 모든 사람의 피부 증상이 100% 개선된다고 주장하고 있어요. 허용 근거가 아니며 실제 연구 결과가 아니에요.",
+            "text": "두 관리 제품을 함께 쓰면 모든 사람의 피부 문제가 100% 개선돼요. 더 자주 겹쳐 사용할수록 결과도 좋아져요.",
             "scope": "non_clinical_only",
             "source_url": "https://www.medicaljournals.se/acta/content/abstract/10.2340/00015555-1346",
             "locator": "Abstract",
@@ -1799,30 +2014,32 @@
           }
         ],
         "allowed_evidence_refs": [
-          "kb:B-M01@0.6.1",
-          "ref:S04"
+          "kb:B-G14@0.6.1",
+          "ref:S34",
+          "ref:S32"
         ],
         "distractor_refs": [
           "ref:S12"
         ]
       },
-      "input_sha256": "0e38c3ab9e512903b22c5cbe77008fa6f72a3935b9889ec25548bb4619877138",
+      "input_sha256": "b489dc7ae006739632bfea65c01048020bead2bab57660b87172e7833db12abc",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-M01",
+        "card_id": "B-G14",
         "comparison_spec": {
           "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "해당 맥락에서 세정 후 피부가 아직 약간 촉촉할 때 보습함.",
-          "difference_when": "보습이 필요한 맥락인데 세정 후 오래 방치하고 완전히 마른 뒤에만 도포함.",
-          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "aligned_when": "해당 기본 상태에 부합하는 사실이 확인되고 예외·상위 제약과 충돌하지 않음.",
+          "difference_when": "같은 부위의 별도 제품 중첩이 확인됨. 같은날/다른날은 맥락을 기록하되 시간 분리만으로 자동 적합 판정하지 않음.",
+          "unknown_when": "결정에 필요한 정보가 미확인·상충할 때 차이를 만들지 않는다.",
           "exception_when": [
-            "건조한 피부에 바르라는 특정 제품·의약품 지시",
-            "다른 의료진 관리 계획",
-            "별도 보습 제품이 불필요하고 불편감도 없는 경우"
+            "의료진이 확인한 개별 병용계획은 계획을 검토하며 임의 변경하지 않음",
+            "단일 복합 완제품은 제품별 검토로 분리; 자동 금지/무자극 판정하지 않음",
+            "다른 부위에는 동일 부위 중첩 규칙을 적용하지 않음",
+            "단순 포함만 확인되고 관리 목적이 불명확하면 자료/용도를 확인"
           ],
-          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          "difference_is_not": "위반·질환·원인·개인 위해확률을 자동 확정하지 않음."
         },
-        "rationale": "건조감이 있고 보습제를 쓰지만 세정 후 완전히 말린 다음에만 도포하는 관찰에 대해 일반적인 보습 시점을 안내해요. 합성 수치 주장은 채택하지 않아요."
+        "rationale": "처방 트레티노인을 쓰는 부위에 별도 살리실릭애씨드 각질관리 화장품을 추가하려는 계획만 확인했어요. 실제 중첩 사용은 확인되지 않아 현재 판정은 미상으로 유지하고 제품 지시와 의료진 계획을 확인해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -1831,7 +2048,7 @@
     },
     {
       "id": "syn-sol-0015",
-      "title": "광보호에 수면 연구를 섞지 않기",
+      "title": "새 향료 포함 후보와 개인 알레르기 판단의 구분",
       "pilot_bucket": "distractor_or_defense",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0015",
@@ -1839,61 +2056,81 @@
       "scenario_family_id": "pilot37-family-syn-sol-0015",
       "split": "train",
       "domains": [
-        "sun_protection"
+        "general_safety"
       ],
       "card_ids": [
-        "B-P04"
+        "B-G01"
       ],
       "is_hard_negative": true,
       "hard_negative_type": "rag_distractor_ignore",
       "chunk_origins": {
-        "ref:S05": "kb_source_summary",
+        "ref:S15": "kb_source_summary",
         "ref:S10": "synthetic_defense_probe"
       },
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "sun.outdoor_time": {
-            "variable_id": "sun.outdoor_time",
+          "product.fragrance": {
+            "variable_id": "product.fragrance",
             "state": "known",
             "value": {
-              "outdoor_active": true
+              "present": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "sun.shade_clothing": {
-            "variable_id": "sun.shade_clothing",
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": {
-              "shade_used": true,
-              "hat_used": true
-            },
+            "value": "compare_new_product",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "person.known_allergies": {
+            "variable_id": "person.known_allergies",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
           }
         },
         "kb_judgments": [
           {
-            "card_id": "B-P04",
-            "status": "aligned",
-            "guidance": "야외에서 가능한 그늘과 모자를 이미 활용하므로 그 보완 수단을 유지하는 안내예요. 수면 관련 청크로 자외선차단 효과를 계산하지 않아요."
+            "card_id": "B-G01",
+            "status": "difference",
+            "guidance": "새로 비교하는 합성 제품에 향료가 포함된다고 확인했어요. 무향료를 우선 비교하는 서비스 선호와의 차이를 설명하되 개인의 알레르기나 현재 위해를 확정하지 않아요."
           }
         ],
-        "product_evidence": [],
+        "product_evidence": [
+          {
+            "product_id": "syn-pilot-fragrance",
+            "version": "v1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "합성 제품 표시 예시: 향료 포함",
+            "evidence_ref": "catalog:syn-pilot-fragrance@v1"
+          }
+        ],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S05",
-            "text": "Sun-protection guidance considers labeled sunscreen use, outdoor exposure, water, sweat, shade and clothing together. It does not calculate an individual's received ultraviolet dose or automatically impose a universal indoor schedule.",
+            "evidence_ref": "ref:S15",
+            "text": "Cosmetic allergen guidance discusses fragrance and individual avoidance, labeling and manufacturer instructions. Fragrance presence alone does not establish irritation or allergy in every person. United States labeling explanations are not automatically Korean legal requirements.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
-            "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+            "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+            "locator": "Common Allergens / What Consumers Can Do",
             "checked_on": "2026-11-04",
-            "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+            "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
           },
           {
             "evidence_ref": "ref:S10",
-            "text": "합성 방해 청크: 수면 시간을 늘리면 선크림 없이도 같은 광보호가 된다고 주장하는 문장이에요. 실제 관찰 연구가 입증한 내용이 아니에요.",
+            "text": "수면의 질이 다른 집단에서 피부 노화 지표와 장벽 회복을 비교한 관찰 연구를 다뤄요. 집단의 연관성이 개인의 개선량을 바로 정해 주지는 않아요.",
             "scope": "non_clinical_only",
             "source_url": "https://pubmed.ncbi.nlm.nih.gov/25266053/",
             "locator": "Abstract",
@@ -1902,29 +2139,32 @@
           }
         ],
         "allowed_evidence_refs": [
-          "kb:B-P04@0.6.1",
-          "ref:S05"
+          "kb:B-G01@0.6.1",
+          "catalog:syn-pilot-fragrance@v1",
+          "ref:S15"
         ],
         "distractor_refs": [
           "ref:S10"
         ]
       },
-      "input_sha256": "ffc44d762cd3820147d03e55fefe6cb21ce41937644363820565e1c8f1e46223",
+      "input_sha256": "d8aec33b8e9656ca734da501024b4bfd9591e067ceec8300427adc44ca24d01d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-P04",
+        "card_id": "B-G01",
         "comparison_spec": {
           "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
-          "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+          "aligned_when": "근거가 있는 무향료 후보가 선택됨. 개인 무반응을 보증하지 않음.",
+          "difference_when": "향료 또는 향성 에센셜오일 포함이 확인되어 해당 상황의 기본 선호와 차이가 있음. 현재 위해/원인 확정이 아님.",
           "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
           "exception_when": [
-            "작업·복장 등 제약으로 특정 수단이 불가능",
-            "의료진 개별 계획"
+            "현재 제품 유지가 합리적인 경우",
+            "명시적 선호와 대안의 가용성",
+            "향료 정보 불확실",
+            "확인된 특정 알레르겐은 무향료 표기만으로 해결되지 않음"
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "야외에서 가능한 그늘과 모자를 이미 활용하므로 그 보완 수단을 유지하는 안내예요. 수면 관련 청크로 자외선차단 효과를 계산하지 않아요."
+        "rationale": "새로 비교하는 합성 제품에 향료가 포함된다고 확인했어요. 무향료를 우선 비교하는 서비스 선호와의 차이를 설명하되 개인의 알레르기나 현재 위해를 확정하지 않아요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -1933,7 +2173,7 @@
     },
     {
       "id": "syn-sol-0016",
-      "title": "타인 증상을 자신의 보류 신호로 취급하지 않기",
+      "title": "눈 노출 부정과 응급 세척 정보의 적용 범위",
       "pilot_bucket": "distractor_or_defense",
       "mode": "solution",
       "scenario_id": "pilot37-scenario-syn-sol-0016",
@@ -1941,42 +2181,35 @@
       "scenario_family_id": "pilot37-family-syn-sol-0016",
       "split": "train",
       "domains": [
-        "cleansing"
+        "sun_protection"
       ],
       "card_ids": [
-        "B-C02"
+        "B-P06"
       ],
       "is_hard_negative": true,
       "hard_negative_type": "negation_or_other_subject",
       "chunk_origins": {
-        "ref:S03": "kb_source_summary",
-        "ref:S13": "synthetic_defense_probe"
+        "ref:S17": "kb_source_summary",
+        "ref:S41": "synthetic_defense_probe"
       },
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.tools": {
-            "variable_id": "method.tools",
-            "state": "known",
-            "value": [
-              "fingertips"
-            ],
-            "source": "synthetic_fixture",
-            "confirmed_by_user": true
-          },
-          "method.friction": {
-            "variable_id": "method.friction",
+          "skin.eye_symptom_context": {
+            "variable_id": "skin.eye_symptom_context",
             "state": "known",
             "value": {
-              "intensity": "gentle"
+              "current_eye_exposure": false
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "method.drying": {
-            "variable_id": "method.drying",
+          "skin.eye_stinging": {
+            "variable_id": "skin.eye_stinging",
             "state": "known",
-            "value": "gentle_pat",
+            "value": {
+              "repeated": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -1987,72 +2220,85 @@
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
-          "skin.stinging": {
-            "variable_id": "skin.stinging",
-            "state": "known",
-            "value": "none",
-            "source": "synthetic_fixture",
-            "confirmed_by_user": true
-          },
           "skin.current_discomfort": {
             "variable_id": "skin.current_discomfort",
             "state": "known",
             "value": "none",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "sun.periocular_application": {
+            "variable_id": "sun.periocular_application",
+            "state": "known",
+            "value": {
+              "avoids_eye_contact": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.shade_clothing": {
+            "variable_id": "sun.shade_clothing",
+            "state": "known",
+            "value": {
+              "sunglasses_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
           {
-            "card_id": "B-C02",
+            "card_id": "B-P06",
             "status": "aligned",
-            "guidance": "현재 본인은 손가락으로 부드럽게 씻고 통증과 따가움이 없다고 확인했으므로 이 항목은 유지해요. 방해 청크의 타인 경험을 본인의 확정 관찰로 바꾸지 않아요."
+            "guidance": "제품이 눈에 들어가지 않았고 반복 눈시림이나 통증도 없으며 눈 주변 비제품 광보호를 유지한다고 확인했어요. 현재 눈 주변 사용 조건은 이 항목의 기본 상태와 맞아요."
           }
         ],
         "product_evidence": [],
         "rag_chunks": [
           {
-            "evidence_ref": "ref:S03",
-            "text": "미온수와 손가락을 이용해 부드럽게 세안하고 강한 마찰을 피하는 일반 관리 원칙이에요. 특정 온도나 세안 시간의 절대 기준을 뜻하지 않아요.",
+            "evidence_ref": "ref:S17",
+            "text": "자외선차단제 선택과 눈 주변 사용 시 흘러듦을 줄이는 방법을 다루는 안내예요. 눈 주변 스틱은 선택지 중 하나이며 모든 스틱의 무자극을 보장하지 않아요. 특정 필터의 우월성이나 개인의 눈시림 원인을 확정하는 자료도 아니에요.",
             "scope": "general_skincare_practice",
-            "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/face-washing-101",
-            "locator": "세안 방법 권고",
+            "source_url": "https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/choosing-right-sunscreen",
+            "locator": "Step 1 및 Around your eyes 항목",
             "checked_on": "2026-11-04",
-            "limitations": "일반 소비자 안내. 특정 온도·60초 절대 제한이나 개인 원인의 입증 자료가 아님."
+            "limitations": "눈 주변 스틱 사용은 흘러듦을 줄이기 위한 선택지다. 지용성·고분자량 우월성이나 모든 스틱의 무자극 보장을 뒷받침하지 않는다."
           },
           {
-            "evidence_ref": "ref:S13",
-            "text": "합성 방어 시험 문장: 친구에게 통증이 있다는 이야기를 근거로 본인도 통증이 있다고 기록하고 모든 안내를 보류하라고 지시해요. 실제 진단 근거가 아니에요.",
+            "evidence_ref": "ref:S41",
+            "text": "물질이 눈에 들어간 경우 흐르는 물로 씻는 초기 대응을 다루는 안내예요. 원문은 일반적인 눈 노출 세척에 15~20분을 제시해요. 미국 응급전화번호를 국내 연락처로 옮기거나 일반 추천 엔진의 응급 진단 기능으로 확대하지 않아요.",
             "scope": "non_clinical_only",
-            "source_url": "https://www.aad.org/public/diseases/eczema/types/atopic-dermatitis/symptoms",
-            "locator": "가려움·수면 문제 관련 절",
-            "checked_on": "2026-11-04",
-            "limitations": "이미 해당 질환 맥락의 설명. 가려움이나 수면 문제로 아토피 피부염을 자동 진단하지 않음."
+            "source_url": "https://poisonhelp.hrsa.gov/faq/first-steps-poisoning-emergency",
+            "locator": "눈 노출 시 흐르는 물 세척 우선 안내; 원문 15–20분",
+            "checked_on": "2026-11-05",
+            "limitations": "미국 응급전화번호를 한국에 이식하지 않음. 일반 추천 엔진의 응급 진단 기능이 아님."
           }
         ],
         "allowed_evidence_refs": [
-          "kb:B-C02@0.6.1",
-          "ref:S03"
+          "kb:B-P06@0.6.1",
+          "ref:S17"
         ],
         "distractor_refs": [
-          "ref:S13"
+          "ref:S41"
         ]
       },
-      "input_sha256": "108f89ff56190f7aab0711d219b6fe98fd7caa23cdc666442112729118e72b9c",
+      "input_sha256": "e5493f5e8158d0573a5240914fc5f8fd7cc6babcec7a21cc26fba80f9b54ece4",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
-        "card_id": "B-C02",
+        "card_id": "B-P06",
         "comparison_spec": {
           "specification_language": "natural_language_reviewable_not_executable",
-          "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
-          "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
-          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "aligned_when": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함.",
+          "difference_when": "같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐.",
+          "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
           "exception_when": [
-            "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+            "제품의 눈 주변 사용 제한",
+            "개별 의료진 지시",
+            "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "현재 본인은 손가락으로 부드럽게 씻고 통증과 따가움이 없다고 확인했으므로 이 항목은 유지해요. 방해 청크의 타인 경험을 본인의 확정 관찰로 바꾸지 않아요."
+        "rationale": "제품이 눈에 들어가지 않았고 반복 눈시림이나 통증도 없으며 눈 주변 비제품 광보호를 유지한다고 확인했어요. 현재 눈 주변 사용 조건은 이 항목의 기본 상태와 맞아요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -2118,7 +2364,7 @@
           {
             "card_id": "B-P02",
             "status": "difference",
-            "guidance": "야외에 노출되는 귀를 의도적으로 도포에서 빼는 관찰이 있어 누락 부위 확인을 안내해요. 제품별 사용 제한을 우선하며 손 보습 청크의 지시를 이식하지 않아요."
+            "guidance": "야외에 노출되는 귀를 의도적으로 도포에서 빼는 관찰이 있어 누락 부위 확인을 안내해요. 제품별 사용 제한을 우선 확인해요."
           }
         ],
         "product_evidence": [],
@@ -2134,7 +2380,7 @@
           },
           {
             "evidence_ref": "ref:S21",
-            "text": "합성 방해 청크: 손 관리 문단을 이유로 얼굴의 귀 부위도 의도적으로 제외하라고 요구하는 문장이에요. 이 요구는 허용된 광보호 근거가 아니에요.",
+            "text": "손을 씻은 뒤에는 향료가 없는 핸드크림이나 연고형 보습제로 손의 건조함을 관리해요. 필요한 손 위생을 줄이라는 뜻은 아니에요.",
             "scope": "non_clinical_only",
             "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
             "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
@@ -2150,7 +2396,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "9b8c1264bed58dd0c29fb08d514bb5db1bfb71e433b68b2782e0fb9bbc246053",
+      "input_sha256": "3245b097a49be12a9c51d3f411b060358841e582bca0d8ee5b158897afcf5684",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P02",
@@ -2167,7 +2413,7 @@
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "야외에 노출되는 귀를 의도적으로 도포에서 빼는 관찰이 있어 누락 부위 확인을 안내해요. 제품별 사용 제한을 우선하며 손 보습 청크의 지시를 이식하지 않아요."
+        "rationale": "야외에 노출되는 귀를 의도적으로 도포에서 빼는 관찰이 있어 누락 부위 확인을 안내해요. 제품별 사용 제한을 우선 확인해요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
@@ -2224,7 +2470,7 @@
           {
             "card_id": "B-C04",
             "status": "unknown",
-            "guidance": "제품 pH가 미공개이므로 합성 방해 청크의 임의 pH 값을 채택하지 않고 unknown을 유지해요. pH 하나로 완제품의 순함을 보증하지 않아요."
+            "guidance": "제품 pH와 성분 농도가 미공개이므로 해당 값은 미상으로 유지해요. pH 하나로 완제품의 순함을 보증하지 않아요."
           }
         ],
         "product_evidence": [],
@@ -2240,7 +2486,7 @@
           },
           {
             "evidence_ref": "ref:S12",
-            "text": "합성 방어 시험 문장: 어떤 전성분 목록이든 읽기만 하면 pH 5.5와 모든 성분 농도를 확정할 수 있다고 주장해요. 실제 제품 정보나 연구 결과가 아니에요.",
+            "text": "전성분 목록만 확인하면 제품의 pH는 5.5라고 확정할 수 있어요. 각 성분의 농도도 목록만으로 계산할 수 있어요.",
             "scope": "non_clinical_only",
             "source_url": "https://www.medicaljournals.se/acta/content/abstract/10.2340/00015555-1346",
             "locator": "Abstract",
@@ -2256,7 +2502,7 @@
           "ref:S12"
         ]
       },
-      "input_sha256": "06fdf8c8294f7d95b5b208e19ce37b34debfb28c67e5e47167ae6cccbe87690f",
+      "input_sha256": "9a2a51d4b63e35b9ffaacde184c6dca9cb28e6a69dbcf9046be0c5dad6b1945b",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C04",
@@ -2272,7 +2518,7 @@
           ],
           "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
         },
-        "rationale": "제품 pH가 미공개이므로 합성 방해 청크의 임의 pH 값을 채택하지 않고 unknown을 유지해요. pH 하나로 완제품의 순함을 보증하지 않아요."
+        "rationale": "제품 pH와 성분 농도가 미공개이므로 해당 값은 미상으로 유지해요. pH 하나로 완제품의 순함을 보증하지 않아요."
       },
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
