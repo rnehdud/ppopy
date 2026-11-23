@@ -69,6 +69,12 @@ ALLOWED_CRITIC_STATUSES = frozenset({"PASS", "FAIL", "unreviewed"})
 
 FORBIDDEN_SOURCE_IDS = frozenset({"F01", "F02", "S30", "S31"})
 FORBIDDEN_CARD_IDS = frozenset({"B-P07"})
+V67_ACTION_TO_MODE = {"request_draft": "solution", "hold": "hold"}
+FULL_MERGE_MIN_TARGETS = {
+    "a": {"solution": 600, "hold": 200},
+    "b": {"solution": 500, "hold": 150},
+    "c": {"solution": 500, "hold": 150},
+}
 
 ROW_ID_PATTERN = re.compile(r"^syn-(?P<shard>[abc])-(?P<kind>sol|hold)-(?P<num>\d{4})$")
 BRACKET_CITATION_PATTERN = re.compile(
@@ -109,6 +115,7 @@ class V67SplitIndex:
     group_to_split: dict[str, str] = field(default_factory=dict)
     turn_to_split: dict[str, str] = field(default_factory=dict)
     turn_to_scenario: dict[str, str] = field(default_factory=dict)
+    turn_to_action: dict[str, str] = field(default_factory=dict)
     test_scenarios: set[str] = field(default_factory=set)
     test_groups: set[str] = field(default_factory=set)
     test_turns: set[str] = field(default_factory=set)
@@ -233,6 +240,9 @@ def load_v67_index(v67_dir: pathlib.Path) -> V67SplitIndex:
                 index.turn_to_split[tid] = split_name
                 if sid:
                     index.turn_to_scenario[tid] = sid
+                action = row.get("output", {}).get("action") if isinstance(row.get("output"), dict) else None
+                if isinstance(action, str):
+                    index.turn_to_action[tid] = action
                 if split_name == "test_internal":
                     index.test_turns.add(tid)
     return index
@@ -317,6 +327,7 @@ def validate_rows(
     pilot_bucket_counter: Counter[str] = Counter()
     shard_stats: dict[str, dict[str, int]] = {}
     shard_bucket_counts: dict[str, Counter[str]] = {}
+    file_shards: dict[str, set[str]] = {}
 
     high_risk_rows = 0
     high_risk_human_approved = 0
@@ -343,6 +354,7 @@ def validate_rows(
                 )
             else:
                 shard_letter = m.group("shard")
+                file_shards.setdefault(src, set()).add(shard_letter)
                 if expected_shard and shard_letter != expected_shard:
                     report.errors.append(f"{loc}: id shard {shard_letter!r} != expected {expected_shard!r}")
                 expected_kind = "sol" if mode == "solution" else "hold" if mode == "hold" else None
@@ -451,6 +463,17 @@ def validate_rows(
                     report.errors.append(
                         f"{loc}: provenance.source_turn_id {source_turn_id!r} does not belong to scenario {source_scenario_id!r}"
                     )
+                else:
+                    src_action = v67_index.turn_to_action.get(source_turn_id)
+                    expected_mode = V67_ACTION_TO_MODE.get(src_action or "")
+                    if expected_mode is None:
+                        report.errors.append(
+                            f"{loc}: v67 source_turn_id {source_turn_id!r} has action {src_action!r}, which is not eligible for QLoRA recycling (allowed: request_draft->solution, hold->hold)"
+                        )
+                    elif mode in ALLOWED_MODES and mode != expected_mode:
+                        report.errors.append(
+                            f"{loc}: v67 source_turn_id {source_turn_id!r} has action {src_action!r} requiring mode={expected_mode!r}, got {mode!r}"
+                        )
 
             gen_model = prov.get("generator_model")
             if not isinstance(gen_model, str) or not gen_model.strip() or "/" in gen_model:
@@ -604,17 +627,28 @@ def validate_rows(
         judgment_card_ids = {
             j.get("card_id") for j in req.kb_judgments if isinstance(j, dict) and isinstance(j.get("card_id"), str)
         }
-        product_refs = {
-            p.get("evidence_ref")
-            for p in req.product_evidence
-            if isinstance(p, dict) and isinstance(p.get("evidence_ref"), str)
-        }
+        product_refs: set[str] = set()
+        alternative_refs: set[str] = set()
         for p in req.product_evidence:
-            if isinstance(p, dict) and isinstance(p.get("product_id"), str) and isinstance(p.get("version"), str):
-                product_refs.add(f"catalog:{p['product_id']}@{p['version']}")
-        alternative_refs = {
-            r for r in product_refs if r.startswith("alternative:")
-        } | {
+            if not isinstance(p, dict):
+                continue
+            pid = p.get("product_id")
+            ver = p.get("version")
+            eref = p.get("evidence_ref")
+            if isinstance(pid, str) and pid and isinstance(ver, str) and ver:
+                computed_ref = f"catalog:{pid}@{ver}"
+                product_refs.add(computed_ref)
+                if isinstance(eref, str) and eref.startswith("catalog:") and eref != computed_ref:
+                    report.errors.append(
+                        f"{loc}: product_evidence evidence_ref {eref!r} mismatches product_id/version ({computed_ref!r})"
+                    )
+            elif isinstance(eref, str) and eref.startswith("catalog:"):
+                report.errors.append(
+                    f"{loc}: product_evidence catalog evidence_ref {eref!r} requires matching product_id and version"
+                )
+            if isinstance(eref, str) and eref.startswith("alternative:"):
+                alternative_refs.add(eref)
+        alternative_refs |= {
             j.get("alternative_ref")
             for j in req.kb_judgments
             if isinstance(j, dict) and isinstance(j.get("alternative_ref"), str)
@@ -750,10 +784,27 @@ def validate_rows(
         else 0.0
     )
 
+    # File-to-shard 1:1 integrity check in merge mode
+    if merge_mode:
+        if len(all_files) != 3:
+            report.errors.append(f"merge check: expected exactly 3 shard files (a, b, c), got {len(all_files)}")
+        seen_file_shards: set[str] = set()
+        for src in all_files:
+            shards_in_file = file_shards.get(src, set())
+            if len(shards_in_file) != 1:
+                report.errors.append(
+                    f"merge check: file {src!r} must contain rows from exactly 1 shard, got {sorted(shards_in_file)}"
+                )
+            else:
+                only_shard = next(iter(shards_in_file))
+                if only_shard in seen_file_shards:
+                    report.errors.append(f"merge check: duplicate shard {only_shard!r} across multiple files")
+                seen_file_shards.add(only_shard)
+        if seen_file_shards != {"a", "b", "c"}:
+            report.errors.append(f"merge check: expected shards {{'a', 'b', 'c'}}, got {sorted(seen_file_shards)}")
+
     if pilot_mode:
         if merge_mode:
-            if len(all_files) != 3:
-                report.errors.append(f"pilot merge check: expected 3 shard files (a, b, c), got {len(all_files)}")
             if report.total_rows != 36:
                 report.errors.append(f"pilot merge check: expected 36 total rows, got {report.total_rows}")
             for s in ("a", "b", "c"):
@@ -781,6 +832,15 @@ def validate_rows(
         if hn_ratio < 0.25:
             report.errors.append(f"pilot check: hard_negative_ratio {hn_ratio:.3f} < 0.25")
     elif enforce_ratios:
+        if merge_mode:
+            if report.total_rows < 2100:
+                report.errors.append(f"final merge check: expected >= 2100 total rows, got {report.total_rows}")
+            for s, req_counts in FULL_MERGE_MIN_TARGETS.items():
+                st = shard_stats.get(s, {"total": 0, "solution": 0, "hold": 0})
+                if st["solution"] < req_counts["solution"] or st["hold"] < req_counts["hold"]:
+                    report.errors.append(
+                        f"final merge check: shard {s!r} requires >= {req_counts}, got {st}"
+                    )
         if not (0.20 <= hold_ratio <= 0.25):
             report.errors.append(f"ratio check: hold_ratio {hold_ratio:.3f} outside [0.20, 0.25]")
         if hn_ratio < 0.25:

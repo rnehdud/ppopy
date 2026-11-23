@@ -261,7 +261,7 @@ def test_empty_file_and_partial_pilot_are_rejected() -> None:
         partial, KB_INDEX, V67_INDEX, input_files=["shard_a.jsonl"], merge_mode=True, pilot_mode=True
     )
     assert not partial_report.passed
-    assert any("expected 3 shard files" in e for e in partial_report.errors)
+    assert any("expected exactly 3 shard files" in e for e in partial_report.errors)
     assert any("expected 36 total rows" in e for e in partial_report.errors)
 
 
@@ -342,8 +342,12 @@ def test_rejects_direct_instruction_hold_leak_and_missing_review_fields() -> Non
 
 
 def test_v67_real_val_internal_recycling_allowed_while_test_internal_blocked() -> None:
-    # Find a real val_internal turn & scenario from V67_INDEX
-    val_turn = next(tid for tid, sp in V67_INDEX.turn_to_split.items() if sp == "val_internal")
+    # Find a real val_internal HOLD turn & scenario from V67_INDEX
+    val_turn = next(
+        tid
+        for tid, sp in V67_INDEX.turn_to_split.items()
+        if sp == "val_internal" and V67_INDEX.turn_to_action.get(tid) == "hold"
+    )
     val_scen = V67_INDEX.turn_to_scenario[val_turn]
     row = make_valid_hold_row(shard="a", num=3, split="val_internal")
     row["scenario_id"] = val_scen
@@ -356,6 +360,77 @@ def test_v67_real_val_internal_recycling_allowed_while_test_internal_blocked() -
     wrong = copy.deepcopy(row)
     wrong["split"] = "train"
     assert not val.validate_rows([("shard_a.jsonl", 1, wrong)], KB_INDEX, V67_INDEX).passed
+
+    # Recycling an ask_user turn into solution must fail!
+    ask_turn = next(
+        tid
+        for tid, act in V67_INDEX.turn_to_action.items()
+        if act == "ask_user" and V67_INDEX.turn_to_split.get(tid) == "train"
+    )
+    ask_scen = V67_INDEX.turn_to_scenario[ask_turn]
+    bad_action_row = make_valid_solution_row(shard="a", num=9, split="train")
+    bad_action_row["scenario_id"] = ask_scen
+    bad_action_row["provenance"]["source_origin"] = "recycled_v67"
+    bad_action_row["provenance"]["source_scenario_id"] = ask_scen
+    bad_action_row["provenance"]["source_turn_id"] = ask_turn
+    rep_ask = val.validate_rows([("shard_a.jsonl", 1, bad_action_row)], KB_INDEX, V67_INDEX)
+    assert not rep_ask.passed
+    assert any("ask_user" in e for e in rep_ask.errors)
+
+
+def test_rejects_mixed_shard_files_4row_final_merge_and_product_version_spoof() -> None:
+    # 1. Mixed A+B rows in 23/1/12 pilot files must fail 1:1 file-to-shard check
+    a_rows = make_12_row_pilot_shard("a")
+    b_rows = make_12_row_pilot_shard("b")
+    c_rows = make_12_row_pilot_shard("c")
+    mixed = (
+        a_rows
+        + [("shard_a.jsonl", 13 + i, r) for i, (_, _, r) in enumerate(b_rows[:11])]
+        + [("shard_b.jsonl", 1, b_rows[11][2])]
+        + c_rows
+    )
+    rep_mixed = val.validate_rows(
+        mixed,
+        KB_INDEX,
+        V67_INDEX,
+        input_files=["shard_a.jsonl", "shard_b.jsonl", "shard_c.jsonl"],
+        merge_mode=True,
+        pilot_mode=True,
+    )
+    assert not rep_mixed.passed
+    assert any("exactly 1 shard" in e for e in rep_mixed.errors)
+
+    # 2. 4-row single file cannot pass --merge --enforce-ratios --require-review
+    four_rows = [
+        ("shard_a.jsonl", 1, make_valid_solution_row(shard="a", num=1)),
+        ("shard_a.jsonl", 2, make_valid_solution_row(shard="a", num=2)),
+        ("shard_a.jsonl", 3, make_valid_solution_row(shard="a", num=3)),
+        ("shard_a.jsonl", 4, make_valid_hold_row(shard="a", num=1)),
+    ]
+    rep_4 = val.validate_rows(
+        four_rows,
+        KB_INDEX,
+        V67_INDEX,
+        input_files=["shard_a.jsonl"],
+        merge_mode=True,
+        enforce_ratios=True,
+        require_review=True,
+    )
+    assert not rep_4.passed
+    assert any("expected exactly 3 shard files" in e for e in rep_4.errors)
+    assert any(">= 2100" in e for e in rep_4.errors)
+
+    # 3. Spoofed product_evidence evidence_ref @999 when version is 1.0 must fail
+    spoof = make_valid_solution_row(shard="a", num=5)
+    req = json.loads(spoof["messages"][1]["content"])
+    req["product_evidence"][0]["evidence_ref"] = "catalog:syn-sun-001@999"
+    req["allowed_evidence_refs"] = ["kb:B-I01@0.6.1", "catalog:syn-sun-001@999", "ref:S08"]
+    spoof["allowed_evidence_refs"] = list(req["allowed_evidence_refs"])
+    spoof["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+    spoof["messages"][2]["content"] = spoof["messages"][2]["content"].replace("@1.0", "@999")
+    rep_spoof = val.validate_rows([("shard_a.jsonl", 1, spoof)], KB_INDEX, V67_INDEX)
+    assert not rep_spoof.passed
+    assert any("mismatches product_id/version" in e for e in rep_spoof.errors)
 
 
 def test_guide_doc_reference_examples_pass_validator() -> None:

@@ -9,11 +9,23 @@
 ## 0. 시작 조건 & 6단계 작업 순서 (에이전트 필독)
 
 ### 공통 기준 커밋 체크아웃 (3인 전원 동일 기준에서 출발)
-이 문서와 `scripts/validate_qlora_dataset.py`가 `main`에 머지된 **기준 커밋 SHA(`<BASE_COMMIT_SHA>`, Linear Parent Issue에 기입)**를 확인한 뒤 각자 브랜치를 생성합니다. *(로컬 미푸시 커밋이나 문서만 있는 브랜치에서 시작하지 마세요.)*
+이 문서와 `scripts/validate_qlora_dataset.py`가 `main`에 머지된 **기준 커밋 SHA**(PR 머지 후 Linear Parent Issue의 `BASE_COMMIT_SHA` 값 확인)에서 각자 담당 명령을 그대로 복사해 실행합니다. *(로컬 미푸시 커밋이나 문서만 있는 브랜치에서 시작하지 마세요.)*
 
 ```bash
+# 공통: 원격 최신화 후 Linear Parent Issue에 기입된 실제 main 머지 커밋 SHA를 지정
 git fetch origin
-git checkout -b data/qlora-shard-{a|b|c} <BASE_COMMIT_SHA>
+BASE_COMMIT_SHA="<PR_머지_후_Linear에_기입된_실제_SHA>"
+
+# 팀원 1 (Shard A)
+git checkout -b data/qlora-shard-a "$BASE_COMMIT_SHA"
+
+# 팀원 2 (Shard B)
+git checkout -b data/qlora-shard-b "$BASE_COMMIT_SHA"
+
+# 팀원 3 (Shard C)
+git checkout -b data/qlora-shard-c "$BASE_COMMIT_SHA"
+
+# 공통 확인: 검증기 존재 확인
 test -f courses/ai-applications/experiments/cos-agent/scripts/validate_qlora_dataset.py
 ```
 
