@@ -3,7 +3,7 @@
 > **문서 목적**: 담당 팀원 1명(및 전담 코딩 에이전트)이 **이 문서 + `validate_qlora_dataset.py` + `v3_contracts.py`**만으로 일관성 높고 학습–추론 괴리(Train–Inference Skew)가 없는 **100% Zero-Base (`new_synthetic`)** QLoRA용 합성 데이터셋을 즉시 제작·검수하도록 정의합니다.  
 > **기본 프로파일 · rag-free (SLM–KB 완전 분리)**: 앞단 AFA와 Runtime만 정형 KB로 질문·충분성·HOLD를 처리합니다. 답변을 쓰는 SLM(`SLMRequest`)에는 `kb_judgments` 필드 자체가 없으며, 오직 확정된 사용자 관찰, 확인된 제품 근거, 참고 문헌 청크만 전달합니다.
 > **기준 아키텍처**: [Ppopy End-to-End Architecture v3](end-to-end-architecture-draft.md) · [v3_contracts.py](../beauty_agent/v3_contracts.py) · [validate_qlora_dataset.py](../scripts/validate_qlora_dataset.py)  
-> **필수 경계 (`AGENTS.md`)**: `development_preview`, `production_enabled=false`, **합성 입력 전용**. 실제 사용자 개인정보·설문·연락처·제3자 원문 PDF/게시글 금지. 피부 질환 진단·임상/치료 효과 단정·자동 개선 판정·미공개 농도/pH 추정 금지. `QUESTION_MODE` 데이터는 생성하지 않습니다(0ms Quick Reply 버튼 처리).
+> **필수 경계 (`AGENTS.md`)**: `development_preview`, `production_enabled=false`, **합성 입력 전용**. 실제 사용자 개인정보·설문·연락처는 공개하지 않습니다. Reference RAG 원본 PDF와 페이지 전체 캡처는 팀 Drive에 보관합니다. 재배포 조건을 확인한 본문 발췌와 팀이 작성한 근거 문단은 [저장소 자료 정책](../../../../../docs/repository-scope.md#public-reference-materials)에 따라 출처와 함께 Markdown으로 공유합니다. 피부 질환 진단·임상/치료 효과 단정·자동 개선 판정·미공개 농도/pH 추정 금지. `QUESTION_MODE` 데이터는 생성하지 않습니다(0ms Quick Reply 버튼 처리).
 
 ---
 

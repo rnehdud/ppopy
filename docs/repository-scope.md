@@ -20,6 +20,12 @@ The export takes selected current working files, including uncommitted files. It
 
 The operational frontend/backend, infrastructure, catalog XLSX, Google Sheets snapshots, credentials, user records, feedback, raw posts, product images, third-party PDFs, and earlier private model experiments are not copied. The course overview and smart mirror/AI evaluation documents are newly written summaries, not claims of newly implemented features.
 
+## Public reference materials
+
+The original export kept raw source collections in SkinAnalysis. This public repository can carry team-authored analysis and summaries of facts with citations. For third-party wording, check the terms for the specific work and the material being reused. Record the author or issuing body, original link, applicable licence or permission, and any required notices. Preserve change notices and check separately credited images, tables and quotations. A publicly readable page alone does not establish redistribution rights.
+
+The Reference RAG stores full source PDFs and full-page captures in the designated team Drive. Its Git deliverable is Markdown with selected, traceable passages and contextual limits. The [corpus source register](../courses/ai-applications/experiments/cos-agent/data/rag/SOURCES.md) records reuse terms. Original team documents may be committed in the project’s required format when their embedded content is cleared for public distribution.
+
 ## Continuing work
 
 1. Put CSE 406 requirements and implementation decisions under `courses/software-engineering/`; put ITE 351 research protocols and experiments under `courses/ai-applications/`.

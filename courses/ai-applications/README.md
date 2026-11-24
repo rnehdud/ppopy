@@ -37,4 +37,4 @@ Candidate metrics are question relevance and burden, appropriateness of maintain
 
 ## Boundaries
 
-Use public factual product fields and synthetic user context for shared development. Do not publish raw third-party corpora or personal questionnaires. Keep ingredient identity, disclosed ingredient amount, undisclosed active concentration, finished-product performance and personal suitability distinct. Do not infer undisclosed pH/concentrations or score manufacturer quality. Research output does not become an application rule without separate review and integration.
+Use public factual product fields and synthetic user context for shared development. Keep personal questionnaires private. Follow the [public reference material rules](../../docs/repository-scope.md#public-reference-materials) for third-party text and source PDFs. Keep ingredient identity, disclosed ingredient amount, undisclosed active concentration, finished-product performance and personal suitability distinct. Do not infer undisclosed pH/concentrations or score manufacturer quality. Research output does not become an application rule without separate review and integration.
