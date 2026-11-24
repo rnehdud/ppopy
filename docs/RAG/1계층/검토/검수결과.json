@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-24",
+  "scope": "팀 공유본 내용·교차참조·법령과 가이드 쪽·인용 일치·출처·내부 링크 검수",
+  "unit_counts": {
+    "guidance": 35,
+    "domestic_label": 33,
+    "service_policy": 17,
+    "reviewed_cards": 61,
+    "guide_comparison": 39,
+    "source_records": 16
+  },
+  "modes": {
+    "external_guidance": 28,
+    "verbatim_with_attribution": 6,
+    "product_label": 1,
+    "conditional_label": 25,
+    "lookup_only": 8,
+    "service_policy": 17
+  },
+  "card_dispositions": {
+    "관리권고 연결": 30,
+    "보류": 13,
+    "국내표시만 연결": 4,
+    "서비스정책만 연결": 14
+  },
+  "checks": [
+    "근거·정책 ID 중복 없음",
+    "61개 카드 양방향 연결과 39개 대조 항목의 참조 확인",
+    "가이드 직접 인용 4문장 PDF 쪽별 일치",
+    "고시 별표 1 유형 14개·성분 15개의 원문 조항 시작 쪽 확인",
+    "착향제 25개 CAS 중복 없음",
+    "고시번호·부칙·AHA·벤조페논-3 경계와 예외 대조",
+    "동봉 PDF 4개 원본 해시 일치",
+    "검색 입력 목록·파일 내부 상대 링크 확인",
+    "공유용 문서의 사용자 절대경로 없음",
+    "신규 가이드 직접 인용 2문장 PDF 160쪽 일치 및 SPF·PA 별도 식약처 설명 대조",
+    "텍스트가 거의 없는 14쪽을 이미지로 확인, 234쪽 품질관리 라벨 예시 분류",
+    "적합성 재검토에서 직접 인용 6건의 지정 쪽 문구 및 착향제 25종의 성분명·CAS·별표 주석 대조",
+    "혼합 잔액의 일반 보관 예외, AHA 공통조건, 표시 경과조치와 정책 범위 보존 명세 확인",
+    "내부 대조 URL과 번역문 표시용 귀속을 구별"
+  ],
+  "scope_note": "자료 판정 및 연결 검수. 실제 검색 엔진·서비스 연동은 검수 범위 밖. manifest는 자기 자신을 제외한 파일을 기록한다. 전체 PDF 텍스트 및 목차 탐색은 전 문장 정독·전체 검증을 뜻하지 않는다.",
+  "files": {
+    "README.md": {
+      "bytes": 7907,
+      "sha256": "33d966d8b8a661415fabd73710142a9e9b38a486485bd361c5315b969936c0a8"
+    },
+    "검색설정.json": {
+      "bytes": 2795,
+      "sha256": "ca6fd2461be2767cf1e717400af9a958789e6d99d8bdc69d81d4eaaca801cfa1"
+    },
+    "검색자료/관리권고.jsonl": {
+      "bytes": 42165,
+      "sha256": "e67164f0ef04bdf0cf34fe2dfc81ad5759adeb2f7048469bb1ad8bd93cb28db4"
+    },
+    "검색자료/국내표시조건.jsonl": {
+      "bytes": 37055,
+      "sha256": "ecebaf4af5d897c03609e95b48d861e8e90894d4054b2ac121971036a615c73e"
+    },
+    "검토/가이드_39개_대조.jsonl": {
+      "bytes": 19523,
+      "sha256": "bd5dba61636717eb0afa3770c3e6ef7a253770f1fb4cfb2e23ffd1067ebe1138"
+    },
+    "검토/가이드_전체범위_검토.md": {
+      "bytes": 5642,
+      "sha256": "8c7d3a3b82348a7a8cee28d2c9fabd5e334ef63a3a2ff74a48bcd14a72a20ce9"
+    },
+    "검토/추가자료_판정.md": {
+      "bytes": 4757,
+      "sha256": "4e1b290791e675768e5aa78a1e022e8c0fd72ec4e212cf13ba038d0187607df5"
+    },
+    "검토/카드_61개_판정.jsonl": {
+      "bytes": 83010,
+      "sha256": "7f2784997101556c745f74a4c485df61358443d3fad49bc14f56f69771bfeb0d"
+    },
+    "정책/서비스정책.jsonl": {
+      "bytes": 21978,
+      "sha256": "5c1bf94c9f341999e8883eb810fd1af3d9a7a3632276ca0e0af97426e5dbd225"
+    },
+    "출처/고시_별표1.pdf": {
+      "bytes": 163846,
+      "sha256": "66e37a419f0ef456be740ab16b0c42d00d079c046e18839606bfe857a660eb5d"
+    },
+    "출처/고시_별표2.pdf": {
+      "bytes": 79419,
+      "sha256": "876ed3f4dd6cb045f91dc47ef1f8185139356e51c65a2c23a4132fab74ff7cc7"
+    },
+    "출처/시행규칙_별표3.pdf": {
+      "bytes": 73907,
+      "sha256": "bf91f7b02eba1c4549d67dc64f964d5a891e4ee197f575342a17122aa02a7113"
+    },
+    "출처/조제관리사_개정4판.pdf": {
+      "bytes": 10789706,
+      "sha256": "a7948734ed83c771d66f3dcd691871d8c8a0e37921de301a2d3492a31181467b"
+    },
+    "출처/출처목록.json": {
+      "bytes": 9193,
+      "sha256": "2f1a4f08c26fb9cef5ea78d7c8d00049dbb21ac4e5ec3308ce687f95d8b6eef6"
+    }
+  }
+}

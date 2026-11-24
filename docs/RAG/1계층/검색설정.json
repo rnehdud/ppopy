@@ -1,0 +1,71 @@
+{
+  "as_of": "2026-11-24",
+  "format": "UTF-8, JSONL 한 줄에 근거 또는 규칙 1개",
+  "approved_inputs": [
+    {
+      "file": "검색자료/관리권고.jsonl",
+      "modes": [
+        "external_guidance",
+        "verbatim_with_attribution",
+        "product_label"
+      ],
+      "use": "applies_when과 limits를 권고와 같이 조회. product_label은 제품·시장·버전 확인, 인용 전용 자료는 본문 그대로 표시."
+    },
+    {
+      "file": "검색자료/국내표시조건.jsonl",
+      "modes": [
+        "conditional_label"
+      ],
+      "use": "국내 관할·해당 세부 조건이 확인될 때 표시 해석. 개정일·적용례·경과조치와 포장 표시 대조."
+    },
+    {
+      "file": "검색자료/국내표시조건.jsonl",
+      "modes": [
+        "lookup_only"
+      ],
+      "use": "팀 원문 조회 및 해당 제품 표시 안내 전용. 복합 시술·의학적 처치의 자동 답변 제외."
+    },
+    {
+      "file": "정책/서비스정책.jsonl",
+      "modes": [
+        "service_policy"
+      ],
+      "use": "서비스 정책 설명 요청 때만 사용. 외부 안전성·효능 인용에서 제외."
+    }
+  ],
+  "source_registry": "출처/출처목록.json",
+  "include_condition_fields": [
+    "applies_when",
+    "limits",
+    "exceptions",
+    "unknown_action",
+    "locator",
+    "jurisdiction",
+    "applies_to",
+    "display_instruction",
+    "display_attribution",
+    "display_license_url",
+    "topic",
+    "inputs",
+    "scope",
+    "conditions",
+    "listed_ingredients",
+    "transition",
+    "audience",
+    "retrieval_instruction",
+    "version_source_id",
+    "implementation_status",
+    "citation_use",
+    "independent_verification_scope"
+  ],
+  "retrieval_excluded": [
+    "출처/",
+    "검토/",
+    "README.md"
+  ],
+  "unknown": "필수 입력이 미상인 세부 규칙은 적용하지 않고 해당 제품 표시를 조회한다.",
+  "implementation": "공유용 입력 명세. 실행 엔진 및 검색 인덱스 배포는 별도.",
+  "record_handling": "검색된 ID로 원본 JSONL 한 줄 전체와 출처목록의 해당 항목을 함께 불러온다. claim_ko 단독으로 답변을 생성하지 않는다. 모드와 적용 조건을 먼저 확인한다. 정책의 external_evidence, references와 references의 scope를 유지한다.",
+  "citation_handling": "출처는 source_id로 추적한다. internal_source_url은 팀 대조용이다. 서비스 표시는 citation, display_attribution, display_instruction, display_license_url, citation_use 및 출처목록의 이용 조건을 따른다.",
+  "lookup_only_handling": "lookup_only는 팀의 원문 조회 경로에만 둔다. 소비자 답변의 생성 문맥에는 넣지 않고 해당 제품 표시 확인으로 안내한다."
+}
