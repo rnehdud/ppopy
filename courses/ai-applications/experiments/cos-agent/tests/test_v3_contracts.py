@@ -136,10 +136,14 @@ def test_slm_request_forbids_question_mode_and_non_solution_rag():
             )
         },
         rag_chunks=[chunk],
-        allowed_evidence_refs=["kb:B-C02@0.6.1", "ref:aad-cleansing-01"],
+        allowed_evidence_refs=["ref:aad-cleansing-01"],
         distractor_refs=["ref:unrelated-09"],
     )
     assert req.timeout_seconds == 15.0
+
+    # kb_judgments is completely decoupled and forbidden on SLMRequest
+    with pytest.raises(ValidationError):
+        SLMRequest(mode="solution", kb_judgments=[])
 
     # QUESTION_MODE is forbidden in v3
     with pytest.raises(ValidationError):

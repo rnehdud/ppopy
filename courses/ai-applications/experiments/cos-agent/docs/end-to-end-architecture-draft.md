@@ -15,7 +15,7 @@
 | **3. AFA Policy** | **Myopic 1-Step Lookahead (VOI / Expected Branch Pruning)** + 정형 KB `v0.6.1` | 재학습 0회, 1ms 미만, 3영역 60카드 즉시 일반화, 100% 설명 가능 *(기존 PPO는 B-C02 비교군)* |
 | **4. 질문 턴 UX** | **정형 KB 질문 + 선택지 버튼(Quick Reply) 기본 제공 (0ms)** | 모바일 UX 최상, 질문 턴 SLM·RAG 호출 0회로 응답 지연·비용 최소화 *(버튼 탭=Fast Path, 타이핑=NLU 재사용)* |
 | **5. Reference RAG** | **2-Stage 로컬 FAISS (`faiss-cpu`) + `Qwen3-Embedding-0.6B` → `Qwen3-Reranker-0.6B`** *(2-Tier Corpus · 0ms Query Builder)* | Tier 1 공개 가이드라인(Section Chunking) + Tier 2 소규모 논문 7건(KB `review_scope`·`limitations` 요약 전용)으로 과잉 일반화 차단. `Embedder`/`Reranker`/`Retriever` 추상화로 CPU 테스트 및 추후 AWS `pgvector` 1줄 전환. **`SOLUTION_MODE` 전용** |
-| **6. SLM 서빙** | **OpenAI-Compatible HTTP 추론 서버 (`vLLM` / `Ollama`, `/v1/chat/completions`)** · **Context + RAG 중심 생성** *(Optional `KBPolicyAnchorAdapter`, 기본 OFF)* | Python 프로세스와 분리(재로딩 0초), URL 변경만으로 로컬 Qwen 3.5 4B QLoRA ↔ AWS GPU 교체, **15초 타임아웃 Baseline Fallback**. 앞단 AFA가 KB로 정보 수집·HOLD를 끝낸 뒤, SLM은 **`confirmed_observations` + `product_evidence` + `rag_chunks`**만으로 유연하게 솔루션을 생성(필요 시 `KBPolicyAnchorAdapter`로 `kb_judgments` 선택 주입) |
+| **6. SLM 서빙** | **OpenAI-Compatible HTTP 추론 서버 (`vLLM` / `Ollama`, `/v1/chat/completions`)** · **Context + RAG 전용 생성** *(SLM–KB 완전 분리)* | Python 프로세스와 분리(재로딩 0초), URL 변경만으로 로컬 Qwen 3.5 4B QLoRA ↔ AWS GPU 교체, **15초 타임아웃 Baseline Fallback**. 앞단 AFA/Runtime만 KB로 정보 수집·HOLD를 수행하고, `SLMRequest`에서 `kb_judgments` 필드를 완전 제거해 **`confirmed_observations` + `product_evidence` + `rag_chunks`**만으로 솔루션을 생성 |
 
 ---
 
@@ -153,11 +153,11 @@ sequenceDiagram
 
 ## 6. 단계별 개발 순서 (Critical Path)
 
-1. **Phase 0 — 계약 고정 (Contract-First PR)**: 4개 모듈 간 Pydantic JSON 스키마(`AFA`, `RAG`, `SLM Input/Output`, `CLI/iOS TurnResponse`) 및 검증 테스트 확정.
+1. **Phase 0 — 계약 고정 (Contract-First PR · `PPO-40`)**: 4개 모듈 간 Pydantic JSON 스키마(`NLU`, `AFA`, `RAG ReferenceChunk`, `SLMRequest/SLMResponse`, `CLI/iOS TurnResponse`) 및 검증 테스트 확정.
 2. **Phase 1 — 코어 뼈대 & CLI MVP**: Control Plane + 3영역 `Myopic VOI AFA` + `Hard Safety Guardrail` 완성 (초기엔 Mock/Base SLM으로 전체 CLI 루프 검증).
-3. **Phase 2 — 로컬 Reference RAG & 3단계 NLU** *(Phase 1과 병렬)*: 사용자 투입 2-Tier Corpus + `Qwen3-Embedding-0.6B` + `faiss-cpu` + `Qwen3-Reranker-0.6B` (`Recall@5 ≥ 90%`) + `KB v0.6.1` `source_registry` 메타데이터 바인딩 확정, 3단계 NLU 검증.
-4. **Phase 3 — 합성 데이터 재가공 & 신규 생성**: [qlora-synthetic-dataset-guide.md](qlora-synthetic-dataset-guide.md) 기준으로 `v67` 재가공 + 신규 3영역/Hard Negative(25%+) 생성 → 외부 Cross-Model Critic 검수(`content_sha256` 바인딩) → Python 자동 게이트 통과분 고정.
-5. **Phase 4 — QLoRA SFT (`Qwen 3.5 4B`) 학습 & Hybrid 평가 (ITE 351)**: 로컬 `vLLM`/`Ollama` HTTP 서버로 교체 연결 후 `범용 LLM` vs `Base+RAG` vs `QLoRA+RAG+Myopic AFA+Guardrail` 정량 비교.
+3. **Phase 2 — 로컬 Reference RAG 청크 풀 선확정 & 3단계 NLU** *(Phase 1·Phase 3 파일럿과 병렬)*: 사용자 투입 2-Tier Corpus(Tier 1 공개 가이드라인 발췌 + Tier 2 소규모 논문 7건 요약) 기반 실제 `ReferenceChunk` 풀 확정 → `Qwen3-Embedding-0.6B` + `faiss-cpu` + `Qwen3-Reranker-0.6B` (`Recall@5 ≥ 90%`) 구축, 3단계 NLU 검증.
+4. **Phase 3 — `rag-free` Zero-Base 합성 데이터셋 2단계 생성 (`PPO-37`)**: [qlora-synthetic-dataset-guide.md](qlora-synthetic-dataset-guide.md) 기준으로 ① **Step 1 (즉시 병렬)** 24턴 파일럿으로 병렬 Subagent 생성·`--profile rag-free` 검증·다른 팀원 에이전트 Cross-Model Critic 파이프라인 점검 → ② **Step 2 (Phase 2 실제 RAG 청크 풀 확정 후)** 실제 `ReferenceChunk` 풀을 `rag_chunks` 재료로 사용해 **100% Zero-Base 신규 합성 (`new_synthetic`, `v67` 재가공 없음)** 3영역/Hard Negative(≥25%) 900턴 생성(Zero Chunk Skew).
+5. **Phase 4 — QLoRA SFT (`Qwen 3.5 4B`) 학습 & 2×2 Ablation 평가 (ITE 351)**: 로컬 `vLLM`/`Ollama` HTTP 서버로 교체 연결 후 동일 평가셋에서 **`SLM` / `SLM+RAG` / `SLM+SFT` / `SLM+SFT+RAG`** 2×2 Ablation(KB Anchor OFF 기본) 정량 비교.
 6. **Phase 5 — iOS 래핑 & AWS 통합 (CSE 406)**: 동일 1턴 코어를 HTTP API로 래핑해 iOS 연동 + 타임아웃 Fallback 검증. 이후 `[Planned]` EventBridge 피드백 Log-only 수집 → 표본 $N \ge 30$ 충족 시 Social Proof 활성화.
 
 ---

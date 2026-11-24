@@ -1,8 +1,8 @@
 # Ppopy QLoRA (`Qwen 3.5 4B`) 합성 데이터셋 구축 가이드 (1인 전담 · 에이전트 실행 명세)
 
-> **문서 목적**: 담당 팀원 1명(및 전담 코딩 에이전트)이 **이 문서 + `prepare_v67_qlora_seeds.py` + `validate_qlora_dataset.py`**만으로 일관성 높고 학습–추론 괴리(Train–Inference Skew)가 없는 QLoRA용 합성 데이터셋을 즉시 제작·검수하도록 정의합니다.  
-> **기본 프로파일 · rag-free (KB Anchor OFF)**: 앞단 AFA와 Runtime이 질문·충분성·HOLD를 처리합니다. 답변을 쓰는 SLM에는 확정된 사용자 관찰, 확인된 제품 근거, 참고 문헌 청크를 전달합니다. KB 판정을 비교에 넣을 때는 별도 `--profile kb-anchored`와 그 프로파일의 기존 프롬프트를 사용합니다.
-> **기준 아키텍처**: [Ppopy End-to-End Architecture v3](end-to-end-architecture-draft.md) · [v3_contracts.py](../beauty_agent/v3_contracts.py) · [validate_qlora_dataset.py](../scripts/validate_qlora_dataset.py) · [prepare_v67_qlora_seeds.py](../scripts/prepare_v67_qlora_seeds.py)  
+> **문서 목적**: 담당 팀원 1명(및 전담 코딩 에이전트)이 **이 문서 + `validate_qlora_dataset.py` + `v3_contracts.py`**만으로 일관성 높고 학습–추론 괴리(Train–Inference Skew)가 없는 **100% Zero-Base (`new_synthetic`)** QLoRA용 합성 데이터셋을 즉시 제작·검수하도록 정의합니다.  
+> **기본 프로파일 · rag-free (SLM–KB 완전 분리)**: 앞단 AFA와 Runtime만 정형 KB로 질문·충분성·HOLD를 처리합니다. 답변을 쓰는 SLM(`SLMRequest`)에는 `kb_judgments` 필드 자체가 없으며, 오직 확정된 사용자 관찰, 확인된 제품 근거, 참고 문헌 청크만 전달합니다.
+> **기준 아키텍처**: [Ppopy End-to-End Architecture v3](end-to-end-architecture-draft.md) · [v3_contracts.py](../beauty_agent/v3_contracts.py) · [validate_qlora_dataset.py](../scripts/validate_qlora_dataset.py)  
 > **필수 경계 (`AGENTS.md`)**: `development_preview`, `production_enabled=false`, **합성 입력 전용**. 실제 사용자 개인정보·설문·연락처·제3자 원문 PDF/게시글 금지. 피부 질환 진단·임상/치료 효과 단정·자동 개선 판정·미공개 농도/pH 추정 금지. `QUESTION_MODE` 데이터는 생성하지 않습니다(0ms Quick Reply 버튼 처리).
 
 ---
@@ -14,23 +14,21 @@
 
 ```bash
 git fetch origin
-BASE_COMMIT_SHA="<PR_머지_후_Linear에_기입된_실제_SHA>"
-git checkout -b data/qlora-v2-dataset "$BASE_COMMIT_SHA"
-
-# 필수 도구 존재 확인 & v67 안전 시드 즉시 추출 (test_internal / ask_user 자동 제외)
+git checkout -b data/qlora-v3-rag-free origin/main
 cd courses/ai-applications/experiments/cos-agent
-uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_qlora_seeds.jsonl
 ```
 
-### 5단계 실행 흐름 (**24턴 파일럿 통과 → 900턴 1차 학습·평가 → 오답 보강**)
+### 5단계 실행 흐름 (**24턴 파일럿 즉시 병렬 → 실제 RAG 청크 풀 확정 후 900턴 Zero-Base 신규 생성 → 1차 학습·평가 → 오답 보강**)
+
+> **RAG 청크 풀 선확정 원칙 (Zero Chunk Skew)**: **24턴 파일럿(2~3단계)**은 기존 검증된 출처 요약(`kb_source_summary`)과 샘플 발췌로 즉시 병렬 진행해 파이프라인을 점검하고, **900턴 본 데이터셋(4단계)**은 `rag-slm-architecture`에서 **Tier 1(공개 가이드라인 발췌) + Tier 2(논문 7건 요약) 실제 `ReferenceChunk` 풀**이 확정된 뒤 그 실제 청크 풀을 `rag_chunks` 재료로 사용해 **100% Zero-Base 신규 합성(`source_origin: "new_synthetic"`)**으로 생성합니다. (`v67` 재가공 없음)
 
 | 단계 | 작업 내용 | 출력 / 실행 명령 | 통과 조건 |
 | --- | --- | --- | --- |
-| **1. 기준 파일 동기화** | `v3_contracts.py`, `KB v0.6.1`, `outputs/v67_qlora_seeds.jsonl` 읽기 | 2절 공통 어휘와 3절 문헌의 적용 범위 확인 | 임의 어휘·URL 창작 금지 |
-| **2. 24턴 파일럿 생성** | `pilot_bucket` 4종 × 각 6턴 = **정확히 24턴**(`solution` 18 / `hold` 6, 세정·보습·자외선·보류 전 영역 커버) | `data/qlora/v2/pilot_24.jsonl` | `--pilot` 통과 (`error_count == 0`, 입력 중복 0) |
-| **3. 교차 Critic & 사람 전수 검수** | 생성 모델과 **다른 AI 모델**로 외부 검수 파일 생성 + 24턴 사람 육안 확인 | `data/qlora/v2/reviews/pilot_24_critic.jsonl` + `--pilot --review-file ...` | 외부 Critic PASS 100%, 고위험 `human_review == "approved"` |
-| **4. 1차 본 데이터 900턴 생성** | `v67` 재가공(~300턴) + 신규 3영역 합성(~600턴) = **총 900턴**(`solution` 690 / `hold` 210) | `data/qlora/v2/qlora_solution_hold_v2.jsonl` | `--stage1 --review-file ...` 통과 (`error_count == 0`) |
-| **5. 1차 학습·평가 후 2차 보강** | `Qwen 3.5 4B` QLoRA 1차 학습·평가 후 실제 오답 유형만 +300~600턴 집중 보강 | PR 제출 (`KB/`·코어 코드 미수정) | 인용 정확도·방해 청크 무시·HOLD 준수 목표 달성 |
+| **1. 기준 파일 동기화** | `v3_contracts.py`, `qlora-synthetic-dataset-guide.md`, `validate_qlora_dataset.py` 읽기 | 2절 공통 어휘와 3절 문헌의 적용 범위 확인 | 임의 어휘·URL 창작 금지 |
+| **2. 24턴 파일럿 생성 (즉시 병렬)** | `pilot_bucket` 4종 × 각 6턴 = **정확히 24턴**(`solution` 18 / `hold` 6, 세정·보습·자외선·보류 전 영역 커버) | `data/qlora/v2/pilot_24.jsonl` | `--profile rag-free --pilot` 통과 (`error_count == 0`, 입력 중복 0) |
+| **3. 교차 Critic & 사람 전수 검수** | 생성 모델과 **다른 AI 모델(다른 팀원 에이전트)**로 외부 검수 파일 생성 + 24턴 사람 육안 확인 | `data/qlora/v2/reviews/pilot_24_critic.jsonl` + `--profile rag-free --pilot --review-file ...` | 외부 Critic PASS 100%, 고위험 `human_review == "approved"` |
+| **4. 1차 본 데이터 900턴 생성 (실제 RAG 청크 풀 확정 후)** | 확정된 실제 Tier 1/2 `ReferenceChunk` 풀을 `rag_chunks` 재료로 사용해 **100% Zero-Base 신규 합성** 900턴(`solution` 690 / `hold` 210 — 세정·보습·자외선·필수 보류 균등 구성) | `data/qlora/v2/qlora_solution_hold_v2.jsonl` | `--profile rag-free --stage1 --review-file ...` 통과 (`error_count == 0`) |
+| **5. 1차 학습·평가 후 2차 보강** | `Qwen 3.5 4B` QLoRA 1차 학습·2×2 Ablation(`SLM`/`SLM+RAG`/`SLM+SFT`/`SLM+SFT+RAG`) 평가 후 실제 오답 유형만 +300~600턴 집중 보강 | PR 제출 (`KB/`·코어 코드 미수정) | 인용 정확도·방해 청크 무시·HOLD 준수 목표 달성 |
 
 ---
 
@@ -44,7 +42,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
 | **`hold` 비율** | **210 / 900 = 23.3%** | 전체 행(`total_rows`) 대비 **20% ~ 25%** (`hold >= 210`, `solution >= 690`) |
 | **Hard Negative 비율** | **≥ 25%** (최소 225턴) | 전체 행(`total_rows`) 대비 `is_hard_negative == true` 비율 |
 | **영어 문헌 청크 비율** | **30% ~ 40%** (`solution` 중 210~275턴) | `solution` 행 중 **허용 목록에 있는 영어 문헌 청크를 하나 이상 포함한 행**의 비율 (`reference_excerpt` 또는 `kb_source_summary`) |
-| **데이터 원천 구성** | `v67` 재가공 ~300턴 (`request_draft` ~120, `hold` ~180) + 신규 합성 ~600턴 (세정·`B-I01` 200 / 보습·중첩 200 / 자외선·버전·보관 200) | `v67`은 `outputs/v67_qlora_seeds.jsonl`에서만 추출 (`test_internal`·`ask_user` 0건) |
+| **데이터 원천 구성** | **100% Zero-Base 신규 합성 (`source_origin: "new_synthetic"`, 총 900턴)** — 세정·복합 230 / 보습·중첩 230 / 자외선·날씨·버전 230 / 필수 보류(`hold`) 210 | `v67` 재가공 없음 (`test_internal` 누수 0건 자동 검증 유지) |
 | **신규 합성 분할 (`split`)** | `train` 90% / `val_internal` 10% | `new_synthetic`의 `scenario_family_id`·`group_id` 단위 `val_internal` **7% ~ 13%**, 교차 분할 누수 0건 |
 
 ### Hard Negative 4종 (`hard_negative_type` 고정 enum)
@@ -57,11 +55,10 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
 
 ## 2. 공통 어휘 표 (Controlled Vocabulary — 학습–추론 불일치 방지)
 
-1명의 에이전트라도 앞뒤 생성 구간에서 값 표현이 흔들리지 않도록 아래 어휘를 고정합니다. (`kb_judgments[].status`와 `product_evidence[].status`는 `validate_qlora_dataset.py`가 강제합니다.)
+1명의 에이전트라도 앞뒤 생성 구간에서 값 표현이 흔들리지 않도록 아래 어휘를 고정합니다. (`product_evidence[].status`는 `validate_qlora_dataset.py`가 강제하며, `SLMRequest`에서는 `kb_judgments` 필드가 완전히 제거되어 포함 시 스키마 검증에 실패합니다.)
 
 | 필드 / 변수 | 고정 허용 값 | 비고 |
 | --- | --- | --- |
-| `kb_judgments[].status` | `"aligned"`, `"difference"`, `"unknown"`, `"hold"`, `"exception"` | `kb-anchored`에서 사용. `rag-free`에서는 빈 배열 또는 필드 생략 |
 | `product_evidence[].status` | `"verified"`, `"usage_held"`, `"unknown"` | 검증기 강제 (`usage_held`는 버전 불일치) |
 | `cleansing.steps` | 정수 `0`, `1`, `2`, `3` | KB `integer` 타입 (문자열 금지) |
 | `skin.current_discomfort` | `"none"`, `"mild_transient"`, `"repeated"`, `"persistent"` | KB `categorical` (`persistent` → `B-B01` 보류) |
@@ -131,7 +128,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
     },
     {
       "role": "user",
-      "content": "{\"mode\":\"solution\",\"confirmed_observations\":{\"cleansing.steps\":{\"variable_id\":\"cleansing.steps\",\"state\":\"known\",\"value\":3,\"source\":\"user_report\",\"confirmed_by_user\":true},\"cleansing.repeat_wash\":{\"variable_id\":\"cleansing.repeat_wash\",\"state\":\"known\",\"value\":{\"automatic_multi_step_for_water_resistant\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"kb_judgments\":[],\"product_evidence\":[{\"product_id\":\"syn-sun-001\",\"version\":\"1.0\",\"synthetic_product\":true,\"status\":\"verified\",\"label_guidance\":\"합성 제품 표시 예시: 폼 클렌저 1회 세안 가능\",\"evidence_ref\":\"catalog:syn-sun-001@1.0\"}],\"rag_chunks\":[{\"evidence_ref\":\"ref:S08\",\"text\":\"In a 20-subject imaging study comparing water, facial cleanser, and cleansing oil, cleanser removal performance varied by formulation rather than requiring mandatory multi-step washing for every water-resistant product.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://onlinelibrary.wiley.com/doi/10.1111/jocd.12995\",\"locator\":\"Abstract: Methods / Results / Conclusion\",\"checked_on\":\"2026-11-04\",\"limitations\":\"제한된 제품 조합의 영상 기반 잔류 지표. 모든 내수성 제품·오일·밀크·크림으로 일반화하거나 이중세안 필요성을 확정하지 않음. 2019 온라인 공개/2020 권호.\"},{\"evidence_ref\":\"ref:S21\",\"text\":\"Apply fragrance-free hand cream or ointment immediately after hand washing to help relieve dry hands.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands\",\"locator\":\"손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.\",\"checked_on\":\"2026-11-04\",\"limitations\":\"다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다.\"}],\"allowed_evidence_refs\":[\"catalog:syn-sun-001@1.0\",\"ref:S08\"],\"distractor_refs\":[\"ref:S21\"]}"
+      "content": "{\"mode\":\"solution\",\"confirmed_observations\":{\"cleansing.steps\":{\"variable_id\":\"cleansing.steps\",\"state\":\"known\",\"value\":3,\"source\":\"user_report\",\"confirmed_by_user\":true},\"cleansing.repeat_wash\":{\"variable_id\":\"cleansing.repeat_wash\",\"state\":\"known\",\"value\":{\"automatic_multi_step_for_water_resistant\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"product_evidence\":[{\"product_id\":\"syn-sun-001\",\"version\":\"1.0\",\"synthetic_product\":true,\"status\":\"verified\",\"label_guidance\":\"합성 제품 표시 예시: 폼 클렌저 1회 세안 가능\",\"evidence_ref\":\"catalog:syn-sun-001@1.0\"}],\"rag_chunks\":[{\"evidence_ref\":\"ref:S08\",\"text\":\"In a 20-subject imaging study comparing water, facial cleanser, and cleansing oil, cleanser removal performance varied by formulation rather than requiring mandatory multi-step washing for every water-resistant product.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://onlinelibrary.wiley.com/doi/10.1111/jocd.12995\",\"locator\":\"Abstract: Methods / Results / Conclusion\",\"checked_on\":\"2026-11-04\",\"limitations\":\"제한된 제품 조합의 영상 기반 잔류 지표. 모든 내수성 제품·오일·밀크·크림으로 일반화하거나 이중세안 필요성을 확정하지 않음. 2019 온라인 공개/2020 권호.\"},{\"evidence_ref\":\"ref:S21\",\"text\":\"Apply fragrance-free hand cream or ointment immediately after hand washing to help relieve dry hands.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands\",\"locator\":\"손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.\",\"checked_on\":\"2026-11-04\",\"limitations\":\"다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다.\"}],\"allowed_evidence_refs\":[\"catalog:syn-sun-001@1.0\",\"ref:S08\"],\"distractor_refs\":[\"ref:S21\"]}"
     },
     {
       "role": "assistant",
@@ -174,7 +171,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
     },
     {
       "role": "user",
-      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"skin.current_discomfort\":{\"variable_id\":\"skin.current_discomfort\",\"state\":\"known\",\"value\":\"persistent\",\"source\":\"user_report\",\"confirmed_by_user\":true},\"skin.pain\":{\"variable_id\":\"skin.pain\",\"state\":\"known\",\"value\":\"moderate\",\"source\":\"user_report\",\"confirmed_by_user\":true}},\"kb_judgments\":[],\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
+      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"skin.current_discomfort\":{\"variable_id\":\"skin.current_discomfort\",\"state\":\"known\",\"value\":\"persistent\",\"source\":\"user_report\",\"confirmed_by_user\":true},\"skin.pain\":{\"variable_id\":\"skin.pain\",\"state\":\"known\",\"value\":\"moderate\",\"source\":\"user_report\",\"confirmed_by_user\":true}},\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
     },
     {
       "role": "assistant",
@@ -217,7 +214,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
     },
     {
       "role": "user",
-      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"storage.sensory_change\":{\"variable_id\":\"storage.sensory_change\",\"state\":\"known\",\"value\":{\"color_or_odor_change\":true,\"separation\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"kb_judgments\":[],\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
+      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"storage.sensory_change\":{\"variable_id\":\"storage.sensory_change\",\"state\":\"known\",\"value\":{\"color_or_odor_change\":true,\"separation\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
     },
     {
       "role": "assistant",
@@ -277,31 +274,26 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
 대량 생성(900턴) 시 단일 긴 컨텍스트에서 발생하는 템플릿 반복(Context Rot)을 막기 위해, 메인 에이전트(**Coordinator**)가 **소배치(25~40턴/배치) 단위로 Generator Subagent 3~4개를 병렬 실행**하고 **전담 Verifier/Critic Subagent 1개**로 배치별 게이트를 통과한 행만 병합합니다.
 
 ```text
-[Coordinator] 전역 ID 대역 · 담당 카드/v67 시드 · split(90/10) · HN/EN 할당 선분배
+[Coordinator] 전역 ID 대역 · 영역(세정/보습/자외선/보류) · split(90/10) · HN/EN 할당 선분배
    ├─▶ [Gen Subagent 1~4 (병렬, 25~40턴/배치)] → outputs/batches/batch_XX.jsonl
-   └─▶ [Verifier/Critic Subagent (전담 · 다른 모델 계열)]
-         ① validate_qlora_dataset.py 배치 검증
-         ② 독립 Critic 검수 → outputs/batches/batch_XX_critic.jsonl (content_sha256 포함)
+   └─▶ [Verifier/Critic Subagent (전담 · 다른 팀원 교차 모델)]
+         ① validate_qlora_dataset.py --profile rag-free 배치 검증
+         ② 독립 Cross-Model Critic 검수 → outputs/batches/batch_XX_critic.jsonl (content_sha256 포함)
          ③ PASS 행만 마스터(qlora_solution_hold_v2.jsonl + reviews/stage1_critic.jsonl)에 병합, FAIL만 재생성
 ```
 
-1. **ID·가족·시드 선분배**: Generator Subagent는 Coordinator가 할당한 ID 범위(`syn-sol-0001~0030` 등), `scenario_family_id` 접두사, `split`, `v67` 시드 슬라이스만 사용합니다.
+1. **ID·영역·가족 선분배**: Generator Subagent는 Coordinator가 할당한 ID 범위(`syn-sol-0001~0030` 등), 영역, `scenario_family_id` 접두사, `split`만 사용하며 모든 행을 `source_origin: "new_synthetic"`으로 생성합니다 (`v67` 재가공 없음).
 2. **배치 크기 제한**: 1회 배치당 **25~40턴**을 넘기지 않습니다(900턴 = 약 25~30개 소배치).
-3. **Critic Subagent 모델 분리**: Critic Subagent는 Generator와 **다른 모델 계열**로 실행해 자기 편향을 방지하고 `critic_model != generator_model` 규칙을 충족합니다.
-4. **최종 전체 검증**: 모든 배치 병합 후 Coordinator가 마스터 파일 전체에 `--stage1 --review-file`을 실행해 교차 배치 중복·`scenario_family_id` 누수·전체 비율을 최종 확인합니다.
+3. **Cross-Model Critic 모델 분리**: 공식 교차 검수는 Generator와 **다른 모델 계열(다른 팀원 에이전트)**로 실행해 자기 편향을 방지하고 `critic_model != generator_model` 규칙을 충족합니다.
+4. **최종 전체 검증**: 모든 배치 병합 후 Coordinator가 마스터 파일 전체에 `--profile rag-free --stage1 --review-file`을 실행해 교차 배치 중복·`scenario_family_id` 누수·전체 비율을 최종 확인합니다.
 
 ---
 
 ## 6. 즉시 실행 검증 명령
 
 모든 명령은 `courses/ai-applications/experiments/cos-agent` 디렉터리에서 실행합니다.
-아래 명령은 새 프롬프트로 준비한 데이터에 사용합니다. 기존 프롬프트가 들어 있는 동결 파일은 `--profile kb-anchored`로 검증하세요.
 
 ```bash
-# 0) v67 안전 재가공 시드 추출 (test_internal·ask_user 자동 제외)
-uv run --locked python scripts/prepare_v67_qlora_seeds.py \
-  --output outputs/v67_qlora_seeds.jsonl
-
 # 1) 24턴 파일럿 검증 (solution 18 / hold 6, 4버킷 × 6행, 외부 Critic 파일 대조)
 uv run --locked python scripts/validate_qlora_dataset.py --profile rag-free \
   --input data/qlora/v2/pilot_24.jsonl \
@@ -324,19 +316,19 @@ uv run --locked python scripts/validate_qlora_dataset.py --profile rag-free \
 - **본문**:
 ```markdown
 ## 단일 실행 기준 (Single Source of Truth)
-- **기준 커밋 SHA**: `<PR_머지_후_실제_SHA>`
+- **기준 커밋 SHA**: `<PR_#28_머지_후_실제_SHA>`
+- **공통 계약 이슈**: `PPO-40` (`courses/ai-applications/experiments/cos-agent/beauty_agent/v3_contracts.py`)
 - **가이드**: `courses/ai-applications/experiments/cos-agent/docs/qlora-synthetic-dataset-guide.md`
-- **v67 시드 추출기**: `courses/ai-applications/experiments/cos-agent/scripts/prepare_v67_qlora_seeds.py`
 - **공통 검증기**: `courses/ai-applications/experiments/cos-agent/scripts/validate_qlora_dataset.py`
 
-## 작업 범위 (1인 전담)
-- **Branch**: `data/qlora-v2-dataset` (`main` 직접 커밋·푸시 금지)
-- **Step 1 (파일럿 24턴)**: `data/qlora/v2/pilot_24.jsonl` (`solution` 18 / `hold` 6, 4버킷 × 6턴) + 다른 모델 AI 외부 검수 파일(`reviews/pilot_24_critic.jsonl`) + 사람 전수 확인
-- **Step 2 (1차 본 데이터 900턴)**: `data/qlora/v2/qlora_solution_hold_v2.jsonl` (`solution` 690 / `hold` 210 = `v67` 재가공 ~300 + 신규 3영역 합성 ~600) + `reviews/stage1_critic.jsonl`
+## 작업 범위 (1인 전담 · 100% Zero-Base `new_synthetic`)
+- **Branch**: `data/qlora-v3-rag-free` (`main` 직접 커밋·푸시 금지)
+- **Step 1 (파일럿 24턴 · 즉시 병렬)**: `data/qlora/v2/pilot_24.jsonl` (`solution` 18 / `hold` 6, 4버킷 × 6턴) + 다른 팀원 교차 모델 외부 검수 파일(`reviews/pilot_24_critic.jsonl`) + 사람 전수 확인
+- **Step 2 (1차 본 데이터 900턴 · 실제 RAG 청크 풀 확정 후)**: `data/qlora/v2/qlora_solution_hold_v2.jsonl` (`solution` 690 / `hold` 210, **100% Zero-Base 신규 합성**, `v67` 재가공 없음) + `reviews/stage1_critic.jsonl`
 
 ## 완료 조건 (Definition of Done)
-1. 파일럿 24턴 `--pilot --review-file ...` `error_count == 0` 및 팀 확인 완료
-2. 1차 900턴 `--stage1 --review-file ...` `error_count == 0` (`hold` 20~25%, HN ≥ 25%, 인용 가능한 영어 문헌 30~40%, 신규 `val_internal` 7~13%, 외부 Critic PASS 100%, 고위험 `human_review == "approved"` ≥ 10%)
-3. 기본 학습 Export는 `--profile rag-free`로 검증합니다. `kb_judgments`는 비워 두고 `[kb:...]` 인용을 제거합니다. 허용 근거와 실제 인용을 대조하고, 미상·HOLD·v67 분할 경계를 확인합니다.
+1. 파일럿 24턴 `--profile rag-free --pilot --review-file ...` `error_count == 0` 및 팀 확인 완료
+2. 1차 900턴 `--profile rag-free --stage1 --review-file ...` `error_count == 0` (`hold` 20~25%, HN ≥ 25%, 인용 가능한 영어 문헌 30~40%, `val_internal` 7~13%, 외부 Critic PASS 100%, 고위험 `human_review == "approved"` ≥ 10%)
+3. `SLMRequest`에는 `kb_judgments` 필드가 없으며(포함 시 Pydantic 오류), `[kb:...]` 인용을 금지합니다. 허용 근거와 실제 인용을 대조하고, 미상·HOLD·`test_internal` 누수 경계를 확인합니다.
 4. `KB/`, `docs/source-manifest.json`, `beauty_agent/` 코어 코드 미수정 상태로 PR 제출
 ```

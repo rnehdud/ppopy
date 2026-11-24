@@ -673,8 +673,19 @@ def validate_rows(
                     new_syn_group_splits.setdefault(group_id, set()).add(split)
 
         # 4. Inner SLMRequest Pydantic validation & outer-inner consistency
+        legacy_kb_judgments: list[Any] = []
         try:
-            req = SLMRequest.model_validate_json(user_content)
+            if anchored:
+                raw_req = json.loads(user_content)
+                if not isinstance(raw_req, dict):
+                    raise ValueError("SLMRequest JSON must be an object")
+                extracted_judgments = raw_req.pop("kb_judgments", [])
+                if not isinstance(extracted_judgments, list):
+                    raise ValueError("kb_judgments must be a list")
+                legacy_kb_judgments = extracted_judgments
+                req = SLMRequest.model_validate(raw_req)
+            else:
+                req = SLMRequest.model_validate_json(user_content)
         except Exception as exc:
             report.errors.append(f"{loc}: SLMRequest validation failed: {exc}")
             continue
@@ -705,10 +716,8 @@ def validate_rows(
                         f"{loc}: variable {var_key!r} expects KB value_type={vtype!r}, got {type(obs.value).__name__} ({obs.value!r})"
                     )
 
-        # 5b. Controlled vocabulary checks for kb_judgments.status and product_evidence.status
-        if req.kb_judgments and not anchored:
-            report.errors.append(f"{loc}: rag-free requires kb_judgments to be empty")
-        for j in req.kb_judgments:
+        # 5b. Controlled vocabulary checks for legacy kb_judgments.status and product_evidence.status
+        for j in legacy_kb_judgments:
             if isinstance(j, dict):
                 j_status = j.get("status")
                 if j_status not in ALLOWED_KB_JUDGMENT_STATUSES:
@@ -739,7 +748,7 @@ def validate_rows(
         has_english_relevant_chunk = False
 
         judgment_card_ids = {
-            j.get("card_id") for j in req.kb_judgments if isinstance(j, dict) and isinstance(j.get("card_id"), str)
+            j.get("card_id") for j in legacy_kb_judgments if isinstance(j, dict) and isinstance(j.get("card_id"), str)
         }
         product_refs: set[str] = set()
         alternative_refs: set[str] = set()
@@ -764,7 +773,7 @@ def validate_rows(
                 alternative_refs.add(eref)
         alternative_refs |= {
             j.get("alternative_ref")
-            for j in req.kb_judgments
+            for j in legacy_kb_judgments
             if isinstance(j, dict) and isinstance(j.get("alternative_ref"), str)
         }
 
@@ -889,7 +898,10 @@ def validate_rows(
                 report.errors.append(f"{loc}: assistant response violated clinical guardrail {pat.pattern!r}")
 
         # 8b. Canonical SLMRequest duplicate detection (applies to ALL runs: pilot, batch, and stage1)
-        canonical_user = json.dumps(req.model_dump(mode="json"), sort_keys=True, ensure_ascii=False)
+        canonical_payload = req.model_dump(mode="json")
+        if anchored:
+            canonical_payload["kb_judgments"] = legacy_kb_judgments
+        canonical_user = json.dumps(canonical_payload, sort_keys=True, ensure_ascii=False)
         if canonical_user in seen_user_inputs:
             report.errors.append(f"{loc}: duplicate canonical SLMRequest payload (every row must have a distinct input)")
         else:
@@ -901,7 +913,7 @@ def validate_rows(
                 has_unknown_obs = any(obs.state == "unknown" for obs in req.confirmed_observations.values())
                 has_unknown_judgment = any(
                     isinstance(j, dict) and j.get("status") == "unknown"
-                    for j in req.kb_judgments
+                    for j in legacy_kb_judgments
                 )
                 has_version_product = any(
                     isinstance(p, dict) and p.get("status") in ("usage_held", "unknown")

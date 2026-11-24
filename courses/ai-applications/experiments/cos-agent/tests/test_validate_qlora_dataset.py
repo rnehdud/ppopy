@@ -238,7 +238,9 @@ def make_valid_hold_row(
 def _review_entry(row: dict, critic_model: str = "claude-sonnet-4", decision: str = "PASS") -> dict:
     from beauty_agent.v3_contracts import SLMRequest
 
-    req = SLMRequest.model_validate_json(row["messages"][1]["content"])
+    raw_req = json.loads(row["messages"][1]["content"])
+    raw_req.pop("kb_judgments", None)
+    req = SLMRequest.model_validate(raw_req)
     return {
         "row_id": row["id"],
         "content_sha256": val.compute_row_content_sha256(
@@ -498,7 +500,8 @@ def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
 def rag_free_solution():
     row = make_valid_solution_row()
     req = json.loads(row["messages"][1]["content"])
-    req.update(kb_judgments=[], product_evidence=[], allowed_evidence_refs=["ref:ART-001"])
+    req.pop("kb_judgments", None)
+    req.update(product_evidence=[], allowed_evidence_refs=["ref:ART-001"])
     req["confirmed_observations"]["routine.time_of_day"] = {
         "variable_id": "routine.time_of_day",
         "state": "known",
@@ -565,7 +568,8 @@ def test_rag_free_still_rejects_unsafe_solutions(rag_free_solution, text, error)
 def test_rag_free_hold_still_rejects_recommendations(text):
     row = make_valid_hold_row()
     req = json.loads(row["messages"][1]["content"])
-    req.update(kb_judgments=[], allowed_evidence_refs=[])
+    req.pop("kb_judgments", None)
+    req.update(allowed_evidence_refs=[])
     row["allowed_evidence_refs"] = []
     row["messages"][0]["content"] = val.SYSTEM_PROMPT_SOLUTION_HOLD
     row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
@@ -596,12 +600,19 @@ def test_rag_free_preserves_card_and_product_boundaries(rag_free_solution):
     req["confirmed_observations"]["product.private_fact"] = {
         "variable_id": "product.private_fact", "state": "known", "value": "unsupported",
     }
-    req["kb_judgments"] = [{"card_id": "B-C01", "status": "aligned"}]
     row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
     report = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
     for error in ("forbidden card_id", "unknown card_id", "expects KB value_type",
-                  "unknown KB v0.6.1 variable_id 'product.private_fact'", "kb_judgments to be empty"):
+                  "unknown KB v0.6.1 variable_id 'product.private_fact'"):
         assert any(error in msg for msg in report.errors), report.errors
+
+    # kb_judgments is rejected directly by SLMRequest (extra='forbid')
+    req_with_kb = copy.deepcopy(req)
+    req_with_kb["kb_judgments"] = [{"card_id": "B-C01", "status": "aligned"}]
+    row_with_kb = copy.deepcopy(row)
+    row_with_kb["messages"][1]["content"] = json.dumps(req_with_kb, ensure_ascii=False)
+    kb_report = val.validate_rows([("ds.jsonl", 1, row_with_kb)], KB_INDEX, V67_INDEX)
+    assert any("SLMRequest validation failed" in msg and "kb_judgments" in msg for msg in kb_report.errors), kb_report.errors
 
 
 def test_kb_anchored_keeps_exact_registry_and_rag_free_relaxes_it(rag_free_solution):
