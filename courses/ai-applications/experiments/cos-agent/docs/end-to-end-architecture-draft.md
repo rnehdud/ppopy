@@ -14,8 +14,8 @@
 | **2. Control Plane** | **Deterministic Python State Machine (Central Hub)** | 매 턴 Tool Calling·AFA·RAG·SLM·Guardrail·Pause/Resume을 직접 지휘 |
 | **3. AFA Policy** | **Myopic 1-Step Lookahead (VOI / Expected Branch Pruning)** + 정형 KB `v0.6.1` | 재학습 0회, 1ms 미만, 3영역 60카드 즉시 일반화, 100% 설명 가능 *(기존 PPO는 B-C02 비교군)* |
 | **4. 질문 턴 UX** | **정형 KB 질문 + 선택지 버튼(Quick Reply) 기본 제공 (0ms)** | 모바일 UX 최상, 질문 턴 SLM·RAG 호출 0회로 응답 지연·비용 최소화 *(버튼 탭=Fast Path, 타이핑=NLU 재사용)* |
-| **5. Reference RAG** | **로컬 Vector DB (FAISS/Chroma) + 다국어 임베딩 (`BGE-M3` / `multilingual-e5`)** | 로컬 Qwen과 함께 5~20ms·0원 구동. `Retriever` 인터페이스 추상화로 추후 AWS `pgvector` 1줄 전환. **`SOLUTION_MODE`에서만 호출** |
-| **6. SLM 서빙** | **OpenAI-Compatible HTTP 추론 서버 (`vLLM` / `Ollama`, `/v1/chat/completions`)** | Python 프로세스와 분리(재로딩 0초), URL 변경만으로 상용 API ↔ 로컬 Qwen 3.5 4B QLoRA ↔ AWS GPU 교체, **15초 타임아웃 Baseline Fallback** |
+| **5. Reference RAG** | **2-Stage 로컬 FAISS (`faiss-cpu`) + `Qwen3-Embedding-0.6B` → `Qwen3-Reranker-0.6B`** *(2-Tier Corpus · 0ms Query Builder)* | Tier 1 공개 가이드라인(Section Chunking) + Tier 2 소규모 논문 7건(KB `review_scope`·`limitations` 요약 전용)으로 과잉 일반화 차단. `Embedder`/`Reranker`/`Retriever` 추상화로 CPU 테스트 및 추후 AWS `pgvector` 1줄 전환. **`SOLUTION_MODE` 전용** |
+| **6. SLM 서빙** | **OpenAI-Compatible HTTP 추론 서버 (`vLLM` / `Ollama`, `/v1/chat/completions`)** · **Context + RAG 중심 생성** *(Optional `KBPolicyAnchorAdapter`, 기본 OFF)* | Python 프로세스와 분리(재로딩 0초), URL 변경만으로 로컬 Qwen 3.5 4B QLoRA ↔ AWS GPU 교체, **15초 타임아웃 Baseline Fallback**. 앞단 AFA가 KB로 정보 수집·HOLD를 끝낸 뒤, SLM은 **`confirmed_observations` + `product_evidence` + `rag_chunks`**만으로 유연하게 솔루션을 생성(필요 시 `KBPolicyAnchorAdapter`로 `kb_judgments` 선택 주입) |
 
 ---
 
@@ -47,12 +47,12 @@ flowchart TD
     subgraph DataExt["4. Data Stores, Tools & Local Reference RAG"]
         DB["AWS Aurora PostgreSQL (RDS Data API)\nuser_observations(EAV) · user_products\nVersioned INCI Catalog · 정형 KB v0.6.1"]
         WAPI["External Data APIs\nWeather/UV API · Optional Product OCR"]
-        RAG["Local Reference Literature RAG\nKB 참고 논문·공식 아티클\nSection Chunking -> BGE-M3/e5 -> FAISS/Chroma\n(5~20ms · 0원 · 추후 AWS pgvector 전환)"]
+        RAG["Local Reference Literature RAG (2-Tier Corpus)\nTier 1 가이드라인 섹션 + Tier 2 논문 KB 요약\n0ms Query Builder -> Qwen3-Embedding-0.6B -> FAISS\n-> Qwen3-Reranker-0.6B + Threshold (추후 pgvector 전환)"]
     end
 
     subgraph Workers["5. Decision, Local GPU Generation & Safety Workers"]
         AFA["5A. Myopic 1-Step Lookahead AFA\n60카드 전체 가상 분기 시뮬레이션\nacquire(feature) / stop(sufficient | hold)"]
-        SLM["5B. Qwen 3.5 4B QLoRA Server\nOpenAI-Compatible HTTP (vLLM / Ollama)\nSOLUTION_MODE 집중 (+ Multi-LoRA NLU / HOLD)\n15초 타임아웃 시 Rule Baseline Fallback"]
+        SLM["5B. Qwen 3.5 4B QLoRA Server\nOpenAI-Compatible HTTP (vLLM / Ollama)\nContext + Product + RAG 기반 유연 생성\n(Optional KBPolicyAnchorAdapter: 기본 OFF)\n15초 타임아웃 시 Rule Baseline Fallback"]
         GRD["5C. Deterministic Safety Guardrail (Python)\n필수 HOLD · 비임상/비진단 · 인용·버전 검증"]
     end
 
@@ -128,10 +128,10 @@ sequenceDiagram
     CP->>AFA: 갱신된 확정 Context 전달
     AFA-->>CP: stop(reason="sufficient")
 
-    Note over CP,SLM: 최종 솔루션 턴에서만 Local Vector RAG 검색 + OpenAI-Compatible HTTP SLM 1회 호출
-    CP->>RAG: 확정 Context 기반 참고 논문 청크 검색 (5~20ms)
-    RAG-->>CP: 검증된 문헌 청크 + Citation ID 반환
-    CP->>SLM: POST /v1/chat/completions [SOLUTION_MODE] Context + 논문 청크
+    Note over CP,SLM: 최종 솔루션 턴에서만 0ms Query Builder + 2-Stage Vector RAG + OpenAI-Compatible HTTP SLM 1회 호출
+    CP->>RAG: 확정 Context 기반 0ms Query -> Bi-Encoder(Top-15) -> Reranker+Threshold(Top-3~5)
+    RAG-->>CP: 검증된 문헌 청크(Scope/Limitations 포함) + Citation ID 반환
+    CP->>SLM: POST /v1/chat/completions [SOLUTION_MODE] Context + Product + RAG 청크 (KB Anchor 기본 OFF)
     SLM-->>CP: 최종 루틴 Solution + [ref:ID] 인용 + 불확실성 설명
     CP->>GRD: 필수 HOLD · 비임상 주장 · 미제공 ID · 제품 버전 검증
     GRD-->>CP: 통과 (requires_approval=True, saved=False)
@@ -155,7 +155,17 @@ sequenceDiagram
 
 1. **Phase 0 — 계약 고정 (Contract-First PR)**: 4개 모듈 간 Pydantic JSON 스키마(`AFA`, `RAG`, `SLM Input/Output`, `CLI/iOS TurnResponse`) 및 검증 테스트 확정.
 2. **Phase 1 — 코어 뼈대 & CLI MVP**: Control Plane + 3영역 `Myopic VOI AFA` + `Hard Safety Guardrail` 완성 (초기엔 Mock/Base SLM으로 전체 CLI 루프 검증).
-3. **Phase 2 — 로컬 Reference RAG & 3단계 NLU** *(Phase 1과 병렬)*: `BGE-M3/e5` + `FAISS/Chroma` (`Recall@5 ≥ 90%`) + Citation ID 포맷 확정, 3단계 NLU 검증.
-4. **Phase 3 — 합성 데이터 재가공 & 신규 생성**: [qlora-synthetic-dataset-guide.md](qlora-synthetic-dataset-guide.md) 기준으로 `v67` 재가공 + 신규 3영역/Hard Negative(25%+) 생성 → Cross-Model Critic 검수 → Python 자동 게이트 통과분 고정.
-5. **Phase 4 — QLoRA SFT (`Qwen 3.5 4B`) 학습 & ITE 351 비교 평가**: 로컬 `vLLM`/`Ollama` HTTP 서버로 교체 연결 후 `범용 LLM` vs `Base+RAG` vs `QLoRA+RAG+Myopic AFA+Guardrail` 정량 비교.
+3. **Phase 2 — 로컬 Reference RAG & 3단계 NLU** *(Phase 1과 병렬)*: 사용자 투입 2-Tier Corpus + `Qwen3-Embedding-0.6B` + `faiss-cpu` + `Qwen3-Reranker-0.6B` (`Recall@5 ≥ 90%`) + `KB v0.6.1` `source_registry` 메타데이터 바인딩 확정, 3단계 NLU 검증.
+4. **Phase 3 — 합성 데이터 재가공 & 신규 생성**: [qlora-synthetic-dataset-guide.md](qlora-synthetic-dataset-guide.md) 기준으로 `v67` 재가공 + 신규 3영역/Hard Negative(25%+) 생성 → 외부 Cross-Model Critic 검수(`content_sha256` 바인딩) → Python 자동 게이트 통과분 고정.
+5. **Phase 4 — QLoRA SFT (`Qwen 3.5 4B`) 학습 & Hybrid 평가 (ITE 351)**: 로컬 `vLLM`/`Ollama` HTTP 서버로 교체 연결 후 `범용 LLM` vs `Base+RAG` vs `QLoRA+RAG+Myopic AFA+Guardrail` 정량 비교.
 6. **Phase 5 — iOS 래핑 & AWS 통합 (CSE 406)**: 동일 1턴 코어를 HTTP API로 래핑해 iOS 연동 + 타임아웃 Fallback 검증. 이후 `[Planned]` EventBridge 피드백 Log-only 수집 → 표본 $N \ge 30$ 충족 시 Social Proof 활성화.
+
+---
+
+## 7. RAG & End-to-End 평가 체계 (Hybrid Evaluation)
+
+| 평가 층 | 핵심 지표 | 평가 방식 |
+| --- | --- | --- |
+| **1층 · Retrieval 평가** (`eval_rag_retrieval.py`) | `Recall@5`, `MRR@5` / `NDCG@5`, `Context Relevance`, `Coverage`, `Negative Rejection` | 40~50문항 골든 질의셋 기반 결정적 비교 (Baseline vs Bi-Encoder vs **+Reranker+Threshold**) |
+| **2층 · Generation 안전·규율** (`eval_rag_generation.py`) | `Citation Precision`(100%), `Distractor Rejection`(100%), `HardSafetyGuardrail` 준수율(100%) | Python 결정적 규칙·화이트리스트 자동 검증 (0원, 100% 재현) |
+| **2층 · Generation 품질** (`eval_rag_generation.py`) | `Faithfulness`(충실성), `Correctness`(정확성), `Completeness`(완전성) | **LLM-as-a-Judge** (1~5점 루브릭 + `must_not_claim`/`limitations` 감점 규칙, Student와 다른 모델 계열 사용) + 저득점·임상절제 표본 사람 검수 |

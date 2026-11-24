@@ -6,6 +6,7 @@ import json
 import pathlib
 import re
 import sys
+from functools import partial
 
 import pytest
 
@@ -22,6 +23,7 @@ import validate_qlora_dataset as val  # noqa: E402
 
 KB_INDEX = val.load_kb_index(REPO_ROOT / "KB" / "Poppy_KB_v0.6.1")
 V67_INDEX = val.load_v67_index(COS_AGENT_DIR / "data" / "action_policy" / "v67")
+validate_anchored_rows = partial(val.validate_rows, profile="kb-anchored")
 
 
 def _make_chunk(sid: str, text: str, scope: str = "general_skincare_practice") -> dict:
@@ -125,7 +127,7 @@ def make_valid_solution_row(
             "ref:S21": "synthetic_defense_probe",
         },
         "messages": [
-            {"role": "system", "content": val.SYSTEM_PROMPT_SOLUTION_HOLD},
+            {"role": "system", "content": val.SYSTEM_PROMPT_KB_ANCHORED},
             {"role": "user", "content": json.dumps(req, ensure_ascii=False)},
             {
                 "role": "assistant",
@@ -206,7 +208,7 @@ def make_valid_hold_row(
         "hard_negative_type": None,
         "chunk_origins": {},
         "messages": [
-            {"role": "system", "content": val.SYSTEM_PROMPT_SOLUTION_HOLD},
+            {"role": "system", "content": val.SYSTEM_PROMPT_KB_ANCHORED},
             {"role": "user", "content": json.dumps(req, ensure_ascii=False)},
             {
                 "role": "assistant",
@@ -285,11 +287,11 @@ def make_24_row_pilot() -> tuple[list[tuple[str, int, dict]], dict[str, dict]]:
 
 
 def test_24_row_pilot_with_external_review_passes_and_empty_fails() -> None:
-    empty = val.validate_rows([], KB_INDEX, V67_INDEX, input_files=["empty.jsonl"], pilot_mode=True)
+    empty = validate_anchored_rows([], KB_INDEX, V67_INDEX, input_files=["empty.jsonl"], pilot_mode=True)
     assert not empty.passed
 
     rows, reviews = make_24_row_pilot()
-    rep = val.validate_rows(
+    rep = validate_anchored_rows(
         rows,
         KB_INDEX,
         V67_INDEX,
@@ -306,7 +308,7 @@ def test_24_row_pilot_with_external_review_passes_and_empty_fails() -> None:
     # Missing 1 row from external review file must fail
     missing_rev = dict(reviews)
     missing_rev.pop("syn-sol-0001")
-    rep_missing = val.validate_rows(
+    rep_missing = validate_anchored_rows(
         rows,
         KB_INDEX,
         V67_INDEX,
@@ -326,7 +328,7 @@ def test_controlled_vocabulary_and_product_version_spoof_rejected() -> None:
     req["product_evidence"][0]["status"] = "expired"  # Not in controlled vocabulary
     req["product_evidence"][0]["evidence_ref"] = "catalog:syn-sun-001@999"
     row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
-    rep = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    rep = validate_anchored_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
     assert not rep.passed
     assert any("kb_judgment status" in e for e in rep.errors)
     assert any("product_evidence status" in e for e in rep.errors)
@@ -342,12 +344,12 @@ def test_stage1_min_rows_and_90_10_split_enforced() -> None:
         ("ds.jsonl", 15 + i, make_valid_hold_row(num=i, split=("val_internal" if i == 5 else "train")))
         for i in range(1, 6)
     ]
-    rep_small = val.validate_rows(small, KB_INDEX, V67_INDEX, enforce_ratios=True, enforce_stage1_min_rows=True)
+    rep_small = validate_anchored_rows(small, KB_INDEX, V67_INDEX, enforce_ratios=True, enforce_stage1_min_rows=True)
     assert not rep_small.passed
     assert any(">= 900" in e for e in rep_small.errors)
 
     # Without stage1 min rows, 20 rows with 90/10 split & 33.3% EN pass enforce_ratios
-    rep_ok = val.validate_rows(small, KB_INDEX, V67_INDEX, enforce_ratios=True)
+    rep_ok = validate_anchored_rows(small, KB_INDEX, V67_INDEX, enforce_ratios=True)
     assert rep_ok.passed, rep_ok.errors
 
     # Empty val_internal fails enforce_ratios
@@ -355,7 +357,7 @@ def test_stage1_min_rows_and_90_10_split_enforced() -> None:
         ("ds.jsonl", i, make_valid_solution_row(num=i, split="train", english_chunk=(i <= 5)))
         for i in range(1, 16)
     ] + [("ds.jsonl", 15 + i, make_valid_hold_row(num=i, split="train")) for i in range(1, 6)]
-    rep_no_val = val.validate_rows(all_train, KB_INDEX, V67_INDEX, enforce_ratios=True)
+    rep_no_val = validate_anchored_rows(all_train, KB_INDEX, V67_INDEX, enforce_ratios=True)
     assert not rep_no_val.passed
     assert any("val_internal must not be empty" in e for e in rep_no_val.errors)
 
@@ -374,20 +376,20 @@ def test_v67_seed_extractor_has_zero_test_internal_and_zero_ask_user() -> None:
 def test_rejects_unbacked_refs_probe_citation_family_leak_and_hold_leak() -> None:
     row = make_valid_solution_row(num=1)
     row["chunk_origins"]["ref:S08"] = "synthetic_defense_probe"
-    rep_probe = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    rep_probe = validate_anchored_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
     assert not rep_probe.passed
     assert rep_probe.english_relevant_solution_rows == 0
 
     r1 = make_valid_solution_row(num=1, split="train")
     r2 = make_valid_solution_row(num=2, split="val_internal")
     r2["scenario_family_id"] = r1["scenario_family_id"]
-    rep_fam = val.validate_rows([("ds.jsonl", 1, r1), ("ds.jsonl", 2, r2)], KB_INDEX, V67_INDEX)
+    rep_fam = validate_anchored_rows([("ds.jsonl", 1, r1), ("ds.jsonl", 2, r2)], KB_INDEX, V67_INDEX)
     assert not rep_fam.passed
     assert any("scenario_family_id" in e for e in rep_fam.errors)
 
     hold_leak = make_valid_hold_row(num=1)
     hold_leak["messages"][2]["content"] += " 저녁에는 클렌징폼으로 1회 세안하세요."
-    rep_hold = val.validate_rows([("ds.jsonl", 1, hold_leak)], KB_INDEX, V67_INDEX)
+    rep_hold = validate_anchored_rows([("ds.jsonl", 1, hold_leak)], KB_INDEX, V67_INDEX)
     assert not rep_hold.passed
     assert any("leaked recommendation" in e for e in rep_hold.errors)
 
@@ -414,7 +416,7 @@ def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
     reordered = copy.deepcopy(rows)
     obj0 = json.loads(reordered[0][2]["messages"][1]["content"])
     reordered[1][2]["messages"][1]["content"] = json.dumps(dict(reversed(list(obj0.items()))), ensure_ascii=False)
-    rep1 = val.validate_rows(reordered, KB_INDEX, V67_INDEX, pilot_mode=True)
+    rep1 = validate_anchored_rows(reordered, KB_INDEX, V67_INDEX, pilot_mode=True)
     assert not rep1.passed
     assert any("duplicate canonical SLMRequest" in e for e in rep1.errors)
 
@@ -426,7 +428,7 @@ def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
             req["confirmed_observations"].pop("cleansing.perceived_residue", None)
             r["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
             break
-    rep2 = val.validate_rows(label_only, KB_INDEX, V67_INDEX, pilot_mode=True)
+    rep2 = validate_anchored_rows(label_only, KB_INDEX, V67_INDEX, pilot_mode=True)
     assert not rep2.passed
     assert any("pilot_bucket='unknown_or_version'" in e for e in rep2.errors)
 
@@ -436,14 +438,14 @@ def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
     req_g["rag_chunks"] = [c for c in req_g["rag_chunks"] if c["evidence_ref"] != "ref:S21"]
     ghost_dist["chunk_origins"].pop("ref:S21", None)
     ghost_dist["messages"][1]["content"] = json.dumps(req_g, ensure_ascii=False)
-    rep3 = val.validate_rows([("ds.jsonl", 1, ghost_dist)], KB_INDEX, V67_INDEX)
+    rep3 = validate_anchored_rows([("ds.jsonl", 1, ghost_dist)], KB_INDEX, V67_INDEX)
     assert not rep3.passed
     assert any("distractor_ref 'ref:S21' not backed" in e for e in rep3.errors)
 
     # 4. Modifying assistant text after Critic PASS must fail content_sha256 check
     edited = copy.deepcopy(rows)
     edited[0][2]["messages"][2]["content"] += " (사후 수정)"
-    rep4 = val.validate_rows(
+    rep4 = validate_anchored_rows(
         edited, KB_INDEX, V67_INDEX, pilot_mode=True, require_review=True, external_reviews=reviews
     )
     assert not rep4.passed
@@ -464,7 +466,7 @@ def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
     for idx, (_, _, r) in enumerate(partial_human):
         if idx >= 2:
             r["provenance"]["human_review"] = "unreviewed"
-    rep6 = val.validate_rows(
+    rep6 = validate_anchored_rows(
         partial_human, KB_INDEX, V67_INDEX, pilot_mode=True, require_review=True, external_reviews=reviews
     )
     assert not rep6.passed
@@ -478,15 +480,154 @@ def test_codex_counterexamples_all_rejected(tmp_path: pathlib.Path) -> None:
     dup_non_pilot[1][2]["messages"][1]["content"] = dup_non_pilot[0][2]["messages"][1]["content"]
     dup_non_pilot[1][2]["allowed_evidence_refs"] = list(dup_non_pilot[0][2]["allowed_evidence_refs"])
     dup_non_pilot[1][2]["messages"][2]["content"] = dup_non_pilot[0][2]["messages"][2]["content"] + " (변형)"
-    rep7 = val.validate_rows(dup_non_pilot, KB_INDEX, V67_INDEX, pilot_mode=False)
+    rep7 = validate_anchored_rows(dup_non_pilot, KB_INDEX, V67_INDEX, pilot_mode=False)
     assert not rep7.passed
     assert any("duplicate canonical SLMRequest" in e for e in rep7.errors)
 
     # 8. Modifying card_ids after Critic PASS must fail content_sha256 check
     edited_cards = copy.deepcopy(rows)
     edited_cards[0][2]["card_ids"] = ["B-I01"]
-    rep8 = val.validate_rows(
+    rep8 = validate_anchored_rows(
         edited_cards, KB_INDEX, V67_INDEX, pilot_mode=True, require_review=True, external_reviews=reviews
     )
     assert not rep8.passed
     assert any("content_sha256 mismatch" in e for e in rep8.errors)
+
+
+@pytest.fixture
+def rag_free_solution():
+    row = make_valid_solution_row()
+    req = json.loads(row["messages"][1]["content"])
+    req.update(kb_judgments=[], product_evidence=[], allowed_evidence_refs=["ref:ART-001"])
+    req["confirmed_observations"]["routine.time_of_day"] = {
+        "variable_id": "routine.time_of_day",
+        "state": "known",
+        "value": "evening",
+        "confirmed_by_user": True,
+    }
+    req["rag_chunks"][0] = {
+        "evidence_ref": "ref:ART-001",
+        "text": "For the synthetic routine example, use a gentle wash without scrubbing.",
+        "source_url": "https://example.test/skincare",
+        "locator": "Synthetic fixture: evening cleansing",
+        "checked_on": "2026-11-24",
+        "limitations": "Synthetic test excerpt about facial cleansing only.",
+    }
+    row["card_ids"] = []
+    row["chunk_origins"].pop("ref:S08")
+    row["chunk_origins"]["ref:ART-001"] = "reference_excerpt"
+    row["allowed_evidence_refs"] = req["allowed_evidence_refs"]
+    row["messages"][0]["content"] = val.SYSTEM_PROMPT_SOLUTION_HOLD
+    row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+    row["messages"][2]["content"] = (
+        "### 핵심 안내\n저녁에 세안할 때는 강하게 문지르지 않고 부드럽게 씻어요.\n\n"
+        "### 근거 및 이유\n문헌은 얼굴을 부드럽게 씻는 방법을 안내해요 [ref:ART-001].\n\n"
+        "### 확인이 필요한 한계\n이 문헌은 얼굴 세안 방법만 다뤄요."
+    )
+    return row
+
+
+@pytest.mark.parametrize("profile_args", [[], ["--profile", "rag-free"]])
+def test_cli_accepts_new_reference_and_optional_cards(rag_free_solution, tmp_path, capsys, profile_args):
+    assert "ART-001" not in KB_INDEX.source_registry
+    path = tmp_path / "rag_free.jsonl"
+    if not profile_args:
+        rag_free_solution.pop("card_ids")
+    path.write_text(json.dumps(rag_free_solution, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    assert val.main(["--input", str(path), *profile_args]) == 0
+    assert json.loads(capsys.readouterr().out)["english_relevant_solution_rows"] == 1
+
+
+@pytest.mark.parametrize(
+    ("text", "error"),
+    [
+        ("[ref:S21]", "cited distractor_refs"),
+        ("[ref:S21]", "cited synthetic_defense_probe"),
+        ("[ref:NOT-GIVEN]", "cited unallowed/malformed refs"),
+        ("[kb:B-C01@0.6.1]", "cited unallowed/malformed refs"),
+        ("여드름입니다.", "violated clinical guardrail"),
+        ("이 방법으로 40% 개선됩니다.", "violated clinical guardrail"),
+        ("농도는 2%로 추정돼요.", "violated clinical guardrail"),
+        ("pH 5.5로 추정돼요.", "violated clinical guardrail"),
+    ],
+)
+def test_rag_free_still_rejects_unsafe_solutions(rag_free_solution, text, error):
+    rag_free_solution["messages"][2]["content"] += " " + text
+    report = val.validate_rows([("ds.jsonl", 1, rag_free_solution)], KB_INDEX, V67_INDEX)
+    assert any(error in msg for msg in report.errors), report.errors
+
+
+@pytest.mark.parametrize(
+    "text", ["저녁에 세안하세요.", "대체 후보를 골라 주세요.", "이 보습제를 추천해요.",
+             "가벼운 크림을 사용하세요.", "이 로션을 발라 주세요."],
+)
+def test_rag_free_hold_still_rejects_recommendations(text):
+    row = make_valid_hold_row()
+    req = json.loads(row["messages"][1]["content"])
+    req.update(kb_judgments=[], allowed_evidence_refs=[])
+    row["allowed_evidence_refs"] = []
+    row["messages"][0]["content"] = val.SYSTEM_PROMPT_SOLUTION_HOLD
+    row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+    row["messages"][2]["content"] = (
+        "### 개별 권고 보류 안내\n불편감 확인이 필요해요.\n\n"
+        "### 필요한 다음 단계\n전문가에게 확인받아 주세요. "
+    )
+    assert val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX).passed
+    row["messages"][2]["content"] += text
+    report = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    assert any("leaked recommendation" in msg for msg in report.errors), report.errors
+
+
+@pytest.mark.parametrize("source_id", ["U01", "D01", "F01", "F02", "S30", "S31"])
+def test_rag_free_blocks_reserved_source_ids(rag_free_solution, source_id):
+    old_id = "ref:ART-001"
+    new_id = f"ref:{source_id}"
+    row = json.loads(json.dumps(rag_free_solution, ensure_ascii=False).replace(old_id, new_id))
+    report = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    assert any("forbidden source_id" in msg for msg in report.errors), report.errors
+
+
+def test_rag_free_preserves_card_and_product_boundaries(rag_free_solution):
+    row = rag_free_solution
+    row["card_ids"] = ["B-P07", "B-Z99"]
+    req = json.loads(row["messages"][1]["content"])
+    req["confirmed_observations"]["cleansing.steps"]["value"] = "three"
+    req["confirmed_observations"]["product.private_fact"] = {
+        "variable_id": "product.private_fact", "state": "known", "value": "unsupported",
+    }
+    req["kb_judgments"] = [{"card_id": "B-C01", "status": "aligned"}]
+    row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+    report = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    for error in ("forbidden card_id", "unknown card_id", "expects KB value_type",
+                  "unknown KB v0.6.1 variable_id 'product.private_fact'", "kb_judgments to be empty"):
+        assert any(error in msg for msg in report.errors), report.errors
+
+
+def test_kb_anchored_keeps_exact_registry_and_rag_free_relaxes_it(rag_free_solution):
+    row = make_valid_solution_row()
+    req = json.loads(row["messages"][1]["content"])
+    req["rag_chunks"][0]["locator"] = "Abstract (section locator format)"
+    row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+    report = validate_anchored_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    assert any("does not match KB source_registry.locator" in msg for msg in report.errors)
+
+    row = rag_free_solution
+    anchored_report = validate_anchored_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    assert any("unknown source_id in KB" in msg for msg in anchored_report.errors)
+    assert any("kb-anchored system prompt" in msg for msg in anchored_report.errors)
+
+    req = json.loads(row["messages"][1]["content"])
+    req["rag_chunks"][0]["limitations"] = " "
+    row["messages"][1]["content"] = json.dumps(req, ensure_ascii=False)
+    report = val.validate_rows([("ds.jsonl", 1, row)], KB_INDEX, V67_INDEX)
+    assert any("limitations must not be blank" in msg for msg in report.errors)
+
+
+def test_rag_free_keeps_split_and_test_internal_leakage_checks(rag_free_solution):
+    r1 = rag_free_solution
+    r2 = copy.deepcopy(r1)
+    r2.update(id="syn-sol-0002", split="val_internal", scenario_id=min(V67_INDEX.test_scenarios))
+    report = val.validate_rows([("ds.jsonl", 1, r1), ("ds.jsonl", 2, r2)], KB_INDEX, V67_INDEX)
+    assert any("v67 test_internal scenario leakage" in msg for msg in report.errors)
+    assert any("scenario_family_id" in msg and "leakage" in msg for msg in report.errors)
