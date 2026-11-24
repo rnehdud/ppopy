@@ -22,15 +22,17 @@ cd courses/ai-applications/experiments/cos-agent
 uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_qlora_seeds.jsonl
 ```
 
-### 5단계 실행 흐름 (**24턴 파일럿 통과 → 900턴 1차 학습·평가 → 오답 보강**)
+### 5단계 실행 흐름 (**24턴 파일럿 즉시 병렬 → 실제 RAG 청크 풀 확정 후 900턴 생성 → 1차 학습·평가 → 오답 보강**)
+
+> **RAG 청크 풀 선확정 원칙 (Zero Chunk Skew)**: **24턴 파일럿(2~3단계)**은 기존 검증된 출처 요약(`kb_source_summary`)과 샘플 발췌로 즉시 병렬 진행해 파이프라인을 점검하고, **900턴 본 데이터셋(4단계)**은 `rag-slm-architecture`에서 **Tier 1(공개 가이드라인 발췌) + Tier 2(논문 7건 요약) 실제 `ReferenceChunk` 풀**이 확정된 뒤 그 실제 청크 풀을 `rag_chunks` 재료로 사용해 생성합니다.
 
 | 단계 | 작업 내용 | 출력 / 실행 명령 | 통과 조건 |
 | --- | --- | --- | --- |
 | **1. 기준 파일 동기화** | `v3_contracts.py`, `KB v0.6.1`, `outputs/v67_qlora_seeds.jsonl` 읽기 | 2절 공통 어휘와 3절 문헌의 적용 범위 확인 | 임의 어휘·URL 창작 금지 |
-| **2. 24턴 파일럿 생성** | `pilot_bucket` 4종 × 각 6턴 = **정확히 24턴**(`solution` 18 / `hold` 6, 세정·보습·자외선·보류 전 영역 커버) | `data/qlora/v2/pilot_24.jsonl` | `--pilot` 통과 (`error_count == 0`, 입력 중복 0) |
-| **3. 교차 Critic & 사람 전수 검수** | 생성 모델과 **다른 AI 모델**로 외부 검수 파일 생성 + 24턴 사람 육안 확인 | `data/qlora/v2/reviews/pilot_24_critic.jsonl` + `--pilot --review-file ...` | 외부 Critic PASS 100%, 고위험 `human_review == "approved"` |
-| **4. 1차 본 데이터 900턴 생성** | `v67` 재가공(~300턴) + 신규 3영역 합성(~600턴) = **총 900턴**(`solution` 690 / `hold` 210) | `data/qlora/v2/qlora_solution_hold_v2.jsonl` | `--stage1 --review-file ...` 통과 (`error_count == 0`) |
-| **5. 1차 학습·평가 후 2차 보강** | `Qwen 3.5 4B` QLoRA 1차 학습·평가 후 실제 오답 유형만 +300~600턴 집중 보강 | PR 제출 (`KB/`·코어 코드 미수정) | 인용 정확도·방해 청크 무시·HOLD 준수 목표 달성 |
+| **2. 24턴 파일럿 생성 (즉시 병렬)** | `pilot_bucket` 4종 × 각 6턴 = **정확히 24턴**(`solution` 18 / `hold` 6, 세정·보습·자외선·보류 전 영역 커버) | `data/qlora/v2/pilot_24.jsonl` | `--profile rag-free --pilot` 통과 (`error_count == 0`, 입력 중복 0) |
+| **3. 교차 Critic & 사람 전수 검수** | 생성 모델과 **다른 AI 모델(다른 팀원 에이전트)**로 외부 검수 파일 생성 + 24턴 사람 육안 확인 | `data/qlora/v2/reviews/pilot_24_critic.jsonl` + `--profile rag-free --pilot --review-file ...` | 외부 Critic PASS 100%, 고위험 `human_review == "approved"` |
+| **4. 1차 본 데이터 900턴 생성 (실제 RAG 청크 풀 확정 후)** | 확정된 실제 Tier 1/2 `ReferenceChunk` 풀을 `rag_chunks` 재료로 사용해 `v67` 재가공(~300턴) + 신규 3영역 합성(~600턴) = **총 900턴**(`solution` 690 / `hold` 210) | `data/qlora/v2/qlora_solution_hold_v2.jsonl` | `--profile rag-free --stage1 --review-file ...` 통과 (`error_count == 0`) |
+| **5. 1차 학습·평가 후 2차 보강** | `Qwen 3.5 4B` QLoRA 1차 학습·2×2 Ablation(`SLM`/`SLM+RAG`/`SLM+SFT`/`SLM+SFT+RAG`) 평가 후 실제 오답 유형만 +300~600턴 집중 보강 | PR 제출 (`KB/`·코어 코드 미수정) | 인용 정확도·방해 청크 무시·HOLD 준수 목표 달성 |
 
 ---
 
