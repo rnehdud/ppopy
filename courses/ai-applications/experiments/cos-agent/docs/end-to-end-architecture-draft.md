@@ -15,7 +15,7 @@
 | **3. AFA Policy** | **Myopic 1-Step Lookahead (VOI / Expected Branch Pruning)** + 정형 KB `v0.6.1` | 재학습 0회, 1ms 미만, 3영역 60카드 즉시 일반화, 100% 설명 가능 *(기존 PPO는 B-C02 비교군)* |
 | **4. 질문 턴 UX** | **정형 KB 질문 + 선택지 버튼(Quick Reply) 기본 제공 (0ms)** | 모바일 UX 최상, 질문 턴 SLM·RAG 호출 0회로 응답 지연·비용 최소화 *(버튼 탭=Fast Path, 타이핑=NLU 재사용)* |
 | **5. Reference RAG** | **2-Stage 로컬 FAISS (`faiss-cpu`) + `Qwen3-Embedding-0.6B` → `Qwen3-Reranker-0.6B`** *(2-Tier Corpus · 0ms Query Builder)* | Tier 1 공개 가이드라인(Section Chunking) + Tier 2 소규모 논문 7건(KB `review_scope`·`limitations` 요약 전용)으로 과잉 일반화 차단. `Embedder`/`Reranker`/`Retriever` 추상화로 CPU 테스트 및 추후 AWS `pgvector` 1줄 전환. **`SOLUTION_MODE` 전용** |
-| **6. SLM 서빙** | **OpenAI-Compatible HTTP 추론 서버 (`vLLM` / `Ollama`, `/v1/chat/completions`)** · **Context + RAG 중심 생성** *(Optional `KBPolicyAnchorAdapter`, 기본 OFF)* | Python 프로세스와 분리(재로딩 0초), URL 변경만으로 로컬 Qwen 3.5 4B QLoRA ↔ AWS GPU 교체, **15초 타임아웃 Baseline Fallback**. 앞단 AFA가 KB로 정보 수집·HOLD를 끝낸 뒤, SLM은 **`confirmed_observations` + `product_evidence` + `rag_chunks`**만으로 유연하게 솔루션을 생성(필요 시 `KBPolicyAnchorAdapter`로 `kb_judgments` 선택 주입) |
+| **6. SLM 서빙** | **OpenAI-Compatible HTTP 추론 서버 (`vLLM` / `Ollama`, `/v1/chat/completions`)** · **Context + RAG 전용 생성** *(SLM–KB 완전 분리)* | Python 프로세스와 분리(재로딩 0초), URL 변경만으로 로컬 Qwen 3.5 4B QLoRA ↔ AWS GPU 교체, **15초 타임아웃 Baseline Fallback**. 앞단 AFA/Runtime만 KB로 정보 수집·HOLD를 수행하고, `SLMRequest`에서 `kb_judgments` 필드를 완전 제거해 **`confirmed_observations` + `product_evidence` + `rag_chunks`**만으로 솔루션을 생성 |
 
 ---
 

@@ -59,11 +59,10 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
 
 ## 2. 공통 어휘 표 (Controlled Vocabulary — 학습–추론 불일치 방지)
 
-1명의 에이전트라도 앞뒤 생성 구간에서 값 표현이 흔들리지 않도록 아래 어휘를 고정합니다. (`kb_judgments[].status`와 `product_evidence[].status`는 `validate_qlora_dataset.py`가 강제합니다.)
+1명의 에이전트라도 앞뒤 생성 구간에서 값 표현이 흔들리지 않도록 아래 어휘를 고정합니다. (`product_evidence[].status`는 `validate_qlora_dataset.py`가 강제하며, `SLMRequest`에서는 `kb_judgments` 필드가 완전히 제거되어 포함 시 스키마 검증에 실패합니다.)
 
 | 필드 / 변수 | 고정 허용 값 | 비고 |
 | --- | --- | --- |
-| `kb_judgments[].status` | `"aligned"`, `"difference"`, `"unknown"`, `"hold"`, `"exception"` | `kb-anchored`에서 사용. `rag-free`에서는 빈 배열 또는 필드 생략 |
 | `product_evidence[].status` | `"verified"`, `"usage_held"`, `"unknown"` | 검증기 강제 (`usage_held`는 버전 불일치) |
 | `cleansing.steps` | 정수 `0`, `1`, `2`, `3` | KB `integer` 타입 (문자열 금지) |
 | `skin.current_discomfort` | `"none"`, `"mild_transient"`, `"repeated"`, `"persistent"` | KB `categorical` (`persistent` → `B-B01` 보류) |
@@ -133,7 +132,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
     },
     {
       "role": "user",
-      "content": "{\"mode\":\"solution\",\"confirmed_observations\":{\"cleansing.steps\":{\"variable_id\":\"cleansing.steps\",\"state\":\"known\",\"value\":3,\"source\":\"user_report\",\"confirmed_by_user\":true},\"cleansing.repeat_wash\":{\"variable_id\":\"cleansing.repeat_wash\",\"state\":\"known\",\"value\":{\"automatic_multi_step_for_water_resistant\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"kb_judgments\":[],\"product_evidence\":[{\"product_id\":\"syn-sun-001\",\"version\":\"1.0\",\"synthetic_product\":true,\"status\":\"verified\",\"label_guidance\":\"합성 제품 표시 예시: 폼 클렌저 1회 세안 가능\",\"evidence_ref\":\"catalog:syn-sun-001@1.0\"}],\"rag_chunks\":[{\"evidence_ref\":\"ref:S08\",\"text\":\"In a 20-subject imaging study comparing water, facial cleanser, and cleansing oil, cleanser removal performance varied by formulation rather than requiring mandatory multi-step washing for every water-resistant product.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://onlinelibrary.wiley.com/doi/10.1111/jocd.12995\",\"locator\":\"Abstract: Methods / Results / Conclusion\",\"checked_on\":\"2026-11-04\",\"limitations\":\"제한된 제품 조합의 영상 기반 잔류 지표. 모든 내수성 제품·오일·밀크·크림으로 일반화하거나 이중세안 필요성을 확정하지 않음. 2019 온라인 공개/2020 권호.\"},{\"evidence_ref\":\"ref:S21\",\"text\":\"Apply fragrance-free hand cream or ointment immediately after hand washing to help relieve dry hands.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands\",\"locator\":\"손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.\",\"checked_on\":\"2026-11-04\",\"limitations\":\"다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다.\"}],\"allowed_evidence_refs\":[\"catalog:syn-sun-001@1.0\",\"ref:S08\"],\"distractor_refs\":[\"ref:S21\"]}"
+      "content": "{\"mode\":\"solution\",\"confirmed_observations\":{\"cleansing.steps\":{\"variable_id\":\"cleansing.steps\",\"state\":\"known\",\"value\":3,\"source\":\"user_report\",\"confirmed_by_user\":true},\"cleansing.repeat_wash\":{\"variable_id\":\"cleansing.repeat_wash\",\"state\":\"known\",\"value\":{\"automatic_multi_step_for_water_resistant\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"product_evidence\":[{\"product_id\":\"syn-sun-001\",\"version\":\"1.0\",\"synthetic_product\":true,\"status\":\"verified\",\"label_guidance\":\"합성 제품 표시 예시: 폼 클렌저 1회 세안 가능\",\"evidence_ref\":\"catalog:syn-sun-001@1.0\"}],\"rag_chunks\":[{\"evidence_ref\":\"ref:S08\",\"text\":\"In a 20-subject imaging study comparing water, facial cleanser, and cleansing oil, cleanser removal performance varied by formulation rather than requiring mandatory multi-step washing for every water-resistant product.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://onlinelibrary.wiley.com/doi/10.1111/jocd.12995\",\"locator\":\"Abstract: Methods / Results / Conclusion\",\"checked_on\":\"2026-11-04\",\"limitations\":\"제한된 제품 조합의 영상 기반 잔류 지표. 모든 내수성 제품·오일·밀크·크림으로 일반화하거나 이중세안 필요성을 확정하지 않음. 2019 온라인 공개/2020 권호.\"},{\"evidence_ref\":\"ref:S21\",\"text\":\"Apply fragrance-free hand cream or ointment immediately after hand washing to help relieve dry hands.\",\"scope\":\"general_skincare_practice\",\"source_url\":\"https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands\",\"locator\":\"손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.\",\"checked_on\":\"2026-11-04\",\"limitations\":\"다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다.\"}],\"allowed_evidence_refs\":[\"catalog:syn-sun-001@1.0\",\"ref:S08\"],\"distractor_refs\":[\"ref:S21\"]}"
     },
     {
       "role": "assistant",
@@ -176,7 +175,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
     },
     {
       "role": "user",
-      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"skin.current_discomfort\":{\"variable_id\":\"skin.current_discomfort\",\"state\":\"known\",\"value\":\"persistent\",\"source\":\"user_report\",\"confirmed_by_user\":true},\"skin.pain\":{\"variable_id\":\"skin.pain\",\"state\":\"known\",\"value\":\"moderate\",\"source\":\"user_report\",\"confirmed_by_user\":true}},\"kb_judgments\":[],\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
+      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"skin.current_discomfort\":{\"variable_id\":\"skin.current_discomfort\",\"state\":\"known\",\"value\":\"persistent\",\"source\":\"user_report\",\"confirmed_by_user\":true},\"skin.pain\":{\"variable_id\":\"skin.pain\",\"state\":\"known\",\"value\":\"moderate\",\"source\":\"user_report\",\"confirmed_by_user\":true}},\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
     },
     {
       "role": "assistant",
@@ -219,7 +218,7 @@ uv run --locked python scripts/prepare_v67_qlora_seeds.py --output outputs/v67_q
     },
     {
       "role": "user",
-      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"storage.sensory_change\":{\"variable_id\":\"storage.sensory_change\",\"state\":\"known\",\"value\":{\"color_or_odor_change\":true,\"separation\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"kb_judgments\":[],\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
+      "content": "{\"mode\":\"hold\",\"confirmed_observations\":{\"storage.sensory_change\":{\"variable_id\":\"storage.sensory_change\",\"state\":\"known\",\"value\":{\"color_or_odor_change\":true,\"separation\":true},\"source\":\"user_report\",\"confirmed_by_user\":true}},\"product_evidence\":[],\"rag_chunks\":[],\"allowed_evidence_refs\":[],\"distractor_refs\":[]}"
     },
     {
       "role": "assistant",
@@ -339,6 +338,6 @@ uv run --locked python scripts/validate_qlora_dataset.py --profile rag-free \
 ## 완료 조건 (Definition of Done)
 1. 파일럿 24턴 `--pilot --review-file ...` `error_count == 0` 및 팀 확인 완료
 2. 1차 900턴 `--stage1 --review-file ...` `error_count == 0` (`hold` 20~25%, HN ≥ 25%, 인용 가능한 영어 문헌 30~40%, 신규 `val_internal` 7~13%, 외부 Critic PASS 100%, 고위험 `human_review == "approved"` ≥ 10%)
-3. 기본 학습 Export는 `--profile rag-free`로 검증합니다. `kb_judgments`는 비워 두고 `[kb:...]` 인용을 제거합니다. 허용 근거와 실제 인용을 대조하고, 미상·HOLD·v67 분할 경계를 확인합니다.
+3. 기본 학습 데이터는 `--profile rag-free`로 검증합니다. `SLMRequest`에는 `kb_judgments` 필드가 없으며(포함 시 Pydantic 오류), `[kb:...]` 인용을 금지합니다. 허용 근거와 실제 인용을 대조하고, 미상·HOLD·v67 분할 경계를 확인합니다.
 4. `KB/`, `docs/source-manifest.json`, `beauty_agent/` 코어 코드 미수정 상태로 PR 제출
 ```

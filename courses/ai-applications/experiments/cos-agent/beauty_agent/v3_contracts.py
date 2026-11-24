@@ -179,11 +179,13 @@ class ReferenceRetriever(Protocol):
 # 4. OpenAI-Compatible QLoRA SLM Contracts (NO QUESTION_MODE)
 # ---------------------------------------------------------------------------
 class SLMRequest(Contract):
-    """Structured request sent from Control Plane to the OpenAI-Compatible SLM server."""
+    """Structured request sent from Control Plane to the OpenAI-Compatible SLM server.
+
+    KB judgments are intentionally excluded: KB scope is strictly limited to AFA/Runtime.
+    """
 
     mode: SLMMode
     confirmed_observations: dict[str, ObservationSlot] = Field(default_factory=dict)
-    kb_judgments: list[dict[str, JsonValue]] = Field(default_factory=list)
     product_evidence: list[dict[str, JsonValue]] = Field(default_factory=list)
     rag_chunks: list[ReferenceChunk] = Field(default_factory=list)
     allowed_evidence_refs: list[str] = Field(default_factory=list)
