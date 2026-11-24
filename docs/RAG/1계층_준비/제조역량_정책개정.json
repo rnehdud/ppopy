@@ -1,0 +1,126 @@
+{
+  "id": "MANUFACTURING-POLICY-20261124",
+  "source_type": "user_authorized_service_policy",
+  "layer1_role": "정책 설명; 외부 과학 근거 아님",
+  "effective_date": "2026-11-24",
+  "canonical_config": "skin_engine/config/manufacturing_evidence.json",
+  "canonical_sha256": "e2dd9ee4e900ce81b2c5207354bbf0d50447a0312d61fbc973f0ab8f262e3c2f",
+  "policy": {
+    "version": "0.2.0-scoped-manufacturing-preference",
+    "status": "user_authorized_scoped_policy_evidence_pending",
+    "last_updated": "2026-11-24",
+    "purpose": "제조 역량 선호를 유지하되 완제품·제품군·사업장에 연결된 검증 근거의 범위에서 보조 판단에 반영한다. 상업적 이해관계 중립은 유지한다.",
+    "ranking_contract": {
+      "manufacturer_name_weight": 0,
+      "manufacturer_allowlist": [],
+      "brand_or_group_reputation_input_allowed": false,
+      "quality_evidence_may_override_safety": false,
+      "default_effect": "scoped_evidence_secondary_comparison",
+      "future_tie_breaker_requires": [
+        "exact_product_version_or_verified_category_technology_link",
+        "current_traceable_evidence_with_scope_and_limitations",
+        "no_safety_adherence_or_personal_experience_regression",
+        "commercial_neutrality_regression_test"
+      ],
+      "commercial_interest_weight": 0,
+      "manufacturer_preference_allowed": true,
+      "preference_basis": "verified_product_or_category_linked_manufacturing_evidence",
+      "priority": [
+        "safety_and_individual_instructions",
+        "confirmed_discomfort_and_successful_current_use",
+        "essential_function_and_finished_product_evidence",
+        "applicable_manufacturing_capability"
+      ],
+      "unknown_evidence_effect": "unknown_not_inferior_no_penalty"
+    },
+    "evidence_signals": [
+      {
+        "id": "mfds_cgmp_current_status",
+        "unit": "manufacturing_site",
+        "meaning": "식약처 우수화장품 제조 및 품질관리기준 적합업소 여부",
+        "allowed_effect": "manufacturing_site_QA_support; not finished_product_efficacy_bonus",
+        "not_evidence_of": [
+          "개별 제품 효능 우월",
+          "사용자 적합성",
+          "자극 없음"
+        ]
+      },
+      {
+        "id": "mfds_recall_or_sales_stop",
+        "unit": "exact_product_or_lot",
+        "meaning": "식약처 회수·판매중지 정보",
+        "allowed_effect": "safety_review_or_exclusion_when_exact_identity_matches",
+        "not_evidence_of": [
+          "동일 제조사 전 제품의 품질"
+        ]
+      },
+      {
+        "id": "product_specific_finished_product_evidence",
+        "unit": "exact_product_version",
+        "meaning": "완제품의 안정성·용기 적합성·전달기술·검증 가능한 시험 근거",
+        "allowed_effect": "scoped_secondary_preference_after_evidence_verification",
+        "not_evidence_of": [
+          "마케팅 문구만으로 한 효능 가점"
+        ]
+      },
+      {
+        "id": "category_linked_manufacturing_capability",
+        "unit": "product_category_and_verified_product_link",
+        "meaning": "관련 제품군의 검증된 제형 기술·제조/품질관리 실적과 대상 제품 적용 연결",
+        "allowed_effect": "scoped_secondary_preference_after_evidence_verification",
+        "not_evidence_of": [
+          "다른 제품군의 우월성",
+          "모든 납품 제품 동일 품질",
+          "특허 보유만으로 해당 제품 적용",
+          "개인별 무자극"
+        ]
+      }
+    ],
+    "required_fields": [
+      "record_id",
+      "manufacturer_name",
+      "manufacturer_role",
+      "manufacturing_site_if_known",
+      "evidence_type",
+      "evidence_source",
+      "source_sha256",
+      "checked_at",
+      "valid_until_or_recheck_at",
+      "product_or_lot_scope",
+      "product_category",
+      "product_version_or_technology_link",
+      "supported_claim",
+      "limitations",
+      "verification_status",
+      "verified_by",
+      "preference_effect"
+    ],
+    "prohibited": [
+      "kolmar_cosmax_or_other_name_bonus",
+      "manufacturer_reputation_score",
+      "unverified_marketing_claim_as_quality_score",
+      "brand_price_popularity_proxy",
+      "commercial_affiliation_bonus",
+      "unlinked_patent_or_research_as_product_quality",
+      "unknown_manufacturer_penalty"
+    ],
+    "authorization": {
+      "date": "2026-11-24",
+      "instruction": "사용자: 제조 역량을 근거와 적용 범위에 따라 반영하도록 변경 요청",
+      "scope": "제조 역량의 조건부 반영 승인. 개별 회사나 제품의 우월성 검증 완료를 뜻하지 않음."
+    },
+    "verification_policy": {
+      "allowed_verifiers": [
+        "verified_by_automation",
+        "verified_by_owner"
+      ],
+      "normal_official_evidence": "AI 원문·범위 검증 가능; 반복 owner 승인 요구 안 함",
+      "owner_history": "기존 owner 검증값 보존; AI가 owner_verified를 생성하지 않음",
+      "scope_conflict": "unresolved로 보류",
+      "missing_evidence": "검증된 선호로 승격하지 않음"
+    },
+    "implementation_status": "정책 개정 완료. 개별 제조 역량 원장과 실제 순위 변경은 아직 없으며 기존 이름 기반 점수는 0. 기존 MP-01은 역사적 의견 예시로만 보존."
+  },
+  "supersedes": "제조 역량 근거까지 QA 전용으로 제한하던 2026-08-26 정책. 기존 KB 사본은 역사적 문서로 보존.",
+  "does_not_establish": "특정 제조사·완제품의 우월성, 모든 제조사 동일한 실적, 실서비스 순위 변경·배포 완료"
+}

@@ -1,0 +1,486 @@
+{
+  "scope_id": "RAG-L1-20261124-v1",
+  "checked_at": "2026-11-24T21:56:37+09:00",
+  "verified_by": "verified_by_automation",
+  "work_items_closed": 82,
+  "work_items_total": 82,
+  "source_status": {
+    "acquired": 3,
+    "link_only": 16
+  },
+  "card_status": {
+    "partial": 48,
+    "verified": 2,
+    "policy_only": 11
+  },
+  "eligible_claims": 16,
+  "eligible_source_documents": 5,
+  "cards_with_one_or_more_eligible_claims": 21,
+  "excluded_records": 86,
+  "scenario_results": {
+    "limited": 24,
+    "policy": 39,
+    "conflict": 1
+  },
+  "scenario_count": 64,
+  "scenario_conflicts": [
+    "T20"
+  ],
+  "scenario_scope_only": [
+    "T15"
+  ],
+  "integrity": {
+    "duplicate_task_ids": 0,
+    "missing_task_ids": 0,
+    "dangling_card_or_claim_ids": 0,
+    "local_files_hash_checked": 30,
+    "local_file_hash_mismatches": 0,
+    "restricted_sources_promoted": 0
+  },
+  "areas": [
+    {
+      "area": "기본 세안",
+      "status": "partial",
+      "cards": [
+        "B-C01",
+        "B-C02",
+        "B-C03",
+        "B-C04",
+        "B-C05",
+        "B-C06"
+      ],
+      "reason": "일반 세안 AAD 자료의 서비스 권리 미확인. pH 연구는 적용 범위에 제한이 있다."
+    },
+    {
+      "area": "건조 관리",
+      "status": "partial",
+      "cards": [
+        "B-M01",
+        "B-M02",
+        "B-M03",
+        "B-I03"
+      ],
+      "reason": "보습 시점·제형의 일반 권고는 사용권 보류. 환자·소아 지침은 구분한다."
+    },
+    {
+      "area": "광보호",
+      "status": "partial",
+      "cards": [
+        "B-P01",
+        "B-P02",
+        "B-P03",
+        "B-P04",
+        "B-P05",
+        "B-P06",
+        "B-P07",
+        "B-P08",
+        "B-P09",
+        "B-I01",
+        "B-I02"
+      ],
+      "reason": "도포·재도포·열 노출은 사용 가능. 필터와 제조사 선호는 정책이며 분무형 표시의 판본 충돌이 있다."
+    },
+    {
+      "area": "새 제품 도입",
+      "status": "partial",
+      "cards": [
+        "B-G03",
+        "B-G11",
+        "B-G12"
+      ],
+      "reason": "제품 사용법 확인은 가능하다. 가정 소부위 시험에 대한 AAD 권리는 미확인이다."
+    },
+    {
+      "area": "사용 후 불편",
+      "status": "partial",
+      "cards": [
+        "B-B01",
+        "B-G07",
+        "B-H01",
+        "B-H02",
+        "B-I03"
+      ],
+      "reason": "특정 제품의 사용 중단·상담 권고는 가능하다. 증상으로 원인이나 질환을 확정하지 않는다."
+    },
+    {
+      "area": "병용",
+      "status": "partial",
+      "cards": [
+        "B-G04",
+        "B-G13",
+        "B-G14",
+        "B-G15",
+        "B-G18",
+        "B-I04"
+      ],
+      "reason": "별도 제품 중첩·시간대 조정은 정책이다. 제품별 FAQ와 의약품 라벨은 보편적 금기의 근거로 사용할 수 없다."
+    },
+    {
+      "area": "보관/위생",
+      "status": "partial",
+      "cards": [
+        "B-S01",
+        "B-S02",
+        "B-S03",
+        "B-S04",
+        "B-S05",
+        "B-S06",
+        "B-S07"
+      ],
+      "reason": "고온 회피·도구 청결·물 추가 회피는 사용 가능하다. 제품별 폐기 기한, 소분·리필, 면도날 교체는 별도 조건이 있다."
+    },
+    {
+      "area": "면도/손/접촉 관리",
+      "status": "partial",
+      "cards": [
+        "B-M04",
+        "B-M05",
+        "B-G01",
+        "B-G09",
+        "B-G10",
+        "B-L01",
+        "B-L02",
+        "B-L03"
+      ],
+      "reason": "사용 후 불편과 성분표 확인은 가능하다. 면도·손 관리 기관 문서에는 권리 및 대상 조건이 있다."
+    },
+    {
+      "area": "구매/회수",
+      "status": "partial",
+      "cards": [
+        "B-Q01",
+        "B-Q02",
+        "B-Q03",
+        "B-Q04",
+        "B-Q05",
+        "B-Q06"
+      ],
+      "reason": "회수 공지 확인 절차만 근거화했다. 국내 제품·로트 일치 여부와 개별 판매처 진위는 별도 확인한다."
+    }
+  ],
+  "reference_document_review": [
+    {
+      "file": "docs/RAG/후속_자료수집/원문/AAD_세안.html",
+      "sha256": "01313acea98f398acd844af4836b539f5146b86cafaebd30c1412c71da37c4a5",
+      "card_ids": [
+        "B-C01",
+        "B-C02",
+        "B-C03",
+        "B-C05",
+        "B-C06"
+      ],
+      "locator": "Face washing 101 / 세안 단계",
+      "scope": "손끝·미온수·비비지 않기, 땀을 흘린 경우. AAD 작성물 서비스 재사용 권리 미확인.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/AAD_보습제.html",
+      "sha256": "76fc409a3248e2d3b155fd6fc599a278af7034454a0188339077932df1267c00",
+      "card_ids": [
+        "B-M01",
+        "B-M02"
+      ],
+      "locator": "How to pick the right moisturizer for your skin",
+      "scope": "피부 부위·건조 정도별 제품 선택 및 보습. 제형별 효과의 개인 예측에 쓰지 않는다. AAD 권리 미확인.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/AAD_자외선차단_도포.html",
+      "sha256": "b05bc175a0b11337bc3f9819c909f69d5eb54b4936fd8eb136ccd702c8c7c7af",
+      "card_ids": [
+        "B-P02",
+        "B-P03"
+      ],
+      "locator": "How to apply sunscreen",
+      "scope": "도포와 야외 재도포의 AAD 참고. FDA 근거 단위와 중복해 효능을 계수하지 않는다.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/AAD_첩포검사.html",
+      "sha256": "34ff9563c8450ce29a391f1f7bb7d1059e931ed19f8dffa3152e0d9648be2980",
+      "card_ids": [
+        "B-G11"
+      ],
+      "locator": "Patch testing can find what’s causing your rash",
+      "scope": "의료진의 접촉 알레르기 검사 설명. 일반 제품 소부위 사용 시험과 목적·수행자가 다르다.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/FDA_화장품_이상반응과_신고.html",
+      "sha256": "5c0c2c008165b15f5335e7aa47ed73e94bd5bbec7890b56eac7c88b8f08cd331",
+      "card_ids": [
+        "B-B01",
+        "B-G07",
+        "B-M04",
+        "B-M05"
+      ],
+      "locator": "How to Report a Cosmetic Product Related Complaint / 도입",
+      "scope": "이상반응 때 중단·상담에 한정한다. 미국 신고 절차와 국내 절차를 구별한다.",
+      "eligible_evidence_ids": [
+        "L1-REACTION"
+      ],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/FDA_화장품_알레르겐_소비자안내.html",
+      "sha256": "aa9564f9e0879caf69edae3983ec0626d3f84d86aa7d74a0f2d0722c97c037c8",
+      "card_ids": [
+        "B-G01",
+        "B-G03",
+        "B-G16",
+        "B-G17",
+        "B-M04"
+      ],
+      "locator": "What Consumers Can Do",
+      "scope": "성분표 확인·개인 알레르겐 회피·사용지시. 미국 안내를 한국 법령에 대입하지 않는다.",
+      "eligible_evidence_ids": [
+        "L1-ALLERGEN",
+        "L1-USELABEL"
+      ],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/NHS_접촉피부염_증상_도움이필요한경우.html",
+      "sha256": "341559542d1ea8d6d34bee04b7783582ae4ab01034fb808d0ffecfb46a2637ea",
+      "card_ids": [
+        "B-G07",
+        "B-B01"
+      ],
+      "locator": "Symptoms / Symptoms of infection",
+      "scope": "접촉피부염 질환 안내의 악화·도움 요청 문맥. 자가 진단·중증도 판정에 사용할 수 없다.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/WHO_자외선노출_피부암예방_QA.html",
+      "sha256": "9b46419af10da9f9d1997a2b5cbe203a39739796d070f4b8f37acfeed420480f",
+      "card_ids": [
+        "B-P01",
+        "B-P03",
+        "B-P04"
+      ],
+      "locator": "Radiation: Protecting against skin cancer / 개인 보호",
+      "scope": "WHO의 SPF 30과 다른 기관의 수치를 출처별로 유지한다. 개인별 선량·차단율 추정 제외.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/CDC_자외선안전_기초안내.html",
+      "sha256": "fcfd588216ba761e655c747c4b742fa125bb37d97b73ce907c238bd2ec171862",
+      "card_ids": [
+        "B-P01",
+        "B-P03",
+        "B-P04"
+      ],
+      "locator": "How to protect your skin from the sun",
+      "scope": "CDC의 SPF 15와 야외 광보호 안내. WHO 수치와 평균하지 않는다. 카드의 FDA 본문과 별도 집계하지 않는다.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/NICE_NG198_지침.pdf",
+      "sha256": "329a6090fa40bbb02f14df105e8bb5b096721abd31f21721ca6ae7a82fec6fd3",
+      "card_ids": [
+        "B-C04",
+        "B-C05"
+      ],
+      "locator": "NG198 / 1.2 Skin care advice",
+      "scope": "진단받은 환자의 세정 조언. 일상 세안 전체의 pH 우월성 판정은 범위 밖이다.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/NICE_NG198_스킨케어_근거검토_B.pdf",
+      "sha256": "e7b06c952b32b175c6fde7547564b8f61b169dc32bb3f81b0550a86b71c5dfb1",
+      "card_ids": [
+        "B-C04",
+        "B-C05"
+      ],
+      "locator": "Evidence review B / PDF 7~11쪽",
+      "scope": "진단받은 환자의 시험 3건, 복합 제형 비교와 제한된 근거 품질. 일반 사용자 pH 단일효과 미검증.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/AAAAI_ACAAI_2023_아토피피부염_진료지침.pdf",
+      "sha256": "bd3c8ae3976c7cb5090a3d3ed2d527ebcdcb879f830b80f7ef3f480968053334",
+      "card_ids": [
+        "B-M01",
+        "B-M02",
+        "B-G01"
+      ],
+      "locator": "권고 1·2 / PDF 11~13쪽",
+      "scope": "아토피피부염 환자 대상 2023 지침. CC BY-NC-ND 4.0, 제품 추천에 상업 재사용 보류.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/NICE_CG57_2023_소아목욕보습_근거검토_A.pdf",
+      "sha256": "461b3297fc61f90381adc762921e39183915100465bd228e84fd1f4c8a830189",
+      "card_ids": [
+        "B-M01",
+        "B-M02"
+      ],
+      "locator": "Evidence review A / 12세 미만 아토피피부염 목욕 첨가제",
+      "scope": "소아 질환의 목욕 첨가제 비교다. 일반 성인의 바르는 보습제 감량으로 전환할 수 없다.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    },
+    {
+      "file": "docs/RAG/후속_자료수집/원문/AAD_아토피_지침.html",
+      "sha256": "01b152ab994c017ed979e84bac3ef1a50342b71f8b64fe7314f3ba70a09669b1",
+      "card_ids": [
+        "B-M01",
+        "B-M02"
+      ],
+      "locator": "Atopic dermatitis clinical guideline / topical therapy",
+      "scope": "AAD 성인 아토피 지침 소개 페이지다. 학술지 지침 전문 또는 모든 성인 보습 연구로 세지 않는다.",
+      "eligible_evidence_ids": [],
+      "whole_document_eligible": false
+    }
+  ],
+  "aad_candidates_checked": [
+    "AAD-CLEANSING-01",
+    "AAD-CLEANSING-02",
+    "AAD-MOISTURE-01",
+    "AAD-MOISTURE-02",
+    "AAD-SUN-01",
+    "AAD-SUN-02",
+    "AAD-PATCH-01"
+  ],
+  "manufacturer_records_checked": [
+    "VC-PAIR-1",
+    "VC-PAIR-2",
+    "VC-PAIR-3"
+  ],
+  "files_sha256": {
+    "docs/RAG/1계층_준비/원문/FDA_S06_화장품_사용기간.html": "7758e73802eb8ef0ab41fd28e9b3253945b03a3f87f5b1dbcaeeb94824ffb0e7",
+    "docs/RAG/1계층_준비/원문/FDA_S27_화장품_미생물_안전.html": "9560607e20d30ba81c93fdb5378d6bf35c2c6545417e1f5551b29ef46707d829",
+    "docs/RAG/1계층_준비/원문/FDA_S05_선크림_사용보관.html": "2400cb6e5706074f9df8999fa167754818601cd8ebe233373562de6805361bea",
+    "docs/RAG/후속_자료수집/원문/FDA_화장품_알레르겐_소비자안내.html": "aa9564f9e0879caf69edae3983ec0626d3f84d86aa7d74a0f2d0722c97c037c8",
+    "docs/RAG/후속_자료수집/원문/FDA_화장품_이상반응과_신고.html": "5c0c2c008165b15f5335e7aa47ed73e94bd5bbec7890b56eac7c88b8f08cd331",
+    "docs/RAG/후속_자료수집/원문/AAD_세안.html": "01313acea98f398acd844af4836b539f5146b86cafaebd30c1412c71da37c4a5",
+    "docs/RAG/후속_자료수집/원문/AAD_보습제.html": "76fc409a3248e2d3b155fd6fc599a278af7034454a0188339077932df1267c00",
+    "docs/RAG/후속_자료수집/원문/AAD_자외선차단_도포.html": "b05bc175a0b11337bc3f9819c909f69d5eb54b4936fd8eb136ccd702c8c7c7af",
+    "docs/RAG/후속_자료수집/원문/AAD_첩포검사.html": "34ff9563c8450ce29a391f1f7bb7d1059e931ed19f8dffa3152e0d9648be2980",
+    "docs/RAG/후속_자료수집/원문/NHS_접촉피부염_증상_도움이필요한경우.html": "341559542d1ea8d6d34bee04b7783582ae4ab01034fb808d0ffecfb46a2637ea",
+    "docs/RAG/후속_자료수집/원문/WHO_자외선노출_피부암예방_QA.html": "9b46419af10da9f9d1997a2b5cbe203a39739796d070f4b8f37acfeed420480f",
+    "docs/RAG/후속_자료수집/원문/CDC_자외선안전_기초안내.html": "fcfd588216ba761e655c747c4b742fa125bb37d97b73ce907c238bd2ec171862",
+    "docs/RAG/후속_자료수집/원문/NICE_NG198_지침.pdf": "329a6090fa40bbb02f14df105e8bb5b096721abd31f21721ca6ae7a82fec6fd3",
+    "docs/RAG/후속_자료수집/원문/NICE_NG198_스킨케어_근거검토_B.pdf": "e7b06c952b32b175c6fde7547564b8f61b169dc32bb3f81b0550a86b71c5dfb1",
+    "docs/RAG/후속_자료수집/원문/AAAAI_ACAAI_2023_아토피피부염_진료지침.pdf": "bd3c8ae3976c7cb5090a3d3ed2d527ebcdcb879f830b80f7ef3f480968053334",
+    "docs/RAG/후속_자료수집/원문/NICE_CG57_2023_소아목욕보습_근거검토_A.pdf": "461b3297fc61f90381adc762921e39183915100465bd228e84fd1f4c8a830189",
+    "docs/RAG/후속_자료수집/원문/AAD_아토피_지침.html": "01b152ab994c017ed979e84bac3ef1a50342b71f8b64fe7314f3ba70a09669b1",
+    "docs/RAG/기존자료/KB/Poppy_KB_v0.6.2/Poppy_KB_seed_v0.6.2.json": "9460048519930f62dccb0143ea4ba061cf903a71096703ee12ca78e473b44a8d",
+    "docs/RAG/병용_사용정책/비타민C_병용_근거.jsonl": "4f08b56af75031b83b3485b77e30d7c4912ce9a1e225498382344a3bd9733da5",
+    "skin_engine/config/manufacturing_evidence.json": "e2dd9ee4e900ce81b2c5207354bbf0d50447a0312d61fbc973f0ab8f262e3c2f",
+    "docs/RAG/후속_자료수집/Hawkins_2021_세정_pH_출판사본문_검토.md": "7f1184434b29baf6ab610c205053e041666c83d33fe0848665228e3577f20ad2",
+    "docs/RAG/후속_자료수집/원문/Bennett-Kennett_2023_피부감각_EuropePMC_JATS.xml": "e21099de3c46f9a33e723ef361b625d6d8e5e4ba70ff0b5e20fbb81b0c79d08b",
+    "docs/RAG/텍스트추출/기존자료/KB/붙임_화장품 위해평가 가이드라인(2016.11).txt": "18c74c6d9ca422c8304682192cea221da229e84a1a26014e1200549d49a0fd86",
+    "docs/RAG/후속_자료수집/원문/Chen_2020_선크림제거_EuropePMC_서지초록.json": "c434e04190935e54ecbd6a761c3914565268b2abdad79a2772a0b7df4ce21599",
+    "docs/RAG/기존자료/KB/Poppy_KB_v0.6.2/B-I01-removal-v1.json": "8e1d30619979c4c755b322081e617a66b425422bc087de4a8c06ddc2bd678a10",
+    "docs/RAG/기존자료/KB/reviews/KB_v0.6.2_외부근거_전수대조_20261123.md": "491f22884d596300accdaa9601f2372606d7b12e07553ccf870460cbb65c8d03",
+    "docs/RAG/식약처/법령자료/화장품_주의사항_알레르기_2026-56.pdf": "c9c9c4e0705b7623696e597fe87276fa638e6de1d64717ca2958a9bec44ee025",
+    "docs/RAG/후속_자료수집/식약처_2026-56_주의사항_고시_파일표기_대조.md": "040640cdd6d11efce6d07271329ce6c8394f15ada8ec8fcd7e11fb479f679fa0",
+    "docs/RAG/후속_자료수집/AAD_일상루틴_검색용_근거단위.jsonl": "1178ed76e20d7c4bbed599a6da86fa815af84fee7cad8d87e63920f4402703ae",
+    "docs/RAG/1계층_준비/고정_작업목록.jsonl": "0b3cbaedcf40a8f3e05c141345b8a78e2b91faca7915fc694b86d20b4d0cfc62"
+  },
+  "deliverables": {
+    "원문_작업결과.jsonl": "56ff1d52ef90a3eeeacda8aa2a278b0b18f80fc62866d5cbc08228ebaff19452",
+    "관리권고_근거.jsonl": "d13f741cf38077fabdf55aff39c5d4927985c34223dd9eed3ca33cacf9879dd6",
+    "카드별_근거연결.jsonl": "cc1540db5b852313d1887fb232865aa9afd18f0cee1277a29c233951727315e4",
+    "사용제한_미확보.jsonl": "40531fb23f56f68849647c7175a9e94f49bb031d51dbd942cbb26901ef7c3969",
+    "시나리오_검수.jsonl": "304243d1d5f43f0cfa5bca9dc3b40b356d77a3f2a6aece32e58eacbb2aecac9b",
+    "식약처_표시조건_부분대조.jsonl": "ed07622c3fd687bdfb6b688743e07a63849555bfa929871cedf1483cbf4aff8c",
+    "제조역량_정책개정.json": "04aae1947d08c5a17c6dfde4eace598ab7f05be7239af8797089416b2fb6ba6a"
+  },
+  "task_outcomes": {
+    "L1-S04": "acquired",
+    "L1-S05": "acquired",
+    "L1-S01": "link_only",
+    "L1-S02": "link_only",
+    "L1-S03": "link_only",
+    "L1-S06": "acquired",
+    "L1-S07": "link_only",
+    "L1-S08": "link_only",
+    "L1-S09": "link_only",
+    "L1-S10": "link_only",
+    "L1-S11": "link_only",
+    "L1-S12": "link_only",
+    "L1-S13": "link_only",
+    "L1-S14": "link_only",
+    "L1-S15": "link_only",
+    "L1-S16": "link_only",
+    "L1-S17": "link_only",
+    "L1-S18": "link_only",
+    "L1-S19": "link_only",
+    "L1-C-B-S01": "partial",
+    "L1-C-B-S02": "verified",
+    "L1-C-B-S03": "partial",
+    "L1-C-B-S04": "partial",
+    "L1-C-B-M04": "partial",
+    "L1-C-B-G09": "partial",
+    "L1-C-B-G10": "partial",
+    "L1-C-B-S06": "partial",
+    "L1-C-B-L01": "partial",
+    "L1-C-B-L02": "partial",
+    "L1-C-B-L03": "partial",
+    "L1-C-B-Q02": "partial",
+    "L1-C-B-Q04": "partial",
+    "L1-C-B-Q06": "partial",
+    "L1-C-B-C05": "partial",
+    "L1-C-B-C01": "partial",
+    "L1-C-B-C02": "partial",
+    "L1-C-B-C03": "partial",
+    "L1-C-B-C06": "partial",
+    "L1-C-B-M01": "partial",
+    "L1-C-B-M02": "partial",
+    "L1-C-B-P01": "partial",
+    "L1-C-B-P02": "partial",
+    "L1-C-B-P03": "partial",
+    "L1-C-B-P04": "partial",
+    "L1-C-B-P06": "partial",
+    "L1-C-B-P08": "partial",
+    "L1-C-B-M05": "partial",
+    "L1-C-B-G01": "partial",
+    "L1-C-B-B01": "partial",
+    "L1-C-B-G05": "partial",
+    "L1-C-B-G11": "partial",
+    "L1-C-B-G13": "partial",
+    "L1-C-B-G14": "partial",
+    "L1-C-B-G15": "partial",
+    "L1-C-B-G03": "verified",
+    "L1-C-B-G07": "partial",
+    "L1-C-B-S07": "partial",
+    "L1-C-B-Q05": "partial",
+    "L1-C-B-I04": "partial",
+    "L1-C-B-G18": "partial",
+    "L1-C-B-M03": "policy_only",
+    "L1-C-B-P05": "policy_only",
+    "L1-C-B-P07": "policy_only",
+    "L1-C-B-G04": "policy_only",
+    "L1-C-B-G06": "policy_only",
+    "L1-C-B-G08": "policy_only",
+    "L1-C-B-I03": "policy_only",
+    "L1-C-B-Q01": "policy_only",
+    "L1-C-B-Q03": "policy_only",
+    "L1-C-B-G12": "policy_only",
+    "L1-C-B-H02": "policy_only",
+    "L1-C-B-C04": "partial",
+    "L1-C-B-G02": "partial",
+    "L1-C-B-I01": "partial",
+    "L1-C-B-I02": "partial",
+    "L1-C-B-G16": "partial",
+    "L1-C-B-G17": "partial",
+    "L1-C-B-P09": "partial",
+    "L1-C-B-H01": "partial",
+    "L1-C-B-S05": "partial",
+    "L1-I01": "completed",
+    "L1-V01": "completed"
+  },
+  "limits": "원문 수집·권리·명세 검수 결과. 카드 전체, 임상 효과, 실시간 회수 정보, 앱 동작 또는 배포 승인과 구분한다."
+}
