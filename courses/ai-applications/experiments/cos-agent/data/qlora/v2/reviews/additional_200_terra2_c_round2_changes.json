@@ -1,0 +1,2743 @@
+{
+  "mode": "development_preview",
+  "production_enabled": false,
+  "human_review": "unreviewed",
+  "independent_reaudit": "pending",
+  "original_input_backup": "c_before_round2_inputs.json",
+  "original_answer_backup": "c_before_round2_answers.json",
+  "intermediate_backup": "c_round2_intermediate_inputs.json / c_round2_intermediate_answers.json",
+  "fail_rows_addressed": 43,
+  "additional_family_rows": 5,
+  "entries": [
+    {
+      "id": "syn-hold-0184",
+      "critic_issue": "냄새와 색 변화 보류 자체는 타당하지만 B-S04 기존 0003과 실질적 차이가 작고 전혀 다른 B-B01 사례 0002를 가장 가깝다고 지정했어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-hold-0002"
+          ],
+          "after": [
+            "syn-hold-0003"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0184",
+          "after": "pilot37-group-syn-hold-0003"
+        },
+        "novelty_note": {
+          "before": "색과 냄새 모두 새로 변했고 분리는 미확인이에요.",
+          "after": "색과 냄새 모두 새로 변했고 분리는 미확인이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0184",
+          "after": "pilot37-family-syn-hold-0003"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0185",
+      "critic_issue": "층 분리와 정상 제형 지침 미상은 B-S04 기존 0006과 핵심 조건이 같으나 서로 다른 가족이며 부적절하게 B-B01 0002를 가장 가깝다고 지정했어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-hold-0002"
+          ],
+          "after": [
+            "syn-hold-0006"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0185",
+          "after": "pilot37-group-syn-hold-0006"
+        },
+        "novelty_note": {
+          "before": "분리가 새로 생겼으며 정상 분리 지침은 미확인이에요.",
+          "after": "분리가 새로 생겼으며 정상 분리 지침은 미확인이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0185",
+          "after": "pilot37-family-syn-hold-0006"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0186",
+      "critic_issue": "새 냄새와 감량 지속 고려는 기존 0047의 새 냄새·감량 요청과 밀접하지만 다른 가족이고 관련 없는 0002를 가장 가깝다고 지정했어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-hold-0002"
+          ],
+          "after": [
+            "syn-hold-0047"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0186",
+          "after": "terra-b-group-syn-hold-0047"
+        },
+        "novelty_note": {
+          "before": "새 냄새와 미실행 감량 계획을 구분해요.",
+          "after": "새 냄새와 미실행 감량 계획을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0186",
+          "after": "terra-b-family-syn-hold-0047"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0187",
+      "critic_issue": "원문에서 A에만 냄새가 난다고 하면서 B는 보지 않았다고 해 B의 상태 미상과 충돌해요. 기존 두 용기·한 용기 변화·다른 용기 미확인 0149도 관련 후보인데 0002를 지정했어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "storage.sensory_change",
+              "raw_span": "같은 제품 A와 B 중 A에만 이전에 없던 냄새가 나요.",
+              "connection": "확인된 품질 변화는 용기 A에 연결돼요."
+            },
+            {
+              "variable_id": "storage.instance_id",
+              "raw_span": "지금 확인하는 용기는 A예요.",
+              "connection": "대상 용기 A를 명시해요."
+            },
+            {
+              "variable_id": "product.identity",
+              "raw_span": "B의 상태는 아직 살펴보지 않았어요.",
+              "connection": "B에 대한 품질은 미상이므로 A의 판단을 이전하지 않아요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "storage.sensory_change",
+              "raw_span": "같은 제품 A와 B 중 확인한 A에서 이전에 없던 냄새가 나요.",
+              "connection": "확인된 품질 변화는 용기 A에 연결돼요."
+            },
+            {
+              "variable_id": "storage.instance_id",
+              "raw_span": "지금 확인하는 용기는 A예요.",
+              "connection": "대상 용기 A를 명시해요."
+            },
+            {
+              "variable_id": "product.identity",
+              "raw_span": "B의 상태는 아직 살펴보지 않았어요.",
+              "connection": "B에 대한 품질은 미상이므로 A의 판단을 이전하지 않아요."
+            }
+          ]
+        },
+        "closest_existing_ids": {
+          "before": [
+            "syn-hold-0002"
+          ],
+          "after": [
+            "syn-hold-0149"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0187",
+          "after": "terra-b-group-syn-hold-0049"
+        },
+        "novelty_note": {
+          "before": "두 용기 중 확인된 A에만 품질 변화를 연결해요.",
+          "after": "두 용기 중 확인된 A에만 품질 변화를 연결해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0187",
+          "after": "terra-b-family-syn-hold-0049"
+        },
+        "scenario_raw": {
+          "before": "같은 제품 A와 B 중 A에만 이전에 없던 냄새가 나요. 지금 확인하는 용기는 A예요. B의 상태는 아직 살펴보지 않았어요.",
+          "after": "같은 제품 A와 B 중 확인한 A에서 이전에 없던 냄새가 나요. 지금 확인하는 용기는 A예요. B의 상태는 아직 살펴보지 않았어요."
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0188",
+      "critic_issue": "새 층 분리 후 사용은 B-S04 보류 근거가 되지만 분리 관련 기존 0006과 같은 가족이 아니고 B-B01 0002를 가장 가깝게 지정했어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-hold-0002"
+          ],
+          "after": [
+            "syn-hold-0006"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0188",
+          "after": "pilot37-group-syn-hold-0006"
+        },
+        "novelty_note": {
+          "before": "품질 변화 후 사용 이력이 있어도 원인이나 결과는 단정하지 않아요.",
+          "after": "품질 변화 후 사용 이력이 있어도 원인이나 결과는 단정하지 않아요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0188",
+          "after": "pilot37-family-syn-hold-0006"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0189",
+      "critic_issue": "기한이 남아도 새 분리는 보류 근거이나 기존 0138·0147의 기한 내 품질 변화와 밀접한 val 가족을 피하고 train의 독립 가족으로 뒀어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-hold-0002"
+          ],
+          "after": [
+            "syn-hold-0138"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0189",
+          "after": "terra-b-group-syn-sol-0150"
+        },
+        "novelty_note": {
+          "before": "기한 유효와 새 분리를 동시에 확인해요.",
+          "after": "기한 유효와 새 분리를 동시에 확인해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0189",
+          "after": "terra-b-family-syn-sol-0150"
+        },
+        "split": {
+          "before": "train",
+          "after": "val_internal"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0190",
+      "critic_issue": "새 냄새와 사용 중단·대체 요청은 보류에 부합하나 동일 새 냄새를 다룬 기존 B-S04 0036 대신 B-B01 0002를 지정해 기존 유사 사례 대조가 부정확해요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-hold-0002"
+          ],
+          "after": [
+            "syn-hold-0036"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0190",
+          "after": "terra-a-group-syn-hold-0036"
+        },
+        "novelty_note": {
+          "before": "사용 중단 후 대체 제품 요청에도 일반 추천을 보류해요.",
+          "after": "사용 중단 후 대체 제품 요청에도 일반 추천을 보류해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0190",
+          "after": "terra-a-hold-family-0036"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0191",
+      "critic_issue": "본인 지속 불편과 친구의 눈 통증 부정을 분리한 점은 정확하나 기존 0001의 동일 얼굴 지속불편에 타인의 무관한 부정만 추가한 별도 가족이에요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0191",
+          "after": "luna-v3-origin-025"
+        },
+        "novelty_note": {
+          "before": "친구의 통증 부정과 본인 지속 불편을 구분해요.",
+          "after": "친구의 통증 부정과 본인 지속 불편을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0191",
+          "after": "luna-v3-origin-025"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0192",
+      "critic_issue": "원인 제품이 무엇인지 모른다는 말은 제품의 신원 자체를 모른다는 뜻이 아닌데 product.identity unknown으로 변환했어요. 또한 기존 얼굴 지속불편 사례 0001과 별도 가족이에요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "skin.current_discomfort",
+              "raw_span": "얼굴 불편감이 계속되고 있어요.",
+              "connection": "현재 지속 불편을 확인해요."
+            },
+            {
+              "variable_id": "product.identity",
+              "raw_span": "어떤 제품 때문인지는 모르겠어요.",
+              "connection": "원인이 되는 제품은 미상이에요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "skin.current_discomfort",
+              "raw_span": "얼굴 불편감이 계속되고 있어요.",
+              "connection": "현재 지속 불편을 확인해요."
+            },
+            {
+              "variable_id": "skin.distribution",
+              "raw_span": "어떤 제품 때문인지는 모르겠어요.",
+              "connection": "제품의 정체가 아니라 불편의 원인이 된 제품이 미상이에요."
+            }
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0192",
+          "after": "luna-v3-origin-025"
+        },
+        "input_sha256": {
+          "before": "02d609f36a99cf8b9d4d57106147900debd658a4237a54b75bdb98bb9c80f5d2",
+          "after": "dd3179104ca6ad1d99af49912a4d07f409aa21193e4dff6a5e07ad37fabe896a"
+        },
+        "novelty_note": {
+          "before": "지속 불편과 원인 제품의 미상을 구분해요.",
+          "after": "지속 불편과 원인 제품의 미상을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "request": {
+          "before": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "skin.current_discomfort": {
+                "variable_id": "skin.current_discomfort",
+                "state": "known",
+                "value": "persistent",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.identity": {
+                "variable_id": "product.identity",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-B01",
+                "status": "hold",
+                "guidance": "지속 불편의 원인 제품은 미상이므로 원인을 단정하지 않고 개별 권고를 보류해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-B01@0.6.1"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "skin.current_discomfort": {
+                "variable_id": "skin.current_discomfort",
+                "state": "known",
+                "value": "persistent",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "skin.distribution": {
+                "variable_id": "skin.distribution",
+                "state": "known",
+                "value": {
+                  "product_cause_unknown": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-B01",
+                "status": "hold",
+                "guidance": "지속 불편의 원인 제품은 미상이므로 원인을 단정하지 않고 개별 권고를 보류해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-B01@0.6.1"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0192",
+          "after": "luna-v3-origin-025"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0193",
+      "critic_issue": "지속 불편과 재도포 미상 분리는 정확하지만 기존 0001의 얼굴 지속 불편에 재도포 미상만 추가한 사례를 별도 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0193",
+          "after": "luna-v3-origin-025"
+        },
+        "novelty_note": {
+          "before": "지속 불편과 별도 행동의 미상을 구분해요.",
+          "after": "지속 불편과 별도 행동의 미상을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0193",
+          "after": "luna-v3-origin-025"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0194",
+      "critic_issue": "본인 지속 불편과 친구의 편안함은 구분했지만 0191의 타인 눈 상태 대비와 실질적으로 같은 변형인데 별도 가족이에요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0194",
+          "after": "luna-v3-origin-025"
+        },
+        "novelty_note": {
+          "before": "타인의 호전 주장과 본인의 지속 불편을 분리해요.",
+          "after": "타인의 호전 주장과 본인의 지속 불편을 분리해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0194",
+          "after": "luna-v3-origin-025"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0195",
+      "critic_issue": "통증 부정이 지속 불편을 취소하지 않는 판단은 정확하나 기존 0001의 같은 지속 얼굴 불편에 통증 부정만 덧붙인 별도 가족이에요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0195",
+          "after": "luna-v3-origin-025"
+        },
+        "novelty_note": {
+          "before": "통증 없음과 지속 불편을 분리해요.",
+          "after": "통증 없음과 지속 불편을 분리해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0195",
+          "after": "luna-v3-origin-025"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0196",
+      "critic_issue": "새 제품 구매 계획과 실행을 구분했으나 같은 200건 중 0168의 지속 불편·신규 선택 요청과 같은 가족이 아니고 실질 차이가 작아요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0196",
+          "after": "terra200v2-family-syn-hold-0168"
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0196",
+          "after": "terra200v2-family-syn-hold-0168"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0197",
+      "critic_issue": "지속 얼굴 불편과 보관 이력 미상은 분리했으나 0192·0193의 지속 불편에 관련성 미상 정보를 바꿔 붙인 반복이며 가족도 달라요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0197",
+          "after": "luna-v3-origin-025"
+        },
+        "novelty_note": {
+          "before": "지속 불편과 보관 이력 미상을 구분해요.",
+          "after": "지속 불편과 보관 이력 미상을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0197",
+          "after": "luna-v3-origin-025"
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0198",
+      "critic_issue": "친구의 손 증상을 본인에게 옮기지 않았으나 0191·0194의 본인 지속 불편과 타인 증상 대비를 주체 부위만 바꾼 유사 변형으로 별도 가족이에요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-hold-0198",
+          "after": "luna-v3-origin-025"
+        },
+        "novelty_note": {
+          "before": "증상 부위와 주체가 다른 두 사람의 관찰을 구분해요.",
+          "after": "증상 부위와 주체가 다른 두 사람의 관찰을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-hold-0198",
+          "after": "luna-v3-origin-025"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0604",
+      "critic_issue": "수영·수건과 이후 노출은 확인돼 P03 차이는 성립하지만 0065의 동일한 상황에서 재도포 여부만 반전된 대응 변형인데 가족 ID가 서로 달라요. S05 청크는 노출 관련 도포·재도포의 일반 논의만 있고 수영이나 수건 접촉을 언급하지 않아요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n수영 후 닦고도 야외에 머무는 동안 다시 바르지 않았어요. 다음에는 제품 지침을 확인해 물 접촉과 닦임 이후의 재도포를 고려해 주세요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n수영과 수건 접촉은 보호를 다시 살펴볼 계기예요 [ref:S05].\n\n### 확인이 필요한 한계\n실제 남은 보호 수준은 측정되지 않았고 제품별 지침도 제공되지 않았어요.",
+          "after": "### 핵심 안내\n수영 후 닦고도 야외에 머무는 동안 다시 바르지 않았어요. 다음에는 제품 지침을 확인해 물 접촉과 닦임 이후의 재도포를 고려해 주세요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n수영과 수건 접촉 뒤에도 노출이 이어진 실제 상황을 함께 살펴요 [kb:B-P03@0.6.1].\n\n### 확인이 필요한 한계\n실제 남은 보호 수준은 측정되지 않았고 제품별 지침도 제공되지 않았어요."
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0604",
+          "after": "add100-b-group-reapplication-context"
+        },
+        "novelty_note": {
+          "before": "수영과 수건 접촉은 비슷하지만 이후 재도포하지 않은 반대 행동이에요.",
+          "after": "수영과 수건 접촉은 비슷하지만 이후 재도포하지 않은 반대 행동이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0604",
+          "after": "add100-b-family-reapplication-context"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0605",
+      "critic_issue": "실내 이동 뒤 야외 재노출 없음과 재도포 미상은 구분했지만 0005의 발한·재도포 가족과 밀접한 대비 변형을 별도 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0605",
+          "after": "pilot37-group-syn-sol-0005"
+        },
+        "novelty_note": {
+          "before": "발한 뒤 실제 노출 종료와 재도포 미상을 따로 확인해요.",
+          "after": "발한 뒤 실제 노출 종료와 재도포 미상을 따로 확인해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0605",
+          "after": "pilot37-family-syn-sol-0005"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0606",
+      "critic_issue": "긴 노출과 심한 발한, 재도포 미상은 P03 unknown을 지지하지만 0005의 발한·재도포 행동 대비 변형을 별도 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0606",
+          "after": "pilot37-group-syn-sol-0005"
+        },
+        "novelty_note": {
+          "before": "같은 발한 상황에서 재도포를 하지 않았다는 사실 대신 행동 미상이에요.",
+          "after": "같은 발한 상황에서 재도포를 하지 않았다는 사실 대신 행동 미상이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0606",
+          "after": "pilot37-family-syn-sol-0005"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0607",
+      "critic_issue": "발한 때 표시대로 재도포한 사실은 aligned를 지지하지만 0005의 동일한 발한·재도포 조건 반전 변형이 별도 가족이에요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0607",
+          "after": "pilot37-group-syn-sol-0005"
+        },
+        "novelty_note": {
+          "before": "심한 발한 후 재도포하지 않은 사례와 달리 재도포 실행을 확인해요.",
+          "after": "심한 발한 후 재도포하지 않은 사례와 달리 재도포 실행을 확인해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0607",
+          "after": "pilot37-family-syn-sol-0005"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0608",
+      "critic_issue": "장시간에 가능한 그늘·모자를 모두 배제해 P04 차이는 성립하나 0063의 그늘 배제 사례에 모자만 추가한 유사 변형을 별도 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0608",
+          "after": "add100-b-group-feasible-nonproduct-protection"
+        },
+        "novelty_note": {
+          "before": "그늘뿐 아니라 모자도 이용 가능하지만 둘 다 배제한 상황이에요.",
+          "after": "그늘뿐 아니라 모자도 이용 가능하지만 둘 다 배제한 상황이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0608",
+          "after": "add100-b-family-feasible-nonproduct-protection"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0609",
+      "critic_issue": "근무복 제약과 휴식 시 그늘 실제 사용은 aligned를 지지하나 0071의 같은 제약·가능성에 실제 사용만 덧붙인 대응 변형을 다른 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0609",
+          "after": "add100-b-group-feasible-nonproduct-protection"
+        },
+        "novelty_note": {
+          "before": "그늘의 이용 가능성뿐 아니라 실제 이용까지 확인해요.",
+          "after": "그늘의 이용 가능성뿐 아니라 실제 이용까지 확인해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0609",
+          "after": "add100-b-family-feasible-nonproduct-protection"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0611",
+      "critic_issue": "뜨거운 차에 자주 둔 관찰은 있으나 0021의 같은 열·온도 미상·지시 미상 사례에 반복만 추가했으며 별도 가족이에요. 온도·기간 미상 예외 적용도 재검토가 필요해요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n뜨거운 차 안에 제품을 반복해 둔 보관 방식을 바꾸고 해당 제품의 보관 지침을 확인해 주세요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n열은 보관 수명에 영향을 줄 수 있어요 [ref:S06]. 실제 온도와 시간은 알 수 없으므로 정확한 영향을 계산할 수 없어요.\n\n### 확인이 필요한 한계\n보관 이력만으로 제품의 현재 안정성이나 기능 손실을 확정하지 않아요.",
+          "after": "### 핵심 안내\n뜨거운 차에 자주 두었던 이력을 확인하고 앞으로는 해당 제품의 보관 지침을 살펴주세요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n열은 화장품 보관에 영향을 줄 수 있어요 [ref:S06]. 과거 노출의 실제 온도와 시간은 미상이어서 이력의 예외를 따로 고려해요.\n\n### 확인이 필요한 한계\n이 정보만으로 현재 제품이 변질됐거나 기능이 사라졌다고 확정하지 않아요."
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0611",
+          "after": "add24-group-hot-car-storage-not-degradation"
+        },
+        "input_sha256": {
+          "before": "eab52f6b2f7d6cdb51e6c4d6b7c011bf969853922de0316612e173359ab30816",
+          "after": "e099d2f72cb125648caf09f91839529a5e357f2060086a0e13629f4a44c4fa9c"
+        },
+        "judgment_basis": {
+          "before": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "뜨거운 차 안에 반복적으로 보관했지만 실제 온도와 시간은 확인되지 않았어요."
+          },
+          "after": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "뜨거운 차 보관은 보고됐지만 과거 온도와 기간이 미상이므로 해당 이력의 예외 조건을 따로 고려해요."
+          }
+        },
+        "novelty_note": {
+          "before": "반복 보관을 추가로 확인하면서 실제 온도와 시간은 미상으로 남겨요.",
+          "after": "반복 보관을 추가로 확인하면서 실제 온도와 시간은 미상으로 남겨요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "hot_car_reported": true,
+                  "repeated": true,
+                  "measured_temperature": null,
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "difference",
+                "guidance": "뜨거운 차 안에 반복적으로 보관했지만 실제 온도와 시간은 확인되지 않았어요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "hot_car_reported": true,
+                  "repeated": true,
+                  "measured_temperature": null,
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "exception",
+                "guidance": "뜨거운 차 보관은 보고됐지만 과거 온도와 기간이 미상이므로 해당 이력의 예외 조건을 따로 고려해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0611",
+          "after": "add24-family-hot-car-storage-not-degradation"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0612",
+      "critic_issue": "운송 중 열 이력 미상과 현재 직사광선 회피의 슬롯이 기존 0051과 동일하고 별도 가족이에요. 실질 신규 조건이 없어요.",
+      "synthetic_replacement": true,
+      "replacement_reason": "기존 중복을 해소하기 위해 새 합성 판단 조건을 설계했으며 실제 사용자 사실을 수정한 것이 아니에요.",
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n지금처럼 직사광선을 피하는 보관은 계속할 수 있어요. 배송 중 열 노출은 미상이므로 과거에 문제가 있었다고 단정하지 않아요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n빛과 열은 보관 조건을 살필 때 고려하는 요소예요 [ref:S06].\n\n### 확인이 필요한 한계\n현재 빛을 피한다는 사실로 배송 당시 온도나 제품 안정성을 확인할 수는 없어요.",
+          "after": "### 핵심 안내\n용기를 계속 열어 두는 현재 보관을 재검토하고 제품 지침을 확인해 주세요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n현재 직사광선을 피하는 것과 용기를 열어 둔 행동은 별개예요. 제품 보관과 취급 상태를 함께 살펴봐요 [ref:S06].\n\n### 확인이 필요한 한계\n과거 배송 중 열 노출은 미상이며 현재 품질도 확정할 수 없어요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "storage.temperature_history",
+              "raw_span": "배송 중 열에 노출됐는지 몰라요.",
+              "connection": "과거 운송 열 노출을 미상으로 기록해요."
+            },
+            {
+              "variable_id": "storage.light_air",
+              "raw_span": "지금은 직사광선을 피해 보관해요.",
+              "connection": "현재 빛 회피가 과거 온도를 증명하지 않아요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "storage.temperature_history",
+              "raw_span": "배송 중 열에 노출됐는지 몰라요.",
+              "connection": "과거 운송 열 노출을 미상으로 기록해요."
+            },
+            {
+              "variable_id": "storage.light_air",
+              "raw_span": "지금은 직사광선을 피하지만 용기를 계속 열어 두어요.",
+              "connection": "현재 빛 회피가 과거 온도를 증명하지 않아요."
+            },
+            {
+              "variable_id": "storage.container",
+              "raw_span": "지금은 직사광선을 피하지만 용기를 계속 열어 두어요.",
+              "connection": "현재 열린 용기 상태를 실제 보고해요."
+            }
+          ]
+        },
+        "input_sha256": {
+          "before": "e1ba021375ee32437cde3b7fa7424ebe7fb1bb8fd85b9179ea6cfc3b2484db46",
+          "after": "1a28f44afcd82e2aa890de4e80f0a0fc85d92fab12f906dda53cfdab8776c05d"
+        },
+        "judgment_basis": {
+          "before": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "현재 빛을 피하고 있지만 운송 중 열 노출은 알 수 없어요."
+          },
+          "after": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "과거 운송 열 이력은 미상이지만 현재 용기를 계속 열어 둔 보관 상태는 확인돼요."
+          }
+        },
+        "novelty_note": {
+          "before": "과거 운송의 미상과 현재 빛 회피를 함께 구분해요.",
+          "after": "새 합성 대체 사례: 과거 운송 열 미상과 현재 열린 용기라는 별도 실제 행동을 함께 판단해요."
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "transport_history_unknown": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.light_air": {
+                "variable_id": "storage.light_air",
+                "state": "known",
+                "value": {
+                  "currently_away_from_sunlight": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "unknown",
+                "guidance": "현재 빛을 피하고 있지만 운송 중 열 노출은 알 수 없어요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              },
+              {
+                "evidence_ref": "ref:S12",
+                "text": "Diet has been examined in a small research study. Its findings concern the studied population and conditions.",
+                "scope": "non_clinical_only",
+                "source_url": "https://www.medicaljournals.se/acta/content/abstract/10.2340/00015555-1346",
+                "locator": "Abstract",
+                "checked_on": "2026-11-04",
+                "limitations": "특정 질환·식이패턴·기간의 소규모 연구. 한 번의 음식 섭취와 다음날 증상을 연결하거나 모든 피부 건조·민감 반응에 확장하지 않음."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": [
+              "ref:S12"
+            ]
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "transport_history_unknown": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.light_air": {
+                "variable_id": "storage.light_air",
+                "state": "known",
+                "value": {
+                  "currently_away_from_sunlight": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.container": {
+                "variable_id": "storage.container",
+                "state": "known",
+                "value": {
+                  "left_open": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "difference",
+                "guidance": "과거 운송 열 이력은 미상이지만 현재 용기를 계속 열어 둔 보관 상태는 확인돼요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              },
+              {
+                "evidence_ref": "ref:S12",
+                "text": "Diet has been examined in a small research study. Its findings concern the studied population and conditions.",
+                "scope": "non_clinical_only",
+                "source_url": "https://www.medicaljournals.se/acta/content/abstract/10.2340/00015555-1346",
+                "locator": "Abstract",
+                "checked_on": "2026-11-04",
+                "limitations": "특정 질환·식이패턴·기간의 소규모 연구. 한 번의 음식 섭취와 다음날 증상을 연결하거나 모든 피부 건조·민감 반응에 확장하지 않음."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": [
+              "ref:S12"
+            ]
+          }
+        },
+        "scenario_raw": {
+          "before": "배송 중 열에 노출됐는지 몰라요. 지금은 직사광선을 피해 보관해요.",
+          "after": "배송 중 열에 노출됐는지 몰라요. 지금은 직사광선을 피하지만 용기를 계속 열어 두어요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0615",
+      "critic_issue": "0052와 같은 제품 두 용기와 개봉 이력 미상이며 안내가 보인다는 사실은 기간값이나 연결을 추가하지 않아요. 같은 가족·val은 유지했으나 실질 신규 판단 조건이 부족해요.",
+      "synthetic_replacement": true,
+      "replacement_reason": "기존 중복을 해소하기 위해 새 합성 판단 조건을 설계했으며 실제 사용자 사실을 수정한 것이 아니에요.",
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\nA와 B 중 어느 용기를 먼저 열었는지 알 수 없으므로 개봉 후 기간이 맞는지 단정하지 않아요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n같은 제품이라도 용기마다 개봉 이력이 다를 수 있어 각 용기에 연결해 확인해야 해요. 표시와 보관 이력은 함께 살펴볼 정보예요 [ref:S06].\n\n### 확인이 필요한 한계\n안내가 보인다는 사실이 개봉일을 알려 주지는 않아요.",
+          "after": "### 핵심 안내\nA는 개봉일이 기억나지 않지만 B는 밀봉 상태라고 확인했어요. 두 용기의 이력을 따로 유지해 주세요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n동일 제품이라도 각 용기의 개봉 이력과 표시를 연결해 판단해요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\nA의 개봉일은 미상이며 B가 밀봉됐다는 사실만으로 현재 품질을 인증하지 않아요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "product.identity",
+              "raw_span": "같은 제품의 A와 B 두 용기가 있어요.",
+              "connection": "동일 제품의 별도 용기 두 개를 확인해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "두 용기의 개봉 후 안내는 보여요.",
+              "connection": "표시가 보인다는 사실만 확인해요."
+            },
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "어느 용기를 먼저 개봉했는지 몰라요.",
+              "connection": "용기별 개봉 순서는 미상이에요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "product.identity",
+              "raw_span": "같은 제품의 A와 B 두 용기가 있어요.",
+              "connection": "동일 제품의 별도 용기 두 개를 확인해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "두 용기의 개봉 후 안내는 보여요.",
+              "connection": "표시가 보인다는 사실만 확인해요."
+            },
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요.",
+              "connection": "용기별 개봉 순서는 미상이에요."
+            },
+            {
+              "variable_id": "storage.seal_integrity",
+              "raw_span": "A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요.",
+              "connection": "B의 밀봉과 A의 미상 개봉일을 구분해요."
+            }
+          ]
+        },
+        "group_id": {
+          "before": "add100-a-family-동일 제품의 두 용기와 개봉 이력 혼동",
+          "after": "add100-a-group-syn-sol-0052"
+        },
+        "input_sha256": {
+          "before": "0b26782b3262baf0865fb017d66e929e1894149f6da6b21d8b9f514096ad3902",
+          "after": "21a5f811205a53fbd139abb7a0d2b51dcc310cc9707e99b2f898bf3f2163ab4d"
+        },
+        "novelty_note": {
+          "before": "개봉 후 안내는 확인되지만 개봉 순서가 미상이에요.",
+          "after": "새 합성 대체 사례: A는 개봉일 미상이나 B의 밀봉은 실제 확인돼 별도 용기 이력을 구분해요."
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "product.identity": {
+                "variable_id": "product.identity",
+                "state": "known",
+                "value": {
+                  "containers": [
+                    "A",
+                    "B"
+                  ],
+                  "same_product": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "known",
+                "value": {
+                  "pao_visible": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.opened_at": {
+                "variable_id": "storage.opened_at",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S02",
+                "status": "unknown",
+                "guidance": "개봉 후 안내는 보이지만 어느 용기를 먼저 열었는지 알 수 없어요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S02@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "product.identity": {
+                "variable_id": "product.identity",
+                "state": "known",
+                "value": {
+                  "containers": [
+                    "A",
+                    "B"
+                  ],
+                  "same_product": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "known",
+                "value": {
+                  "pao_visible": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.opened_at": {
+                "variable_id": "storage.opened_at",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              },
+              "storage.seal_integrity": {
+                "variable_id": "storage.seal_integrity",
+                "state": "known",
+                "value": {
+                  "container_b_sealed": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S02",
+                "status": "unknown",
+                "guidance": "개봉 후 안내는 보이지만 어느 용기를 먼저 열었는지 알 수 없어요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S02@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_raw": {
+          "before": "같은 제품의 A와 B 두 용기가 있어요. 두 용기의 개봉 후 안내는 보여요. 어느 용기를 먼저 개봉했는지 몰라요.",
+          "after": "같은 제품의 A와 B 두 용기가 있어요. 두 용기의 개봉 후 안내는 보여요. A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0616",
+      "critic_issue": "A 용기·개봉일 앎·해당 지침 미상 슬롯이 기존 0123과 동일하고 별도 가족이에요. 버전이라는 표현만으로 신규 조건이 되지 않아요.",
+      "synthetic_replacement": true,
+      "replacement_reason": "기존 중복을 해소하기 위해 새 합성 판단 조건을 설계했으며 실제 사용자 사실을 수정한 것이 아니에요.",
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\nA의 개봉일은 알고 있지만 해당 버전의 개봉 후 안내를 확인한 뒤 비교해 주세요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n개봉일과 제품별 안내는 별도의 정보예요. 보관과 사용 이력을 함께 살펴볼 수 있어요 [ref:S06].\n\n### 확인이 필요한 한계\n다른 버전의 안내를 A에 자동 적용하지 않고 현재 품질도 단정하지 않아요.",
+          "after": "### 핵심 안내\n용기 A의 현재 버전에 맞는 개봉 후 안내를 확인하기 전에는 찾은 이전 버전 안내를 적용하지 않아요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n개봉일을 알아도 발견한 안내와 용기 버전이 다르면 해당 용기의 기간과 바로 비교할 수 없어요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\n버전 2의 개봉 후 지침은 미상이며 버전 1에서 추정하지 않아요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "용기 A를 언제 열었는지 알아요.",
+              "connection": "해당 용기의 개봉일이 알려져 있어요."
+            },
+            {
+              "variable_id": "storage.instance_id",
+              "raw_span": "이 용기는 A예요.",
+              "connection": "관찰이 용기 A에 속해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "그 용기 버전의 개봉 후 안내는 찾지 못했어요.",
+              "connection": "버전에 연결된 개봉 후 안내가 미상이에요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "용기 A를 언제 열었는지 알아요.",
+              "connection": "해당 용기의 개봉일이 알려져 있어요."
+            },
+            {
+              "variable_id": "storage.instance_id",
+              "raw_span": "이 용기는 A예요.",
+              "connection": "관찰이 용기 A에 속해요."
+            },
+            {
+              "variable_id": "product.version",
+              "raw_span": "현재 A의 버전은 2이고 찾아낸 개봉 후 안내는 이전 버전 1에 해당해요.",
+              "connection": "해당 용기와 발견한 안내의 버전 불일치를 확인해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "현재 A의 버전은 2이고 찾아낸 개봉 후 안내는 이전 버전 1에 해당해요.",
+              "connection": "현재 버전의 안내는 확인되지 않아요."
+            }
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0616",
+          "after": "terra-a-group-syn-sol-0123"
+        },
+        "input_sha256": {
+          "before": "f993b0ff583c880b4140d3aff131114bde81f341a83febef511397b8dd1c20e3",
+          "after": "8ea9774f7afb0283b751ca9fa9859b8ff1f42c579b5117d6698140dd93f85d3d"
+        },
+        "novelty_note": {
+          "before": "버전이 연결된 안내를 확인하지 못해 개봉일만으로 판단하지 않아요.",
+          "after": "새 합성 대체 사례: A 개봉일은 알지만 발견한 사용 안내가 A의 실제 버전과 일치하지 않아요."
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.opened_at": {
+                "variable_id": "storage.opened_at",
+                "state": "known",
+                "value": {
+                  "known": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.instance_id": {
+                "variable_id": "storage.instance_id",
+                "state": "known",
+                "value": "synthetic-container-a",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S02",
+                "status": "unknown",
+                "guidance": "용기 A의 개봉일은 알지만 해당 버전의 개봉 후 안내가 미확인이에요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              },
+              {
+                "evidence_ref": "ref:S24",
+                "text": "Fragrance-free product selection can be considered in general skin care. A label description is not a universal guarantee.",
+                "scope": "non_clinical_only",
+                "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/razor-bump-remedies",
+                "locator": "면도날/전기헤드 지침 구분, 과도한 압력 회피, 면도 후 제품이 따갑거나 화끈거리면 중단/대안, 지속 문제의 상담에 한정.",
+                "checked_on": "2026-11-04",
+                "limitations": "특정 면도 돌기 대상의 안내. 모든 사용자에게 면도빈도·브러시·1–2분 준비시간·습식 전기면도를 강제하지 않는다."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S02@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": [
+              "ref:S24"
+            ]
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.opened_at": {
+                "variable_id": "storage.opened_at",
+                "state": "known",
+                "value": {
+                  "known": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.instance_id": {
+                "variable_id": "storage.instance_id",
+                "state": "known",
+                "value": "synthetic-container-a",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              },
+              "product.version": {
+                "variable_id": "product.version",
+                "state": "known",
+                "value": {
+                  "current_container_version": "2",
+                  "found_guidance_version": "1",
+                  "match": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S02",
+                "status": "unknown",
+                "guidance": "용기 A의 개봉일은 알지만 해당 버전의 개봉 후 안내가 미확인이에요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              },
+              {
+                "evidence_ref": "ref:S24",
+                "text": "Fragrance-free product selection can be considered in general skin care. A label description is not a universal guarantee.",
+                "scope": "non_clinical_only",
+                "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/hair/razor-bump-remedies",
+                "locator": "면도날/전기헤드 지침 구분, 과도한 압력 회피, 면도 후 제품이 따갑거나 화끈거리면 중단/대안, 지속 문제의 상담에 한정.",
+                "checked_on": "2026-11-04",
+                "limitations": "특정 면도 돌기 대상의 안내. 모든 사용자에게 면도빈도·브러시·1–2분 준비시간·습식 전기면도를 강제하지 않는다."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S02@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": [
+              "ref:S24"
+            ]
+          }
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0616",
+          "after": "terra-a-family-0123"
+        },
+        "scenario_raw": {
+          "before": "용기 A를 언제 열었는지 알아요. 이 용기는 A예요. 그 용기 버전의 개봉 후 안내는 찾지 못했어요.",
+          "after": "용기 A를 언제 열었는지 알아요. 이 용기는 A예요. 현재 A의 버전은 2이고 찾아낸 개봉 후 안내는 이전 버전 1에 해당해요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0617",
+      "critic_issue": "소분 계획·미실행·용기 적합성 미상·지침 미상이 기존 0053과 동일하고 별도 가족이에요. 단순 표현 변경이에요.",
+      "synthetic_replacement": true,
+      "replacement_reason": "기존 중복을 해소하기 위해 새 합성 판단 조건을 설계했으며 실제 사용자 사실을 수정한 것이 아니에요.",
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n아직 소분하지 않았으므로 이미 옮겼다고 판단하지 않아요. 먼저 제조사 지침과 공병의 적합성을 확인해 주세요 [kb:B-S03@0.6.1].\n\n### 근거 및 이유\n용기와 취급 방법은 제품 관리에서 확인할 요소예요 [ref:S06].\n\n### 확인이 필요한 한계\n새 용기의 적합성과 지침은 현재 미상이에요.",
+          "after": "### 핵심 안내\n아직 소분하지 않았고 공병에 물기가 남아 있어요. 옮기기 전 제조사 지침과 공병 적합성을 확인해 주세요 [kb:B-S03@0.6.1].\n\n### 근거 및 이유\n공병의 물기와 실제 원제품에 물을 넣은 행동은 다르며 아직 옮기지 않았다고 하셨어요 [kb:B-S03@0.6.1].\n\n### 확인이 필요한 한계\n제조사 소분 지침과 공병의 적합성은 미상이에요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "storage.decanting",
+              "raw_span": "다른 공병에 옮길까 생각하지만 아직 옮기지 않았어요.",
+              "connection": "소분 계획과 실제 미실행을 구분해요."
+            },
+            {
+              "variable_id": "storage.container",
+              "raw_span": "그 공병이 제품에 적합한지는 몰라요.",
+              "connection": "새 용기의 적합성은 미상이에요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "제조사의 소분 지침도 확인하지 못했어요.",
+              "connection": "제조사 지침은 미확인이에요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "storage.decanting",
+              "raw_span": "다른 공병에 옮길까 생각하지만 아직 옮기지 않았어요.",
+              "connection": "소분 계획과 실제 미실행을 구분해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "제조사의 소분 지침도 확인하지 못했어요.",
+              "connection": "제조사 지침은 미확인이에요."
+            },
+            {
+              "variable_id": "storage.container",
+              "raw_span": "그 공병에는 물기가 남아 있어요.",
+              "connection": "공병의 실제 물기이며 원제품 물 첨가로 바꾸지 않아요."
+            }
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0617",
+          "after": "add100-a-group-syn-sol-0053"
+        },
+        "input_sha256": {
+          "before": "feff53608686f7b6e7d2c3e4dd5c8afdf60447956fe9a93c0451cc6afba17925",
+          "after": "7d11efbcd360ed86a15f9e1217d091904050ce819ef147e5eba75d02766ca3c4"
+        },
+        "novelty_note": {
+          "before": "소분 계획에 용기 적합성 미상과 지침 미확인을 명시해요.",
+          "after": "새 합성 대체 사례: 소분 전 공병의 물기는 확인되지만 원제품으로 옮기지는 않았어요."
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.decanting": {
+                "variable_id": "storage.decanting",
+                "state": "known",
+                "value": {
+                  "planned": true,
+                  "already_done": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.container": {
+                "variable_id": "storage.container",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S03",
+                "status": "unknown",
+                "guidance": "소분은 아직 계획이며 용기 적합성과 제조사 지침은 미확인이에요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S03@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.decanting": {
+                "variable_id": "storage.decanting",
+                "state": "known",
+                "value": {
+                  "planned": true,
+                  "already_done": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.container": {
+                "variable_id": "storage.container",
+                "state": "known",
+                "value": {
+                  "visible_water_remaining": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S03",
+                "status": "unknown",
+                "guidance": "소분은 아직 계획이며 용기 적합성과 제조사 지침은 미확인이에요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S03@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0617",
+          "after": "add100-a-family-여행용 용기 적합성과 소분 지침 미확인"
+        },
+        "scenario_raw": {
+          "before": "다른 공병에 옮길까 생각하지만 아직 옮기지 않았어요. 그 공병이 제품에 적합한지는 몰라요. 제조사의 소분 지침도 확인하지 못했어요.",
+          "after": "다른 공병에 옮길까 생각하지만 아직 옮기지 않았어요. 그 공병에는 물기가 남아 있어요. 제조사의 소분 지침도 확인하지 못했어요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0619",
+      "critic_issue": "0642의 리필 사례와 같은 신규 가족으로 연결",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0619",
+          "after": "terra200v2-group-refill-instructions"
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0619",
+          "after": "terra200v2-family-refill-instructions"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0621",
+      "critic_issue": "반복 시림 뒤 해당 제품의 눈가 사용을 피하면서 선글라스로 보호해 P06 aligned가 성립해요. 0016의 반복 시림 부정과 달라요. S17 청크는 눈 주변 제품 제형 선택을 다루며 대체 수단 확보에 관한 해당 문장을 직접 뒷받침하지 않아요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n불편한 제품의 눈가 사용을 피하면서 선글라스로 눈 주변을 보호하는 현재 조정은 유지할 수 있어요 [kb:B-P06@0.6.1].\n\n### 근거 및 이유\n반복 시림을 피하는 것과 대체 광보호를 확보하는 것은 별개로 함께 살펴볼 사항이에요 [ref:S17].\n\n### 확인이 필요한 한계\n현재 지속적인 눈 통증은 없다고 보고했으며, 제품의 원인이나 전체 안전성을 확정하지 않아요.",
+          "after": "### 핵심 안내\n불편한 제품의 눈가 사용을 피하면서 선글라스로 눈 주변을 보호하는 현재 조정은 유지할 수 있어요 [kb:B-P06@0.6.1].\n\n### 근거 및 이유\n반복 시림을 피하는 것과 대체 광보호를 확보하는 것은 함께 살필 사항이에요 [kb:B-P06@0.6.1].\n\n### 확인이 필요한 한계\n현재 지속적인 눈 통증은 없다고 보고했으며, 제품의 원인이나 전체 안전성을 확정하지 않아요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0622",
+      "critic_issue": "기존 0161의 실제 group_id로 정정",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra-b-family-syn-sol-0161",
+          "after": "terra-b-group-syn-sol-0161"
+        },
+        "novelty_note": {
+          "before": "눈가를 피하면서 대체 보호도 없는 상황이에요.",
+          "after": "눈가를 피하면서 대체 보호도 없는 상황이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0624",
+      "critic_issue": "기존 0075의 실제 group_id로 정정",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "add100-b-family-syn-sol-0075",
+          "after": "add100-b-group-syn-sol-0075"
+        },
+        "novelty_note": {
+          "before": "실제 도포가 아닌 새 야외 후보의 표시 미확인 상황이에요.",
+          "after": "실제 도포가 아닌 새 야외 후보의 표시 미확인 상황이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0625",
+      "critic_issue": "지수와 광범위 표시 미상은 P01 unknown을 지지하지만 같은 신규 선택과 표시 미상의 0624와 같은 가족이어야 하는데 train과 val로 나뉘어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-sol-0017"
+          ],
+          "after": [
+            "syn-sol-0075"
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0625",
+          "after": "add100-b-group-syn-sol-0075"
+        },
+        "novelty_note": {
+          "before": "두 별도 표시가 미확인이며 현재 사용 중 도포 문제와 구분해요.",
+          "after": "두 별도 표시가 미확인이며 현재 사용 중 도포 문제와 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0625",
+          "after": "add100-b-family-syn-sol-0075"
+        },
+        "split": {
+          "before": "train",
+          "after": "val_internal"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0626",
+      "critic_issue": "수영·수건 뒤 실내만 머무른 사실과 재도포 미상을 구분했으나 0065의 같은 수영·수건 조건 대응 변형을 다른 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0626",
+          "after": "add100-b-group-reapplication-context"
+        },
+        "novelty_note": {
+          "before": "수영 뒤 지속 노출한 경우와 달리 이후 야외 노출이 없어요.",
+          "after": "수영 뒤 지속 노출한 경우와 달리 이후 야외 노출이 없어요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0626",
+          "after": "add100-b-family-reapplication-context"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0628",
+      "critic_issue": "안전모 제약 속 그늘 실제 사용은 aligned지만 0609와 제약 대상만 모자로 바꾼 반복이며 가족도 달라요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0628",
+          "after": "add100-b-group-feasible-nonproduct-protection"
+        },
+        "novelty_note": {
+          "before": "긴 소매가 아닌 안전모 제약과 실제 그늘 이용을 결합해요.",
+          "after": "긴 소매가 아닌 안전모 제약과 실제 그늘 이용을 결합해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0628",
+          "after": "add100-b-family-feasible-nonproduct-protection"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0629",
+      "critic_issue": "모자와 그늘 실제 이용으로 aligned는 성립하나 0608의 같은 장시간 노출과 그늘·모자 사용의 정반대 대비 변형을 별도 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0629",
+          "after": "add100-b-group-feasible-nonproduct-protection"
+        },
+        "novelty_note": {
+          "before": "그늘 배제가 아니라 모자와 그늘의 실제 사용이 확인돼요.",
+          "after": "그늘 배제가 아니라 모자와 그늘의 실제 사용이 확인돼요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0629",
+          "after": "add100-b-family-feasible-nonproduct-protection"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0630",
+      "critic_issue": "직사광선 노출은 확인되지만 기간을 모르는 과거 노출은 S01 예외로 별도 열거돼 difference의 적용 근거가 불명확해요. 원문 문장도 중복돼요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n직사광선이 드는 창가 대신 제품 지침에 맞는 보관 장소를 확인해 주세요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n빛은 제품 보관 이력을 살필 때 고려하는 요인이에요 [ref:S06].\n\n### 확인이 필요한 한계\n노출 기간은 미상이며 이 사실만으로 변질을 확정하지 않아요.",
+          "after": "### 핵심 안내\n직사광선에 두었던 이력은 기록하되 노출 기간이 미상인 과거 상황으로 따로 살펴요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n빛은 제품 보관에 영향을 줄 수 있는 요소예요 [ref:S06]. 과거 노출 기간이 확인되지 않아 정확한 조건을 판단할 수 없어요.\n\n### 확인이 필요한 한계\n이 이력만으로 제품이 변질되었다고 확정하지 않아요."
+        },
+        "input_sha256": {
+          "before": "05c4daff1deedbd9014910c940b77cbe32a24792dc6c215cf0bde33ea04fb865",
+          "after": "62cf644324b8a3bde26d016ffe6acd9f98bfa68ea497f0b23322845f13d5fe01"
+        },
+        "judgment_basis": {
+          "before": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "창가의 직사광선에 제품을 두었지만 노출 기간은 알 수 없어요."
+          },
+          "after": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "과거 직사광선 노출은 확인되지만 기간이 미상인 과거 노출 예외로 보관 적합성은 확정하지 않아요."
+          }
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.light_air": {
+                "variable_id": "storage.light_air",
+                "state": "known",
+                "value": {
+                  "direct_sunlight_reported": true,
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "difference",
+                "guidance": "창가의 직사광선에 제품을 두었지만 노출 기간은 알 수 없어요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "열과 빛은 화장품의 보관 수명에 영향을 줄 수 있어요. 보관 이력만으로 개별 제품의 안정성을 확정하지는 못해요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.light_air": {
+                "variable_id": "storage.light_air",
+                "state": "known",
+                "value": {
+                  "direct_sunlight_reported": true,
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "exception",
+                "guidance": "과거 직사광선 노출은 확인되지만 기간이 미상인 과거 노출 예외로 보관 적합성은 확정하지 않아요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "열과 빛은 화장품의 보관 수명에 영향을 줄 수 있어요. 보관 이력만으로 개별 제품의 안정성을 확정하지는 못해요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_raw": {
+          "before": "제품을 직사광선이 드는 창가에 두었어요. 그곳에 얼마나 오래 두었는지는 몰라요. 그곳에 얼마나 오래 두었는지는 몰라요.",
+          "after": "제품을 직사광선이 드는 창가에 두었어요. 그곳에 얼마나 오래 두었는지는 몰라요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0632",
+      "critic_issue": "A의 기한 경과와 B의 미확인을 따로 두고 A 차이를 판정해요. 0052와 용기 이력 가족·분할을 유지해요. S06 청크는 열·햇빛과 보관·취급에 관한 내용이고 용기별 기한 이력 연결을 말하지 않아요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n기한이 지난 A와 기한을 아직 확인하지 않은 B를 따로 다뤄 주세요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n용기별 표시와 이력을 연결해야 한 용기의 판단을 다른 용기로 잘못 옮기지 않아요 [ref:S06].\n\n### 확인이 필요한 한계\nB의 기한과 두 용기의 실제 품질은 이 정보만으로 알 수 없어요.",
+          "after": "### 핵심 안내\n기한이 지난 A와 기한을 아직 확인하지 않은 B를 따로 다뤄 주세요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n용기별 표시와 이력을 연결해야 한 용기의 판단을 다른 용기로 잘못 옮기지 않아요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\nB의 기한과 두 용기의 실제 품질은 이 정보만으로 알 수 없어요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0633",
+      "critic_issue": "인쇄 기한이 남았어도 개봉일 미상으로 개봉 후 안내 준수는 unknown이에요. 0123의 개봉일 앎·지침 미상과 다른 판단 근거예요. S06 청크에 인쇄 기한과 개봉 후 안내의 구분은 없어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n표시 기한은 남았지만 개봉일을 모르므로 개봉 후 안내와의 일치 여부는 미상이에요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n인쇄된 기한과 개봉 후 사용 안내는 별도로 확인해야 할 정보예요 [ref:S06].\n\n### 확인이 필요한 한계\n개봉일을 추측하거나 미상을 기한 경과로 바꾸지 않아요.",
+          "after": "### 핵심 안내\n표시 기한은 남았지만 개봉일을 모르므로 개봉 후 안내와의 일치 여부는 미상이에요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n인쇄된 기한과 개봉 후 사용 안내는 별도로 확인해야 할 정보예요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\n개봉일을 추측하거나 미상을 기한 경과로 바꾸지 않아요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0634",
+      "critic_issue": "같은 용기의 기한 미경과와 개봉 후 안내 충족을 직접 보고하여 aligned예요. 0123의 안내 미상과 달라요. S06 청크는 같은 용기의 개봉일과 안내 비교를 다루지 않아요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n해당 용기의 표시 기한과 개봉 이력이 안내에 맞는다는 보고는 이 항목에서 유지할 수 있어요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n같은 용기에 연결된 개봉일과 안내를 비교한 점이 중요해요 [ref:S06].\n\n### 확인이 필요한 한계\n이력이 맞는다는 사실은 현재 품질을 인증하지 않아요.",
+          "after": "### 핵심 안내\n해당 용기의 표시 기한과 개봉 이력이 안내에 맞는다는 보고는 이 항목에서 유지할 수 있어요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n같은 용기에 연결된 개봉일과 안내를 비교한 점이 중요해요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\n이력이 맞는다는 사실은 현재 품질을 인증하지 않아요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0635",
+      "critic_issue": "관련 없는 도구 공유 사례 대신 유사한 소분 계획 가족에 연결",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "closest_existing_ids": {
+          "before": [
+            "syn-sol-0138"
+          ],
+          "after": [
+            "syn-sol-0053"
+          ]
+        },
+        "group_id": {
+          "before": "terra-a-family-0138",
+          "after": "add100-a-group-syn-sol-0053"
+        },
+        "novelty_note": {
+          "before": "소분 계획이 아니라 잔량 위 보충 계획과 미실행을 구분해요.",
+          "after": "소분 계획이 아니라 잔량 위 보충 계획과 미실행을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra-a-family-0138",
+          "after": "add100-a-family-여행용 용기 적합성과 소분 지침 미확인"
+        },
+        "split": {
+          "before": "val_internal",
+          "after": "train"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0637",
+      "critic_issue": "기존 0077의 실제 group_id로 정정",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "add100-b-family-syn-sol-0077",
+          "after": "add100-b-group-syn-sol-0077"
+        },
+        "novelty_note": {
+          "before": "실제 누락이 확인된 사례와 달리 누락 여부가 미상이에요.",
+          "after": "실제 누락이 확인된 사례와 달리 누락 여부가 미상이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0638",
+      "critic_issue": "실제 노출된 볼의 의도적 누락과 눈가 회피 지시를 구별해요. 답변은 눈가 사용을 지시하지 않고 제품 제한을 지키라고 해요. S05 청크는 일반 광보호·노출을 다루며 눈가 제한과 볼 누락의 구분을 직접 서술하지 않아요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n노출된 볼을 의도적으로 제외한 점을 살펴보되 눈가를 피하라는 제품 지침은 지켜 주세요 [kb:B-P02@0.6.1].\n\n### 근거 및 이유\n얼굴 내 누락과 눈가 사용 제한은 같은 정보가 아니에요 [ref:S05].\n\n### 확인이 필요한 한계\n제공된 지침만으로 눈가 외 다른 부위의 자세한 용법을 추정하지 않아요.",
+          "after": "### 핵심 안내\n노출된 볼을 의도적으로 제외한 점을 살펴보되 눈가를 피하라는 제품 지침은 지켜 주세요 [kb:B-P02@0.6.1].\n\n### 근거 및 이유\n얼굴 내 누락과 눈가 사용 제한은 같은 정보가 아니에요 [kb:B-P02@0.6.1].\n\n### 확인이 필요한 한계\n제공된 지침만으로 눈가 외 다른 부위의 자세한 용법을 추정하지 않아요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0639",
+      "critic_issue": "반복 눈시림 부정·선글라스 사용은 0016과 핵심 관찰이 같은 유사 변형인데 별도 가족이에요. 눈가 도포의 확인 외 신규 결정 조건은 부족해요. S17 청크에는 눈 주변 제품 선택은 있지만 선글라스 사용이나 이 사례 관찰이 없어요.",
+      "synthetic_replacement": true,
+      "replacement_reason": "기존 중복을 해소하기 위해 새 합성 판단 조건을 설계했으며 실제 사용자 사실을 수정한 것이 아니에요.",
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n눈가 사용 때 반복적인 시림이 없고 선글라스를 쓰는 현재 조건은 해당 항목에서 유지할 수 있어요 [kb:B-P06@0.6.1].\n\n### 근거 및 이유\n시림이 없다는 보고와 대체 광보호 사용을 함께 확인했어요 [ref:S17].\n\n### 확인이 필요한 한계\n반복 시림을 부정한 것이 모든 불편이나 향후 반응이 없다는 보장은 아니에요.",
+          "after": "### 핵심 안내\n반복 시림은 없지만 눈가에 사용 중인 제품에 눈가 회피 지시가 있어 해당 지침을 먼저 확인하고 사용 방식을 검토해 주세요 [kb:B-P06@0.6.1].\n\n### 근거 및 이유\n제품의 눈 주변 사용 제한은 반복 불편의 유무와 별도로 살필 조건이에요 [kb:B-P06@0.6.1].\n\n### 확인이 필요한 한계\n반복 시림을 부정한 것이 제품 지침을 대신하지 않으며 선글라스 사용만으로 모든 보호가 보장되지는 않아요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "sun.periocular_application",
+              "raw_span": "눈가에 선제품을 사용해요.",
+              "connection": "본인의 실제 눈가 사용이에요."
+            },
+            {
+              "variable_id": "skin.eye_stinging",
+              "raw_span": "그때 반복적으로 눈이 시리지는 않아요.",
+              "connection": "반복 시림을 명시적으로 부정해요."
+            },
+            {
+              "variable_id": "sun.shade_clothing",
+              "raw_span": "선글라스를 써요.",
+              "connection": "실제로 선글라스를 착용해요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "sun.periocular_application",
+              "raw_span": "눈가에 선제품을 사용해요.",
+              "connection": "본인의 실제 눈가 사용이에요."
+            },
+            {
+              "variable_id": "skin.eye_stinging",
+              "raw_span": "그때 반복적으로 눈이 시리지는 않아요.",
+              "connection": "반복 시림을 명시적으로 부정해요."
+            },
+            {
+              "variable_id": "sun.shade_clothing",
+              "raw_span": "선글라스를 써요.",
+              "connection": "실제로 선글라스를 착용해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "제품 표시에는 눈가를 피하라고 적혀 있어요.",
+              "connection": "실제 눈가 사용과 제품별 눈가 제한을 별도로 확인해요."
+            }
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0639",
+          "after": "pilot37-group-syn-sol-0016"
+        },
+        "input_sha256": {
+          "before": "df9f2198ecfd41b46f334b9e6d3653309700096b1ec5f0d586d918434039ba76",
+          "after": "c44d49ae1a8b24725c9e686c5a8fd9cd708b39a686bfd2290cd0b9b07191876e"
+        },
+        "judgment_basis": {
+          "before": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-P06": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함.",
+                "difference_when": "같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐.",
+                "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+                "exception_when": [
+                  "제품의 눈 주변 사용 제한",
+                  "개별 의료진 지시",
+                  "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "현재 눈가 사용에서 반복 눈시림이 없고 선글라스를 사용해요."
+          },
+          "after": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-P06": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "해당 사용 조건에서 반복 눈시림이 없거나, 불편한 제품의 눈가 사용을 조정하고 대체 광보호를 확보함.",
+                "difference_when": "같은 제품·방식에서 반복 눈시림이 생겨도 그대로 눈 가까이에 사용하거나, 회피 후 눈 주변 보호가 사라짐.",
+                "unknown_when": "판단에 필요한 공개 제품 정보 또는 사용자 관찰이 없으면 해당 항목만 unknown. 비공개 제형·원시험 자료의 부재는 질문·감점·추천 정지 사유가 아님.",
+                "exception_when": [
+                  "제품의 눈 주변 사용 제한",
+                  "개별 의료진 지시",
+                  "일반 생활 안내 범위를 벗어나는 지속/심한 안구 증상"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "반복 눈시림은 부정하지만 실제 눈가 사용은 확인된 제품의 눈가 제한과 충돌하므로 지침을 별도 검토해요."
+          }
+        },
+        "novelty_note": {
+          "before": "눈가에 실제 사용하는 조건에서 반복 시림을 부정해요.",
+          "after": "새 합성 대체 사례: 반복 시림 부정과 별개로 실제 눈가 사용이 확인된 제품의 제한과 충돌해요."
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "sun.periocular_application": {
+                "variable_id": "sun.periocular_application",
+                "state": "known",
+                "value": {
+                  "near_eye_used": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "skin.eye_stinging": {
+                "variable_id": "skin.eye_stinging",
+                "state": "known",
+                "value": {
+                  "repeated": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "sun.shade_clothing": {
+                "variable_id": "sun.shade_clothing",
+                "state": "known",
+                "value": {
+                  "sunglasses_used": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-P06",
+                "status": "aligned",
+                "guidance": "현재 눈가 사용에서 반복 눈시림이 없고 선글라스를 사용해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S17",
+                "text": "눈 주변의 선제품 선택에는 스틱형 등의 선택지가 논의돼요. 특정 제형이 누구에게나 불편이 없다는 보장은 아니에요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/choosing-right-sunscreen",
+                "locator": "Step 1 및 Around your eyes 항목",
+                "checked_on": "2026-11-04",
+                "limitations": "눈 주변 스틱 사용은 흘러듦을 줄이기 위한 선택지다. 지용성·고분자량 우월성이나 모든 스틱의 무자극 보장을 뒷받침하지 않는다."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-P06@0.6.1",
+              "ref:S17"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "sun.periocular_application": {
+                "variable_id": "sun.periocular_application",
+                "state": "known",
+                "value": {
+                  "near_eye_used": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "skin.eye_stinging": {
+                "variable_id": "skin.eye_stinging",
+                "state": "known",
+                "value": {
+                  "repeated": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "sun.shade_clothing": {
+                "variable_id": "sun.shade_clothing",
+                "state": "known",
+                "value": {
+                  "sunglasses_used": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "known",
+                "value": {
+                  "avoid_eye_area": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-P06",
+                "status": "exception",
+                "guidance": "반복 눈시림은 부정하지만 실제 눈가 사용은 확인된 제품의 눈가 제한과 충돌하므로 지침을 별도 검토해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S17",
+                "text": "눈 주변의 선제품 선택에는 스틱형 등의 선택지가 논의돼요. 특정 제형이 누구에게나 불편이 없다는 보장은 아니에요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/choosing-right-sunscreen",
+                "locator": "Step 1 및 Around your eyes 항목",
+                "checked_on": "2026-11-04",
+                "limitations": "눈 주변 스틱 사용은 흘러듦을 줄이기 위한 선택지다. 지용성·고분자량 우월성이나 모든 스틱의 무자극 보장을 뒷받침하지 않는다."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-P06@0.6.1",
+              "ref:S17"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0639",
+          "after": "pilot37-family-syn-sol-0016"
+        },
+        "scenario_raw": {
+          "before": "눈가에 선제품을 사용해요. 그때 반복적으로 눈이 시리지는 않아요. 선글라스를 써요.",
+          "after": "눈가에 선제품을 사용해요. 그때 반복적으로 눈이 시리지는 않아요. 선글라스를 써요. 제품 표시에는 눈가를 피하라고 적혀 있어요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0641",
+      "critic_issue": "B를 개봉한 날짜를 기록하지 않았다는 원문은 기억하지 못한다는 뜻이 아닌데 B 개봉일 미상으로 저장하고 답변에서 알 수 없다고 확정했어요. S06 청크는 보관·열·빛 관련 요약이며 서로 다른 용기의 개봉 이력을 비교하는 내용을 직접 담지 않아요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n용기 B의 개봉일을 알 수 없어 B의 안내와 비교할 수 없어요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n용기별 안내가 다르므로 A의 개봉 이력이나 안내를 B에 옮겨 적용하지 않아요 [ref:S06].\n\n### 확인이 필요한 한계\nB의 개봉일과 현재 품질은 미상이에요.",
+          "after": "### 핵심 안내\n용기 B는 개봉 기록이 없고 개봉일도 기억나지 않아 B의 안내와 비교할 수 없어요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n용기별 안내가 다르므로 A의 이력이나 안내를 B에 옮겨 적용하지 않아요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\nB의 개봉일과 현재 품질은 미상이에요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "같은 제품 A와 B의 표시된 개봉 후 안내가 서로 달라요.",
+              "connection": "용기 버전별 안내가 다르다는 사실이에요."
+            },
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "A의 개봉일은 기록했지만 B는 기록하지 않았어요.",
+              "connection": "각 용기의 개봉 이력 확인 수준을 분리해요."
+            },
+            {
+              "variable_id": "storage.instance_id",
+              "raw_span": "지금은 B를 검토하고 있어요.",
+              "connection": "판정 대상이 B라는 연결이에요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "같은 제품 A와 B의 표시된 개봉 후 안내가 서로 달라요.",
+              "connection": "용기 버전별 안내가 다르다는 사실이에요."
+            },
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "A의 개봉일은 기록했지만 B는 기록하지 않았고 B를 연 날짜도 기억나지 않아요.",
+              "connection": "각 용기의 개봉 이력 확인 수준을 분리해요."
+            },
+            {
+              "variable_id": "storage.instance_id",
+              "raw_span": "지금은 B를 검토하고 있어요.",
+              "connection": "판정 대상이 B라는 연결이에요."
+            }
+          ]
+        },
+        "group_id": {
+          "before": "add100-a-family-동일 제품의 두 용기와 개봉 이력 혼동",
+          "after": "add100-a-group-syn-sol-0052"
+        },
+        "novelty_note": {
+          "before": "서로 다른 안내와 B의 미상 개봉일을 연결해요.",
+          "after": "서로 다른 안내와 B의 미상 개봉일을 연결해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_raw": {
+          "before": "같은 제품 A와 B의 표시된 개봉 후 안내가 서로 달라요. A의 개봉일은 기록했지만 B는 기록하지 않았어요. 지금은 B를 검토하고 있어요.",
+          "after": "같은 제품 A와 B의 표시된 개봉 후 안내가 서로 달라요. A의 개봉일은 기록했지만 B는 기록하지 않았고 B를 연 날짜도 기억나지 않아요. 지금은 B를 검토하고 있어요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0642",
+      "critic_issue": "제조사 허용 리필과 잔량 위 덧붓지 않음은 S07 정렬을 지지하지만 0619의 허용 리필과 밀접한 변형을 별도 가족으로 두었어요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0642",
+          "after": "terra200v2-group-refill-instructions"
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0642",
+          "after": "terra200v2-family-refill-instructions"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0643",
+      "critic_issue": "심한 발한과 재도포 미상은 0606과 같고 수건 접촉만 덧붙여 같은 가족으로 묶여야 하는데 별도 가족이에요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0643",
+          "after": "pilot37-group-syn-sol-0005"
+        },
+        "novelty_note": {
+          "before": "발한과 추가적인 수건 접촉 이후의 실행 여부가 미상이에요.",
+          "after": "발한과 추가적인 수건 접촉 이후의 실행 여부가 미상이에요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0643",
+          "after": "pilot37-family-syn-sol-0005"
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0644",
+      "critic_issue": "근무상 모자 제한과 휴식 때 그늘 이용은 0628과 핵심 조건이 같고 별도 가족이라 실질 신규성이 부족해요.",
+      "synthetic_replacement": true,
+      "replacement_reason": "기존 중복을 해소하기 위해 새 합성 판단 조건을 설계했으며 실제 사용자 사실을 수정한 것이 아니에요.",
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n모자를 쓸 수 없는 근무 규정 안에서 쉴 때 그늘을 이용하는 방법을 유지할 수 있어요 [kb:B-P04@0.6.1].\n\n### 근거 및 이유\n이용 가능한 비제품 보호수단을 실제 제약과 함께 고려해요 [ref:S05].\n\n### 확인이 필요한 한계\n근무 규정을 어기라고 권하지 않으며 개인의 실제 보호 수준은 미상이에요.",
+          "after": "### 핵심 안내\n모자 사용이 어려운 근무 제약은 확인됐지만 그늘에 관해 답하고 싶지 않다는 선택을 존중해요 [kb:B-P04@0.6.1].\n\n### 근거 및 이유\n그늘의 가능성과 실제 사용 여부를 거절한 답변에서 추정하지 않아요. 일반적인 광보호에는 그늘과 의복이 포함돼요 [ref:S05].\n\n### 확인이 필요한 한계\n그늘을 사용할 수 없었다거나 사용하지 않았다고 판단하지 않아요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "sun.outdoor_time",
+              "raw_span": "야외 근무가 오래 이어져요.",
+              "connection": "장시간 야외 근무예요."
+            },
+            {
+              "variable_id": "constraints.burden",
+              "raw_span": "작업 규정상 모자를 쓸 수 없어요.",
+              "connection": "모자 사용의 실제 제약이에요."
+            },
+            {
+              "variable_id": "sun.shade_clothing",
+              "raw_span": "쉴 때 그늘을 이용해요.",
+              "connection": "가능한 그늘을 실제 이용해요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "sun.outdoor_time",
+              "raw_span": "야외 근무가 오래 이어져요.",
+              "connection": "장시간 야외 근무예요."
+            },
+            {
+              "variable_id": "constraints.burden",
+              "raw_span": "작업 규정상 모자를 쓸 수 없어요.",
+              "connection": "모자 사용의 실제 제약이에요."
+            },
+            {
+              "variable_id": "sun.shade_clothing",
+              "raw_span": "휴식할 때 그늘을 이용할 수 있는지는 답하고 싶지 않아요.",
+              "connection": "그늘 이용 가능성과 사용 여부에 대한 답변을 거절했어요."
+            }
+          ]
+        },
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0644",
+          "after": "add100-b-group-feasible-nonproduct-protection"
+        },
+        "input_sha256": {
+          "before": "43263ed88689d7725f5a11539e3a8ffae0a97b7d015617ca0427ee5fa8e21476",
+          "after": "9880ff479f19e24eb4c6e193f34ae96503ce0ccbca8cbc7a109adba1a5fb857d"
+        },
+        "judgment_basis": {
+          "before": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-P04": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+                "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "작업·복장 등 제약으로 특정 수단이 불가능",
+                  "의료진 개별 계획"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "모자 착용의 제약 속에서 휴식할 때 그늘을 이용해요."
+          },
+          "after": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-P04": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "노출 상황에서 가능한 보완 수단을 활용함.",
+                "difference_when": "장시간 노출 중 실행 가능한 보완 수단이 있는데 선크림만으로 충분하다고 생각해 모두 배제함.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "작업·복장 등 제약으로 특정 수단이 불가능",
+                  "의료진 개별 계획"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "모자 사용에는 제약이 있으나 다른 보호수단 가능성은 답변을 거절해 판단을 보류해요."
+          }
+        },
+        "novelty_note": {
+          "before": "긴 소매가 아닌 모자 규정과 실제 그늘 이용을 구분해요.",
+          "after": "새 합성 대체 사례: 모자 제약은 확인되지만 그늘 가능성에 대한 답변 거절을 미사용과 구분해요."
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "sun.outdoor_time": {
+                "variable_id": "sun.outdoor_time",
+                "state": "known",
+                "value": {
+                  "prolonged": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "constraints.burden": {
+                "variable_id": "constraints.burden",
+                "state": "known",
+                "value": {
+                  "hat_prohibited_at_work": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "sun.shade_clothing": {
+                "variable_id": "sun.shade_clothing",
+                "state": "known",
+                "value": {
+                  "shade_break_used": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-P04",
+                "status": "aligned",
+                "guidance": "모자 착용의 제약 속에서 휴식할 때 그늘을 이용해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S05",
+                "text": "선제품의 사용과 재도포는 노출 상황을 고려해요. 그늘과 보호 의복도 함께 고려하는 광보호 수단이에요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+                "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+                "checked_on": "2026-11-04",
+                "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-P04@0.6.1",
+              "ref:S05"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "sun.outdoor_time": {
+                "variable_id": "sun.outdoor_time",
+                "state": "known",
+                "value": {
+                  "prolonged": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "constraints.burden": {
+                "variable_id": "constraints.burden",
+                "state": "known",
+                "value": {
+                  "hat_prohibited_at_work": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "sun.shade_clothing": {
+                "variable_id": "sun.shade_clothing",
+                "state": "declined",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-P04",
+                "status": "unknown",
+                "guidance": "모자 사용에는 제약이 있으나 다른 보호수단 가능성은 답변을 거절해 판단을 보류해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S05",
+                "text": "선제품의 사용과 재도포는 노출 상황을 고려해요. 그늘과 보호 의복도 함께 고려하는 광보호 수단이에요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+                "locator": "Sun Safety Tips / How do I apply sunscreen? / How do I store sunscreen?",
+                "checked_on": "2026-11-04",
+                "limitations": "미국 기관의 안내. 한국 법적 의무나 제품별 사용법으로 자동 전환하지 않음. 피부에 도달한 UV량을 개인별로 계산해 주는 자료가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-P04@0.6.1",
+              "ref:S05"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0644",
+          "after": "add100-b-family-feasible-nonproduct-protection"
+        },
+        "scenario_raw": {
+          "before": "야외 근무가 오래 이어져요. 작업 규정상 모자를 쓸 수 없어요. 쉴 때 그늘을 이용해요.",
+          "after": "야외 근무가 오래 이어져요. 작업 규정상 모자를 쓸 수 없어요. 휴식할 때 그늘을 이용할 수 있는지는 답하고 싶지 않아요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0646",
+      "critic_issue": "과거 직사광선 노출의 기간 미상은 S01 예외로 별도 열거됐는데 difference로 판정했어요. 원문도 문장들이 중복돼요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "answer": {
+          "before": "### 핵심 안내\n이전에 직사광선 아래 두었던 이력을 확인하고 현재처럼 빛을 피하는 보관을 유지해 주세요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n현재 서랍으로 옮긴 사실과 과거의 빛 노출은 별개예요 [ref:S06].\n\n### 확인이 필요한 한계\n과거 노출 기간은 미상이고 제품이 변질됐다고 단정하지 않아요.",
+          "after": "### 핵심 안내\n과거 직사광선에 두었던 이력은 기록하되 기간이 미상인 과거 노출로 별도 검토해요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n지금은 서랍에 옮겼지만 과거 빛 노출의 지속 시간은 확인되지 않았어요. 빛은 보관에 영향을 줄 수 있는 요소예요 [ref:S06].\n\n### 확인이 필요한 한계\n이 이력만으로 제품이 변질됐다고 단정하지 않아요."
+        },
+        "input_sha256": {
+          "before": "8f85768d61ea394d218955f9cf72b429cf0aae86be16341ec66de9d78185bd9c",
+          "after": "58c8ab20ad782b71797f48747288271a01fb26801f09af8dadf6b77200c70780"
+        },
+        "judgment_basis": {
+          "before": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "이전에 직사광선에 두었고 지금은 옮겼지만 당시 기간은 미상이에요."
+          },
+          "after": {
+            "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+            "cards": {
+              "B-S01": {
+                "specification_language": "natural_language_reviewable_not_executable",
+                "aligned_when": "확인된 보관 지침에 맞고 불필요한 열·직사광선 노출을 피함.",
+                "difference_when": "뜨거운 차 안·직사광선 등 부적절 보관이 확인되거나 용기를 지속적으로 열어 둠.",
+                "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+                "exception_when": [
+                  "제품에 별도로 명시된 온도·보관방법",
+                  "기간·온도를 모르는 과거 노출"
+                ],
+                "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+              }
+            },
+            "rationale": "과거 직사광선 노출은 확인되지만 기간이 미상인 과거 노출 예외로 보관 적합성은 확정하지 않아요."
+          }
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.light_air": {
+                "variable_id": "storage.light_air",
+                "state": "known",
+                "value": {
+                  "past_direct_sunlight": true,
+                  "now_in_drawer": true,
+                  "past_duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.container": {
+                "variable_id": "storage.container",
+                "state": "known",
+                "value": {
+                  "now_in_drawer": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "difference",
+                "guidance": "이전에 직사광선에 두었고 지금은 옮겼지만 당시 기간은 미상이에요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "열과 빛은 화장품의 보관 수명에 영향을 줄 수 있어요. 보관 이력만으로 개별 제품의 안정성을 확정하지는 못해요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "storage.light_air": {
+                "variable_id": "storage.light_air",
+                "state": "known",
+                "value": {
+                  "past_direct_sunlight": true,
+                  "now_in_drawer": true,
+                  "past_duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.container": {
+                "variable_id": "storage.container",
+                "state": "known",
+                "value": {
+                  "now_in_drawer": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.temperature_history": {
+                "variable_id": "storage.temperature_history",
+                "state": "known",
+                "value": {
+                  "duration_known": false
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S01",
+                "status": "exception",
+                "guidance": "과거 직사광선 노출은 확인되지만 기간이 미상인 과거 노출 예외로 보관 적합성은 확정하지 않아요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "열과 빛은 화장품의 보관 수명에 영향을 줄 수 있어요. 보관 이력만으로 개별 제품의 안정성을 확정하지는 못해요.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S01@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          }
+        },
+        "scenario_raw": {
+          "before": "제품을 이전에 직사광선 아래 두었어요. 어제부터는 서랍에 옮겼어요. 과거 빛 노출이 얼마나 길었는지 몰라요. 어제부터는 서랍에 옮겼어요. 과거 빛 노출이 얼마나 길었는지 몰라요.",
+          "after": "제품을 이전에 직사광선 아래 두었어요. 어제부터는 서랍에 옮겼어요. 과거 빛 노출이 얼마나 길었는지 몰라요."
+        }
+      }
+    },
+    {
+      "id": "syn-sol-0648",
+      "critic_issue": "손가락 접촉과 손 세척 미상은 S03 unknown이 가능하지만 0060의 손 접촉 사례와 유사한 변형을 별도 가족으로 뒀고 원문도 같은 문장이 반복돼요.",
+      "synthetic_replacement": false,
+      "replacement_reason": null,
+      "changes": {
+        "group_id": {
+          "before": "terra200v2-family-syn-sol-0648",
+          "after": "add100-a-group-syn-sol-0060"
+        },
+        "novelty_note": {
+          "before": "손 접촉 사실과 세척 여부 미상을 구분해요.",
+          "after": "손 접촉 사실과 세척 여부 미상을 구분해요. 가까운 기존 판단 가족과 분할을 유지한 대응 변형이에요."
+        },
+        "scenario_family_id": {
+          "before": "terra200v2-family-syn-sol-0648",
+          "after": "add100-a-family-한 번의 손 접촉으로 감염 확정하지 않기"
+        },
+        "scenario_raw": {
+          "before": "원래 용기에 손가락을 넣어 덜었어요. 원래 용기에 손가락을 넣어 덜었어요. 그 전에 손을 씻었는지는 기억나지 않아요.",
+          "after": "원래 용기에 손가락을 넣어 덜었어요. 그 전에 손을 씻었는지는 기억나지 않아요."
+        }
+      }
+    }
+  ]
+}

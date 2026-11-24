@@ -1,0 +1,166 @@
+{
+  "dataset": "additional_200_terra2.jsonl",
+  "dataset_sha256": "75a3a8edd4b5cbb2995a666f804c63281c379ea1c8aefaf1f07032d5bde32d44",
+  "total_rows": 200,
+  "pass_count": 200,
+  "fail_count": 0,
+  "critic_model": "gpt-6.1-terra",
+  "review_kind": "codex_same_family_independent",
+  "external_cross_family_gate_satisfied": false,
+  "human_review_performed": false,
+  "review_history": [
+    {
+      "file": "additional_200_terra2_critic_a_round1_preliminary_raw.jsonl",
+      "sha256": "eff6bbb79f3cf3c23004b4345aaae02180e1b12aef6191d24c6817412581955b",
+      "source_file": "outputs/additional_200_terra2/critic_a_round1.jsonl",
+      "source_sha256": "4aa7aaff7e702cbf105e7007356fab769456341b30557471544c066176136c8c",
+      "counts": {
+        "PASS": 54,
+        "FAIL": 13
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "incomplete_preliminary",
+      "scope": "A 첫 기록은 문자 손상 복구 뒤 영어 공통 근거만 남은 불완전 초안이라 완결된 감사로 세지 않아요. 전체 67행을 다음 라운드에서 한국어 원문 연결로 다시 검수했어요."
+    },
+    {
+      "file": "additional_200_terra2_critic_a_round2.jsonl",
+      "sha256": "a304d80448f24bbc10d44954255f3c8cd1b2447a64dd9878da14eafd5237ff90",
+      "source_file": "outputs/additional_200_terra2/critic_a_round2.jsonl",
+      "source_sha256": "50e3e086c199a526d13502286b4901f8dc601d2e16db2810c3cbd953ca55c7ec",
+      "counts": {
+        "PASS": 50,
+        "FAIL": 17
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_a_round3.jsonl",
+      "sha256": "f3473f413d283deeb18f8cc81f8224b05e3742c87bc8a648ce42d3d00fad0386",
+      "source_file": "outputs/additional_200_terra2/critic_a_round3.jsonl",
+      "source_sha256": "29950bbea975ff9bf0025a20c1a6d7bc94e7c066e9d57b96ec73edf0d0d46566",
+      "counts": {
+        "PASS": 16,
+        "FAIL": 1
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_a_round4.jsonl",
+      "sha256": "bce2e7d2ac94d586536dd367f4b90971c302eec157110e41f3e9a77e2027eee9",
+      "source_file": "outputs/additional_200_terra2/critic_a_round4.jsonl",
+      "source_sha256": "08f34ab91037f8bcbca5bad85213e0ca5166d0c6bbb45bafb25a52220fc02df4",
+      "counts": {
+        "FAIL": 10,
+        "PASS": 1
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_a_round5.jsonl",
+      "sha256": "d1ed14a16deb3874b70215a649d4d09033491f9843846b8106a75a2b3be39ca1",
+      "source_file": "outputs/additional_200_terra2/critic_a_round5.jsonl",
+      "source_sha256": "350717fe8832d69654e0456506a1e0c0185d0738d698576fa45c5214b617fcd8",
+      "counts": {
+        "PASS": 10
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_b_round1.jsonl",
+      "sha256": "dec80b0b5904982e6aee64ceea8c572e9730ab72393a448c9bfb3fd4318d26c2",
+      "source_file": "outputs/additional_200_terra2/critic_b_round1.jsonl",
+      "source_sha256": "7ea145a59d02c167cb6e3a2978c457483d29f0e23010a7553a0318644f10be12",
+      "counts": {
+        "FAIL": 26,
+        "PASS": 41
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_b_round2.jsonl",
+      "sha256": "885ad4d0cc173366e3ed151970efdec76e220fa144fe759fbd66d60016638d5b",
+      "source_file": "outputs/additional_200_terra2/critic_b_round2.jsonl",
+      "source_sha256": "7db67ec63096e1deba5ab08f566825b8c86f0d8cff3c9901eca48d8f401721c8",
+      "counts": {
+        "PASS": 27
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_b_round3.jsonl",
+      "sha256": "2d5e991578535bfff44b1463888948a7798d2580f2ad63d07e37a7e23cd0f827",
+      "source_file": "outputs/additional_200_terra2/critic_b_round3.jsonl",
+      "source_sha256": "0f84b9032c157292fc6082fd0237dac67d30a7f964e285f59fabb0c692539dbd",
+      "counts": {
+        "PASS": 2
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_c_round1.jsonl",
+      "sha256": "7a0152d406a034dc7ee51c98d8daff8894c6558db808a71f5f43cca4b98271c8",
+      "source_file": "outputs/additional_200_terra2/critic_c_round1.jsonl",
+      "source_sha256": "68c0c5e205706220ec7fd9c80b603f58eb31a23ca7e2e7d5bf33f680b5f5bd29",
+      "counts": {
+        "PASS": 23,
+        "FAIL": 43
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_c_round2.jsonl",
+      "sha256": "77c099b7d567f7b5ac01e1a3bb722025b1fa36857ad96caf18e0de1f34563f28",
+      "source_file": "outputs/additional_200_terra2/critic_c_round2.jsonl",
+      "source_sha256": "0853fc8199e371974e9245ea6053ba26ecb09005a6be53136b4758484a99db01",
+      "counts": {
+        "PASS": 23,
+        "FAIL": 25
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_c_round3.jsonl",
+      "sha256": "afcff0c068c14d3ebc6f4e82f09486ac5327e476a307df824a8df51fcfb0d315",
+      "source_file": "outputs/additional_200_terra2/critic_c_round3.jsonl",
+      "source_sha256": "9de988d43dfc1b9bd094801c25f20cbe5ba3b433998c705c7a037bcf2bc1004a",
+      "counts": {
+        "PASS": 19,
+        "FAIL": 6
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    },
+    {
+      "file": "additional_200_terra2_critic_c_round4.jsonl",
+      "sha256": "9a00654bbbced536f0f97c0a1c6054afaa20325c7772d63d3aac4ee6c05b7563",
+      "source_file": "outputs/additional_200_terra2/critic_c_round4.jsonl",
+      "source_sha256": "33cac17bf0227f55ed61cd2bdb0f44fb568c68d9c92700ffd7f1ec9cc3b81540",
+      "counts": {
+        "PASS": 6
+      },
+      "formatting_note": "원본 레코드의 판정·근거·발췌는 그대로 두고 공유 JSONL을 UTF-8/LF로 저장했어요. 원본 바이트 해시는 source_sha256로 구분해요.",
+      "audit_quality": "case_specific_internal_review",
+      "scope": "당시 패킷 내용에 대한 실제 내부 감사 기록이에요."
+    }
+  ],
+  "scope": "작성 담당과 다른 담당이 raw·입력·응답·실제 카드·등록 청크를 대조한 내부 감사예요. 자동 검사는 판정을 생성하지 않아요. 이전 FAIL은 이력에 보존해요."
+}

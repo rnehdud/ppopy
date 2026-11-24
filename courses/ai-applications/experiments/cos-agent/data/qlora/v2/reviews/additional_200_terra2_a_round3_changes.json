@@ -1,0 +1,280 @@
+{
+  "id": "syn-sol-0504",
+  "audit_source": "critic_a_by_d_round2.jsonl",
+  "reason": "원문에 없는 문지름의 의도를 값과 답변에 추가한 점을 수정했다. 의도 부정도 추가하지 않았다.",
+  "before_input": {
+    "id": "syn-sol-0504",
+    "title": "오래 문지르는 세정",
+    "scenario_id": "terra200v2-scenario-syn-sol-0504",
+    "group_id": "terra200v2-family-syn-sol-0504",
+    "scenario_family_id": "terra200v2-family-syn-sol-0504",
+    "split": "train",
+    "mode": "solution",
+    "pilot_bucket": "distractor_or_defense",
+    "domains": [
+      "cleansing"
+    ],
+    "card_ids": [
+      "B-C03"
+    ],
+    "is_hard_negative": true,
+    "hard_negative_type": "rag_distractor_ignore",
+    "chunk_origins": {
+      "ref:S21": "synthetic_defense_probe"
+    },
+    "request": {
+      "mode": "solution",
+      "confirmed_observations": {
+        "product.type": {
+          "variable_id": "product.type",
+          "state": "known",
+          "value": "rinse_off_cleanser",
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        },
+        "product.instructions": {
+          "variable_id": "product.instructions",
+          "state": "known",
+          "value": {
+            "specific_contact_instruction": false
+          },
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        },
+        "method.current_routine": {
+          "variable_id": "method.current_routine",
+          "state": "known",
+          "value": {
+            "intentionally_rubs_for_long_time": true
+          },
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        },
+        "method.friction": {
+          "variable_id": "method.friction",
+          "state": "known",
+          "value": {
+            "intensity": "gentle"
+          },
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        }
+      },
+      "kb_judgments": [
+        {
+          "card_id": "B-C03",
+          "status": "difference",
+          "guidance": "별도 접촉 지시 없이 오래 문질러요."
+        }
+      ],
+      "product_evidence": [],
+      "rag_chunks": [
+        {
+          "evidence_ref": "ref:S21",
+          "text": "손을 씻은 뒤에는 무향 핸드크림이나 연고를 바르는 관리법이 있어요. 이는 손 관리에 관한 내용이에요.",
+          "scope": "non_clinical_only",
+          "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+          "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+          "checked_on": "2026-11-04",
+          "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+        }
+      ],
+      "allowed_evidence_refs": [
+        "kb:B-C03@0.6.1"
+      ],
+      "distractor_refs": [
+        "ref:S21"
+      ]
+    },
+    "input_sha256": "d38a6c234b1d34d924246314cc5d54eec2fdf0b85c465f67a829e2319a8888b3",
+    "judgment_basis": {
+      "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+      "cards": {
+        "B-C03": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "오래 문지르지 않고 부드럽게 사용하며 제품 지시와 일치함.",
+          "difference_when": "별도 지시 없이 오래 문지르거나 일부러 올려둔다고 확인됨. 경과 시간만으로 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품별 별도 접촉시간 지시",
+            "의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        }
+      },
+      "rationale": "별도 접촉 지시 없이 오래 문질러요."
+    },
+    "source_origin": "new_synthetic",
+    "source_scenario_id": null,
+    "source_turn_id": null,
+    "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+    "generator_model": "gpt-6.1-terra",
+    "scenario_raw": "씻어내는 세정제를 오래 문질러요. 해당 제품에 따로 접촉시간을 정한 지시는 없고 세게 문지르지는 않아요.",
+    "atom_evidence": [
+      {
+        "variable_id": "product.type",
+        "raw_span": "씻어내는 세정제를",
+        "connection": "실제 세정제 유형이다."
+      },
+      {
+        "variable_id": "method.current_routine",
+        "raw_span": "오래 문질러요",
+        "connection": "장시간 문지르는 사용 행위다."
+      },
+      {
+        "variable_id": "product.instructions",
+        "raw_span": "해당 제품에 따로 접촉시간을 정한 지시는 없고",
+        "connection": "별도 접촉시간 지시가 없다는 보고다."
+      },
+      {
+        "variable_id": "method.friction",
+        "raw_span": "세게 문지르지는 않아요",
+        "connection": "세정 중 강한 마찰에 대한 명시적 부정이다."
+      }
+    ],
+    "novelty_note": "시간 숫자 대신 장시간 문지름과 별도 지시 부재를 확인하고 마찰 강도는 분리한다.",
+    "closest_existing_ids": [
+      "syn-sol-0192",
+      "syn-sol-0030"
+    ]
+  },
+  "after_input": {
+    "id": "syn-sol-0504",
+    "title": "오래 문지르는 세정",
+    "scenario_id": "terra200v2-scenario-syn-sol-0504",
+    "group_id": "terra200v2-family-syn-sol-0504",
+    "scenario_family_id": "terra200v2-family-syn-sol-0504",
+    "split": "train",
+    "mode": "solution",
+    "pilot_bucket": "distractor_or_defense",
+    "domains": [
+      "cleansing"
+    ],
+    "card_ids": [
+      "B-C03"
+    ],
+    "is_hard_negative": true,
+    "hard_negative_type": "rag_distractor_ignore",
+    "chunk_origins": {
+      "ref:S21": "synthetic_defense_probe"
+    },
+    "request": {
+      "mode": "solution",
+      "confirmed_observations": {
+        "product.type": {
+          "variable_id": "product.type",
+          "state": "known",
+          "value": "rinse_off_cleanser",
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        },
+        "product.instructions": {
+          "variable_id": "product.instructions",
+          "state": "known",
+          "value": {
+            "specific_contact_instruction": false
+          },
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        },
+        "method.current_routine": {
+          "variable_id": "method.current_routine",
+          "state": "known",
+          "value": {
+            "rubs_for_long_time": true
+          },
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        },
+        "method.friction": {
+          "variable_id": "method.friction",
+          "state": "known",
+          "value": {
+            "intensity": "gentle"
+          },
+          "source": "synthetic_fixture",
+          "confirmed_by_user": true
+        }
+      },
+      "kb_judgments": [
+        {
+          "card_id": "B-C03",
+          "status": "difference",
+          "guidance": "별도 접촉 지시 없이 오래 문질러요."
+        }
+      ],
+      "product_evidence": [],
+      "rag_chunks": [
+        {
+          "evidence_ref": "ref:S21",
+          "text": "손을 씻은 뒤에는 무향 핸드크림이나 연고를 바르는 관리법이 있어요. 이는 손 관리에 관한 내용이에요.",
+          "scope": "non_clinical_only",
+          "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+          "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+          "checked_on": "2026-11-04",
+          "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+        }
+      ],
+      "allowed_evidence_refs": [
+        "kb:B-C03@0.6.1"
+      ],
+      "distractor_refs": [
+        "ref:S21"
+      ]
+    },
+    "input_sha256": "8aefe13e62e72f4ff55399987d3647a858acd0f8d9af3bda541120e079a41735",
+    "judgment_basis": {
+      "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+      "cards": {
+        "B-C03": {
+          "specification_language": "natural_language_reviewable_not_executable",
+          "aligned_when": "오래 문지르지 않고 부드럽게 사용하며 제품 지시와 일치함.",
+          "difference_when": "별도 지시 없이 오래 문지르거나 일부러 올려둔다고 확인됨. 경과 시간만으로 판정하지 않음.",
+          "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+          "exception_when": [
+            "제품별 별도 접촉시간 지시",
+            "의료진 지시"
+          ],
+          "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+        }
+      },
+      "rationale": "별도 접촉 지시 없이 오래 문질러요."
+    },
+    "source_origin": "new_synthetic",
+    "source_scenario_id": null,
+    "source_turn_id": null,
+    "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+    "generator_model": "gpt-6.1-terra",
+    "scenario_raw": "씻어내는 세정제를 오래 문질러요. 해당 제품에 따로 접촉시간을 정한 지시는 없고 세게 문지르지는 않아요.",
+    "atom_evidence": [
+      {
+        "variable_id": "product.type",
+        "raw_span": "씻어내는 세정제를",
+        "connection": "실제 세정제 유형이다."
+      },
+      {
+        "variable_id": "method.current_routine",
+        "raw_span": "오래 문질러요",
+        "connection": "오래 문지르는 실제 행위이며 의도는 보고되지 않았다."
+      },
+      {
+        "variable_id": "product.instructions",
+        "raw_span": "해당 제품에 따로 접촉시간을 정한 지시는 없고",
+        "connection": "별도 접촉시간 지시가 없다는 보고다."
+      },
+      {
+        "variable_id": "method.friction",
+        "raw_span": "세게 문지르지는 않아요",
+        "connection": "세정 중 강한 마찰에 대한 명시적 부정이다."
+      }
+    ],
+    "novelty_note": "시간 숫자 대신 오래 문지르는 행위와 별도 지시 부재를 확인하고 마찰 강도 및 의도 미보고를 분리한다.",
+    "closest_existing_ids": [
+      "syn-sol-0192",
+      "syn-sol-0030"
+    ]
+  },
+  "before_answer": "### 핵심 안내\n별도 접촉시간 지시가 없다면 세정제를 일부러 오래 문지르는 습관을 줄여 보세요 [kb:B-C03@0.6.1].\n\n### 근거 및 이유\n세게 문지르지 않는다는 보고와 오래 문지르는 시간은 서로 다른 사실이에요.\n\n### 확인이 필요한 한계\n특정 초를 임의로 정하거나 이 행동이 현재 피부 상태의 원인이라고 단정하지 않아요.",
+  "after_answer": "### 핵심 안내\n별도 접촉시간 지시가 없다면 세정제를 오래 문지르는 방식을 줄여 보세요 [kb:B-C03@0.6.1].\n\n### 근거 및 이유\n세게 문지르지 않는다는 보고와 오래 문지르는 시간은 서로 다른 사실이에요.\n\n### 확인이 필요한 한계\n특정 초를 임의로 정하거나 이 행동이 현재 피부 상태의 원인이라고 단정하지 않아요.",
+  "frozen_input_sha256": "92d781341e174f37c6850cc103fddddd53634d3711bd9a3faa6400968e6ede9e"
+}

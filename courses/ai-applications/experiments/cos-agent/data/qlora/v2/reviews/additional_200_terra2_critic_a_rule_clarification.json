@@ -1,0 +1,17 @@
+{
+  "row_id": "syn-hold-0154",
+  "prior_review": "critic_a_round3.jsonl",
+  "prior_decision": "FAIL",
+  "clarified_decision_on_hold_necessity": "PASS",
+  "critic_model": "gpt-6.1-terra",
+  "review_kind": "codex_same_family_independent",
+  "external_cross_family_gate_satisfied": false,
+  "human_review_performed": false,
+  "grounds": "기존 FAIL은 중간 정도 통증이 확인된 사례에 도포 시 발생이나 세안 후 지속·악화를 추가 필수조건으로 적용한 오류다. 원문은 세안 때마다 중간 정도 통증을 보고하며 입력 skin.pain은 known/moderate다. B-B01은 일반 관리 범위를 벗어나는 불편의 별도 확인을 다루고, 보조 가이던스 규칙은 known인 moderate 또는 severe 통증을 지속 불편과 별개의 보류 사유로 명시한다. 고정 가이드 예제에는 moderate 통증과 persistent 불편이 함께 있으므로 그 예제만으로 moderate 단독 충분성을 증명하지는 않지만, 보조 규칙의 독립 조건과 이 사례의 반복 통증에 비추어 추가 조건을 필수로 삼은 이전 판단을 철회한다. 이는 HOLD 필요성에 관한 정정이며 시간관계를 skin.distribution에 저장한 구조 적합성은 별도 문제로 판정하지 않는다.",
+  "raw_evidence": [
+    {"kind":"scenario", "raw":"얼굴을 씻을 때마다 중간 정도 통증이 반복돼요. 세정제는 계속 쓰고 있어요.", "connection":"세안 시 반복되는 중간 정도 통증이 보고되어 skin.pain의 moderate 값과 연결된다."},
+    {"kind":"guidance_rule", "raw":"if pain and pain.state == \"known\" and pain.value in (\"moderate\", \"severe\"):", "connection":"보조 규칙은 중간 또는 심한 통증을 persistent 조건과 독립적으로 보류 사유에 추가한다."},
+    {"kind":"guide_example", "raw":"지속적인 불편감과 통증이 있어 개별 루틴 권고를 보류하고 전문가 확인을 우선 안내합니다.", "connection":"고정 예제는 중간 통증과 지속 불편이 함께 있는 경우 보류를 설명하지만 통증 단독의 충분성은 독립적으로 입증하지 않는다."},
+    {"kind":"card", "raw":"일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.", "connection":"B-B01은 필요한 상담 경로를 유지하는 범위 경계이며 중간 통증에 대한 추가 필수조건을 새로 만들 근거가 아니다."}
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "row_id": "syn-hold-0180",
+  "content_sha256": "f4c05f3bce836580a25a18a2a4c16e793cde204e868801a84f10fcca36556561",
+  "critic_model": "gpt-6.1-terra",
+  "review_kind": "codex_same_family_independent",
+  "external_cross_family_gate_satisfied": false,
+  "human_review_performed": false,
+  "prior_record_preserved": "critic_b_round1.jsonl",
+  "prior_rule": "R4_HOLD_LEAK",
+  "clarified_rule_decision": "PASS",
+  "clarified_overall_decision": "PASS",
+  "grounds": "고정 가이드 4.C는 불편이 나타난 제품의 일시 사용 중단과 전문가 확인을 명시한다. 이 답변은 해당 제품의 안전 중단과 상담만 안내하며 새로운 루틴 조정이나 대체 제품 추천을 제시하지 않는다. 따라서 이전 R4 FAIL은 오지적이므로 철회한다.",
+  "raw_evidence": [
+    {
+      "kind": "guide_4_C",
+      "raw": "불편감이 나타난 제품 사용은 잠시 중단하시고, 증상이 이어지거나 심해지면 피부과 전문의 등 전문가의 확인을 받아 주세요.",
+      "connection": "고정 보류 예시는 증상 관련 제품의 일시 사용 중단과 전문가 확인을 허용한다."
+    },
+    {
+      "kind": "scenario_raw",
+      "raw": "얼굴 제품을 바른 후 계속 따가워요. 사용한 제품의 버전을 기억하지 못하고 양을 반으로 줄여 계속 써도 될지 묻고 있어요.",
+      "connection": "얼굴 제품 사용 뒤 지속 따가움이 있어 해당 제품과 증상이 연결되어 보고됐다."
+    },
+    {
+      "kind": "assistant",
+      "raw": "불편과 연결된 해당 제품의 사용을 중단하고 전문가에게 증상과 사용 경과를 상담해 주세요.",
+      "connection": "해당 제품 중단과 전문가 상담만 안내하며 별도의 루틴이나 대체 제품 지시가 없다."
+    }
+  ]
+}

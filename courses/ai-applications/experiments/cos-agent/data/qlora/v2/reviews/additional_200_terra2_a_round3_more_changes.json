@@ -1,0 +1,4152 @@
+[
+  {
+    "id": "syn-sol-0544",
+    "audit_ground": "친구 브러시 사용과 따가움은 원문에만 있고 confirmed_observations에 타인 관련 슬롯이 없어 입력 JSON만 받는 답변의 친구 경험 주장을 뒷받침하지 못해요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-sol-0544",
+      "title": "친구 반응과 본인 손 세정",
+      "scenario_id": "terra200v2-scenario-syn-sol-0544",
+      "group_id": "terra200v2-family-syn-sol-0544",
+      "scenario_family_id": "terra200v2-family-syn-sol-0544",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "hands"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C02",
+            "status": "unknown",
+            "guidance": "본인의 세정 강도와 건조 방법은 확인되지 않았어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "eea964adb5a8e8376d1b80ba783d2579d73ade756a8a19530d7bf7486cd1d72f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C02": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
+            "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "본인의 세정 강도와 건조 방법은 확인되지 않았어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "저는 얼굴에 불편하지 않아요. 친구는 클렌징 브러시를 쓸 때 따갑다고 하지만 저는 브러시를 쓰지 않고 손으로 씻어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "저는 얼굴에 불편하지 않아요",
+          "connection": "본인 현재 불편 부정이다."
+        },
+        {
+          "variable_id": "method.tools",
+          "raw_span": "저는 브러시를 쓰지 않고 손으로 씻어요",
+          "connection": "본인 실제 세정 도구다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "타인의 증상과 브러시 사용을 본인에게 이전하지 않는다.",
+      "closest_existing_ids": [
+        "syn-sol-0037"
+      ]
+    },
+    "after_input": {
+      "id": "syn-sol-0544",
+      "title": "친구 반응과 본인 손 세정",
+      "scenario_id": "terra200v2-scenario-syn-sol-0544",
+      "group_id": "terra200v2-family-syn-sol-0544",
+      "scenario_family_id": "terra200v2-family-syn-sol-0544",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C02"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "hands"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "other_subject_report": {
+                "subject": "friend",
+                "action": "uses_cleansing_brush",
+                "experience": "stinging"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C02",
+            "status": "unknown",
+            "guidance": "본인의 세정 강도와 건조 방법은 확인되지 않았어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C02@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "37d4276b6e40a8058a3f320cf0d71bbb4ab7bb77e21b22a98edc89448a055767",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C02": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "손가락으로 부드럽게 씻고 물기는 가볍게 닦음.",
+            "difference_when": "강한 문지름·수건 비빔 또는 손가락 이외 도구 사용이 확인됨. 도구 사용 차이와 강한 마찰 차이를 구분.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "특정 제거 제품의 명시된 사용법이나 의료진 지시가 있으면 함께 검토."
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "본인의 세정 강도와 건조 방법은 확인되지 않았어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "저는 얼굴에 불편하지 않아요. 친구는 클렌징 브러시를 쓸 때 따갑다고 하지만 저는 브러시를 쓰지 않고 손으로 씻어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "저는 얼굴에 불편하지 않아요",
+          "connection": "본인 현재 불편 부정이다."
+        },
+        {
+          "variable_id": "method.tools",
+          "raw_span": "저는 브러시를 쓰지 않고 손으로 씻어요",
+          "connection": "본인 실제 세정 도구다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "친구는 클렌징 브러시를 쓸 때 따갑다고",
+          "connection": "본인이 아니라 친구가 기기 사용 시 따가움을 겪었다는 보고다."
+        }
+      ],
+      "novelty_note": "타인의 증상과 브러시 사용을 본인에게 이전하지 않는다.",
+      "closest_existing_ids": [
+        "syn-sol-0037"
+      ]
+    },
+    "before_answer": "### 핵심 안내\n본인은 브러시 대신 손으로 씻었고 불편하지 않다고 했어요 [kb:B-C02@0.6.1]. 세정 강도와 건조 방법은 확인되지 않았어요.\n\n### 근거 및 이유\n본인이 보고한 세정 도구와 친구가 보고한 경험은 서로 다른 사람의 정보예요. 손 사용만 확인됐으며 손가락 사용 여부까지 지정하지 않아요.\n\n### 확인이 필요한 한계\n친구의 따가움을 본인의 증상으로 옮겨 해석하지 않아요. 손 사용만으로 전체 세정 방법이 모두 일치한다고도 단정하지 않아요.",
+    "after_answer": "### 핵심 안내\n본인은 브러시 대신 손으로 씻었고 불편하지 않다고 했어요 [kb:B-C02@0.6.1]. 세정 강도와 건조 방법은 확인되지 않았어요.\n\n### 근거 및 이유\n본인이 보고한 세정 도구와 친구가 보고한 경험은 서로 다른 사람의 정보예요. 손 사용만 확인됐으며 손가락 사용 여부까지 지정하지 않아요.\n\n### 확인이 필요한 한계\n친구의 따가움을 본인의 증상으로 옮겨 해석하지 않아요. 손 사용만으로 전체 세정 방법이 모두 일치한다고도 단정하지 않아요."
+  },
+  {
+    "id": "syn-sol-0546",
+    "audit_ground": "친구의 미헹굼은 원문에만 있고 입력 관찰 슬롯에 없어 답변에서 친구 행동을 언급한 근거가 없어요. 0549의 동일 본인 헹굼·수온 미상 계열과 val/train 가족도 갈려요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-sol-0546",
+      "title": "친구 미헹굼과 본인 헹굼",
+      "scenario_id": "terra200v2-scenario-syn-sol-0546",
+      "group_id": "terra200-a-group-syn-sol-0363",
+      "scenario_family_id": "terra200-a-family-syn-sol-0363",
+      "split": "val_internal",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C06",
+        "B-C01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "rinse_off_cleanser",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C06",
+            "status": "aligned",
+            "guidance": "본인은 씻어내라는 표시를 확인하고 헹궈요."
+          },
+          {
+            "card_id": "B-C01",
+            "status": "unknown",
+            "guidance": "본인 세안수 온도는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C06@0.6.1",
+          "kb:B-C01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c1fe8ebba9aec5d3be36ac6fe89a1b0547d8867daf26ea37aa2dbc915e7146c3",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C06": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
+            "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "물세안이 필요 없는 제품의 별도 사용법",
+              "의료진 지시"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          },
+          "B-C01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+            "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도 의료진 지시나 특수 처치 상황."
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "본인은 씻어내라는 표시를 확인하고 헹궈요. / 본인 세안수 온도는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "친구는 세정제를 헹구지 않지만 저는 제 얼굴 세정제의 씻어내라는 표시를 확인하고 물로 헹궈요. 세안수 온도는 기억나지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "product.type",
+          "raw_span": "제 얼굴 세정제의 씻어내라는 표시",
+          "connection": "본인의 씻어내는 세정제다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "씻어내라는 표시를 확인하고",
+          "connection": "본인 제품 표시다."
+        },
+        {
+          "variable_id": "method.rinse",
+          "raw_span": "물로 헹궈요",
+          "connection": "본인의 실제 헹굼이다."
+        },
+        {
+          "variable_id": "method.water_temperature",
+          "raw_span": "세안수 온도는 기억나지 않아요",
+          "connection": "본인 세안수 온도 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "친구의 미헹굼을 본인 행위로 전이하지 않고 본인 표시 준수를 확인한다.",
+      "closest_existing_ids": [
+        "syn-sol-0038",
+        "syn-sol-0363"
+      ]
+    },
+    "after_input": {
+      "id": "syn-sol-0546",
+      "title": "친구 미헹굼과 본인 헹굼",
+      "scenario_id": "terra200v2-scenario-syn-sol-0546",
+      "group_id": "terra200-a-group-syn-sol-0363",
+      "scenario_family_id": "terra200-a-family-syn-sol-0363",
+      "split": "val_internal",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C06",
+        "B-C01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "rinse_off_cleanser",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "other_subject_report": {
+                "subject": "friend",
+                "cleanser_rinsed": false
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C06",
+            "status": "aligned",
+            "guidance": "본인은 씻어내라는 표시를 확인하고 헹궈요."
+          },
+          {
+            "card_id": "B-C01",
+            "status": "unknown",
+            "guidance": "본인 세안수 온도는 미상이에요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C06@0.6.1",
+          "kb:B-C01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "0e824e5d8268f8b6fd84c45683d8b5b80aeebf7a04c5650dd4ece7c0dcae4d00",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C06": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
+            "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "물세안이 필요 없는 제품의 별도 사용법",
+              "의료진 지시"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          },
+          "B-C01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+            "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도 의료진 지시나 특수 처치 상황."
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "본인은 씻어내라는 표시를 확인하고 헹궈요. / 본인 세안수 온도는 미상이에요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "친구는 세정제를 헹구지 않지만 저는 제 얼굴 세정제의 씻어내라는 표시를 확인하고 물로 헹궈요. 세안수 온도는 기억나지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "product.type",
+          "raw_span": "제 얼굴 세정제의 씻어내라는 표시",
+          "connection": "본인의 씻어내는 세정제다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "씻어내라는 표시를 확인하고",
+          "connection": "본인 제품 표시다."
+        },
+        {
+          "variable_id": "method.rinse",
+          "raw_span": "물로 헹궈요",
+          "connection": "본인의 실제 헹굼이다."
+        },
+        {
+          "variable_id": "method.water_temperature",
+          "raw_span": "세안수 온도는 기억나지 않아요",
+          "connection": "본인 세안수 온도 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "친구는 세정제를 헹구지 않지만",
+          "connection": "친구의 헹굼 행동이며 본인의 행동이 아니다."
+        }
+      ],
+      "novelty_note": "친구의 미헹굼을 본인 행위로 전이하지 않고 본인 표시 준수를 확인한다.",
+      "closest_existing_ids": [
+        "syn-sol-0038",
+        "syn-sol-0363"
+      ]
+    },
+    "before_answer": "### 핵심 안내\n본인은 씻어내라는 표시를 확인하고 물로 헹궜어요 [kb:B-C06@0.6.1]. 본인의 물 온도는 기억나지 않아 미상이에요 [kb:B-C01@0.6.1].\n\n### 근거 및 이유\n본인의 제품 표시와 실제 헹굼은 서로 일치한다고 보고됐어요 [kb:B-C06@0.6.1].\n\n### 확인이 필요한 한계\n친구의 미헹굼을 본인의 행동으로 취급하지 않고 확인되지 않은 본인 물 온도도 추정하지 않아요.",
+    "after_answer": "### 핵심 안내\n본인은 씻어내라는 표시를 확인하고 물로 헹궜어요 [kb:B-C06@0.6.1]. 본인의 물 온도는 기억나지 않아 미상이에요 [kb:B-C01@0.6.1].\n\n### 근거 및 이유\n본인의 제품 표시와 실제 헹굼은 서로 일치한다고 보고됐어요 [kb:B-C06@0.6.1].\n\n### 확인이 필요한 한계\n친구의 미헹굼을 본인의 행동으로 취급하지 않고 확인되지 않은 본인 물 온도도 추정하지 않아요."
+  },
+  {
+    "id": "syn-sol-0549",
+    "audit_ground": "실제 헹굼과 수온 응답 거절을 구분한 판단은 맞지만 0546의 동일한 본인 제품·헹굼과 수온 미상 대비 변형이 별도 가족·train이고 0546은 val이에요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-sol-0549",
+      "title": "헹굼 실행과 수온 거절",
+      "scenario_id": "terra200v2-scenario-syn-sol-0549",
+      "group_id": "terra200v2-family-syn-sol-0549",
+      "scenario_family_id": "terra200v2-family-syn-sol-0549",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C06",
+        "B-C01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "rinse_off_cleanser",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C06",
+            "status": "aligned",
+            "guidance": "요구된 헹굼을 수행해요."
+          },
+          {
+            "card_id": "B-C01",
+            "status": "unknown",
+            "guidance": "수온에 대한 응답을 원하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C06@0.6.1",
+          "kb:B-C01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e2b7e309703d6406aa525867dc59d882bd48ea512fb1ae0d7e1be4f6d6fc579e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C06": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
+            "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "물세안이 필요 없는 제품의 별도 사용법",
+              "의료진 지시"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          },
+          "B-C01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+            "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도 의료진 지시나 특수 처치 상황."
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "요구된 헹굼을 수행해요. / 수온에 대한 응답을 원하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제는 헹굼이 필요하다고 표시되어 있고 저는 물로 헹궈요. 다만 물 온도는 답하지 않겠어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "product.type",
+          "raw_span": "얼굴 세정제는 헹굼이 필요하다고 표시되어 있고",
+          "connection": "씻어내는 세정제다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "헹굼이 필요하다고 표시되어 있고",
+          "connection": "표시 지시다."
+        },
+        {
+          "variable_id": "method.rinse",
+          "raw_span": "저는 물로 헹궈요",
+          "connection": "실제 헹굼이다."
+        },
+        {
+          "variable_id": "method.water_temperature",
+          "raw_span": "물 온도는 답하지 않겠어요",
+          "connection": "수온 응답 거절이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "헹굼 표시 준수와 수온 답변 거절을 결합한다.",
+      "closest_existing_ids": [
+        "syn-sol-0038"
+      ]
+    },
+    "after_input": {
+      "id": "syn-sol-0549",
+      "title": "헹굼 실행과 수온 거절",
+      "scenario_id": "terra200v2-scenario-syn-sol-0549",
+      "group_id": "terra200-a-group-syn-sol-0363",
+      "scenario_family_id": "terra200-a-family-syn-sol-0363",
+      "split": "val_internal",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C06",
+        "B-C01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "known",
+            "value": "rinse_off_cleanser",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C06",
+            "status": "aligned",
+            "guidance": "요구된 헹굼을 수행해요."
+          },
+          {
+            "card_id": "B-C01",
+            "status": "unknown",
+            "guidance": "수온에 대한 응답을 원하지 않아요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C06@0.6.1",
+          "kb:B-C01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e2b7e309703d6406aa525867dc59d882bd48ea512fb1ae0d7e1be4f6d6fc579e",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C06": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "해당 제품이 요구하는 헹굼을 수행함.",
+            "difference_when": "씻어내는 제품을 헹구지 않거나 시간을 줄이려고 헹굼을 생략함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "물세안이 필요 없는 제품의 별도 사용법",
+              "의료진 지시"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          },
+          "B-C01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "뜨겁지 않은 미온수를 사용한다고 보고함.",
+            "difference_when": "뜨겁게 느껴지는 물을 사용한다고 보고함. 차가운 물 사용만으로 위험 판정하지 않음.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도 의료진 지시나 특수 처치 상황."
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "요구된 헹굼을 수행해요. / 수온에 대한 응답을 원하지 않아요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제는 헹굼이 필요하다고 표시되어 있고 저는 물로 헹궈요. 다만 물 온도는 답하지 않겠어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "product.type",
+          "raw_span": "얼굴 세정제는 헹굼이 필요하다고 표시되어 있고",
+          "connection": "씻어내는 세정제다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "헹굼이 필요하다고 표시되어 있고",
+          "connection": "표시 지시다."
+        },
+        {
+          "variable_id": "method.rinse",
+          "raw_span": "저는 물로 헹궈요",
+          "connection": "실제 헹굼이다."
+        },
+        {
+          "variable_id": "method.water_temperature",
+          "raw_span": "물 온도는 답하지 않겠어요",
+          "connection": "수온 응답 거절이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "헹굼 표시 준수와 수온 답변 거절을 결합한다.",
+      "closest_existing_ids": [
+        "syn-sol-0038"
+      ]
+    },
+    "before_answer": "### 핵심 안내\n제품 표시에서 요구한 물 헹굼을 수행하고 있어요 [kb:B-C06@0.6.1]. 물 온도는 답변을 원하지 않으셨으므로 판단하지 않아요 [kb:B-C01@0.6.1].\n\n### 근거 및 이유\n헹굼을 했다는 것과 수온은 서로 다른 정보예요.\n\n### 확인이 필요한 한계\n수온을 미온수나 뜨거운 물로 추측하지 않아요.",
+    "after_answer": "### 핵심 안내\n제품 표시에서 요구한 물 헹굼을 수행하고 있어요 [kb:B-C06@0.6.1]. 물 온도는 답변을 원하지 않으셨으므로 판단하지 않아요 [kb:B-C01@0.6.1].\n\n### 근거 및 이유\n헹굼을 했다는 것과 수온은 서로 다른 정보예요.\n\n### 확인이 필요한 한계\n수온을 미온수나 뜨거운 물로 추측하지 않아요."
+  },
+  {
+    "id": "syn-sol-0550",
+    "audit_ground": "심한 발한 뒤 물세안과 세정제 1회를 구분한 C05 예외는 맞지만 운동 후 심한 발한과 추가 세안인 기존 0019의 유사 변형을 별도 가족으로 두었어요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-sol-0550",
+      "title": "운동 뒤 추가 물세안",
+      "scenario_id": "terra200v2-scenario-syn-sol-0550",
+      "group_id": "terra200v2-family-syn-sol-0550",
+      "scenario_family_id": "terra200v2-family-syn-sol-0550",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "dose.frequency": {
+            "variable_id": "dose.frequency",
+            "state": "known",
+            "value": {
+              "cleanser_washes": 1,
+              "additional_water_wash_after_exercise": 1
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "heavy_sweat_after_exercise": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C05",
+            "status": "exception",
+            "guidance": "심한 발한 뒤 추가 물세안 목적이 확인돼요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C05@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1e2e52751206ad0184fb9f249d6fe9e4a127d449d88fd98187dd8de07c3b1a05",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C05": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "반복의 목적이 설명되고 제거 필요·활동과 모순되지 않음.",
+            "difference_when": "메이크업·땀·표시 사용법 등 추가 이유 없이 습관적으로 반복 세안을 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "심한 발한·오염·메이크업 등 추가 세정 목적",
+              "해당 제품 사용법·의료진 지시"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "심한 발한 뒤 추가 물세안 목적이 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제는 한 번만 쓰고 오후 운동 뒤 물로 다시 씻어요. 심하게 땀을 흘린 날이라서예요.",
+      "atom_evidence": [
+        {
+          "variable_id": "dose.frequency",
+          "raw_span": "세정제는 한 번만 쓰고 오후 운동 뒤 물로 다시 씻어요",
+          "connection": "세정제 사용과 추가 물세안을 구별한다."
+        },
+        {
+          "variable_id": "cleansing.target_load",
+          "raw_span": "심하게 땀을 흘린 날이라서예요",
+          "connection": "추가 물세안의 발한 목적이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "세정제 사용과 심한 땀 뒤 추가 물세안을 구별한다.",
+      "closest_existing_ids": [
+        "syn-sol-0019",
+        "syn-sol-0061"
+      ]
+    },
+    "after_input": {
+      "id": "syn-sol-0550",
+      "title": "운동 뒤 추가 물세안",
+      "scenario_id": "terra200v2-scenario-syn-sol-0550",
+      "group_id": "add24-group-exercise-sweat-purpose",
+      "scenario_family_id": "add24-family-exercise-sweat-purpose",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-C05"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "dose.frequency": {
+            "variable_id": "dose.frequency",
+            "state": "known",
+            "value": {
+              "cleanser_washes": 1,
+              "additional_water_wash_after_exercise": 1
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "heavy_sweat_after_exercise": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-C05",
+            "status": "exception",
+            "guidance": "심한 발한 뒤 추가 물세안 목적이 확인돼요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-C05@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "1e2e52751206ad0184fb9f249d6fe9e4a127d449d88fd98187dd8de07c3b1a05",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-C05": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "반복의 목적이 설명되고 제거 필요·활동과 모순되지 않음.",
+            "difference_when": "메이크업·땀·표시 사용법 등 추가 이유 없이 습관적으로 반복 세안을 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "심한 발한·오염·메이크업 등 추가 세정 목적",
+              "해당 제품 사용법·의료진 지시"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "심한 발한 뒤 추가 물세안 목적이 확인돼요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제는 한 번만 쓰고 오후 운동 뒤 물로 다시 씻어요. 심하게 땀을 흘린 날이라서예요.",
+      "atom_evidence": [
+        {
+          "variable_id": "dose.frequency",
+          "raw_span": "세정제는 한 번만 쓰고 오후 운동 뒤 물로 다시 씻어요",
+          "connection": "세정제 사용과 추가 물세안을 구별한다."
+        },
+        {
+          "variable_id": "cleansing.target_load",
+          "raw_span": "심하게 땀을 흘린 날이라서예요",
+          "connection": "추가 물세안의 발한 목적이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "세정제 사용과 심한 땀 뒤 추가 물세안을 구별한다.",
+      "closest_existing_ids": [
+        "syn-sol-0019",
+        "syn-sol-0061"
+      ]
+    },
+    "before_answer": "### 핵심 안내\n심한 발한 뒤의 추가 물세안에는 확인된 목적이 있어 횟수만으로 불필요한 반복이라 판단하지 않아요 [kb:B-C05@0.6.1].\n\n### 근거 및 이유\n세정제 한 번 사용과 운동 뒤 물로 씻는 행위를 구분해요.\n\n### 확인이 필요한 한계\n추가 물세안을 자동으로 세정제 반복으로 세지 않아요.",
+    "after_answer": "### 핵심 안내\n심한 발한 뒤의 추가 물세안에는 확인된 목적이 있어 횟수만으로 불필요한 반복이라 판단하지 않아요 [kb:B-C05@0.6.1].\n\n### 근거 및 이유\n세정제 한 번 사용과 운동 뒤 물로 씻는 행위를 구분해요.\n\n### 확인이 필요한 한계\n추가 물세안을 자동으로 세정제 반복으로 세지 않아요."
+  },
+  {
+    "id": "syn-hold-0153",
+    "audit_ground": "세정제 사용, 중간 통증, 지속 불편은 입력에 있으나 원문의 사용 직후부터 아팠다는 시간 관계는 관찰 슬롯에 없어 답변의 사용 후 불편 연결이 뒷받침되지 않아요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0153",
+      "title": "세정제 후 지속 불편과 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0153",
+      "group_id": "terra200v2-family-syn-hold-0153",
+      "scenario_family_id": "terra200v2-family-syn-hold-0153",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleanser_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편과 통증으로 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "bf1193707027e35a3231d7777fe4a4e7a8129adfdd7dc31bcca082378aa7ceac",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "지속 불편과 통증으로 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제 사용 직후부터 중간 정도로 아프고 지금도 불편해요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "사용 직후부터 중간 정도로 아프고 지금도 불편해요",
+          "connection": "현재까지 이어지는 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도로 아프고",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "얼굴 세정제 사용 직후부터",
+          "connection": "사용 후 시간적 연결이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "제품 사용 후 지속 불편과 통증을 시간상 연결하되 원인은 확정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0153",
+      "title": "세정제 후 지속 불편과 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0153",
+      "group_id": "terra200v2-family-syn-hold-0153",
+      "scenario_family_id": "terra200v2-family-syn-hold-0153",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleanser_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "cleanser_use",
+                "reported_timing": "pain_from_immediately_after_use",
+                "ongoing_discomfort_reported": true
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편과 통증으로 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "ff06445b0c1066e6948d5695e37c410aab7c84b62997b2f4390bc241265f9a72",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "지속 불편과 통증으로 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제 사용 직후부터 중간 정도로 아프고 지금도 불편해요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "사용 직후부터 중간 정도로 아프고 지금도 불편해요",
+          "connection": "현재까지 이어지는 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도로 아프고",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "얼굴 세정제 사용 직후부터",
+          "connection": "사용 후 시간적 연결이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "사용 직후부터 중간 정도로 아프고 지금도 불편해요",
+          "connection": "세정제 사용 직후부터 통증을 보고했으며 불편이 지금도 이어진다."
+        }
+      ],
+      "novelty_note": "제품 사용 후 지속 불편과 통증을 시간상 연결하되 원인은 확정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세정제 사용 후 불편이 이어지고 통증도 있어 개별 루틴이나 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 제품 사용을 잠시 중단하고 전문가의 확인을 받아 주세요. 시간상 연결만으로 원인을 확정할 수 없어요.",
+    "after_answer": "### 개별 권고 보류 안내\n세정제 사용 후 불편이 이어지고 통증도 있어 개별 루틴이나 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 제품 사용을 잠시 중단하고 전문가의 확인을 받아 주세요. 시간상 연결만으로 원인을 확정할 수 없어요."
+  },
+  {
+    "id": "syn-hold-0154",
+    "audit_ground": "중간 통증·반복 불편·세정제 사용은 입력에 있지만 원문의 세안할 때마다 통증이 반복된다는 조건은 없어 답변의 시간 관계를 지원하지 못해요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0154",
+      "title": "세안마다 반복 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0154",
+      "group_id": "terra200v2-family-syn-hold-0154",
+      "scenario_family_id": "terra200v2-family-syn-hold-0154",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "repeated",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleanser_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "세안할 때마다 반복되는 통증에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "19c0aa93f915ae16986a66f21e5fa871aae6808abae6d8e3f60218482180b198",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "세안할 때마다 반복되는 통증에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴을 씻을 때마다 중간 정도 통증이 반복돼요. 세정제는 계속 쓰고 있어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "얼굴을 씻을 때마다 중간 정도 통증이 반복돼요",
+          "connection": "세안 중 반복 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도 통증이 반복돼요",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "세정제는 계속 쓰고 있어요",
+          "connection": "현재 제품 사용이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "지속 통증 대신 세안 때마다 반복되는 통증을 다룬다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0154",
+      "title": "세안마다 반복 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0154",
+      "group_id": "terra200v2-family-syn-hold-0154",
+      "scenario_family_id": "terra200v2-family-syn-hold-0154",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "repeated",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleanser_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "face_washing",
+                "reported_timing": "pain_repeats_during_each_wash"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "세안할 때마다 반복되는 통증에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "18da361603f41a2c11cbffbde2db99cb2938ca7cfc41eba15da6f595612b6089",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "세안할 때마다 반복되는 통증에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴을 씻을 때마다 중간 정도 통증이 반복돼요. 세정제는 계속 쓰고 있어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "얼굴을 씻을 때마다 중간 정도 통증이 반복돼요",
+          "connection": "세안 중 반복 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도 통증이 반복돼요",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "세정제는 계속 쓰고 있어요",
+          "connection": "현재 제품 사용이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "얼굴을 씻을 때마다 중간 정도 통증이 반복돼요",
+          "connection": "본인의 얼굴 세안 시마다 통증이 반복됐다는 시간 관계다."
+        }
+      ],
+      "novelty_note": "지속 통증 대신 세안 때마다 반복되는 통증을 다룬다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세안할 때마다 통증이 반복돼 개별 루틴과 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 세정제 사용은 잠시 중단하고 전문가에게 통증을 확인받아 주세요. 원인이나 진단은 이 정보만으로 정할 수 없어요.",
+    "after_answer": "### 개별 권고 보류 안내\n세안할 때마다 통증이 반복돼 개별 루틴과 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 세정제 사용은 잠시 중단하고 전문가에게 통증을 확인받아 주세요. 원인이나 진단은 이 정보만으로 정할 수 없어요."
+  },
+  {
+    "id": "syn-hold-0155",
+    "audit_ground": "실제 기기·세정제 병용과 지속 불편은 슬롯에 있으나 기기가 브러시라는 제품 유형과 병용 뒤 증상 시작의 시간 관계가 입력에 없어 답변의 구체 주장을 지원하지 못해요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0155",
+      "title": "기기 제품 병용 후 불편",
+      "scenario_id": "terra200v2-scenario-syn-hold-0155",
+      "group_id": "add100-c-syn-hold-0031-group",
+      "scenario_family_id": "add100-c-syn-hold-0031-family",
+      "split": "val_internal",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01",
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "device_used": true,
+              "used_with_cleanser": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편에 개별 권고를 보류해요."
+          },
+          {
+            "card_id": "B-G06",
+            "status": "unknown",
+            "guidance": "기기 병용의 지침은 확인되지 않았어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1",
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "29b185e9e79009cbd58d672e432a51b4bb0d7fe053f9be835d31d6a7534c5b0c",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          },
+          "B-G06": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+            "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+            "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+            "exception_when": [
+              "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+            ],
+            "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+          }
+        },
+        "rationale": "지속 불편에 개별 권고를 보류해요. / 기기 병용의 지침은 확인되지 않았어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정 브러시와 세정제를 함께 쓰고 난 뒤 불편이 계속돼요. 어느 쪽 때문인지는 모르고 병용 지침도 확인하지 못했어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "쓰고 난 뒤 불편이 계속돼요",
+          "connection": "병용 후 지속 불편이다."
+        },
+        {
+          "variable_id": "adjunct.device_use",
+          "raw_span": "세정 브러시와 세정제를 함께 쓰고",
+          "connection": "실제 기기와 제품 병용이다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "병용 지침도 확인하지 못했어요",
+          "connection": "병용 지침 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "지속 불편과 병용 이력을 보존하며 원인을 기기나 제품으로 특정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0031"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0155",
+      "title": "기기 제품 병용 후 불편",
+      "scenario_id": "terra200v2-scenario-syn-hold-0155",
+      "group_id": "add100-c-syn-hold-0031-group",
+      "scenario_family_id": "add100-c-syn-hold-0031-family",
+      "split": "val_internal",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01",
+        "B-G06"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "device_used": true,
+              "used_with_cleanser": true,
+              "device_type": "cleansing_brush"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "brush_and_cleanser_combination",
+                "reported_timing": "discomfort_after_combination_and_continues"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 불편에 개별 권고를 보류해요."
+          },
+          {
+            "card_id": "B-G06",
+            "status": "unknown",
+            "guidance": "기기 병용의 지침은 확인되지 않았어요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1",
+          "kb:B-G06@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "27b1c68323a6bcb2cab8e94c2eab3a405bd0ff27615e0c88670da9b207b8eb6f",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          },
+          "B-G06": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "기기별 사용 지침과 실제 병용을 확인할 수 있음.",
+            "difference_when": "기기 지시를 벗어나 임의 제품·농도·부위·시간으로 사용하거나 불편에도 강도를 높임.",
+            "unknown_when": "관련 정보가 없거나 답변을 원하지 않을 때. 0/정상/이탈로 대입하지 않음.",
+            "exception_when": [
+              "개별 의료진 지시와 충돌하면 해당 권고를 별도 검토"
+            ],
+            "difference_is_not": "차이와 위해·질환·원인·개선 확률은 다르다."
+          }
+        },
+        "rationale": "지속 불편에 개별 권고를 보류해요. / 기기 병용의 지침은 확인되지 않았어요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정 브러시와 세정제를 함께 쓰고 난 뒤 불편이 계속돼요. 어느 쪽 때문인지는 모르고 병용 지침도 확인하지 못했어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "쓰고 난 뒤 불편이 계속돼요",
+          "connection": "병용 후 지속 불편이다."
+        },
+        {
+          "variable_id": "adjunct.device_use",
+          "raw_span": "세정 브러시와 세정제를 함께 쓰고",
+          "connection": "실제 기기와 제품 병용이다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "병용 지침도 확인하지 못했어요",
+          "connection": "병용 지침 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "세정 브러시와 세정제를 함께 쓰고 난 뒤 불편이 계속돼요",
+          "connection": "브러시와 제품을 함께 쓴 뒤 계속되는 불편이라는 보고이며 원인 확정은 아니다."
+        },
+        {
+          "variable_id": "adjunct.device_use",
+          "raw_span": "세정 브러시와 세정제를 함께 쓰고",
+          "connection": "브러시 유형과 세정제의 실제 병용이 보고됐다."
+        }
+      ],
+      "novelty_note": "지속 불편과 병용 이력을 보존하며 원인을 기기나 제품으로 특정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0031"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세정 브러시와 제품을 함께 쓴 뒤 불편이 계속되어 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 병용은 잠시 중단하고 전문가의 확인을 받아 주세요. 기기와 제품 중 어느 쪽이 원인인지 확인되지 않았어요 [kb:B-G06@0.6.1].",
+    "after_answer": "### 개별 권고 보류 안내\n세정 브러시와 제품을 함께 쓴 뒤 불편이 계속되어 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 병용은 잠시 중단하고 전문가의 확인을 받아 주세요. 기기와 제품 중 어느 쪽이 원인인지 확인되지 않았어요 [kb:B-G06@0.6.1]."
+  },
+  {
+    "id": "syn-hold-0156",
+    "audit_ground": "원문은 세정 중 과거 심한 통증과 현재 통증 답변 거절을 구분하지만 skin.pain에 severe를 시점 없이 known으로 넣어 현재 통증을 확정한 것처럼 해석될 수 있고 거절은 다른 current_discomfort 변수에만 있어요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0156",
+      "title": "세정 중 심한 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0156",
+      "group_id": "terra200v2-family-syn-hold-0156",
+      "scenario_family_id": "terra200v2-family-syn-hold-0156",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "severe",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleanser_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "세정 중 심한 통증이 보고되어 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "371c5723990b2cfa5e55f5729ffb6f7e08c4635ebe2383bf4c9ea4751c8fbaa1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "세정 중 심한 통증이 보고되어 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴에 씻어내는 세정제를 쓰는 중 심하게 아팠어요. 지금도 아픈지는 답변하고 싶지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "쓰는 중 심하게 아팠어요",
+          "connection": "제품 사용 중 심한 통증이다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "씻어내는 세정제를 쓰는 중",
+          "connection": "실제 제품 사용이다."
+        },
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "지금도 아픈지는 답변하고 싶지 않아요",
+          "connection": "현재 상태 응답 거절이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "사용 중 심한 통증과 현재 불편 여부 답변 거절을 분리한다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0156",
+      "title": "세정 중 심한 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0156",
+      "group_id": "terra200v2-family-syn-hold-0156",
+      "scenario_family_id": "terra200v2-family-syn-hold-0156",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleanser_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_past_pain": {
+                "subject": "self",
+                "severity": "severe",
+                "timing": "during_cleanser_use",
+                "current_pain_status": "declined"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "세정 중 심한 통증이 보고되어 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3d31a1ffba4eea53657d792d7ec972d2254a44086db93311a280841a88105de1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "세정 중 심한 통증이 보고되어 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴에 씻어내는 세정제를 쓰는 중 심하게 아팠어요. 지금도 아픈지는 답변하고 싶지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "씻어내는 세정제를 쓰는 중",
+          "connection": "실제 제품 사용이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "지금도 아픈지는 답변하고 싶지 않아요",
+          "connection": "현재 통증에 대한 답변 거절이다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "씻어내는 세정제를 쓰는 중 심하게 아팠어요",
+          "connection": "세정제 사용 중 과거의 심한 통증이며 현재 상태는 거절이다."
+        }
+      ],
+      "novelty_note": "사용 중 심한 통증과 현재 불편 여부 답변 거절을 분리한다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세정제 사용 중 심한 통증이 보고되어 개별 루틴이나 제품 안내를 보류해요 [kb:B-B01@0.6.1]. 현재 통증 여부는 답변을 원하지 않으셨어요.\n\n### 필요한 다음 단계\n통증과 연결된 제품 사용을 잠시 중단하고 전문가에게 확인받아 주세요. 현재 상태를 임의로 없거나 계속된다고 추정하지 않아요.",
+    "after_answer": "### 개별 권고 보류 안내\n세정제 사용 중 심한 통증이 보고되어 개별 루틴이나 제품 안내를 보류해요 [kb:B-B01@0.6.1]. 현재 통증 여부는 답변을 원하지 않으셨어요.\n\n### 필요한 다음 단계\n통증과 연결된 제품 사용을 잠시 중단하고 전문가에게 확인받아 주세요. 현재 상태를 임의로 없거나 계속된다고 추정하지 않아요."
+  },
+  {
+    "id": "syn-hold-0158",
+    "audit_ground": "지속 불편과 확인된 헹굼 지시·실제 헹굼은 입력에 있지만 불편이 세안 후 지속된다는 시간 관계가 없어 답변의 세안 후 불편 연결이 입력에 없어요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0158",
+      "title": "헹굼 이행 후 지속 불편",
+      "scenario_id": "terra200v2-scenario-syn-hold-0158",
+      "group_id": "terra200v2-family-syn-hold-0158",
+      "scenario_family_id": "terra200v2-family-syn-hold-0158",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "헹굼을 수행했더라도 지속 불편에 대한 개별 권고는 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "7c1eb73e6c0873a7bf291d22d5f6514b0b40e6dcd8083ef900e8749e74e4a948",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "헹굼을 수행했더라도 지속 불편에 대한 개별 권고는 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세안 후 불편이 지속돼요. 세정제 표시에는 물로 헹구라고 되어 있고 저는 헹궜어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "얼굴 세안 후 불편이 지속돼요",
+          "connection": "현재 지속 불편이다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "세정제 표시에는 물로 헹구라고 되어 있고",
+          "connection": "제품의 헹굼 표시다."
+        },
+        {
+          "variable_id": "method.rinse",
+          "raw_span": "저는 헹궜어요",
+          "connection": "헹굼을 실행했다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "헹굼 이행이 확인되어도 지속 불편에 대한 보류를 해제하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0158",
+      "title": "헹굼 이행 후 지속 불편",
+      "scenario_id": "terra200v2-scenario-syn-hold-0158",
+      "group_id": "terra200v2-family-syn-hold-0158",
+      "scenario_family_id": "terra200v2-family-syn-hold-0158",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "rinse_required": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.rinse": {
+            "variable_id": "method.rinse",
+            "state": "known",
+            "value": {
+              "performed": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "face_washing",
+                "reported_timing": "discomfort_after_washing_and_continues"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "헹굼을 수행했더라도 지속 불편에 대한 개별 권고는 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c56e5532f44636a4b5db4d00056ae7c02037a136c95c5d8147c15c73cbdb93d1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "헹굼을 수행했더라도 지속 불편에 대한 개별 권고는 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세안 후 불편이 지속돼요. 세정제 표시에는 물로 헹구라고 되어 있고 저는 헹궜어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "얼굴 세안 후 불편이 지속돼요",
+          "connection": "현재 지속 불편이다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "세정제 표시에는 물로 헹구라고 되어 있고",
+          "connection": "제품의 헹굼 표시다."
+        },
+        {
+          "variable_id": "method.rinse",
+          "raw_span": "저는 헹궜어요",
+          "connection": "헹굼을 실행했다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "얼굴 세안 후 불편이 지속돼요",
+          "connection": "세안 후 불편이 지속된다는 시간 관계다."
+        }
+      ],
+      "novelty_note": "헹굼 이행이 확인되어도 지속 불편에 대한 보류를 해제하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세안 후 불편이 지속되므로 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1]. 표시된 헹굼을 수행했다는 사실이 이 보류를 없애지는 않아요.\n\n### 필요한 다음 단계\n불편과 연결된 세정제 사용은 잠시 중단하고 전문가의 확인을 받아 주세요. 헹굼 준수만으로 원인이나 안전을 확정할 수 없어요.",
+    "after_answer": "### 개별 권고 보류 안내\n세안 후 불편이 지속되므로 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1]. 표시된 헹굼을 수행했다는 사실이 이 보류를 없애지는 않아요.\n\n### 필요한 다음 단계\n불편과 연결된 세정제 사용은 잠시 중단하고 전문가의 확인을 받아 주세요. 헹굼 준수만으로 원인이나 안전을 확정할 수 없어요."
+  },
+  {
+    "id": "syn-hold-0159",
+    "audit_ground": "현재 심한 통증과 수온 미상은 기록됐지만 세안할 때 통증이 악화됐다는 시간 관계는 슬롯에 없어 guidance의 악화 주장을 입력이 지원하지 않아요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0159",
+      "title": "세안 중 통증 악화",
+      "scenario_id": "terra200v2-scenario-syn-hold-0159",
+      "group_id": "terra200v2-family-syn-hold-0159",
+      "scenario_family_id": "terra200v2-family-syn-hold-0159",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "severe",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "악화된 심한 통증과 지속 불편에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "0e38058859d9091211b9d6e21acca20fa426808c35de7d03dce1e854a4e473c4",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "악화된 심한 통증과 지속 불편에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세안할 때 통증이 더 심해져 지금은 심한 통증이고 불편도 이어져요. 평소 쓰는 물이 뜨거운지 아닌지는 기억나지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "불편도 이어져요",
+          "connection": "현재까지 이어지는 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "지금은 심한 통증이고",
+          "connection": "현재 심한 통증이다."
+        },
+        {
+          "variable_id": "method.water_temperature",
+          "raw_span": "평소 쓰는 물이 뜨거운지 아닌지는 기억나지 않아요",
+          "connection": "수온 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "심해진 통증과 수온 미상을 분리하고 원인을 추정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0159",
+      "title": "세안 중 통증 악화",
+      "scenario_id": "terra200v2-scenario-syn-hold-0159",
+      "group_id": "terra200v2-family-syn-hold-0159",
+      "scenario_family_id": "terra200v2-family-syn-hold-0159",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "severe",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "face_washing",
+                "reported_timing": "pain_worsened_during_washing",
+                "current_pain": "severe"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "악화된 심한 통증과 지속 불편에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "9de18bbd1ff53d493a1805cc1e80f5752406d0ae96b848957d9de939abd01fd5",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "악화된 심한 통증과 지속 불편에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세안할 때 통증이 더 심해져 지금은 심한 통증이고 불편도 이어져요. 평소 쓰는 물이 뜨거운지 아닌지는 기억나지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "불편도 이어져요",
+          "connection": "현재까지 이어지는 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "지금은 심한 통증이고",
+          "connection": "현재 심한 통증이다."
+        },
+        {
+          "variable_id": "method.water_temperature",
+          "raw_span": "평소 쓰는 물이 뜨거운지 아닌지는 기억나지 않아요",
+          "connection": "수온 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "얼굴 세안할 때 통증이 더 심해져 지금은 심한 통증이고 불편도 이어져요",
+          "connection": "세안할 때 통증이 더 심해졌고 현재 심하다는 보고다."
+        }
+      ],
+      "novelty_note": "심해진 통증과 수온 미상을 분리하고 원인을 추정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n심한 통증과 이어지는 불편이 보고되어 개별 루틴이나 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n전문가에게 현재 통증을 확인받아 주세요. 물 온도는 기억나지 않으므로 통증의 원인으로 추정하지 않아요.",
+    "after_answer": "### 개별 권고 보류 안내\n심한 통증과 이어지는 불편이 보고되어 개별 루틴이나 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n전문가에게 현재 통증을 확인받아 주세요. 물 온도는 기억나지 않으므로 통증의 원인으로 추정하지 않아요."
+  },
+  {
+    "id": "syn-hold-0161",
+    "audit_ground": "기기 사용과 현재 지속 통증은 기록됐지만 통증이 기기 사용 후 시작했다는 시간 관계가 슬롯에 없어 답변의 사용 후 통증 주장이 입력에 없어요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0161",
+      "title": "기기 사용 뒤 지속 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0161",
+      "group_id": "terra200v2-family-syn-hold-0161",
+      "scenario_family_id": "terra200v2-family-syn-hold-0161",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "device_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 통증에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "07d0d1879b63d7af574475a868633e8e80fa36b49e5772dbaff2141905af79f6",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "지속 통증에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세안 기기를 쓴 후 중간 정도 통증이 있고 지금도 이어져요. 기기의 제품 병용 지침은 몰라요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "통증이 있고 지금도 이어져요",
+          "connection": "지속되는 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도 통증이 있고",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "adjunct.device_use",
+          "raw_span": "얼굴 세안 기기를 쓴 후",
+          "connection": "기기 실제 사용이다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "기기의 제품 병용 지침은 몰라요",
+          "connection": "기기 지침 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "기기 사용 뒤 통증을 다루되 제품과 병용 자체는 가정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0161",
+      "title": "기기 사용 뒤 지속 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0161",
+      "group_id": "terra200v2-family-syn-hold-0161",
+      "scenario_family_id": "terra200v2-family-syn-hold-0161",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "device_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "cleansing_device_use",
+                "reported_timing": "pain_after_device_use_and_continues"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속 통증에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "469d12d91bebba960016b4493b75dbf604ecb16ca738e376c05f4dc2d8b964b4",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "지속 통증에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세안 기기를 쓴 후 중간 정도 통증이 있고 지금도 이어져요. 기기의 제품 병용 지침은 몰라요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "통증이 있고 지금도 이어져요",
+          "connection": "지속되는 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도 통증이 있고",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "adjunct.device_use",
+          "raw_span": "얼굴 세안 기기를 쓴 후",
+          "connection": "기기 실제 사용이다."
+        },
+        {
+          "variable_id": "product.instructions",
+          "raw_span": "기기의 제품 병용 지침은 몰라요",
+          "connection": "기기 지침 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "얼굴 세안 기기를 쓴 후 중간 정도 통증이 있고 지금도 이어져요",
+          "connection": "기기 사용 후 통증이 이어진다는 시간 관계이며 인과 판정은 아니다."
+        }
+      ],
+      "novelty_note": "기기 사용 뒤 통증을 다루되 제품과 병용 자체는 가정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세안 기기 사용 후 통증이 이어져 개별 루틴과 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 기기 사용을 잠시 중단하고 전문가의 확인을 받아 주세요. 제품과 실제 병용했는지는 확인되지 않았어요.",
+    "after_answer": "### 개별 권고 보류 안내\n세안 기기 사용 후 통증이 이어져 개별 루틴과 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편과 연결된 기기 사용을 잠시 중단하고 전문가의 확인을 받아 주세요. 제품과 실제 병용했는지는 확인되지 않았어요."
+  },
+  {
+    "id": "syn-hold-0162",
+    "audit_ground": "교체 원문의 색 변화·분리와 변화 후 미사용은 S04 보류를 지지하지만 세정제 보유는 원문에서 확인되지 않았는데 cleanser_owned=true로 추가됐어요. 가까운 기존 0002는 B-B01 통증 사례로 품질 변화 관련 사례가 아니에요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0162",
+      "title": "세정제 색 변화와 층 분리",
+      "scenario_id": "terra200v2-scenario-syn-hold-0162",
+      "group_id": "terra200v2-family-syn-hold-0162",
+      "scenario_family_id": "terra200v2-family-syn-hold-0162",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": true,
+              "separation": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleanser_owned": true,
+              "used_after_change": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "세정제의 색 변화와 층 분리가 보고되어 제품 사용을 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "31f4d2b17ea04c58f547ccec85ad47d33b08abe1e740afad912a7707fd67764a",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-S04": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+            "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+              "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "세정제의 색 변화와 층 분리가 보고되어 제품 사용을 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "기존 후보의 중복 또는 모드 불일치를 대체한 새 합성 개발 사례이며 실제 사용자·임상·엔진 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제의 색이 전과 달라지고 층도 분리됐어요. 변화를 본 뒤에는 그 제품을 쓰지 않았어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "storage.sensory_change",
+          "raw_span": "색이 전과 달라지고 층도 분리됐어요",
+          "connection": "색 변화와 층 분리다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "얼굴 세정제",
+          "connection": "세정제 보유다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "변화를 본 뒤에는 그 제품을 쓰지 않았어요",
+          "connection": "변화 이후 미사용이다."
+        }
+      ],
+      "novelty_note": "헹굼 중 반복 통증 사례를 대체한 신규 합성: 품질 이상을 관찰한 뒤 아직 사용하지 않은 별도 안전 판단이다.",
+      "closest_existing_ids": [
+        "syn-hold-0002"
+      ],
+      "new_synthetic_replacement": true
+    },
+    "after_input": {
+      "id": "syn-hold-0162",
+      "title": "세정제 색 변화와 층 분리",
+      "scenario_id": "terra200v2-scenario-syn-hold-0162",
+      "group_id": "terra200v2-family-syn-hold-0162",
+      "scenario_family_id": "terra200v2-family-syn-hold-0162",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-S04"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": true,
+              "separation": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "used_after_change": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-S04",
+            "status": "hold",
+            "guidance": "세정제의 색 변화와 층 분리가 보고되어 제품 사용을 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-S04@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "4628a654fe647251a98903f563d18fdf0db76631ef128f7cf83ded58879411d1",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-S04": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "이상이 없다는 관찰은 기록하되 안전 인증으로 처리하지 않음.",
+            "difference_when": "새로운 변질 의심 징후를 인지했는데도 확인 없이 계속 사용하거나 단순 사용량 조절로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "흔들어 쓰는 제형 등 정상 특성이 표시로 확인됨",
+              "사용자가 말한 변화가 기존 정상 외관인지 불명확"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "세정제의 색 변화와 층 분리가 보고되어 제품 사용을 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "기존 후보의 중복 또는 모드 불일치를 대체한 새 합성 개발 사례이며 실제 사용자·임상·엔진 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 세정제의 색이 전과 달라지고 층도 분리됐어요. 변화를 본 뒤에는 그 제품을 쓰지 않았어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "storage.sensory_change",
+          "raw_span": "색이 전과 달라지고 층도 분리됐어요",
+          "connection": "색 변화와 층 분리다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "변화를 본 뒤에는 그 제품을 쓰지 않았어요",
+          "connection": "변화 이후 미사용이다."
+        }
+      ],
+      "novelty_note": "헹굼 중 반복 통증 사례를 대체한 신규 합성: 품질 이상을 관찰한 뒤 아직 사용하지 않은 별도 안전 판단이다.",
+      "closest_existing_ids": [
+        "syn-hold-0003",
+        "syn-hold-0006"
+      ],
+      "new_synthetic_replacement": true
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세정제의 색 변화와 층 분리가 보고되어 제품 사용과 개별 루틴 권고를 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n변화 이후 사용하지 않았다고 하셨으니 해당 제품의 사용을 계속 보류하고 표시·보관 이력을 확인해 주세요. 필요한 경우 제조·판매처에 문의해 품질 상태를 확인해요.",
+    "after_answer": "### 개별 권고 보류 안내\n세정제의 색 변화와 층 분리가 보고되어 제품 사용과 개별 루틴 권고를 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n변화 이후 사용하지 않았다고 하셨으니 해당 제품의 사용을 계속 보류하고 표시·보관 이력을 확인해 주세요. 필요한 경우 제조·판매처에 문의해 품질 상태를 확인해요."
+  },
+  {
+    "id": "syn-hold-0163",
+    "audit_ground": "지속 불편과 물 접촉 위치 일치 미상은 있지만 원문의 세안 후 시간 관계가 입력 슬롯에 없어 답변의 세안 후 불편을 직접 뒷받침하지 못해요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0163",
+      "title": "증상 위치 일치 미상",
+      "scenario_id": "terra200v2-scenario-syn-hold-0163",
+      "group_id": "terra200v2-family-syn-hold-0163",
+      "scenario_family_id": "terra200v2-family-syn-hold-0163",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "same_as_water_contact_site": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "0a246557012b4bc67b8637de7ad3e836048fb8924e040f3ae6e62b62376ef1af",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "지속되는 불편에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "세안 후 불편이 계속돼요. 물이 닿은 곳과 불편한 곳이 같은지는 잘 모르겠어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "세안 후 불편이 계속돼요",
+          "connection": "지속 불편이다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "물이 닿은 곳과 불편한 곳이 같은지는 잘 모르겠어요",
+          "connection": "노출 위치와 불편 위치의 일치 여부 미상이다."
+        }
+      ],
+      "novelty_note": "불편 위치와 물이 닿은 위치의 일치를 추정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0163",
+      "title": "증상 위치 일치 미상",
+      "scenario_id": "terra200v2-scenario-syn-hold-0163",
+      "group_id": "terra200v2-family-syn-hold-0163",
+      "scenario_family_id": "terra200v2-family-syn-hold-0163",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "same_as_water_contact_site": "unknown",
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "washing",
+                "reported_timing": "discomfort_after_washing_and_continues"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "지속되는 불편에 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "efb76c8ddcd6ee5ee4c923d82b22e9852cef29c192858dfa796a4384d5fb8176",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "지속되는 불편에 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "세안 후 불편이 계속돼요. 물이 닿은 곳과 불편한 곳이 같은지는 잘 모르겠어요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "세안 후 불편이 계속돼요",
+          "connection": "지속 불편이다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "물이 닿은 곳과 불편한 곳이 같은지는 잘 모르겠어요",
+          "connection": "노출 위치와 불편 위치의 일치 여부 미상이다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "세안 후 불편이 계속돼요",
+          "connection": "세안 후 불편이 계속된다는 보고다."
+        }
+      ],
+      "novelty_note": "불편 위치와 물이 닿은 위치의 일치를 추정하지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n세안 후 불편이 계속되어 개별 루틴이나 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n지속되는 불편에 대해 전문가의 확인을 받아 주세요. 물이 닿은 위치와 불편한 위치가 같은지는 미상이라 일치한다고 추정하지 않아요.",
+    "after_answer": "### 개별 권고 보류 안내\n세안 후 불편이 계속되어 개별 루틴이나 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n지속되는 불편에 대해 전문가의 확인을 받아 주세요. 물이 닿은 위치와 불편한 위치가 같은지는 미상이라 일치한다고 추정하지 않아요."
+  },
+  {
+    "id": "syn-hold-0164",
+    "audit_ground": "패드 사용과 지속 통증은 각각 있으나 통증이 패드 사용 뒤 시작됐다는 시간 관계가 슬롯에 없어 답변의 사용 뒤 통증 주장 근거가 빠졌어요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0164",
+      "title": "패드 뒤 지속 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0164",
+      "group_id": "add100-c-syn-hold-0031-group",
+      "scenario_family_id": "add100-c-syn-hold-0031-family",
+      "split": "val_internal",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "cleansing_pad"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "도구 사용 후 통증이 지속되어 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "a343204ca6a36ae80a18b799ee09dd5429c657b992e21cce12c0bcecb243a029",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "도구 사용 후 통증이 지속되어 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴에 클렌징 패드를 쓴 다음부터 중간 정도로 아프고 지금까지 통증이 이어져요. 세정제를 함께 썼는지는 기억나지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "지금까지 통증이 이어져요",
+          "connection": "지속 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도로 아프고",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "method.tools",
+          "raw_span": "얼굴에 클렌징 패드를 쓴 다음부터",
+          "connection": "실제 사용 도구다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "세정제를 함께 썼는지는 기억나지 않아요",
+          "connection": "제품 병용 여부 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "패드 사용 뒤 지속 통증과 제품 병용 미상을 구별한다.",
+      "closest_existing_ids": [
+        "syn-hold-0031"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0164",
+      "title": "패드 뒤 지속 통증",
+      "scenario_id": "terra200v2-scenario-syn-hold-0164",
+      "group_id": "add100-c-syn-hold-0031-group",
+      "scenario_family_id": "add100-c-syn-hold-0031-family",
+      "split": "val_internal",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "cleansing_pad"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "cleansing_pad_use",
+                "reported_timing": "pain_from_after_pad_use_and_continues"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "도구 사용 후 통증이 지속되어 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "0ff5cad24023270fba6f128242ddb2923cb35e240a1eda6a3837b9ce248974d0",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "도구 사용 후 통증이 지속되어 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴에 클렌징 패드를 쓴 다음부터 중간 정도로 아프고 지금까지 통증이 이어져요. 세정제를 함께 썼는지는 기억나지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "지금까지 통증이 이어져요",
+          "connection": "지속 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도로 아프고",
+          "connection": "통증 정도다."
+        },
+        {
+          "variable_id": "method.tools",
+          "raw_span": "얼굴에 클렌징 패드를 쓴 다음부터",
+          "connection": "실제 사용 도구다."
+        },
+        {
+          "variable_id": "method.current_routine",
+          "raw_span": "세정제를 함께 썼는지는 기억나지 않아요",
+          "connection": "제품 병용 여부 미상이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "클렌징 패드를 쓴 다음부터 중간 정도로 아프고 지금까지 통증이 이어져요",
+          "connection": "패드 사용 다음부터 통증이 이어진다는 시간 관계다."
+        }
+      ],
+      "novelty_note": "패드 사용 뒤 지속 통증과 제품 병용 미상을 구별한다.",
+      "closest_existing_ids": [
+        "syn-hold-0031"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n클렌징 패드 사용 뒤 통증이 이어져 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n통증과 연결된 패드 사용을 잠시 중단하고 전문가에게 확인받아 주세요. 세정제를 함께 썼는지는 기억나지 않으므로 병용했다고 추정하지 않아요.",
+    "after_answer": "### 개별 권고 보류 안내\n클렌징 패드 사용 뒤 통증이 이어져 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n통증과 연결된 패드 사용을 잠시 중단하고 전문가에게 확인받아 주세요. 세정제를 함께 썼는지는 기억나지 않으므로 병용했다고 추정하지 않아요."
+  },
+  {
+    "id": "syn-hold-0165",
+    "audit_ground": "선크림 제거 대상과 지속 불편은 기록됐지만 불편이 제거 뒤 시작됐다는 관계가 관찰 슬롯에 없어 답변의 지운 뒤 불편이라는 주장에 필요한 정보가 빠졌어요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0165",
+      "title": "제거 후 불편과 제품 거절",
+      "scenario_id": "terra200v2-scenario-syn-hold-0165",
+      "group_id": "terra200v2-family-syn-hold-0165",
+      "scenario_family_id": "terra200v2-family-syn-hold-0165",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "sunscreen": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "제거 후 불편이 지속되어 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "817eefd3496bc627a510fbc68dab0bdd4440c23e408517699fce3056f73e4dac",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "제거 후 불편이 지속되어 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 선크림을 지우고 나서 불편이 계속돼요. 어떤 세정제를 썼는지는 답변하고 싶지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "지우고 나서 불편이 계속돼요",
+          "connection": "제거 후 지속 불편이다."
+        },
+        {
+          "variable_id": "cleansing.target_load",
+          "raw_span": "얼굴 선크림을 지우고 나서",
+          "connection": "제거 대상이다."
+        },
+        {
+          "variable_id": "product.type",
+          "raw_span": "어떤 세정제를 썼는지는 답변하고 싶지 않아요",
+          "connection": "실제 제품 정보 응답 거절이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "제거 목적과 실제 세정제 정보 거절을 구별한다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0165",
+      "title": "제거 후 불편과 제품 거절",
+      "scenario_id": "terra200v2-scenario-syn-hold-0165",
+      "group_id": "terra200v2-family-syn-hold-0165",
+      "scenario_family_id": "terra200v2-family-syn-hold-0165",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "sunscreen": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.type": {
+            "variable_id": "product.type",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "sunscreen_removal",
+                "reported_timing": "discomfort_after_removal_and_continues"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "제거 후 불편이 지속되어 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c4e3e6b7ba34744c19f0b967838fffb7d5514e242d3180aaaf70575b4940305d",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "제거 후 불편이 지속되어 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "얼굴 선크림을 지우고 나서 불편이 계속돼요. 어떤 세정제를 썼는지는 답변하고 싶지 않아요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "지우고 나서 불편이 계속돼요",
+          "connection": "제거 후 지속 불편이다."
+        },
+        {
+          "variable_id": "cleansing.target_load",
+          "raw_span": "얼굴 선크림을 지우고 나서",
+          "connection": "제거 대상이다."
+        },
+        {
+          "variable_id": "product.type",
+          "raw_span": "어떤 세정제를 썼는지는 답변하고 싶지 않아요",
+          "connection": "실제 제품 정보 응답 거절이다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "선크림을 지우고 나서 불편이 계속돼요",
+          "connection": "선크림 제거 이후 이어지는 불편이며 원인 확정은 아니다."
+        }
+      ],
+      "novelty_note": "제거 목적과 실제 세정제 정보 거절을 구별한다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n선크림을 지운 뒤 불편이 계속되어 개별 루틴이나 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n지속되는 불편에 대해 전문가에게 확인받아 주세요. 사용한 세정제 정보는 답변을 원하지 않으셨으므로 특정 제품을 추정하지 않아요.",
+    "after_answer": "### 개별 권고 보류 안내\n선크림을 지운 뒤 불편이 계속되어 개별 루틴이나 제품 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n지속되는 불편에 대해 전문가에게 확인받아 주세요. 사용한 세정제 정보는 답변을 원하지 않으셨으므로 특정 제품을 추정하지 않아요."
+  },
+  {
+    "id": "syn-hold-0166",
+    "audit_ground": "본인의 통증·지속 불편은 입력에 있으나 친구가 같은 제품을 문제없이 썼다는 경험은 관찰 슬롯에 없어 답변의 친구 경험과 타인 하드 네거티브 조건을 입력만으로 확인할 수 없어요.",
+    "reason": "원문에 명시된 시간·주체·거절 관계를 그대로 입력에 연결하거나 유사 가족 분할과 근거를 수정함. 인과나 미보고 사실은 추가하지 않음.",
+    "before_input": {
+      "id": "syn-hold-0166",
+      "title": "친구 경험과 본인 증상",
+      "scenario_id": "terra200v2-scenario-syn-hold-0166",
+      "group_id": "terra200v2-family-syn-hold-0166",
+      "scenario_family_id": "terra200v2-family-syn-hold-0166",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "본인의 지속 불편과 통증으로 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "66b658ef90057352827284aa14954e5988e302171e4417b64896520ff360a2b8",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "본인의 지속 불편과 통증으로 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "저는 얼굴 세안 후 불편감이 계속되고 중간 정도 통증도 있어요. 친구가 같은 제품을 문제없이 쓴 경험은 제 상태와 달라요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "저는 얼굴 세안 후 불편감이 계속되고",
+          "connection": "본인의 지속 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도 통증도 있어요",
+          "connection": "본인의 통증 정도다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        }
+      ],
+      "novelty_note": "타인의 무불편 경험으로 본인의 지속 불편과 통증을 덮지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "after_input": {
+      "id": "syn-hold-0166",
+      "title": "친구 경험과 본인 증상",
+      "scenario_id": "terra200v2-scenario-syn-hold-0166",
+      "group_id": "terra200v2-family-syn-hold-0166",
+      "scenario_family_id": "terra200v2-family-syn-hold-0166",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "general_safety",
+        "cleansing"
+      ],
+      "card_ids": [
+        "B-B01"
+      ],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "reported_temporal_event": {
+                "subject": "self",
+                "event": "face_washing",
+                "reported_timing": "discomfort_after_washing_and_continues",
+                "pain": "moderate"
+              },
+              "other_subject_report": {
+                "subject": "friend",
+                "same_product": true,
+                "reported_experience": "no_problem"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "kb_judgments": [
+          {
+            "card_id": "B-B01",
+            "status": "hold",
+            "guidance": "본인의 지속 불편과 통증으로 개별 권고를 보류해요."
+          }
+        ],
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [
+          "kb:B-B01@0.6.1"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c0082f1ed4bb8f6d674f70b7b6344af26ac343cb739bff902671a554bc59eed0",
+      "judgment_basis": {
+        "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
+        "cards": {
+          "B-B01": {
+            "specification_language": "natural_language_reviewable_not_executable",
+            "aligned_when": "일반 지침이 개별 계획과 충돌하지 않고 필요한 상담 경로가 유지됨.",
+            "difference_when": "진료 지시를 일반 기준으로 대체하려 하거나 지속 불편을 무조건 사용량 조정만으로 해결하려 함.",
+            "unknown_when": "해당 차이 판정에 필요한 관찰 가능한 정보가 없거나 상충할 때. 차이를 생성하지 않는다.",
+            "exception_when": [
+              "별도로 검증된 의료/응급 대응 체계가 있다면 그 체계가 우선함"
+            ],
+            "difference_is_not": "위험·질환·원인·개선 필요성이 자동 확정된 것이 아님."
+          }
+        },
+        "rationale": "본인의 지속 불편과 통증으로 개별 권고를 보류해요."
+      },
+      "source_origin": "new_synthetic",
+      "source_scenario_id": null,
+      "source_turn_id": null,
+      "source_note": "새 합성 개발 후보이며 실제 사용자·임상 결과·엔진 실행 결과가 아니에요.",
+      "generator_model": "gpt-6.1-terra",
+      "scenario_raw": "저는 얼굴 세안 후 불편감이 계속되고 중간 정도 통증도 있어요. 친구가 같은 제품을 문제없이 쓴 경험은 제 상태와 달라요.",
+      "atom_evidence": [
+        {
+          "variable_id": "skin.current_discomfort",
+          "raw_span": "저는 얼굴 세안 후 불편감이 계속되고",
+          "connection": "본인의 지속 불편이다."
+        },
+        {
+          "variable_id": "skin.pain",
+          "raw_span": "중간 정도 통증도 있어요",
+          "connection": "본인의 통증 정도다."
+        },
+        {
+          "variable_id": "method.body_site",
+          "raw_span": "얼굴",
+          "connection": "명시된 행위 또는 제품 사용 부위다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "얼굴 세안 후 불편감이 계속되고 중간 정도 통증도 있어요",
+          "connection": "본인의 세안 후 지속 불편과 통증 보고다."
+        },
+        {
+          "variable_id": "skin.distribution",
+          "raw_span": "친구가 같은 제품을 문제없이 쓴 경험은 제 상태와 달라요",
+          "connection": "친구의 제품 사용 경험이며 본인의 증상이 아니다."
+        }
+      ],
+      "novelty_note": "타인의 무불편 경험으로 본인의 지속 불편과 통증을 덮지 않는다.",
+      "closest_existing_ids": [
+        "syn-hold-0001"
+      ]
+    },
+    "before_answer": "### 개별 권고 보류 안내\n본인의 불편이 계속되고 통증도 있어 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편과 통증을 전문가에게 확인받아 주세요. 친구가 같은 제품을 문제없이 쓴 경험으로 본인의 증상을 판단하지 않아요.",
+    "after_answer": "### 개별 권고 보류 안내\n본인의 불편이 계속되고 통증도 있어 개별 루틴과 제품 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편과 통증을 전문가에게 확인받아 주세요. 친구가 같은 제품을 문제없이 쓴 경험으로 본인의 증상을 판단하지 않아요."
+  }
+]

@@ -1,0 +1,689 @@
+{
+  "mode": "development_preview",
+  "production_enabled": false,
+  "human_review": "unreviewed",
+  "independent_reaudit": "pending",
+  "prior_input_backup": "c_before_round4_inputs.json",
+  "prior_answer_backup": "c_before_round4_answers.json",
+  "entries": [
+    {
+      "id": "syn-sol-0615",
+      "critic_issue": "guidance의 A 개봉·B 밀봉과 원문은 일치하지만 모델 입력에는 B 밀봉과 A 개봉일 unknown만 있고 A가 이미 개봉했다는 관찰은 없어요. 원문과 guidance의 중요한 상태가 입력에 빠졌어요.",
+      "synthetic_replacement": false,
+      "reason": "기존 합성 원문의 관찰을 입력에 보존하거나 답변과 판단을 정형 입력이 지지하는 범위로 좁혔어요.",
+      "changes": {
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "product.identity",
+              "raw_span": "같은 제품의 A와 B 두 용기가 있어요.",
+              "connection": "동일 제품의 별도 용기 두 개를 확인해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "두 용기의 개봉 후 안내는 보여요.",
+              "connection": "표시가 보인다는 사실만 확인해요."
+            },
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요.",
+              "connection": "용기별 개봉 순서는 미상이에요."
+            },
+            {
+              "variable_id": "storage.seal_integrity",
+              "raw_span": "A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요.",
+              "connection": "B의 밀봉과 A의 미상 개봉일을 구분해요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "product.identity",
+              "raw_span": "같은 제품의 A와 B 두 용기가 있어요.",
+              "connection": "동일 제품의 별도 용기 두 개를 확인해요."
+            },
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "두 용기의 개봉 후 안내는 보여요.",
+              "connection": "표시가 보인다는 사실만 확인해요."
+            },
+            {
+              "variable_id": "storage.opened_at",
+              "raw_span": "A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요.",
+              "connection": "용기별 개봉 순서는 미상이에요."
+            },
+            {
+              "variable_id": "storage.seal_integrity",
+              "raw_span": "A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요.",
+              "connection": "B의 밀봉과 A의 미상 개봉일을 구분해요."
+            },
+            {
+              "variable_id": "storage.container",
+              "raw_span": "A는 이미 열었지만 개봉일이 기억나지 않고 B는 밀봉 상태예요.",
+              "connection": "A가 이미 개봉된 사실이며 개봉 날짜를 알고 있다는 뜻은 아니에요."
+            }
+          ]
+        },
+        "input_sha256": {
+          "before": "ce92b1f982de868f80832a35e86b02ea435318841a77012b81e2a02d68fbd200",
+          "after": "a9c8d8f5e5fddc2727aab9ad327f7fb9f6d37d13b4e907f24cbaa705dfa3a74d"
+        },
+        "request": {
+          "before": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "product.identity": {
+                "variable_id": "product.identity",
+                "state": "known",
+                "value": {
+                  "containers": [
+                    "A",
+                    "B"
+                  ],
+                  "same_product": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "known",
+                "value": {
+                  "pao_visible": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.opened_at": {
+                "variable_id": "storage.opened_at",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              },
+              "storage.seal_integrity": {
+                "variable_id": "storage.seal_integrity",
+                "state": "known",
+                "value": {
+                  "container_b_sealed": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S02",
+                "status": "unknown",
+                "guidance": "용기 A는 이미 개봉했지만 개봉일이 미상이고 B는 밀봉 상태여서 각 용기의 이력을 구분해야 해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S02@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "solution",
+            "confirmed_observations": {
+              "product.identity": {
+                "variable_id": "product.identity",
+                "state": "known",
+                "value": {
+                  "containers": [
+                    "A",
+                    "B"
+                  ],
+                  "same_product": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "known",
+                "value": {
+                  "pao_visible": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.opened_at": {
+                "variable_id": "storage.opened_at",
+                "state": "unknown",
+                "value": null,
+                "source": "synthetic_fixture",
+                "confirmed_by_user": false
+              },
+              "storage.seal_integrity": {
+                "variable_id": "storage.seal_integrity",
+                "state": "known",
+                "value": {
+                  "container_b_sealed": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.container": {
+                "variable_id": "storage.container",
+                "state": "known",
+                "value": {
+                  "container_a_opened": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S02",
+                "status": "unknown",
+                "guidance": "용기 A는 이미 개봉했지만 개봉일이 미상이고 B는 밀봉 상태여서 각 용기의 이력을 구분해야 해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [
+              {
+                "evidence_ref": "ref:S06",
+                "text": "Heat and sunlight can affect cosmetic shelf life. Appropriate storage and handling are discussed as factors, not proof of the stability of an individual product.",
+                "scope": "general_skincare_practice",
+                "source_url": "https://www.fda.gov/cosmetics/cosmetics-labeling/shelf-life-and-expiration-dating-cosmetics",
+                "locator": "What factors affect shelf life, and how? / Steps consumers can take",
+                "checked_on": "2026-11-04",
+                "limitations": "제품별 안정성 시험을 대체하지 않음. 모든 화장품에 공통 사용기한을 부여하는 근거가 아님."
+              }
+            ],
+            "allowed_evidence_refs": [
+              "kb:B-S02@0.6.1",
+              "ref:S06"
+            ],
+            "distractor_refs": []
+          }
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0184",
+      "critic_issue": "새 물 첨가 이력과 변화가 원문·입력에 있어 기존 0003과 다른 조건이지만 색과 냄새가 모두 바뀌었다는 원문·답변을 color_or_odor_change 하나로 표현해 둘 중 하나만일 수 있는 입력보다 구체적으로 답해요.",
+      "synthetic_replacement": false,
+      "reason": "기존 합성 원문의 관찰을 입력에 보존하거나 답변과 판단을 정형 입력이 지지하는 범위로 좁혔어요.",
+      "changes": {
+        "answer": {
+          "before": "### 개별 권고 보류 안내\n제품에 평소 없던 냄새와 색 변화가 있어 개별 루틴 안내를 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n해당 제품의 사용을 중단하고 물을 넣은 이력과 변화를 제조·판매처에 확인해 주세요. 물 첨가가 변화의 원인이라고 단정하지 않아요.",
+          "after": "### 개별 권고 보류 안내\n제품에 평소 없던 색 또는 냄새 변화가 있어 개별 루틴 안내를 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n해당 제품의 사용을 중단하고 물을 넣은 이력과 변화를 제조·판매처에 확인해 주세요. 물 첨가가 변화의 원인이라고 단정하지 않아요."
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0185",
+      "critic_issue": "원문은 흔들어 쓰라는 표시와 과거에도 층 분리를 각각 말하지만 표시 자체가 정상 분리를 명시한다고 말하지 않아요. product.instructions의 normal_separation=true와 답변의 표시된 정상 분리는 표시 내용을 과장해요.",
+      "synthetic_replacement": false,
+      "reason": "기존 합성 원문의 관찰을 입력에 보존하거나 답변과 판단을 정형 입력이 지지하는 범위로 좁혔어요.",
+      "changes": {
+        "answer": {
+          "before": "### 개별 권고 보류 안내\n표시된 정상 분리와 별개로 새로운 냄새가 생겨 개별 권고를 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n해당 제품 사용을 멈추고 새 냄새와 정상 제형 특성을 제조·판매처에 확인해 주세요. 표시된 정상 분리 자체를 변질로 단정하지 않아요.",
+          "after": "### 개별 권고 보류 안내\n흔들어 쓰라는 표시가 있는 제품에서 색 또는 냄새 변화가 보고되어 개별 권고를 보류해요 [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\n해당 제품 사용을 멈추고 관찰된 변화와 제품의 원래 특성을 제조·판매처에 확인해 주세요. 흔들어 쓰라는 표시만으로 층 분리가 정상이라고 확정하지 않아요."
+        },
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "표시에는 흔들어 쓰는 제형이라고 적혀 있고 원래도 층이 분리돼요.",
+              "connection": "분리는 표시된 정상 특성임을 확인했어요."
+            },
+            {
+              "variable_id": "storage.sensory_change",
+              "raw_span": "이번에는 평소 없던 냄새가 새로 났어요.",
+              "connection": "기존 정상 분리와 새 냄새를 구분해요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "product.instructions",
+              "raw_span": "표시에는 흔들어 쓰는 제형이라고 적혀 있고 원래도 층이 분리돼요.",
+              "connection": "제품의 흔들어 사용하라는 표시만 확인했으며 분리를 정상으로 명시한 표시는 확인되지 않아요."
+            },
+            {
+              "variable_id": "storage.sensory_change",
+              "raw_span": "이번에는 평소 없던 냄새가 새로 났어요.",
+              "connection": "층 분리와 색 또는 냄새 변화가 보고됐지만 해당 구조화 값은 변화 종류를 각각 확정하지 않아요."
+            }
+          ]
+        },
+        "input_sha256": {
+          "before": "f8ed35c8027a413bcb5150d04bc37bddcad1b06249423c6b86236ce2301644e4",
+          "after": "be3f0edf516a22e6d9ce2696e3d963fecac36a5d5ee5430438f415cfba3df4ea"
+        },
+        "novelty_note": {
+          "before": "새 합성 대체 사례: 기존 0006은 분리의 정상 여부가 미상이나, 여기서는 정상 분리가 확인된 가운데 별도의 새 냄새가 보류 근거예요.",
+          "after": "새 합성 대체 사례: 흔들어 쓰라는 제품 표시와 층 분리를 함께 기록하고 별도의 색 또는 냄새 변화는 품질 확인 대상으로 구분해요. 표시만으로 분리의 정상 여부를 확정하지 않아요."
+        },
+        "request": {
+          "before": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "known",
+                "value": {
+                  "shake_before_use": true,
+                  "normal_separation": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.sensory_change": {
+                "variable_id": "storage.sensory_change",
+                "state": "known",
+                "value": {
+                  "separation": true,
+                  "color_or_odor_change": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S04",
+                "status": "hold",
+                "guidance": "새 품질 변화는 일반 루틴과 분리해 확인해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-S04@0.6.1"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "product.instructions": {
+                "variable_id": "product.instructions",
+                "state": "known",
+                "value": {
+                  "shake_before_use": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "storage.sensory_change": {
+                "variable_id": "storage.sensory_change",
+                "state": "known",
+                "value": {
+                  "separation": true,
+                  "color_or_odor_change": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-S04",
+                "status": "hold",
+                "guidance": "새 품질 변화는 일반 루틴과 분리해 확인해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-S04@0.6.1"
+            ],
+            "distractor_refs": []
+          }
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0196",
+      "critic_issue": "지속 불편과 의료진 계획·새 후보의 미사용은 기록됐지만 원문의 기존 계획 대신 후보를 선택하려는 관계가 입력 슬롯에 없어 개별 계획 대체라는 결정 조건이 보존되지 않아요.",
+      "synthetic_replacement": false,
+      "reason": "기존 합성 원문의 관찰을 입력에 보존하거나 답변과 판단을 정형 입력이 지지하는 범위로 좁혔어요.",
+      "changes": {
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "skin.current_discomfort",
+              "raw_span": "피부 불편이 계속되고 있어요.",
+              "connection": "본인의 불편이 지속돼요."
+            },
+            {
+              "variable_id": "person.clinician_plan",
+              "raw_span": "피부과에서 현재 관리에 관한 개별 계획을 받았어요.",
+              "connection": "현재 관리에 개별 의료진 계획이 있어요."
+            },
+            {
+              "variable_id": "constraints.decision_context",
+              "raw_span": "그 계획 대신 새 선제품을 사려고 하지만 아직 사용하지 않았어요.",
+              "connection": "새 후보 선택은 계획이며 실제 사용은 아니에요."
+            },
+            {
+              "variable_id": "method.current_routine",
+              "raw_span": "그 계획 대신 새 선제품을 사려고 하지만 아직 사용하지 않았어요.",
+              "connection": "신규 제품 계획과 미사용을 분리해요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "skin.current_discomfort",
+              "raw_span": "피부 불편이 계속되고 있어요.",
+              "connection": "본인의 불편이 지속돼요."
+            },
+            {
+              "variable_id": "person.clinician_plan",
+              "raw_span": "피부과에서 현재 관리에 관한 개별 계획을 받았어요. 그 계획 대신 새 선제품을 사려고 하지만 아직 사용하지 않았어요.",
+              "connection": "의료진 계획의 존재와 이를 새 선제품 선택으로 대신하려는 미실행 계획을 연결해요."
+            },
+            {
+              "variable_id": "constraints.decision_context",
+              "raw_span": "그 계획 대신 새 선제품을 사려고 하지만 아직 사용하지 않았어요.",
+              "connection": "새 후보 선택은 계획이며 실제 사용은 아니에요."
+            },
+            {
+              "variable_id": "method.current_routine",
+              "raw_span": "그 계획 대신 새 선제품을 사려고 하지만 아직 사용하지 않았어요.",
+              "connection": "신규 제품 계획과 미사용을 분리해요."
+            }
+          ]
+        },
+        "input_sha256": {
+          "before": "636a5a6c812577f7e2cd25bbad17be6ebdd3416e1996aafb0f93f420258f8ddb",
+          "after": "e84f1c0dfdaea4c89453fcf7c105614f59d907ca5425f7a3b9d45dad45717bf9"
+        },
+        "request": {
+          "before": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "skin.current_discomfort": {
+                "variable_id": "skin.current_discomfort",
+                "state": "known",
+                "value": "persistent",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "person.clinician_plan": {
+                "variable_id": "person.clinician_plan",
+                "state": "known",
+                "value": {
+                  "present": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "constraints.decision_context": {
+                "variable_id": "constraints.decision_context",
+                "state": "known",
+                "value": "new_product_selection",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "method.current_routine": {
+                "variable_id": "method.current_routine",
+                "state": "known",
+                "value": {
+                  "new_sunscreen_used": false,
+                  "selection_planned": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-B01",
+                "status": "hold",
+                "guidance": "지속 불편에 대한 개별 루틴과 제품 안내는 보류해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-B01@0.6.1"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "skin.current_discomfort": {
+                "variable_id": "skin.current_discomfort",
+                "state": "known",
+                "value": "persistent",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "person.clinician_plan": {
+                "variable_id": "person.clinician_plan",
+                "state": "known",
+                "value": {
+                  "present": true,
+                  "replace_plan_with_new_sunscreen_planned": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "constraints.decision_context": {
+                "variable_id": "constraints.decision_context",
+                "state": "known",
+                "value": "new_product_selection",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "method.current_routine": {
+                "variable_id": "method.current_routine",
+                "state": "known",
+                "value": {
+                  "new_sunscreen_used": false,
+                  "selection_planned": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-B01",
+                "status": "hold",
+                "guidance": "지속 불편에 대한 개별 루틴과 제품 안내는 보류해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-B01@0.6.1"
+            ],
+            "distractor_refs": []
+          }
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0197",
+      "critic_issue": "얼굴 불편과 A의 품질 이상, A 얼굴 사용 미상은 각각 분리했지만 관찰은 color_or_odor_change=true만 담아 색 변화와 냄새 변화를 구별하지 못하는데 답변은 새 냄새라고 특정해요.",
+      "synthetic_replacement": false,
+      "reason": "기존 합성 원문의 관찰을 입력에 보존하거나 답변과 판단을 정형 입력이 지지하는 범위로 좁혔어요.",
+      "changes": {
+        "answer": {
+          "before": "### 개별 권고 보류 안내\n얼굴 불편이 지속되고 별도로 A 용기에서 새로운 냄새가 확인돼 개별 루틴과 제품 안내를 보류해요 [kb:B-B01@0.6.1] [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\nA의 사용을 중단하고 품질 변화는 제조·판매처에, 지속 불편은 전문가에게 각각 확인해 주세요. A를 얼굴에 썼는지는 미상이므로 증상 원인으로 단정하지 않아요.",
+          "after": "### 개별 권고 보류 안내\n얼굴 불편이 지속되고 별도로 A 용기에서 새로운 색 또는 냄새 변화가 확인돼 개별 루틴과 제품 안내를 보류해요 [kb:B-B01@0.6.1] [kb:B-S04@0.6.1].\n\n### 필요한 다음 단계\nA의 사용을 중단하고 품질 변화는 제조·판매처에, 지속 불편은 전문가에게 각각 확인해 주세요. A를 얼굴에 썼는지는 미상이므로 증상 원인으로 단정하지 않아요."
+        }
+      }
+    },
+    {
+      "id": "syn-hold-0198",
+      "critic_issue": "본인 얼굴 증상과 친구 얼굴 사용 경험은 분리하지만 method.body_site=hands는 손 사용을 나타낼 뿐 오직 손에만 사용했다는 배타성을 담지 않아 답변의 손에만 사용 주장을 완전히 지지하지 못해요.",
+      "synthetic_replacement": false,
+      "reason": "기존 합성 원문의 관찰을 입력에 보존하거나 답변과 판단을 정형 입력이 지지하는 범위로 좁혔어요.",
+      "changes": {
+        "atom_evidence": {
+          "before": [
+            {
+              "variable_id": "skin.current_discomfort",
+              "raw_span": "제 얼굴은 계속 불편해요.",
+              "connection": "본인의 얼굴 불편이 지속돼요."
+            },
+            {
+              "variable_id": "skin.distribution",
+              "raw_span": "제 얼굴은 계속 불편해요.",
+              "connection": "본인의 증상 부위를 얼굴로 확인해요."
+            },
+            {
+              "variable_id": "method.body_site",
+              "raw_span": "저는 그 제품을 손에만 썼어요.",
+              "connection": "본인의 제품 사용 부위는 손이며 얼굴 증상 부위와 달라요."
+            },
+            {
+              "variable_id": "method.current_routine",
+              "raw_span": "친구는 같은 제품을 얼굴에 쓰고 불편이 없다고 해요.",
+              "connection": "친구의 사용 부위와 무불편은 본인의 반응이 아니에요."
+            }
+          ],
+          "after": [
+            {
+              "variable_id": "skin.current_discomfort",
+              "raw_span": "제 얼굴은 계속 불편해요.",
+              "connection": "본인의 얼굴 불편이 지속돼요."
+            },
+            {
+              "variable_id": "skin.distribution",
+              "raw_span": "제 얼굴은 계속 불편해요.",
+              "connection": "본인의 증상 부위를 얼굴로 확인해요."
+            },
+            {
+              "variable_id": "method.body_site",
+              "raw_span": "저는 그 제품을 손에만 썼어요.",
+              "connection": "본인의 제품 사용 부위는 손이며 얼굴 증상 부위와 달라요."
+            },
+            {
+              "variable_id": "method.current_routine",
+              "raw_span": "저는 그 제품을 손에만 썼어요. 친구는 같은 제품을 얼굴에 쓰고 불편이 없다고 해요.",
+              "connection": "본인의 사용은 손으로 한정되고 친구의 얼굴 사용과 경험은 별개예요."
+            }
+          ]
+        },
+        "input_sha256": {
+          "before": "18d29a392425f2096c1b16045f925147d38ccca16d92883d8737219d3e0cf2e0",
+          "after": "5a7f066cfffe1b496f5c0f2daa7daa354ca4dd043a0b46d1d4e6b24e8aae4155"
+        },
+        "request": {
+          "before": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "skin.current_discomfort": {
+                "variable_id": "skin.current_discomfort",
+                "state": "known",
+                "value": "persistent",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "skin.distribution": {
+                "variable_id": "skin.distribution",
+                "state": "known",
+                "value": {
+                  "symptom_site": "face"
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "method.body_site": {
+                "variable_id": "method.body_site",
+                "state": "known",
+                "value": "hands",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "method.current_routine": {
+                "variable_id": "method.current_routine",
+                "state": "known",
+                "value": {
+                  "other_person_face_product_no_discomfort": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-B01",
+                "status": "hold",
+                "guidance": "지속 불편에 대한 개별 루틴과 제품 안내는 보류해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-B01@0.6.1"
+            ],
+            "distractor_refs": []
+          },
+          "after": {
+            "mode": "hold",
+            "confirmed_observations": {
+              "skin.current_discomfort": {
+                "variable_id": "skin.current_discomfort",
+                "state": "known",
+                "value": "persistent",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "skin.distribution": {
+                "variable_id": "skin.distribution",
+                "state": "known",
+                "value": {
+                  "symptom_site": "face"
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "method.body_site": {
+                "variable_id": "method.body_site",
+                "state": "known",
+                "value": "hands",
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              },
+              "method.current_routine": {
+                "variable_id": "method.current_routine",
+                "state": "known",
+                "value": {
+                  "other_person_face_product_no_discomfort": true,
+                  "self_product_hands_only": true
+                },
+                "source": "synthetic_fixture",
+                "confirmed_by_user": true
+              }
+            },
+            "kb_judgments": [
+              {
+                "card_id": "B-B01",
+                "status": "hold",
+                "guidance": "지속 불편에 대한 개별 루틴과 제품 안내는 보류해요."
+              }
+            ],
+            "product_evidence": [],
+            "rag_chunks": [],
+            "allowed_evidence_refs": [
+              "kb:B-B01@0.6.1"
+            ],
+            "distractor_refs": []
+          }
+        }
+      }
+    }
+  ]
+}

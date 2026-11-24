@@ -1,0 +1,3042 @@
+{
+  "note": "독립 감사 지적을 수정한 이력이며 자기 검수 PASS가 아니에요. 0180은 감사 재확인 대기 중 변경하지 않았어요.",
+  "changes": [
+    {
+      "id": "syn-sol-0551",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "완전히 마를 때까지 기다린 사실은 있으나 B-M01 차이의 \"오래 방치\"는 확인되지 않았어요. 가까운 0003도 동일 미상 구분을 해요.",
+      "raw_before": "얼굴을 씻고 당김이 있어 보습제를 써요. 피부가 다 마를 때까지 기다렸다가 바르고, 별도 사용 지시는 확인하지 못했어요.",
+      "raw_after": "얼굴을 씻고 당김이 있어 보습제를 써요. 피부가 다 마를 때까지 기다렸다가 바르고, 별도 사용 지시는 확인하지 못했어요.",
+      "before": {
+        "input_sha256": "d6fec1d5dbb6844e5257aeea488d41084119fe709d0287ce8faab255b86f870e",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "face_wash": true,
+                "moisturizer_used": true,
+                "tightness_after_wash": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.skin_wetness": {
+              "variable_id": "method.skin_wetness",
+              "state": "known",
+              "value": "dry",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.after_wash_delay": {
+              "variable_id": "moisturizing.after_wash_delay",
+              "state": "known",
+              "value": {
+                "wait_until_dry": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M01",
+              "status": "difference",
+              "guidance": "당김이 있는 맥락에서 피부가 완전히 마를 때까지 기다려 보습하지만 제품별 별도 지시는 확인되지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "건조한 피부 관리 안내는 씻은 뒤 피부가 아직 약간 촉촉할 때 보습제를 사용하는 방법을 다뤄요. 제품별 지시나 개인 진료 계획은 별도로 확인해야 해요.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            },
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses applying moisturizer while skin is still slightly damp after washing. It does not prescribe one amount for every person.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M01@0.6.1",
+            "ref:S04",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0003"
+        ],
+        "novelty_note": "기존 보습 시점 사례와 달리 당김, 완전히 마를 때까지 기다린 행동 및 제품 지시 미확인을 함께 기록해요.",
+        "answer": "### 핵심 안내\n세안 뒤 당김이 있다면 완전히 마를 때까지 기다리는 대신 약간 촉촉할 때 보습하는 방법을 검토해 보세요 [kb:B-M01@0.6.1].\n\n### 근거 및 이유\n건조 피부에 관한 일반 안내는 세정과 보습 시점을 함께 살펴요 [ref:S04].\n\n### 확인이 필요한 한계\n지금 제품의 별도 지시는 확인되지 않았어요. 그 지시나 개인 진료 계획이 있다면 먼저 확인해 주세요."
+      },
+      "after": {
+        "input_sha256": "d1cbc80d80861c655b79e93974a28935a53e6b3d54382126fa2fed9cf9b2bb37",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "face_wash": true,
+                "moisturizer_used": true,
+                "tightness_after_wash": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.skin_wetness": {
+              "variable_id": "method.skin_wetness",
+              "state": "known",
+              "value": "dry",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.after_wash_delay": {
+              "variable_id": "moisturizing.after_wash_delay",
+              "state": "known",
+              "value": {
+                "wait_until_dry": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M01",
+              "status": "unknown",
+              "guidance": "도포 시 피부가 완전히 마른 것은 확인되지만 오래 방치했는지와 별도 제품 지시는 확인되지 않아 차이를 확정하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "건조한 피부 관리 안내는 씻은 뒤 피부가 아직 약간 촉촉할 때 보습제를 사용하는 방법을 다뤄요. 제품별 지시나 개인 진료 계획은 별도로 확인해야 해요.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            },
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses applying moisturizer while skin is still slightly damp after washing. It does not prescribe one amount for every person.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M01@0.6.1",
+            "ref:S04",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0003"
+        ],
+        "novelty_note": "기존 보습 시점 사례와 달리 당김, 완전히 마를 때까지 기다린 행동 및 제품 지시 미확인을 함께 기록해요.",
+        "answer": "### 핵심 안내\n세안 후 피부가 완전히 마를 때 보습했다고 하셨지만 오래 방치했는지는 확인되지 않아 시점의 차이를 확정하지 않아요 [kb:B-M01@0.6.1].\n\n### 근거 및 이유\n건조 피부의 일반 안내에는 씻은 뒤 피부가 약간 촉촉할 때 보습하는 방법이 있어요 [ref:S04].\n\n### 확인이 필요한 한계\n해당 제품의 별도 지시는 미상이므로 확인해 주세요. 정확한 경과 시간도 추정하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0554",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "오후 재발과 감량 계획만 있고 감량 실행 또는 불편이 계속되는데 방법을 검토하지 않은 사실이 없어요. B-M02 차이 조건을 충족하지 않아요.",
+      "raw_before": "보습제를 쓰고도 오후에 건조감이 다시 돌아와요. 무조건 양을 줄이려고 하지만 통증이나 지속적인 불편은 없어요.",
+      "raw_after": "보습제를 쓰고도 오후에 건조감이 다시 돌아와요. 무조건 양을 줄이려고 하지만 통증이나 지속적인 불편은 없어요.",
+      "before": {
+        "input_sha256": "815aae07a9c80b13401efbb689218c5a31dd75e5ed0d4ff409fcc05e56052c0d",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "moisturizing.dryness_return": {
+              "variable_id": "moisturizing.dryness_return",
+              "state": "known",
+              "value": {
+                "afternoon_return": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": true,
+                "planned_reduce_amount": true,
+                "reduction_executed": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.pain": {
+              "variable_id": "skin.pain",
+              "state": "known",
+              "value": "none",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M02",
+              "status": "difference",
+              "guidance": "보습 후 건조감이 다시 나타나므로 보습 방법 검토가 필요하며 감량은 계획일 뿐이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses moisturizer use and reapplication in the context of dryness. It does not set a universal amount for all formulations.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M02@0.6.1",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0040"
+        ],
+        "novelty_note": "건조 재발은 보고됐으나 감량을 실행한 것으로 바꾸지 않아요.",
+        "answer": "### 핵심 안내\n오후에 건조감이 돌아온다면 무조건 양을 줄이기보다 지금 보습 방법을 살펴보세요 [kb:B-M02@0.6.1].\n\n### 근거 및 이유\n보습 후에도 다시 느끼는 건조감은 양과 빈도 검토에 필요한 관찰이에요 [ref:S04].\n\n### 확인이 필요한 한계\n감량은 아직 계획으로만 확인됐어요. 이미 줄였다고 가정하거나 필요한 양을 숫자로 정할 수는 없어요."
+      },
+      "after": {
+        "input_sha256": "1cf5984177f956a21f2ee5e0b01a30250739f17255141e2626800fded3261ae9",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "moisturizing.dryness_return": {
+              "variable_id": "moisturizing.dryness_return",
+              "state": "known",
+              "value": {
+                "afternoon_return": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": true,
+                "planned_reduce_amount": true,
+                "reduction_executed": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.pain": {
+              "variable_id": "skin.pain",
+              "state": "known",
+              "value": "none",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M02",
+              "status": "unknown",
+              "guidance": "보습 후 오후 건조감이 돌아오지만 감량은 계획이며 실제 감량이나 방법 검토 회피는 확인되지 않아 차이를 확정하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses moisturizer use and reapplication in the context of dryness. It does not set a universal amount for all formulations.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M02@0.6.1",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0040"
+        ],
+        "novelty_note": "건조 재발은 보고됐으나 감량을 실행한 것으로 바꾸지 않아요.",
+        "answer": "### 핵심 안내\n보습 후 오후에 건조감이 다시 돌아오는 점을 기록해 두고, 무조건 감량하기 전에 현재 방법을 살펴볼 수 있어요 [kb:B-M02@0.6.1].\n\n### 근거 및 이유\n보습 사용과 재발한 건조감은 양과 빈도를 검토할 때 서로 구분할 정보예요 [ref:S04].\n\n### 확인이 필요한 한계\n감량은 계획으로만 보고됐고 실제 감량이나 방법 검토를 하지 않았다는 사실은 확인되지 않았어요. 적절한 양을 숫자로 정할 근거도 없어요."
+      }
+    },
+    {
+      "id": "syn-sol-0557",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "실제 보습과 불편 부정에도 기능별 새 제품이 반드시 필요하다는 믿음은 B-M03 차이 조건에 맞아요. constraints.goals의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요.",
+      "raw_before": "한 보유 보습제를 실제로 쓰고 있고 건조 불편은 없어요. 수분과 차폐는 각각 새 제품이 반드시 필요하다고 생각해요.",
+      "raw_after": "한 보유 보습제를 실제로 쓰고 있고 건조 불편은 없어요. 수분과 차폐는 각각 새 제품이 반드시 필요하다고 생각해요.",
+      "before": {
+        "input_sha256": "c7c83839ff12a425ebffdd032c46e6ce2e024a18f2bdd4ae0591ea199cdbe389",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": true,
+                "dry_discomfort": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.goals": {
+              "variable_id": "constraints.goals",
+              "state": "known",
+              "value": {
+                "separate_products_required_for_hydration_and_occlusion": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M03",
+              "status": "difference",
+              "guidance": "실제 보습으로 건조 불편은 없는데 기능마다 반드시 별도 제품이 필요하다고 생각해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses moisturizer use and formulation choices. It does not require separate products for every moisturizing function.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M03@0.6.1",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0057"
+        ],
+        "novelty_note": "실제 사용과 기능별 별도 구매 가정을 구분해요.",
+        "answer": "### 핵심 안내\n건조 불편이 없는 현재 보습을 살펴보면서 수분과 차폐마다 새 제품이 반드시 필요하다는 가정은 다시 검토해 보세요 [kb:B-M03@0.6.1].\n\n### 근거 및 이유\n보유 제품 하나가 여러 보습 기능을 맡을 수 있어 기능마다 별도 단계를 필수로 둘 필요는 없어요. 일반 건조 피부 안내도 보습 사용을 다뤄요 [ref:S04].\n\n### 확인이 필요한 한계\n현재 보고는 제품의 모든 기능이나 광보호 요건을 확인해 주지는 않아요."
+      },
+      "after": {
+        "input_sha256": "c842f13b2373c4b0d22eba9efc7d8393fe48403c5fe1aa669ee5b3a6d8195e42",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": true,
+                "dry_discomfort": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.goals": {
+              "variable_id": "constraints.goals",
+              "state": "known",
+              "value": [
+                "수분과 차폐에 각각 새 제품이 반드시 필요하다고 생각함"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M03",
+              "status": "difference",
+              "guidance": "실제 보습으로 건조 불편은 없는데 기능마다 반드시 별도 제품이 필요하다고 생각해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses moisturizer use and formulation choices. It does not require separate products for every moisturizing function.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M03@0.6.1",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0057"
+        ],
+        "novelty_note": "실제 사용과 기능별 별도 구매 가정을 구분해요.",
+        "answer": "### 핵심 안내\n건조 불편이 없는 현재 보습을 살펴보면서 수분과 차폐마다 새 제품이 반드시 필요하다는 가정은 다시 검토해 보세요 [kb:B-M03@0.6.1].\n\n### 근거 및 이유\n보유 제품 하나가 여러 보습 기능을 맡을 수 있어 기능마다 별도 단계를 필수로 둘 필요는 없어요. 일반 건조 피부 안내도 보습 사용을 다뤄요 [ref:S04].\n\n### 확인이 필요한 한계\n현재 보고는 제품의 모든 기능이나 광보호 요건을 확인해 주지는 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0558",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "보유와 미사용을 구별하고 편안함과 충족 여부를 미상으로 둬요. constraints.available_products의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요.",
+      "raw_before": "보습제는 가지고 있지만 아직 사용하지 않았어요. 수분과 차폐가 충족되는지는 몰라요.",
+      "raw_after": "보습제는 가지고 있지만 아직 사용하지 않았어요. 수분과 차폐가 충족되는지는 몰라요.",
+      "before": {
+        "input_sha256": "6e772dfab8d43b6ecabcd1c6b2a5e3504f4ec1092a5213355e6e9ad9bdd29d3c",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": {
+                "moisturizer_owned": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M03",
+              "status": "unknown",
+              "guidance": "제품 보유는 확인됐으나 사용으로 목표가 충족되는지는 확인되지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-M03@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0136"
+        ],
+        "novelty_note": "보유를 사용이나 목표 충족으로 추정하지 않아요.",
+        "answer": "### 핵심 안내\n보습제를 가지고 있다는 사실만으로 현재 보습 목표가 충족됐다고 판단하지 않아요 [kb:B-M03@0.6.1].\n\n### 근거 및 이유\n아직 사용하지 않았고 수분과 차폐가 충족되는지도 모른다고 했어요.\n\n### 확인이 필요한 한계\n보유와 실제 사용 경험은 달라요. 편안함이나 제품의 성능을 추정할 수 없어요."
+      },
+      "after": {
+        "input_sha256": "088e0e02d89a60d459fc0e729797b32dc365a6f919757737366bd0890b486068",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": [
+                "보유한 보습제"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M03",
+              "status": "unknown",
+              "guidance": "제품 보유는 확인됐으나 사용으로 목표가 충족되는지는 확인되지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-M03@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0136"
+        ],
+        "novelty_note": "보유를 사용이나 목표 충족으로 추정하지 않아요.",
+        "answer": "### 핵심 안내\n보습제를 가지고 있다는 사실만으로 현재 보습 목표가 충족됐다고 판단하지 않아요 [kb:B-M03@0.6.1].\n\n### 근거 및 이유\n아직 사용하지 않았고 수분과 차폐가 충족되는지도 모른다고 했어요.\n\n### 확인이 필요한 한계\n보유와 실제 사용 경험은 달라요. 편안함이나 제품의 성능을 추정할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-sol-0559",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "보유 제품 사용 뒤 건조가 남는 상황은 B-M03의 실제 건조 불편 예외에 해당해요. constraints.goals의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요.",
+      "raw_before": "한 보습제를 사용하지만 여전히 건조한 느낌이 남아요. 별도 보습이 필요한지 검토하고 싶어요.",
+      "raw_after": "한 보습제를 사용하지만 여전히 건조한 느낌이 남아요. 별도 보습이 필요한지 검토하고 싶어요.",
+      "before": {
+        "input_sha256": "c562181f7b374521a43a8fedd09667f1c78ad6e28a68c7f4fba99a000e1f5c93",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "known",
+              "value": {
+                "dryness_remains": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.goals": {
+              "variable_id": "constraints.goals",
+              "state": "known",
+              "value": {
+                "review_additional_moisturizing": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M03",
+              "status": "exception",
+              "guidance": "기존 제품 사용에도 건조 불편이 남아 별도 보습 필요성을 검토하는 예외예요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses moisturizer use and consultation for persistent symptoms. It does not establish an individual diagnosis.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M03@0.6.1",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0203"
+        ],
+        "novelty_note": "제품 하나를 쓴다는 사실만으로 추가 보습 불필요를 단정하지 않아요.",
+        "answer": "### 핵심 안내\n기존 보습제를 써도 건조한 느낌이 남는다면 추가 보습 필요성을 따로 검토할 수 있어요 [kb:B-M03@0.6.1].\n\n### 근거 및 이유\n한 제품을 사용한다는 사실만으로 보습 목표가 충족됐다고 볼 수 없어요 [ref:S04].\n\n### 확인이 필요한 한계\n현재 정보만으로 특정 제품이나 정확한 양을 정할 수 없어요. 불편이 지속되면 전문가 확인이 필요해요."
+      },
+      "after": {
+        "input_sha256": "78a02bb65af0bbe6676ec16853d55740d655dc963dbe9d29825bf45f037c7649",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_used": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "known",
+              "value": {
+                "dryness_remains": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.goals": {
+              "variable_id": "constraints.goals",
+              "state": "known",
+              "value": [
+                "별도 보습 필요성 검토"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M03",
+              "status": "exception",
+              "guidance": "기존 제품 사용에도 건조 불편이 남아 별도 보습 필요성을 검토하는 예외예요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S04",
+              "text": "Dry-skin guidance discusses moisturizer use and consultation for persistent symptoms. It does not establish an individual diagnosis.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin",
+              "locator": "보습 시점, 건조 피부 관리, 상담 조건",
+              "checked_on": "2026-11-04",
+              "limitations": "건조 피부 관리의 일반 권고. 모든 피부타입·모든 제형에 동일한 양을 정하지 않음."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-M03@0.6.1",
+            "ref:S04"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0203"
+        ],
+        "novelty_note": "제품 하나를 쓴다는 사실만으로 추가 보습 불필요를 단정하지 않아요.",
+        "answer": "### 핵심 안내\n기존 보습제를 써도 건조한 느낌이 남는다면 추가 보습 필요성을 따로 검토할 수 있어요 [kb:B-M03@0.6.1].\n\n### 근거 및 이유\n한 제품을 사용한다는 사실만으로 보습 목표가 충족됐다고 볼 수 없어요 [ref:S04].\n\n### 확인이 필요한 한계\n현재 정보만으로 특정 제품이나 정확한 양을 정할 수 없어요. 불편이 지속되면 전문가 확인이 필요해요."
+      }
+    },
+    {
+      "id": "syn-sol-0560",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "향료 확인과 알레르기 답변 거절은 버전 불일치·버전 미상이나 미공개 농도·pH 시험이 아니어서 해당 hard negative 분류 조건이 없어요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "새 제품을 고르는 중이에요. 확인한 합성 후보 표시에는 향료가 들어 있고 제 알레르기 여부는 알려주고 싶지 않아요.",
+      "raw_after": "새 제품을 고르는 중이에요. 확인한 합성 후보 표시에는 향료가 들어 있고 제 알레르기 여부는 알려주고 싶지 않아요.",
+      "before": {
+        "input_sha256": "f15c2c8d2b2209b14abbbfe4226d0fa9d3b84766afa1cad8962b66b43c87952d",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "new_product_selection",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.fragrance": {
+              "variable_id": "product.fragrance",
+              "state": "known",
+              "value": {
+                "present": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "person.known_allergies": {
+              "variable_id": "person.known_allergies",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G01",
+              "status": "difference",
+              "guidance": "신규 후보에 향료가 표시되어 무향료 기본 선호와 차이가 있지만 개인 반응을 확정하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S15",
+              "text": "FDA information discusses fragrance allergens and individual avoidance. A fragrance listing does not establish that every user will react.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+              "locator": "Common Allergens / What Consumers Can Do",
+              "checked_on": "2026-11-04",
+              "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G01@0.6.1",
+            "ref:S15"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0015"
+        ],
+        "novelty_note": "신규 선택과 개인 알레르기 거절을 구분해요.",
+        "answer": "### 핵심 안내\n새 후보에 향료 표시가 있어 무향료 기본 선호와는 차이가 있어요 [kb:B-G01@0.6.1]. 선택 시 표시를 살펴볼 수 있어요.\n\n### 근거 및 이유\n향료 알레르겐과 개인별 반응은 구분해서 확인해야 해요 [ref:S15].\n\n### 확인이 필요한 한계\n알레르기 정보 답변을 원하지 않으셨고, 향료 표시만으로 본인의 반응이나 위해를 확정할 수 없어요."
+      },
+      "after": {
+        "input_sha256": "e6926aff17ef4c099fdc090ff2e08d5dbc73b9815d0a8c89cf0123a94f0ae3c0",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "new_product_selection",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.fragrance": {
+              "variable_id": "product.fragrance",
+              "state": "known",
+              "value": {
+                "present": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "person.known_allergies": {
+              "variable_id": "person.known_allergies",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G01",
+              "status": "difference",
+              "guidance": "신규 후보에 향료가 표시되어 무향료 기본 선호와 차이가 있지만 개인 반응을 확정하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S15",
+              "text": "FDA information discusses fragrance allergens and individual avoidance. A fragrance listing does not establish that every user will react.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+              "locator": "Common Allergens / What Consumers Can Do",
+              "checked_on": "2026-11-04",
+              "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+            },
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G01@0.6.1",
+            "ref:S15"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0015"
+        ],
+        "novelty_note": "신규 선택과 개인 알레르기 거절을 구분해요.",
+        "answer": "### 핵심 안내\n새 후보에 향료 표시가 있어 무향료 기본 선호와는 차이가 있어요 [kb:B-G01@0.6.1]. 선택 시 표시를 살펴볼 수 있어요.\n\n### 근거 및 이유\n향료 알레르겐과 개인별 반응은 구분해서 확인해야 해요 [ref:S15].\n\n### 확인이 필요한 한계\n알레르기 정보 답변을 원하지 않으셨고, 향료 표시만으로 본인의 반응이나 위해를 확정할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-sol-0561",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "향료 포함 여부 미상은 제품 버전 불일치·미상 또는 비공개 농도·pH의 시험이 아니므로 hard negative 종류가 실질 조건과 맞지 않아요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "지금 쓰는 제품의 향료 정보는 확인하지 못했어요. 제품 사용 후 특별한 불편은 없고 교체할지 묻고 있어요.",
+      "raw_after": "지금 쓰는 제품의 향료 정보는 확인하지 못했어요. 제품 사용 후 특별한 불편은 없고 교체할지 묻고 있어요.",
+      "before": {
+        "input_sha256": "ee889554ad3105c3889cbecb6eedf6932f4d7108e10febebaeccda56b85b8d6d",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "current_routine_review",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "none",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "product_used": true,
+                "replacement_question": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.fragrance": {
+              "variable_id": "product.fragrance",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G01",
+              "status": "unknown",
+              "guidance": "현재 사용과 불편 부재는 확인됐지만 향료 정보는 미상이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S15",
+              "text": "FDA information discusses fragrance allergens and checking labels. Missing fragrance information does not establish either absence or an individual reaction.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+              "locator": "Common Allergens / What Consumers Can Do",
+              "checked_on": "2026-11-04",
+              "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G01@0.6.1",
+            "ref:S15"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0029"
+        ],
+        "novelty_note": "불편 없음과 향료 미상을 별개로 취급해요.",
+        "answer": "### 핵심 안내\n향료 정보가 확인되지 않아 이 기준만으로 현재 제품을 교체해야 한다고 판단하지 않아요 [kb:B-G01@0.6.1].\n\n### 근거 및 이유\n현재 특별한 불편이 없다는 보고와 향료의 포함 여부는 서로 다른 정보예요 [ref:S15].\n\n### 확인이 필요한 한계\n향료 정보 미상은 무향료라는 뜻도 아니에요. 제품 표시를 확인하기 전에는 포함 여부를 추정하지 않아요."
+      },
+      "after": {
+        "input_sha256": "f0cede14e3def9ecaa5034a5fb0d73329bf342abcaf3766c52b05bd8fc67eb9a",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "current_routine_review",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "none",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "product_used": true,
+                "replacement_question": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.fragrance": {
+              "variable_id": "product.fragrance",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G01",
+              "status": "unknown",
+              "guidance": "현재 사용과 불편 부재는 확인됐지만 향료 정보는 미상이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S15",
+              "text": "FDA information discusses fragrance allergens and checking labels. Missing fragrance information does not establish either absence or an individual reaction.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+              "locator": "Common Allergens / What Consumers Can Do",
+              "checked_on": "2026-11-04",
+              "limitations": "향료 포함을 모든 사람의 자극·알레르기 발생으로 단정하지 않는다. 미국 표시 관련 설명을 한국 법으로 전환하지 않는다."
+            },
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G01@0.6.1",
+            "ref:S15"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0029"
+        ],
+        "novelty_note": "불편 없음과 향료 미상을 별개로 취급해요.",
+        "answer": "### 핵심 안내\n향료 정보가 확인되지 않아 이 기준만으로 현재 제품을 교체해야 한다고 판단하지 않아요 [kb:B-G01@0.6.1].\n\n### 근거 및 이유\n현재 특별한 불편이 없다는 보고와 향료의 포함 여부는 서로 다른 정보예요 [ref:S15].\n\n### 확인이 필요한 한계\n향료 정보 미상은 무향료라는 뜻도 아니에요. 제품 표시를 확인하기 전에는 포함 여부를 추정하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0565",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "현재 버전의 팩 지시 미확인과 미사용을 구분한 버전 미상 시험이에요. constraints.available_products의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요.",
+      "raw_before": "팩을 보유하고 있지만 현재 버전의 표시 지시를 찾지 못했어요. 아직 사용하지 않았고 사용법을 알고 싶어요.",
+      "raw_after": "팩을 보유하고 있지만 현재 버전의 표시 지시를 찾지 못했어요. 아직 사용하지 않았고 사용법을 알고 싶어요.",
+      "before": {
+        "input_sha256": "1aa0b43ab534f9010c583a46675b3d82f00786bac5320d39a3c262fbabaf7244",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": {
+                "pack_owned": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.type": {
+              "variable_id": "product.type",
+              "state": "known",
+              "value": "팩",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "pack_used": false,
+                "instructions_requested": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G03",
+              "status": "unknown",
+              "guidance": "현재 버전의 팩 지시가 미확인이고 아직 사용하지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G03@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0104"
+        ],
+        "novelty_note": "사용법을 묻는 계획과 실제 사용을 분리해요.",
+        "answer": "### 핵심 안내\n아직 쓰지 않은 팩은 현행 버전의 표시를 확인하기 전 사용법을 정하지 않을게요 [kb:B-G03@0.6.1].\n\n### 근거 및 이유\n팩의 지시는 일반 세안제 지시와 다를 수 있어 해당 제품 정보를 확인하는 것이 필요해요.\n\n### 확인이 필요한 한계\n사용법이 미상인 상태예요. 제품을 가지고 있다는 사실이 이미 사용했다는 뜻도 아니에요."
+      },
+      "after": {
+        "input_sha256": "cf11ca8fb70f2018c9224303a18e2b29bfdeb008d3d4d45250f7f3ea11871f8b",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": [
+                "보유한 팩"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.type": {
+              "variable_id": "product.type",
+              "state": "known",
+              "value": "팩",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "pack_used": false,
+                "instructions_requested": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G03",
+              "status": "unknown",
+              "guidance": "현재 버전의 팩 지시가 미확인이고 아직 사용하지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G03@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0104"
+        ],
+        "novelty_note": "사용법을 묻는 계획과 실제 사용을 분리해요.",
+        "answer": "### 핵심 안내\n아직 쓰지 않은 팩은 현행 버전의 표시를 확인하기 전 사용법을 정하지 않을게요 [kb:B-G03@0.6.1].\n\n### 근거 및 이유\n팩의 지시는 일반 세안제 지시와 다를 수 있어 해당 제품 정보를 확인하는 것이 필요해요.\n\n### 확인이 필요한 한계\n사용법이 미상인 상태예요. 제품을 가지고 있다는 사실이 이미 사용했다는 뜻도 아니에요."
+      }
+    },
+    {
+      "id": "syn-sol-0571",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "재도포 답변 거절은 버전 불일치·미상 또는 비공개 농도·pH 시험이 아니에요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "선크림과 보습제를 바를 때 밀림이 있어요. 밀림 때문에 재도포를 줄였는지는 답하고 싶지 않아요.",
+      "raw_after": "선크림과 보습제를 바를 때 밀림이 있어요. 밀림 때문에 재도포를 줄였는지는 답하고 싶지 않아요.",
+      "before": {
+        "input_sha256": "7ab7773dae162a3a7333f0e1bd31ca89e511de7c7d20d4caca2ecbea39ee9e37",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "sun.pilling": {
+              "variable_id": "sun.pilling",
+              "state": "known",
+              "value": {
+                "present": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_and_sunscreen_used": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "sun.reapplication": {
+              "variable_id": "sun.reapplication",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-I02",
+              "status": "unknown",
+              "guidance": "밀림은 확인되나 재도포 행동 변화는 답변을 원하지 않아 판단할 수 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-I02@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0004"
+        ],
+        "novelty_note": "밀림과 행동 변화 응답 거절을 구별해요.",
+        "answer": "### 핵심 안내\n밀림이 있다는 사실만으로 재도포를 줄였다고 판단하지 않아요 [kb:B-I02@0.6.1].\n\n### 근거 및 이유\n중첩의 사용감과 실제 광보호 행동 변화는 서로 구별해야 해요.\n\n### 확인이 필요한 한계\n재도포에 관한 답변을 원하지 않으셨으므로 그 행동은 미확인 상태로 둘게요."
+      },
+      "after": {
+        "input_sha256": "abe38139880b944abddfbb222e7d43007f142c11dfa9ee3bd8580f13e8f197c1",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "sun.pilling": {
+              "variable_id": "sun.pilling",
+              "state": "known",
+              "value": {
+                "present": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "moisturizer_and_sunscreen_used": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "sun.reapplication": {
+              "variable_id": "sun.reapplication",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-I02",
+              "status": "unknown",
+              "guidance": "밀림은 확인되나 재도포 행동 변화는 답변을 원하지 않아 판단할 수 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-I02@0.6.1"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0004"
+        ],
+        "novelty_note": "밀림과 행동 변화 응답 거절을 구별해요.",
+        "answer": "### 핵심 안내\n밀림이 있다는 사실만으로 재도포를 줄였다고 판단하지 않아요 [kb:B-I02@0.6.1].\n\n### 근거 및 이유\n중첩의 사용감과 실제 광보호 행동 변화는 서로 구별해야 해요.\n\n### 확인이 필요한 한계\n재도포에 관한 답변을 원하지 않으셨으므로 그 행동은 미확인 상태로 둘게요."
+      }
+    },
+    {
+      "id": "syn-sol-0574",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "제품 지시 미확인만 있고 버전 불일치·미상 또는 비공개 농도·pH는 제시되지 않았어요. constraints.available_products의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "새 제품을 사두었지만 아직 사용하지 않았어요. 작은 부위 확인 방법에 관한 제품 지시도 찾지 못했어요.",
+      "raw_after": "새 제품을 사두었지만 아직 사용하지 않았어요. 작은 부위 확인 방법에 관한 제품 지시도 찾지 못했어요.",
+      "before": {
+        "input_sha256": "467f5cfd0e284e0673b32401eca28dd4544c7bffd737ac65c5fec9cf6d94e712",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": {
+                "new_product_owned": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "new_product_used": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G11",
+              "status": "unknown",
+              "guidance": "신규 제품은 아직 사용하지 않았고 제품 지시도 확인되지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S35",
+              "text": "General guidance discusses small-area product trials before wider use. It does not replace the specific directions for a product.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/prevent-skin-problems/test-skin-care-products/",
+              "locator": "작은 부위 사용 확인, 7–10일 관찰, 반응 시 씻어내고 재사용하지 않기, 의료 패치테스트와 구분",
+              "checked_on": "2026-11-05",
+              "limitations": "원문 일반 안내의 하루 2회/워시오프 5분을 모든 제품에 이식하지 않음. 개별 용법과 충돌 시 조건부 적용."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G11@0.6.1",
+            "ref:S35"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0011"
+        ],
+        "novelty_note": "제품 소유를 도입한 사실로 바꾸지 않아요.",
+        "answer": "### 핵심 안내\n새 제품은 아직 사용하지 않았으므로 이미 넓게 사용했다고 판단하지 않아요 [kb:B-G11@0.6.1].\n\n### 근거 및 이유\n일반 안내에는 작은 부위 확인이 있지만 해당 제품의 지시도 확인해야 해요 [ref:S35].\n\n### 확인이 필요한 한계\n제품별 지시가 미상이라 정해진 방법을 임의로 제시하지 않아요."
+      },
+      "after": {
+        "input_sha256": "400543d613f232d38d5abfe7626f619da1bd60e250eb15380ea80ddc616e7fd2",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": [
+                "보유한 새 제품"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "new_product_used": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G11",
+              "status": "unknown",
+              "guidance": "신규 제품은 아직 사용하지 않았고 제품 지시도 확인되지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S35",
+              "text": "General guidance discusses small-area product trials before wider use. It does not replace the specific directions for a product.",
+              "scope": "general_skincare_practice",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-secrets/prevent-skin-problems/test-skin-care-products/",
+              "locator": "작은 부위 사용 확인, 7–10일 관찰, 반응 시 씻어내고 재사용하지 않기, 의료 패치테스트와 구분",
+              "checked_on": "2026-11-05",
+              "limitations": "원문 일반 안내의 하루 2회/워시오프 5분을 모든 제품에 이식하지 않음. 개별 용법과 충돌 시 조건부 적용."
+            },
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G11@0.6.1",
+            "ref:S35"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0011"
+        ],
+        "novelty_note": "제품 소유를 도입한 사실로 바꾸지 않아요.",
+        "answer": "### 핵심 안내\n새 제품은 아직 사용하지 않았으므로 이미 넓게 사용했다고 판단하지 않아요 [kb:B-G11@0.6.1].\n\n### 근거 및 이유\n일반 안내에는 작은 부위 확인이 있지만 해당 제품의 지시도 확인해야 해요 [ref:S35].\n\n### 확인이 필요한 한계\n제품별 지시가 미상이라 정해진 방법을 임의로 제시하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0578",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "단일 완제품과 추가 제품의 사용 미상은 버전 불일치·미상이나 비공개 농도·pH 시험이 아니에요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "레티노이드와 AHA가 한 완제품에 함께 있다는 표시만 확인했어요. 다른 각질관리 제품을 실제로 쓰는지는 몰라요.",
+      "raw_after": "레티노이드와 AHA가 한 완제품에 함께 있다는 표시만 확인했어요. 다른 각질관리 제품을 실제로 쓰는지는 몰라요.",
+      "before": {
+        "input_sha256": "1688307299ab9189bf01b0b4979b768b062f3a44915bedfadd063c22793c5d11",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "product.combination_design": {
+              "variable_id": "product.combination_design",
+              "state": "known",
+              "value": {
+                "single_finished_product": [
+                  "retinoid",
+                  "aha"
+                ]
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "routine.co_use_context": {
+              "variable_id": "routine.co_use_context",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G13",
+              "status": "unknown",
+              "guidance": "단일 복합 완제품과 별도 각질관리 사용 미상은 별도로 검토해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G13@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0027"
+        ],
+        "novelty_note": "단일 완제품과 별도 제품 사용 미상",
+        "answer": "### 핵심 안내\n레티노이드와 AHA가 한 완제품에 있다는 표시만으로 별도 제품 중첩으로 판단하지 않아요 [kb:B-G13@0.6.1].\n\n### 근거 및 이유\n복합 완제품과 같은 부위에 별도 제품을 쓰는 상황은 구분해서 검토해요.\n\n### 확인이 필요한 한계\n다른 각질관리 제품의 실제 사용은 미상이어서 적합성이나 무자극을 단정하지 않아요."
+      },
+      "after": {
+        "input_sha256": "79454582ccf993748b2e06cef9f963f4d77efc80b644dbba2646a6a87cdc8b89",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "product.combination_design": {
+              "variable_id": "product.combination_design",
+              "state": "known",
+              "value": {
+                "single_finished_product": [
+                  "retinoid",
+                  "aha"
+                ]
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "routine.co_use_context": {
+              "variable_id": "routine.co_use_context",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G13",
+              "status": "unknown",
+              "guidance": "단일 복합 완제품과 별도 각질관리 사용 미상은 별도로 검토해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G13@0.6.1"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0027"
+        ],
+        "novelty_note": "단일 완제품과 별도 제품 사용 미상",
+        "answer": "### 핵심 안내\n레티노이드와 AHA가 한 완제품에 있다는 표시만으로 별도 제품 중첩으로 판단하지 않아요 [kb:B-G13@0.6.1].\n\n### 근거 및 이유\n복합 완제품과 같은 부위에 별도 제품을 쓰는 상황은 구분해서 검토해요.\n\n### 확인이 필요한 한계\n다른 각질관리 제품의 실제 사용은 미상이어서 적합성이나 무자극을 단정하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0580",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "보유 제품의 실제 사용 목적 미상은 버전 불일치·미상이나 비공개 농도·pH 시험이 아니에요. constraints.available_products의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "레티노이드 제품과 살리실산이 든 제품을 갖고 있어요. 살리실산 제품을 각질관리 목적으로 실제 사용하는지는 몰라요.",
+      "raw_after": "레티노이드 제품과 살리실산이 든 제품을 갖고 있어요. 살리실산 제품을 각질관리 목적으로 실제 사용하는지는 몰라요.",
+      "before": {
+        "input_sha256": "6476bc8c1fe7444dae35c43a2fbbc707df10b4a94a088b55afbda31fcbfdad95",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": {
+                "retinoid_owned": true,
+                "salicylic_product_owned": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.active_care_roles": {
+              "variable_id": "product.active_care_roles",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G14",
+              "status": "unknown",
+              "guidance": "보유와 성분 포함만으로 각질관리 목적의 실제 병용을 확정하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G14@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0014"
+        ],
+        "novelty_note": "보유와 실제 각질관리 용도 분리",
+        "answer": "### 핵심 안내\n두 제품을 보유했다는 사실만으로 얼굴 등에 각질관리 목적으로 병용한다고 판단하지 않아요 [kb:B-G14@0.6.1].\n\n### 근거 및 이유\n살리실산 포함 여부와 해당 제품을 실제 각질관리 목적으로 쓰는지는 별개예요.\n\n### 확인이 필요한 한계\n사용 목적이 미상이므로 같은 부위 중첩 여부도 확정할 수 없어요."
+      },
+      "after": {
+        "input_sha256": "ded564452b4b95b4bca4ca37953fe72ed6167ba39a9a4b5a4c5b73a2c7d050de",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": [
+                "보유한 레티노이드 제품",
+                "보유한 살리실산 포함 제품"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.active_care_roles": {
+              "variable_id": "product.active_care_roles",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G14",
+              "status": "unknown",
+              "guidance": "보유와 성분 포함만으로 각질관리 목적의 실제 병용을 확정하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G14@0.6.1"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0014"
+        ],
+        "novelty_note": "보유와 실제 각질관리 용도 분리",
+        "answer": "### 핵심 안내\n두 제품을 보유했다는 사실만으로 얼굴 등에 각질관리 목적으로 병용한다고 판단하지 않아요 [kb:B-G14@0.6.1].\n\n### 근거 및 이유\n살리실산 포함 여부와 해당 제품을 실제 각질관리 목적으로 쓰는지는 별개예요.\n\n### 확인이 필요한 한계\n사용 목적이 미상이므로 같은 부위 중첩 여부도 확정할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-sol-0582",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "단일 제품의 표시와 별도 사용 미상은 버전 불일치·미상 또는 비공개 농도·pH 시험이 아니에요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "AHA와 BHA를 함께 담은 단일 완제품의 표시를 확인했어요. 별도의 각질관리제를 더 쓰는지는 기억하지 못해요.",
+      "raw_after": "AHA와 BHA를 함께 담은 단일 완제품의 표시를 확인했어요. 별도의 각질관리제를 더 쓰는지는 기억하지 못해요.",
+      "before": {
+        "input_sha256": "f4627f15efd3b0441e1f6c591cbca5803021b20c9219b564d9070ef9690c7c60",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "product.combination_design": {
+              "variable_id": "product.combination_design",
+              "state": "known",
+              "value": {
+                "single_finished_product": [
+                  "aha",
+                  "bha"
+                ]
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "routine.co_use_context": {
+              "variable_id": "routine.co_use_context",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G15",
+              "status": "unknown",
+              "guidance": "단일 복합 제품과 별도 제품의 사용 미상은 구분해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G15@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0036"
+        ],
+        "novelty_note": "단일 완제품과 추가 별도 사용 미상",
+        "answer": "### 핵심 안내\n단일 AHA·BHA 완제품의 표시를 별도 각질관리 제품의 중첩과 구분해요 [kb:B-G15@0.6.1].\n\n### 근거 및 이유\n현재 확인된 것은 한 완제품의 표시이고 추가 제품 사용은 기억하지 못한다고 했어요.\n\n### 확인이 필요한 한계\n별도 사용이 미상인 만큼 자동 금지나 무자극 판정을 하지 않아요."
+      },
+      "after": {
+        "input_sha256": "57c7e145502420ec162174384ae9fdb94f258cd0c84c991f641f928c49458a4b",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "product.combination_design": {
+              "variable_id": "product.combination_design",
+              "state": "known",
+              "value": {
+                "single_finished_product": [
+                  "aha",
+                  "bha"
+                ]
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "routine.co_use_context": {
+              "variable_id": "routine.co_use_context",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G15",
+              "status": "unknown",
+              "guidance": "단일 복합 제품과 별도 제품의 사용 미상은 구분해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G15@0.6.1"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0036"
+        ],
+        "novelty_note": "단일 완제품과 추가 별도 사용 미상",
+        "answer": "### 핵심 안내\n단일 AHA·BHA 완제품의 표시를 별도 각질관리 제품의 중첩과 구분해요 [kb:B-G15@0.6.1].\n\n### 근거 및 이유\n현재 확인된 것은 한 완제품의 표시이고 추가 제품 사용은 기억하지 못한다고 했어요.\n\n### 확인이 필요한 한계\n별도 사용이 미상인 만큼 자동 금지나 무자극 판정을 하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0583",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "접촉 경로 누락 판정은 타당하지만 가까운 기존 0022는 B-G12의 다중 신제품 변경 사례로 실제 머리 제품 접촉·제외 가족이 아니며 근접 비교로 부정확해요. 동일 카드·직접 접촉 기존 사례가 없어 0022는 복수 변화와 인과 판단에 대한 기능적 참고일 뿐임을 명시했어요.",
+      "raw_before": "얼굴 옆쪽에 불편이 생겼고 머리카락에 쓰는 제품이 그 부위에 실제 닿았어요. 얼굴용 제품만 살펴보고 머리 제품은 제외했어요. 원인은 몰라요.",
+      "raw_after": "얼굴 옆쪽에 불편이 생겼고 머리카락에 쓰는 제품이 그 부위에 실제 닿았어요. 얼굴용 제품만 살펴보고 머리 제품은 제외했어요. 원인은 몰라요.",
+      "before": {
+        "input_sha256": "98514ecae1f4b820febd6de4913c38c575350692f29078851affeb9f4a6043a5",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "environment.indirect_products": {
+              "variable_id": "environment.indirect_products",
+              "state": "known",
+              "value": {
+                "hair_product_touched_symptom_area": true,
+                "excluded_from_review": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "discomfort_site": "side_of_face",
+                "cause": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-L01",
+              "status": "difference",
+              "guidance": "확인된 머리 제품 접촉을 검토에서 제외했지만 원인으로 확정할 수도 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-L01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0022"
+        ],
+        "novelty_note": "얼굴 외 제품의 확인된 접촉 제외와 원인 미상",
+        "answer": "### 핵심 안내\n얼굴용 제품뿐 아니라 실제로 얼굴 옆에 닿은 머리 제품도 접촉 경로로 함께 살펴보세요 [kb:B-L01@0.6.1].\n\n### 근거 및 이유\n이 사례에서는 접촉이 확인됐는데도 해당 경로를 검토에서 제외했어요.\n\n### 확인이 필요한 한계\n접촉했다는 사실만으로 그 제품이 불편의 원인이라고 확정할 수 없어요."
+      },
+      "after": {
+        "input_sha256": "98514ecae1f4b820febd6de4913c38c575350692f29078851affeb9f4a6043a5",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "environment.indirect_products": {
+              "variable_id": "environment.indirect_products",
+              "state": "known",
+              "value": {
+                "hair_product_touched_symptom_area": true,
+                "excluded_from_review": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "discomfort_site": "side_of_face",
+                "cause": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-L01",
+              "status": "difference",
+              "guidance": "확인된 머리 제품 접촉을 검토에서 제외했지만 원인으로 확정할 수도 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-L01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0022"
+        ],
+        "novelty_note": "얼굴 외 제품의 확인된 접촉 제외와 원인 미상 기존 648에는 B-L01이나 직접적인 얼굴 외 접촉 경로 관찰이 없어요. 0022는 여러 변화와 원인 확정을 구분하는 기능적 참고일 뿐 접촉 경로의 근접 가족은 아니에요.",
+        "answer": "### 핵심 안내\n얼굴용 제품뿐 아니라 실제로 얼굴 옆에 닿은 머리 제품도 접촉 경로로 함께 살펴보세요 [kb:B-L01@0.6.1].\n\n### 근거 및 이유\n이 사례에서는 접촉이 확인됐는데도 해당 경로를 검토에서 제외했어요.\n\n### 확인이 필요한 한계\n접촉했다는 사실만으로 그 제품이 불편의 원인이라고 확정할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-sol-0584",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "접촉 경로 미상은 버전 불일치·미상 시험이 아니고 기존 0022는 B-G12 동시 변경으로 관련 접촉 경로 가족이 아니에요. 동일 카드·직접 접촉 기존 사례가 없어 0022는 복수 변화와 인과 판단에 대한 기능적 참고일 뿐임을 명시했어요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "목이 불편하지만 머리 제품이 목에 닿았는지는 모르겠어요. 얼굴용 제품만으로 원인을 판단할 수도 없어요.",
+      "raw_after": "목이 불편하지만 머리 제품이 목에 닿았는지는 모르겠어요. 얼굴용 제품만으로 원인을 판단할 수도 없어요.",
+      "before": {
+        "input_sha256": "7fbeb921e0ea1f4832c87ddb4b81947f2ec48704a36f0cc1efd9090286805f81",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "discomfort_site": "neck"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "environment.indirect_products": {
+              "variable_id": "environment.indirect_products",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-L01",
+              "status": "unknown",
+              "guidance": "목 불편만으로 머리 제품이 실제로 닿았다고 추론할 수 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-L01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0022"
+        ],
+        "novelty_note": "증상 부위와 접촉 미상을 분리",
+        "answer": "### 핵심 안내\n목 불편에 대한 접촉 경로는 아직 확인되지 않았어요 [kb:B-L01@0.6.1].\n\n### 근거 및 이유\n머리 제품이 목에 실제 닿았는지 모르므로 증상 위치만으로 접촉을 만들지 않아요.\n\n### 확인이 필요한 한계\n얼굴용 제품이나 머리 제품 중 어느 쪽이 원인인지도 현재 정보로 판단할 수 없어요."
+      },
+      "after": {
+        "input_sha256": "37bd8428ebae4f4900ed1e852190c53dd537f7bcf6d852ab29bc220056f36c65",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "discomfort_site": "neck"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "environment.indirect_products": {
+              "variable_id": "environment.indirect_products",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-L01",
+              "status": "unknown",
+              "guidance": "목 불편만으로 머리 제품이 실제로 닿았다고 추론할 수 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-L01@0.6.1"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0022"
+        ],
+        "novelty_note": "증상 부위와 접촉 미상을 분리 기존 648에는 B-L01이나 직접적인 얼굴 외 접촉 경로 관찰이 없어요. 0022는 여러 변화와 원인 확정을 구분하는 기능적 참고일 뿐 접촉 경로의 근접 가족은 아니에요.",
+        "answer": "### 핵심 안내\n목 불편에 대한 접촉 경로는 아직 확인되지 않았어요 [kb:B-L01@0.6.1].\n\n### 근거 및 이유\n머리 제품이 목에 실제 닿았는지 모르므로 증상 위치만으로 접촉을 만들지 않아요.\n\n### 확인이 필요한 한계\n얼굴용 제품이나 머리 제품 중 어느 쪽이 원인인지도 현재 정보로 판단할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-sol-0586",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "중첩 여부 기억 부재는 버전 불일치·미상 또는 비공개 농도·pH 시험이 아니에요. 실제 주제와 무관한 손 관리 방해 청크를 추가하고 인용하지 않아 유형을 변경했어요.",
+      "raw_before": "합성 팩을 표시한 시간만큼 사용한 후 제거했어요. 다른 각질관리 제품과 중첩했는지는 기억하지 못해요.",
+      "raw_after": "합성 팩을 표시한 시간만큼 사용한 후 제거했어요. 다른 각질관리 제품과 중첩했는지는 기억하지 못해요.",
+      "before": {
+        "input_sha256": "e6eb256e2b3d1487014ff7d5c6095b7c3b9d30fe100121b0e6ef03538ffd85b4",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "adjunct.care_events": {
+              "variable_id": "adjunct.care_events",
+              "state": "known",
+              "value": {
+                "label_time_followed": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G05",
+              "status": "unknown",
+              "guidance": "표시 시간 준수는 확인됐지만 추가 각질관리 중첩은 미상이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G05@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0176"
+        ],
+        "novelty_note": "시간 준수와 다른 제품 중첩 미상",
+        "answer": "### 핵심 안내\n합성 팩의 표시 시간은 지켰지만 다른 각질관리와의 중첩은 아직 판단할 수 없어요 [kb:B-G05@0.6.1].\n\n### 근거 및 이유\n표시 시간 준수와 다른 제품을 함께 썼는지는 별개의 행동이에요.\n\n### 확인이 필요한 한계\n기억하지 못한 중첩 여부를 사용하지 않았다고 처리하지 않아요."
+      },
+      "after": {
+        "input_sha256": "7053553d45c7749cda93b9e3916f9924a16cdf87302240c63751dfcce5fa150a",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "adjunct.care_events": {
+              "variable_id": "adjunct.care_events",
+              "state": "known",
+              "value": {
+                "label_time_followed": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G05",
+              "status": "unknown",
+              "guidance": "표시 시간 준수는 확인됐지만 추가 각질관리 중첩은 미상이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [
+            {
+              "evidence_ref": "ref:S21",
+              "text": "손을 씻은 뒤에는 손의 건조감에 맞는 보습을 고려할 수 있어요. 손 관리에서는 필요한 손 위생을 유지해요.",
+              "scope": "non_clinical_only",
+              "source_url": "https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-tips-hands",
+              "locator": "손 씻기 후 보습과 fragrance-free hand cream/ointment 선택에 한정.",
+              "checked_on": "2026-11-04",
+              "limitations": "다른 문단의 우유/물 담그기 등은 채택하지 않았다. 필요한 손 위생을 줄이라는 뜻이 아니다."
+            }
+          ],
+          "allowed_evidence_refs": [
+            "kb:B-G05@0.6.1"
+          ],
+          "distractor_refs": [
+            "ref:S21"
+          ]
+        },
+        "hard_negative_type": "rag_distractor_ignore",
+        "closest_existing_ids": [
+          "syn-sol-0176"
+        ],
+        "novelty_note": "시간 준수와 다른 제품 중첩 미상",
+        "answer": "### 핵심 안내\n합성 팩의 표시 시간은 지켰지만 다른 각질관리와의 중첩은 아직 판단할 수 없어요 [kb:B-G05@0.6.1].\n\n### 근거 및 이유\n표시 시간 준수와 다른 제품을 함께 썼는지는 별개의 행동이에요.\n\n### 확인이 필요한 한계\n기억하지 못한 중첩 여부를 사용하지 않았다고 처리하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0589",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "별도 보습제를 쓰지 않고 건조 불편이 없다는 관찰은 별도 보습이 불필요하다는 예외 조건의 확인과 같지 않아요.",
+      "raw_before": "별도 보습제 없이 지내고 건조 불편도 없어요. 세안 직후 꼭 별도 제품을 추가해야 하는지 궁금해요.",
+      "raw_after": "별도 보습제 없이 지내고 건조 불편도 없어요. 세안 직후 꼭 별도 제품을 추가해야 하는지 궁금해요.",
+      "before": {
+        "input_sha256": "74dc0065419b6f702dd3e2b16fc425f6f1d801f11e6e66a7bfdde3edef7e1529",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "separate_moisturizer_used": false,
+                "dry_discomfort": false,
+                "question_add_after_wash": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M01",
+              "status": "exception",
+              "guidance": "별도 보습제가 없고 건조 불편도 없어 무조건 추가하는 상황은 아니에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-M01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0003"
+        ],
+        "novelty_note": "별도 보습 필요 불편이 없는 예외",
+        "answer": "### 핵심 안내\n별도 보습제도 건조 불편도 없는 현재 보고만으로 세안 직후 제품을 반드시 추가해야 한다고 보지 않아요 [kb:B-M01@0.6.1].\n\n### 근거 및 이유\n이 기준에는 별도 보습이 필요하지 않고 불편도 없는 경우가 예외로 포함돼요.\n\n### 확인이 필요한 한계\n현재 관찰을 바탕으로 한 안내이며 이후 모든 상황에서 보습이 불필요하다는 뜻은 아니에요."
+      },
+      "after": {
+        "input_sha256": "50373555cc89168a2fb196c41e9acee6a8f943232952af1f95cf80dcf73a5743",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "separate_moisturizer_used": false,
+                "dry_discomfort": false,
+                "question_add_after_wash": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M01",
+              "status": "unknown",
+              "guidance": "별도 보습제를 쓰지 않고 건조 불편도 없지만 별도 보습이 불필요한지까지 확인되지 않았어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-M01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0003"
+        ],
+        "novelty_note": "별도 보습 필요 불편이 없는 예외",
+        "answer": "### 핵심 안내\n별도 보습제 없이 지내고 건조 불편이 없다는 보고만으로 별도 보습의 필요 여부를 확정하지 않아요 [kb:B-M01@0.6.1].\n\n### 근거 및 이유\n세정 뒤 보습 시점은 보습이 필요한 맥락과 실제 사용을 함께 살피는 항목이에요.\n\n### 확인이 필요한 한계\n현재 정보로 제품 추가가 필요하다거나 불필요하다고 단정할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-sol-0595",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "국소 확인 계획과 미확인 지침은 버전 불일치·미상이나 비공개 농도·pH를 시험하지 않아요.",
+      "raw_before": "신규 제품의 국소 사용을 계획하고 있으나 아직 시행하지 않았어요. 이 제품의 지침은 확인하지 못했어요.",
+      "raw_after": "신규 제품의 국소 사용을 계획하고 있으나 아직 시행하지 않았어요. 이 제품의 지침은 확인하지 못했어요.",
+      "before": {
+        "input_sha256": "27cb0421ac86677b9437e254b6d9c534c49bb8053c931b2795a525d86edc1d0a",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "introduction.local_trial": {
+              "variable_id": "introduction.local_trial",
+              "state": "known",
+              "value": {
+                "planned": true,
+                "performed": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G11",
+              "status": "unknown",
+              "guidance": "국소 사용은 계획일 뿐이며 제품 지침도 미확인이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G11@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0011"
+        ],
+        "novelty_note": "계획한 시험과 실제 실행 분리",
+        "answer": "### 핵심 안내\n작은 부위 사용은 아직 계획이며 이미 시행했다고 판단하지 않아요 [kb:B-G11@0.6.1].\n\n### 근거 및 이유\n새 제품 도입 방법을 검토할 때 해당 제품의 지시도 확인해야 해요.\n\n### 확인이 필요한 한계\n지침이 미확인이라 이 제품의 구체적인 적용 방법을 임의로 정하지 않아요."
+      },
+      "after": {
+        "input_sha256": "27cb0421ac86677b9437e254b6d9c534c49bb8053c931b2795a525d86edc1d0a",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "introduction.local_trial": {
+              "variable_id": "introduction.local_trial",
+              "state": "known",
+              "value": {
+                "planned": true,
+                "performed": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G11",
+              "status": "unknown",
+              "guidance": "국소 사용은 계획일 뿐이며 제품 지침도 미확인이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G11@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0011"
+        ],
+        "novelty_note": "계획한 시험과 실제 실행 분리",
+        "answer": "### 핵심 안내\n작은 부위 사용은 아직 계획이며 이미 시행했다고 판단하지 않아요 [kb:B-G11@0.6.1].\n\n### 근거 및 이유\n새 제품 도입 방법을 검토할 때 해당 제품의 지시도 확인해야 해요.\n\n### 확인이 필요한 한계\n지침이 미확인이라 이 제품의 구체적인 적용 방법을 임의로 정하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0596",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "베갯잇의 확인된 접촉 경로를 제외한 판단 자체는 타당하지만 0022는 B-G12 동시 제품 변경 사례로 접촉 경로 가족이 아니에요. 동일 카드·직접 접촉 기존 사례가 없어 0022는 복수 변화와 인과 판단에 대한 기능적 참고일 뿐임을 명시했어요.",
+      "raw_before": "얼굴에 닿는 베갯잇을 새 세제로 세탁했어요. 얼굴에도 불편이 있지만 그 세제가 원인인지는 알 수 없어요. 얼굴용 제품만 보고 세탁물 접촉은 무시했어요.",
+      "raw_after": "얼굴에 닿는 베갯잇을 새 세제로 세탁했어요. 얼굴에도 불편이 있지만 그 세제가 원인인지는 알 수 없어요. 얼굴용 제품만 보고 세탁물 접촉은 무시했어요.",
+      "before": {
+        "input_sha256": "2f47126ef32718243b2b69df470781c15f6c8773bd499d8d8c2b1b60eb75ffb5",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "environment.indirect_products": {
+              "variable_id": "environment.indirect_products",
+              "state": "known",
+              "value": {
+                "new_detergent_pillowcase_touched_face": true,
+                "contact_excluded_from_review": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "discomfort_site": "face",
+                "cause": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-L01",
+              "status": "difference",
+              "guidance": "실제 세탁물 접촉 경로를 제외했지만 세제가 원인이라고 확정할 수 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-L01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0022"
+        ],
+        "novelty_note": "간접 세탁물 접촉을 제외한 판단과 원인 미상",
+        "answer": "### 핵심 안내\n얼굴용 제품뿐 아니라 얼굴에 닿는 세탁물의 경로도 검토에 포함해 보세요 [kb:B-L01@0.6.1].\n\n### 근거 및 이유\n새 세제로 세탁한 베갯잇이 얼굴에 닿는다고 확인됐지만 이 경로를 제외했어요.\n\n### 확인이 필요한 한계\n접촉과 불편이 함께 있다는 사실만으로 세제가 원인이라고 결론 내리지 않아요."
+      },
+      "after": {
+        "input_sha256": "2f47126ef32718243b2b69df470781c15f6c8773bd499d8d8c2b1b60eb75ffb5",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "environment.indirect_products": {
+              "variable_id": "environment.indirect_products",
+              "state": "known",
+              "value": {
+                "new_detergent_pillowcase_touched_face": true,
+                "contact_excluded_from_review": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "discomfort_site": "face",
+                "cause": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-L01",
+              "status": "difference",
+              "guidance": "실제 세탁물 접촉 경로를 제외했지만 세제가 원인이라고 확정할 수 없어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-L01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0022"
+        ],
+        "novelty_note": "간접 세탁물 접촉을 제외한 판단과 원인 미상 기존 648에는 B-L01이나 직접적인 얼굴 외 접촉 경로 관찰이 없어요. 0022는 여러 변화와 원인 확정을 구분하는 기능적 참고일 뿐 접촉 경로의 근접 가족은 아니에요.",
+        "answer": "### 핵심 안내\n얼굴용 제품뿐 아니라 얼굴에 닿는 세탁물의 경로도 검토에 포함해 보세요 [kb:B-L01@0.6.1].\n\n### 근거 및 이유\n새 세제로 세탁한 베갯잇이 얼굴에 닿는다고 확인됐지만 이 경로를 제외했어요.\n\n### 확인이 필요한 한계\n접촉과 불편이 함께 있다는 사실만으로 세제가 원인이라고 결론 내리지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0599",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "미실행 감량 계획과 제품 지침 미상은 버전 불일치·미상 또는 비공개 농도·pH 시험이 아니에요.",
+      "raw_before": "제품의 지시를 모르지만 모든 제품을 똑같은 펌프 수로 줄이려고 해요. 아직 양을 바꾸지는 않았어요.",
+      "raw_after": "제품의 지시를 모르지만 모든 제품을 똑같은 펌프 수로 줄이려고 해요. 아직 양을 바꾸지는 않았어요.",
+      "before": {
+        "input_sha256": "104fb6d3d2b0c8f3f75953fa6b851dd4e14d37e4f051023c064e762f31205520",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "dose.proxy_amount": {
+              "variable_id": "dose.proxy_amount",
+              "state": "known",
+              "value": {
+                "uniform_reduction_planned": true,
+                "change_executed": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G02",
+              "status": "unknown",
+              "guidance": "일괄 감량은 계획이고 실행되지 않았으며 제품별 지시는 미상이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G02@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0107"
+        ],
+        "novelty_note": "계획과 실행을 분리한 용량 검토",
+        "answer": "### 핵심 안내\n모든 제품을 같은 펌프 수로 줄이기 전 제품별 지시를 확인해 주세요 [kb:B-G02@0.6.1].\n\n### 근거 및 이유\n서로 다른 용기와 제품에 일괄 기준을 적용하는 것은 각각의 용법을 반영하지 못할 수 있어요.\n\n### 확인이 필요한 한계\n감량은 계획이며 아직 실행하지 않았어요. 현재 지시가 미상이므로 구체적 펌프 수는 정하지 않아요."
+      },
+      "after": {
+        "input_sha256": "104fb6d3d2b0c8f3f75953fa6b851dd4e14d37e4f051023c064e762f31205520",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "dose.proxy_amount": {
+              "variable_id": "dose.proxy_amount",
+              "state": "known",
+              "value": {
+                "uniform_reduction_planned": true,
+                "change_executed": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "product.instructions": {
+              "variable_id": "product.instructions",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-G02",
+              "status": "unknown",
+              "guidance": "일괄 감량은 계획이고 실행되지 않았으며 제품별 지시는 미상이에요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-G02@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0107"
+        ],
+        "novelty_note": "계획과 실행을 분리한 용량 검토",
+        "answer": "### 핵심 안내\n모든 제품을 같은 펌프 수로 줄이기 전 제품별 지시를 확인해 주세요 [kb:B-G02@0.6.1].\n\n### 근거 및 이유\n서로 다른 용기와 제품에 일괄 기준을 적용하는 것은 각각의 용법을 반영하지 못할 수 있어요.\n\n### 확인이 필요한 한계\n감량은 계획이며 아직 실행하지 않았어요. 현재 지시가 미상이므로 구체적 펌프 수는 정하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0600",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "재도포 답변 거절은 버전 불일치·미상이나 비공개 농도·pH 시험이 아니에요.",
+      "raw_before": "보습제와 선크림을 따로 바르면 답답하지만 선크림을 처음 바르는 행동은 유지해요. 재도포 행동은 답하기를 거절했어요.",
+      "raw_after": "보습제와 선크림을 따로 바르면 답답하지만 선크림을 처음 바르는 행동은 유지해요. 재도포 행동은 답하기를 거절했어요.",
+      "before": {
+        "input_sha256": "730122636cd8fe4f807a8c45ebfd5d117790c2baf4e0592d7a33b5bccc53e50d",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "known",
+              "value": {
+                "layering_feels_heavy": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "initial_sunscreen_application_maintained": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "sun.reapplication": {
+              "variable_id": "sun.reapplication",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-I02",
+              "status": "unknown",
+              "guidance": "최초 도포는 유지하지만 재도포 행동은 응답을 거절했어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-I02@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0069"
+        ],
+        "novelty_note": "최초 도포 유지와 재도포 응답 거절",
+        "answer": "### 핵심 안내\n처음 선크림을 바르는 행동은 유지된다고 확인됐지만 재도포 변화는 판단하지 않아요 [kb:B-I02@0.6.1].\n\n### 근거 및 이유\n중첩의 답답함, 최초 도포, 재도포는 서로 다른 관찰이에요.\n\n### 확인이 필요한 한계\n재도포 답변은 거절하셨으므로 그 행동을 유지 또는 생략으로 추정하지 않아요."
+      },
+      "after": {
+        "input_sha256": "730122636cd8fe4f807a8c45ebfd5d117790c2baf4e0592d7a33b5bccc53e50d",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "known",
+              "value": {
+                "layering_feels_heavy": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "initial_sunscreen_application_maintained": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "sun.reapplication": {
+              "variable_id": "sun.reapplication",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-I02",
+              "status": "unknown",
+              "guidance": "최초 도포는 유지하지만 재도포 행동은 응답을 거절했어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-I02@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0069"
+        ],
+        "novelty_note": "최초 도포 유지와 재도포 응답 거절",
+        "answer": "### 핵심 안내\n처음 선크림을 바르는 행동은 유지된다고 확인됐지만 재도포 변화는 판단하지 않아요 [kb:B-I02@0.6.1].\n\n### 근거 및 이유\n중첩의 답답함, 최초 도포, 재도포는 서로 다른 관찰이에요.\n\n### 확인이 필요한 한계\n재도포 답변은 거절하셨으므로 그 행동을 유지 또는 생략으로 추정하지 않아요."
+      }
+    },
+    {
+      "id": "syn-sol-0601",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "보습 후 편안함 답변 거절은 버전 불일치·미상이나 비공개 농도·pH 시험이 아니에요.",
+      "raw_before": "보습 후 편안한지 알려주고 싶지 않아요. 가벼운 건조감 자체는 있다고 말했어요.",
+      "raw_after": "보습 후 편안한지 알려주고 싶지 않아요. 가벼운 건조감 자체는 있다고 말했어요.",
+      "before": {
+        "input_sha256": "7d804da7a938ca0c665a7e2311653e8ba57f30ec5a3b283a93816f07c6fc93d0",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "skin.dryness": {
+              "variable_id": "skin.dryness",
+              "state": "known",
+              "value": "mild",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M02",
+              "status": "unknown",
+              "guidance": "가벼운 건조감은 보고했지만 보습 후 편안함은 답변을 거절했어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-M02@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": "version_mismatch_or_unknown",
+        "closest_existing_ids": [
+          "syn-sol-0062"
+        ],
+        "novelty_note": "건조감과 보습 후 편안함 응답 거절",
+        "answer": "### 핵심 안내\n가벼운 건조감은 확인됐지만 현재 보습 방법의 적절성은 아직 판단하기 어려워요 [kb:B-M02@0.6.1].\n\n### 근거 및 이유\n보습 후 편안함은 건조감 자체와 구별되는 정보예요.\n\n### 확인이 필요한 한계\n편안함에 대한 답변을 원하지 않으셨으므로 불편이 없다고 대체하지 않아요."
+      },
+      "after": {
+        "input_sha256": "7d804da7a938ca0c665a7e2311653e8ba57f30ec5a3b283a93816f07c6fc93d0",
+        "request": {
+          "mode": "solution",
+          "confirmed_observations": {
+            "skin.dryness": {
+              "variable_id": "skin.dryness",
+              "state": "known",
+              "value": "mild",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "moisturizing.comfort": {
+              "variable_id": "moisturizing.comfort",
+              "state": "declined",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-M02",
+              "status": "unknown",
+              "guidance": "가벼운 건조감은 보고했지만 보습 후 편안함은 답변을 거절했어요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-M02@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-sol-0062"
+        ],
+        "novelty_note": "건조감과 보습 후 편안함 응답 거절",
+        "answer": "### 핵심 안내\n가벼운 건조감은 확인됐지만 현재 보습 방법의 적절성은 아직 판단하기 어려워요 [kb:B-M02@0.6.1].\n\n### 근거 및 이유\n보습 후 편안함은 건조감 자체와 구별되는 정보예요.\n\n### 확인이 필요한 한계\n편안함에 대한 답변을 원하지 않으셨으므로 불편이 없다고 대체하지 않아요."
+      }
+    },
+    {
+      "id": "syn-hold-0168",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "지속 불편과 통증 보류 자체는 적절하지만 가까운 hold-0002는 B-S04 제품 변질 사례로 증상·통증 보류 가족이 아니에요.",
+      "raw_before": "얼굴의 불편이 계속되고 통증도 중간 정도예요. 새 제품을 살지 묻지만 원인은 확인되지 않았어요.",
+      "raw_after": "얼굴의 불편이 계속되고 통증도 중간 정도예요. 새 제품을 살지 묻지만 원인은 확인되지 않았어요.",
+      "before": {
+        "input_sha256": "3896d04982ea784aee8ddefa3bb78c4f840eb7af8eabbc06c94459ba7352f050",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.pain": {
+              "variable_id": "skin.pain",
+              "state": "known",
+              "value": "moderate",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "site": "face",
+                "cause": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "new_product_selection",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "지속 불편과 통증 때문에 개별 권고를 보류해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0002"
+        ],
+        "novelty_note": "지속 통증과 새 제품 선택 요청 및 원인 미상",
+        "answer": "### 개별 권고 보류 안내\n얼굴 불편이 지속되고 중간 정도의 통증도 있어 새 제품 선택을 포함한 개별 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n증상에 관해 피부과 등 전문가에게 확인받아 주세요. 현재 정보만으로 원인을 진단할 수 없어요."
+      },
+      "after": {
+        "input_sha256": "3896d04982ea784aee8ddefa3bb78c4f840eb7af8eabbc06c94459ba7352f050",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.pain": {
+              "variable_id": "skin.pain",
+              "state": "known",
+              "value": "moderate",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "site": "face",
+                "cause": "unknown"
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.decision_context": {
+              "variable_id": "constraints.decision_context",
+              "state": "known",
+              "value": "new_product_selection",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "지속 불편과 통증 때문에 개별 권고를 보류해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0022"
+        ],
+        "novelty_note": "0022도 지속 불편과 중간 통증을 다루지만, 이 후보는 새 제품 선택 요청과 원인 미상을 함께 다뤄요.",
+        "answer": "### 개별 권고 보류 안내\n얼굴 불편이 지속되고 중간 정도의 통증도 있어 새 제품 선택을 포함한 개별 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n증상에 관해 피부과 등 전문가에게 확인받아 주세요. 현재 정보만으로 원인을 진단할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-hold-0169",
+      "audit_rule": "validator_regex_false_positive",
+      "reason": "고정 검증기의 정규식이 과거 사용 서술을 지시로 오인하므로 사실을 유지한 동의 표현으로 답변만 변경했어요. 실제 권고 누출은 아니에요.",
+      "raw_before": "보습제를 바르기 전부터 피부 통증이 계속돼요. 보습제 양을 늘리면 해결되는지 궁금해요.",
+      "raw_after": "보습제를 바르기 전부터 피부 통증이 계속돼요. 보습제 양을 늘리면 해결되는지 궁금해요.",
+      "before": {
+        "input_sha256": "5e3a5959e51f55c7642edb020d6aef2c21e823730b54ec829581d1ec2eb98711",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "pain_preceded_moisturizer": true,
+                "increase_question": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "보습 전부터 지속된 통증을 양 조정만으로 해결하려 하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0116"
+        ],
+        "novelty_note": "제품 사용 전 통증과 증량 질문",
+        "answer": "### 개별 권고 보류 안내\n보습제를 바르기 전부터 통증이 계속되고 있어 양을 늘려 해결하자는 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n통증의 경과와 시작 시점을 전문가에게 설명하고 확인받아 주세요. 이 시간 관계만으로 원인을 알 수 없어요."
+      },
+      "after": {
+        "input_sha256": "5e3a5959e51f55c7642edb020d6aef2c21e823730b54ec829581d1ec2eb98711",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "known",
+              "value": {
+                "pain_preceded_moisturizer": true,
+                "increase_question": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "보습 전부터 지속된 통증을 양 조정만으로 해결하려 하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0116"
+        ],
+        "novelty_note": "제품 사용 전 통증과 증량 질문",
+        "answer": "### 개별 권고 보류 안내\n보습제 사용 이전부터 통증이 계속되고 있어 양을 늘려 해결하자는 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n통증의 경과와 시작 시점을 전문가에게 설명하고 확인받아 주세요. 이 시간 관계만으로 원인을 알 수 없어요."
+      }
+    },
+    {
+      "id": "syn-hold-0173",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "신제품 미사용이라는 부정과 본인의 지속 불편을 함께 보고 향료 회피의 해결 효과를 단정하지 않아요. constraints.goals의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요.",
+      "raw_before": "새 제품을 쓰지 않았는데도 얼굴 불편이 계속돼요. 향료가 든 제품을 사지 않으면 해결될지 궁금해요.",
+      "raw_after": "새 제품을 쓰지 않았는데도 얼굴 불편이 계속돼요. 향료가 든 제품을 사지 않으면 해결될지 궁금해요.",
+      "before": {
+        "input_sha256": "cbbfed2108f6a34e997ccc8d4f367f8be77b6ba7a28ac46c93d4e8df87d6690b",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "routine.change_log": {
+              "variable_id": "routine.change_log",
+              "state": "known",
+              "value": {
+                "new_product_used": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.goals": {
+              "variable_id": "constraints.goals",
+              "state": "known",
+              "value": {
+                "asks_if_fragrance_avoidance_resolves": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "지속 불편은 향료 회피만으로 해결된다고 판단하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0019"
+        ],
+        "novelty_note": "새 제품 미사용과 단일 성분 회피 해결 가정",
+        "answer": "### 개별 권고 보류 안내\n새 제품을 쓰지 않았더라도 얼굴 불편이 계속되어 제품 선택 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n지속되는 불편의 경과를 피부과 등 전문가에게 확인받아 주세요. 향료 회피만으로 해결된다고 단정할 수 없어요."
+      },
+      "after": {
+        "input_sha256": "f50574b480d82611de8eb4f830924484706b1f46a25fd54598fc3921d30172d1",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "routine.change_log": {
+              "variable_id": "routine.change_log",
+              "state": "known",
+              "value": {
+                "new_product_used": false
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.goals": {
+              "variable_id": "constraints.goals",
+              "state": "known",
+              "value": [
+                "향료가 든 제품을 사지 않으면 해결될지 질문"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "지속 불편은 향료 회피만으로 해결된다고 판단하지 않아요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0019"
+        ],
+        "novelty_note": "새 제품 미사용과 단일 성분 회피 해결 가정",
+        "answer": "### 개별 권고 보류 안내\n새 제품을 쓰지 않았더라도 얼굴 불편이 계속되어 제품 선택 안내를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n지속되는 불편의 경과를 피부과 등 전문가에게 확인받아 주세요. 향료 회피만으로 해결된다고 단정할 수 없어요."
+      }
+    },
+    {
+      "id": "syn-hold-0176",
+      "audit_rule": "R5_INPUT_JUDGMENT",
+      "reason": "눈가 제품의 보유와 실제 해당 부위 사용 미상을 구분하고 지속 불편·통증에 보류해요. constraints.available_products의 KB value_type은 array인데 이 행의 관찰 value는 객체라 구조 어휘에 맞지 않아요.",
+      "raw_before": "눈가에 불편이 계속되고 통증도 있어요. 눈가용으로 표시된 제품은 가지고 있지만 실제 그 부위에 썼는지는 기억나지 않아요.",
+      "raw_after": "눈가에 불편이 계속되고 통증도 있어요. 눈가용으로 표시된 제품은 가지고 있지만 실제 그 부위에 썼는지는 기억나지 않아요.",
+      "before": {
+        "input_sha256": "54dcb43acc7215f033c9d43ebd2ba7911dde53352f6454481506618b490f4cce",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "symptom_site": "eye_area",
+                "pain": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": {
+                "eye_area_product_owned": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "눈가의 지속 불편과 통증이 있어 개별 권고를 보류해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0001"
+        ],
+        "novelty_note": "증상 부위와 제품 용도 및 사용 미상 분리",
+        "answer": "### 개별 권고 보류 안내\n눈가 불편이 지속되고 통증도 있어 제품 사용에 관한 개별 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n눈가 증상과 경과를 의료 전문가에게 확인받아 주세요. 눈가용 제품을 보유했다는 사실만으로 실제 그 부위에 사용했다고 보지 않아요."
+      },
+      "after": {
+        "input_sha256": "7cd7c54bc799694c5c45a014298a8f9221b72dccc3f177529e6802409f5fed11",
+        "request": {
+          "mode": "hold",
+          "confirmed_observations": {
+            "skin.current_discomfort": {
+              "variable_id": "skin.current_discomfort",
+              "state": "known",
+              "value": "persistent",
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "skin.distribution": {
+              "variable_id": "skin.distribution",
+              "state": "known",
+              "value": {
+                "symptom_site": "eye_area",
+                "pain": true
+              },
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "constraints.available_products": {
+              "variable_id": "constraints.available_products",
+              "state": "known",
+              "value": [
+                "눈가용으로 표시된 보유 제품"
+              ],
+              "source": "synthetic_fixture",
+              "confirmed_by_user": true
+            },
+            "method.current_routine": {
+              "variable_id": "method.current_routine",
+              "state": "unknown",
+              "value": null,
+              "source": "synthetic_fixture",
+              "confirmed_by_user": false
+            }
+          },
+          "kb_judgments": [
+            {
+              "card_id": "B-B01",
+              "status": "hold",
+              "guidance": "눈가의 지속 불편과 통증이 있어 개별 권고를 보류해요."
+            }
+          ],
+          "product_evidence": [],
+          "rag_chunks": [],
+          "allowed_evidence_refs": [
+            "kb:B-B01@0.6.1"
+          ],
+          "distractor_refs": []
+        },
+        "hard_negative_type": null,
+        "closest_existing_ids": [
+          "syn-hold-0001"
+        ],
+        "novelty_note": "증상 부위와 제품 용도 및 사용 미상 분리",
+        "answer": "### 개별 권고 보류 안내\n눈가 불편이 지속되고 통증도 있어 제품 사용에 관한 개별 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n눈가 증상과 경과를 의료 전문가에게 확인받아 주세요. 눈가용 제품을 보유했다는 사실만으로 실제 그 부위에 사용했다고 보지 않아요."
+      }
+    }
+  ]
+}
