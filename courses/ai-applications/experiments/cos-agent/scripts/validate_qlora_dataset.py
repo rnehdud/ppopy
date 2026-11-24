@@ -8,7 +8,7 @@ Validates a single dataset JSONL (or optional multiple files) against:
 3. Inner v3_contracts.SLMRequest Pydantic contract + outer/inner mode & refs alignment
 4. Controlled vocabulary (kb_judgments.status, product_evidence.status) + KB v0.6.1 variable types
 5. Evidence-to-input backing + computed catalog:<product_id>@<version> consistency
-6. KB v0.6.1 source_registry exact metadata match; synthetic_defense_probe excluded from citations & EN ratio
+6. ReferenceChunk metadata; exact KB source_registry matching only in kb-anchored; probes excluded from citations & EN ratio
 7. Strict citation integrity, mode headings, hold direct-instruction leak blocking, clinical guardrails
 8. Mandatory v67 index loading, real source_scenario_id/source_turn_id/output.action checks,
    cross-split leakage checks, and non-empty 90/10 val_internal family/group split on new_synthetic
@@ -25,7 +25,7 @@ import re
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Literal
 
 COS_AGENT_DIR = pathlib.Path(__file__).resolve().parents[1]
 REPO_ROOT = COS_AGENT_DIR.parents[3]
@@ -34,7 +34,21 @@ if str(COS_AGENT_DIR) not in sys.path:
 
 from beauty_agent.v3_contracts import SLMRequest
 
+ValidationProfile = Literal["rag-free", "kb-anchored"]
+
 SYSTEM_PROMPT_SOLUTION_HOLD = (
+    "당신은 근거 기반 스킨케어 루틴 지원 AI 'Ppopy'입니다. "
+    "입력 JSON의 confirmed_observations에 담긴 사용자 맥락, product_evidence에 담긴 확인된 제품 정보, "
+    "rag_chunks에 담긴 참고 문헌을 종합해 자연스럽고 친절한 한국어 안내를 작성하세요. "
+    "allowed_evidence_refs에 포함된 근거만 [ID] 형식으로 인용하고, "
+    "허용 목록에 없는 근거, distractor_refs 및 합성 방해 청크는 사용하지 마세요. "
+    "문헌의 적용 조건과 한계를 지키고, 피부 질환 진단, 치료·임상 개선 수치 단정, "
+    "미공개 성분 농도·pH 추측은 금지합니다. "
+    "확인되지 않은 정보나 버전 불일치는 미상(unknown) 또는 보류로 명시하세요. "
+    'mode가 "hold"이면 루틴·제품·세안 또는 도포 지시·대체 후보 추천 없이 보류 사유와 필요한 전문가 확인만 안내하세요. '
+    "어조는 차분한 '~해요' 존댓말을 사용하세요."
+)
+SYSTEM_PROMPT_KB_ANCHORED = (
     "당신은 근거 기반 스킨케어 루틴 지원 AI 'Ppopy'입니다. "
     "입력 JSON(confirmed_observations, kb_judgments, product_evidence, rag_chunks, allowed_evidence_refs)만 근거로 한국어 안내를 작성하세요. "
     "allowed_evidence_refs에 포함된 근거만 [ID] 형식으로 인용하고, distractor_refs는 무시하세요. "
@@ -65,7 +79,8 @@ ALLOWED_PILOT_BUCKETS = frozenset({
     "unknown_or_version",
     "distractor_or_defense",
 })
-ALLOWED_CHUNK_ORIGINS = frozenset({"kb_source_summary", "synthetic_defense_probe"})
+ANCHORED_CHUNK_ORIGINS = frozenset({"kb_source_summary", "synthetic_defense_probe"})
+RAG_FREE_CHUNK_ORIGINS = ANCHORED_CHUNK_ORIGINS | {"reference_excerpt"}
 ALLOWED_SOURCE_ORIGINS = frozenset({"new_synthetic", "recycled_v67"})
 ALLOWED_HUMAN_REVIEWS = frozenset({"unreviewed", "approved", "needs_revision"})
 ALLOWED_CRITIC_STATUSES = frozenset({"PASS", "FAIL", "unreviewed"})
@@ -104,12 +119,13 @@ FORBIDDEN_CLINICAL_PATTERNS = (
     re.compile(r"(치료됩니다|완치됩니다|확실히\s*개선됩니다|임상적으로\s*입증)"),
     re.compile(r"\d+\s*%\s*(개선됩니다|감소합니다|줄어듭니다)"),
     re.compile(r"pH\s*\d+(?:\.\d+)?\s*(?:로\s*추정|일\s*것으로\s*추정)"),
+    re.compile(r"농도(?:는|가|를)?\s*\d+(?:\.\d+)?\s*%\s*(?:로\s*추정|일\s*것(?:으로\s*추정|\s*같아요))"),
 )
 HOLD_RECOMMENDATION_LEAK_PATTERNS = (
     re.compile(r"대체\s*후보"),
     re.compile(r"루틴을\s*(유지|추천|권해)"),
-    re.compile(r"(사용해\s*보세요|바르는\s*것을\s*권해|권해드려요|추천해\s*드려요|추천해요)"),
-    re.compile(r"(세안하세요|세안해\s*보세요|바르세요|발라\s*보세요|도포하세요|덧바르세요)"),
+    re.compile(r"(사용해\s*보세요|사용하세요|써\s*보세요|바르는\s*것을\s*권해|권해드려요|추천해\s*드려요|추천해요)"),
+    re.compile(r"(세안하세요|세안해\s*보세요|씻으세요|바르세요|발라\s*(?:보세요|주세요)|도포하세요|덧바르세요)"),
     re.compile(
         r"(클렌징폼|클렌징\s*오일|보습제|선크림|자외선차단제)(?:을|를|으로)\s*\d*\s*(?:회|번|단계)?\s*(?:사용|세안|도포|바르)"
     ),
@@ -329,16 +345,18 @@ def _normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().lower()
 
 
-def _validate_ref_id(ref_id: str, kb_index: KBReferenceIndex) -> str | None:
+def _validate_ref_id(ref_id: str, kb_index: KBReferenceIndex, *, anchored: bool) -> str | None:
     if not ref_id.startswith(ALLOWED_REF_PREFIXES):
         return f"invalid evidence_ref prefix: {ref_id!r}"
     if ref_id.startswith("ref:"):
         sid = ref_id.split(":", 1)[1]
-        if sid.startswith(("U", "D")) or sid in FORBIDDEN_SOURCE_IDS:
+        if sid.upper().startswith(("U", "D")) or sid.upper() in FORBIDDEN_SOURCE_IDS:
             return f"forbidden source_id in evidence_ref: {ref_id!r}"
-        if sid not in kb_index.source_registry:
+        if anchored and sid not in kb_index.source_registry:
             return f"unknown source_id in KB v0.6.1 source_registry: {ref_id!r}"
     elif ref_id.startswith("kb:"):
+        if not anchored:
+            return f"KB evidence_ref requires the kb-anchored profile: {ref_id!r}"
         card_part = ref_id.split(":", 1)[1].split("@", 1)[0]
         if card_part in FORBIDDEN_CARD_IDS:
             return f"forbidden card_id in evidence_ref: {ref_id!r}"
@@ -352,6 +370,7 @@ def validate_rows(
     kb_index: KBReferenceIndex,
     v67_index: V67SplitIndex,
     *,
+    profile: ValidationProfile = "rag-free",
     input_files: list[str] | None = None,
     enforce_ratios: bool = False,
     enforce_stage1_min_rows: bool = False,
@@ -359,6 +378,11 @@ def validate_rows(
     require_review: bool = False,
     external_reviews: dict[str, dict[str, Any]] | None = None,
 ) -> ValidationReport:
+    if profile not in ("rag-free", "kb-anchored"):
+        raise ValueError(f"unknown validation profile: {profile!r}")
+    anchored = profile == "kb-anchored"
+    system_prompt = SYSTEM_PROMPT_KB_ANCHORED if anchored else SYSTEM_PROMPT_SOLUTION_HOLD
+    allowed_chunk_origins = ANCHORED_CHUNK_ORIGINS if anchored else RAG_FREE_CHUNK_ORIGINS
     all_files = sorted(set(input_files or []) | {src for src, _, _ in file_rows})
     report = ValidationReport(files=all_files)
 
@@ -436,12 +460,14 @@ def validate_rows(
         if not isinstance(domains, list) or not domains or not all(d in ALLOWED_DOMAINS for d in domains):
             report.errors.append(f"{loc}: invalid 'domains' {domains!r}")
 
-        card_ids = row.get("card_ids")
-        if not isinstance(card_ids, list) or not card_ids:
-            report.errors.append(f"{loc}: missing or empty 'card_ids'")
+        card_ids = row.get("card_ids", [])
+        if not isinstance(card_ids, list) or (anchored and not card_ids):
+            report.errors.append(f"{loc}: invalid 'card_ids' for profile {profile!r}")
         else:
             for cid in card_ids:
-                if cid in FORBIDDEN_CARD_IDS:
+                if not isinstance(cid, str):
+                    report.errors.append(f"{loc}: card_id must be a string, got {cid!r}")
+                elif cid in FORBIDDEN_CARD_IDS:
                     report.errors.append(f"{loc}: forbidden card_id {cid!r}")
                 elif cid not in kb_index.card_ids:
                     report.errors.append(f"{loc}: unknown card_id {cid!r} in KB v0.6.1")
@@ -619,8 +645,8 @@ def validate_rows(
         user_content = messages[1].get("content")
         asst_content = messages[2].get("content")
 
-        if sys_content != SYSTEM_PROMPT_SOLUTION_HOLD:
-            report.errors.append(f"{loc}: messages[0].content does not match SYSTEM_PROMPT_SOLUTION_HOLD verbatim")
+        if sys_content != system_prompt:
+            report.errors.append(f"{loc}: messages[0].content does not match the {profile} system prompt verbatim")
         if not isinstance(user_content, str) or not user_content.strip():
             report.errors.append(f"{loc}: messages[1].content must be a non-empty JSON string")
             continue
@@ -670,7 +696,8 @@ def validate_rows(
             if obs.variable_id != var_key:
                 report.errors.append(f"{loc}: observation key {var_key!r} != obs.variable_id {obs.variable_id!r}")
             if var_key not in kb_index.variable_types:
-                report.errors.append(f"{loc}: unknown KB v0.6.1 variable_id {var_key!r}")
+                if anchored or not var_key.strip() or var_key.casefold().startswith("product."):
+                    report.errors.append(f"{loc}: unknown KB v0.6.1 variable_id {var_key!r}")
             elif obs.state == "known":
                 vtype = kb_index.variable_types[var_key]
                 if not _is_valid_kb_value(vtype, obs.value):
@@ -679,6 +706,8 @@ def validate_rows(
                     )
 
         # 5b. Controlled vocabulary checks for kb_judgments.status and product_evidence.status
+        if req.kb_judgments and not anchored:
+            report.errors.append(f"{loc}: rag-free requires kb_judgments to be empty")
         for j in req.kb_judgments:
             if isinstance(j, dict):
                 j_status = j.get("status")
@@ -695,7 +724,7 @@ def validate_rows(
 
         # 6. Evidence refs, input backing, computed catalog versions, chunk_origins, source_registry
         for ref_id in req.allowed_evidence_refs + req.distractor_refs:
-            err = _validate_ref_id(ref_id, kb_index)
+            err = _validate_ref_id(ref_id, kb_index, anchored=anchored)
             if err:
                 report.errors.append(f"{loc}: {err}")
 
@@ -707,7 +736,7 @@ def validate_rows(
         allowed_set = set(req.allowed_evidence_refs)
         distractor_set = set(req.distractor_refs)
         chunk_refs_seen: set[str] = set()
-        has_english_relevant_kb_chunk = False
+        has_english_relevant_chunk = False
 
         judgment_card_ids = {
             j.get("card_id") for j in req.kb_judgments if isinstance(j, dict) and isinstance(j.get("card_id"), str)
@@ -747,34 +776,36 @@ def validate_rows(
                     f"{loc}: rag_chunk {cref!r} is in neither allowed_evidence_refs nor distractor_refs"
                 )
             origin = chunk_origins.get(cref)
-            if origin not in ALLOWED_CHUNK_ORIGINS:
+            if origin not in allowed_chunk_origins:
                 report.errors.append(
-                    f"{loc}: chunk_origins[{cref!r}] must be in {sorted(ALLOWED_CHUNK_ORIGINS)}, got {origin!r}"
+                    f"{loc}: chunk_origins[{cref!r}] must be in {sorted(allowed_chunk_origins)}, got {origin!r}"
                 )
             elif origin == "synthetic_defense_probe" and cref in allowed_set:
                 report.errors.append(
                     f"{loc}: synthetic_defense_probe chunk {cref!r} must NOT be in allowed_evidence_refs"
                 )
 
-            sid = cref.split(":", 1)[1] if cref.startswith("ref:") else ""
-            src_meta = kb_index.source_registry.get(sid)
-            if src_meta is None:
-                report.errors.append(f"{loc}: rag_chunk {cref!r} not found in KB v0.6.1 source_registry")
+            if anchored:
+                src_meta = kb_index.source_registry.get(cref.removeprefix("ref:"))
+                if src_meta is not None:
+                    for chunk_field, kb_field in (
+                        ("source_url", "url"),
+                        ("locator", "locator"),
+                        ("checked_on", "checked_on"),
+                        ("limitations", "limitations"),
+                    ):
+                        expected_val = src_meta.get(kb_field)
+                        if expected_val is not None and getattr(chunk, chunk_field) != expected_val:
+                            report.errors.append(
+                                f"{loc}: rag_chunk {cref!r}.{chunk_field} does not match KB source_registry.{kb_field}"
+                            )
             else:
-                for chunk_field, kb_field in (
-                    ("source_url", "url"),
-                    ("locator", "locator"),
-                    ("checked_on", "checked_on"),
-                    ("limitations", "limitations"),
-                ):
-                    expected_val = src_meta.get(kb_field)
-                    actual_val = getattr(chunk, chunk_field)
-                    if expected_val is not None and actual_val != expected_val:
-                        report.errors.append(
-                            f"{loc}: rag_chunk {cref!r}.{chunk_field} does not match KB source_registry.{kb_field}"
-                        )
-            if cref in allowed_set and origin == "kb_source_summary" and _is_english_text(chunk.text):
-                has_english_relevant_kb_chunk = True
+                for chunk_field in ("source_url", "locator", "checked_on", "limitations"):
+                    if not getattr(chunk, chunk_field).strip():
+                        report.errors.append(f"{loc}: rag_chunk {cref!r}.{chunk_field} must not be blank")
+
+            if cref in allowed_set and origin in {"kb_source_summary", "reference_excerpt"} and _is_english_text(chunk.text):
+                has_english_relevant_chunk = True
 
         for aref in req.allowed_evidence_refs:
             if aref.startswith("ref:") and aref not in chunk_refs_seen:
@@ -823,7 +854,7 @@ def validate_rows(
                 f"{loc}: chunk_origins has keys not present in rag_chunks: {sorted(extra_origin_keys)}"
             )
 
-        if req.mode == "solution" and has_english_relevant_kb_chunk:
+        if req.mode == "solution" and has_english_relevant_chunk:
             report.english_relevant_solution_rows += 1
 
         # 7. Strict citation integrity in assistant output
@@ -1015,6 +1046,12 @@ def load_jsonl_files(paths: list[pathlib.Path]) -> tuple[list[tuple[str, int, di
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Validate Ppopy v3 QLoRA synthetic JSONL dataset.")
     parser.add_argument("--input", nargs="+", required=True, help="Dataset JSONL path(s).")
+    parser.add_argument(
+        "--profile",
+        choices=("rag-free", "kb-anchored"),
+        default="rag-free",
+        help="Use Anchor OFF with Reference RAG (default), or require legacy KB source metadata.",
+    )
     parser.add_argument("--pilot", action="store_true", help="24-row pilot gate (18 sol / 6 hold, 4 buckets x 6).")
     parser.add_argument("--stage1", action="store_true", help="Stage-1 full training gate (>=900 rows + ratios + 90/10 split).")
     parser.add_argument("--enforce-ratios", action="store_true", help="Enforce hold/HN/EN/val_internal ratios.")
@@ -1054,6 +1091,7 @@ def main(argv: list[str] | None = None) -> int:
         file_rows,
         kb_index,
         v67_index,
+        profile=args.profile,
         input_files=[str(p) for p in paths],
         enforce_ratios=args.enforce_ratios or args.stage1,
         enforce_stage1_min_rows=args.stage1,
