@@ -1,95 +1,12 @@
 {
-  "dataset": "data/qlora/v2/additional_100_terra3.jsonl",
-  "dataset_sha256": "ee7874dcd3117bca010e6971ce6cfdaed0b4a8c94760e2bc8d24cecd3633ec43",
-  "critic_model": null,
-  "review_kind": "codex_same_family_independent",
-  "external_cross_family_gate_satisfied": false,
-  "human_review_performed": false,
+  "dataset": "additional_100_terra3.jsonl",
+  "dataset_sha256": "d6e3174efa8bc54c668e049d31e92d7c23d11baee7c964e7b0c396cff99a15e4",
   "total_rows": 100,
   "pass_count": 100,
   "fail_count": 0,
-  "failed_rows": [],
-  "scope": "작성 담당과 다른 독립 문맥의 Codex 담당자가 100행의 입력·답변·카드·출처 범위 및 R1–R6를 대조했어요. 다른 모델 계열의 공식 검수와 사람 승인은 아니에요.",
-  "limitations": [
-    "등록 출처와 KB 비교 명세를 대조한 개발 검토이며 외부 원문 전체 재검증이나 임상 검증이 아니에요.",
-    "구조 검사는 별도 보고서로 기록하며 감사 판정을 자동으로 만들지 않아요.",
-    "기존 348턴과 추가 후보의 의미 중복은 카드·관찰 유사 후보 및 개별 확인 대상에 대해 대조했으며 모든 쌍의 의미 중복 전수 증명을 수행했다고 주장하지 않아요."
-  ],
-  "additional_100_terra3_structural": {
-    "passed": true,
-    "files": [
-      "data\\qlora\\v2\\additional_100_terra3.jsonl"
-    ],
-    "total_rows": 100,
-    "solution_rows": 77,
-    "hold_rows": 23,
-    "hold_ratio": 0.23,
-    "hard_negative_rows": 49,
-    "hard_negative_ratio": 0.49,
-    "english_relevant_solution_rows": 26,
-    "english_relevant_solution_ratio": 0.3377,
-    "split_counts": {
-      "train": 89,
-      "val_internal": 11
-    },
-    "pilot_bucket_counts": {},
-    "error_count": 0,
-    "errors": [],
-    "warnings": []
-  },
-  "combined_448_structural": {
-    "passed": true,
-    "files": [
-      "data\\qlora\\v2\\additional_100.jsonl",
-      "data\\qlora\\v2\\additional_100_terra.jsonl",
-      "data\\qlora\\v2\\additional_100_terra2.jsonl",
-      "data\\qlora\\v2\\additional_100_terra3.jsonl",
-      "data\\qlora\\v2\\additional_24.jsonl",
-      "data\\qlora\\v2\\pilot_24.jsonl"
-    ],
-    "total_rows": 448,
-    "solution_rows": 342,
-    "hold_rows": 106,
-    "hold_ratio": 0.2366,
-    "hard_negative_rows": 201,
-    "hard_negative_ratio": 0.4487,
-    "english_relevant_solution_rows": 115,
-    "english_relevant_solution_ratio": 0.3363,
-    "split_counts": {
-      "train": 403,
-      "val_internal": 45
-    },
-    "pilot_bucket_counts": {},
-    "error_count": 0,
-    "errors": [],
-    "warnings": []
-  },
-  "review_history": [
-    {
-      "file": "additional_100_terra3_part_a_round1.jsonl",
-      "file_sha256": "3b4546325be7db06794f6f28eafa909ae253bb989317ca9b0eebc5e09aac204e",
-      "total_rows": 34,
-      "pass_count": 27,
-      "fail_count": 7
-    },
-    {
-      "file": "additional_100_terra3_part_a_round2.jsonl",
-      "file_sha256": "5f874870901ff0cd4333c2c9b851ce9dd13048082b01008c3c08bd51290744df",
-      "total_rows": 34,
-      "pass_count": 32,
-      "fail_count": 2
-    },
-    {
-      "file": "additional_100_terra3_part_b_round1.jsonl",
-      "file_sha256": "fa1e41323ece5ce51765a3376bc46a4c36c43c6d388f401cded431e96b9ff946",
-      "total_rows": 33,
-      "pass_count": 29,
-      "fail_count": 4
-    }
-  ],
-  "critic_models": {
-    "gpt-6.1-terra": 100
-  },
-  "revision": "raw-fix-61-20261123",
-  "revision_note": "이번에 지적 61행을 재검토했으며 나머지 과거 PASS를 새 의미 검수로 세지 않아요. 전체 원문 감사의 별도 미해결 44행은 남아 있어요."
+  "review_kind": "codex_same_family_independent",
+  "external_cross_family_gate_satisfied": false,
+  "human_review_performed": false,
+  "ppo39_rechecked_rows": 35,
+  "scope": "PPO-39 수정 행은 실제 재감사 판정을 연결했어요. 나머지는 내용 해시가 같은 기존 판정만 유지했어요. 전체를 이번에 새로 검수했다는 뜻은 아니에요."
 }

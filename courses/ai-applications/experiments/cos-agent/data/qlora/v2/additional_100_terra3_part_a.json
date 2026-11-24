@@ -29,10 +29,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "얼굴 세안은 단순한 잔여감 해소를 위해 연속 두 차례 반복하고 업무상 손 씻기는 따로 합니다. 추가 오염이나 화장 제거 목적은 없습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
@@ -40,7 +40,19 @@
             "value": {
               "automatic_repeat": true,
               "reason": "단순한 잔여감 해소",
-              "additional_removal_purpose": false
+              "additional_removal_purpose": false,
+              "consecutive_face_wash_count": 2
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "handwashing_for_work": "separate",
+              "face_additional_contamination_removal_purpose": false,
+              "face_makeup_removal_purpose": false
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -82,7 +94,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "9c7935342058ce2f67c07e1cd0a5aa9ad17cab34c31e8bb26939a79ad957dff3",
+      "input_sha256": "fca94505bda5b5acc409db4b8e1ce1744e0f38285c8128ed3c7b468d131e8eed",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -104,7 +116,40 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n필요한 손 위생은 유지하면서 단순 잔여감 해소를 위한 얼굴 반복을 검토해요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n업무상 필요한 손 씻기는 유지하고, 얼굴을 잔여감 때문에 연속 두 차례 씻는 부분을 따로 살펴봐요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n추가 오염이나 화장 제거 목적은 없다고 보고됐어요. 얼굴의 반복을 줄일 수 있는지 검토할 수 있어요. 일반 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n손 위생과 얼굴 세안을 같은 행동으로 묶지 않으며 개인의 결과를 예측하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "개별 사용 사실과 판단의 한계를 구분해 자연스럽게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세안은 단순한 잔여감 해소를 위해 연속 두 차례 반복하고 업무상 손 씻기는 따로 합니다. 추가 오염이나 화장 제거 목적은 없습니다.",
+          "connection": "의사결정 범주는 원문만으로 확정할 수 없어 미상으로 둠"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "업무상 손 씻기는 따로 합니다. 추가 오염이나 화장 제거 목적은 없습니다.",
+          "connection": "원문에서 명시된 사실을 해당 관찰로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.repeat_wash.value.consecutive_face_wash_count",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세안은 단순한 잔여감 해소를 위해 연속 두 차례 반복",
+          "connection": "원문에 명시된 관계를 분리하여 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0269",
@@ -132,10 +177,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "업무상 손을 여러 번 씻지만 얼굴 세안 횟수와 목적은 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
@@ -143,6 +188,22 @@
             "value": null,
             "source": "synthetic_fixture",
             "confirmed_by_user": false
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "hand_washing": {
+                "frequency": "여러 번",
+                "context": "업무상"
+              },
+              "face_washing": {
+                "frequency": "unknown",
+                "purpose": "unknown"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -181,7 +242,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "16f7b610dfb87f685e246cda6fb54a564679b891e7b1c5c6b8ba32c2fc5f94fa",
+      "input_sha256": "58411640933ef9e7de866a9507cbaffbfdf9970bd0ebbc915909d611d40bf70c",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -203,7 +264,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n손 세정 횟수만으로 얼굴 세안의 차이를 판정하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n업무상 손을 여러 번 씻는다는 사실을 얼굴의 반복 세안으로 옮기지 않아요. 얼굴 세안 횟수와 목적은 미상이에요 [kb:B-C05@0.6.1].\n\n### 근거 및 이유\n얼굴 세정에서는 얼굴 세안에서 제거 이유 없는 습관적 반복을 비교해요 [kb:B-C05@0.6.1]. 제공된 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].\n\n### 확인이 필요한 한계\n필요한 손 위생을 줄이라는 뜻이 아니며 얼굴의 실제 횟수와 목적을 확인해야 해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "업무상 손을 여러 번 씻지만 얼굴 세안 횟수와 목적은 확인되지 않았습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "업무상 손을 여러 번 씻지만 얼굴 세안 횟수와 목적은 확인되지 않았습니다.",
+          "connection": "손과 얼굴의 부위별 행위를 구분하고 미상을 보존."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "손 위생의 업무 맥락을 보존했으며 기존 얼굴 반복 세안 unknown은 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0270",
@@ -231,18 +317,26 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "실외 작업 중 얼굴에 흙이 묻어 평소 세안 외에 씻었습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
             "state": "known",
             "value": {
               "extra_wash_reason": "얼굴의 흙",
-              "automatic_repeat": false
+              "automatic_repeat": false,
+              "context": "실외 작업 중 평소 세안 외 추가"
             },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -283,7 +377,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "658db0600c5244ad681c367aee45e9126e6933161712b56b2c178ab7d61c8c33",
+      "input_sha256": "4b797fcb22084eae31e2a165b8bff17cc5413ed476e34d44a0889acbdbb8524d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -305,7 +399,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n흙 제거라는 별도 목적을 고려하며 횟수만으로 차이를 만들지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n실외 작업 중 얼굴에 흙이 묻어 평소 세안 외에 씻으셨군요. 추가 세정의 맥락을 살피며 횟수만으로 불필요한 반복이라고 보지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 안내는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n흙이 실제로 완전히 제거됐는지는 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "추가로 씻은 관찰을 제거 성공으로 바꾸지 않음.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "실외 작업 중 얼굴에 흙이 묻어 평소 세안 외에 씻었습니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.repeat_wash.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "실외 작업 중 얼굴에 흙이 묻어 평소 세안 외에 씻었습니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "관찰과 미상·계획 및 제품·부위를 구분했어요."
     },
     {
       "id": "syn-sol-0271",
@@ -333,16 +452,26 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "운동 후 땀은 확인했지만 같은 세안에서 두 번째 단계의 목적은 모릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
             "state": "known",
             "value": {
-              "extra_step_reason": "unknown"
+              "extra_step_reason": "unknown",
+              "second_step_present": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "sweat_after_exercise": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -384,7 +513,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "6703b328e41dc3c9660c548c5acd5e46f77d0df61e804d6386acb60e36444e58",
+      "input_sha256": "03922376da3c44079a88db934306ddfb251a5a7bcadcb026323f102d026eb098",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -406,7 +535,40 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n운동 후 세안과 추가 단계의 이유를 구분해 확인해요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n운동 후 땀이 난 것은 확인됐지만 같은 세안의 두 번째 단계가 어떤 목적이었는지는 미상이에요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n운동 후 세안과 추가 단계의 목적은 별도로 살펴요. 일반 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n추가 단계가 불필요했다고 단정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "개별 사용 사실과 판단의 한계를 구분해 자연스럽게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "운동 후 땀은 확인했지만 같은 세안에서 두 번째 단계의 목적은 모릅니다.",
+          "connection": "의사결정 범주는 원문만으로 확정할 수 없어 미상으로 둠"
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.target_load.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "운동 후 땀은 확인했지만",
+          "connection": "원문에서 명시된 사실을 해당 관찰로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.repeat_wash.value.second_step_present",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "같은 세안에서 두 번째 단계",
+          "connection": "원문에 명시된 관계를 분리하여 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0272",
@@ -434,17 +596,23 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "세정 기기를 보유하지만 얼굴 사용 여부와 압력은 확인되지 않았습니다.",
-            "source": "synthetic_fixture",
-            "confirmed_by_user": true
-          },
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
             "state": "unknown",
             "value": null,
             "source": "synthetic_fixture",
             "confirmed_by_user": false
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleansing_device": {
+                "owned": true,
+                "used_on_face": "unknown",
+                "pressure": "unknown"
+              }
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -483,7 +651,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "ee532e44da8e4b0e438c6a3901d7295ee3e067a97aea8d16bffe2732157cf687",
+      "input_sha256": "23951d2a52dcd1bf1e3a266a871e641206fc30e3282fc65d6d1cc5a346bb6db6",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C02",
@@ -504,7 +672,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n기기 보유만으로 얼굴 마찰을 단정하지 않아요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n세정 기기를 갖고 있지만 얼굴에 사용했는지와 힘은 미상이에요. 소유만으로 얼굴에 강한 마찰이 있었다고 판단하지 않아요 [kb:B-C02@0.6.1].\n\n### 근거 및 이유\n얼굴 세정에서는 손가락 외 도구의 사용과 강한 마찰을 구분해요 [kb:B-C02@0.6.1]. 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].\n\n### 확인이 필요한 한계\n얼굴 사용 여부와 사용했다면 압력을 확인해야 해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "세정 기기를 보유하지만 얼굴 사용 여부와 압력은 확인되지 않았습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "세정 기기를 보유하지만 얼굴 사용 여부와 압력은 확인되지 않았습니다.",
+          "connection": "보유 사실과 실제 사용·압력 미상을 각각 기록."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "기기 보유만 알려졌고 실제 사용은 계속 미상이에요."
     },
     {
       "id": "syn-sol-0273",
@@ -532,10 +725,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "손에 세정 기기를 쓰며 얼굴은 세안 후 수건으로 강하게 문지릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
@@ -543,6 +736,35 @@
             "value": {
               "face_towel_rubbing": "strong",
               "device_site": "hands"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "site": "hands",
+              "purpose": "세정"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.friction": {
+            "variable_id": "method.friction",
+            "state": "known",
+            "value": {
+              "site": "face",
+              "tool": "수건",
+              "intensity": "strong",
+              "timing": "세안 후"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -584,7 +806,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "98ac75caa296c8c9518ca0411d16677ea3a76b87ff6ebe176ea3f2a3e5280db4",
+      "input_sha256": "ac5d3633c7f5f14e2f68d1a615ad99d34c32b7a7fd7efa6d49a12ec6855f50ed",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C02",
@@ -605,7 +827,38 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n손의 기기 사용과 별개로 얼굴의 강한 수건 마찰을 검토해요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n손에 사용하는 세정 기기와 별개로, 얼굴은 세안 뒤 수건으로 강하게 문지른다고 하셨어요. 얼굴의 강한 마찰을 줄이고 물기를 가볍게 닦는 방법을 살펴봐요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 세안 안내는 부드러운 세정과 헹굼을 설명해요. [ref:S03]\n\n### 확인이 필요한 한계\n손의 기기를 얼굴에도 사용했다고 추정하거나 피부 문제의 원인을 단정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰에 맞춰 안내를 구체화하고 입력 사실을 등록 슬롯으로 구조화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.adjunct.device_use.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "손에 세정 기기를 쓰며 얼굴은 세안 후 수건으로 강하게 문지릅니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "손에 세정 기기를 쓰며 얼굴은 세안 후 수건으로 강하게 문지릅니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.friction.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "손에 세정 기기를 쓰며 얼굴은 세안 후 수건으로 강하게 문지릅니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "관찰과 미상·계획 및 제품·부위를 구분했어요."
     },
     {
       "id": "syn-sol-0274",
@@ -633,10 +886,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "손은 수건으로 문지르지만 얼굴은 문지르지 않고 가볍게 눌러 말립니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
@@ -685,7 +938,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "cd9292612c2ecf7749a3ba7e89b21983b635ee73b826b6540a3e305702e0bca3",
+      "input_sha256": "872223b90ba0521d175b82b1bd980b60121048e4a98a3b2a5a4ddbd43584c6e0",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C02",
@@ -706,7 +959,28 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n얼굴 건조는 가볍게 하지만 세안 도구와 마찰은 미상이므로 전체 세안 방법은 판정하지 않아요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개인의 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴 마찰의 강도는 추정하지 않아요."
+      "answer": "### 핵심 안내\n얼굴은 수건으로 문지르지 않고 가볍게 눌러 말리지만 손은 수건으로 문질러요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n얼굴을 말리는 행동만으로 세안 도구나 세안 중 마찰을 판단하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "손은 수건으로 문지르지만 얼굴은 문지르지 않고 가볍게 눌러 말립니다.",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0275",
@@ -734,10 +1008,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "얼굴에 기기는 쓰지 않지만 수건으로 말릴 때의 압력은 기억하지 못합니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
@@ -786,7 +1060,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "a2ad25d364ed1de0cefe8cd78ad937cd6ff44e8719fac42fb2aa39d2e3c49581",
+      "input_sha256": "3d98f0394785524ce8e3e55f4b5550a0b3c31fd29e0723d2ccad93c496016e2b",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C02",
@@ -807,7 +1081,28 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n기기를 쓰지 않는 사실만으로 수건 마찰까지 확인된 것은 아니에요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n얼굴에 기기를 쓰지 않더라도 수건으로 말릴 때의 압력은 알 수 없어요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n기기 사용 여부와 건조할 때의 접촉은 다른 행동이에요. 일반 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n기억하지 못하는 압력을 추정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "개별 사용 사실과 판단의 한계를 구분해 자연스럽게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴에 기기는 쓰지 않지만 수건으로 말릴 때의 압력은 기억하지 못합니다.",
+          "connection": "의사결정 범주는 원문만으로 확정할 수 없어 미상으로 둠"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "범주로 확인되지 않은 의사결정 맥락은 미상으로 남기고 명시된 원자 사실을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0276",
@@ -835,17 +1130,21 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "사용한 내수성 제품의 제거 표시는 미상이고 다른 제품의 제거 표시만 확인했습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "used_product_removal": "unknown",
-              "other_product_removal": "confirmed"
+              "used_water_resistant_product": {
+                "removal_instruction": "unknown"
+              },
+              "other_product": {
+                "removal_instruction": "confirmed"
+              }
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -887,7 +1186,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "f8eb632a2141f99c0de5e1295909a63bb4c58ed1ef8adb7fa112296028d5211a",
+      "input_sha256": "a7c2261df92a936d96ec90a46da99c756d184c724382c05aef03112bdb1e8e55",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -909,7 +1208,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n다른 제품의 표시를 사용 제품에 적용하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n사용한 내수성 제품의 제거 표시는 확인되지 않았고 확인된 표시는 다른 제품의 것이에요. 그 표시를 사용 제품에 그대로 적용하지 않아요.\n\n### 근거 및 이유\n선크림 제거에서는 내수성 표시만으로 무조건 반복 세안하는 행동을 검토해요 [kb:B-I01@0.6.1]. 소규모 영상 연구의 제한된 조합으로 모든 제품의 제거법을 일률적으로 정할 수 없어요 [ref:S08].\n\n### 확인이 필요한 한계\n사용한 제품의 해당 버전과 제거 지시가 여전히 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "사용한 내수성 제품의 제거 표시는 미상이고 다른 제품의 제거 표시만 확인했습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "사용한 내수성 제품의 제거 표시는 미상이고 다른 제품의 제거 표시만 확인했습니다.",
+          "connection": "실제 사용 제품과 다른 제품의 표시를 분리."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "다른 제품의 표시를 사용 제품에 이전하지 않고 내수성 제품의 사용 사실을 보존했어요."
     },
     {
       "id": "syn-sol-0277",
@@ -937,16 +1261,41 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "실제 사용한 제품의 내수성 표시만을 이유로 매번 얼굴을 세 단계로 씻습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
               "automatic_multi_step_for_water_resistant": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.steps": {
+            "variable_id": "cleansing.steps",
+            "state": "known",
+            "value": 3,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.repeat_wash": {
+            "variable_id": "cleansing.repeat_wash",
+            "state": "known",
+            "value": {
+              "automatic_multi_step_for_water_resistant": true,
+              "frequency": "매번",
+              "reason": "실제 사용 제품의 내수성 표시만"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -988,7 +1337,7 @@
           "ref:S21"
         ]
       },
-      "input_sha256": "e367dde0e0ff1af88380982673f220d01bf05f57a0f2f2d290782218aeec535e",
+      "input_sha256": "f5a2a08f1743cfd9bb00cbbf98c1c73c53b68a7e320d6815cc9d6f08945ab93c",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1010,7 +1359,38 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n내수성 표시만을 근거로 고정한 반복 단계를 검토해요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n실제 사용한 제품의 내수성 표시만 보고 매번 세 단계로 씻고 계시군요. 광보호는 유지하면서 해당 제품의 제거 지시와 실제 필요를 살펴 단계가 필요한지 검토해요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n소규모 비교는 제한된 제품과 세정법만 다뤄 모든 내수성 제품에 같은 제거법을 정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n이 정보만으로 특정 단계 수가 모든 제품에 충분하다고 단정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰에 맞춰 안내를 구체화하고 입력 사실을 등록 슬롯으로 구조화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "실제 사용한 제품의 내수성 표시만을 이유로 매번 얼굴을 세 단계로 씻습니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.steps.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "실제 사용한 제품의 내수성 표시만을 이유로 매번 얼굴을 세 단계로 씻습니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.repeat_wash.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "실제 사용한 제품의 내수성 표시만을 이유로 매번 얼굴을 세 단계로 씻습니다.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "관찰과 미상·계획 및 제품·부위를 구분했어요."
     },
     {
       "id": "syn-sol-0278",
@@ -1037,16 +1417,19 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "내수성 제품은 다음 주 사용 계획일 뿐 오늘 사용하지 않았고 오늘 제거 행동은 알려지지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "planned_only": true,
+              "water_resistant_product": {
+                "planned_use": "next_week",
+                "used_today": false
+              },
               "today_removal": "unknown"
             },
             "source": "synthetic_fixture",
@@ -1078,7 +1461,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "b8d3db5fecb8fdd1a48a07278108ab955fb86d74b5e7c348248b419acac42902",
+      "input_sha256": "67f5f8afc288adcef755d526c7205780badbb099a5d21626ba55062854e7924c",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1100,7 +1483,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n계획을 실제 사용이나 반복 행동으로 취급하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n내수성 제품은 다음 주에 쓸 계획이고 오늘은 쓰지 않았어요. 오늘 제거 행동은 알려지지 않아 반복 세안이 있었다고 판단하지 않아요 [kb:B-I01@0.6.1].\n\n### 근거 및 이유\n광보호와 세정을 함께 살필 때는 제거 부담 때문에 광보호를 희생하거나 내수성 표시만으로 무조건 반복 세안하는 행동을 살펴요 [kb:B-I01@0.6.1]. 제한된 제품 조합의 소규모 영상 연구도 모든 내수성 제품에 하나의 제거 방법을 확정하지 않아요 [ref:S08].\n\n### 확인이 필요한 한계\n실제 사용할 제품의 표시와 버전, 사용 후 제거 행동은 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "내수성 제품은 다음 주 사용 계획일 뿐 오늘 사용하지 않았고 오늘 제거 행동은 알려지지 않았습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "내수성 제품은 다음 주 사용 계획일 뿐 오늘 사용하지 않았고 오늘 제거 행동은 알려지지 않았습니다.",
+          "connection": "제품의 계획 시점, 오늘 미사용과 제거 행동 미상을 구조화."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "내수성 제품의 다음 주 계획과 오늘 미사용, 오늘 제거 행동 미상을 구분해 유지했어요."
     },
     {
       "id": "syn-sol-0279",
@@ -1127,15 +1535,17 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "동거인이 내수성 표시만 보고 반복 세안하지만 본인의 제거 행동은 알 수 없습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
+              "other_person": "동거인",
+              "other_person_reason": "내수성 표시만 보고",
               "other_person_automatic_repeat": true,
               "self_repeat": "unknown"
             },
@@ -1168,7 +1578,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "6f0bb6dc4b3b3b95a82566d23a0949e06cd9f570fc9a0e6fae03282071f4fec7",
+      "input_sha256": "ef69cef01efe32f808a6e58cf2714a19d896db32913020e40f32dd821c727375",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1190,7 +1600,26 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n다른 사람의 행동으로 본인의 판정을 만들지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n동거인은 내수성 표시만 보고 반복 세안하지만 본인의 제거 행동은 확인되지 않았어요. 동거인의 습관을 본인의 행동으로 판단하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품과 방법을 비교한 소규모 연구만으로 모든 내수성 제품의 제거법을 정할 수 없어요. [ref:S08]\n\n### 확인이 필요한 한계\n본인의 실제 제거 행동과 해당 제품 지침은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "동거인이 내수성 표시만 보고 반복 세안하지만 본인의 제거 행동은 알 수 없습니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-sol-0280",
@@ -1217,17 +1646,18 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "내수성 제품을 팔에만 사용했고 얼굴 제거 행동은 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
               "used_site": "arms",
-              "face_removal": "unknown"
+              "face_removal": "unknown",
+              "water_resistant_product_used_site": "arms"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -1258,7 +1688,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "fde733babc95098ad857205ca42e0a0cabc47f8eadcee43466189c4ab8eb8a1b",
+      "input_sha256": "f9d49dfe2f7d0df9b7d57791c78225b5f02fc3cca4546327c28289f84fc2a649",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1280,7 +1710,34 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n팔의 사용을 얼굴의 반복 세안으로 옮겨 판단하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n내수성 제품은 팔에만 사용한 것으로 기록됐어요. 이를 얼굴에서 자동으로 반복 세안한 사실로 옮기지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n소규모 연구의 제한된 제품 조합만으로 모든 내수성 제품에 일률적 제거법을 확정할 수 없어요. [ref:S08]\n\n### 확인이 필요한 한계\n얼굴 제거 행동은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "내수성 제품을 팔에만 사용했고 얼굴 제거 행동은 확인되지 않았습니다.",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "내수성 제품을 팔에만 사용했고 얼굴 제거 행동은 확인되지 않았습니다.",
+          "connection": "원문에 명시된 요청 또는 주체별 제품 사용 관계만 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0281",
@@ -1307,16 +1764,16 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "표시 사진의 제품 버전과 현재 사용하는 제품의 일치 여부가 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "label_version_match": "unknown"
+              "label_photo_product_version_matches_current_product": "unknown"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -1326,7 +1783,7 @@
           {
             "card_id": "B-I01",
             "status": "unknown",
-            "guidance": "버전 일치가 확인되기 전에는 해당 제거 표시를 적용하지 않아요."
+            "guidance": "버전 일치가 확인되기 전에는 해당 표시를 적용하지 않아요."
           }
         ],
         "product_evidence": [],
@@ -1347,7 +1804,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "ada2d3de795811e9178febb8d81e2d82e2ff9f28bbf721f9f7a35e013eac166f",
+      "input_sha256": "54db9bad82bb98f15b8a40d6cecadec31ed5fd7e951474a63c11c27ed486b1e8",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1369,7 +1826,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n버전 일치가 확인되기 전에는 해당 제거 표시를 적용하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n표시 사진과 현재 사용 중인 제품이 같은 버전인지 확인되지 않았어요. 사진의 내용을 현재 용기에 적용하기는 보류해요.\n\n### 근거 및 이유\n세정 방법을 살필 때는 내수성 표시만 보고 무조건 반복 세안하는 행동을 검토해요 [kb:B-I01@0.6.1]. 제공된 소규모 영상 연구도 제한된 제형의 비교여서 모든 제품에 일률적인 제거법을 정하지 않아요 [ref:S08].\n\n### 확인이 필요한 한계\n현재 사용하는 제품의 버전과 사진의 판이 일치하는지 확인하기 전에는 사진을 현재 제품의 근거로 쓸 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "표시 사진의 제품 버전과 현재 사용하는 제품의 일치 여부가 확인되지 않았습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "표시 사진의 제품 버전과 현재 사용하는 제품의 일치 여부가 확인되지 않았습니다.",
+          "connection": "사진과 사용 중인 제품의 버전 일치 미상을 관계형 값으로 기록."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "사진의 제품과 현재 사용 제품을 구별하고 버전 불일치가 아닌 일치 여부 미상으로 유지했어요."
     },
     {
       "id": "syn-sol-0282",
@@ -1396,16 +1878,17 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "합성 제품의 제거 안내 일부가 가려져 필요한 세정 방법을 읽을 수 없습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "removal_instruction": "partially_obscured"
+              "removal_instruction": "partially_obscured",
+              "required_cleansing_method": "unknown"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -1436,7 +1919,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "5e3efa74bbf7c27193b790646a09270c12b477089110658bd39170e2f94d09cc",
+      "input_sha256": "0fc5e05101b0f71ab9988e08548a901b77aecbe0159de9514925915af72ebd46",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1458,7 +1941,26 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n보이지 않는 제거 조건을 추정하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n제품의 제거 안내 일부가 가려져 필요한 세정법을 읽지 못했어요. 해당 제품의 온전한 안내를 확인해 주세요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n일부 제품을 비교한 소규모 연구만으로 모든 내수성 제품의 제거 방법을 정할 수 없어요. [ref:S08]\n\n### 확인이 필요한 한계\n가려진 부분에 어떤 지시가 있는지는 현재 알 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "S08의 내수성 제품 범위를 보존함.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "합성 제품의 제거 안내 일부가 가려져 필요한 세정 방법을 읽을 수 없습니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-sol-0283",
@@ -1485,10 +1987,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "폼을 사용한 것은 확인됐지만 제품의 제거 표시와 반복 이유는 모릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
@@ -1527,7 +2029,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "6ba825ff0b91590ba2dba05cc0093c5819fd4ae33211e96a4d7804aa541c64b7",
+      "input_sha256": "23c19947ba26adb0e7995c77181e76171aafd5db115d100ad681e9d2d0b6c055",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1549,7 +2051,28 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n폼 사용만으로 표시 일치나 불일치를 확정하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n폼을 사용한 사실만으로 제품 제거 표시와의 일치 여부를 판정할 수 없어요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 연구를 모든 제품의 일률적 제거법으로 일반화하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n해당 제품의 제거 표시와 반복 이유는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "폼을 사용한 것은 확인됐지만 제품의 제거 표시와 반복 이유는 모릅니다.",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0284",
@@ -1576,10 +2099,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "세정제 두 번 사용 사실은 있으나 같은 세안의 두 단계인지 다른 시간인지 모릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
@@ -1617,7 +2140,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "36b21c1b76b8c37145804b48a1df94da3446238afde0504ad3056a5fb10612e3",
+      "input_sha256": "9039b2339a0a56b72d6d4263d789e644120ebcb145b38cb7d6cf47b4f9436848",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -1639,7 +2162,26 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n세정 횟수와 한 번의 단계 수를 구분해 확인해요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n세정제를 두 번 썼지만 한 세안의 두 단계였는지 서로 다른 시간의 사용인지는 미상이에요. 두 단계 반복 세안으로 확정하지 않아요 [kb:B-C05@0.6.1].\n\n### 근거 및 이유\n세정 횟수를 살필 때는 제거 목적 없이 습관적으로 반복하는지 비교해요 [kb:B-C05@0.6.1]. 제공된 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].\n\n### 확인이 필요한 한계\n두 사용의 시간 관계와 세정 목적이 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "세정제 두 번 사용 사실은 있으나 같은 세안의 두 단계인지 다른 시간인지 모릅니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "두 차례 사용과 같은 세안 여부 미상은 기존 cleansing.repeat_wash에 보존돼요."
     },
     {
       "id": "syn-sol-0285",
@@ -1666,10 +2208,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "얼굴 화장 제거를 위해 세정 단계 두 가지를 사용했다고 보고했습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
@@ -1677,6 +2219,29 @@
             "value": {
               "second_step_reason": "얼굴 화장 제거",
               "automatic_repeat": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.steps": {
+            "variable_id": "cleansing.steps",
+            "state": "known",
+            "value": 2,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "makeup_removal": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -1707,7 +2272,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d63a6d2f829911727fb37a6a32db43a2a5ede980de835d6508fef69b406e7c90",
+      "input_sha256": "f9d16048e0c9a91122ed80918e925562325293ee154b0f5ce7d7bc3af832876a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -1729,7 +2294,44 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 syn-sol-0199와 화장 제거를 위한 두 단계라는 같은 결정 조건이므로 기존 가족과 분할을 재사용해요.",
-      "answer": "### 핵심 안내\n화장 제거 목적이 확인돼 두 단계라는 수만으로 차이를 판정하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n얼굴 화장을 지우기 위해 두 세정 단계를 사용했어요. 단계 수만으로 불필요한 반복이라고 판단하지 않아요 [kb:B-C05@0.6.1].\n\n### 근거 및 이유\n세정 단계를 살필 때는 메이크업 제거 같은 이유 없이 습관적으로 반복하는 경우를 비교해요 [kb:B-C05@0.6.1]. 제공된 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].\n\n### 확인이 필요한 한계\n두 단계의 구체적인 제품과 행동은 알려지지 않았고 이 자료가 개인의 세정 결과를 확정하지는 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 화장 제거를 위해 세정 단계 두 가지를 사용했다고 보고했습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.body_site",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 화장 제거",
+          "connection": "명시된 사용 부위를 face로 기록."
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.steps",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "세정 단계 두 가지",
+          "connection": "보고된 단계 수를 정수로 기록."
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.target_load",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 화장 제거",
+          "connection": "화장 제거 대상을 명시."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "화장 제거 목적과 자동 반복이 아니라는 기존 관찰을 유지하고 얼굴 부위 및 두 단계를 별도 기록했어요."
     },
     {
       "id": "syn-sol-0286",
@@ -1756,10 +2358,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "친구는 손끝으로 부드럽게 씻지만 본인은 얼굴을 거친 천으로 강하게 문지릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
@@ -1767,6 +2369,32 @@
             "value": {
               "self_face_friction": "strong",
               "other_person": "gentle"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "거친 천"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.friction": {
+            "variable_id": "method.friction",
+            "state": "known",
+            "value": {
+              "self_face": "strong",
+              "other_person": "gentle_fingertips"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -1797,7 +2425,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "3f530be00996d9a7dd92f9b49abc465f783d2aa3300d010828a8e0fc34ef3d9a",
+      "input_sha256": "983487927e3bc7f48a25fe8a08088e6875ec024697721d5db34c32c4dd84ae45",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C02",
@@ -1818,7 +2446,38 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n다른 사람의 습관과 구분해 본인의 강한 마찰을 검토해요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n친구의 부드러운 세안과 달리 본인은 얼굴을 거친 천으로 강하게 문지른다고 하셨어요. 강한 마찰을 줄이고 손으로 부드럽게 씻는 방법을 살펴봐요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 안내는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n친구의 행동을 본인의 행동으로 옮기지 않으며 현재 피부 문제의 원인을 단정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "친구는 손끝으로 부드럽게 씻지만 본인은 얼굴을 거친 천으로 강하게 문지릅니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.tools.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "친구는 손끝으로 부드럽게 씻지만 본인은 얼굴을 거친 천으로 강하게 문지릅니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.friction.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "친구는 손끝으로 부드럽게 씻지만 본인은 얼굴을 거친 천으로 강하게 문지릅니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-sol-0287",
@@ -1845,10 +2504,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "소유한 기기를 손에만 사용하며 얼굴의 실제 세안 방법은 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
@@ -1856,6 +2515,16 @@
             "value": {
               "device_site": "hands",
               "face_method": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "site": "hands",
+              "only": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -1886,7 +2555,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "c1c33809f49cf9513309c31bb4c39efc38806c0dfbcb300c0769c4af7f662b3e",
+      "input_sha256": "c3ef18a1b0ca8bb3b2c9c009164a959e1975d777af31f4709130c01330124b2a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C02",
@@ -1907,7 +2576,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0272와 얼굴 기기 사용 확인이 없는 동일한 결정 가족으로 묶어요.",
-      "answer": "### 핵심 안내\n손에만 쓴 기기로 얼굴 세안 방법을 추정하지 않아요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n기기는 손에만 사용한다고 하셨고 얼굴을 어떻게 씻는지는 확인되지 않았어요. 손에서의 사용을 얼굴 세안에 적용하지 않아요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반적인 얼굴 세안 안내는 부드러운 세정과 헹굼을 설명해요. [ref:S03]\n\n### 확인이 필요한 한계\n얼굴에서 실제 쓴 도구나 마찰 정도는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.adjunct.device_use.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "소유한 기기를 손에만 사용하며 얼굴의 실제 세안 방법은 확인되지 않았습니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "소유한 기기를 손에만 사용하며 얼굴의 실제 세안 방법은 확인되지 않았습니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-sol-0288",
@@ -1934,17 +2628,18 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "가방 속 다른 제품에는 내수성 표시가 있지만 실제 사용 제품의 표시는 알 수 없습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
               "used_product_water_resistance": "unknown",
-              "other_product_labeled": true
+              "other_product_labeled": true,
+              "other_product_location": "bag"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -1975,7 +2670,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "ad779c86a031e77e21cd045279b138530a42cd805cce329dddf9f9692e376361",
+      "input_sha256": "99eaba24150929ad4a41d2ef0c062976a3698b0d3c277532842a6af4dd4c24db",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -1997,7 +2692,34 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n다른 제품의 내수성 표시를 사용 제품에 이전하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n가방 속 다른 제품에 내수성 표시가 있어도 실제 사용한 제품의 표시로 옮길 수 없어요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 연구로 모든 내수성 제품의 제거법을 확정할 수 없어요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 내수성 표시는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "개별 사용 사실과 판단의 한계를 구분해 자연스럽게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "가방 속 다른 제품에는 내수성 표시가 있지만 실제 사용 제품의 표시는 알 수 없습니다.",
+          "connection": "의사결정 범주는 원문만으로 확정할 수 없어 미상으로 둠"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "가방 속 다른 제품에는 내수성 표시가 있지만",
+          "connection": "원문에서 명시된 사실을 해당 관찰로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "범주로 확인되지 않은 의사결정 맥락은 미상으로 남기고 명시된 원자 사실을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0289",
@@ -2024,18 +2746,18 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "반복 세안을 멈추기로 계획했지만 오늘 실제 행동과 기존 반복 이유는 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "plan": "반복 중단",
-              "actual_behavior": "unknown",
-              "reason": "unknown"
+              "plan": "반복 세안 중단",
+              "today_actual_behavior": "unknown",
+              "previous_repeat_reason": "unknown"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -2066,7 +2788,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "23539ce15dbd395264c8c702d23ea7cadeff7b85c8d50bf980c4b1da2874677e",
+      "input_sha256": "d3285b6f7e325671a3f6d5a3d3e31b794e0b27fb76f1470706d0937ed05f74bb",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -2088,7 +2810,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n계획만으로 행동 변경을 확인하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n반복 세안을 멈추려는 계획은 있지만 오늘 실제 행동과 이전에 반복한 이유는 미상이에요. 계획을 이미 실행했다고 판단하지 않아요 [kb:B-I01@0.6.1].\n\n### 근거 및 이유\n광보호와 제거를 살필 때는 내수성 표시만으로 무조건 반복하거나 제거 편의를 위해 광보호를 줄이는 실제 행동을 살펴요 [kb:B-I01@0.6.1]. 소규모 영상 연구도 제한된 제품 조합으로 모든 내수성 제품의 제거법을 정하지 않아요 [ref:S08].\n\n### 확인이 필요한 한계\n오늘의 실제 행동과 반복 이유, 사용 제품의 표시가 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "반복 세안을 멈추기로 계획했지만 오늘 실제 행동과 기존 반복 이유는 확인되지 않았습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "반복 세안을 멈추기로 계획했지만 오늘 실제 행동과 기존 반복 이유는 확인되지 않았습니다.",
+          "connection": "계획, 오늘의 행동 미상과 이전 이유 미상을 분리."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제 실행 여부를 혼동하지 않고 오늘 및 기존 이유의 시점을 보존했어요."
     },
     {
       "id": "syn-sol-0290",
@@ -2115,17 +2862,28 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "한 기록은 얼굴 세안 한 번이고 다른 기록은 두 번이라고 하며 어느 쪽이 맞는지 모릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
             "state": "known",
             "value": {
-              "face_wash_records": "conflict"
+              "face_wash_records": [
+                "한 번",
+                "두 번"
+              ],
+              "reconciled": "unknown"
             },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -2155,7 +2913,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "1ccab899a64ec1a5512cd2d9393f3aa5f412e424d8b4dc1de0084fb60d2d201b",
+      "input_sha256": "b3f02b2e9a1cc22d85915e2398041afdf444fd863889b9199a76afab8014e1f2",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -2177,7 +2935,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n서로 충돌하는 기록으로 세안 횟수 차이를 확정하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n얼굴 세안 기록이 한 번과 두 번으로 엇갈려요. 어느 쪽이 맞는지 확인하기 전에는 반복 세안 여부를 정하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n세안 횟수와 함께 반복의 목적도 살펴야 해요.\n\n### 확인이 필요한 한계\n기록의 충돌과 세안 목적이 해결되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.cleansing.repeat_wash.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "한 기록은 얼굴 세안 한 번이고 다른 기록은 두 번이라고 하며 어느 쪽이 맞는지 모릅니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "한 기록은 얼굴 세안 한 번이고 다른 기록은 두 번이라고 하며 어느 쪽이 맞는지 모릅니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-sol-0291",
@@ -2204,17 +2987,39 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "본인이 얼굴 세정 기기를 사용하지만 압력과 마찰의 세기는 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "face_device_used": true,
-              "friction": "unknown"
+              "friction": "unknown",
+              "pressure": "unknown",
+              "device_intended_site": "face",
+              "device_used": true,
+              "face_device_used": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "cleansing_device"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.friction": {
+            "variable_id": "method.friction",
+            "state": "known",
+            "value": {
+              "pressure": "unknown",
+              "friction_intensity": "unknown"
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -2245,7 +3050,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "021ebccaaf9293fc2a321f136eb79ba584f4a11329077c3fe443d13e75d220c3",
+      "input_sha256": "b630b5480208741cb408b3b8ff30751d3190133246c7ed72720170c998d0984d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C02",
@@ -2266,7 +3071,64 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n얼굴에 손가락 외 기기를 사용하는 차이는 확인됐지만 압력이나 마찰의 세기는 미상이에요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개인의 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴 마찰의 강도는 추정하지 않아요."
+      "answer": "### 핵심 안내\n기록된 얼굴 세정 기기 사용을 손가락 외 도구 사용이라는 기준과 함께 살펴요. 압력과 마찰 강도는 확인되지 않았어요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 강도를 추정하거나 개인의 결과를 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "본인이 얼굴 세정 기기를 사용하지만 압력과 마찰의 세기는 확인되지 않았습니다.",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.pressure",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "압력과 마찰의 세기는 확인되지 않았습니다",
+          "connection": "기존 마찰 미상과 별도로 압력 미상을 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.tools.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세정 기기를 사용",
+          "connection": "원문에 명시된 사실을 전용 관찰로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.friction.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "압력과 마찰의 세기는 확인되지 않았습니다",
+          "connection": "원문에 명시된 사실을 전용 관찰로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.device_intended_site",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세정 기기를 사용",
+          "connection": "원문에서 확인한 제품 용도 또는 해당 제품에 한정된 경험을 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.device_used",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세정 기기를 사용",
+          "connection": "원문에서 확인한 제품 용도 또는 해당 제품에 한정된 경험을 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.face_device_used",
+          "source_path": "confirmed_observations.method.current_routine.value.face_device_used",
+          "raw_span": "true",
+          "connection": "원래 확인된 구조화 관찰의 불리언 값을 그대로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원래 확인된 얼굴 세정 기기 사용과 미확인 압력·마찰 강도를 각각 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0292",
@@ -2293,10 +3155,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "운동 중 땀을 흘렸지만 얼굴 세정의 실제 횟수와 단계는 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "cleansing.repeat_wash": {
             "variable_id": "cleansing.repeat_wash",
@@ -2305,6 +3167,15 @@
               "sweat": true,
               "face_wash_events": "unknown",
               "steps": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "cleansing.target_load": {
+            "variable_id": "cleansing.target_load",
+            "state": "known",
+            "value": {
+              "sweat_during_exercise": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -2335,7 +3206,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "687cbd79dd1953cf07bf68cc868f17ecbc8498e489b08df047de92c29b304d42",
+      "input_sha256": "c9cf2e173a732ab8ec357aeffb427451455258630bac67033bb292b0cc2df48e",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-C05",
@@ -2357,7 +3228,34 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n땀이 있었다는 사실만으로 세정 횟수를 만들지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요."
+      "answer": "### 핵심 안내\n운동 중 땀이 난 사실은 확인됐지만 얼굴을 몇 번, 몇 단계로 씻었는지는 미상이에요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n땀 자체가 세안 횟수나 단계를 알려주지는 않아요. 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]\n\n### 확인이 필요한 한계\n확인되지 않은 세정 행동을 추정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "개별 사용 사실과 판단의 한계를 구분해 자연스럽게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "운동 중 땀을 흘렸지만 얼굴 세정의 실제 횟수와 단계는 확인되지 않았습니다.",
+          "connection": "의사결정 범주는 원문만으로 확정할 수 없어 미상으로 둠"
+        },
+        {
+          "new_path": "confirmed_observations.cleansing.target_load.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "운동 중 땀을 흘렸지만",
+          "connection": "원문에서 명시된 사실을 해당 관찰로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "범주로 확인되지 않은 의사결정 맥락은 미상으로 남기고 명시된 원자 사실을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0293",
@@ -2384,16 +3282,19 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "동일 제품이라고 적힌 두 표시 사본의 제거 방법이 다르고 현재 버전은 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "removal_instructions": "conflict",
+              "label_copies": {
+                "identified_as_same_product": true,
+                "removal_instructions": "conflict"
+              },
               "current_version": "unknown"
             },
             "source": "synthetic_fixture",
@@ -2425,7 +3326,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d77090eaa5559048c60b8e4f6152b9af18eccf78a36d463d3dd93806220e8237",
+      "input_sha256": "714fbe88be92b23397ff97717f3f5c4c5163479a784d7d3abe75bdb3aea068e1",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-I01",
@@ -2447,7 +3348,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 핵심 안내\n상충하는 표시 중 하나를 임의로 현재 제품의 지시로 정하지 않아요. [kb:B-I01@0.6.1]\n\n### 근거 및 이유\n제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]\n\n### 확인이 필요한 한계\n실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요."
+      "answer": "### 핵심 안내\n같은 제품이라고 적힌 두 표시 사본의 제거 방법이 달라요. 현재 버전이 확인되지 않아 어느 쪽도 현재 용기의 지시로 채택하지 않아요.\n\n### 근거 및 이유\n제거 방법을 살필 때는 내수성 표시만으로 무조건 반복 세안하는 행동을 살펴요 [kb:B-I01@0.6.1]. 제공된 소규모 연구는 제한된 제품 조합을 비교했으며 모든 제품에 하나의 제거법을 정하지 않아요 [ref:S08].\n\n### 확인이 필요한 한계\n현재 제품의 판과 그 판에 해당하는 표시를 확인하기 전에는 두 사본 중 하나를 적용할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "동일 제품이라고 적힌 두 표시 사본의 제거 방법이 다르고 현재 버전은 확인되지 않았습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "동일 제품이라고 적힌 두 표시 사본의 제거 방법이 다르고 현재 버전은 확인되지 않았습니다.",
+          "connection": "사본의 표기, 제거 지시 충돌과 현행 판 미상을 구분."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "두 사본이 실제 같은 버전이라고 추정하지 않고 사본의 주장과 현재 판 미상을 유지했어요."
     },
     {
       "id": "syn-hold-0084",
@@ -2472,10 +3398,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "얼굴 세안 후 불편감과 통증이 지속되지만 사용 제품은 기억하지 못합니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
@@ -2497,6 +3423,17 @@
             "value": "moderate",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "event": "얼굴 세안",
+              "after_event": "불편감과 통증 지속",
+              "product": "기억하지 못함"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -2513,7 +3450,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "63a8a6178f11754ed5367173f03d09f4979ccdb3f5189ff5c289795cc0acb66e",
+      "input_sha256": "dcf6adaa8535eef7c1169a2e28425753f7898a12604f5345d5a68692da3a8acc",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -2534,7 +3471,26 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 개별 권고 보류 안내\n얼굴 세안 후 불편감과 통증이 지속되고 사용 제품은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요."
+      "answer": "### 개별 권고 보류 안내\n얼굴 세안 후 불편감과 통증이 계속되고 사용 제품도 기억나지 않는다고 하셨어요. 지금은 개별 루틴 결정을 미뤄요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n지속되는 불편과 그 경과를 의료진에게 확인받아 주세요. 제품과 원인은 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세안 후 불편감과 통증이 지속되지만 사용 제품은 기억하지 못합니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-hold-0085",
@@ -2646,10 +3602,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "얼굴의 따가움과 불편감이 지속되며 사용 제품의 버전 답변은 원하지 않습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
@@ -2694,7 +3650,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "a6110d08674069356f4c7bb2f5433ffb63d838e841b05bd79644b1cee210c185",
+      "input_sha256": "fca6b1b5d92fcca164dfe19f008ee53ac9f02e482d5b2dec7a62d2115d151986",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -2727,7 +3683,23 @@
           "reason": "버전 답변 거절을 unknown이 아닌 declined로 기록해 거절 상태를 보존했어요. 값 null은 그대로이며 관찰 값은 바꾸지 않았어요.",
           "editor_model": "gpt-6.1-terra",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴의 따가움과 불편감이 지속되며 사용 제품의 버전 답변은 원하지 않습니다.",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
       ]
     },
     {
@@ -2753,10 +3725,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "얼굴 세정 뒤 불편과 통증이 지속되며 원인은 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
@@ -2778,6 +3750,20 @@
             "value": "moderate",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleansing": {
+                "body_site": "face",
+                "timing_relative_to_discomfort": "before"
+              },
+              "cause_of_discomfort": "unknown",
+              "pain_persistence": "persistent"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -2794,7 +3780,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "dc18a79b4437554292a36d065c97cb3ac741592d2f4a366eed30171cce884bc0",
+      "input_sha256": "fe337ce2ed5396ae0bd0c9ac82d76549bd6ed67e8dcadeadb2f2dd4cb0d0fc4e",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -2815,7 +3801,38 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "얼굴의 지속 불편·통증을 다루는 syn-hold-0084와 같은 결정 가족으로 묶어요.",
-      "answer": "### 개별 권고 보류 안내\n얼굴 세정 뒤 불편감과 통증이 지속되어 개별 루틴과 제품 안내는 보류해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n현재 상태와 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인은 확인되지 않았어요."
+      "answer": "### 개별 권고 보류 안내\n얼굴 세정 뒤 불편감과 통증이 지속되어 개별 루틴과 제품 안내는 보류해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n현재 상태와 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인은 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세정 뒤 불편과 통증이 지속되며 원인은 확인되지 않았습니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 세정 뒤 불편과 통증이 지속되며 원인은 확인되지 않았습니다.",
+          "connection": "세정과 불편의 시간 관계 및 원인 미상을 구조화."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.pain_persistence",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "불편과 통증이 지속되며",
+          "connection": "불편뿐 아니라 통증의 지속성도 원문에 명시되어 별도로 보존."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "기존 얼굴 부위, 지속 불편과 중등도 통증은 유지하며 세정 후 발생이라는 시간 관계는 원인 판단과 구분했어요. 통증 자체의 지속성을 명시적으로 보존했어요."
     },
     {
       "id": "syn-hold-0088",
@@ -2840,10 +3857,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "얼굴에 기기를 사용한 뒤 불편감과 통증이 지속되지만 원인은 확인되지 않았습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
@@ -2865,6 +3882,18 @@
             "value": "moderate",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "adjunct.device_use": {
+            "variable_id": "adjunct.device_use",
+            "state": "known",
+            "value": {
+              "site": "face",
+              "used": true,
+              "after_use": "불편감과 통증 지속",
+              "cause": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -2881,7 +3910,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "0314ee6f79ed147aed4055c8f4ed89d41693db28ee8a12ef7f23b2e12f16155f",
+      "input_sha256": "2e83e1b3af7a907e8ece1b214b9fc7c9079654c9824db6ade2992c7937aab62c",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -2902,7 +3931,26 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "얼굴의 지속 불편·통증을 다루는 syn-hold-0084와 같은 결정 가족으로 묶어요.",
-      "answer": "### 개별 권고 보류 안내\n기기 사용 뒤 얼굴의 불편감과 통증이 지속되지만 원인은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요."
+      "answer": "### 개별 권고 보류 안내\n얼굴에 기기를 쓴 뒤 불편감과 통증이 계속된다고 하셨어요. 개별 루틴 결정은 지금 미뤄요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n기기 사용과 반응의 경과를 의료진에게 알려 확인받아 주세요. 시간상 순서만으로 원인은 정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.adjunct.device_use.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴에 기기를 사용한 뒤 불편감과 통증이 지속되지만 원인은 확인되지 않았습니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-hold-0089",
@@ -2927,10 +3975,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "손의 불편감이 지속되지만 같은 비누를 쓰는 친구는 불편이 없습니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
@@ -2952,6 +4000,15 @@
             "value": null,
             "source": "synthetic_fixture",
             "confirmed_by_user": false
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "friend_using_same_soap_has_discomfort": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -2968,7 +4025,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "035551b47093956e7146de0c97c3d9fd74d8734d96d44600289d4a65b17b980d",
+      "input_sha256": "806b5f9b83b84a5a63bcdb575c767d204a7c4d6ad41e2accfccacc7d15428e5b",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -2989,7 +4046,34 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "본인 지속 불편과 친구의 무불편을 비교하는 syn-hold-0073의 기존 가족과 분할을 재사용해요.",
-      "answer": "### 개별 권고 보류 안내\n손의 불편감이 지속되고 있어요. 친구의 경험으로 본인 상태를 판단할 수 없어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요."
+      "answer": "### 개별 권고 보류 안내\n손의 불편감이 지속되고 있어요. 친구의 경험으로 본인 상태를 판단할 수 없어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "손의 불편감이 지속되지만 같은 비누를 쓰는 친구는 불편이 없습니다.",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "손의 불편감이 지속되지만 같은 비누를 쓰는 친구는 불편이 없습니다.",
+          "connection": "원문에 명시된 요청 또는 주체별 제품 사용 관계만 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-hold-0090",
@@ -3014,10 +4098,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "세안을 중단한 뒤에도 얼굴 불편감이 계속되며 제품의 원인 여부는 모릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
@@ -3039,6 +4123,19 @@
             "value": null,
             "source": "synthetic_fixture",
             "confirmed_by_user": false
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "cleansing": {
+                "status": "stopped",
+                "discomfort_persisted_after_stopping": true
+              },
+              "product_causation": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -3055,7 +4152,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "e2a4283abf6584c9a29523eead2c3c0a2e1d9644d7d77e5d9bcab0c969e1d037",
+      "input_sha256": "eb74a0fd3a676d73250ef4e2b8a63205c70b18434212c6783021e369f291f728",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -3076,7 +4173,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 개별 권고 보류 안내\n세안을 중단한 뒤에도 얼굴 불편감이 지속돼요. 원인은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요."
+      "answer": "### 개별 권고 보류 안내\n세안을 중단한 뒤에도 얼굴 불편감이 지속돼요. 원인은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "장문 범주값의 명시 사실을 등록 슬롯으로 분리하고 미확인 결정 범주는 미상으로 남겼어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "세안을 중단한 뒤에도 얼굴 불편감이 계속되며 제품의 원인 여부는 모릅니다.",
+          "connection": "결정 범주가 명시되지 않아 unknown으로 둠."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "세안을 중단한 뒤에도 얼굴 불편감이 계속되며 제품의 원인 여부는 모릅니다.",
+          "connection": "세안 중단과 그 후의 지속 관계, 원인 미상을 구조화."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "얼굴 지속 불편과 통증 미상은 그대로 두고 세안 중단 후 경과와 제품 원인 미상을 보존했어요."
     },
     {
       "id": "syn-hold-0091",
@@ -3101,10 +4223,10 @@
         "confirmed_observations": {
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "두 제품을 함께 사용한 뒤 얼굴 통증과 불편감이 계속되며 어느 제품이 원인인지는 모릅니다.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
@@ -3126,6 +4248,26 @@
             "value": "moderate",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "products_used_together": 2,
+              "after_use": "통증과 불편감 지속",
+              "cause_product": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": {
+              "discomfort_site": "face"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -3142,7 +4284,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "42943bcad3848b0e35e34400e99ec1452ad06bc8db2ddd20f1c660d25977e6bd",
+      "input_sha256": "47cf1b0d55eab68384eea69ddf77a944d3f658cfd1384410735e7a1e088ac60f",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -3163,7 +4305,32 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "행동의 주체·부위·시점 또는 미확인 조건을 구분해 판정 범위를 검토하는 사례예요.",
-      "answer": "### 개별 권고 보류 안내\n두 제품 사용 뒤 얼굴 통증과 불편감이 지속되지만 원인은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요."
+      "answer": "### 개별 권고 보류 안내\n두 제품을 함께 쓴 뒤 얼굴의 통증과 불편감이 계속되어 개별 루틴 판단은 미뤄요. 어느 제품이 원인인지는 알 수 없어요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n함께 사용한 제품과 반응이 이어진 경과를 의료진에게 알려 확인받아 주세요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품 병용과 얼굴 불편 부위를 분리해 도포 부위를 추정하지 않음.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "두 제품을 함께 사용한 뒤 얼굴 통증과 불편감이 계속되며 어느 제품이 원인인지는 모릅니다.",
+          "connection": "원문에 명시된 사실을 주체·부위·시점별로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.skin.distribution.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "얼굴 통증과 불편감이 계속",
+          "connection": "불편 부위만 기록하며 제품 도포 부위로 해석하지 않음"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     }
   ]
 }

@@ -796,10 +796,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
             "state": "known",
-            "value": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+            "value": {
+              "가": "확인됨",
+              "나": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.pao": {
+            "variable_id": "storage.pao",
+            "state": "known",
+            "value": {
+              "가": "읽지 못함",
+              "나": "읽지 못함"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -818,7 +831,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "4ac0d72d107b88b7bbf2348e8f3479128af3eaf40e20655b4eaa202be60ddb04",
+      "input_sha256": "c24e6466156a51355aa2cc09e9e043de1b2bcc6a25077f0e378c11c483258549",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -839,7 +852,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+          "connection": "제품별 개봉 이력과 읽지 못한 표시를 분리"
+        },
+        {
+          "new_path": "confirmed_observations.storage.pao.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+          "connection": "제품별 개봉 이력과 읽지 못한 표시를 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-sol-0331",
@@ -1368,7 +1406,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요."
+      "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0339",

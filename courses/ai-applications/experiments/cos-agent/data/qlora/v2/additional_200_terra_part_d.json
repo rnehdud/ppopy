@@ -28,10 +28,22 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "direction": "털 방향",
+              "repeat_passes": "줄임",
+              "movement": "가볍게"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -61,7 +73,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "1ddfbc5dae34f4badc7b00a70962fcb2480606cb870dff72e32732c3e1e129cb",
+      "input_sha256": "95ae9dc642aadc405ee5a05694f8aceda40d50d0e2f8bd2fd53a05f18d86dbb5",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -87,9 +99,32 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "가볍게 움직인 관찰을 별도 압력 값으로 추정하지 않음.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요. 확인된 부드러운 수동 면도 방법을 유지해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인된 현재 동작에 한정해 살펴요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n얼굴 면도 때 털 방향으로 가볍게 움직이고 반복 통과를 줄이는 현재 방법을 유지해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n수동 면도 안내도 털 방향과 부드러운 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n확인한 면도 방법만으로 도구 상태나 개인의 결과를 보장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0423",
@@ -114,10 +149,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "manual_razor"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "목을 수동 날면도로 깎으며 강하게 누르지 않고 털 방향으로 움직여요. 같은 곳을 반복하지 않아요.",
+            "value": {
+              "pressure": "not_strong",
+              "direction": "with_hair_growth",
+              "same_area_repeated": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -147,7 +202,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "664f3a5ca6e550b48d57260e4e3bb066aac460c0417a62b5ce5bdb30e6d8de6b",
+      "input_sha256": "cc82f825ce0f91c19bf19e94dfcd9a7b6ff8dc8b97d283b25114eb08fcaea1a0",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -173,9 +228,40 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n목을 수동 날면도로 깎으며 강하게 누르지 않고 털 방향으로 움직여요. 같은 곳을 반복하지 않아요. 확인된 압력과 방향, 반복 관리에 한정해 유지해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인된 현재 동작에 한정해 살펴요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n목을 수동 날면도할 때 강하게 누르지 않고 털 방향으로 움직이며 같은 곳을 반복하지 않는 확인된 동작을 유지해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n일반 수동 면도 자료도 털이 자라는 방향과 부드러운 면도를 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날 개수나 모든 사람의 면도 빈도를 정하는 안내는 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.tools.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "수동 날면도",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "강하게 누르지 않고 털 방향으로 움직여요. 같은 곳을 반복하지 않아요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0424",
@@ -259,9 +345,19 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 비교 조건을 연결했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴의 턱을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 같은 곳의 반복 통과를 줄여요. 확인된 얼굴 수동 면도 방법을 유지해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인된 현재 동작에 한정해 살펴요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n턱을 수동 날면도할 때 털 방향으로 가볍게 움직이고 같은 곳의 반복 통과를 줄인다고 하셨어요. 확인된 이 방법을 유지할 수 있어요 [kb:B-G10@0.6.1].\n\n### 근거 및 이유\n면도 기준은 강한 역방향·압력이나 반복 통과를 고수하며 불편을 무시하는 상황을 살펴요 [kb:B-G10@0.6.1]. 일반 수동 면도 안내도 털 방향과 부드러운 동작을 다뤄요 [ref:S23].\n\n### 확인이 필요한 한계\n이 관찰만으로 개인의 모든 면도 반응이나 적절한 빈도를 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰과 근거를 유지했어요."
     },
     {
       "id": "syn-sol-0425",
@@ -355,9 +451,19 @@
           "revision": "200-cd-round2",
           "reason": "기존 입력 사실 추가 방식 대신 새 합성 상황 및 식별자로 교체했어요.",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n본인은 볼을 수동 날면도해요. 이때 본인의 방향과 압력은 기억나지 않아요. 직장 동료는 다른 날 목을 수동 날면도할 때 강하게 누른다고 해요. 동료의 목 면도 압력을 본인의 볼 면도 압력으로 옮기지 않아요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 동작은 추측하지 않고 필요한 경우 확인해요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n본인은 볼을 수동 면도하지만 방향과 압력은 기억나지 않아요. 다른 날 동료가 목을 강하게 누른 경험을 본인의 행동으로 옮기지 않아요 [kb:B-G10@0.6.1].\n\n### 근거 및 이유\n면도 기준은 강한 압력이나 반복 통과를 고수하며 불편을 무시하는 상황을 살펴요 [kb:B-G10@0.6.1]. 일반 수동 면도 안내는 털 방향과 부드러운 동작을 다뤄요 [ref:S23].\n\n### 확인이 필요한 한계\n본인의 실제 방향과 압력은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0426",
@@ -382,10 +488,22 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요.",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "direction": "unknown",
+              "pressure": "unknown",
+              "repeat_passes": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -415,7 +533,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "2869c2e7613f1c8fc1a6b685536e104cb21526134bf2bd2086e0955a3d4c4df0",
+      "input_sha256": "59927a765619ba68eb80da664f3dc7b0c6a476ed9582f34916f54c0e143f021c",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -441,9 +559,32 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요. 사용 부위와 도구는 알려져 있으나 세부 동작은 미상이에요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 동작은 추측하지 않고 필요한 경우 확인해요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n목에 수동 날면도를 하고 계시지만 방향과 압력, 반복 통과는 확인되지 않았어요. 현재 동작이 적절하거나 잘못됐다고 판단하지 않아요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n수동 면도 안내는 털 방향과 부드러운 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n실제 면도 동작의 세부 사항은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0427",
@@ -468,10 +609,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "pressure": "강하게",
+              "repeat_passes": "같은 곳 여러 번",
+              "purpose": "매끈함",
+              "discomfort": "있어도 계속"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -501,7 +655,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "91e60a98e0a4474063fcd154f516a716f93007938d6335e45f125c3c9be0db46",
+      "input_sha256": "ba7dacbc7a3da9961d1ba943a86f3e8180bb1a18ebfcdc838c954f9d7e126ae7",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -522,7 +676,32 @@
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
       "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
-      "answer": "### 핵심 안내\n얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요. 불편을 무시한 강한 압력과 반복 통과를 검토해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n불편을 무시하며 강하게 누르거나 반복하는 방법을 조정할 여지를 살펴요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n불편해도 매끈함을 위해 강하게 누르고 같은 곳을 여러 번 면도하고 계시군요. 압력과 반복 통과를 줄일 여지를 살펴봐요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n수동 면도 안내는 부드러운 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n면도 방향이나 날 상태는 확인되지 않았고 불편의 원인을 단정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0428",
@@ -547,10 +726,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "manual_razor"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "목을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강한 역방향 면도를 계속해요.",
+            "value": {
+              "shaving_direction": "against_hair_growth",
+              "continued_despite_discomfort": true,
+              "purpose": "smoothness",
+              "shaving_intensity": "strong"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -580,7 +780,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "cab4ca5fefb8804d0464c912743ee1251402440264d93373badc0ceabe0c6750",
+      "input_sha256": "e827c1f76e578933e5ce69e2eb74f4e64f38da23a5cbf79b6807470471d5d369",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -601,7 +801,46 @@
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
       "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
-      "answer": "### 핵심 안내\n목을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강한 역방향 면도를 계속해요. 불편을 무시한 강한 역방향 면도를 검토해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n불편을 무시하며 강한 역방향으로 면도하는 방법을 조정할 여지를 살펴요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n목을 면도할 때 불편을 무시하며 강하게 역방향으로 미는 방법을 조정해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n매끈함을 위해 계속한 동작이에요. 일반 수동 면도 안내는 털이 자라는 방향과 부드러운 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n이 기록으로 원인이나 개인 결과를 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.tools.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "수동 날면도",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "불편해도 매끈함을 위해 강한 역방향 면도를 계속해요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.shaving_intensity",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "강한 역방향 면도",
+          "connection": "면도 동작의 강도를 기록하되 압력만의 강도로 확정하지 않음"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0429",
@@ -685,9 +924,21 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴을 수동 날면도로 깎아요. 면도 압력과 방향에 대해서는 답하고 싶지 않아요. 답변 거절을 강한 면도로 바꾸지 않아요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 동작은 추측하지 않고 필요한 경우 확인해요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n얼굴을 수동 날면도하는 것은 확인됐지만 압력과 방향은 답변을 원하지 않으셨어요. 강하게 면도한다고 추정하지 않아요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n일반 수동 면도 안내는 털이 자라는 방향과 부드러운 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n거절된 동작 정보를 임의로 채우지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
+      ]
     },
     {
       "id": "syn-sol-0430",
@@ -771,9 +1022,19 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n예전에 얼굴 수동 날면도에서 강하게 눌렀어요. 현재는 털 방향으로 가볍게 움직이고 반복 통과를 줄여요. 이전 동작과 확인된 현재 동작을 나누어 살펴요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인된 현재 동작에 한정해 살펴요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n과거에는 날면도 시 강하게 눌렀지만 현재는 털 방향으로 가볍게 움직이고 반복 통과를 줄인다고 하셨어요. 확인된 현재 동작을 기준으로 살펴요 [kb:B-G10@0.6.1].\n\n### 근거 및 이유\n면도 방법에서는 매끈함을 위해 강한 압력이나 반복 통과를 고수하면서 불편을 무시하는 경우를 비교해요 [kb:B-G10@0.6.1]. 일반 수동 면도 안내도 털 방향과 부드러운 동작을 다뤄요 [ref:S23].\n\n### 확인이 필요한 한계\n과거 행동을 현재 습관으로 간주하지 않으며 면도 빈도나 날 개수를 일률적으로 정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0431",
@@ -798,10 +1059,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "direction": "털 방향",
+              "repeat_passes": "줄임",
+              "blade_count": "unknown",
+              "movement": "가볍게"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -831,7 +1105,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "3cbcfdd489d49d4c20b14f4ef75f459992c27f5e31a05cf9e4ee1f037afddced",
+      "input_sha256": "dae638a66c2ce7f9f726f60d0e48e3c9a8f39af2aa3166785d923466fe7af318",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -857,9 +1131,32 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "가볍게 움직인 관찰을 별도 압력 값으로 추정하지 않음.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요. 확인된 방법을 살피며 날 개수를 추측하지 않아요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n확인된 현재 동작에 한정해 살펴요. [kb:B-G10@0.6.1] 수동 날면도에 관한 일반 안내는 털이 자라는 방향과 부드러운 면도 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날의 개수나 모든 사람의 면도 빈도를 정하지 않아요."
+      "answer": "### 핵심 안내\n얼굴을 털 방향으로 가볍게 면도하고 반복 통과를 줄이는 방법을 유지해요. [kb:B-G10@0.6.1]\n\n### 근거 및 이유\n수동 면도 안내는 털 방향과 부드러운 방법을 다뤄요. [ref:S23]\n\n### 확인이 필요한 한계\n날 개수는 확인하지 못했으므로 추측하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0432",
@@ -884,10 +1181,21 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "얼굴 면도 후 현재 보습제를 바르고 편안해요. 별도의 애프터셰이브는 쓰지 않아요.",
+            "value": {
+              "current_moisturizer": "after_shaving",
+              "response": "comfortable",
+              "separate_aftershave_used": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -917,7 +1225,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "69a45b888e9aa56e2634b27ee1fe0c3d8b9212533b9cbd4bf67a7d8f0808112c",
+      "input_sha256": "94e0e3ee53c1fa0e42e04b666899d0dee701bf0176eeb835e4af3d100e9bf324",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -943,9 +1251,34 @@
           "revision": "200-cd-round1",
           "reason": "기존 면도 후 편안한 보습 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴 면도 후 현재 보습제를 바르고 편안해요. 별도의 애프터셰이브는 쓰지 않아요. 견딜 수 있는 면도 후 보습을 유지해요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n편안한 보습을 고려하며 별도 애프터셰이브 상품을 필수로 정하지 않아요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n얼굴 면도 뒤 편안하게 사용하는 현재 보습을 유지해요. 별도 애프터셰이브를 반드시 추가할 필요는 없어요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n일반 피부 관리 자료는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n현재 제품에 편안한 경험을 다른 제품 전체에 확대하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "면도 후 현재 보습제를 바르고 편안해요. 별도의 애프터셰이브는 쓰지 않아요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0433",
@@ -1024,7 +1357,19 @@
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
       "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
-      "answer": "### 핵심 안내\n목 면도 후 후처리 제품을 바를 때마다 따갑지만 흡수되는 느낌이라며 계속 사용해요. 반복 따가움을 흡수 효과로 해석해 계속 사용하는 행동을 검토해요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n불편을 유발하는 특정 후처리 제품은 중단이나 대체를 검토하고 기본 보습은 함께 고려해요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n목 면도 후 제품을 바를 때마다 따가운데 흡수되는 느낌이라며 계속 쓰고 있어요. 그 반복 반응을 효과로 해석하기보다 해당 후처리 제품의 중단이나 대체를 검토해요 [kb:B-M05@0.6.1].\n\n### 근거 및 이유\n면도 후 관리에서는 반복 따가움을 흡수나 소독 효과로 여기며 견디는 경우를 살펴요 [kb:B-M05@0.6.1]. 일반 자료는 면도 후 보습을 다뤄요 [ref:S25].\n\n### 확인이 필요한 한계\n이 제품의 반응만으로 모든 보습 제품이나 면도 자체가 원인이라고 할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0434",
@@ -1108,9 +1453,19 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴 면도 후 보습제를 발라요. 바른 뒤의 반응은 확인되지 않았어요. 보습 사용 사실과 사용 반응의 미확인을 구분해요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n개인 반응과 실제 보습 여부 중 확인되지 않은 정보는 미상으로 두어요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n얼굴 면도 후 보습제를 사용한 것은 확인됐지만 바른 뒤 반응은 미상이에요. 편안했다거나 따가웠다고 채우지 않아요 [kb:B-M05@0.6.1].\n\n### 근거 및 이유\n면도 후 관리 기준은 반복 따가움을 효과로 여기며 견디거나 모든 보습을 중단하는 경우를 살펴요 [kb:B-M05@0.6.1]. 일반 안내는 면도 후 보습을 다뤄요 [ref:S25].\n\n### 확인이 필요한 한계\n해당 제품을 사용한 뒤의 개인 반응이 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0435",
@@ -1135,12 +1490,28 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+            "value": "neck",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "action": "면도"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.aftercare": {
+            "variable_id": "shaving.aftercare",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
           }
         },
         "kb_judgments": [
@@ -1168,7 +1539,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "7ea840468ec8084351c25bd8fd3123d93d173b88143b5a5ce45f8c0dd619326b",
+      "input_sha256": "ff3690726723eebd02e52ac7a3fc7743b2eb1d17a13aacb34f85676bd8f4598a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -1194,9 +1565,38 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요. 답변 거절을 보습 중단으로 바꾸지 않아요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n개인 반응과 실제 보습 여부 중 확인되지 않은 정보는 미상으로 두어요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n목을 면도하신다고 하셨고 면도 후 보습에 관한 답변은 원하지 않으셨어요. 그 선택을 존중하며 보습을 중단한 것으로 판단하지 않아요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n일반적인 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n본인의 면도 후 보습 여부는 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.aftercare.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0436",
@@ -1290,9 +1690,21 @@
           "revision": "200-cd-round2",
           "reason": "기존 입력 사실 추가 방식 대신 새 합성 상황 및 식별자로 교체했어요.",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n본인은 목을 면도해요. 목 면도 후의 보습 사용 여부와 반응은 확인되지 않았어요. 동거인은 별도로 얼굴 면도 후 사용한 후처리 제품이 따갑다고 해요. 동거인의 얼굴 제품 반응을 본인의 목 면도 후 반응으로 옮기지 않아요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n개인 반응과 실제 보습 여부 중 확인되지 않은 정보는 미상으로 두어요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n본인은 목을 면도하고 동거인은 얼굴 면도 후 제품에 따가움을 보고했어요. 이 경험을 본인의 목 반응으로 옮기지 않아요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n본인의 목 면도 후 보습 여부와 반응은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
+      ]
     },
     {
       "id": "syn-sol-0437",
@@ -1317,10 +1729,21 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요.",
+            "value": {
+              "after_shave": "보습 필요 느낌",
+              "specific_aftercare": "따가움",
+              "all_moisturizing": "중단"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1350,7 +1773,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "198db3c6e22d8eb23fd540ca66f6151aaa08a759f6104bb744504ad06a93c45b",
+      "input_sha256": "d9f463c685ea7616df81677c728c59c7ad0bcc4968c93754fbddb5a83b48e32f",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -1371,7 +1794,32 @@
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
       "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
-      "answer": "### 핵심 안내\n목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요. 특정 후처리 제품의 반응과 보습 전체 중단을 분리해요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n불편을 유발하는 특정 후처리 제품은 중단이나 대체를 검토하고 기본 보습은 함께 고려해요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n목 면도 뒤 보습이 필요하지만 한 후처리 제품이 따가워 모든 보습을 중단하셨군요. 불편을 주는 제품과 보습 전체를 구분해 견딜 수 있는 보습을 살펴봐요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n일반 안내는 면도 후 보습과 무향료 제품 선택을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n따가움의 원인과 다른 제품에 대한 반응은 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0438",
@@ -1396,10 +1844,25 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "얼굴 면도 뒤 예전 후처리 제품은 따가웠어요. 다른 현재 보습제는 사용 후 편안해요.",
+            "value": {
+              "past_aftercare_product": {
+                "timing": "after_shaving",
+                "response": "stinging"
+              },
+              "different_current_moisturizer": {
+                "response": "comfortable"
+              }
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1429,7 +1892,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "bd86e0ae3d27253f075df531b2be0ae3d21dac594c5abd092b992aa1f51e6bc2",
+      "input_sha256": "a45d2e9de027578e57f316310ba6c847104965a37c8cf34c766aae1b1f69f851",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -1455,9 +1918,34 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴 면도 뒤 예전 후처리 제품은 따가웠어요. 다른 현재 보습제는 사용 후 편안해요. 예전 후처리 제품과 현재 견디는 보습제를 구분해요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n편안한 보습을 고려하며 별도 애프터셰이브 상품을 필수로 정하지 않아요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n예전 후처리 제품의 따가움과 현재 다른 보습제의 편안한 사용 경험은 구분해요. 현재 견디는 보습은 유지할 수 있어요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n일반 피부 관리 자료는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n예전 반응의 원인이나 다른 모든 제품의 반응을 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "면도 뒤 예전 후처리 제품은 따가웠어요. 다른 현재 보습제는 사용 후 편안해요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0439",
@@ -1541,9 +2029,19 @@
           "revision": "200-cd-round1",
           "reason": "기존 면도 후 편안한 보습 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n목 면도 후 보습제를 사용해 편안해요. 별도 애프터셰이브는 사용하지 않아요. 확인된 편안한 보습을 살피며 별도 상품을 강제하지 않아요. [kb:B-M05@0.6.1]\n\n### 근거 및 이유\n편안한 보습을 고려하며 별도 애프터셰이브 상품을 필수로 정하지 않아요. [kb:B-M05@0.6.1] 일반 피부 관리 안내는 면도 후 보습을 다뤄요. [ref:S25]\n\n### 확인이 필요한 한계\n한 제품의 반응을 모든 제품이나 면도 자체의 원인으로 확대하지 않아요."
+      "answer": "### 핵심 안내\n목 면도 후 보습제가 편안하고 별도 애프터셰이브는 쓰지 않는다고 하셨어요. 편안한 보습을 유지하며 별도 상품을 필수로 추가하지 않아도 돼요 [kb:B-M05@0.6.1].\n\n### 근거 및 이유\n면도 후 관리에서는 반복 따가움을 견디거나 모든 보습을 중단하는 행동을 살펴요 [kb:B-M05@0.6.1]. 일반 자료는 면도 후 보습을 설명해요 [ref:S25].\n\n### 확인이 필요한 한계\n현재 제품의 편안함이 다른 제품의 반응이나 향후 결과를 보증하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0440",
@@ -1568,10 +2066,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "products": [
+                {
+                  "purpose": "레티놀 관리",
+                  "type": "화장품"
+                },
+                {
+                  "purpose": "AHA 각질관리",
+                  "type": "화장품"
+                }
+              ],
+              "timing": "같은 저녁 루틴",
+              "site": "face"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1601,7 +2119,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "442f8367ae51c3b961fd7a43d252d1c73f38cd56e17747851009bdeb97088358",
+      "input_sha256": "39dfe9645097c22ffee975590fea6c225b9fd488e76846c2ad423687ea651200",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -1625,7 +2143,32 @@
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
       "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
-      "answer": "### 핵심 안내\n얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요. 같은 부위의 별도 관리제품 중첩을 검토해요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n별도 제품의 같은 부위 중첩을 줄이고 필요한 관리 한 종류를 우선 검토해요. [kb:B-G13@0.6.1] 일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이는 보수적인 서비스 기본값이지 절대 금기나 개인의 위해 확률을 확정한 것은 아니에요."
+      "answer": "### 핵심 안내\n레티놀 관리제와 AHA 각질관리제를 같은 저녁 얼굴에 따로 겹쳐 쓰고 계시군요. 중첩을 줄이고 필요한 관리 한 가지를 우선할지, 사용 경험과 제품 표시를 함께 살펴봐요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n일반 안내는 레티놀 사용 중 추가 각질관리에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n개인의 반응이나 위해 확률은 이 정보로 알 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0441",
@@ -1650,10 +2193,24 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "목에 레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 사용하는 날은 달라요.",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "products": [
+                "retinol_skincare_cosmetic",
+                "aha_exfoliating_cosmetic"
+              ],
+              "same_period": true,
+              "same_use_days": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1683,7 +2240,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "8b548f17ff72d91e001a813d92d3006b9515c4b23e62abbef0cc4d66d06038ec",
+      "input_sha256": "ec748893aa9c96a667fe240b5621e1067ae3aa402bb017c48896c8c71351c782",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -1707,7 +2264,34 @@
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
       "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
-      "answer": "### 핵심 안내\n목에 레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 사용하는 날은 달라요. 같은 부위와 겹치는 사용기간을 확인하고 날짜 분리만으로 적합하다고 정하지 않아요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n별도 제품의 같은 부위 중첩을 줄이고 필요한 관리 한 종류를 우선 검토해요. [kb:B-G13@0.6.1] 일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이는 보수적인 서비스 기본값이지 절대 금기나 개인의 위해 확률을 확정한 것은 아니에요."
+      "answer": "### 핵심 안내\n목에 쓰는 레티놀과 AHA 화장품은 사용일이 달라도 같은 기간에 겹쳐요. 두 제품의 중첩을 줄이고 필요한 관리 한 종류를 우선 검토해요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 추가 각질제거에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이 보수적 안내는 절대 금기나 개인의 위해 확률을 뜻하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목에",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 사용하는 날은 달라요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0442",
@@ -1794,9 +2378,19 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 각각 바르는 부위는 확인하지 못했어요. 같은 부위에 접촉하는지 미상으로 남겨요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n같은 부위, 관리 목적, 성분 또는 개별 진료 계획 중 확인되지 않은 정보는 미상으로 두어요. 처방약은 임의로 변경하지 않아요. [kb:B-G13@0.6.1] 일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이는 보수적인 서비스 기본값이지 절대 금기나 개인의 위해 확률을 확정한 것은 아니에요."
+      "answer": "### 핵심 안내\n레티놀 관리 제품과 별도 AHA 각질관리 제품을 같은 기간에 쓰지만 각각의 사용 부위는 미상이에요. 같은 부위 중첩이라고 확정하지 않아요 [kb:B-G13@0.6.1].\n\n### 근거 및 이유\n이 기준은 같은 부위의 별도 레티노이드와 AHA 각질관리 제품의 중첩을 다뤄요 [kb:B-G13@0.6.1]. 일반 각질관리 자료는 레티놀 사용 중 각질제거 추가에 주의를 권해요 [ref:S32].\n\n### 확인이 필요한 한계\n각 제품의 실제 접촉 부위를 확인해야 하며 개인 위해 확률은 알 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0443",
@@ -1821,10 +2415,21 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "retinol_product": "관리 목적 사용",
+              "other_cosmetic": "같은 기간 사용, AHA 포함",
+              "other_purpose": "각질관리 목적 미상"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1854,7 +2459,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d86b96df1b2dfae7cb4ef90d3a512180129f4cc49a4cd31ec1c73627dade7a12",
+      "input_sha256": "03721adacdba8ee933d8a4af6d9c55245f9a21863d0f723bfdd3b106cc07a862",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -1883,9 +2488,32 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요. 성분 포함과 각질관리 목적을 구분해요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n같은 부위, 관리 목적, 성분 또는 개별 진료 계획 중 확인되지 않은 정보는 미상으로 두어요. 처방약은 임의로 변경하지 않아요. [kb:B-G13@0.6.1] 일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이는 보수적인 서비스 기본값이지 절대 금기나 개인의 위해 확률을 확정한 것은 아니에요."
+      "answer": "### 핵심 안내\n얼굴에 레티놀 관리 제품과 AHA가 든 별도 화장품을 같은 기간 사용하지만, 두 번째 제품의 각질관리 목적은 확인되지 않았어요. 해당 제품의 용도를 살펴봐요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n일반 안내는 레티놀 사용 중 각질제거를 추가할 때 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n성분 포함만으로 그 제품의 관리 목적이나 개인별 위해를 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0444",
@@ -2095,9 +2723,16 @@
           "old_input_sha256": "f632732f1588d23bf1754b14faa42f23eefc572d21c76a56a6354cd37943a8a4",
           "new_input_sha256": "50e40d7ec106bdbf5bed87dd7553937b88ea666bd7b7a6836beea91b214ccd4d",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n레티놀 관리용 화장품은 얼굴에, AHA 각질관리용 별도 화장품은 손에 같은 기간 사용해요. 두 제품의 실제 접촉 부위는 겹치지 않아요. 확인된 다른 부위에 동일 부위 중첩을 적용하지 않아요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n서로 다른 부위 또는 단일 복합 완제품이라는 확인된 조건을 별도로 살펴요. [kb:B-G13@0.6.1] 일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이는 보수적인 서비스 기본값이지 절대 금기나 개인의 위해 확률을 확정한 것은 아니에요."
+      "answer": "### 핵심 안내\n레티놀 제품은 얼굴, 별도 AHA 각질관리 제품은 손에 사용하며 접촉 부위가 겹치지 않아요. 이 사실에 같은 부위 중첩 판단을 적용하지 않아요 [kb:B-G13@0.6.1].\n\n### 근거 및 이유\n중첩을 살피는 기본 대상은 같은 부위의 별도 레티노이드와 AHA 각질관리 제품이에요 [kb:B-G13@0.6.1]. 일반 각질관리 자료는 레티놀·처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요 [ref:S32].\n\n### 확인이 필요한 한계\n이것은 개인별 위해 확률이나 절대 금기를 확정하는 판단이 아니에요.",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0446",
@@ -2123,10 +2758,20 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "single_product": "레티놀과 AHA 복합 완제품",
+              "other_same_purpose_products": "미사용"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -2167,7 +2812,7 @@
           "ref:S06"
         ]
       },
-      "input_sha256": "5b1b246e78d3ad29d2a15a60d6c2fb39990ba1c21aec53433f3bba006018336c",
+      "input_sha256": "1be639c62843a78114428d5e10537835aea8e8b9f6685632c7af0b7ca2a3819a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -2201,9 +2846,29 @@
           "old_input_sha256": "d3eb08aff8a7eab0d65de8348cdf973a831e967ba4fd8fd92c24aafec83baafd",
           "new_input_sha256": "5b1b246e78d3ad29d2a15a60d6c2fb39990ba1c21aec53433f3bba006018336c",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요. 단일 복합 완제품은 별도 제품 중첩과 나누어 제품별로 검토해요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n서로 다른 부위 또는 단일 복합 완제품이라는 확인된 조건을 별도로 살펴요. [kb:B-G13@0.6.1] 일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이는 보수적인 서비스 기본값이지 절대 금기나 개인의 위해 확률을 확정한 것은 아니에요."
+      "answer": "### 핵심 안내\n얼굴에 사용하는 것은 레티놀과 AHA가 함께 든 하나의 완제품이고 같은 목적의 별도 제품은 사용하지 않아요. 별도 제품 중첩과 구분해 이 제품의 표시와 사용 경험을 살펴봐요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n각질관리 안내는 레티놀 사용 중 추가 관리에 주의를 권하지만 모든 조합의 개인별 결과를 정하지는 않아요. [ref:S32]\n\n### 확인이 필요한 한계\n복합 제품이라는 이유만으로 무자극이나 부적합을 확정하지 않아요.",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0447",
@@ -2290,9 +2955,21 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n얼굴에 처방 레티노이드와 별도 AHA 각질관리 화장품을 같은 기간 사용해요. 의료진의 병용 지시 여부는 아직 확인하지 못했어요. 처방 여부와 미확인 병용 지시를 구분하고 처방을 임의 변경하지 않아요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n같은 부위, 관리 목적, 성분 또는 개별 진료 계획 중 확인되지 않은 정보는 미상으로 두어요. 처방약은 임의로 변경하지 않아요. [kb:B-G13@0.6.1] 일반 각질관리 자료는 레티놀이나 처방 레티노이드 사용 중 각질제거 추가에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n이는 보수적인 서비스 기본값이지 절대 금기나 개인의 위해 확률을 확정한 것은 아니에요."
+      "answer": "### 핵심 안내\n얼굴에 처방 레티노이드와 별도 AHA 화장품을 같은 기간 쓰고 있어요. 처방은 임의로 바꾸지 말고 병용 지시를 처방 의료진에게 확인해요. [kb:B-G13@0.6.1]\n\n### 근거 및 이유\n일반 각질관리 자료는 레티노이드 사용 중 추가 각질제거에 주의를 권해요. [ref:S32]\n\n### 확인이 필요한 한계\n의료진의 병용 지시는 미상이며 절대 금기나 개인 위해 확률을 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-hold-0131",

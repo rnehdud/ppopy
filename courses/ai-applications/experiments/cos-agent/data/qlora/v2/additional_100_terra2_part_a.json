@@ -453,7 +453,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0125과 비교: 체감이 없던 사례와 달리 찬물 체감은 확인됐으나 뜨거운 물 차이는 아니에요.",
-      "answer": "### 핵심 안내\n차갑다는 보고만으로 뜨거운 물 사용 차이를 만들지 않아요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n물은 차갑게 느껴지고 뜨겁지는 않았다고 하셨어요. 뜨거운 물을 사용한 것으로 판단하지 않아요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n일반 세안 안내는 미온수와 부드러운 손가락 사용을 설명해요. [ref:S03]\n\n### 확인이 필요한 한계\n차갑다는 주관적 느낌만으로 정확한 물 온도나 개인에게 미친 영향을 알 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원 관찰과 관련 근거에 맞춰 답변을 사례별로 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력을 변경하지 않았고 미상과 계획·실제, 주체를 구분했어요."
     },
     {
       "id": "syn-sol-0196",
@@ -551,7 +563,21 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 아닌 접촉 행동과 경과 시간의 구분이 필요해요.",
-      "answer": "### 핵심 안내\n경과 시간만으로 일부러 오래 문지르거나 방치했는지 판단하지 않아요. [kb:B-C03@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n기록된 접촉 시간 60만으로 의도적으로 오래 문질렀거나 방치했다고 판단할 수 없어요. [kb:B-C03@0.6.1]\n\n### 근거 및 이유\n경과 시간과 문지르는 행동은 서로 다른 정보예요.\n\n### 확인이 필요한 한계\n제품의 접촉 시간 지시와 의도적인 긴 마찰 여부는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0197",
@@ -648,7 +674,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0119과 비교: 계획만 있던 사례와 달리 실제 사용은 확인됐지만 물기 상태가 미상이에요.",
-      "answer": "### 핵심 안내\n보습제 사용은 확인됐지만 도포 당시 물기 상태는 미상이에요. [kb:B-M01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n가벼운 건조와 보습제 사용은 보고됐지만 바를 때 피부에 물기가 있었는지는 미상이에요. 이 항목을 부합 또는 차이로 단정하지 않아요 [kb:B-M01@0.6.1].\n\n### 근거 및 이유\n보습 시점을 살필 때는 보습이 필요한 상황에서 세정 후 오래 두고 완전히 마른 뒤에만 바르는지 살펴요 [kb:B-M01@0.6.1]. 사용 사실만으로 그 시점과 물기 상태를 알 수 없어요.\n\n### 확인이 필요한 한계\n세정과 보습 사이의 간격, 당시 물기와 적용되는 제품 지침을 확인해야 해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0198",
@@ -1120,7 +1158,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 상충하던 사례와 달리 물 헹굼 불필요 표시가 확인돼요.",
-      "answer": "### 핵심 안내\n확인된 물 헹굼 불필요 표시를 제품별 예외로 살펴요. [kb:B-C06@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 카드의 조건을 구분해 살펴요.\n\n### 확인이 필요한 한계\n별도 제품 지시나 의료진 계획이 있다면 함께 확인해 주세요. 이 내용만으로 원인이나 효과를 확정하지 않아요."
+      "answer": "### 핵심 안내\n이 세정제는 확인된 표시상 물 헹굼이 필요 없어요. 헹구지 않았다는 사실만으로 일반적인 헹굼 누락으로 판단하지 않아요. [kb:B-C06@0.6.1]\n\n### 근거 및 이유\n일반적인 세안 안내와 별개로 물 헹굼이 필요 없는 제품의 사용법은 예외로 살펴요. [kb:B-C06@0.6.1]\n\n### 확인이 필요한 한계\n이 판단은 확인된 해당 제품의 용법에 한정하며 다른 세정제에도 그대로 적용하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0203",
@@ -1211,7 +1261,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0136과 비교: 기능마다 별도 제품을 요구하던 사례와 달리 실제 사용과 충족 여부가 미상이에요.",
-      "answer": "### 핵심 안내\n보습제 보유만으로 실제 사용이나 목표 충족을 확정하지 않아요. [kb:B-M03@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n보습제를 가지고 계시지만 실제로 쓰는지는 확인되지 않았어요. 추가 제품을 결정하기 전에 현재 사용 여부와 사용 경험을 살펴봐요. [kb:B-M03@0.6.1]\n\n### 근거 및 이유\n보유만으로 필요한 보습이 충족됐다고 볼 수 없고, 일반 안내에서는 사용 시점과 경험도 살펴요. [ref:S04]\n\n### 확인이 필요한 한계\n현재 건조감과 실제 사용 여부는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원 관찰과 관련 근거에 맞춰 답변을 사례별로 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력을 변경하지 않았고 미상과 계획·실제, 주체를 구분했어요."
     },
     {
       "id": "syn-sol-0204",
@@ -1309,7 +1371,21 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0129과 비교: 화장 제거가 확인된 사례와 달리 활동 및 제거 목적 자체가 미상이에요.",
-      "answer": "### 핵심 안내\n단계 수만으로 추가 목적의 유무를 판단하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n세정이 두 단계였다는 사실만으로 불필요한 반복이었다고 판단하지 않아요. [kb:B-C05@0.6.1]\n\n### 근거 및 이유\n반복 목적과 메이크업·땀 관련 상황은 확인되지 않았어요.\n\n### 확인이 필요한 한계\n추가 목적이 있었는지 확인하기 전에는 단계 수만으로 부합 여부를 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0205",
@@ -1391,7 +1467,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0128과 비교: 세안 도구가 아닌 물기 닦기에서 마찰 정도를 확인해야 해요.",
-      "answer": "### 핵심 안내\n수건 사용만으로 강한 비빔을 확정하지 않아요. [kb:B-C02@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n수건은 사용했지만 얼마나 문질렀는지는 알려지지 않았어요. 강한 비빔이 있었다고 단정하지 않아요 [kb:B-C02@0.6.1].\n\n### 근거 및 이유\n얼굴 세정 방법을 살필 때는 강한 마찰과 손가락 외 도구 사용을 구분해 비교해요 [kb:B-C02@0.6.1]. 수건을 썼다는 사실만으로 비비는 힘을 알 수 없어요.\n\n### 확인이 필요한 한계\n수건을 어떻게 사용했는지와 문지르는 힘의 정도는 확인이 필요해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요. 확인되지 않은 건조 시점을 답변에서 제거했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0206",
@@ -1488,7 +1576,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0130과 비교: 무거움과 펌프 횟수가 아닌 실제 사용은 확인되나 건조와 편안함은 미상이에요.",
-      "answer": "### 핵심 안내\n실제 사용만으로 건조 불편의 충족을 확인할 수 없어요. [kb:B-M02@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n보습제는 사용 중이지만 지금 편안한지와 건조한지는 아직 알 수 없어요. 사용 경험을 확인한 뒤 양이나 빈도를 검토해요. [kb:B-M02@0.6.1]\n\n### 근거 및 이유\n보습 관리에서는 실제 사용과 사용 경험을 함께 살펴요. [ref:S04]\n\n### 확인이 필요한 한계\n사용 사실만으로 건조 불편이 해결됐거나 남아 있다고 판단하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원 관찰과 관련 근거에 맞춰 답변을 사례별로 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력을 변경하지 않았고 미상과 계획·실제, 주체를 구분했어요."
     },
     {
       "id": "syn-sol-0207",
@@ -1584,7 +1684,21 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0126과 비교: 상충 지시가 아니라 지시 자체가 없어 헹굼만으로 부합을 확정하지 않아요.",
-      "answer": "### 핵심 안내\n헹굼은 확인됐지만 해당 제품의 지시가 미상이라 부합을 확정하지 않아요. [kb:B-C06@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n세정제를 헹군 행동은 확인됐어요. 다만 해당 제품 지시가 없어 그 행동이 표시에 부합하는지는 미상이에요. [kb:B-C06@0.6.1]\n\n### 근거 및 이유\n실제 헹굼과 제품별 지시는 별도로 살펴요.\n\n### 확인이 필요한 한계\n해당 제품의 사용 지시를 확인해 비교해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0208",
@@ -1681,7 +1795,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0119과 비교: 계획이 아닌 물기 상태가 확인됐지만 실제 도포 여부가 미상이에요.",
-      "answer": "### 핵심 안내\n피부 물기만으로 실제 보습제 사용이나 도포 시점을 추정하지 않아요. [kb:B-M01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n가벼운 건조와 약간의 물기는 보고됐지만 실제 보습제 사용은 미상이에요. 물기가 있었다는 사실로 도포 시점이나 사용 여부를 채우지 않아요 [kb:B-M01@0.6.1].\n\n### 근거 및 이유\n보습 시점을 살필 때는 보습이 필요한 맥락에서 세정 뒤 오래 기다렸다가 완전히 마른 피부에만 바르는지를 비교해요 [kb:B-M01@0.6.1].\n\n### 확인이 필요한 한계\n보습제 사용 여부와 사용했다면 세정 후 시점은 아직 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0209",
@@ -2421,7 +2547,21 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-sol-0125과 비교: 과거 뜨거운 체감은 확인됐지만 현재 수온은 미상이라 시점을 구분해요.",
-      "answer": "### 핵심 안내\n과거 체감으로 현재 수온을 추정하지 않아요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n확인되지 않은 정보를 임의로 채우면 관찰과 다른 판단이 될 수 있어요.\n\n### 확인이 필요한 한계\n빠진 정보나 적용되는 제품 지시를 확인하기 전에는 부합 여부를 확정하지 않아요."
+      "answer": "### 핵심 안내\n전에 물이 뜨겁게 느껴졌다는 기록은 현재 수온을 알려주지 않아요. [kb:B-C01@0.6.1]\n\n### 근거 및 이유\n과거의 체감과 현재 세안 상황은 구분해요.\n\n### 확인이 필요한 한계\n현재 수온은 미상이어서 기준과의 부합을 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-hold-0059",
@@ -2653,7 +2793,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-hold-0037과 비교: 통증 정도가 확인된 사례와 달리 지속 불편만 확인돼요.",
-      "answer": "### 개별 권고 보류 안내\n지속 불편이 보고되어 개별 권고를 보류해요. 통증의 정도는 미상이에요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+      "answer": "### 개별 권고 보류 안내\n불편이 계속된다는 보고가 있어 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1]. 통증이 있는지나 그 정도는 확인되지 않았어요.\n\n### 필요한 다음 단계\n지속된 불편과 경과를 의료 전문가에게 설명하고 확인받아 주세요. 원인은 이 기록만으로 알 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-hold-0062",
@@ -2807,7 +2959,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-hold-0040과 비교: 세척 후 재사용한 사례와 달리 사용 전 계획이며 세척 여부는 미상이에요.",
-      "answer": "### 개별 권고 보류 안내\n피부 관통 장치의 개인 시술 절차 안내를 보류해요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+      "answer": "### 개별 권고 보류 안내\n피부를 관통하는 기기의 사용을 계획 중이지만 아직 사용하지 않았고 세척 상태도 확인되지 않았어요. 개인 시술 절차는 안내하지 않아요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n기기와 사용 상황에 관한 공개 지침 및 적절한 전문가의 확인을 받아 주세요. 계획을 이미 실행한 것으로 보거나 세척 상태를 추정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-hold-0064",
@@ -2885,7 +3049,21 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-hold-0041과 비교: 제품 허용 여부가 없고 아직 병용하지 않았어요.",
-      "answer": "### 개별 권고 보류 안내\n의료진의 기기 회피 지시가 있는 상태에서 개인 병용 설계를 보류해요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+      "answer": "### 개별 권고 보류 안내\n기기 회피에 관한 의료진 지시가 확인되어 계획 중인 기기 병용의 개인 설계는 보류해요. 아직 사용하지 않은 것으로 기록됐어요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n병용 계획과 기존 지시를 해당 의료진에게 전달해 확인해 주세요. 여기서 지시를 변경하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-hold-0065",
@@ -3044,7 +3222,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "syn-hold-0037과 비교: 확인된 후속 진료를 취소하려던 사례와 달리 진료 계획과 따가움은 미상이에요.",
-      "answer": "### 개별 권고 보류 안내\n지속 불편에 대한 개별 권고를 보류해요. 진료 계획과 따가움 여부는 미상이에요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n관련 상황과 확인된 지시를 전문가에게 전달하고 상담해 주세요. 원인이나 진단은 여기서 확정할 수 없어요."
+      "answer": "### 개별 권고 보류 안내\n지속되는 불편을 일반적인 루틴 조정만으로 해결한다고 가정하지 않고 개별 권고를 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n불편의 경과를 의료 전문가에게 확인받아 주세요. 따가움과 기존 진료 계획은 알려지지 않았으며 원인도 확정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     }
   ]
 }

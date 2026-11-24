@@ -28,10 +28,22 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "direction": "털 방향",
+              "repeat_passes": "줄임",
+              "movement": "가볍게"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -61,7 +73,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "1ddfbc5dae34f4badc7b00a70962fcb2480606cb870dff72e32732c3e1e129cb",
+      "input_sha256": "95ae9dc642aadc405ee5a05694f8aceda40d50d0e2f8bd2fd53a05f18d86dbb5",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -87,8 +99,31 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "가볍게 움직인 관찰을 별도 압력 값으로 추정하지 않음.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 털 방향으로 가볍게 움직이고 반복 통과를 줄여요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0423",
@@ -113,10 +148,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "manual_razor"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "목을 수동 날면도로 깎으며 강하게 누르지 않고 털 방향으로 움직여요. 같은 곳을 반복하지 않아요.",
+            "value": {
+              "pressure": "not_strong",
+              "direction": "with_hair_growth",
+              "same_area_repeated": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -146,7 +201,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "664f3a5ca6e550b48d57260e4e3bb066aac460c0417a62b5ce5bdb30e6d8de6b",
+      "input_sha256": "cc82f825ce0f91c19bf19e94dfcd9a7b6ff8dc8b97d283b25114eb08fcaea1a0",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -172,7 +227,38 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.tools.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "수동 날면도",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "강하게 누르지 않고 털 방향으로 움직여요. 같은 곳을 반복하지 않아요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
       ]
     },
     {
@@ -257,8 +343,18 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 비교 조건을 연결했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰과 근거를 유지했어요."
     },
     {
       "id": "syn-sol-0425",
@@ -352,8 +448,18 @@
           "revision": "200-cd-round2",
           "reason": "기존 입력 사실 추가 방식 대신 새 합성 상황 및 식별자로 교체했어요.",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0426",
@@ -378,10 +484,22 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요.",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "direction": "unknown",
+              "pressure": "unknown",
+              "repeat_passes": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -411,7 +529,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "2869c2e7613f1c8fc1a6b685536e104cb21526134bf2bd2086e0955a3d4c4df0",
+      "input_sha256": "59927a765619ba68eb80da664f3dc7b0c6a476ed9582f34916f54c0e143f021c",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -437,8 +555,31 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 수동 날면도로 깎아요. 털 방향과 압력, 반복 통과는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0427",
@@ -463,10 +604,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "pressure": "강하게",
+              "repeat_passes": "같은 곳 여러 번",
+              "purpose": "매끈함",
+              "discomfort": "있어도 계속"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -496,7 +650,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "91e60a98e0a4474063fcd154f516a716f93007938d6335e45f125c3c9be0db46",
+      "input_sha256": "ba7dacbc7a3da9961d1ba943a86f3e8180bb1a18ebfcdc838c954f9d7e126ae7",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -516,7 +670,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강하게 누르고 여러 번 같은 곳을 지나가요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0428",
@@ -541,10 +720,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "manual_razor"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "목을 수동 날면도로 깎을 때 불편해도 매끈함을 위해 강한 역방향 면도를 계속해요.",
+            "value": {
+              "shaving_direction": "against_hair_growth",
+              "continued_despite_discomfort": true,
+              "purpose": "smoothness",
+              "shaving_intensity": "strong"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -574,7 +774,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "cab4ca5fefb8804d0464c912743ee1251402440264d93373badc0ceabe0c6750",
+      "input_sha256": "e827c1f76e578933e5ce69e2eb74f4e64f38da23a5cbf79b6807470471d5d369",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -594,7 +794,46 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.tools.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "수동 날면도",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "불편해도 매끈함을 위해 강한 역방향 면도를 계속해요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.shaving_intensity",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "강한 역방향 면도",
+          "connection": "면도 동작의 강도를 기록하되 압력만의 강도로 확정하지 않음"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0429",
@@ -678,7 +917,19 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
       ]
     },
     {
@@ -763,8 +1014,18 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0431",
@@ -789,10 +1050,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "type": "수동 날면도",
+              "direction": "털 방향",
+              "repeat_passes": "줄임",
+              "blade_count": "unknown",
+              "movement": "가볍게"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -822,7 +1096,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "3cbcfdd489d49d4c20b14f4ef75f459992c27f5e31a05cf9e4ee1f037afddced",
+      "input_sha256": "dae638a66c2ce7f9f726f60d0e48e3c9a8f39af2aa3166785d923466fe7af318",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G10",
@@ -848,8 +1122,31 @@
           "revision": "200-cd-round1",
           "reason": "기존 수동 면도 기술 가족·분할 재사용 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "가볍게 움직인 관찰을 별도 압력 값으로 추정하지 않음.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴을 수동 날면도로 깎고 털 방향으로 가볍게 움직이며 반복 통과를 줄여요. 날의 개수는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0432",
@@ -874,10 +1171,21 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "얼굴 면도 후 현재 보습제를 바르고 편안해요. 별도의 애프터셰이브는 쓰지 않아요.",
+            "value": {
+              "current_moisturizer": "after_shaving",
+              "response": "comfortable",
+              "separate_aftershave_used": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -907,7 +1215,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "69a45b888e9aa56e2634b27ee1fe0c3d8b9212533b9cbd4bf67a7d8f0808112c",
+      "input_sha256": "94e0e3ee53c1fa0e42e04b666899d0dee701bf0176eeb835e4af3d100e9bf324",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -933,7 +1241,32 @@
           "revision": "200-cd-round1",
           "reason": "기존 면도 후 편안한 보습 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "면도 후 현재 보습제를 바르고 편안해요. 별도의 애프터셰이브는 쓰지 않아요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
       ]
     },
     {
@@ -1012,7 +1345,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0434",
@@ -1096,8 +1441,18 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0435",
@@ -1122,12 +1477,28 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+            "value": "neck",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "shaving.method": {
+            "variable_id": "shaving.method",
+            "state": "known",
+            "value": {
+              "action": "면도"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "shaving.aftercare": {
+            "variable_id": "shaving.aftercare",
+            "state": "declined",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
           }
         },
         "kb_judgments": [
@@ -1155,7 +1526,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "7ea840468ec8084351c25bd8fd3123d93d173b88143b5a5ce45f8c0dd619326b",
+      "input_sha256": "ff3690726723eebd02e52ac7a3fc7743b2eb1d17a13aacb34f85676bd8f4598a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -1181,8 +1552,37 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.method.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.shaving.aftercare.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목을 면도해요. 면도 뒤 보습 여부에 관한 답변은 원하지 않아요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0436",
@@ -1276,7 +1676,19 @@
           "revision": "200-cd-round2",
           "reason": "기존 입력 사실 추가 방식 대신 새 합성 상황 및 식별자로 교체했어요.",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
       ]
     },
     {
@@ -1302,10 +1714,21 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요.",
+            "value": {
+              "after_shave": "보습 필요 느낌",
+              "specific_aftercare": "따가움",
+              "all_moisturizing": "중단"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1335,7 +1758,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "198db3c6e22d8eb23fd540ca66f6151aaa08a759f6104bb744504ad06a93c45b",
+      "input_sha256": "d9f463c685ea7616df81677c728c59c7ad0bcc4968c93754fbddb5a83b48e32f",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -1355,7 +1778,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목 면도 후 보습이 필요하다고 느끼지만 따가운 후처리 제품 하나 때문에 모든 보습을 중단했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0438",
@@ -1380,10 +1828,25 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "얼굴 면도 뒤 예전 후처리 제품은 따가웠어요. 다른 현재 보습제는 사용 후 편안해요.",
+            "value": {
+              "past_aftercare_product": {
+                "timing": "after_shaving",
+                "response": "stinging"
+              },
+              "different_current_moisturizer": {
+                "response": "comfortable"
+              }
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1413,7 +1876,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "bd86e0ae3d27253f075df531b2be0ae3d21dac594c5abd092b992aa1f51e6bc2",
+      "input_sha256": "a45d2e9de027578e57f316310ba6c847104965a37c8cf34c766aae1b1f69f851",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M05",
@@ -1439,7 +1902,32 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "면도 뒤 예전 후처리 제품은 따가웠어요. 다른 현재 보습제는 사용 후 편안해요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
       ]
     },
     {
@@ -1524,8 +2012,18 @@
           "revision": "200-cd-round1",
           "reason": "기존 면도 후 편안한 보습 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0440",
@@ -1550,10 +2048,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "products": [
+                {
+                  "purpose": "레티놀 관리",
+                  "type": "화장품"
+                },
+                {
+                  "purpose": "AHA 각질관리",
+                  "type": "화장품"
+                }
+              ],
+              "timing": "같은 저녁 루틴",
+              "site": "face"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1583,7 +2101,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "442f8367ae51c3b961fd7a43d252d1c73f38cd56e17747851009bdeb97088358",
+      "input_sha256": "39dfe9645097c22ffee975590fea6c225b9fd488e76846c2ad423687ea651200",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -1606,7 +2124,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리용 화장품과 AHA 각질관리용 화장품을 별도 제품으로 같은 저녁 루틴에 함께 사용해요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0441",
@@ -1631,10 +2174,24 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "목에 레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 사용하는 날은 달라요.",
+            "value": "neck",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "products": [
+                "retinol_skincare_cosmetic",
+                "aha_exfoliating_cosmetic"
+              ],
+              "same_period": true,
+              "same_use_days": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1664,7 +2221,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "8b548f17ff72d91e001a813d92d3006b9515c4b23e62abbef0cc4d66d06038ec",
+      "input_sha256": "ec748893aa9c96a667fe240b5621e1067ae3aa402bb017c48896c8c71351c782",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -1687,7 +2244,34 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요."
+      "novelty_note": "부위와 사용 시점, 제품과 관찰 범위를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "목에",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "레티놀 관리 화장품과 AHA 각질관리 화장품을 별도 제품으로 같은 기간에 사용해요. 사용하는 날은 달라요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0442",
@@ -1774,8 +2358,18 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0443",
@@ -1800,10 +2394,21 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "retinol_product": "관리 목적 사용",
+              "other_cosmetic": "같은 기간 사용, AHA 포함",
+              "other_purpose": "각질관리 목적 미상"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1833,7 +2438,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d86b96df1b2dfae7cb4ef90d3a512180129f4cc49a4cd31ec1c73627dade7a12",
+      "input_sha256": "03721adacdba8ee933d8a4af6d9c55245f9a21863d0f723bfdd3b106cc07a862",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -1862,8 +2467,31 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴에 레티놀 관리 제품과 별도 화장품을 같은 기간에 사용해요. 별도 화장품에는 AHA 성분이 있지만 각질관리 목적인지는 몰라요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0444",
@@ -2072,8 +2700,15 @@
           "old_input_sha256": "f632732f1588d23bf1754b14faa42f23eefc572d21c76a56a6354cd37943a8a4",
           "new_input_sha256": "50e40d7ec106bdbf5bed87dd7553937b88ea666bd7b7a6836beea91b214ccd4d",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0446",
@@ -2099,10 +2734,20 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "method.body_site": {
+            "variable_id": "method.body_site",
             "state": "known",
-            "value": "레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요.",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "routine.co_use_context": {
+            "variable_id": "routine.co_use_context",
+            "state": "known",
+            "value": {
+              "single_product": "레티놀과 AHA 복합 완제품",
+              "other_same_purpose_products": "미사용"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -2143,7 +2788,7 @@
           "ref:S06"
         ]
       },
-      "input_sha256": "5b1b246e78d3ad29d2a15a60d6c2fb39990ba1c21aec53433f3bba006018336c",
+      "input_sha256": "1be639c62843a78114428d5e10537835aea8e8b9f6685632c7af0b7ca2a3819a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G13",
@@ -2177,8 +2822,28 @@
           "old_input_sha256": "d3eb08aff8a7eab0d65de8348cdf973a831e967ba4fd8fd92c24aafec83baafd",
           "new_input_sha256": "5b1b246e78d3ad29d2a15a60d6c2fb39990ba1c21aec53433f3bba006018336c",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.routine.co_use_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "레티놀과 AHA가 함께 든 단일 복합 완제품을 얼굴에 사용해요. 같은 관리 목적의 다른 제품은 사용하지 않아요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0447",
@@ -2265,7 +2930,19 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
       ]
     },
     {

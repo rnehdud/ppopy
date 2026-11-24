@@ -806,10 +806,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
             "state": "known",
-            "value": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+            "value": {
+              "가": "확인됨",
+              "나": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.pao": {
+            "variable_id": "storage.pao",
+            "state": "known",
+            "value": {
+              "가": "읽지 못함",
+              "나": "읽지 못함"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -828,7 +841,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "4ac0d72d107b88b7bbf2348e8f3479128af3eaf40e20655b4eaa202be60ddb04",
+      "input_sha256": "c24e6466156a51355aa2cc09e9e043de1b2bcc6a25077f0e378c11c483258549",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -850,7 +863,32 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요.",
-      "answer": "### 핵심 안내\n각 용기의 개봉 후 안내와 나의 개봉일을 확인해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n가의 개봉일만으로 두 제품의 기간 적합성을 정하지 않아요. [kb:B-S02@0.6.1]\n\n### 확인이 필요한 한계\n두 제품의 개봉 후 안내와 나의 개봉일은 미상이에요."
+      "answer": "### 핵심 안내\n두 선크림 중 가의 개봉일만 확인했고 개봉 후 사용기간 표시는 둘 다 읽지 못했어요. 각 제품의 표시와 이력을 따로 확인해 주세요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n한 제품의 개봉일은 다른 제품의 이력이나 두 제품의 표시 기간을 대신하지 않아요.\n\n### 확인이 필요한 한계\n나의 개봉일과 두 제품의 개봉 후 사용기간은 확인되지 않아 기간 적합성을 정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거에 맞춰 사례별로 작성하고 비정형 입력은 사실 단위로 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+          "connection": "제품별 개봉 이력과 읽지 못한 표시를 분리"
+        },
+        {
+          "new_path": "confirmed_observations.storage.pao.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+          "connection": "제품별 개봉 이력과 읽지 못한 표시를 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "미상과 관찰 주체, 제품 및 시간 관계를 보존했어요."
     },
     {
       "id": "syn-sol-0331",
@@ -1387,7 +1425,19 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 규칙을 재사용하되 기재된 관찰과 미상 정보의 조합을 구분해요.",
-      "answer": "### 핵심 안내\n표시된 사용 범위 안에서 노출된 귀의 누락을 검토해요. [kb:B-P02@0.6.1]\n\n### 근거 및 이유\n얼굴과 귀에 사용 가능하다는 표시가 있고 귀는 의도적으로 제외됐어요. [kb:B-P02@0.6.1]\n\n### 확인이 필요한 한계\n실제 도포량과 보호 수준은 측정되지 않았어요."
+      "answer": "### 핵심 안내\n얼굴과 귀에 사용 가능하다는 합성 제품 표시가 있는데 야외에서 노출된 귀는 의도적으로 제외했다고 하셨어요. 표시된 범위 안에서 빠진 부위를 함께 검토해요 [kb:B-P02@0.6.1].\n\n### 근거 및 이유\n도포 범위를 살필 때는 실제 노출 부위를 의도적으로 빼거나 아주 적게 바르는 행동을 비교해요 [kb:B-P02@0.6.1]. 제품 표시의 사용 범위와 실제 행동을 구분해 살펴요.\n\n### 확인이 필요한 한계\n얼굴에 바른 양과 개인의 실제 보호 수준은 측정되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0339",

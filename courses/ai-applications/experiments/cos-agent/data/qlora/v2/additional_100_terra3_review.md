@@ -1,127 +1,16 @@
-# 추가 개발 후보 100턴
+# PPO-39 보완 — additional_100_terra3
 
-기존 348턴을 변경하지 않고 추가한 안내 77턴·보류 23턴입니다. 합계는 448턴입니다.
-`development_preview`, `production_enabled=false`이며 실제 사용자 자료나 임상 정답이 아닙니다.
-작성 담당과 별도 문맥의 Codex 감사 담당을 분리합니다. 동일 GPT 계열의 감사는 다른 모델 계열의 공식 검수나 사람 승인을 대체하지 않습니다.
-사람 검수는 미검수이며, 현재 감사 판정은 `reviews/additional_100_terra3_codex_independent.*`에서 내용 해시와 함께 확인합니다.
-합성 방어 청크는 실제 문헌 인용문이 아니며 감사용 출처 분류를 유지합니다. KB 판정 근거는 비교 명세를 대조한 작성 기록이지 엔진 실행 결과가 아닙니다.
+`development_preview`, `production_enabled=false`, 합성 개발 후보이며 공식 인수·사람 승인이 아니에요.
+원문 관찰을 정형 슬롯과 연결하고 사례별 설명을 보완했어요. 전체 판단과 과거 기록은 README 및 `ppo39_revisions.json`을 확인해요.
+KB 판정은 비교 명세에 대한 작성 기록이며 엔진 실행이나 임상 결과가 아니에요. 저장 문헌 청크는 요약이며 외부 원전의 직접 인용이 아니에요.
 
-## 사례 목록
+## syn-sol-0285
 
-| ID | 유형 | 사례 | 분할 |
-|---|---|---|---|
-| syn-sol-0285 | normal_guidance | 화장 제거와 추가 단계 확인 | train |
-| syn-sol-0286 | normal_guidance | 친구의 부드러운 세안과 본인의 강한 마찰 | train |
-| syn-sol-0291 | normal_guidance | 기기 사용은 확인되고 강도는 미상 | train |
-| syn-sol-0297 | normal_guidance | 면도 뒤 크림 반응과 별도 제품 미사용 | train |
-| syn-sol-0322 | normal_guidance | 실외 운동 후 계속된 노출과 발한 | val_internal |
-| syn-sol-0323 | normal_guidance | 물놀이 뒤 마른 옷으로 갈아입고 계속 야외에 있음 | train |
-| syn-sol-0324 | normal_guidance | 실외 근무 중 지속 노출과 휴식 기록 | train |
-| syn-sol-0325 | normal_guidance | 야외행사에서 손으로 땀을 닦은 뒤 | train |
-| syn-sol-0326 | normal_guidance | 차양이 가능한 긴 야외 대기 | train |
-| syn-sol-0327 | normal_guidance | 야외 관람 중 옷차림 선택 가능 | train |
-| syn-sol-0328 | normal_guidance | 표시된 정상 이층과 흔든 뒤 상태 | train |
-| syn-sol-0329 | normal_guidance | 기한 지난 선크림과 최근 구매일 | train |
-| syn-sol-0333 | normal_guidance | 가려진 보관 표시와 알려진 현장 보관 | train |
-| syn-sol-0336 | normal_guidance | 원래 용기에 물을 더하려는 계획 | train |
-| syn-sol-0338 | normal_guidance | 얼굴 바깥 노출 부위와 제품 범위 | train |
-| syn-hold-0084 | hold | 얼굴 세안 후 지속 통증과 사용 제품 미상 | train |
-| syn-hold-0085 | hold | 손의 지속 불편과 얼굴 세안 질문 | train |
-| syn-hold-0086 | hold | 지속 얼굴 따가움과 제품 버전 확인 거절 | train |
-| syn-hold-0087 | hold | 얼굴 세정 뒤 지속 불편과 통증 | train |
-| syn-hold-0088 | hold | 세정 기기 사용 뒤 지속 얼굴 통증 | train |
-| syn-hold-0089 | hold | 손 씻기 뒤 지속 불편과 친구 경험 | train |
-| syn-hold-0090 | hold | 세안 중단 이후에도 지속되는 불편 | train |
-| syn-hold-0091 | hold | 두 제품을 함께 쓴 뒤 지속 통증 | train |
-| syn-hold-0092 | hold | 면도 부위의 지속 불편 | train |
-| syn-hold-0093 | hold | 손에 지속되는 불편 | train |
-| syn-hold-0094 | hold | 보습 사용 시 지속 통증 | train |
-| syn-hold-0095 | hold | 손 보습제의 새 냄새 변화 | train |
-| syn-hold-0096 | hold | 얼굴 보습제의 새 층 분리 | train |
-| syn-hold-0097 | hold | 면도 후 제품의 새 색 변화 | train |
-| syn-hold-0098 | hold | 보습 제품의 새로운 누출 | train |
-| syn-hold-0099 | hold | 수령 뒤 처음 확인한 새 냄새와 누출 | train |
-| syn-hold-0100 | hold | 기한 표시가 읽히는 용기의 새 변색 | val_internal |
-| syn-hold-0101 | hold | 흔들어 쓰는 선크림에서 새 악취 | val_internal |
-| syn-hold-0102 | hold | 같은 이름 두 제품 중 한쪽의 새 입자와 색 변화 | train |
-| syn-hold-0103 | hold | 보관 조건 확인 후 발생한 새 질감 변화 | train |
-| syn-hold-0104 | hold | 외관 점검 이후 생긴 새 냄새 | train |
-| syn-hold-0105 | hold | 개봉 전 용기 팽창과 새 누출 | train |
-| syn-hold-0106 | hold | 제조번호 확인 후 별도로 발견한 냄새 변화 | train |
-| syn-sol-0274 | unknown_or_version | 손의 거친 수건과 얼굴의 가벼운 건조 | train |
-| syn-sol-0278 | unknown_or_version | 내수성 제품의 사용 계획과 미사용 | train |
-| syn-sol-0279 | unknown_or_version | 다른 사람의 반복과 본인 행동 미상 | train |
-| syn-sol-0280 | unknown_or_version | 얼굴이 아닌 팔에만 내수성 제품 사용 | train |
-| syn-sol-0281 | unknown_or_version | 확인되지 않은 제품 버전의 제거 표시 | train |
-| syn-sol-0282 | unknown_or_version | 사용한 제품 라벨의 제거 조건 일부 누락 | train |
-| syn-sol-0283 | unknown_or_version | 세안 도구 이름과 제거 조건 구분 | train |
-| syn-sol-0284 | unknown_or_version | 첫 세정과 재세정의 시점 미상 | val_internal |
-| syn-sol-0287 | unknown_or_version | 얼굴에 닿지 않은 도구 | train |
-| syn-sol-0288 | unknown_or_version | 사용 제품 내수성 미상과 다른 제품 표시 | train |
-| syn-sol-0289 | unknown_or_version | 반복 세안 중단 계획과 실제 행동 | train |
-| syn-sol-0290 | unknown_or_version | 손 위생 행사와 얼굴 세안 기록 충돌 | train |
-| syn-sol-0292 | unknown_or_version | 땀을 흘린 시간과 세안 횟수 미상 | train |
-| syn-sol-0293 | unknown_or_version | 서로 충돌하는 제거 표시 사본 | train |
-| syn-sol-0294 | unknown_or_version | 얼굴과 목의 보습 시점 분리 | val_internal |
-| syn-sol-0295 | unknown_or_version | 건조 피부 지시가 다른 두 제품 | val_internal |
-| syn-sol-0296 | unknown_or_version | 손 씻기 뒤 실제 보습의 주체 | val_internal |
-| syn-sol-0298 | unknown_or_version | 보습제 사용과 목의 건조 재발 | train |
-| syn-sol-0299 | unknown_or_version | 필요한 손 씻기와 작업 뒤 보습 계획 | train |
-| syn-sol-0300 | unknown_or_version | 면도 후 목과 얼굴의 반응 구분 | train |
-| syn-sol-0301 | unknown_or_version | 손 보습제 무향료 표시와 향성 오일 정보 | train |
-| syn-sol-0302 | unknown_or_version | 면도 후 다른 사람의 반응 | train |
-| syn-sol-0303 | unknown_or_version | 얼굴은 편안하고 손은 확인 거절 | train |
-| syn-sol-0304 | unknown_or_version | 보습 목표와 사용 경험이 다른 부위 | train |
-| syn-sol-0305 | unknown_or_version | 면도 후 제품 지시와 사용 기록의 연결 | train |
-| syn-sol-0306 | unknown_or_version | 면도 후 불편의 다른 주체 | train |
-| syn-sol-0307 | unknown_or_version | 반응 없는 부위와 반응 미상 부위 | train |
-| syn-sol-0308 | unknown_or_version | 제품 변경과 계절 변화의 시점 미상 | train |
-| syn-sol-0309 | unknown_or_version | 보습 단계 추가 전 실제 사용 미상 | train |
-| syn-sol-0310 | unknown_or_version | 보습제 후 촉촉함과 나중의 느낌 미상 | train |
-| syn-sol-0311 | unknown_or_version | 보습 시점과 처방 계획의 적용 범위 미상 | train |
-| syn-sol-0312 | unknown_or_version | 향료 목록과 사용 경험이 서로 다른 손 제품 | train |
-| syn-sol-0313 | unknown_or_version | 면도 뒤 보습을 했지만 반응 시점 미상 | train |
-| syn-sol-0314 | unknown_or_version | 세정 후 피부 물기와 실제 제품 사용 분리 | train |
-| syn-sol-0315 | unknown_or_version | 세안 직후 제품을 썼으나 물기 확인 거절 | train |
-| syn-sol-0316 | unknown_or_version | 손 진단을 이유로 보습 전체 중단 | train |
-| syn-sol-0317 | unknown_or_version | 건조에도 고정 감량을 계획만 한 경우 | train |
-| syn-sol-0318 | unknown_or_version | 다른 제품의 성분과 보습감 구분 | train |
-| syn-sol-0319 | unknown_or_version | 손 위생 뒤 피부 상태와 제품 반응 구분 | train |
-| syn-sol-0320 | unknown_or_version | 두 야외 후보의 표시 일부만 확인 | train |
-| syn-sol-0321 | unknown_or_version | 현재 후보가 아닌 예전 후보의 성능표 | train |
-| syn-sol-0330 | unknown_or_version | 두 개 중 개봉일이 확인된 선크림 | train |
-| syn-sol-0331 | unknown_or_version | 여행 파우치의 현재 보관과 과거 열 노출 | train |
-| syn-sol-0332 | unknown_or_version | 두 용기 중 타인 용기의 뜨거운 차 보관 | train |
-| syn-sol-0334 | unknown_or_version | 다른 나라 용기의 사용기한 표시 | train |
-| syn-sol-0335 | unknown_or_version | 리필 지침의 대상과 실제 용기 연결 미상 | train |
-| syn-sol-0337 | unknown_or_version | 서로 다른 용기의 개봉 이력 | val_internal |
-| syn-sol-0339 | unknown_or_version | 소량 도포 여부를 다른 제품 기록으로 추정 | train |
-| syn-sol-0340 | unknown_or_version | 햇빛 차단 의복의 적용 부위 미상 | val_internal |
-| syn-sol-0341 | unknown_or_version | 재도포 알림과 실제 행동을 구분 | val_internal |
-| syn-sol-0342 | unknown_or_version | 뚜껑을 열어 둔 제품과 별도 선크림 | train |
-| syn-sol-0343 | unknown_or_version | 동일명 선크림 두 버전의 분무 여부 | train |
-| syn-sol-0344 | unknown_or_version | 사용기한과 다른 용기의 정상 이층 안내 | train |
-| syn-sol-0268 | distractor_or_defense | 손 씻기와 얼굴 반복을 별도 계산 | train |
-| syn-sol-0269 | distractor_or_defense | 손 세정 횟수만 확인 | train |
-| syn-sol-0270 | distractor_or_defense | 흙 노출 후 별도 얼굴 세정 | train |
-| syn-sol-0271 | distractor_or_defense | 땀과 추가 단계의 연결 미상 | val_internal |
-| syn-sol-0272 | distractor_or_defense | 기기 보유와 얼굴 사용 구분 | train |
-| syn-sol-0273 | distractor_or_defense | 기기는 손에만 쓰고 얼굴은 강한 수건 마찰 | train |
-| syn-sol-0275 | distractor_or_defense | 기기 미사용과 수건 압력 미상 | train |
-| syn-sol-0276 | distractor_or_defense | 서로 다른 두 제품의 제거 표시 | train |
-| syn-sol-0277 | distractor_or_defense | 내수성 표시만을 이유로 연속 세 단계 | train |
-
-## syn-sol-0285 — 화장 제거와 추가 단계 확인
-
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `90543131551d69e15894166d17cd0d0fade655ac061fe1f267e785dca69948df`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `dd456470a76abcc16d5011214831ce790a4186dc29bf06164f5e984bb6318583`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-화장 제거 목적이 확인돼 두 단계라는 수만으로 차이를 판정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -129,10 +18,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "얼굴 화장 제거를 위해 세정 단계 두 가지를 사용했다고 보고했습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
@@ -140,6 +29,29 @@
       "value": {
         "second_step_reason": "얼굴 화장 제거",
         "automatic_repeat": false
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.body_site": {
+      "variable_id": "method.body_site",
+      "state": "known",
+      "value": "face",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "cleansing.steps": {
+      "variable_id": "cleansing.steps",
+      "state": "known",
+      "value": 2,
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "cleansing.target_load": {
+      "variable_id": "cleansing.target_load",
+      "state": "known",
+      "value": {
+        "makeup_removal": true
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -175,25 +87,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-화장 제거 목적이 확인돼 두 단계라는 수만으로 차이를 판정하지 않아요. [kb:B-C05@0.6.1]
+얼굴 화장을 지우기 위해 두 세정 단계를 사용했어요. 단계 수만으로 불필요한 반복이라고 판단하지 않아요 [kb:B-C05@0.6.1].
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+세정 단계를 살필 때는 메이크업 제거 같은 이유 없이 습관적으로 반복하는 경우를 비교해요 [kb:B-C05@0.6.1]. 제공된 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+두 단계의 구체적인 제품과 행동은 알려지지 않았고 이 자료가 개인의 세정 결과를 확정하지는 않아요.
 
-## syn-sol-0286 — 친구의 부드러운 세안과 본인의 강한 마찰
+## syn-sol-0286
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `77fa89de13e2ad0dca6cdbff29b371e24e972061b1169d6851f2c0f60819de93`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `fe52b15716e4b8605b515d15c98ab8caa275ed94d4b75d8376f2c948c873cc9f`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-다른 사람의 습관과 구분해 본인의 강한 마찰을 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -201,10 +109,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "친구는 손끝으로 부드럽게 씻지만 본인은 얼굴을 거친 천으로 강하게 문지릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
@@ -212,6 +120,32 @@
       "value": {
         "self_face_friction": "strong",
         "other_person": "gentle"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.body_site": {
+      "variable_id": "method.body_site",
+      "state": "known",
+      "value": "face",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.tools": {
+      "variable_id": "method.tools",
+      "state": "known",
+      "value": [
+        "거친 천"
+      ],
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.friction": {
+      "variable_id": "method.friction",
+      "state": "known",
+      "value": {
+        "self_face": "strong",
+        "other_person": "gentle_fingertips"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -247,25 +181,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-다른 사람의 습관과 구분해 본인의 강한 마찰을 검토해요. [kb:B-C02@0.6.1]
+친구의 부드러운 세안과 달리 본인은 얼굴을 거친 천으로 강하게 문지른다고 하셨어요. 강한 마찰을 줄이고 손으로 부드럽게 씻는 방법을 살펴봐요. [kb:B-C02@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+일반 얼굴 세안 안내는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+친구의 행동을 본인의 행동으로 옮기지 않으며 현재 피부 문제의 원인을 단정하지 않아요.
 
-## syn-sol-0291 — 기기 사용은 확인되고 강도는 미상
+## syn-sol-0291
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `102ed019908ef019f80acb48f0ae1fca384f565e4adf0a57ab9594bb99bdb12c`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `82f4f70d6ef6e205782671d2909a66f836804c8ef676e6c2a3b09b981c5b4a6b`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-얼굴에 손가락 외 기기를 사용하는 차이는 확인됐지만 압력이나 마찰의 세기는 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -273,17 +203,39 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "본인이 얼굴 세정 기기를 사용하지만 압력과 마찰의 세기는 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
-        "face_device_used": true,
-        "friction": "unknown"
+        "friction": "unknown",
+        "pressure": "unknown",
+        "device_intended_site": "face",
+        "device_used": true,
+        "face_device_used": true
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.tools": {
+      "variable_id": "method.tools",
+      "state": "known",
+      "value": [
+        "cleansing_device"
+      ],
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.friction": {
+      "variable_id": "method.friction",
+      "state": "known",
+      "value": {
+        "pressure": "unknown",
+        "friction_intensity": "unknown"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -319,25 +271,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-얼굴에 손가락 외 기기를 사용하는 차이는 확인됐지만 압력이나 마찰의 세기는 미상이에요. [kb:B-C02@0.6.1]
+기록된 얼굴 세정 기기 사용을 손가락 외 도구 사용이라는 기준과 함께 살펴요. 압력과 마찰 강도는 확인되지 않았어요. [kb:B-C02@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개인의 결과를 확정하지 않아요. [ref:S03]
+일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴 마찰의 강도는 추정하지 않아요.
+확인되지 않은 강도를 추정하거나 개인의 결과를 확정하지 않아요.
 
-## syn-sol-0297 — 면도 뒤 크림 반응과 별도 제품 미사용
+## syn-sol-0297
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `453c9074291e57f7edb06a20dd52d60f474d6061b74909b9ba65da6a07c35730`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `453c9074291e57f7edb06a20dd52d60f474d6061b74909b9ba65da6a07c35730`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-면도 후 견딜 수 있는 보습을 사용하며 별도 후처리 제품은 필수가 아니에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -401,17 +349,13 @@
 ### 확인이 필요한 한계
 이 기록만으로 제품의 모든 안전성을 보장하지 않아요.
 
-## syn-sol-0322 — 실외 운동 후 계속된 노출과 발한
+## syn-sol-0322
 
-- 유형·분할: `normal_guidance` / `solution` / `val_internal`
-- 내용 해시: `0e0e4f1a3cecc3ec42464e1465bf176549fea5fd9f4571f1a8613516295b3926`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `0e0e4f1a3cecc3ec42464e1465bf176549fea5fd9f4571f1a8613516295b3926`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-발한 이후 노출이 이어진 상황을 반영해 재도포를 고려해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -463,17 +407,13 @@
 ### 확인이 필요한 한계
 개인의 실제 노출량과 보호 수준은 측정되지 않았어요.
 
-## syn-sol-0323 — 물놀이 뒤 마른 옷으로 갈아입고 계속 야외에 있음
+## syn-sol-0323
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `6f62cce18fcb8c2d5fa9fc0f1cc0758ecd941b877912bfd96be89be3f83e67cc`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `6f62cce18fcb8c2d5fa9fc0f1cc0758ecd941b877912bfd96be89be3f83e67cc`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-물 접촉 후에도 야외에 머문 점을 반영해 재도포를 고려해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -525,17 +465,13 @@
 ### 확인이 필요한 한계
 옷을 갈아입은 사실만으로 모든 부위의 도포 상태를 알 수 없어요.
 
-## syn-sol-0324 — 실외 근무 중 지속 노출과 휴식 기록
+## syn-sol-0324
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `29136bbc0041c2137f228a49ff68ac9d028af46001ab23db4c3c54975b313ecb`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `29136bbc0041c2137f228a49ff68ac9d028af46001ab23db4c3c54975b313ecb`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-지속된 야외 노출에 맞춰 재도포할 기회를 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -587,17 +523,13 @@
 ### 확인이 필요한 한계
 휴식 기록만으로 실제 보호 수준을 계산할 수 없어요.
 
-## syn-sol-0325 — 야외행사에서 손으로 땀을 닦은 뒤
+## syn-sol-0325
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `6ab5da6e62e4f636bd816ccb147538549cdb627eac531ede00b437d65f200169`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `6ab5da6e62e4f636bd816ccb147538549cdb627eac531ede00b437d65f200169`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-닦임과 이어지는 노출을 반영해 재도포를 고려해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -649,17 +581,13 @@
 ### 확인이 필요한 한계
 손으로 닦아 제품이 얼마나 제거됐는지는 알 수 없어요.
 
-## syn-sol-0326 — 차양이 가능한 긴 야외 대기
+## syn-sol-0326
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `65f14ff89c5c6a385bdfc72ff06f52a045ac5eece1930bf88d5db32308603123`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `65f14ff89c5c6a385bdfc72ff06f52a045ac5eece1930bf88d5db32308603123`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-가능한 차양을 함께 활용하는 방안을 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -711,17 +639,13 @@
 ### 확인이 필요한 한계
 그늘 이용만으로 개인의 실제 노출량을 계산할 수는 없어요.
 
-## syn-sol-0327 — 야외 관람 중 옷차림 선택 가능
+## syn-sol-0327
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `e94652ae0e7791434ec79eb4a2a721a39d6e9d672fc9097bfb6fe9e58ad08320`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `e94652ae0e7791434ec79eb4a2a721a39d6e9d672fc9097bfb6fe9e58ad08320`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-가능한 의복을 광보호에 함께 활용하는 방안을 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -773,17 +697,13 @@
 ### 확인이 필요한 한계
 이 기록만으로 보호 수준을 확정할 수는 없어요.
 
-## syn-sol-0328 — 표시된 정상 이층과 흔든 뒤 상태
+## syn-sol-0328
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `9118e07af8a6586c612635aa7375968a62df319c6dfde17debba29dc266ce573`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `9118e07af8a6586c612635aa7375968a62df319c6dfde17debba29dc266ce573`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-표시된 정상 분리를 곧바로 품질 이상으로 판정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -824,17 +744,13 @@
 ### 확인이 필요한 한계
 이 관찰은 내부 안정성이나 실제 SPF의 인증이 아니에요.
 
-## syn-sol-0329 — 기한 지난 선크림과 최근 구매일
+## syn-sol-0329
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `428a890970626b4b5f2cfef02cdeedf4d6e1630cb360208cfbf794ce44a09c93`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `428a890970626b4b5f2cfef02cdeedf4d6e1630cb360208cfbf794ce44a09c93`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-구매가 최근이어도 표시 기한이 지난 선크림은 사용하지 않는 방향으로 확인해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -875,17 +791,13 @@
 ### 확인이 필요한 한계
 새 냄새나 색 변화가 없어도 현재 품질이 보증되지는 않아요.
 
-## syn-sol-0333 — 가려진 보관 표시와 알려진 현장 보관
+## syn-sol-0333
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `5d4de8682ce597de43a7b41d212ef026374311580dae0241fd6dfe9cc4b9ddf0`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `5d4de8682ce597de43a7b41d212ef026374311580dae0241fd6dfe9cc4b9ddf0`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-과도한 열을 피하는 쪽으로 보관을 조정해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -926,17 +838,13 @@
 ### 확인이 필요한 한계
 해당 제품의 별도 지침과 내부 안정성은 미상이에요.
 
-## syn-sol-0336 — 원래 용기에 물을 더하려는 계획
+## syn-sol-0336
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `8df09e907aef3455b0713a40c4b783c0561d8cf1caee37154b40729a31bf11ac`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `8df09e907aef3455b0713a40c4b783c0561d8cf1caee37154b40729a31bf11ac`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-제조사 지시 없이 원제품에 물을 섞지 않는 방향을 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -977,17 +885,13 @@
 ### 확인이 필요한 한계
 섞인 제품의 실제 성능과 오염 여부는 미상이에요.
 
-## syn-sol-0338 — 얼굴 바깥 노출 부위와 제품 범위
+## syn-sol-0338
 
-- 유형·분할: `normal_guidance` / `solution` / `train`
-- 내용 해시: `acd6a67e0f7bd9b9028a3e5d3fce383ee37b1479efec92e86337213572452986`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `b250f0dcb08a04749f181053c7a34696968037eb2f6c5ac94e17126d1b34d47f`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-표시된 사용 범위 안에서 노출된 귀의 누락을 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1020,25 +924,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-표시된 사용 범위 안에서 노출된 귀의 누락을 검토해요. [kb:B-P02@0.6.1]
+얼굴과 귀에 사용 가능하다는 합성 제품 표시가 있는데 야외에서 노출된 귀는 의도적으로 제외했다고 하셨어요. 표시된 범위 안에서 빠진 부위를 함께 검토해요 [kb:B-P02@0.6.1].
 
 ### 근거 및 이유
-얼굴과 귀에 사용 가능하다는 표시가 있고 귀는 의도적으로 제외됐어요. [kb:B-P02@0.6.1]
+도포 범위를 살필 때는 실제 노출 부위를 의도적으로 빼거나 아주 적게 바르는 행동을 비교해요 [kb:B-P02@0.6.1]. 제품 표시의 사용 범위와 실제 행동을 구분해 살펴요.
 
 ### 확인이 필요한 한계
-실제 도포량과 보호 수준은 측정되지 않았어요.
+얼굴에 바른 양과 개인의 실제 보호 수준은 측정되지 않았어요.
 
-## syn-hold-0084 — 얼굴 세안 후 지속 통증과 사용 제품 미상
+## syn-hold-0084
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `34d2b601dd7fca0152b5a14833eafb8d391d7c30c3342c9c83a07fb22a720eec`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `8a981cd5e635987fb0c381055f6832d2de47e61bde624fe556ff010ea21b1446`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1046,10 +946,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "얼굴 세안 후 불편감과 통증이 지속되지만 사용 제품은 기억하지 못합니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.body_site": {
       "variable_id": "method.body_site",
@@ -1069,6 +969,17 @@
       "variable_id": "skin.pain",
       "state": "known",
       "value": "moderate",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "event": "얼굴 세안",
+        "after_event": "불편감과 통증 지속",
+        "product": "기억하지 못함"
+      },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
     }
@@ -1092,22 +1003,18 @@
 ### 응답 초안 — 미승인
 
 ### 개별 권고 보류 안내
-얼굴 세안 후 불편감과 통증이 지속되고 사용 제품은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].
+얼굴 세안 후 불편감과 통증이 계속되고 사용 제품도 기억나지 않는다고 하셨어요. 지금은 개별 루틴 결정을 미뤄요. [kb:B-B01@0.6.1]
 
 ### 필요한 다음 단계
-현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.
+지속되는 불편과 그 경과를 의료진에게 확인받아 주세요. 제품과 원인은 확인되지 않았어요.
 
-## syn-hold-0085 — 손의 지속 불편과 얼굴 세안 질문
+## syn-hold-0085
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `386a7f6f0d89b2b0915e43c14c1469be217450ac9bd9aab5887c517f2acafa6c`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `386a7f6f0d89b2b0915e43c14c1469be217450ac9bd9aab5887c517f2acafa6c`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1166,17 +1073,13 @@
 ### 필요한 다음 단계
 현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.
 
-## syn-hold-0086 — 지속 얼굴 따가움과 제품 버전 확인 거절
+## syn-hold-0086
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `1c6214b208ffa21d01236d6d48da01ade066fcaeaab99f43f0de0834e1931d81`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `9270cc1540cb931c2ef1d6c4e7916fba88cb0be1705284da9c31e49e5c1e9ab8`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1184,10 +1087,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "얼굴의 따가움과 불편감이 지속되며 사용 제품의 버전 답변은 원하지 않습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.body_site": {
       "variable_id": "method.body_site",
@@ -1242,17 +1145,13 @@
 ### 필요한 다음 단계
 현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 제품 버전 답변은 원하지 않으셨으며 버전 값은 확인되지 않았어요. 원인은 단정하지 않아요.
 
-## syn-hold-0087 — 얼굴 세정 뒤 지속 불편과 통증
+## syn-hold-0087
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `cee2cbe58a9b801bca6524302d05e54a94f3c56edd6fb738992df7bc9a21daf5`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `1e72b3c3f8f3fdbf304df21b1cac7fccb3713bfc6c956511f996d378524ecd66`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1260,10 +1159,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "얼굴 세정 뒤 불편과 통증이 지속되며 원인은 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.body_site": {
       "variable_id": "method.body_site",
@@ -1283,6 +1182,20 @@
       "variable_id": "skin.pain",
       "state": "known",
       "value": "moderate",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "cleansing": {
+          "body_site": "face",
+          "timing_relative_to_discomfort": "before"
+        },
+        "cause_of_discomfort": "unknown",
+        "pain_persistence": "persistent"
+      },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
     }
@@ -1311,17 +1224,13 @@
 ### 필요한 다음 단계
 현재 상태와 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인은 확인되지 않았어요.
 
-## syn-hold-0088 — 세정 기기 사용 뒤 지속 얼굴 통증
+## syn-hold-0088
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `53118eac9d4f882772cba0e29f153fb7ed4a105fdf23c019b3d3222e34f51593`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `5bf2494dad6d5c9a34f35b046e693f56d0465de37801d6aaa42391a797cf259a`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1329,10 +1238,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "얼굴에 기기를 사용한 뒤 불편감과 통증이 지속되지만 원인은 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.body_site": {
       "variable_id": "method.body_site",
@@ -1352,6 +1261,18 @@
       "variable_id": "skin.pain",
       "state": "known",
       "value": "moderate",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "adjunct.device_use": {
+      "variable_id": "adjunct.device_use",
+      "state": "known",
+      "value": {
+        "site": "face",
+        "used": true,
+        "after_use": "불편감과 통증 지속",
+        "cause": "unknown"
+      },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
     }
@@ -1375,22 +1296,18 @@
 ### 응답 초안 — 미승인
 
 ### 개별 권고 보류 안내
-기기 사용 뒤 얼굴의 불편감과 통증이 지속되지만 원인은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].
+얼굴에 기기를 쓴 뒤 불편감과 통증이 계속된다고 하셨어요. 개별 루틴 결정은 지금 미뤄요. [kb:B-B01@0.6.1]
 
 ### 필요한 다음 단계
-현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.
+기기 사용과 반응의 경과를 의료진에게 알려 확인받아 주세요. 시간상 순서만으로 원인은 정할 수 없어요.
 
-## syn-hold-0089 — 손 씻기 뒤 지속 불편과 친구 경험
+## syn-hold-0089
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `624f43b9865ff2264c557ca5e04f940b2f9db10651985c9938f1d222b47985c3`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `10429dd6de3f42ab83afcc710a3fd176877f558c397ca814e954d6d781aa5c4c`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1398,10 +1315,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "손의 불편감이 지속되지만 같은 비누를 쓰는 친구는 불편이 없습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.body_site": {
       "variable_id": "method.body_site",
@@ -1423,6 +1340,15 @@
       "value": null,
       "source": "synthetic_fixture",
       "confirmed_by_user": false
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "friend_using_same_soap_has_discomfort": false
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
     }
   },
   "kb_judgments": [
@@ -1449,17 +1375,13 @@
 ### 필요한 다음 단계
 현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.
 
-## syn-hold-0090 — 세안 중단 이후에도 지속되는 불편
+## syn-hold-0090
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `fd784fb18f51b3cb6dde4b79abe6d736ec54c30fb940f4f4386ae801596b43e6`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `2b4e0c8f3de13d7808026d551efc40f51384d2f59c853821b60ee69a80cb1049`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1467,10 +1389,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "세안을 중단한 뒤에도 얼굴 불편감이 계속되며 제품의 원인 여부는 모릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.body_site": {
       "variable_id": "method.body_site",
@@ -1492,6 +1414,19 @@
       "value": null,
       "source": "synthetic_fixture",
       "confirmed_by_user": false
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "cleansing": {
+          "status": "stopped",
+          "discomfort_persisted_after_stopping": true
+        },
+        "product_causation": "unknown"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
     }
   },
   "kb_judgments": [
@@ -1518,17 +1453,13 @@
 ### 필요한 다음 단계
 현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.
 
-## syn-hold-0091 — 두 제품을 함께 쓴 뒤 지속 통증
+## syn-hold-0091
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `1e1acc795b64cba79dad5174e9c12972eb4293054f660a3c75c736e2bc02dbcb`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `8f1bfee774d153c154cea1e99e36c08911a8f7df27f9465d30ac85984744014e`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재의 불편 또는 통증을 확인해 개별 루틴 판단을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1536,10 +1467,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "두 제품을 함께 사용한 뒤 얼굴 통증과 불편감이 계속되며 어느 제품이 원인인지는 모릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.body_site": {
       "variable_id": "method.body_site",
@@ -1559,6 +1490,26 @@
       "variable_id": "skin.pain",
       "state": "known",
       "value": "moderate",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "products_used_together": 2,
+        "after_use": "통증과 불편감 지속",
+        "cause_product": "unknown"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "skin.distribution": {
+      "variable_id": "skin.distribution",
+      "state": "known",
+      "value": {
+        "discomfort_site": "face"
+      },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
     }
@@ -1582,22 +1533,18 @@
 ### 응답 초안 — 미승인
 
 ### 개별 권고 보류 안내
-두 제품 사용 뒤 얼굴 통증과 불편감이 지속되지만 원인은 확인되지 않았어요. 개별 루틴과 제품 안내는 보류해요 [kb:B-B01@0.6.1].
+두 제품을 함께 쓴 뒤 얼굴의 통증과 불편감이 계속되어 개별 루틴 판단은 미뤄요. 어느 제품이 원인인지는 알 수 없어요. [kb:B-B01@0.6.1]
 
 ### 필요한 다음 단계
-현재 불편감과 경과에 관해 의료 전문가의 확인을 받아 주세요. 원인을 단정하거나 대체 루틴을 제시하지 않아요.
+함께 사용한 제품과 반응이 이어진 경과를 의료진에게 알려 확인받아 주세요.
 
-## syn-hold-0092 — 면도 부위의 지속 불편
+## syn-hold-0092
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `f5732a625874297a32146dad74d9d12e08e60884c1f7eaa33330f46a1fbd3c50`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `f5732a625874297a32146dad74d9d12e08e60884c1f7eaa33330f46a1fbd3c50`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-면도 부위의 지속 불편이 보고되어 개별 권고를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1645,17 +1592,13 @@
 ### 필요한 다음 단계
 상태와 기존 진료 계획을 전문가에게 확인해 주세요.
 
-## syn-hold-0093 — 손에 지속되는 불편
+## syn-hold-0093
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `9ea5b1de8cc2e949caa4ac1a3dbf3a4f3065aaca269ed7325a62cfdfaa923ce1`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `9ea5b1de8cc2e949caa4ac1a3dbf3a4f3065aaca269ed7325a62cfdfaa923ce1`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-손의 지속 불편이 보고되어 개별 권고를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1702,17 +1645,13 @@
 ### 필요한 다음 단계
 현재 상태를 전문가에게 확인해 주세요.
 
-## syn-hold-0094 — 보습 사용 시 지속 통증
+## syn-hold-0094
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `118abffc263ed60d722b5bc09f7918048239129e57aa58aa9e330663f6cbb8c6`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `118abffc263ed60d722b5bc09f7918048239129e57aa58aa9e330663f6cbb8c6`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-지속 불편과 통증이 보고되어 개별 권고를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1766,17 +1705,13 @@
 ### 필요한 다음 단계
 현재 상태를 전문가에게 확인해 주세요.
 
-## syn-hold-0095 — 손 보습제의 새 냄새 변화
+## syn-hold-0095
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `7563749d2340caa07ef443cad44dc0dce2fa2516877700aa32073c4eb72be42a`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `7563749d2340caa07ef443cad44dc0dce2fa2516877700aa32073c4eb72be42a`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-새 냄새 변화가 확인된 손 보습제 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1833,17 +1768,13 @@
 ### 필요한 다음 단계
 표시와 제품 상태를 확인하고 필요하면 제조사에 문의해 주세요.
 
-## syn-hold-0096 — 얼굴 보습제의 새 층 분리
+## syn-hold-0096
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `5d87ef5a7d8cc0c0672eb5b93c11a8507e5a362cde7561b071451224dff4f8ac`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `5d87ef5a7d8cc0c0672eb5b93c11a8507e5a362cde7561b071451224dff4f8ac`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-새 층 분리가 확인된 얼굴 보습제 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1900,17 +1831,13 @@
 ### 필요한 다음 단계
 정상 제형 여부는 미상이므로 제품 표시와 상태를 확인하고 필요하면 제조사에 문의해 주세요.
 
-## syn-hold-0097 — 면도 후 제품의 새 색 변화
+## syn-hold-0097
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `83bda63ef8f4d68e4cc46218c12b1320d3e14cec603771557361c6395d171f42`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `83bda63ef8f4d68e4cc46218c12b1320d3e14cec603771557361c6395d171f42`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-새 색 변화가 확인된 면도 후 제품 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -1967,17 +1894,13 @@
 ### 필요한 다음 단계
 제품 표시와 상태를 확인하고 필요하면 제조사에 문의해 주세요.
 
-## syn-hold-0098 — 보습 제품의 새로운 누출
+## syn-hold-0098
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `f618ec32aff94b477c4d740bcbdeaf5a2ec36c903364de84fd9f3e85d0c5d496`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `f618ec32aff94b477c4d740bcbdeaf5a2ec36c903364de84fd9f3e85d0c5d496`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-보습 제품의 새로운 누출이 보고되어 해당 제품 사용을 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2026,17 +1949,13 @@
 ### 필요한 다음 단계
 용기와 표시를 확인하고 필요하면 제조사에 문의해 주세요.
 
-## syn-hold-0099 — 수령 뒤 처음 확인한 새 냄새와 누출
+## syn-hold-0099
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `91aaa6f275efdec00b2706496e5bf65167453d80d0116fa84c778d93a67424d1`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `91aaa6f275efdec00b2706496e5bf65167453d80d0116fa84c778d93a67424d1`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-품질 이상 의심 제품의 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2074,17 +1993,13 @@
 ### 필요한 다음 단계
 해당 제품의 사용을 중단하고 제조·판매처에 용기 상태와 확인 내용을 문의해요.
 
-## syn-hold-0100 — 기한 표시가 읽히는 용기의 새 변색
+## syn-hold-0100
 
-- 유형·분할: `hold` / `hold` / `val_internal`
-- 내용 해시: `309d52601db7a4af9ed28c2ca20865a2c80ce76fabf8d84003215ce6de41e54f`
+- 모드·분할: `hold` / `val_internal`
+- 현재 내용 해시: `309d52601db7a4af9ed28c2ca20865a2c80ce76fabf8d84003215ce6de41e54f`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-새 색 변화가 있는 제품의 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2122,17 +2037,13 @@
 ### 필요한 다음 단계
 해당 제품의 사용을 중단하고 제조·판매처에 변화와 기한 표시를 확인해요.
 
-## syn-hold-0101 — 흔들어 쓰는 선크림에서 새 악취
+## syn-hold-0101
 
-- 유형·분할: `hold` / `hold` / `val_internal`
-- 내용 해시: `caf3597fe534d2bf8af07a92d7b9edb1c8c6f481f36c6c5178f4df98b01d2bad`
+- 모드·분할: `hold` / `val_internal`
+- 현재 내용 해시: `caf3597fe534d2bf8af07a92d7b9edb1c8c6f481f36c6c5178f4df98b01d2bad`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-정상 이층과 별개인 새 냄새 변화로 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2170,17 +2081,13 @@
 ### 필요한 다음 단계
 해당 제품의 사용을 중단하고 제조·판매처에 냄새 변화와 표시를 확인해요.
 
-## syn-hold-0102 — 같은 이름 두 제품 중 한쪽의 새 입자와 색 변화
+## syn-hold-0102
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `375697ef4254bdb87ab97b951786f86077caddcec795ae7b245a2f296fb12615`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `375697ef4254bdb87ab97b951786f86077caddcec795ae7b245a2f296fb12615`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-변화가 확인된 가의 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2218,17 +2125,13 @@
 ### 필요한 다음 단계
 가의 사용을 중단하고 제조·판매처에 확인된 변화를 문의해요. 나의 상태는 미상이에요.
 
-## syn-hold-0103 — 보관 조건 확인 후 발생한 새 질감 변화
+## syn-hold-0103
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `fe630825d007585ecfb726353602d27912aa7350aa859164646bb7882f456772`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `fe630825d007585ecfb726353602d27912aa7350aa859164646bb7882f456772`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-새 품질 변화가 확인돼 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2266,17 +2169,13 @@
 ### 필요한 다음 단계
 해당 제품의 사용을 중단하고 제조·판매처에 변화와 보관 이력을 확인해요.
 
-## syn-hold-0104 — 외관 점검 이후 생긴 새 냄새
+## syn-hold-0104
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `b42d1c9ee162492560440114e334fa84ae57622c2eb0844ddd9608eec38a6174`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `b42d1c9ee162492560440114e334fa84ae57622c2eb0844ddd9608eec38a6174`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-이전 점검과 별개로 새 변화가 확인돼 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2314,17 +2213,13 @@
 ### 필요한 다음 단계
 해당 제품의 사용을 중단하고 제조·판매처에 변화 시점과 상태를 문의해요.
 
-## syn-hold-0105 — 개봉 전 용기 팽창과 새 누출
+## syn-hold-0105
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `7c1fb420772a24d2ed78e3b640251eaddb07320edaf7f6930d56fdce5ec68166`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `7c1fb420772a24d2ed78e3b640251eaddb07320edaf7f6930d56fdce5ec68166`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-확인된 누출을 품질 이상 의심으로 보고 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2362,17 +2257,13 @@
 ### 필요한 다음 단계
 해당 제품의 사용을 중단하고 제조·판매처에 누출과 팽창 상태를 문의해요.
 
-## syn-hold-0106 — 제조번호 확인 후 별도로 발견한 냄새 변화
+## syn-hold-0106
 
-- 유형·분할: `hold` / `hold` / `train`
-- 내용 해시: `8677491a3b2cb1be2cc9c7019c7dea864c8ecbad1ff432be715216009547e981`
+- 모드·분할: `hold` / `train`
+- 현재 내용 해시: `8677491a3b2cb1be2cc9c7019c7dea864c8ecbad1ff432be715216009547e981`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-회수 조회와 별개로 확인된 새 냄새 때문에 사용과 개별 안내를 보류해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2410,17 +2301,13 @@
 ### 필요한 다음 단계
 해당 제품의 사용을 중단하고 제조번호와 변화 내용을 제조·판매처에 확인해요. 회수 대상 여부는 미상이에요.
 
-## syn-sol-0274 — 손의 거친 수건과 얼굴의 가벼운 건조
+## syn-sol-0274
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `9d5aebdbbbe4fbea449825cdec20b29dc52aa2f9fc59743fb4a3049ba9d080fd`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `0f3294f1e25611b7da7db49a41be3fd4da505be942cd9c56d3b9eca620ecfc6f`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-얼굴 건조는 가볍게 하지만 세안 도구와 마찰은 미상이므로 전체 세안 방법은 판정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2428,10 +2315,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "손은 수건으로 문지르지만 얼굴은 문지르지 않고 가볍게 눌러 말립니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
@@ -2485,25 +2372,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-얼굴 건조는 가볍게 하지만 세안 도구와 마찰은 미상이므로 전체 세안 방법은 판정하지 않아요. [kb:B-C02@0.6.1]
+얼굴은 수건으로 문지르지 않고 가볍게 눌러 말리지만 손은 수건으로 문질러요. [kb:B-C02@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개인의 결과를 확정하지 않아요. [ref:S03]
+일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴 마찰의 강도는 추정하지 않아요.
+얼굴을 말리는 행동만으로 세안 도구나 세안 중 마찰을 판단하지 않아요.
 
-## syn-sol-0278 — 내수성 제품의 사용 계획과 미사용
+## syn-sol-0278
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `dd5d8258eb715d724aa55c983c4b0621b2c73630fa937ff485cd4d35df44c730`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `3c7f67438f1587e0c1d7a1774090c392f5131b8a7b817ce722a63e5347703acc`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-계획을 실제 사용이나 반복 행동으로 취급하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2511,16 +2394,19 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "내수성 제품은 다음 주 사용 계획일 뿐 오늘 사용하지 않았고 오늘 제거 행동은 알려지지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
-        "planned_only": true,
+        "water_resistant_product": {
+          "planned_use": "next_week",
+          "used_today": false
+        },
         "today_removal": "unknown"
       },
       "source": "synthetic_fixture",
@@ -2557,25 +2443,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-계획을 실제 사용이나 반복 행동으로 취급하지 않아요. [kb:B-I01@0.6.1]
+내수성 제품은 다음 주에 쓸 계획이고 오늘은 쓰지 않았어요. 오늘 제거 행동은 알려지지 않아 반복 세안이 있었다고 판단하지 않아요 [kb:B-I01@0.6.1].
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+광보호와 세정을 함께 살필 때는 제거 부담 때문에 광보호를 희생하거나 내수성 표시만으로 무조건 반복 세안하는 행동을 살펴요 [kb:B-I01@0.6.1]. 제한된 제품 조합의 소규모 영상 연구도 모든 내수성 제품에 하나의 제거 방법을 확정하지 않아요 [ref:S08].
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+실제 사용할 제품의 표시와 버전, 사용 후 제거 행동은 확인되지 않았어요.
 
-## syn-sol-0279 — 다른 사람의 반복과 본인 행동 미상
+## syn-sol-0279
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `1a97285e880956842ae274ff7ff5456d55237bb5c306cefedfe0f9e41fc9b804`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `19186d8494a14d0e77cda524172b847c225acdb80860816d8500f2e1440dcf77`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-다른 사람의 행동으로 본인의 판정을 만들지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2583,15 +2465,17 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "동거인이 내수성 표시만 보고 반복 세안하지만 본인의 제거 행동은 알 수 없습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
+        "other_person": "동거인",
+        "other_person_reason": "내수성 표시만 보고",
         "other_person_automatic_repeat": true,
         "self_repeat": "unknown"
       },
@@ -2629,25 +2513,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-다른 사람의 행동으로 본인의 판정을 만들지 않아요. [kb:B-I01@0.6.1]
+동거인은 내수성 표시만 보고 반복 세안하지만 본인의 제거 행동은 확인되지 않았어요. 동거인의 습관을 본인의 행동으로 판단하지 않아요. [kb:B-I01@0.6.1]
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+제한된 제품과 방법을 비교한 소규모 연구만으로 모든 내수성 제품의 제거법을 정할 수 없어요. [ref:S08]
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+본인의 실제 제거 행동과 해당 제품 지침은 미상이에요.
 
-## syn-sol-0280 — 얼굴이 아닌 팔에만 내수성 제품 사용
+## syn-sol-0280
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `9b07b12039bc39031a887d09ddfe7425882d3880922c4c8102f2a395dc654438`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `8ec5c887486c5480de00a602ab32376541bae48c6deb098bec7c8373012752f4`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-팔의 사용을 얼굴의 반복 세안으로 옮겨 판단하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2655,17 +2535,18 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "내수성 제품을 팔에만 사용했고 얼굴 제거 행동은 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
         "used_site": "arms",
-        "face_removal": "unknown"
+        "face_removal": "unknown",
+        "water_resistant_product_used_site": "arms"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -2701,25 +2582,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-팔의 사용을 얼굴의 반복 세안으로 옮겨 판단하지 않아요. [kb:B-I01@0.6.1]
+내수성 제품은 팔에만 사용한 것으로 기록됐어요. 이를 얼굴에서 자동으로 반복 세안한 사실로 옮기지 않아요. [kb:B-I01@0.6.1]
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+소규모 연구의 제한된 제품 조합만으로 모든 내수성 제품에 일률적 제거법을 확정할 수 없어요. [ref:S08]
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+얼굴 제거 행동은 미상이에요.
 
-## syn-sol-0281 — 확인되지 않은 제품 버전의 제거 표시
+## syn-sol-0281
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `14a33b3a421fe83e6fa819eec24cfb11c566d7471112ac4e3b9d58811e8ffa57`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `f05b606464a9b62bcf87b0350de234ce57234c9ef08f002390060f20cff4bd6b`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-버전 일치가 확인되기 전에는 해당 제거 표시를 적용하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2727,16 +2604,16 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "표시 사진의 제품 버전과 현재 사용하는 제품의 일치 여부가 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
-        "label_version_match": "unknown"
+        "label_photo_product_version_matches_current_product": "unknown"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -2746,7 +2623,7 @@
     {
       "card_id": "B-I01",
       "status": "unknown",
-      "guidance": "버전 일치가 확인되기 전에는 해당 제거 표시를 적용하지 않아요."
+      "guidance": "버전 일치가 확인되기 전에는 해당 표시를 적용하지 않아요."
     }
   ],
   "product_evidence": [],
@@ -2772,25 +2649,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-버전 일치가 확인되기 전에는 해당 제거 표시를 적용하지 않아요. [kb:B-I01@0.6.1]
+표시 사진과 현재 사용 중인 제품이 같은 버전인지 확인되지 않았어요. 사진의 내용을 현재 용기에 적용하기는 보류해요.
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+세정 방법을 살필 때는 내수성 표시만 보고 무조건 반복 세안하는 행동을 검토해요 [kb:B-I01@0.6.1]. 제공된 소규모 영상 연구도 제한된 제형의 비교여서 모든 제품에 일률적인 제거법을 정하지 않아요 [ref:S08].
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+현재 사용하는 제품의 버전과 사진의 판이 일치하는지 확인하기 전에는 사진을 현재 제품의 근거로 쓸 수 없어요.
 
-## syn-sol-0282 — 사용한 제품 라벨의 제거 조건 일부 누락
+## syn-sol-0282
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `a375502646765c5847d27f58160a31e77fc5716a07d94bba0bff46ff79455fc0`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `ac127e8890c0deb79d1028e445fff3d7378492c732bed7c5dd49b960abc2b8e0`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-보이지 않는 제거 조건을 추정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2798,16 +2671,17 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "합성 제품의 제거 안내 일부가 가려져 필요한 세정 방법을 읽을 수 없습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
-        "removal_instruction": "partially_obscured"
+        "removal_instruction": "partially_obscured",
+        "required_cleansing_method": "unknown"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -2843,25 +2717,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-보이지 않는 제거 조건을 추정하지 않아요. [kb:B-I01@0.6.1]
+제품의 제거 안내 일부가 가려져 필요한 세정법을 읽지 못했어요. 해당 제품의 온전한 안내를 확인해 주세요. [kb:B-I01@0.6.1]
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+일부 제품을 비교한 소규모 연구만으로 모든 내수성 제품의 제거 방법을 정할 수 없어요. [ref:S08]
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+가려진 부분에 어떤 지시가 있는지는 현재 알 수 없어요.
 
-## syn-sol-0283 — 세안 도구 이름과 제거 조건 구분
+## syn-sol-0283
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `923fdf92fec4068825c32161cea96ffdb830dbcbbc276859ab18db3f9ff1775c`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `2104b90abb1b936098e21879c920a4c38f08740a7f2d4e3a1f2480bed949a465`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-폼 사용만으로 표시 일치나 불일치를 확정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2869,10 +2739,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "폼을 사용한 것은 확인됐지만 제품의 제거 표시와 반복 이유는 모릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
@@ -2916,25 +2786,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-폼 사용만으로 표시 일치나 불일치를 확정하지 않아요. [kb:B-I01@0.6.1]
+폼을 사용한 사실만으로 제품 제거 표시와의 일치 여부를 판정할 수 없어요. [kb:B-I01@0.6.1]
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+제한된 제품 조합을 비교한 소규모 연구를 모든 제품의 일률적 제거법으로 일반화하지 않아요. [ref:S08]
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+해당 제품의 제거 표시와 반복 이유는 미상이에요.
 
-## syn-sol-0284 — 첫 세정과 재세정의 시점 미상
+## syn-sol-0284
 
-- 유형·분할: `unknown_or_version` / `solution` / `val_internal`
-- 내용 해시: `6b987b15279079efddce629cf3bdc492a9bfecf5d0c8d52b20ad2e46edb376b0`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `bc67002e45cd38be300e20368726002c20efa10f9b7a396bcad6e33d7f99e427`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-세정 횟수와 한 번의 단계 수를 구분해 확인해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -2942,10 +2808,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "세정제 두 번 사용 사실은 있으나 같은 세안의 두 단계인지 다른 시간인지 모릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
@@ -2988,25 +2854,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-세정 횟수와 한 번의 단계 수를 구분해 확인해요. [kb:B-C05@0.6.1]
+세정제를 두 번 썼지만 한 세안의 두 단계였는지 서로 다른 시간의 사용인지는 미상이에요. 두 단계 반복 세안으로 확정하지 않아요 [kb:B-C05@0.6.1].
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+세정 횟수를 살필 때는 제거 목적 없이 습관적으로 반복하는지 비교해요 [kb:B-C05@0.6.1]. 제공된 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+두 사용의 시간 관계와 세정 목적이 확인되지 않았어요.
 
-## syn-sol-0287 — 얼굴에 닿지 않은 도구
+## syn-sol-0287
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `484027886fdcdaf6851a95743e25c71fa4d5711d0a49c907b9195c9994df8b58`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `1be06f080c6edd28cc2aecaf578ca39d21dc366dd267e6a50d07c17a43234809`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-손에만 쓴 기기로 얼굴 세안 방법을 추정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3014,10 +2876,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "소유한 기기를 손에만 사용하며 얼굴의 실제 세안 방법은 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
@@ -3025,6 +2887,16 @@
       "value": {
         "device_site": "hands",
         "face_method": "unknown"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "adjunct.device_use": {
+      "variable_id": "adjunct.device_use",
+      "state": "known",
+      "value": {
+        "site": "hands",
+        "only": true
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -3060,25 +2932,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-손에만 쓴 기기로 얼굴 세안 방법을 추정하지 않아요. [kb:B-C02@0.6.1]
+기기는 손에만 사용한다고 하셨고 얼굴을 어떻게 씻는지는 확인되지 않았어요. 손에서의 사용을 얼굴 세안에 적용하지 않아요. [kb:B-C02@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+일반적인 얼굴 세안 안내는 부드러운 세정과 헹굼을 설명해요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+얼굴에서 실제 쓴 도구나 마찰 정도는 미상이에요.
 
-## syn-sol-0288 — 사용 제품 내수성 미상과 다른 제품 표시
+## syn-sol-0288
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `0c264371d8cd49c64e4ca78ee68934cfd89cabc1a80b5eb7db661687e819016d`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `512fab1eac4d068d1f04542010de6b42ff7128e317663176312eb03ba38fad43`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-다른 제품의 내수성 표시를 사용 제품에 이전하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3086,17 +2954,18 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "가방 속 다른 제품에는 내수성 표시가 있지만 실제 사용 제품의 표시는 알 수 없습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
         "used_product_water_resistance": "unknown",
-        "other_product_labeled": true
+        "other_product_labeled": true,
+        "other_product_location": "bag"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -3132,25 +3001,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-다른 제품의 내수성 표시를 사용 제품에 이전하지 않아요. [kb:B-I01@0.6.1]
+가방 속 다른 제품에 내수성 표시가 있어도 실제 사용한 제품의 표시로 옮길 수 없어요. [kb:B-I01@0.6.1]
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+제한된 제품 조합을 비교한 소규모 연구로 모든 내수성 제품의 제거법을 확정할 수 없어요. [ref:S08]
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+실제 사용 제품의 내수성 표시는 미상이에요.
 
-## syn-sol-0289 — 반복 세안 중단 계획과 실제 행동
+## syn-sol-0289
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `7475024aa95f76b51be923bbe2baf3829714c6ba5c1e7e6dd425cf1bfac03dd6`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `1c21f7074de9c2e9ccf59461aff84ed827d0db0f8fba8bf0c886408e4c836db5`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-계획만으로 행동 변경을 확인하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3158,18 +3023,18 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "반복 세안을 멈추기로 계획했지만 오늘 실제 행동과 기존 반복 이유는 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
-        "plan": "반복 중단",
-        "actual_behavior": "unknown",
-        "reason": "unknown"
+        "plan": "반복 세안 중단",
+        "today_actual_behavior": "unknown",
+        "previous_repeat_reason": "unknown"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -3205,25 +3070,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-계획만으로 행동 변경을 확인하지 않아요. [kb:B-I01@0.6.1]
+반복 세안을 멈추려는 계획은 있지만 오늘 실제 행동과 이전에 반복한 이유는 미상이에요. 계획을 이미 실행했다고 판단하지 않아요 [kb:B-I01@0.6.1].
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+광보호와 제거를 살필 때는 내수성 표시만으로 무조건 반복하거나 제거 편의를 위해 광보호를 줄이는 실제 행동을 살펴요 [kb:B-I01@0.6.1]. 소규모 영상 연구도 제한된 제품 조합으로 모든 내수성 제품의 제거법을 정하지 않아요 [ref:S08].
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+오늘의 실제 행동과 반복 이유, 사용 제품의 표시가 확인되지 않았어요.
 
-## syn-sol-0290 — 손 위생 행사와 얼굴 세안 기록 충돌
+## syn-sol-0290
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `77426fcb28cd79530541dd972b6c36b9dc1b938c170a1b98d65bfc3ca4e4d1e8`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `91f84dbfed225ed312c3a749e6a036ecbba95f0bd4e9a79db9677fe2f844ccc8`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-서로 충돌하는 기록으로 세안 횟수 차이를 확정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3231,17 +3092,28 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "한 기록은 얼굴 세안 한 번이고 다른 기록은 두 번이라고 하며 어느 쪽이 맞는지 모릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
       "state": "known",
       "value": {
-        "face_wash_records": "conflict"
+        "face_wash_records": [
+          "한 번",
+          "두 번"
+        ],
+        "reconciled": "unknown"
       },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.body_site": {
+      "variable_id": "method.body_site",
+      "state": "known",
+      "value": "face",
       "source": "synthetic_fixture",
       "confirmed_by_user": true
     }
@@ -3276,25 +3148,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-서로 충돌하는 기록으로 세안 횟수 차이를 확정하지 않아요. [kb:B-C05@0.6.1]
+얼굴 세안 기록이 한 번과 두 번으로 엇갈려요. 어느 쪽이 맞는지 확인하기 전에는 반복 세안 여부를 정하지 않아요. [kb:B-C05@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+세안 횟수와 함께 반복의 목적도 살펴야 해요.
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+기록의 충돌과 세안 목적이 해결되지 않았어요.
 
-## syn-sol-0292 — 땀을 흘린 시간과 세안 횟수 미상
+## syn-sol-0292
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `945e8f0d3630b38517d71b3719369ade0dab1a2f25742f9a6e4e998a9488b226`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `da392a317e98828ed547d74fd56622ffac17cddb28acc593e5d045501a511593`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-땀이 있었다는 사실만으로 세정 횟수를 만들지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3302,10 +3170,10 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "운동 중 땀을 흘렸지만 얼굴 세정의 실제 횟수와 단계는 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
@@ -3314,6 +3182,15 @@
         "sweat": true,
         "face_wash_events": "unknown",
         "steps": "unknown"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "cleansing.target_load": {
+      "variable_id": "cleansing.target_load",
+      "state": "known",
+      "value": {
+        "sweat_during_exercise": true
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -3349,25 +3226,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-땀이 있었다는 사실만으로 세정 횟수를 만들지 않아요. [kb:B-C05@0.6.1]
+운동 중 땀이 난 사실은 확인됐지만 얼굴을 몇 번, 몇 단계로 씻었는지는 미상이에요. [kb:B-C05@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+땀 자체가 세안 횟수나 단계를 알려주지는 않아요. 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+확인되지 않은 세정 행동을 추정하지 않아요.
 
-## syn-sol-0293 — 서로 충돌하는 제거 표시 사본
+## syn-sol-0293
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `1193ffa622bbd979ed2beeb493e7722482f7c103757125cf9628ded54e78ddd2`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `cdafdcd64b6afc4e77c6de5bcf898b2b5086165086f8188fb50c075733a2b923`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-상충하는 표시 중 하나를 임의로 현재 제품의 지시로 정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3375,16 +3248,19 @@
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "동일 제품이라고 적힌 두 표시 사본의 제거 방법이 다르고 현재 버전은 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
-        "removal_instructions": "conflict",
+        "label_copies": {
+          "identified_as_same_product": true,
+          "removal_instructions": "conflict"
+        },
         "current_version": "unknown"
       },
       "source": "synthetic_fixture",
@@ -3421,25 +3297,21 @@
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-상충하는 표시 중 하나를 임의로 현재 제품의 지시로 정하지 않아요. [kb:B-I01@0.6.1]
+같은 제품이라고 적힌 두 표시 사본의 제거 방법이 달라요. 현재 버전이 확인되지 않아 어느 쪽도 현재 용기의 지시로 채택하지 않아요.
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+제거 방법을 살필 때는 내수성 표시만으로 무조건 반복 세안하는 행동을 살펴요 [kb:B-I01@0.6.1]. 제공된 소규모 연구는 제한된 제품 조합을 비교했으며 모든 제품에 하나의 제거법을 정하지 않아요 [ref:S08].
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+현재 제품의 판과 그 판에 해당하는 표시를 확인하기 전에는 두 사본 중 하나를 적용할 수 없어요.
 
-## syn-sol-0294 — 얼굴과 목의 보습 시점 분리
+## syn-sol-0294
 
-- 유형·분할: `unknown_or_version` / `solution` / `val_internal`
-- 내용 해시: `07fdd35b03e9fcdc6dc609d18adbeb160dd3c8b98686ee8711db1297685af530`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `07fdd35b03e9fcdc6dc609d18adbeb160dd3c8b98686ee8711db1297685af530`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-피부 물기의 관찰 부위는 명시되지 않았고 목의 물기는 미상이라 부위별 시점을 판정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3502,17 +3374,13 @@
 ### 확인이 필요한 한계
 얼굴이나 목의 물기와 제품별 지시를 추정하지 않아요.
 
-## syn-sol-0295 — 건조 피부 지시가 다른 두 제품
+## syn-sol-0295
 
-- 유형·분할: `unknown_or_version` / `solution` / `val_internal`
-- 내용 해시: `97e508f7f09eecca3acff05f0409ea798c9dc3311f1f606aee585defb8ddef1e`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `97e508f7f09eecca3acff05f0409ea798c9dc3311f1f606aee585defb8ddef1e`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-건조한 피부에 바르라는 제품 A의 지시를 우선 검토하며 B의 지시는 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3577,17 +3445,13 @@
 ### 확인이 필요한 한계
 제품 B의 지시는 확인되지 않았어요.
 
-## syn-sol-0296 — 손 씻기 뒤 실제 보습의 주체
+## syn-sol-0296
 
-- 유형·분할: `unknown_or_version` / `solution` / `val_internal`
-- 내용 해시: `0e2da2fdba2adb8c772cdb1bbad2ee395f04d2b0ed1c60b30002d8ca7700cfcc`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `0e2da2fdba2adb8c772cdb1bbad2ee395f04d2b0ed1c60b30002d8ca7700cfcc`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-동료의 보습 기록으로 본인의 손 보습 여부를 판단하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3652,17 +3516,13 @@
 ### 확인이 필요한 한계
 동료의 기록으로 본인의 보습 여부를 대신하지 않아요.
 
-## syn-sol-0298 — 보습제 사용과 목의 건조 재발
+## syn-sol-0298
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `44e2f0be1e73a45ce8fcbc53b71b38ee843dee74fc87033b3f4d544e19432c1b`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `44e2f0be1e73a45ce8fcbc53b71b38ee843dee74fc87033b3f4d544e19432c1b`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-목에 보습제를 실제 사용했는지 미상이라 그 부위의 보습 방법을 판정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3727,17 +3587,13 @@
 ### 확인이 필요한 한계
 건조의 원인이나 적절한 사용량을 이 기록만으로 확정하지 않아요.
 
-## syn-sol-0299 — 필요한 손 씻기와 작업 뒤 보습 계획
+## syn-sol-0299
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `43a2c52124e937b06810bd0b98dfd1f193bab9453883e72ae56d0eb8a4403f8c`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `43a2c52124e937b06810bd0b98dfd1f193bab9453883e72ae56d0eb8a4403f8c`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-작업 뒤 보습 계획은 실제 사용의 확인이 아니며 필요한 손 위생은 유지해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3801,17 +3657,13 @@
 ### 확인이 필요한 한계
 현재 보습 충족이나 불편 여부는 미상이에요.
 
-## syn-sol-0300 — 면도 후 목과 얼굴의 반응 구분
+## syn-sol-0300
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `9fa7e3fb7f3fbf974df0157c358a4be0ff39e5fa0df3ee59b56a324279f39817`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `9fa7e3fb7f3fbf974df0157c358a4be0ff39e5fa0df3ee59b56a324279f39817`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-얼굴의 편안함으로 목의 제품 반응을 대신하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3876,17 +3728,13 @@
 ### 확인이 필요한 한계
 목의 반응을 임의로 정상으로 채우지 않아요.
 
-## syn-sol-0301 — 손 보습제 무향료 표시와 향성 오일 정보
+## syn-sol-0301
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `8314ecf569249448ddd4fd1d5907ed932f74dfb1e894d9dbdaa614f369c5ab49`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `8314ecf569249448ddd4fd1d5907ed932f74dfb1e894d9dbdaa614f369c5ab49`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-무향료 표시는 확인됐지만 향성 에센셜오일과 개인 반응은 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -3958,17 +3806,13 @@
 ### 확인이 필요한 한계
 표시만으로 개인에게 반응이 없다고 보장할 수 없어요.
 
-## syn-sol-0302 — 면도 후 다른 사람의 반응
+## syn-sol-0302
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `a44d551cfda123e768e36b20bd3123ee5a6d64d1f728cbfd7ba256c004c58f40`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `a44d551cfda123e768e36b20bd3123ee5a6d64d1f728cbfd7ba256c004c58f40`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-친구의 따가움은 본인의 반응이 아니며 본인의 반응은 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4033,17 +3877,13 @@
 ### 확인이 필요한 한계
 친구의 경험으로 본인 제품의 적합성을 결정하지 않아요.
 
-## syn-sol-0303 — 얼굴은 편안하고 손은 확인 거절
+## syn-sol-0303
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `ab123041ca7b181f9c10c01f307e36337fcc77b3ae6130c767aa4833d460c76f`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `ab123041ca7b181f9c10c01f307e36337fcc77b3ae6130c767aa4833d460c76f`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-얼굴의 편안함을 손의 보습 충족으로 대체하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4096,17 +3936,13 @@
 ### 확인이 필요한 한계
 답변을 원하지 않은 내용을 정상이나 이탈로 바꾸지 않아요.
 
-## syn-sol-0304 — 보습 목표와 사용 경험이 다른 부위
+## syn-sol-0304
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `3d9c8687f8a2cd5f59815e378159fff4cd03ba4e44102e31cd158e4a7e81a3ee`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `3d9c8687f8a2cd5f59815e378159fff4cd03ba4e44102e31cd158e4a7e81a3ee`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-얼굴의 보습 충족 경험으로 손의 사용이나 충족을 추정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4170,17 +4006,13 @@
 ### 확인이 필요한 한계
 제품 수나 성분만으로 손의 보습 충족을 확정하지 않아요.
 
-## syn-sol-0305 — 면도 후 제품 지시와 사용 기록의 연결
+## syn-sol-0305
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `909bba4a302a88501f83b2d26f83dcafee38d8058eefc04122b2064b0659d235`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `909bba4a302a88501f83b2d26f83dcafee38d8058eefc04122b2064b0659d235`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-면도 후 사용 표시가 있는 제품과 실제 사용한 제품이 같은지 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4233,17 +4065,13 @@
 ### 확인이 필요한 한계
 실제 제품과 그 반응을 별도로 확인할 수 있어요.
 
-## syn-sol-0306 — 면도 후 불편의 다른 주체
+## syn-sol-0306
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `d82956bc30648dfc07b4eacb347e13c9ec499f8e770b07f1c7be3803c7cfac11`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `d82956bc30648dfc07b4eacb347e13c9ec499f8e770b07f1c7be3803c7cfac11`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-친구의 편안한 경험은 본인의 면도 후 사용과 반응을 알려주지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4297,17 +4125,13 @@
 ### 확인이 필요한 한계
 확인되지 않은 내용을 근거로 제품 적합성을 단정하지 않아요.
 
-## syn-sol-0307 — 반응 없는 부위와 반응 미상 부위
+## syn-sol-0307
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `c30e1c58a3416e3306243bdf767fe6d8154fdca55ad069337a619af65ff37743`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `c30e1c58a3416e3306243bdf767fe6d8154fdca55ad069337a619af65ff37743`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-얼굴에 불편이 없다는 보고는 목의 반응이나 변경 이력을 확인해 주지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4361,17 +4185,13 @@
 ### 확인이 필요한 한계
 확인되지 않은 변화의 원인이나 안전성을 단정하지 않아요.
 
-## syn-sol-0308 — 제품 변경과 계절 변화의 시점 미상
+## syn-sol-0308
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `8ba068a62e7e04fea0933c6ee7b28a5639102ba8a1b05b5cf27e5729931baf73`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `8ba068a62e7e04fea0933c6ee7b28a5639102ba8a1b05b5cf27e5729931baf73`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-제품과 계절의 변화가 보고됐지만 사용감 변화와의 시간 관계는 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4434,17 +4254,13 @@
 ### 확인이 필요한 한계
 필요한 시간 관계만 확인할 수 있어요.
 
-## syn-sol-0309 — 보습 단계 추가 전 실제 사용 미상
+## syn-sol-0309
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `84a6c8062162ee4b4f90629c07927df75db260e6863eb7c7845b253b0a3dfd37`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `84a6c8062162ee4b4f90629c07927df75db260e6863eb7c7845b253b0a3dfd37`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-보유와 실제 사용은 다르며 현재 보습 충족은 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4505,17 +4321,13 @@
 ### 확인이 필요한 한계
 제품을 보유했다는 사실만으로 보습 충족을 선언하지 않아요.
 
-## syn-sol-0310 — 보습제 후 촉촉함과 나중의 느낌 미상
+## syn-sol-0310
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `d1199c3aa4f52319f98422084b05024da6e76fabba5100f87f6bf305a2acc6fb`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `d1199c3aa4f52319f98422084b05024da6e76fabba5100f87f6bf305a2acc6fb`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-직후의 편안함은 이후의 건조감이나 반응을 대신하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4568,17 +4380,13 @@
 ### 확인이 필요한 한계
 촉촉한 느낌을 흡수량이나 피부 상태 측정치로 환산하지 않아요.
 
-## syn-sol-0311 — 보습 시점과 처방 계획의 적용 범위 미상
+## syn-sol-0311
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `960236b5a0f6a17405560227248883cecf1dddd70bfa6b9e19bdb61cbb01b79d`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `960236b5a0f6a17405560227248883cecf1dddd70bfa6b9e19bdb61cbb01b79d`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-진료 계획의 보습제 적용 범위와 사용 시 피부 물기는 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4629,17 +4437,13 @@
 ### 확인이 필요한 한계
 기존 진료 지시를 일반 안내로 대체하지 않아요.
 
-## syn-sol-0312 — 향료 목록과 사용 경험이 서로 다른 손 제품
+## syn-sol-0312
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `2a6e356bbe6755c6274079a154fc4141aa8defa931520c08a566107470797854`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `2a6e356bbe6755c6274079a154fc4141aa8defa931520c08a566107470797854`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-A의 표시와 B의 편안한 경험을 한 제품에 합치지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4693,17 +4497,13 @@ A의 반응과 B의 향료 정보는 미상이에요. [kb:B-M04@0.6.1]
 ### 확인이 필요한 한계
 어느 제품의 개인 적합성도 다른 제품의 기록으로 확정하지 않아요.
 
-## syn-sol-0313 — 면도 뒤 보습을 했지만 반응 시점 미상
+## syn-sol-0313
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `46941329c3ae66b3fb4760c5dd2374d02d265e00083efc39a03e4dcd16339253`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `46941329c3ae66b3fb4760c5dd2374d02d265e00083efc39a03e4dcd16339253`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-불편이 보고됐지만 제품 사용과의 시간 관계는 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4756,17 +4556,13 @@ A의 반응과 B의 향료 정보는 미상이에요. [kb:B-M04@0.6.1]
 ### 확인이 필요한 한계
 지속하거나 악화하는 불편은 전문가 확인이 필요해요.
 
-## syn-sol-0314 — 세정 후 피부 물기와 실제 제품 사용 분리
+## syn-sol-0314
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `9a8ef1e0b0f4f96d4c39224d917500849e10e20296fc2bec1b1e6df23e1c4ae1`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `9a8ef1e0b0f4f96d4c39224d917500849e10e20296fc2bec1b1e6df23e1c4ae1`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-피부가 촉촉하다는 관찰만으로 보습제 사용이나 관찰 시점을 확인할 수 없어요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4816,17 +4612,13 @@ A의 반응과 B의 향료 정보는 미상이에요. [kb:B-M04@0.6.1]
 ### 확인이 필요한 한계
 물기 관찰의 시점은 추정하지 않아요.
 
-## syn-sol-0315 — 세안 직후 제품을 썼으나 물기 확인 거절
+## syn-sol-0315
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `62710673774d19a19810398284449018842710f5447ae5ab5ea44381713beeaa`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `62710673774d19a19810398284449018842710f5447ae5ab5ea44381713beeaa`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-세정 후 보습제 사용은 확인됐지만 피부 물기 정보는 제공되지 않았어요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4876,17 +4668,13 @@ A의 반응과 B의 향료 정보는 미상이에요. [kb:B-M04@0.6.1]
 ### 확인이 필요한 한계
 답변하지 않은 값을 임의로 채우지 않아요.
 
-## syn-sol-0316 — 손 진단을 이유로 보습 전체 중단
+## syn-sol-0316
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `dbbf8ff3f293506389abd6568e0aef21e690ade3a8a341ab60901023761447c9`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `dbbf8ff3f293506389abd6568e0aef21e690ade3a8a341ab60901023761447c9`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-손 습진 진단을 이유로 모든 보습을 중단했으며 개별 진료 지시는 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -4947,17 +4735,13 @@ A의 반응과 B의 향료 정보는 미상이에요. [kb:B-M04@0.6.1]
 ### 확인이 필요한 한계
 미확인 진료 계획을 추정하거나 치료를 변경하지 않아요.
 
-## syn-sol-0317 — 건조에도 고정 감량을 계획만 한 경우
+## syn-sol-0317
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `6a54896c98adca5348c100b75be548d8c3f37491eda49bd5a41f05618d27de82`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `6a54896c98adca5348c100b75be548d8c3f37491eda49bd5a41f05618d27de82`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-건조와 감량 계획이 보고됐지만 실제 감량은 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5008,17 +4792,13 @@ A의 반응과 B의 향료 정보는 미상이에요. [kb:B-M04@0.6.1]
 ### 확인이 필요한 한계
 필요한 보습과 사용 경험을 함께 확인해요.
 
-## syn-sol-0318 — 다른 제품의 성분과 보습감 구분
+## syn-sol-0318
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `d215a7210d766820053090eca33042ef46fc8c9d87a00071db1fcfd21412616e`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `d215a7210d766820053090eca33042ef46fc8c9d87a00071db1fcfd21412616e`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-B의 편안함으로 A의 실제 보습 충족을 판단하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5080,17 +4860,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 제품 역할만으로 보습 충족이나 추가 필요를 확정하지 않아요.
 
-## syn-sol-0319 — 손 위생 뒤 피부 상태와 제품 반응 구분
+## syn-sol-0319
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `a9ba1cd633de031df01661e101a17d005106646c0b5e69a25d46eb96a6f98c5c`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `a9ba1cd633de031df01661e101a17d005106646c0b5e69a25d46eb96a6f98c5c`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-손 건조 보고와 특정 보습제 반응은 별도이며 반응은 미상이에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5151,17 +4927,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 건조만으로 특정 제품이 원인이라고 단정하지 않아요.
 
-## syn-sol-0320 — 두 야외 후보의 표시 일부만 확인
+## syn-sol-0320
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `50898504ef793e203e5e94fa8fccd06b2f3f9c15181d3d462ba6b2736ff3d08d`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `50898504ef793e203e5e94fa8fccd06b2f3f9c15181d3d462ba6b2736ff3d08d`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-가의 내수성 및 나의 기본 성능은 미상으로 남겨요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5213,17 +4985,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 가려진 표시는 내수성이 없다는 뜻이 아니며 나의 성능도 미상이에요.
 
-## syn-sol-0321 — 현재 후보가 아닌 예전 후보의 성능표
+## syn-sol-0321
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `277bc01274f46b8fd20e4f0c4ce126f979d788e3cd0f6d8538f8616393402506`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `277bc01274f46b8fd20e4f0c4ce126f979d788e3cd0f6d8538f8616393402506`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-이전 버전의 표시를 현재 후보에 옮기지 않고 현재 표시를 확인해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5275,26 +5043,35 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 현재 버전의 SPF와 광범위 표시는 미상이에요.
 
-## syn-sol-0330 — 두 개 중 개봉일이 확인된 선크림
+## syn-sol-0330
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `5eb61212184ca7ae6965239f636800fbe299ae4197c75aa3e9f160e869b5217d`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `32ad01a194f05ae19c7c6737a2bfc81eea3e9ae0d1d45f6ecc6b54aa69ba3014`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-가의 개봉일만으로 두 제품의 기간 적합성을 정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
   "mode": "solution",
   "confirmed_observations": {
-    "method.current_routine": {
-      "variable_id": "method.current_routine",
+    "storage.opened_at": {
+      "variable_id": "storage.opened_at",
       "state": "known",
-      "value": "두 선크림 가운데 가의 개봉일만 확인했어요. 개봉 후 사용기간 표시는 가와 나 모두 읽지 못했어요.",
+      "value": {
+        "가": "확인됨",
+        "나": "미확인"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "storage.pao": {
+      "variable_id": "storage.pao",
+      "state": "known",
+      "value": {
+        "가": "읽지 못함",
+        "나": "읽지 못함"
+      },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
     }
@@ -5318,25 +5095,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-각 용기의 개봉 후 안내와 나의 개봉일을 확인해요. [kb:B-S02@0.6.1]
+두 선크림 중 가의 개봉일만 확인했고 개봉 후 사용기간 표시는 둘 다 읽지 못했어요. 각 제품의 표시와 이력을 따로 확인해 주세요. [kb:B-S02@0.6.1]
 
 ### 근거 및 이유
-가의 개봉일만으로 두 제품의 기간 적합성을 정하지 않아요. [kb:B-S02@0.6.1]
+한 제품의 개봉일은 다른 제품의 이력이나 두 제품의 표시 기간을 대신하지 않아요.
 
 ### 확인이 필요한 한계
-두 제품의 개봉 후 안내와 나의 개봉일은 미상이에요.
+나의 개봉일과 두 제품의 개봉 후 사용기간은 확인되지 않아 기간 적합성을 정할 수 없어요.
 
-## syn-sol-0331 — 여행 파우치의 현재 보관과 과거 열 노출
+## syn-sol-0331
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `dc855ed5f0bfc0f8bf6551b68c83e5cbe3e1d861858eb6c2824679480415abcc`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `dc855ed5f0bfc0f8bf6551b68c83e5cbe3e1d861858eb6c2824679480415abcc`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재 보관과 별개로 과거 열 노출 여부는 미상으로 남겨요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5377,17 +5150,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 과거 열 노출은 미상이며 없었다고 단정하지 않아요.
 
-## syn-sol-0332 — 두 용기 중 타인 용기의 뜨거운 차 보관
+## syn-sol-0332
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `11794559ac216a194e320690f49e5622f7ccb87595e9d852f3587e7c2876de3c`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `11794559ac216a194e320690f49e5622f7ccb87595e9d852f3587e7c2876de3c`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-가족 용기의 이력을 본인 용기에 그대로 적용하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5428,17 +5197,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 본인 용기가 차 안에 있었는지는 미상이에요.
 
-## syn-sol-0334 — 다른 나라 용기의 사용기한 표시
+## syn-sol-0334
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `53111306901f8604e81bef39e103dc4bfb06014dce4d4d6fd61e2a6552f7c1ec`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `53111306901f8604e81bef39e103dc4bfb06014dce4d4d6fd61e2a6552f7c1ec`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-다른 국가 용기의 날짜를 현재 보유품에 복사하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5479,17 +5244,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 현재 용기의 기한은 미상이에요.
 
-## syn-sol-0335 — 리필 지침의 대상과 실제 용기 연결 미상
+## syn-sol-0335
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `d105f9b5e9e405dbb641ac396d6b90a9e54684802fc6e02725aa60d7907e93d0`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `d105f9b5e9e405dbb641ac396d6b90a9e54684802fc6e02725aa60d7907e93d0`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재 용기에 해당하는 리필 지침인지 먼저 확인해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5530,17 +5291,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 해당 문구를 현재 용기의 허용 지침으로 확정할 수 없어요.
 
-## syn-sol-0337 — 서로 다른 용기의 개봉 이력
+## syn-sol-0337
 
-- 유형·분할: `unknown_or_version` / `solution` / `val_internal`
-- 내용 해시: `1d60ef7c535a6f2599832effa2420163d891c04a617349e6c445b571f85906cf`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `1d60ef7c535a6f2599832effa2420163d891c04a617349e6c445b571f85906cf`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-가의 개봉 이력을 나에 적용하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5581,17 +5338,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 나의 개봉 후 기간 적합성은 미상이에요.
 
-## syn-sol-0339 — 소량 도포 여부를 다른 제품 기록으로 추정
+## syn-sol-0339
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `789b1bb787539a59ddf77a0d3fdf98f7e343acc9a6e6c963c956c2cea7dc6ce0`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `789b1bb787539a59ddf77a0d3fdf98f7e343acc9a6e6c963c956c2cea7dc6ce0`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-보습제 기록만으로 선크림을 적게 발랐다고 판정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5632,17 +5385,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 선크림 도포량은 미상이에요.
 
-## syn-sol-0340 — 햇빛 차단 의복의 적용 부위 미상
+## syn-sol-0340
 
-- 유형·분할: `unknown_or_version` / `solution` / `val_internal`
-- 내용 해시: `313d1a11e0611a71126d864ab8dbf33d28ad9ac114023b04ec33222a4e9efc19`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `313d1a11e0611a71126d864ab8dbf33d28ad9ac114023b04ec33222a4e9efc19`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-기록된 긴소매 외 보완 수단의 적합성은 미상으로 남겨요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5683,17 +5432,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 다른 노출 부위와 차양 이용 가능 여부는 미상이에요.
 
-## syn-sol-0341 — 재도포 알림과 실제 행동을 구분
+## syn-sol-0341
 
-- 유형·분할: `unknown_or_version` / `solution` / `val_internal`
-- 내용 해시: `7e70e131ecfa856dfcedb4694c9ec9421dc0293b11f3309933ad227e6241d2bc`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `7e70e131ecfa856dfcedb4694c9ec9421dc0293b11f3309933ad227e6241d2bc`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-알림 기록을 실제 재도포로 간주하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5734,17 +5479,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 재도포 여부는 미상이에요.
 
-## syn-sol-0342 — 뚜껑을 열어 둔 제품과 별도 선크림
+## syn-sol-0342
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `aab9fb16258725cb8f181d345b75fed5f9a8f1821603b9407dbc20a414fe396b`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `aab9fb16258725cb8f181d345b75fed5f9a8f1821603b9407dbc20a414fe396b`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-보습제의 보관 이력을 선크림에 옮기지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5785,17 +5526,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 선크림의 당시 용기 상태는 미상이에요.
 
-## syn-sol-0343 — 동일명 선크림 두 버전의 분무 여부
+## syn-sol-0343
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `e499777dbc334a985aee9d273d4e23cb8a0ddc1b475ed0a1d6a0ee234cdf7fdc`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `e499777dbc334a985aee9d273d4e23cb8a0ddc1b475ed0a1d6a0ee234cdf7fdc`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-현재 용기의 형태를 확인하기 전 예전 버전의 사용법을 적용하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5836,17 +5573,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 현재 버전의 형태는 미상이에요.
 
-## syn-sol-0344 — 사용기한과 다른 용기의 정상 이층 안내
+## syn-sol-0344
 
-- 유형·분할: `unknown_or_version` / `solution` / `train`
-- 내용 해시: `509194900e665569883413aefaa134615126b57a65f940499ebde753a75ac1a9`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `509194900e665569883413aefaa134615126b57a65f940499ebde753a75ac1a9`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-나의 제형 안내를 가에 적용하지 않고 가의 기한과 안내를 확인해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5887,17 +5620,13 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 확인이 필요한 한계
 가의 기한과 정상 외관은 미상이에요.
 
-## syn-sol-0268 — 손 씻기와 얼굴 반복을 별도 계산
+## syn-sol-0268
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `3bfa96f68b32f710e439fb4a2e28093de6fb18d642d85ed58128eee4043fb802`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `4a26a5b73b8aaf3412fa2bdd134e776a357784b627199f0e4b8f44d79d67d262`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-필요한 손 위생은 유지하면서 단순 잔여감 해소를 위한 얼굴 반복을 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5905,10 +5634,10 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "얼굴 세안은 단순한 잔여감 해소를 위해 연속 두 차례 반복하고 업무상 손 씻기는 따로 합니다. 추가 오염이나 화장 제거 목적은 없습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
@@ -5916,7 +5645,19 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
       "value": {
         "automatic_repeat": true,
         "reason": "단순한 잔여감 해소",
-        "additional_removal_purpose": false
+        "additional_removal_purpose": false,
+        "consecutive_face_wash_count": 2
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "handwashing_for_work": "separate",
+        "face_additional_contamination_removal_purpose": false,
+        "face_makeup_removal_purpose": false
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -5963,25 +5704,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-필요한 손 위생은 유지하면서 단순 잔여감 해소를 위한 얼굴 반복을 검토해요. [kb:B-C05@0.6.1]
+업무상 필요한 손 씻기는 유지하고, 얼굴을 잔여감 때문에 연속 두 차례 씻는 부분을 따로 살펴봐요. [kb:B-C05@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+추가 오염이나 화장 제거 목적은 없다고 보고됐어요. 얼굴의 반복을 줄일 수 있는지 검토할 수 있어요. 일반 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+손 위생과 얼굴 세안을 같은 행동으로 묶지 않으며 개인의 결과를 예측하지 않아요.
 
-## syn-sol-0269 — 손 세정 횟수만 확인
+## syn-sol-0269
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `016cb1640424fb8765d70e71dcbb4c3fa2728c2c71bf227ab28f123e4fed39c1`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `dc3ae059199f9b237fd3bf2673566b237ab908ae5706c7832a5808b3bcf4ca20`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-손 세정 횟수만으로 얼굴 세안의 차이를 판정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -5989,10 +5726,10 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "업무상 손을 여러 번 씻지만 얼굴 세안 횟수와 목적은 확인되지 않았습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
@@ -6000,6 +5737,22 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
       "value": null,
       "source": "synthetic_fixture",
       "confirmed_by_user": false
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "hand_washing": {
+          "frequency": "여러 번",
+          "context": "업무상"
+        },
+        "face_washing": {
+          "frequency": "unknown",
+          "purpose": "unknown"
+        }
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
     }
   },
   "kb_judgments": [
@@ -6043,25 +5796,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-손 세정 횟수만으로 얼굴 세안의 차이를 판정하지 않아요. [kb:B-C05@0.6.1]
+업무상 손을 여러 번 씻는다는 사실을 얼굴의 반복 세안으로 옮기지 않아요. 얼굴 세안 횟수와 목적은 미상이에요 [kb:B-C05@0.6.1].
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+얼굴 세정에서는 얼굴 세안에서 제거 이유 없는 습관적 반복을 비교해요 [kb:B-C05@0.6.1]. 제공된 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+필요한 손 위생을 줄이라는 뜻이 아니며 얼굴의 실제 횟수와 목적을 확인해야 해요.
 
-## syn-sol-0270 — 흙 노출 후 별도 얼굴 세정
+## syn-sol-0270
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `eb64ebd1688962d387d7b07ca97ed7d40b20b5bd2be2fd08ee042eda9e4a8359`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `39843b696f9b6e39cb01dcb263fd79adf2bc91e8a0b46f6743cc9af96f3cfbfd`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-흙 제거라는 별도 목적을 고려하며 횟수만으로 차이를 만들지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -6069,18 +5818,26 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "실외 작업 중 얼굴에 흙이 묻어 평소 세안 외에 씻었습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
       "state": "known",
       "value": {
         "extra_wash_reason": "얼굴의 흙",
-        "automatic_repeat": false
+        "automatic_repeat": false,
+        "context": "실외 작업 중 평소 세안 외 추가"
       },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.body_site": {
+      "variable_id": "method.body_site",
+      "state": "known",
+      "value": "face",
       "source": "synthetic_fixture",
       "confirmed_by_user": true
     }
@@ -6126,25 +5883,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-흙 제거라는 별도 목적을 고려하며 횟수만으로 차이를 만들지 않아요. [kb:B-C05@0.6.1]
+실외 작업 중 얼굴에 흙이 묻어 평소 세안 외에 씻으셨군요. 추가 세정의 맥락을 살피며 횟수만으로 불필요한 반복이라고 보지 않아요. [kb:B-C05@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+일반 얼굴 세안 안내는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+흙이 실제로 완전히 제거됐는지는 확인되지 않았어요.
 
-## syn-sol-0271 — 땀과 추가 단계의 연결 미상
+## syn-sol-0271
 
-- 유형·분할: `distractor_or_defense` / `solution` / `val_internal`
-- 내용 해시: `b1829171c5c7a7da0777288f5c4cb8f859f686054788753e5dd546512ebf4816`
+- 모드·분할: `solution` / `val_internal`
+- 현재 내용 해시: `2d55d1d8ca91aa8c51e21a578aee9760a44ed0384f481e0c090ebafb8595a7bd`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-운동 후 세안과 추가 단계의 이유를 구분해 확인해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -6152,16 +5905,26 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "운동 후 땀은 확인했지만 같은 세안에서 두 번째 단계의 목적은 모릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "cleansing.repeat_wash": {
       "variable_id": "cleansing.repeat_wash",
       "state": "known",
       "value": {
-        "extra_step_reason": "unknown"
+        "extra_step_reason": "unknown",
+        "second_step_present": true
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "cleansing.target_load": {
+      "variable_id": "cleansing.target_load",
+      "state": "known",
+      "value": {
+        "sweat_after_exercise": true
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -6208,25 +5971,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-운동 후 세안과 추가 단계의 이유를 구분해 확인해요. [kb:B-C05@0.6.1]
+운동 후 땀이 난 것은 확인됐지만 같은 세안의 두 번째 단계가 어떤 목적이었는지는 미상이에요. [kb:B-C05@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+운동 후 세안과 추가 단계의 목적은 별도로 살펴요. 일반 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+추가 단계가 불필요했다고 단정하지 않아요.
 
-## syn-sol-0272 — 기기 보유와 얼굴 사용 구분
+## syn-sol-0272
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `0d594eb9d7152d4130a1b681ef11534e29b62569b0af42e9051584c1a2090d2b`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `5c17abd19f09d0702d3bfc04a5ccd478be09cfe399c1c1043ff5cd994e9f4069`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-기기 보유만으로 얼굴 마찰을 단정하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -6234,17 +5993,23 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "세정 기기를 보유하지만 얼굴 사용 여부와 압력은 확인되지 않았습니다.",
-      "source": "synthetic_fixture",
-      "confirmed_by_user": true
-    },
-    "method.current_routine": {
-      "variable_id": "method.current_routine",
       "state": "unknown",
       "value": null,
       "source": "synthetic_fixture",
       "confirmed_by_user": false
+    },
+    "method.current_routine": {
+      "variable_id": "method.current_routine",
+      "state": "known",
+      "value": {
+        "cleansing_device": {
+          "owned": true,
+          "used_on_face": "unknown",
+          "pressure": "unknown"
+        }
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
     }
   },
   "kb_judgments": [
@@ -6288,25 +6053,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-기기 보유만으로 얼굴 마찰을 단정하지 않아요. [kb:B-C02@0.6.1]
+세정 기기를 갖고 있지만 얼굴에 사용했는지와 힘은 미상이에요. 소유만으로 얼굴에 강한 마찰이 있었다고 판단하지 않아요 [kb:B-C02@0.6.1].
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+얼굴 세정에서는 손가락 외 도구의 사용과 강한 마찰을 구분해요 [kb:B-C02@0.6.1]. 일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다뤄요 [ref:S03].
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+얼굴 사용 여부와 사용했다면 압력을 확인해야 해요.
 
-## syn-sol-0273 — 기기는 손에만 쓰고 얼굴은 강한 수건 마찰
+## syn-sol-0273
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `d47effb4339f4d8535fb11278f2c4b462b27b7497e123f957964e3d91164d84e`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `ce2309227408089a96184f8671761f92b162744d7934a672b914397a7b86120a`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-손의 기기 사용과 별개로 얼굴의 강한 수건 마찰을 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -6314,10 +6075,10 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "손에 세정 기기를 쓰며 얼굴은 세안 후 수건으로 강하게 문지릅니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
@@ -6325,6 +6086,35 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
       "value": {
         "face_towel_rubbing": "strong",
         "device_site": "hands"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "adjunct.device_use": {
+      "variable_id": "adjunct.device_use",
+      "state": "known",
+      "value": {
+        "site": "hands",
+        "purpose": "세정"
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.body_site": {
+      "variable_id": "method.body_site",
+      "state": "known",
+      "value": "face",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.friction": {
+      "variable_id": "method.friction",
+      "state": "known",
+      "value": {
+        "site": "face",
+        "tool": "수건",
+        "intensity": "strong",
+        "timing": "세안 후"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -6371,25 +6161,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-손의 기기 사용과 별개로 얼굴의 강한 수건 마찰을 검토해요. [kb:B-C02@0.6.1]
+손에 사용하는 세정 기기와 별개로, 얼굴은 세안 뒤 수건으로 강하게 문지른다고 하셨어요. 얼굴의 강한 마찰을 줄이고 물기를 가볍게 닦는 방법을 살펴봐요. [kb:B-C02@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+일반 세안 안내는 부드러운 세정과 헹굼을 설명해요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+손의 기기를 얼굴에도 사용했다고 추정하거나 피부 문제의 원인을 단정하지 않아요.
 
-## syn-sol-0275 — 기기 미사용과 수건 압력 미상
+## syn-sol-0275
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `189eb19fff4d78444afcb3690e23d74a5a57b587569161a7d2a451e2d6cc607d`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `2d4d77d9f86f32f728c33ad7f11efe64266cf9ed63bb952868677f17a7066dd7`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-기기를 쓰지 않는 사실만으로 수건 마찰까지 확인된 것은 아니에요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -6397,10 +6183,10 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "얼굴에 기기는 쓰지 않지만 수건으로 말릴 때의 압력은 기억하지 못합니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
@@ -6454,25 +6240,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-기기를 쓰지 않는 사실만으로 수건 마찰까지 확인된 것은 아니에요. [kb:B-C02@0.6.1]
+얼굴에 기기를 쓰지 않더라도 수건으로 말릴 때의 압력은 알 수 없어요. [kb:B-C02@0.6.1]
 
 ### 근거 및 이유
-일반 얼굴 세안 자료는 부드러운 세정과 헹굼을 다루며 개별 결과를 확정하지 않아요. [ref:S03]
+기기 사용 여부와 건조할 때의 접촉은 다른 행동이에요. 일반 세안 자료는 부드러운 세정과 헹굼을 다뤄요. [ref:S03]
 
 ### 확인이 필요한 한계
-확인되지 않은 얼굴의 행동이나 사용 목적은 추정하지 않아요.
+기억하지 못하는 압력을 추정하지 않아요.
 
-## syn-sol-0276 — 서로 다른 두 제품의 제거 표시
+## syn-sol-0276
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `a9b803737f12f0efc1fffe60ea6b4cf0341cc8b023fba47f3de04825d7161892`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `49934636fc21a22c6d276a4f6757475754780bec5deb7912580986280a18f780`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-다른 제품의 표시를 사용 제품에 적용하지 않아요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -6480,17 +6262,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "사용한 내수성 제품의 제거 표시는 미상이고 다른 제품의 제거 표시만 확인했습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
-        "used_product_removal": "unknown",
-        "other_product_removal": "confirmed"
+        "used_water_resistant_product": {
+          "removal_instruction": "unknown"
+        },
+        "other_product": {
+          "removal_instruction": "confirmed"
+        }
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -6537,25 +6323,21 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-다른 제품의 표시를 사용 제품에 적용하지 않아요. [kb:B-I01@0.6.1]
+사용한 내수성 제품의 제거 표시는 확인되지 않았고 확인된 표시는 다른 제품의 것이에요. 그 표시를 사용 제품에 그대로 적용하지 않아요.
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+선크림 제거에서는 내수성 표시만으로 무조건 반복 세안하는 행동을 검토해요 [kb:B-I01@0.6.1]. 소규모 영상 연구의 제한된 조합으로 모든 제품의 제거법을 일률적으로 정할 수 없어요 [ref:S08].
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+사용한 제품의 해당 버전과 제거 지시가 여전히 미상이에요.
 
-## syn-sol-0277 — 내수성 표시만을 이유로 연속 세 단계
+## syn-sol-0277
 
-- 유형·분할: `distractor_or_defense` / `solution` / `train`
-- 내용 해시: `c0754583c6adc18ac77985e1728c4d511cbea75d527f2869021cec4091eb9ea1`
+- 모드·분할: `solution` / `train`
+- 현재 내용 해시: `d72e0888dcec31fea882257655073c4f7b3a2e1a8e9d326cf69836c47b24563e`
 - 사람 검수: **미검수**
 
-### 설계한 판정 근거 — 엔진 실행 결과가 아닙니다
-
-내수성 표시만을 근거로 고정한 반복 단계를 검토해요.
-
-### 입력
+### 입력 원문
 
 ```json
 {
@@ -6563,16 +6345,41 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
   "confirmed_observations": {
     "constraints.decision_context": {
       "variable_id": "constraints.decision_context",
-      "state": "known",
-      "value": "실제 사용한 제품의 내수성 표시만을 이유로 매번 얼굴을 세 단계로 씻습니다.",
+      "state": "unknown",
+      "value": null,
       "source": "synthetic_fixture",
-      "confirmed_by_user": true
+      "confirmed_by_user": false
     },
     "method.current_routine": {
       "variable_id": "method.current_routine",
       "state": "known",
       "value": {
         "automatic_multi_step_for_water_resistant": true
+      },
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "method.body_site": {
+      "variable_id": "method.body_site",
+      "state": "known",
+      "value": "face",
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "cleansing.steps": {
+      "variable_id": "cleansing.steps",
+      "state": "known",
+      "value": 3,
+      "source": "synthetic_fixture",
+      "confirmed_by_user": true
+    },
+    "cleansing.repeat_wash": {
+      "variable_id": "cleansing.repeat_wash",
+      "state": "known",
+      "value": {
+        "automatic_multi_step_for_water_resistant": true,
+        "frequency": "매번",
+        "reason": "실제 사용 제품의 내수성 표시만"
       },
       "source": "synthetic_fixture",
       "confirmed_by_user": true
@@ -6619,10 +6426,10 @@ A의 실제 편안함은 미상이에요. [kb:B-M03@0.6.1]
 ### 응답 초안 — 미승인
 
 ### 핵심 안내
-내수성 표시만을 근거로 고정한 반복 단계를 검토해요. [kb:B-I01@0.6.1]
+실제 사용한 제품의 내수성 표시만 보고 매번 세 단계로 씻고 계시군요. 광보호는 유지하면서 해당 제품의 제거 지시와 실제 필요를 살펴 단계가 필요한지 검토해요. [kb:B-I01@0.6.1]
 
 ### 근거 및 이유
-제한된 제품 조합을 비교한 소규모 영상 연구는 모든 내수성 제품에 일률적인 제거 방법을 확정하지 않아요. [ref:S08]
+소규모 비교는 제한된 제품과 세정법만 다뤄 모든 내수성 제품에 같은 제거법을 정하지 않아요. [ref:S08]
 
 ### 확인이 필요한 한계
-실제 사용 제품의 표시와 버전이 확인되지 않은 부분은 미상으로 남아요.
+이 정보만으로 특정 단계 수가 모든 제품에 충분하다고 단정할 수 없어요.

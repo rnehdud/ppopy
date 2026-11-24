@@ -90,8 +90,18 @@
           "revision": "200-cd-round1",
           "reason": "손 씻기 후 견디는 현재 보습 가족 통합",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0397",
@@ -178,7 +188,19 @@
           "revision": "200-cd-round1",
           "reason": "타인의 보습과 본인 미상의 기존 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
       ]
     },
     {
@@ -207,7 +229,12 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "손이 건조한데도 손 보습을 계속 하지 않고 건조하게 두고 있어요. 손 위생은 유지해요.",
+            "value": {
+              "site": "hands",
+              "dryness": "있음",
+              "moisturizing": "계속 하지 않음",
+              "hand_hygiene": "유지"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -237,7 +264,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "1199cd7e4c4518b91fba3ddee11656451cab15f52a03ddc3b9327a603d5d64b9",
+      "input_sha256": "3ff951537bcff33016e31295a0e007a6f0c68ab6db6dd0b20339977885a12093",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -266,8 +293,25 @@
           "revision": "200-cd-round1",
           "reason": "건조한 손 방치 가족 통합",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰에 맞춰 안내를 구체화하고 입력 사실을 등록 슬롯으로 구조화했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손이 건조한데도 손 보습을 계속 하지 않고 건조하게 두고 있어요. 손 위생은 유지해요.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "관찰과 미상·계획 및 제품·부위를 구분했어요."
     },
     {
       "id": "syn-sol-0399",
@@ -292,10 +336,27 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "hands",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "repeated",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "손에 같은 핸드크림을 바를 때마다 불편하지만 계속 쓰고 있어요. 다른 제품에 대한 반응은 몰라요.",
+            "value": {
+              "hand_cream": "continued_use",
+              "other_products_reaction": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -325,7 +386,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "a61495b7d9441256cab8289b2b3e50eb9b46038d4962a8375b735520087c4da1",
+      "input_sha256": "2adb7afa772994a3b94d2ed43b2f501f07f215a9b8f17f31a65e3dde5665da4a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -354,7 +415,38 @@
           "revision": "200-cd-round1",
           "reason": "특정 제품의 반복 불편과 계속 사용 가족 통합",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손에",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.skin.current_discomfort.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 핸드크림을 바를 때마다 불편",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 핸드크림을 바를 때마다 불편하지만 계속 쓰고 있어요. 다른 제품에 대한 반응은 몰라요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 주체·제품·부위·시점과 미상을 분리해 보존했어요."
       ]
     },
     {
@@ -442,8 +534,18 @@
           "revision": "200-cd-round1",
           "reason": "손 씻기 후 견디는 현재 보습 가족 통합 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0401",
@@ -530,8 +632,18 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0402",
@@ -559,7 +671,13 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "손에 쓰는 핸드크림에 무향료라고 적혀 있지만 바를 때마다 불편해요. 그래도 현재 계속 사용해요.",
+            "value": {
+              "site": "hands",
+              "product": "핸드크림",
+              "label": "무향료",
+              "reaction": "바를 때마다 불편",
+              "use": "계속"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -589,7 +707,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "b59d9e14977798282e289e5f4c22f0a9aa429c22a518ea48208d8b209f692369",
+      "input_sha256": "1d5c8be49a7114299d74a2fa2c795ea993f423f5e18e96fe21d17bd2e85b53d4",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -618,8 +736,25 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰에 맞춰 안내를 구체화하고 입력 사실을 등록 슬롯으로 구조화했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손에 쓰는 핸드크림에 무향료라고 적혀 있지만 바를 때마다 불편해요. 그래도 현재 계속 사용해요.",
+          "connection": "원문 사실을 등록 슬롯에 부위·시점·행동별로 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "관찰과 미상·계획 및 제품·부위를 구분했어요."
     },
     {
       "id": "syn-sol-0403",
@@ -647,7 +782,10 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "손을 자주 씻으며 필요한 손 위생은 유지해요. 손 보습을 하는지는 확인되지 않았어요.",
+            "value": {
+              "handwashing": "자주 씻고 필요한 손 위생 유지",
+              "hand_moisturizing": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -677,7 +815,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "5a639dc96b395cdb2417dfb7e771370d14a43715156b49838e2c69b62e31ed41",
+      "input_sha256": "1b2d258a352ca8fb988b74c36884cc2a4adadfa32272f619cbdb981d484791f6",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -706,8 +844,25 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손을 자주 씻으며 필요한 손 위생은 유지해요. 손 보습을 하는지는 확인되지 않았어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0404",
@@ -794,7 +949,19 @@
           "revision": "200-cd-round1",
           "reason": "타인의 보습과 본인 미상의 기존 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
       ]
     },
     {
@@ -882,8 +1049,18 @@
           "revision": "200-cd-round1",
           "reason": "타인의 보습과 본인 미상의 기존 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0406",
@@ -911,7 +1088,10 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "친구는 손을 씻고 크림을 쓴다고 해요. 본인이 손을 씻은 후 보습하는지는 몰라요.",
+            "value": {
+              "friend": "손을 씻고 크림 사용",
+              "self_after_handwashing": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -941,7 +1121,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "6dceffe02a00f323b01f2047a07d36e58e46b6bbb9d12093a7e7425846d59c89",
+      "input_sha256": "ac3548797b0c8b0be1725c4a03fdc75205bd04e04af0c9aeb35c6460768958af",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -970,8 +1150,25 @@
           "revision": "200-cd-round1",
           "reason": "타인의 보습과 본인 미상의 기존 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "친구는 손을 씻고 크림을 쓴다고 해요. 본인이 손을 씻은 후 보습하는지는 몰라요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0407",
@@ -1058,7 +1255,19 @@
           "revision": "200-cd-round1",
           "reason": "타인의 보습과 본인 미상의 기존 가족·분할 재사용",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
       ]
     },
     {
@@ -1146,8 +1355,18 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0409",
@@ -1172,10 +1391,22 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "product.fragrance": {
+            "variable_id": "product.fragrance",
+            "state": "known",
+            "value": {
+              "candidate_label": "무향료",
+              "aromatic_essential_oils": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "손 보습 후보에 무향료라고 적혀 있어요. 향성 에센셜오일 포함 여부는 확인하지 못했어요.",
+            "value": {
+              "candidate": "손 보습제"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1205,7 +1436,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "9ee50d9a7da561ea99faa962476be87f5a9f9de8b5d7c09eea1f1e71af835b27",
+      "input_sha256": "84d1c8915871f17c428a890f732c0ea4867108928e5a049d194ff51455915450",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -1234,8 +1465,31 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.product.fragrance.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손 보습 후보에 무향료라고 적혀 있어요. 향성 에센셜오일 포함 여부는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손 보습 후보에 무향료라고 적혀 있어요. 향성 에센셜오일 포함 여부는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0410",
@@ -1263,7 +1517,13 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "필요한 손 씻기를 계속하고 씻은 뒤 현재 핸드크림을 발라요. 이 제품 사용에 불편은 없고 진료 지시는 없어요.",
+            "value": {
+              "necessary_handwashing": "continued",
+              "current_handcream": "after_washing",
+              "clinician_instructions": "none",
+              "current_handcream_discomfort": false,
+              "handcream_intended_site": "hands"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1293,7 +1553,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "0dab4d921d1eac049c8d08b090196e1be81b3daf8078e063a798aacf5377de51",
+      "input_sha256": "d614de8205a022b5a977c73c0ba79ae6d4caf445ac24392aac543779e342b87f",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -1322,7 +1582,38 @@
           "revision": "200-cd-round1",
           "reason": "손 씻기 후 견디는 현재 보습 가족 통합",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "필요한 손 씻기를 계속하고 씻은 뒤 현재 핸드크림을 발라요. 이 제품 사용에 불편은 없고 진료 지시는 없어요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.current_handcream_discomfort",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "이 제품 사용에 불편은 없고",
+          "connection": "원문에 명시된 관계를 분리하여 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.handcream_intended_site",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "현재 핸드크림을 발라요",
+          "connection": "원문에서 확인한 제품 용도 또는 해당 제품에 한정된 경험을 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "제품·기기 용도와 실제 접촉 부위, 제품 사용 시에 한정된 불편을 구분했어요."
       ]
     },
     {
@@ -1410,7 +1701,19 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
       ]
     },
     {
@@ -1498,8 +1801,18 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0413",
@@ -1586,8 +1899,18 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0414",
@@ -1615,7 +1938,11 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "얼굴 보습제는 편안해요. 손 보습 제품의 사용 여부와 반응은 모른다고 해요.",
+            "value": {
+              "face_moisturizer": "편안함",
+              "hand_product_use": "unknown",
+              "hand_product_reaction": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1645,7 +1972,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "9ef0ed3255a965d30e6638eff282f087fa519275d4d2f522883d0f96f587a0fb",
+      "input_sha256": "e01414a3ac4c4984d7c25eec79612756d38954a3a696ec3fe677eec7110c511d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -1674,8 +2001,25 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "얼굴 보습제와 손 보습 제품이 동일한지 미상인 상태를 유지했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "얼굴 보습제는 편안해요. 손 보습 제품의 사용 여부와 반응은 모른다고 해요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0415",
@@ -1762,7 +2106,19 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
       ]
     },
     {
@@ -1791,7 +2147,10 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "손 씻기 뒤 편안한 핸드크림을 쓰고 있어요. 그 밖의 젖은 작업 여부는 확인되지 않았어요.",
+            "value": {
+              "handwashing_after": "편안한 핸드크림 사용",
+              "other_wet_work": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1821,7 +2180,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "c4742fe1c163bdce2d89e3ed68c256e7504fc03b0f4614fd9ee9362e22a1345e",
+      "input_sha256": "cc250e576d562a0e0fa17e6241cbe62bd809b9d4fabd7db2b177cd06b32c29f4",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -1850,8 +2209,25 @@
           "revision": "200-cd-round1",
           "reason": "손 씻기 후 견디는 현재 보습 가족 통합",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손 씻기 뒤 편안한 핸드크림을 쓰고 있어요. 그 밖의 젖은 작업 여부는 확인되지 않았어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0417",
@@ -1879,7 +2255,11 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "필요한 손 씻기를 유지하며 핸드크림을 사용해요. 해당 크림을 바를 때마다 불편한데도 계속 사용해요.",
+            "value": {
+              "necessary_handwashing": "continued",
+              "handcream": "continued_despite_discomfort",
+              "discomfort_when_using_handcream": "repeated"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1909,7 +2289,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "3a2d2f155af2f5ede2d98486510e0db21cf1adeb1555e8fdf9242abe18b90522",
+      "input_sha256": "08c886298904b44d6db9632c7dbccf8b7b553a6106df3f7ec458a6035d68b6fb",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -1938,7 +2318,32 @@
           "revision": "200-cd-round1",
           "reason": "특정 제품의 반복 불편과 계속 사용 가족 통합",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "필요한 손 씻기를 유지하며 핸드크림을 사용해요. 해당 크림을 바를 때마다 불편한데도 계속 사용해요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.discomfort_when_using_handcream",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "해당 크림을 바를 때마다 불편",
+          "connection": "원문에서 확인한 제품 용도 또는 해당 제품에 한정된 경험을 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "제품·기기 용도와 실제 접촉 부위, 제품 사용 시에 한정된 불편을 구분했어요."
       ]
     },
     {
@@ -2026,8 +2431,18 @@
           "revision": "200-cd-round1",
           "reason": "건조한 손 방치 가족 통합 지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 비교 조건을 연결했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰과 근거를 유지했어요."
     },
     {
       "id": "syn-sol-0419",
@@ -2114,8 +2529,18 @@
           "revision": "200-cd-round1",
           "reason": "지정된 네 방어 유형에 맞지 않는 HN 표기 삭제",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0420",
@@ -2140,10 +2565,32 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "product.fragrance": {
+            "variable_id": "product.fragrance",
+            "state": "known",
+            "value": {
+              "old_package": "무향료 표시",
+              "current_package": "표시 미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.version": {
+            "variable_id": "product.version",
+            "state": "known",
+            "value": {
+              "current": "미확인",
+              "old_to_current_match": "미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "손 보습제 예전 포장에는 무향료라고 적혀 있었어요. 현재 포장의 버전과 표시는 확인하지 못했어요.",
+            "value": {
+              "product": "손 보습제"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -2173,7 +2620,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "c4e6fe897fdad4704a9cca67d8c397b83120b33cb54eca138ffc893e99ff59f7",
+      "input_sha256": "e0ce473fb315c9eb66ca06cc1c3c52afd46819f831269b21a949471797a3f04e",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-M04",
@@ -2196,7 +2643,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "손 보습의 관찰과 확인되지 않은 정보를 구분해요."
+      "novelty_note": "손 보습의 관찰과 확인되지 않은 정보를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.product.fragrance.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손 보습제 예전 포장에는 무향료라고 적혀 있었어요. 현재 포장의 버전과 표시는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.product.version.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손 보습제 예전 포장에는 무향료라고 적혀 있었어요. 현재 포장의 버전과 표시는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "손 보습제 예전 포장에는 무향료라고 적혀 있었어요. 현재 포장의 버전과 표시는 확인하지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0421",
@@ -2277,7 +2755,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "합성 개발 사례이며 실제 사용자 기록이나 엔진 실행 결과가 아니에요.",
-      "novelty_note": "손 보습의 관찰과 확인되지 않은 정보를 구분해요."
+      "novelty_note": "손 보습의 관찰과 확인되지 않은 정보를 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "각 주체와 제품에 대한 확인 사항과 미상을 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "원문 관찰과 판단을 유지했어요."
+      ]
     },
     {
       "id": "syn-hold-0123",

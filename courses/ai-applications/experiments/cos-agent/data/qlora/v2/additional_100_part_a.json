@@ -3414,8 +3414,20 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
             "state": "known",
-            "value": "심한 통증이 이어지지만 상담 전에 판매자 증빙을 모두 모으려는 요청",
+            "value": {
+              "seller_evidence": {
+                "requested_collection": "모두",
+                "planned_relative_to_consultation": "before"
+              }
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -3440,7 +3452,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "be595ca633bb5bcf59d95d5ea5100e37cdc266f3b3865b0a28eb891c06687148",
+      "input_sha256": "3af492eba88e4a80f45d292122d580ee4dfce76990618979867528b41d4da0a6",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-Q06",
@@ -3473,7 +3485,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "answer": "### 개별 권고 보류 안내\n심한 통증과 불편이 지속되고 있어 개별 제품과 루틴 권고를 보류해요. 제품 진위에 우려가 있다는 사실은 남기되, 가품이거나 그 제품이 통증의 원인이라고 확정하지 않아요 [kb:B-B01@0.6.1] [kb:B-Q06@0.6.1].\n\n### 필요한 다음 단계\n지금은 판매자 증빙을 모두 모으는 일보다 의료 전문가의 도움을 받는 것이 우선이에요. 증빙 수집 때문에 상담을 늦추지 말고 심한 통증이 이어지는 상태를 먼저 확인받아야 해요. 영수증이 현재 없다고 해서 도움을 받기 위한 선행 조건으로 요구하지 않아요 [kb:B-Q06@0.6.1]."
+      "answer": "### 개별 권고 보류 안내\n심한 통증과 불편이 계속되고 있어 제품이나 루틴에 대한 개별 안내는 보류해요 [kb:B-B01@0.6.1]. 정품인지, 제품이 통증과 관련이 있는지는 확인되지 않았어요.\n\n### 필요한 다음 단계\n판매자 증빙을 모으느라 상담을 늦추지 말고 우선 의료 전문가의 확인을 받아 주세요. 현재 영수증이 없어도 건강 문제의 확인을 미룰 이유가 되지는 않아요 [kb:B-Q06@0.6.1].",
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "범주형 결정 맥락에 들어간 서술을 미상으로 되돌렸고, 지속 통증과 증빙 수집 관계는 기존 전용 슬롯에 보존했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "심한 통증이 이어지지만 상담 전에 판매자 증빙을 모두 모으려는 요청",
+          "connection": "신규 제품 선택이나 현재 루틴 검토 중 어느 범주인지 확인할 수 없어 미상으로 둠. 통증과 상담 지연 관계는 기존 skin.pain, skin.current_discomfort, commerce.receipt_record에 남아 있음."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "상담 전에 판매자 증빙을 모두 모으려는 요청",
+          "connection": "모두 모으려는 요청과 상담 전이라는 선후 관계를 구조화하고 실행으로 취급하지 않음."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "지속적인 심한 통증, 진위 우려 및 영수증 부재와 증빙 수집으로 인한 상담 지연 가능성은 기존 슬롯에 그대로 남아요. 진위나 원인은 미확인 상태예요. 상담 전 판매자 증빙을 모두 모으려는 것은 실행이 아닌 요청으로 별도 기록했어요."
     }
   ],
   "input_revision": 4,

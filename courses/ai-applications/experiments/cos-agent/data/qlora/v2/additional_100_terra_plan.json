@@ -697,7 +697,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰된 노출과 재도포 여부에 맞춰 조치와 인용 범위를 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력은 변경하지 않았으며 접촉과 실제 행동을 구분했어요."
     },
     {
       "id": "syn-sol-0144",
@@ -911,7 +923,21 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0146",
@@ -1009,7 +1035,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0147",
@@ -1124,7 +1162,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰된 노출과 재도포 여부에 맞춰 조치와 인용 범위를 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력은 변경하지 않았으며 접촉과 실제 행동을 구분했어요."
     },
     {
       "id": "syn-sol-0148",
@@ -1215,7 +1265,21 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0149",
@@ -1243,7 +1307,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -1307,7 +1371,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "017fdbb5a9ac4563a3316df197233aef2447e224bbb2ab1ccc8c6294e17df2ab",
+      "input_sha256": "0a543833afa1afb894bf6d31f7c52dfc60288fbdc98c01425d978eb8d44bb20a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -1327,7 +1391,26 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "후보 비교를 등록된 신규 제품 선택 범주로 정규화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 선크림 후보 비교이므로 신규 제품 선택 범주."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0160",
@@ -1355,7 +1438,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -1419,7 +1502,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "83a4c7ecdd198d971a217ac4823ca1c0a5c20d17cb2753c8aaa1204f5d4d6fcc",
+      "input_sha256": "3c25329a85d8ddf5bca2551f9634866dfd802589dc9293adb19e80a162f51b54",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -1439,7 +1522,26 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 후보 비교를 허용된 새 제품 선택 범주로 정규화; 야외 계획은 기존 sun.outdoor_time에 유지"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0166",
@@ -2982,7 +3084,21 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-hold-0045",
@@ -3553,7 +3669,19 @@
           },
           "reason": "원문 의미가 명확한 고정 어휘로만 바꾸고 정도·원인·시점을 새로 만들지 않아요."
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-hold-0051",
@@ -5575,7 +5703,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -5638,7 +5766,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "be33a885f9c007f1024c28bd4d1a18eedea92e562f04b3151688d06cca1d9806",
+      "input_sha256": "c40e477b0be2edbbc6cf71294236eb18eef3bc75f8c8dbe06fc9ea12369335e6",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -5658,7 +5786,26 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 후보 비교를 허용된 새 제품 선택 범주로 정규화; 야외 계획은 기존 sun.outdoor_time에 유지"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0142",
@@ -5686,7 +5833,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -5736,7 +5883,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "53d1131333060c1821e3d7808ca12d193b7796e3d9bcb85ea73fd5c208f32508",
+      "input_sha256": "709c2804a61f12d15a261325cd2dd57f46cc163f30b578475a52cddae431a8af",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -5756,7 +5903,28 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "야외 선제품 비교는 신규 선택으로 표현"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0143",
@@ -5853,7 +6021,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0151",
@@ -5881,7 +6061,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -5944,7 +6124,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "6da9091855e14199c5e68ceaf9bd833e8704ea43c4cfc8f1a1e578f20e124ad8",
+      "input_sha256": "f14d306700fff176fd59958a08ec3a55e677c278ffffb319f3d717a7253e6cf9",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -5964,7 +6144,26 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 후보 비교를 허용된 새 제품 선택 범주로 정규화; 야외 계획은 기존 sun.outdoor_time에 유지"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0152",
@@ -5992,7 +6191,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -6048,7 +6247,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "b4658add90a7b2e5964c4753709ed7810cfb7e9e7b7876072df6acefd33ddada",
+      "input_sha256": "a3a2d00c20bb7b8cf657c04b2a32f0cf3f851772b695fb544a831737f17c29ed",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -6068,7 +6267,28 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "야외 선제품 비교는 신규 선택으로 표현"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0153",
@@ -6159,7 +6379,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0154",
@@ -6256,7 +6488,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0155",
@@ -6345,7 +6589,21 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0174",
@@ -8288,7 +8546,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0157",
@@ -8379,7 +8649,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0158",
@@ -8585,7 +8867,21 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0161",
@@ -8785,7 +9081,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0163",
@@ -8876,7 +9184,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0164",
@@ -8975,7 +9295,21 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0165",
@@ -9066,7 +9400,19 @@
       "source_origin": "new_synthetic",
       "source_scenario_id": null,
       "source_turn_id": null,
-      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요."
+      "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0183",
@@ -9904,5 +10250,6 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요."
     }
-  ]
+  ],
+  "latest_revision": "ppo39-quality-20261124"
 }

@@ -28,10 +28,24 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.temperature_history": {
+            "variable_id": "storage.temperature_history",
             "state": "known",
-            "value": "합성 화장품이 뜨거운 차 안에 있었어요. 정확한 온도와 시간은 모르고 지금은 닫아서 직사광선을 피해 보관해요.",
+            "value": {
+              "past_hot_car": true,
+              "temperature": "unknown",
+              "duration": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "current_direct_sunlight_avoided": true,
+              "currently_closed": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -61,7 +75,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d081ae044462717fc70e0f1898f6e499628ba2070052a2b545218ccd0c2fe29e",
+      "input_sha256": "d70d39c60cbfc7f25e663d33cfe79817157f22fad798d413de053bc24cf017d8",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -82,7 +96,34 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새로 작성한 합성 사례이며 실제 사용자·제품·회수 공지나 엔진 실행 결과가 아닙니다.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례별 사실과 미상을 분리하고 판단에 맞춰 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.temperature_history.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "뜨거운 차 안에 있었어요. 정확한 온도와 시간은 모르고",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "지금은 닫아서 직사광선을 피해 보관해요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 부위·제품·시점과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0474",
@@ -161,7 +202,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0475",
@@ -251,8 +304,15 @@
           "old_input_sha256": "3cd32913bffadd0a99f4ce735521fdd223a8c3691772bfd73a3431fb273f2e0d",
           "new_input_sha256": "cd4c1a529ea663b19b707c893bbd83e435c9a524d8749e7fe26af68352e1167d",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0476",
@@ -277,10 +337,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.temperature_history": {
+            "variable_id": "storage.temperature_history",
             "state": "known",
-            "value": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+            "value": {
+              "배송 중": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "현재": "뚜껑 닫힘"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "현재": "직사광선 없는 곳"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -310,7 +390,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "a16dc20adf4c7691308b69fb9613bb36447881fa50e772af9e0545cc3c2e4377",
+      "input_sha256": "a963fd2b24b0665e3ffa722d8525e895438dc1c77ce6fa677ea8add0151161d7",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -331,7 +411,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.temperature_history.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0477",
@@ -410,7 +521,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0478",
@@ -489,7 +614,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0479",
@@ -514,10 +651,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "가": "뚜껑 계속 열림",
+              "나": "뚜껑 닫힘"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "합성 화장품 가의 뚜껑은 계속 열려 있었어요. 나의 뚜껑은 닫혀 있었고 두 제품의 내용물 상태는 확인하지 못했어요.",
+            "value": {
+              "가의 내용물 상태": "미확인",
+              "나의 내용물 상태": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -547,7 +697,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "62d60ef59fbe785ba5b1255e7f9b721943f3db004815aa39506753acda4d100f",
+      "input_sha256": "e05205ce8b52a2ed1ebb3c06d7331c34b6491ef36ec512682beb148086d67160",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -579,8 +729,28 @@
           "old_input_sha256": "689f78e4d47a51e6132917399ae73cd02895c954aaaa29e1813d7eb2858a327b",
           "new_input_sha256": "62d60ef59fbe785ba5b1255e7f9b721943f3db004815aa39506753acda4d100f",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 뚜껑은 계속 열려 있었어요. 나의 뚜껑은 닫혀 있었고 두 제품의 내용물 상태는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 뚜껑은 계속 열려 있었어요. 나의 뚜껑은 닫혀 있었고 두 제품의 내용물 상태는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0480",
@@ -605,10 +775,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "현재": "닫힘"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "과거 직사광선 노출": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+            "value": {
+              "보관 표시 내용": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -638,7 +828,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d23c4af3db8d8b95bbe9f44d9c12acb5fc7a4ba475dbd72ac23ceeeaf3e296b9",
+      "input_sha256": "716743feba434be82cf825701fdae0139ac358994265f11b1feab295cbda6737",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -659,7 +849,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0481",
@@ -684,10 +905,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "continuous_direct_sunlight_at_window": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.temperature_history": {
+            "variable_id": "storage.temperature_history",
+            "state": "known",
+            "value": {
+              "temperature_measured": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "합성 화장품을 창가의 직사광선 아래에 계속 두었어요. 온도와 내용물의 현재 안정성은 측정하지 않았어요.",
+            "value": {
+              "current_product_stability_measured": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -717,7 +958,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "3bb0958a4bdf00b69657b54fac001e199056b5239f0235d67cbd170ee5fd7bd1",
+      "input_sha256": "3f24d2582b102afae839b291711a251d97fbdc9323f6bd1b294a58f636033091",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -749,7 +990,35 @@
           "old_input_sha256": "c474783f2c553e2e3c683d01f40d404d48d38c562d4877aa14fa4af476d77372",
           "new_input_sha256": "3bb0958a4bdf00b69657b54fac001e199056b5239f0235d67cbd170ee5fd7bd1",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례별 사실과 미상을 분리하고 판단에 맞춰 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "창가의 직사광선 아래에 계속 두었어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.storage.temperature_history.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "온도와 내용물의 현재 안정성은 측정하지 않았어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "내용물의 현재 안정성은 측정하지 않았어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 부위·제품·시점과 미상을 보존했어요."
       ]
     },
     {
@@ -816,7 +1085,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0483",
@@ -882,7 +1165,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0484",
@@ -905,10 +1200,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
             "state": "known",
-            "value": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+            "value": {
+              "개봉일": "기록함"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.pao": {
+            "variable_id": "storage.pao",
+            "state": "known",
+            "value": {
+              "표시": "가려짐"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "표시기한": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -927,7 +1242,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "c8c6df9ef166cd667dfc1e540298d1c6e54cec52ad7dcf83efd11397eb088919",
+      "input_sha256": "ab814c85032ee6effbff84d459309f33d033277f95b52b516dad4b655fbf6aa0",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -948,7 +1263,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.pao.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.expiry.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0485",
@@ -1014,7 +1360,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0486",
@@ -1080,7 +1440,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0487",
@@ -1103,10 +1475,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.purchased_at": {
+            "variable_id": "storage.purchased_at",
             "state": "known",
-            "value": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+            "value": {
+              "날짜": "확인 가능"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "표시기한": "확인 가능"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
+            "state": "known",
+            "value": {
+              "개봉 여부": "기억나지 않음"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1125,7 +1517,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d3c4c0a4bd8a4baec035eeb3130108288d50561c78a2f8e2dbd5beaafbdc3101",
+      "input_sha256": "b697dbca397283e75a52ce2d4da54694ca30d849aa3f4dd8ed86ec45cdd7a06a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -1146,7 +1538,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.purchased_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.expiry.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0488",
@@ -1212,7 +1635,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0489",
@@ -1277,7 +1714,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0490",
@@ -1300,10 +1749,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "product.version": {
+            "variable_id": "product.version",
+            "state": "known",
+            "value": {
+              "대용량과 소용량 일치": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "대용량": "보관 지침 표시 확인",
+              "소용량": "보유품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+            "value": {
+              "제품 관계": "같은 이름"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1322,7 +1792,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "22bd8f0401a1f7a1436afa723cebd448b7f19e8d9adc59da9866b7d4a650d287",
+      "input_sha256": "a0848a7b642ab5b9fb26922d5a3bca7ae32a26073a1c5a6afe875286de16bc6d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-Q03",
@@ -1342,7 +1812,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.product.version.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0491",
@@ -1407,7 +1908,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 상황과 미확인 사항을 구분하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "관찰된 제품·부위·행동과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0492",
@@ -1472,7 +1987,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0493",
@@ -1495,10 +2022,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "product.version": {
+            "variable_id": "product.version",
+            "state": "known",
+            "value": {
+              "이전과 재구매품 일치": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "이전 용기": "성분표 남음",
+              "새 용기": "표시 미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+            "value": {
+              "same_name_repurchase": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1517,7 +2065,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "7e6603d4e8d2251dfc90be501c9d1950b6d346e4d8c5e3a00fc018c54c7dd785",
+      "input_sha256": "3d28b6f8476110fb8eeeaa117d8f4adb826a4e931a21e8ba6ebd438470f81a6a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-Q03",
@@ -1537,7 +2085,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.product.version.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.product.inci.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0494",
@@ -1602,7 +2181,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 상황과 미확인 사항을 구분하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "관찰된 제품·부위·행동과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0495",
@@ -1668,7 +2261,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0496",
@@ -1691,10 +2296,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.purchased_at": {
+            "variable_id": "storage.purchased_at",
             "state": "known",
-            "value": "합성 화장품 가의 구매일은 알지만 나의 구매일은 몰라요. 두 용기의 개봉일도 확인하지 못했어요.",
+            "value": {
+              "가": "알고 있음",
+              "나": "모름"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
+            "state": "known",
+            "value": {
+              "가": "미확인",
+              "나": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1713,7 +2331,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "5fd229eb43b8da8f72c52b660ef87b70995d155e430603fe2a28a87de6749db1",
+      "input_sha256": "3621619c009469610beb29739ecc19fe59c0abacb93a33c8c1c17a9ad14a50ea",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -1734,7 +2352,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원문 관찰을 구조화하고 해당 사례의 근거와 한계에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.purchased_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 구매일은 알지만 나의 구매일은 몰라요. 두 용기의 개봉일도 확인하지 못했어요.",
+          "connection": "원문 관찰을 주체·부위·제품·시점별로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 구매일은 알지만 나의 구매일은 몰라요. 두 용기의 개봉일도 확인하지 못했어요.",
+          "connection": "원문 관찰을 주체·부위·제품·시점별로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "타인과 본인, 현재와 이전, 미상과 부정을 구분했어요."
     },
     {
       "id": "syn-sol-0497",
@@ -1800,7 +2443,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 상황과 미확인 사항을 구분하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "관찰된 제품·부위·행동과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0498",
@@ -1865,7 +2522,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-hold-0146",

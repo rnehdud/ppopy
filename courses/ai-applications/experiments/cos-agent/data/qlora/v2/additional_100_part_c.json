@@ -3456,10 +3456,10 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "둘 중 하나씩 다시 써서 원인을 시험하고 싶음",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "skin.distribution": {
             "variable_id": "skin.distribution",
@@ -3471,6 +3471,19 @@
                   "statement": "붓기와 통증이 계속됨"
                 }
               ]
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "requested_trial": {
+                "products": "둘 중 하나씩",
+                "purpose": "원인을 시험",
+                "status": "희망"
+              }
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -3490,7 +3503,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "997c48479570f650f2f2a24e2bd8312c88c06ec7fcee4eeb51ac719e9e88bbb6",
+      "input_sha256": "0a24311a2d82bf68ea7917d2e136209e806fe189a801aaf4ad0aa713b4cf1b46",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -3510,7 +3523,7 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n지속되는 붓기와 통증이 있어 재노출 시험이나 개별 루틴 설계를 보류해요. 어느 제품이 원인인지는 확정하지 않아요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n다시 노출해 원인을 시험하기보다 현재 지속 반응에 대해 의료진의 확인을 받아 주세요. 변경한 제품과 반응의 시작·지속 정보를 전달하되 어느 성분이 원인이라고 미리 단정하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n붓기와 통증이 계속되는 상황에서는 두 제품을 하나씩 다시 써 보는 시험과 개인별 루틴 결정을 미뤄요. 같은 날 세안제와 보습제를 바꿨다는 사실만으로 어느 쪽이 원인인지 구분할 수 없어요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n지속되는 반응을 의료진에게 확인받고, 두 제품을 바꾼 시점과 반응이 시작되어 이어진 경과를 알려 주세요. 확인되지 않은 원인이나 성분을 미리 결론내리지 않아요.",
       "normalization_history": [
         {
           "old_row_id": "syn-hold-0028",
@@ -3532,7 +3545,26 @@
           },
           "reason": "원문 의미가 명확한 고정 어휘로만 바꾸고 정도·원인·시점을 새로 만들지 않아요."
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비표준 결정 맥락을 확인된 요청 사실과 미상 범주로 분리하고 사례에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "둘 중 하나씩 다시 써서 원인을 시험하고 싶음",
+          "connection": "요청 또는 희망을 실제 시행과 구분해 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "기존 관찰과 판단 및 출처를 유지하고 요청을 실제 행동으로 바꾸지 않았어요."
     },
     {
       "id": "syn-hold-0029",
@@ -3575,8 +3607,17 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
             "state": "known",
-            "value": "조금씩 써서 적응할 수 있는 일정 요청",
+            "value": {
+              "requested_adaptation_schedule": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -3595,7 +3636,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "23e7d5d5136d3708c20191657f44b7d099a4a053f895f520a25c49862139523c",
+      "input_sha256": "2ccdcb23e6fcf362b8c3ec09161d26082ca2f8030c411473ec20d1828286a64e",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G11",
@@ -3617,7 +3658,34 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n확인된 개인 알레르겐과 후보 성분이 일치해 일반 국소 확인이나 적응 일정을 제공하지 않아요. 개인별 전문 확인을 우선해요. [kb:B-G11@0.6.1]\n\n### 필요한 다음 단계\n확인된 알레르겐의 정확한 이름과 후보의 일치 자료를 가지고 담당 의료진에게 확인해 주세요. 작은 부위의 자가 확인으로 알레르겐 적응이나 안전을 보증할 수는 없어요."
+      "answer": "### 개별 권고 보류 안내\n의료기관에서 확인한 알레르겐 가가 후보에도 포함되어 있어 적응 일정을 제안하지 않아요. [kb:B-G11@0.6.1]\n\n### 필요한 다음 단계\n알레르겐과 후보 성분의 일치 자료를 가지고 담당 의료진에게 확인해 주세요. 작은 부위의 자가 확인으로 안전을 보증할 수 없어요.",
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "조금씩 써서 적응할 수 있는 일정 요청",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "조금씩 써서 적응할 수 있는 일정 요청",
+          "connection": "원문에 명시된 요청 또는 주체별 제품 사용 관계만 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-hold-0030",
@@ -3651,15 +3719,27 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "같은 부위에 AHA를 써도 되는 일정 요청",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "method.body_site": {
             "variable_id": "method.body_site",
             "state": "known",
             "value": "진료 중인 얼굴 상처 부위",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "requested_aha": {
+                "body_site": "진료 중인 얼굴 상처",
+                "question": "사용 일정"
+              }
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -3678,7 +3758,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "bca87236ece1bbbc1ef3f9d175211ac485e33f52a1c42ba8677fe9f2dfa361f0",
+      "input_sha256": "cc929426bcdff0ef86b26a9822612bdba4de61fb6c6bf5265d436096804a2b53",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -3698,7 +3778,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n현재 상처 부위에 대한 진료 지시와 새 각질관리 일정 요청이 충돌해요. 해당 개별 권고를 보류하고 담당 의료진의 적용 범위를 확인해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n현재 진료 지시의 적용 범위와 새 제품 사용 가능 여부를 담당 의료진에게 확인해 주세요. 여기서는 상처 원인을 진단하거나 기존 지시를 바꾸지 않아요."
+      "answer": "### 개별 권고 보류 안내\n진료 중인 얼굴 상처에는 지정된 계획 외 새 화장품을 쓰지 말라는 현재 지시가 있어요. 같은 곳에 AHA를 쓰는 일정은 안내하지 않고 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n담당 의료진에게 그 지시가 적용되는 부위와 새 제품의 사용 가능 여부를 확인해 주세요. 여기서 상처의 원인을 진단하거나 진료 계획을 바꾸지는 않아요.",
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "범주형 필드의 자유 문장을 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "같은 부위에 AHA를 써도 되는 일정 요청",
+          "connection": "신규 선택 또는 현재 루틴 검토 범주가 명시되지 않아 미상."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "같은 부위에 AHA를 써도 되는 일정 요청",
+          "connection": "사용자가 물은 제품·부위·일정 관계를 구조화."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "기존 관찰과 질문 내용을 보존하고 범주형 필드는 미상으로 두었어요."
     },
     {
       "id": "syn-hold-0031",
@@ -3740,10 +3845,10 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "같은 병용의 더 강한 단계 요청",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "skin.distribution": {
             "variable_id": "skin.distribution",
@@ -3755,6 +3860,19 @@
                   "statement": "기기 병용 때마다 통증 반복"
                 }
               ]
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "requested_device_combination": {
+                "intensity": "더 강한 단계",
+                "combination": "같은 병용",
+                "status": "요청"
+              }
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -3774,7 +3892,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "595097fb2490e0ef28fefc58b9ede52431b284c5e5b19ce305d7dbc904659cc6",
+      "input_sha256": "a012c9369eb8b24114f3b26fae232c880077c1d0279dce5579e3544a0a6ecedb",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G06",
@@ -3794,7 +3912,7 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n기기 병용 때마다 통증이 반복되어 강도 증가나 해당 병용 설계를 보류해요. 제품 흡수율이나 통증 원인을 추정하지 않아요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n통증이 반복되는 해당 기기 병용은 중단하고 기기 지침과 현재 상태를 전문가에게 확인해 주세요. 다른 일반 관리 전체를 금지한다는 뜻은 아니며, 여기서는 이 병용의 강도나 제품 조합을 설계하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n제품과 기기를 함께 쓸 때마다 통증이 반복됐다고 하셨으므로, 요청하신 더 강한 단계의 병용 설계는 미뤄요. 통증의 원인이나 제품 흡수율은 이 관찰만으로 알 수 없어요. [kb:B-G06@0.6.1]\n\n### 필요한 다음 단계\n반복 통증이 있는 해당 병용은 중단하고 기기의 공개 지침과 현재 상태를 전문가에게 확인해 주세요. 다른 관리 전체에 대한 판단은 이 보류에 포함되지 않아요.",
       "normalization_history": [
         {
           "old_row_id": "syn-hold-0031",
@@ -3816,7 +3934,26 @@
           },
           "reason": "원문 의미가 명확한 고정 어휘로만 바꾸고 정도·원인·시점을 새로 만들지 않아요."
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비표준 결정 맥락을 확인된 요청 사실과 미상 범주로 분리하고 사례에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "같은 병용의 더 강한 단계 요청",
+          "connection": "요청 또는 희망을 실제 시행과 구분해 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "기존 관찰과 판단 및 출처를 유지하고 요청을 실제 행동으로 바꾸지 않았어요."
     },
     {
       "id": "syn-hold-0032",
@@ -3881,10 +4018,10 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "눈에 들어간 제품을 보습 루틴이나 다른 제품으로 보완하는 방법을 요청해요.",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "skin.distribution": {
             "variable_id": "skin.distribution",
@@ -3900,6 +4037,15 @@
                   "statement": "심한 통증"
                 }
               ]
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "requested_eye_exposure_routine_or_product_supplement": true
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -3935,7 +4081,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "20bed5f5e96b11f7890de6073cf29ce56100333ad51b697840324de0ab34e88b",
+      "input_sha256": "2753097e0edc472730cd80a54ba80edf0c580fb6dc604aab5c00b1ccf19a29ad",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G16",
@@ -4010,7 +4156,29 @@
           "reason": "카드의 긴급 도움 우선 범위를 반영하되 제공되지 않은 응급 처치 절차는 만들지 않아요.",
           "editor_model": "gpt-6.1-terra",
           "human_review": "unreviewed"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "눈에 들어간 제품을 보습 루틴이나 다른 제품으로 보완하는 방법을 요청해요.",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "눈에 들어간 제품을 보습 루틴이나 다른 제품으로 보완하는 방법을 요청해요.",
+          "connection": "원문에 명시된 요청 또는 주체별 제품 사용 관계만 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
       ]
     },
     {
@@ -4039,17 +4207,21 @@
             "state": "known",
             "value": {
               "새 제품 국소 확인": "3일째",
-              "현재 반응": "붉음과 가려움이 계속됨"
+              "현재 반응": "붉음과 가려움이 계속됨",
+              "question": {
+                "ten_days_completion": true,
+                "continued_use_schedule": true
+              }
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "열흘을 채워야 하는지와 계속 쓰는 일정 요청",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           }
         },
         "kb_judgments": [
@@ -4066,7 +4238,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "337b250a54b266496fce4ab92270a364091dd9ac5c51905aa199c428788f3a8d",
+      "input_sha256": "a69e8f4749ff46f832c45e5fa57e783fb046de0a698cb54ac95c3f7c44e19a0a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-G11",
@@ -4088,7 +4260,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n국소 확인 중 지속 반응이 있어 확인 기간을 채우기 위한 재사용 일정은 보류해요. 열흘이라는 기간을 반응을 견뎌야 하는 의무로 만들지 않아요. [kb:B-G11@0.6.1]\n\n### 필요한 다음 단계\n반응이 있는 해당 제품은 재사용하지 말고 지속되는 상태를 의료진에게 확인해 주세요. 이 반응을 확정 알레르기 진단으로 부르거나 정해진 확인 기간까지 버티도록 안내하지 않아요."
+      "answer": "### 개별 권고 보류 안내\n새 제품을 작은 부위에 확인한 지 3일째에도 붉음과 가려움이 이어져, 열흘을 채우기 위한 사용 일정은 보류해요 [kb:B-G11@0.6.1].\n\n### 필요한 다음 단계\n반응이 있는 해당 제품의 재사용을 멈추고 지속되는 반응을 의료진에게 확인받아 주세요. 이 정보만으로 알레르기라고 진단할 수 없어요.",
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "범주형 필드의 자유 문장을 분리했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "열흘을 채워야 하는지와 계속 쓰는 일정 요청",
+          "connection": "신규 선택 또는 현재 루틴 검토 범주가 명시되지 않아 미상."
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "열흘을 채워야 하는지와 계속 쓰는 일정 요청",
+          "connection": "사용자가 물은 제품·부위·일정 관계를 구조화."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "기존 관찰과 질문 내용을 보존하고 범주형 필드는 미상으로 두었어요."
     },
     {
       "id": "syn-hold-0034",
@@ -4115,7 +4312,12 @@
             "variable_id": "method.current_routine",
             "state": "known",
             "value": {
-              "내용": "면도 뒤 같은 부위에 출혈과 통증이 반복됨"
+              "내용": "면도 뒤 같은 부위에 출혈과 통증이 반복됨",
+              "requested_shaving_schedule": {
+                "frequency": "매일",
+                "change": "날만 바꿈",
+                "status": "요청"
+              }
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
@@ -4129,10 +4331,10 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "날만 바꾸고 계속하는 매일 면도 일정 요청",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "skin.distribution": {
             "variable_id": "skin.distribution",
@@ -4163,7 +4365,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "45f782d4f36663cce7eb8e8260a015e5ca085a5b526f728c3792d06794a1aca7",
+      "input_sha256": "519ba2672da5bbf852c0aeab710cc14f16a1d472696d15422c1eaa8c9c989d38",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -4183,7 +4385,7 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n반복 출혈과 지속 통증이 있어 매일 면도를 이어 가는 개별 설계는 보류해요. 날 교체만으로 해결된다고 보거나 질환을 진단하지 않아요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n반복되는 출혈과 통증을 의료진에게 확인해 주세요. 면도 도구나 제품만 바꿔 해결된다고 단정하지 않고, 특정 질환이나 새 면도 일정을 만들지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n면도 뒤 같은 부위에 출혈이 반복되고 통증도 지속된다고 하셨어요. 날만 바꿔 매일 계속하는 일정을 지금 설계하지 않아요. 도구 교체만으로 해결될지 확인되지 않았어요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n반복된 출혈과 지속 통증의 경과를 의료진에게 알려 확인받아 주세요. 특정 질환이나 원인을 이 정보만으로 판단할 수 없어요.",
       "normalization_history": [
         {
           "old_row_id": "syn-hold-0034",
@@ -4205,7 +4407,26 @@
           },
           "reason": "원문 의미가 명확한 고정 어휘로만 바꾸고 정도·원인·시점을 새로 만들지 않아요."
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비표준 결정 맥락을 확인된 요청 사실과 미상 범주로 분리하고 사례에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "날만 바꾸고 계속하는 매일 면도 일정 요청",
+          "connection": "요청 또는 희망을 실제 시행과 구분해 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "기존 관찰과 판단 및 출처를 유지하고 요청을 실제 행동으로 바꾸지 않았어요."
     },
     {
       "id": "syn-hold-0035",
@@ -4244,10 +4465,10 @@
           },
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
-            "state": "known",
-            "value": "약을 절반만 쓰는 용량 변경 요청",
+            "state": "unknown",
+            "value": null,
             "source": "synthetic_fixture",
-            "confirmed_by_user": true
+            "confirmed_by_user": false
           },
           "person.clinician_plan": {
             "variable_id": "person.clinician_plan",
@@ -4271,6 +4492,15 @@
             },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "requested_prescription_dose_change": "half"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
           }
         },
         "kb_judgments": [
@@ -4287,7 +4517,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "2d06baa64282e983f59585aa479d649c8cc7265cd7bc58c6cfddca3eeaed2d83",
+      "input_sha256": "33c9d3345e359a2855b094cd805498e54e2fba5b75301a8d9a2469919b45ebe4",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-B01",
@@ -4307,7 +4537,7 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n처방 사용 중 지속 통증과 용량 변경 요청이 있어 루틴·용량 권고를 보류해요. 임의 감량이나 중단을 지시하지 않고 처방한 의료진 또는 약사에게 확인해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n지속 통증과 현재 사용 상황을 처방한 의료진 또는 약사에게 전달하고 지시를 확인해 주세요. 여기서는 처방의 중단·감량·대체를 결정하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n처방 피부 의약품 사용 중 새로운 통증이 계속되고 있어 절반으로 줄이는 용량을 제안하지 않아요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n통증과 현재 처방 사용 상황을 처방 의료진이나 약사에게 알려 확인해 주세요. 새 용량 지시는 확인되지 않았으며 여기서 감량이나 중단을 결정하지 않아요.",
       "normalization_history": [
         {
           "old_row_id": "syn-hold-0035",
@@ -4329,6 +4559,33 @@
           },
           "reason": "원문 의미가 명확한 고정 어휘로만 바꾸고 정도·원인·시점을 새로 만들지 않아요."
         }
+      ],
+      "original_generator_model": "gpt-6.1-sol",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "약을 절반만 쓰는 용량 변경 요청",
+          "connection": "허용 범주를 확정할 수 없어 미상으로 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "약을 절반만 쓰는 용량 변경 요청",
+          "connection": "원문에 명시된 요청 또는 주체별 제품 사용 관계만 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
       ]
     }
   ],

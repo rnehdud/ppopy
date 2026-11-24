@@ -24,6 +24,8 @@ def write_preserving(path, value):
 
 
 def main():
+    if (HERE / "ppo39_revisions.json").exists():
+        raise SystemExit("이 명령은 PPO-39 이전의 33행 수정 스냅샷 전용이에요. 현재 보완은 apply_ppo39_feedback.py로 재현하고 reviews/ppo39_internal_critic.jsonl의 내용 해시를 대조해요. 과거 승인을 현재 내용에 소급하지 않아요.")
     dataset = HERE / "additional_200_terra.jsonl"
     rows = [json.loads(line) for line in dataset.read_text(encoding="utf-8").splitlines()]
     by_id = {r["id"]: r for r in rows}

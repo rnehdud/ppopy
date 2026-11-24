@@ -28,10 +28,24 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.temperature_history": {
+            "variable_id": "storage.temperature_history",
             "state": "known",
-            "value": "합성 화장품이 뜨거운 차 안에 있었어요. 정확한 온도와 시간은 모르고 지금은 닫아서 직사광선을 피해 보관해요.",
+            "value": {
+              "past_hot_car": true,
+              "temperature": "unknown",
+              "duration": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "current_direct_sunlight_avoided": true,
+              "currently_closed": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -61,7 +75,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d081ae044462717fc70e0f1898f6e499628ba2070052a2b545218ccd0c2fe29e",
+      "input_sha256": "d70d39c60cbfc7f25e663d33cfe79817157f22fad798d413de053bc24cf017d8",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -83,7 +97,34 @@
       "source_turn_id": null,
       "source_note": "새로 작성한 합성 사례이며 실제 사용자·제품·회수 공지나 엔진 실행 결과가 아닙니다.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n과거의 뜨거운 차 보관과 현재의 보관을 구분하고 현재 품질은 따로 확인해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n과거 뜨거운 차에 둔 기록과 현재 닫아서 직사광선을 피하는 보관을 구분해요. 현재 품질은 별도로 확인이 필요해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n화장품 보관 자료는 열과 빛, 공기와 취급이 품질에 관련될 수 있다고 설명해요. [ref:S06]\n\n### 확인이 필요한 한계\n차 안의 정확한 온도와 시간은 미상이며 이 이력만으로 안전성이나 남은 기한을 계산할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례별 사실과 미상을 분리하고 판단에 맞춰 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.temperature_history.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "뜨거운 차 안에 있었어요. 정확한 온도와 시간은 모르고",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "지금은 닫아서 직사광선을 피해 보관해요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 부위·제품·시점과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0474",
@@ -163,7 +204,19 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n친구의 보관 이력을 본인 제품에 옮기지 않아요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n뜨거운 차에 있었던 것은 친구의 화장품 용기예요. 본인 용기의 운송 온도는 미상이므로 같은 열 노출을 받았다고 판단하지 않아요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n보관 기준은 뜨거운 차 등 실제 부적절 보관을 살펴요 [kb:B-S01@0.6.1]. 일반 화장품 자료는 열·빛·공기와 취급을 품질 관련 요소로 다뤄요 [ref:S06].\n\n### 확인이 필요한 한계\n본인 용기의 과거 운송 조건과 개별 안정성은 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0475",
@@ -253,9 +306,16 @@
           "old_input_sha256": "3cd32913bffadd0a99f4ce735521fdd223a8c3691772bfd73a3431fb273f2e0d",
           "new_input_sha256": "cd4c1a529ea663b19b707c893bbd83e435c9a524d8749e7fe26af68352e1167d",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n직사광선을 피한 보관은 유지하고 지속적으로 열어 둔 용기는 제품 보관 지침에 맞춰 닫아 보관해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n햇빛을 피해 보관한 점은 유지하고 계속 열어 둔 합성 화장품 용기는 제품 지침에 맞춰 닫아 보관하는 것을 검토해요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n보관 상태를 살필 때는 지속적으로 열린 용기를 보관 상태의 비교 대상으로 삼아요 [kb:B-S01@0.6.1]. 화장품 보관 자료는 열·빛·공기와 취급이 품질에 관련될 수 있다고 설명해요 [ref:S06].\n\n### 확인이 필요한 한계\n이 보관 이력만으로 실제 변질, 안전성이나 남은 사용기한을 확정할 수 없어요.",
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0476",
@@ -280,10 +340,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.temperature_history": {
+            "variable_id": "storage.temperature_history",
             "state": "known",
-            "value": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+            "value": {
+              "배송 중": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "현재": "뚜껑 닫힘"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "현재": "직사광선 없는 곳"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -313,7 +393,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "a16dc20adf4c7691308b69fb9613bb36447881fa50e772af9e0545cc3c2e4377",
+      "input_sha256": "a963fd2b24b0665e3ffa722d8525e895438dc1c77ce6fa677ea8add0151161d7",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -335,7 +415,38 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n현재 보관과 미확인 배송 온도를 구별해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n현재는 뚜껑을 닫고 직사광선이 없는 곳에 두고 계시군요. 배송 중 온도는 별도로 미상이에요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 안내는 온도와 빛, 공기 및 용기 상태를 함께 다뤄요. [ref:S06]\n\n### 확인이 필요한 한계\n현재 보관만으로 과거 배송 온도나 제품의 안정성을 확정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.temperature_history.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 배송 중 온도는 몰라요. 지금은 뚜껑을 닫고 직사광선이 없는 곳에 두고 있어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0477",
@@ -415,7 +526,21 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n가려진 표시와 운반 이력은 미상으로 남겨요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n화장품의 보관 표시가 가려져 있고 운반 중 열 노출 여부도 확인되지 않았어요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 자료는 열과 빛, 공기 및 취급이 품질에 관련될 수 있다고 설명해요. [ref:S06]\n\n### 확인이 필요한 한계\n읽지 못한 지침이나 운반 이력을 추정해 제품 안정성을 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0478",
@@ -495,7 +620,19 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n현재 서랍 보관이 과거 노출 여부를 증명하지 않아요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n지금은 합성 화장품을 닫아 서랍에 두지만 지난 여행 중 뜨거운 차에 있었는지는 기억나지 않아요. 현재 상태로 과거 노출을 확정하지 않아요 [kb:B-S01@0.6.1].\n\n### 근거 및 이유\n보관 기준은 뜨거운 차나 지속적으로 열린 용기 등 확인된 상태를 살펴요 [kb:B-S01@0.6.1]. 일반 자료는 온도와 용기·취급을 함께 다뤄요 [ref:S06].\n\n### 확인이 필요한 한계\n여행 중 보관은 미상이고 현재 보관 상태만으로 제품 안정성을 인증할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0479",
@@ -520,10 +657,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "가": "뚜껑 계속 열림",
+              "나": "뚜껑 닫힘"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "합성 화장품 가의 뚜껑은 계속 열려 있었어요. 나의 뚜껑은 닫혀 있었고 두 제품의 내용물 상태는 확인하지 못했어요.",
+            "value": {
+              "가의 내용물 상태": "미확인",
+              "나의 내용물 상태": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -553,7 +703,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "62d60ef59fbe785ba5b1255e7f9b721943f3db004815aa39506753acda4d100f",
+      "input_sha256": "e05205ce8b52a2ed1ebb3c06d7331c34b6491ef36ec512682beb148086d67160",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -585,9 +735,29 @@
           "old_input_sha256": "689f78e4d47a51e6132917399ae73cd02895c954aaaa29e1813d7eb2858a327b",
           "new_input_sha256": "62d60ef59fbe785ba5b1255e7f9b721943f3db004815aa39506753acda4d100f",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n열려 있던 가의 용기는 보관 지침에 맞춰 닫아 두고 이미 닫혀 있던 나와 구분해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n계속 열려 있던 가의 용기는 보관 지침에 맞춰 닫고, 이미 닫혀 있던 나와 구분해서 살펴봐요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n화장품 보관 안내는 공기 노출과 용기 및 취급 방식을 함께 다뤄요. [ref:S06]\n\n### 확인이 필요한 한계\n두 제품 모두 내용물 상태가 확인되지 않아 현재 품질이나 사용 가능 여부를 확정하지 않아요.",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 뚜껑은 계속 열려 있었어요. 나의 뚜껑은 닫혀 있었고 두 제품의 내용물 상태는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 뚜껑은 계속 열려 있었어요. 나의 뚜껑은 닫혀 있었고 두 제품의 내용물 상태는 확인하지 못했어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0480",
@@ -612,10 +782,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "현재": "닫힘"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "과거 직사광선 노출": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+            "value": {
+              "보관 표시 내용": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -645,7 +835,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d23c4af3db8d8b95bbe9f44d9c12acb5fc7a4ba475dbd72ac23ceeeaf3e296b9",
+      "input_sha256": "716743feba434be82cf825701fdae0139ac358994265f11b1feab295cbda6737",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -667,7 +857,38 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n현재 닫힌 상태로 과거 이력이나 표시를 추정하지 않아요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n용기는 지금 닫혀 있지만 과거 직사광선 노출 여부와 표시된 보관법은 확인되지 않았어요. 제품 표시를 확인해 보세요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n빛과 용기 상태는 보관을 볼 때 따로 고려하는 요소예요. [ref:S06]\n\n### 확인이 필요한 한계\n현재 닫혀 있다는 사실로 과거 이력이나 품질을 정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 용기는 지금 닫혀 있어요. 과거에 직사광선에 놓였는지와 보관 표시 내용은 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0481",
@@ -692,10 +913,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "storage.light_air": {
+            "variable_id": "storage.light_air",
+            "state": "known",
+            "value": {
+              "continuous_direct_sunlight_at_window": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.temperature_history": {
+            "variable_id": "storage.temperature_history",
+            "state": "known",
+            "value": {
+              "temperature_measured": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "합성 화장품을 창가의 직사광선 아래에 계속 두었어요. 온도와 내용물의 현재 안정성은 측정하지 않았어요.",
+            "value": {
+              "current_product_stability_measured": false
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -725,7 +966,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "3bb0958a4bdf00b69657b54fac001e199056b5239f0235d67cbd170ee5fd7bd1",
+      "input_sha256": "3f24d2582b102afae839b291711a251d97fbdc9323f6bd1b294a58f636033091",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S01",
@@ -757,9 +998,37 @@
           "old_input_sha256": "c474783f2c553e2e3c683d01f40d404d48d38c562d4877aa14fa4af476d77372",
           "new_input_sha256": "3bb0958a4bdf00b69657b54fac001e199056b5239f0235d67cbd170ee5fd7bd1",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례별 사실과 미상을 분리하고 판단에 맞춰 설명했어요.",
+          "human_review": "unreviewed"
         }
       ],
-      "answer": "### 핵심 안내\n제품 보관 지침을 확인하고 직사광선을 피해 보관해요. 현재 내용물의 안정성은 별도로 미확인 상태예요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요. 화장품 보관 자료는 온도·빛·공기와 취급이 품질에 관련될 수 있다고 설명하지만 개별 제품의 안정성을 인증하지는 않아요 [ref:S06].\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n창가의 직사광선 아래에 계속 두었다면 해당 제품의 보관 지침을 확인하고 직사광선을 피해 보관해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n빛과 온도는 화장품 보관에서 살펴볼 조건이에요. [ref:S06]\n\n### 확인이 필요한 한계\n온도와 내용물의 현재 안정성은 측정되지 않아 이 이력만으로 품질을 확정하지 않아요.",
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.light_air.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "창가의 직사광선 아래에 계속 두었어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.storage.temperature_history.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "온도와 내용물의 현재 안정성은 측정하지 않았어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "내용물의 현재 안정성은 측정하지 않았어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 부위·제품·시점과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0482",
@@ -826,7 +1095,21 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n가의 날짜와 나의 미확인 개봉일을 분리해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n같은 이름이라도 지난달 개봉한 것은 제품 가예요. 그 날짜를 개봉일이 미상인 나에 적용하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n개봉 이력은 개별 용기에 연결해야 해요.\n\n### 확인이 필요한 한계\n나의 남은 사용기간이나 안전성은 이 기록으로 계산할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0483",
@@ -893,7 +1176,19 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n인쇄 기한으로 미확인 개봉 후 기간을 대신하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n인쇄된 기한은 읽었지만 개봉 날짜와 개봉 후 사용기간 표시는 확인하지 못했어요. 인쇄 기한만으로 개봉 후 기간을 대신하지 않아요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n사용기한 기준은 표시된 기한 경과와 명시된 개봉 후 안내와의 불일치를 각각 살펴요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\n개봉일과 해당 안내가 미상이므로 개봉 후 사용 기간의 적합성을 확정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0484",
@@ -916,10 +1211,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
             "state": "known",
-            "value": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+            "value": {
+              "개봉일": "기록함"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.pao": {
+            "variable_id": "storage.pao",
+            "state": "known",
+            "value": {
+              "표시": "가려짐"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "표시기한": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -938,7 +1253,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "c8c6df9ef166cd667dfc1e540298d1c6e54cec52ad7dcf83efd11397eb088919",
+      "input_sha256": "ab814c85032ee6effbff84d459309f33d033277f95b52b516dad4b655fbf6aa0",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -960,7 +1275,38 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n알려진 개봉일과 가려진 사용기간 표시를 구분해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n개봉일은 기록됐지만 개봉 후 사용기간 표시는 가려졌고 표시기한도 확인하지 않았어요. 제품별 표시를 확인해 주세요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n개봉일과 표시된 기간은 각각 필요한 정보예요.\n\n### 확인이 필요한 한계\n표시 기간을 읽기 전에는 기간 적합성을 판단할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.pao.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.expiry.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품의 개봉일은 기록했지만 개봉 후 사용기간 표시는 가려져 있어요. 표시기한은 아직 확인하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0485",
@@ -1027,7 +1373,21 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n구매일을 개봉일로 바꾸지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n화장품의 구매일을 알아도 개봉일은 기록되지 않았어요. 구매일부터 개봉 후 기간을 계산하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n구매와 개봉은 서로 다른 사건이에요.\n\n### 확인이 필요한 한계\n개봉일과 그에 따른 경과 기간은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0486",
@@ -1094,7 +1454,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n이전 용기의 개봉일을 새 용기에 적용하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n이전에 다 쓴 용기의 개봉일은 알지만 새로 산 같은 이름의 용기는 기록하지 않았어요. 이전 날짜를 새 용기에 적용하지 않아요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n사용기한과 개봉 후 안내는 실제 해당 용기의 이력과 비교해야 해요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\n새 용기의 개봉일은 미상이며 같은 이름만으로 두 용기의 이력을 합칠 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0487",
@@ -1117,10 +1489,30 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.purchased_at": {
+            "variable_id": "storage.purchased_at",
             "state": "known",
-            "value": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+            "value": {
+              "날짜": "확인 가능"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.expiry": {
+            "variable_id": "storage.expiry",
+            "state": "known",
+            "value": {
+              "표시기한": "확인 가능"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
+            "state": "known",
+            "value": {
+              "개봉 여부": "기억나지 않음"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1139,7 +1531,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "d3c4c0a4bd8a4baec035eeb3130108288d50561c78a2f8e2dbd5beaafbdc3101",
+      "input_sha256": "b697dbca397283e75a52ce2d4da54694ca30d849aa3f4dd8ed86ec45cdd7a06a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -1161,7 +1553,38 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n기억나지 않는 개봉 여부를 미개봉으로 단정하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n구매 날짜와 표시기한은 보이지만 개봉했는지는 기억나지 않으시는군요. 미개봉으로 단정하지 않고 이력을 확인해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n구매일과 표시기한은 실제 개봉 여부를 대신하지 않아요.\n\n### 확인이 필요한 한계\n개봉 여부와 시점은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.purchased_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.expiry.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품을 산 날짜와 표시 기한은 보이지만 실제 개봉 여부는 기억나지 않아요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0488",
@@ -1228,7 +1651,21 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n친구의 개봉일은 본인 용기의 기록이 아니에요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n친구가 지난주 개봉한 같은 이름의 제품과 본인 용기는 구분해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n다른 사람 용기의 날짜는 본인 용기의 개봉 기록이 아니에요.\n\n### 확인이 필요한 한계\n본인 용기의 개봉일은 미상이라 개봉 후 경과 기간을 계산할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0489",
@@ -1294,7 +1731,19 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n해외 용기의 기한을 현재 보유품에 자동으로 옮기지 않아요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n해외 용기에는 기한이 보이지만 국내 보유품의 표시와 두 버전의 일치는 미상이에요. 해외 기한을 보유품에 자동으로 옮기지 않아요 [kb:B-Q03@0.6.1].\n\n### 근거 및 이유\n제품 확인 기준은 국가나 버전이 다른 제품의 정보를 현재 보유품에 덮어쓰지 않도록 구분해요 [kb:B-Q03@0.6.1].\n\n### 확인이 필요한 한계\n현재 국내 용기의 표시와 버전 일치를 확인하기 전 기한은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0490",
@@ -1317,10 +1766,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "product.version": {
+            "variable_id": "product.version",
+            "state": "known",
+            "value": {
+              "대용량과 소용량 일치": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.container": {
+            "variable_id": "storage.container",
+            "state": "known",
+            "value": {
+              "대용량": "보관 지침 표시 확인",
+              "소용량": "보유품"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+            "value": {
+              "제품 관계": "같은 이름"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1339,7 +1809,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "22bd8f0401a1f7a1436afa723cebd448b7f19e8d9adc59da9866b7d4a650d287",
+      "input_sha256": "a0848a7b642ab5b9fb26922d5a3bca7ae32a26073a1c5a6afe875286de16bc6d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-Q03",
@@ -1360,7 +1830,38 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n대용량 지침과 소용량 보유품의 버전 연결은 미상이에요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n같은 이름의 대용량 용기에는 보관 지침이 있지만, 보유한 소용량이 같은 버전인지는 확인되지 않았어요. 소용량 포장과 버전을 확인해 주세요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n이름이 같다는 사실만으로 서로 다른 용기의 정보가 같다고 볼 수 없어요.\n\n### 확인이 필요한 한계\n대용량 지침을 소용량에 그대로 적용할 근거는 아직 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.product.version.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.storage.container.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품 대용량 용기에 보관 지침이 보여요. 소용량 보유품이 같은 버전인지 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0491",
@@ -1426,7 +1927,21 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n예전 포장 안내를 현재 보유품에 자동 적용하지 않아요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n이전 포장 사진의 사용 안내가 현재 보유한 새 포장에 적용되는지는 미상이에요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n두 포장의 버전이 같은지 확인되지 않았으므로 예전 지시를 자동으로 옮기지 않아요.\n\n### 확인이 필요한 한계\n현재 용기의 표시와 버전 연결을 확인해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 상황과 미확인 사항을 구분하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "관찰된 제품·부위·행동과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0492",
@@ -1492,7 +2007,19 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n기록의 차이와 동일 버전 여부 미확인을 구별해요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n판매 페이지와 실제 용기의 사용 안내가 다르지만 같은 버전인지 몰라요. 어느 한 안내를 임의로 현재 버전의 것으로 확정하지 않아요 [kb:B-Q03@0.6.1].\n\n### 근거 및 이유\n제품 확인 기준은 동명이나 리뉴얼 전후 제품을 자동으로 같은 것으로 취급하지 않아요 [kb:B-Q03@0.6.1].\n\n### 확인이 필요한 한계\n두 자료의 버전과 현재 용기에 적용되는 안내를 확인해야 해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0493",
@@ -1515,10 +2042,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "product.version": {
+            "variable_id": "product.version",
+            "state": "known",
+            "value": {
+              "이전과 재구매품 일치": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.inci": {
+            "variable_id": "product.inci",
+            "state": "known",
+            "value": {
+              "이전 용기": "성분표 남음",
+              "새 용기": "표시 미확인"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+            "value": {
+              "same_name_repurchase": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1537,7 +2085,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "7e6603d4e8d2251dfc90be501c9d1950b6d346e4d8c5e3a00fc018c54c7dd785",
+      "input_sha256": "3d28b6f8476110fb8eeeaa117d8f4adb826a4e931a21e8ba6ebd438470f81a6a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-Q03",
@@ -1558,7 +2106,38 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n같은 이름만으로 이전 성분표를 새 제품에 옮기지 않아요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n같은 이름의 제품을 다시 샀지만 이전 성분표만 남아 있고 새 용기 표시는 확인하지 못했어요. 새 제품의 표시와 버전을 확인해 주세요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n동일한 이름만으로 이전 성분표가 새 제품에도 적용된다고 정할 수 없어요.\n\n### 확인이 필요한 한계\n새 제품의 성분과 이전 버전과의 일치는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.product.version.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.product.inci.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "같은 이름의 합성 화장품을 재구매했어요. 이전 용기의 성분표만 남아 있고 새 용기의 표시를 확인하지 못했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0494",
@@ -1624,7 +2203,21 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n계획과 실행을 구분하고 버전 연결은 미상으로 남겨요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n해외 용기의 날짜를 국내 보유 용기 기록에 옮길 계획은 있지만 아직 실행하지 않았어요. 두 용기의 버전 일치도 미상이에요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n개별 용기와 제품 버전을 확인하기 전에는 날짜를 다른 용기에 옮기지 않아요.\n\n### 확인이 필요한 한계\n현재 기록만으로 두 용기의 날짜가 같다고 판단하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 상황과 미확인 사항을 구분하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "관찰된 제품·부위·행동과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0495",
@@ -1691,7 +2284,19 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n날짜의 보이는 부분만으로 기한 경과를 확정하지 않아요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n합성 화장품에 인쇄된 날짜의 연도가 가려져 있고 개봉일도 기록되지 않았어요. 보이는 부분만으로 기한이 지났다고 판단하지 않아요 [kb:B-S02@0.6.1].\n\n### 근거 및 이유\n사용기한 기준은 표시 기한의 경과나 개봉 후 안내와의 불일치가 확인됐는지 살펴요 [kb:B-S02@0.6.1].\n\n### 확인이 필요한 한계\n가려진 연도와 개봉일을 확인하기 전에는 기한 상태를 확정할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0496",
@@ -1714,10 +2319,23 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "storage.purchased_at": {
+            "variable_id": "storage.purchased_at",
             "state": "known",
-            "value": "합성 화장품 가의 구매일은 알지만 나의 구매일은 몰라요. 두 용기의 개봉일도 확인하지 못했어요.",
+            "value": {
+              "가": "알고 있음",
+              "나": "모름"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.opened_at": {
+            "variable_id": "storage.opened_at",
+            "state": "known",
+            "value": {
+              "가": "미확인",
+              "나": "미확인"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1736,7 +2354,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "5fd229eb43b8da8f72c52b660ef87b70995d155e430603fe2a28a87de6749db1",
+      "input_sha256": "3621619c009469610beb29739ecc19fe59c0abacb93a33c8c1c17a9ad14a50ea",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-S02",
@@ -1758,7 +2376,32 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n가의 구매일과 두 용기의 미확인 개봉일을 분리해요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n표시기한과 실제 개봉 이력은 각각 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n가의 구매일은 알지만 나의 구매일과 두 용기의 개봉일은 확인되지 않았어요. 각 용기의 이력과 표시를 따로 살펴봐요. [kb:B-S02@0.6.1]\n\n### 근거 및 이유\n구매일은 개봉일과 다르고 한 용기의 기록이 다른 용기의 기록을 대신하지 않아요.\n\n### 확인이 필요한 한계\n두 제품의 개봉일과 나의 구매일은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원문 관찰을 구조화하고 해당 사례의 근거와 한계에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.storage.purchased_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 구매일은 알지만 나의 구매일은 몰라요. 두 용기의 개봉일도 확인하지 못했어요.",
+          "connection": "원문 관찰을 주체·부위·제품·시점별로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.storage.opened_at.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "합성 화장품 가의 구매일은 알지만 나의 구매일은 몰라요. 두 용기의 개봉일도 확인하지 못했어요.",
+          "connection": "원문 관찰을 주체·부위·제품·시점별로 분리"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "타인과 본인, 현재와 이전, 미상과 부정을 구분했어요."
     },
     {
       "id": "syn-sol-0497",
@@ -1825,7 +2468,21 @@
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n현재 닫힌 상태와 옛 보관 지침의 버전 미확인을 구분해요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n보관 지침과 열·빛·공기에 대한 노출을 함께 살펴요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n현재 용기가 닫혀 있다는 사실과 예전 포장의 보관 문구가 현재 버전에 적용되는지는 별개예요. [kb:B-S01@0.6.1]\n\n### 근거 및 이유\n옛 문구와 현재 보유품의 버전 연결이 확인되지 않았어요.\n\n### 확인이 필요한 한계\n현재 제품의 보관 지침을 확인하기 전에는 옛 문구를 그대로 적용하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 상황과 미확인 사항을 구분하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "관찰된 제품·부위·행동과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0498",
@@ -1891,7 +2548,19 @@
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
       "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
-      "answer": "### 핵심 안내\n두 기록의 차이를 남기고 어느 쪽이 현재 버전인지 확인해요. [kb:B-Q03@0.6.1]\n\n### 근거 및 이유\n실제 보유 용기와 자료의 제품·버전을 맞춰 확인해요.\n\n### 확인이 필요한 한계\n기록되지 않은 정보는 확인된 사실로 바꾸지 않아요. 외관이나 과거 보관 기록만으로 개별 제품의 안전성이나 남은 사용기한을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n합성 화장품 상자와 판매 페이지의 사용기한이 서로 다르고 같은 버전인지 확인되지 않았어요. 어느 날짜가 현재 제품에 맞는지 임의로 정하지 않아요 [kb:B-Q03@0.6.1].\n\n### 근거 및 이유\n제품 확인 기준은 동명 제품이나 다른 버전의 정보를 자동으로 동일시하지 않아요 [kb:B-Q03@0.6.1].\n\n### 확인이 필요한 한계\n두 기록의 버전과 실제 보유 제품의 표시를 확인해야 해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-hold-0146",

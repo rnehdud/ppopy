@@ -448,7 +448,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0125과 비교: 체감이 없던 사례와 달리 찬물 체감은 확인됐으나 뜨거운 물 차이는 아니에요."
+      "novelty_note": "syn-sol-0125과 비교: 체감이 없던 사례와 달리 찬물 체감은 확인됐으나 뜨거운 물 차이는 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원 관찰과 관련 근거에 맞춰 답변을 사례별로 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력을 변경하지 않았고 미상과 계획·실제, 주체를 구분했어요."
     },
     {
       "id": "syn-sol-0196",
@@ -545,7 +557,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 아닌 접촉 행동과 경과 시간의 구분이 필요해요."
+      "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 아닌 접촉 행동과 경과 시간의 구분이 필요해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0197",
@@ -641,7 +667,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0119과 비교: 계획만 있던 사례와 달리 실제 사용은 확인됐지만 물기 상태가 미상이에요."
+      "novelty_note": "syn-sol-0119과 비교: 계획만 있던 사례와 달리 실제 사용은 확인됐지만 물기 상태가 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0198",
@@ -1108,7 +1146,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 상충하던 사례와 달리 물 헹굼 불필요 표시가 확인돼요."
+      "novelty_note": "syn-sol-0126과 비교: 헹굼 지시가 상충하던 사례와 달리 물 헹굼 불필요 표시가 확인돼요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0203",
@@ -1198,7 +1248,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0136과 비교: 기능마다 별도 제품을 요구하던 사례와 달리 실제 사용과 충족 여부가 미상이에요."
+      "novelty_note": "syn-sol-0136과 비교: 기능마다 별도 제품을 요구하던 사례와 달리 실제 사용과 충족 여부가 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원 관찰과 관련 근거에 맞춰 답변을 사례별로 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력을 변경하지 않았고 미상과 계획·실제, 주체를 구분했어요."
     },
     {
       "id": "syn-sol-0204",
@@ -1295,7 +1357,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0129과 비교: 화장 제거가 확인된 사례와 달리 활동 및 제거 목적 자체가 미상이에요."
+      "novelty_note": "syn-sol-0129과 비교: 화장 제거가 확인된 사례와 달리 활동 및 제거 목적 자체가 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0205",
@@ -1376,7 +1452,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0128과 비교: 세안 도구가 아닌 물기 닦기에서 마찰 정도를 확인해야 해요."
+      "novelty_note": "syn-sol-0128과 비교: 세안 도구가 아닌 물기 닦기에서 마찰 정도를 확인해야 해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요. 확인되지 않은 건조 시점을 답변에서 제거했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0206",
@@ -1472,7 +1560,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0130과 비교: 무거움과 펌프 횟수가 아닌 실제 사용은 확인되나 건조와 편안함은 미상이에요."
+      "novelty_note": "syn-sol-0130과 비교: 무거움과 펌프 횟수가 아닌 실제 사용은 확인되나 건조와 편안함은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "원 관찰과 관련 근거에 맞춰 답변을 사례별로 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력을 변경하지 않았고 미상과 계획·실제, 주체를 구분했어요."
     },
     {
       "id": "syn-sol-0207",
@@ -1567,7 +1667,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0126과 비교: 상충 지시가 아니라 지시 자체가 없어 헹굼만으로 부합을 확정하지 않아요."
+      "novelty_note": "syn-sol-0126과 비교: 상충 지시가 아니라 지시 자체가 없어 헹굼만으로 부합을 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0208",
@@ -1663,7 +1777,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0119과 비교: 계획이 아닌 물기 상태가 확인됐지만 실제 도포 여부가 미상이에요."
+      "novelty_note": "syn-sol-0119과 비교: 계획이 아닌 물기 상태가 확인됐지만 실제 도포 여부가 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0209",
@@ -2395,7 +2521,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-sol-0125과 비교: 과거 뜨거운 체감은 확인됐지만 현재 수온은 미상이라 시점을 구분해요."
+      "novelty_note": "syn-sol-0125과 비교: 과거 뜨거운 체감은 확인됐지만 현재 수온은 미상이라 시점을 구분해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-hold-0059",
@@ -2624,7 +2764,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-hold-0037과 비교: 통증 정도가 확인된 사례와 달리 지속 불편만 확인돼요."
+      "novelty_note": "syn-hold-0037과 비교: 통증 정도가 확인된 사례와 달리 지속 불편만 확인돼요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-hold-0062",
@@ -2776,7 +2928,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-hold-0040과 비교: 세척 후 재사용한 사례와 달리 사용 전 계획이며 세척 여부는 미상이에요."
+      "novelty_note": "syn-hold-0040과 비교: 세척 후 재사용한 사례와 달리 사용 전 계획이며 세척 여부는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-hold-0064",
@@ -2853,7 +3017,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-hold-0041과 비교: 제품 허용 여부가 없고 아직 병용하지 않았어요."
+      "novelty_note": "syn-hold-0041과 비교: 제품 허용 여부가 없고 아직 병용하지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-hold-0065",
@@ -3010,7 +3188,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "실제 사용자나 제품 기록이 아닌 새 합성 개발 사례예요.",
-      "novelty_note": "syn-hold-0037과 비교: 확인된 후속 진료를 취소하려던 사례와 달리 진료 계획과 따가움은 미상이에요."
+      "novelty_note": "syn-hold-0037과 비교: 확인된 후속 진료를 취소하려던 사례와 달리 진료 계획과 따가움은 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     }
   ]
 }

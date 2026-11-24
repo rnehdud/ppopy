@@ -32,7 +32,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -95,7 +95,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "be33a885f9c007f1024c28bd4d1a18eedea92e562f04b3151688d06cca1d9806",
+      "input_sha256": "c40e477b0be2edbbc6cf71294236eb18eef3bc75f8c8dbe06fc9ea12369335e6",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -116,7 +116,26 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n내수성 시간 표시는 확인되지만 SPF와 광범위 보호 표시는 확인되지 않아 기본 성능 판단을 보류해요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n자외선차단제 선택 안내는 SPF, 광범위 보호와 내수성을 각각 살펴요. [ref:S16]\n\n### 확인이 필요한 한계\n확인하지 못한 제품 표시나 개인의 실제 보호 결과는 확정할 수 없어요."
+      "answer": "### 핵심 안내\n새 야외용 후보의 80분 내수성 표시는 확인됐지만 SPF와 광범위 보호 표시는 아직 알 수 없어요. 구매 비교 전에 두 표시를 각각 확인해 주세요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n선택 안내는 SPF, 광범위 보호, 내수성을 별도로 다루며 내수성 시간은 SPF 수치가 아니에요. [ref:S16]\n\n### 확인이 필요한 한계\n표시를 못 본 것은 기준에 못 미친다는 뜻이 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 후보 비교를 허용된 새 제품 선택 범주로 정규화; 야외 계획은 기존 sun.outdoor_time에 유지"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0141",
@@ -222,7 +241,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n물이나 수건 접촉이 없더라도 장시간 야외 노출 중 재도포하지 않은 실제 행동을 확인했어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P03@0.6.1]\n\n### 확인이 필요한 한계\n물과 수건 접촉이 없다는 보고는 다른 손실 계기나 개인의 실제 보호율을 확정하지 않아요."
+      "answer": "### 핵심 안내\n야외 행사에 오래 머무는 동안 다시 바르지 않았다고 하셨어요. 물이나 수건 접촉이 없더라도 야외 일정과 제품 지침에 맞춰 재도포 시점을 살펴봐요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n지속되는 노출도 광보호 안내에서 고려하는 요소예요. [ref:S05]\n\n### 확인이 필요한 한계\n물과 수건 접촉이 없다는 보고만으로 다른 손실 계기나 실제 받은 자외선량을 알 수는 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰된 노출과 재도포 여부에 맞춰 조치와 인용 범위를 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력은 변경하지 않았으며 접촉과 실제 행동을 구분했어요."
     },
     {
       "id": "syn-sol-0142",
@@ -250,7 +281,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -300,7 +331,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "53d1131333060c1821e3d7808ca12d193b7796e3d9bcb85ea73fd5c208f32508",
+      "input_sha256": "709c2804a61f12d15a261325cd2dd57f46cc163f30b578475a52cddae431a8af",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -321,7 +352,28 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n서로 다른 번역본의 SPF가 충돌하고 현재 제품 버전과 연결되지 않아 값을 확정하지 않아요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P01@0.6.1]\n\n### 확인이 필요한 한계\n두 번역의 숫자 중 어느 것이 현재 제품에 해당하는지는 미상이에요."
+      "answer": "### 핵심 안내\n야외용 후보의 두 번역본에 SPF 30과 50이 적혀 있지만 현재 버전과 연결되지 않아 어느 쪽도 해당 제품 값으로 확정할 수 없어요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n서로 다른 수치의 출처를 현재 제품 버전과 대조해야 해요.\n\n### 확인이 필요한 한계\n현재 버전의 확인된 표시가 없으므로 SPF는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "야외 선제품 비교는 신규 선택으로 표현"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0143",
@@ -419,7 +471,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n재도포하지 않을 계획은 보고했지만 실제 야외 노출과 행동은 확인되지 않았어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P03@0.6.1]\n\n### 확인이 필요한 한계\n실제 야외 활동과 실제 재도포 여부는 확인되지 않았어요."
+      "answer": "### 핵심 안내\n야외 활동과 재도포하지 않을 계획은 알려졌지만 실제로 나갔는지와 그때의 행동은 확인되지 않았어요. 이미 재도포를 빠뜨린 것으로 판단하지 않아요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n재도포의 행동 차이를 살피는 조건은 장시간 야외 노출 등과 재도포 미실시가 확인된 경우예요. 계획만으로 실제 행동을 대신하지 않아요 [kb:B-P03@0.6.1].\n\n### 확인이 필요한 한계\n실제 활동과 재도포 여부, 물 접촉은 아직 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0144",
@@ -635,7 +699,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n노출된 귀를 빼는 이유가 확인된 제품의 사용 제한과 연결되어 일반 도포 기준의 예외를 검토해요. [kb:B-P02@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P02@0.6.1]\n\n### 확인이 필요한 한계\n제품 지침에 따른 부위 제한을 일반적인 누락과 구분해요."
+      "answer": "### 핵심 안내\n귀는 노출되지만 이 제품은 귀 사용이 제한되어 있어요. 확인된 제한을 무시하고 귀에 바르도록 권하지 않아요. [kb:B-P02@0.6.1]\n\n### 근거 및 이유\n귀를 뺀 행동은 제품 표시와 연결된 예외로 살펴요.\n\n### 확인이 필요한 한계\n이 정보만으로 다른 제품의 적합성이나 보호 정도는 알 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0146",
@@ -734,7 +812,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n비에 젖은 뒤에도 야외 노출이 계속되지만 다시 바르지 않았어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n일반 자외선차단 안내는 실제 노출과 물·땀·닦임, 제품 지침을 함께 살펴요. [ref:S05]\n\n### 확인이 필요한 한계\n노출과 실제 행동에서 확인되지 않은 부분은 미상으로 남아요. 개인의 실제 자외선량이나 보호율은 계산할 수 없어요."
+      "answer": "### 핵심 안내\n비에 젖은 뒤에도 야외 활동이 계속됐고 재도포하지 않은 것으로 보고됐어요. 야외 일정과 제품 지침에 맞춰 재도포 시점을 검토해요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n재도포 안내에서는 지속되는 야외 노출이나 물 접촉과 실제 재도포 행동을 함께 비교해요 [kb:B-P03@0.6.1]. 제공된 일반 안내도 물·땀과 야외 노출을 제품 표시 및 다른 보호 수단과 함께 살펴요 [ref:S05].\n\n### 확인이 필요한 한계\n해당 제품의 개별 지침은 제공되지 않았어요. 이 기록만으로 개인의 자외선 노출량이나 보호율을 계산할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0147",
@@ -850,7 +940,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n내수성 시간 표시를 재도포 면제로 오해해 수건 접촉 후 야외 노출 중 다시 바르지 않았어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P03@0.6.1]\n\n### 확인이 필요한 한계\n내수성 시간은 SPF 숫자가 아니며, 수건 접촉 후 재도포 면제를 뜻하지 않아요."
+      "answer": "### 핵심 안내\n수건을 사용한 뒤에도 야외 활동이 이어졌다면 제품 지침과 함께 재도포를 살펴봐요. 표시된 내수성 80분을 수건 접촉 후 재도포가 필요 없다는 뜻으로 해석하지 않아요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n광보호 안내는 야외 노출, 물 접촉과 제품 지침을 함께 고려해요. [ref:S05] 수건으로 닦인 경우에도 재도포를 살펴볼 필요가 있어요. [kb:B-P03@0.6.1]\n\n### 확인이 필요한 한계\n표시된 시간만으로 개인이 실제 받은 자외선량이나 보호율은 계산할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰된 노출과 재도포 여부에 맞춰 조치와 인용 범위를 구체화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력은 변경하지 않았으며 접촉과 실제 행동을 구분했어요."
     },
     {
       "id": "syn-sol-0148",
@@ -942,7 +1044,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n야외 노출이 끝난 뒤 재도포하지 않았다는 정보만으로 그 이전 야외 활동 중 행동을 알 수 없어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P03@0.6.1]\n\n### 확인이 필요한 한계\n이전 야외 구간의 재도포 여부는 미상이므로 당시 행동을 단정하지 않아요."
+      "answer": "### 핵심 안내\n실내에 들어간 뒤 재도포하지 않은 기록만으로 긴 야외 활동 중의 행동을 판정할 수 없어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n야외 노출 종료 전과 종료 후의 행동은 다른 시간대예요.\n\n### 확인이 필요한 한계\n야외에서 재도포했는지는 미상이므로 필요하면 그 구간을 확인해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0149",
@@ -970,7 +1086,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -1034,7 +1150,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "017fdbb5a9ac4563a3316df197233aef2447e224bbb2ab1ccc8c6294e17df2ab",
+      "input_sha256": "0a543833afa1afb894bf6d31f7c52dfc60288fbdc98c01425d978eb8d44bb20a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -1055,7 +1171,26 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n수영용 후보에 내수성 표시가 없지만 표시 부재만으로 실제 성능 미충족을 확정하지 않아요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P01@0.6.1]\n\n### 확인이 필요한 한계\n표시 부재는 시험된 내수성 실패나 개인의 실제 보호 결과가 아니에요."
+      "answer": "### 핵심 안내\n수영을 계획하며 살펴본 후보에는 내수성 표시가 없어요. 표시가 없다는 사실만으로 시험상 내수성 실패를 확정하지 않고 제품 선택 판단을 유보해요 [kb:B-P01@0.6.1].\n\n### 근거 및 이유\n야외용 제품 선택에서는 새 야외용 후보의 성능이 부족한 것으로 확인됐을 때와 정보가 부족한 경우를 구분해요 [kb:B-P01@0.6.1]. SPF 50과 UVA·UVB 표시가 있다는 사실도 물에서의 성능을 대신 확인해 주지는 않아요.\n\n### 확인이 필요한 한계\n이 후보의 실제 내수성 시험 결과와 개인에게 나타날 보호 결과는 알려지지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "후보 비교를 등록된 신규 제품 선택 범주로 정규화했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 선크림 후보 비교이므로 신규 제품 선택 범주."
+        }
+      ],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-hold-0082",
@@ -1193,7 +1328,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -1256,7 +1391,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "6da9091855e14199c5e68ceaf9bd833e8704ea43c4cfc8f1a1e578f20e124ad8",
+      "input_sha256": "f14d306700fff176fd59958a08ec3a55e677c278ffffb319f3d717a7253e6cf9",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -1277,7 +1412,26 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n보이는 숫자 80의 뜻을 알 수 없어 SPF나 내수성 시간으로 정하지 않아요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P01@0.6.1]\n\n### 확인이 필요한 한계\n보이는 숫자의 의미가 확인되기 전에는 어떤 표시 값으로도 바꾸지 않아요."
+      "answer": "### 핵심 안내\n야외용 후보에서 보이는 숫자 80이 무엇을 뜻하는지 먼저 확인해 주세요. SPF나 내수성 시간으로 단정하지 않고 나머지 표시도 확인한 뒤 비교해요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\nSPF와 광범위 보호, 내수성은 각각 살펴야 하는 항목이에요. [ref:S16]\n\n### 확인이 필요한 한계\n현재 숫자의 의미와 SPF 및 광범위 보호 여부는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 후보 비교를 허용된 새 제품 선택 범주로 정규화; 야외 계획은 기존 sun.outdoor_time에 유지"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0152",
@@ -1305,7 +1459,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -1361,7 +1515,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "b4658add90a7b2e5964c4753709ed7810cfb7e9e7b7876072df6acefd33ddada",
+      "input_sha256": "a3a2d00c20bb7b8cf657c04b2a32f0cf3f851772b695fb544a831737f17c29ed",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -1382,7 +1536,28 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n판매 페이지와 현재 용기의 버전이 일치하지 않아 페이지의 SPF를 현재 제품 값으로 채택하지 않아요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P01@0.6.1]\n\n### 확인이 필요한 한계\n현행 용기의 SPF는 미상이며 다른 버전의 수치를 대신 사용하지 않아요."
+      "answer": "### 핵심 안내\n판매 페이지의 SPF 50은 현재 용기와 버전이 일치하지 않아 현재 제품의 수치로 사용할 수 없어요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n야외 활동용 비교에서는 실제 용기에 해당하는 버전의 표시가 필요해요.\n\n### 확인이 필요한 한계\n현재 용기의 SPF와 UVA 정보는 미상이므로 확인 전에는 비교를 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "야외 선제품 비교는 신규 선택으로 표현"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "기존 관찰 중 범주화할 수 없는 맥락은 미상으로 두고 명시적 사실은 기존 또는 추가 관찰에 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0153",
@@ -1474,7 +1649,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n재도포 기록의 내용이 서로 다르지만 같은 외출의 기록인지는 확인되지 않았어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P03@0.6.1]\n\n### 확인이 필요한 한계\n기록들이 같은 외출을 다루는지도 실제 재도포 여부도 아직 미상이에요."
+      "answer": "### 핵심 안내\n오래 야외에 있었지만 재도포했다는 기록과 하지 않았다는 기록이 있어 실제 행동은 미상이에요 [kb:B-P03@0.6.1].\n\n### 근거 및 이유\n재도포를 살필 때는 지속 노출과 재도포 행동을 함께 비교하며 필요한 관찰이 상충하면 차이를 확정하지 않아요 [kb:B-P03@0.6.1].\n\n### 확인이 필요한 한계\n두 기록이 같은 외출을 가리키는지부터 확인해야 해요. 서로 다른 외출이라면 그 맥락을 구분해야 해요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0154",
@@ -1572,7 +1759,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n수영과 재도포 계획은 있지만 실제 입수와 재도포는 확인되지 않았어요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n일반 자외선차단 안내는 실제 노출과 물·땀·닦임, 제품 지침을 함께 살펴요. [ref:S05]\n\n### 확인이 필요한 한계\n노출과 실제 행동에서 확인되지 않은 부분은 미상으로 남아요. 개인의 실제 자외선량이나 보호율은 계산할 수 없어요."
+      "answer": "### 핵심 안내\n수영과 그 뒤 재도포를 계획하셨군요. 실제로 물에 들어갔는지와 다시 발랐는지는 아직 확인되지 않아 실행 여부를 판단하지 않아요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n광보호 안내는 노출과 물 접촉, 제품 사용법을 함께 고려해요. [ref:S05]\n\n### 확인이 필요한 한계\n계획은 완료된 행동의 증거가 아니며 개인의 자외선 노출량도 알 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0155",
@@ -1662,7 +1861,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n색이 원래 상태와 달라진 것인지 및 사용기한이 확인되지 않았어요. [kb:B-P08@0.6.1]\n\n### 근거 및 이유\n사용기한과 보관 상태는 각각 확인할 정보예요. [ref:S18]\n\n### 확인이 필요한 한계\n겉모습이나 보관 정보만으로 남은 보호 성능을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n색 변화가 관찰됐다고 보고됐지만 원래 모습은 알려져 있지 않아 변화 여부를 독립적으로 비교하기 어려워요. 사용기한도 미상이에요. [kb:B-P08@0.6.1]\n\n### 근거 및 이유\n사용기한과 보관 상태는 각각 확인할 정보예요. [ref:S18]\n\n### 확인이 필요한 한계\n색 변화 보고와 원래 모습 미확인을 함께 남겨요. 겉모습만으로 남은 보호 성능이나 변질을 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0156",
@@ -1752,7 +1965,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n얼굴 사용 경험만으로 눈 주변에서 반복 눈시림이 없는지 확정할 수 없어요. [kb:B-P06@0.6.1]\n\n### 근거 및 이유\n눈 주변 사용 안내는 제품 선택과 사용 상황을 함께 살펴요. [ref:S17]\n\n### 확인이 필요한 한계\n이 자료만으로 개인의 눈 주변 반응이나 원인을 확정할 수 없어요."
+      "answer": "### 핵심 안내\n얼굴에는 사용했지만 눈 가까이는 사용하지 않았어요. 이를 눈 주변의 반복적인 눈시림이 없었다는 증거로 삼을 수 없어요 [kb:B-P06@0.6.1].\n\n### 근거 및 이유\n눈 주변 사용을 검토할 때는 같은 제품·방식에서 반복 눈시림이 있거나 회피로 눈 주변 보호가 빠지는 상황을 살펴요 [kb:B-P06@0.6.1]. 제공된 눈 주변 안내는 제품 선택과 사용 상황에 관한 일반 자료예요 [ref:S17].\n\n### 확인이 필요한 한계\n눈시림 경험 자체는 미상이고 개인의 반응이나 원인을 예측할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0157",
@@ -1844,7 +2069,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n밀림은 관찰됐지만 그 때문에 실제 사용이나 재도포가 줄었는지 미상이에요. [kb:B-I02@0.6.1]\n\n### 근거 및 이유\n중첩 연구는 제한된 제품 조합을 영상으로 관찰했어요. [ref:S09]\n\n### 확인이 필요한 한계\n제한된 조합의 영상 결과로 개인의 실제 보호 성능을 보증할 수 없어요."
+      "answer": "### 핵심 안내\n제품이 밀리는 현상은 있었지만 그 때문에 선크림 사용이나 재도포를 줄였는지는 아직 몰라요. 실제 사용에 불편이 있었는지 확인해 보세요. [kb:B-I02@0.6.1]\n\n### 근거 및 이유\n밀림만으로 사용 행동이 달라졌다고 볼 수 없어요. 제한된 제품 중첩을 영상으로 관찰한 연구도 개인의 야외 보호 결과를 보장하지 않아요. [ref:S09]\n\n### 확인이 필요한 한계\n사용량과 재도포 변화는 확인되지 않았어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0158",
@@ -2052,7 +2289,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n가족의 행동은 확인됐지만 본인의 재도포는 미상이에요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n일반 자외선차단 안내는 실제 노출과 물·땀·닦임, 제품 지침을 함께 살펴요. [ref:S05]\n\n### 확인이 필요한 한계\n노출과 실제 행동에서 확인되지 않은 부분은 미상으로 남아요. 개인의 실제 자외선량이나 보호율은 계산할 수 없어요."
+      "answer": "### 핵심 안내\n긴 야외 활동에서 가족이 재도포한 기록은 있지만 본인이 재도포했는지는 미상이에요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n일반 안내에서는 야외 노출과 물·땀 상황 및 제품 지침을 살펴요. [ref:S05]\n\n### 확인이 필요한 한계\n가족의 행동을 본인의 행동으로 옮기거나 개인 보호율을 계산하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0160",
@@ -2080,7 +2331,7 @@
           "constraints.decision_context": {
             "variable_id": "constraints.decision_context",
             "state": "known",
-            "value": "compare_new_outdoor_sunscreen",
+            "value": "new_product_selection",
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           },
@@ -2144,7 +2395,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "83a4c7ecdd198d971a217ac4823ca1c0a5c20d17cb2753c8aaa1204f5d4d6fcc",
+      "input_sha256": "3c25329a85d8ddf5bca2551f9634866dfd802589dc9293adb19e80a162f51b54",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -2165,7 +2416,26 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n새 야외 후보는 광범위 보호와 내수성 표시가 있지만 SPF 15로 확인돼 기본 SPF 기준과 차이가 있어요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n일반 선택 안내에서는 SPF 30 이상과 광범위 보호 및 내수성을 각각 살펴요. [ref:S16]\n\n### 확인이 필요한 한계\n이 표시는 개인의 실제 보호율이나 사용 적합성을 측정한 결과가 아니에요."
+      "answer": "### 핵심 안내\n야외용 새 후보를 비교할 때 SPF 15 표시를 확인했어요. 광범위 보호와 내수성 표시가 있더라도 SPF가 더 높은 후보도 비교해 보세요. [kb:B-P01@0.6.1]\n\n### 근거 및 이유\n일반 선택 안내는 SPF 30 이상, 광범위 보호와 내수성을 각각 살펴요. 한 표시가 다른 표시를 대신하지 않아요. [ref:S16]\n\n### 확인이 필요한 한계\n표시는 개인의 실제 보호율이나 사용 적합성을 측정한 결과가 아니에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context.value",
+          "source_path": "confirmed_observations.constraints.decision_context.value",
+          "raw_span": "compare_new_outdoor_sunscreen",
+          "connection": "새 야외용 후보 비교를 허용된 새 제품 선택 범주로 정규화; 야외 계획은 기존 sun.outdoor_time에 유지"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0161",
@@ -2367,7 +2637,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n현재 실내 보관 사실만으로 과거 열 노출 여부를 확정하지 않아요. [kb:B-P08@0.6.1]\n\n### 근거 및 이유\n사용기한과 보관 상태는 각각 확인할 정보예요. [ref:S18]\n\n### 확인이 필요한 한계\n겉모습이나 보관 정보만으로 남은 보호 성능을 계산할 수 없어요."
+      "answer": "### 핵심 안내\n현재는 실내에 있고 표시 기한 경과나 색·냄새 변화는 보고되지 않았어요. 다만 과거 뜨거운 차 안에 두었는지는 미상이에요 [kb:B-P08@0.6.1].\n\n### 근거 및 이유\n보관과 품질을 살필 때는 기한 경과나 정상과 다른 품질 변화가 확인된 경우를 다루며 오래 보유했다는 사실만으로 성능 소실을 확정하지 않아요 [kb:B-P08@0.6.1]. 제공된 자료에서도 기한과 보관을 함께 고려해요 [ref:S18].\n\n### 확인이 필요한 한계\n이전 열 노출을 기억하는 범위에서 확인할 수 있지만 겉모습이나 보관 이력만으로 남은 보호 성능을 계산할 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0163",
@@ -2459,7 +2741,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n제품 구매 계획은 실제 재도포 행동을 확인해 주지 않아요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n일반 자외선차단 안내는 실제 노출과 물·땀·닦임, 제품 지침을 함께 살펴요. [ref:S05]\n\n### 확인이 필요한 한계\n노출과 실제 행동에서 확인되지 않은 부분은 미상으로 남아요. 개인의 실제 자외선량이나 보호율은 계산할 수 없어요."
+      "answer": "### 핵심 안내\n오래 야외에 머문 상황에서 새 제품 구매 계획은 확인되지만, 실제 재도포 여부는 알 수 없어요. 당시 사용을 확인한 뒤 야외 일정과 제품 지침에 맞는 시점을 살펴봐요. [kb:B-P03@0.6.1]\n\n### 근거 및 이유\n광보호 안내는 지속 노출과 제품 사용법을 함께 고려해요. [ref:S05]\n\n### 확인이 필요한 한계\n구매 계획만으로 다시 발랐거나 바르지 않았다고 결론낼 수 없어요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 근거의 범위에 맞춰 사례별 설명을 고쳤어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "확인된 값과 미상 및 계획과 실제 행동의 구분을 유지했어요."
     },
     {
       "id": "syn-sol-0164",
@@ -2559,7 +2853,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n친구가 귀를 빼고 바른 사실은 확인되지만 본인의 노출 부위 누락 여부는 미상이에요. [kb:B-P02@0.6.1]\n\n### 근거 및 이유\n확인된 관찰과 해당 비교 조건을 구분해 살펴요. [kb:B-P02@0.6.1]\n\n### 확인이 필요한 한계\n친구의 사용 행동은 본인의 도포 상태를 확인해 주지 않아요."
+      "answer": "### 핵심 안내\n얼굴과 귀가 노출됐지만 친구가 귀를 빼고 바른 사실로 본인의 도포 누락을 판단할 수 없어요. [kb:B-P02@0.6.1]\n\n### 근거 및 이유\n친구와 본인의 사용 기록은 구분해요.\n\n### 확인이 필요한 한계\n본인의 귀 도포 여부는 미상이에요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0165",
@@ -2651,7 +2959,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 핵심 안내\n친구의 경험으로 본인의 밀림이나 실제 사용 감소를 판단하지 않아요. [kb:B-I02@0.6.1]\n\n### 근거 및 이유\n중첩 연구는 제한된 제품 조합을 영상으로 관찰했어요. [ref:S09]\n\n### 확인이 필요한 한계\n제한된 조합의 영상 결과로 개인의 실제 보호 성능을 보증할 수 없어요."
+      "answer": "### 핵심 안내\n밀림을 경험한 사람은 친구예요. 본인에게도 밀림이 있거나 그 때문에 선크림을 줄였다고 옮겨 적지 않아요 [kb:B-I02@0.6.1].\n\n### 근거 및 이유\n중첩 사용을 살필 때는 중첩의 불편 때문에 본인이 실제 사용이나 재도포를 줄였는지 살펴요 [kb:B-I02@0.6.1]. 제공된 중첩 연구는 제한된 제품 조합의 영상 관찰이에요 [ref:S09].\n\n### 확인이 필요한 한계\n본인의 밀림 경험과 사용 변화는 미상이며 연구 결과가 개인의 보호 성능을 보증하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     },
     {
       "id": "syn-hold-0044",
@@ -2736,7 +3056,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n지속 불편이 보고됐고 통증의 별도 항목과 맥락 기록이 일치하지 않아 개별 권고를 보류해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n통증 관련 기록의 차이와 지속되는 불편을 의료 전문가에게 설명해 확인해 주세요. 원인은 여기서 확정하지 않아요."
+      "answer": "### 개별 권고 보류 안내\n지속 불편이 보고됐지만 별도의 통증 항목은 미상이고 맥락에는 지속적인 눈 통증이 기록되어 있어요. 개별 권고를 보류해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n이 기록 차이와 지속되는 불편을 의료 전문가에게 설명해 확인해 주세요. 원인은 확정하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 확인 사실과 미상 및 KB 판단을 구분해 표현했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단을 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-hold-0045",
@@ -3291,7 +3625,7 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "answer": "### 개별 권고 보류 안내\n지속되는 부종을 일반 사용 지침만으로 해결하는 개별 권고를 보류해요. [kb:B-B01@0.6.1]\n\n### 필요한 다음 단계\n현재 상태와 확인되지 않은 사항을 전문가에게 설명하고 확인해 주세요. 원인이나 개인별 대응을 여기서 확정하지 않아요.",
+      "answer": "### 개별 권고 보류 안내\n부종이 지속된다고 하셨으므로 일반 표시만 따라 해결하는 개별 사용 안내는 보류해요 [kb:B-B01@0.6.1].\n\n### 필요한 다음 단계\n지속된 부종과 현재 상황을 의료 전문가에게 설명하고 확인받아 주세요. 원인과 개인별 대응은 여기서 확정할 수 없어요.",
       "normalization_history": [
         {
           "old_row_id": "syn-hold-0050",
@@ -3313,7 +3647,19 @@
           },
           "reason": "원문 의미가 명확한 고정 어휘로만 바꾸고 정도·원인·시점을 새로 만들지 않아요."
         }
-      ]
+      ],
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 해당 카드의 적용 조건을 연결해 안내를 다시 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "입력의 관찰과 미상 상태 및 허용 근거를 변경하지 않았어요."
     }
   ],
   "revision_note": "재감사 지적을 반영한 미검수 입력이에요.",

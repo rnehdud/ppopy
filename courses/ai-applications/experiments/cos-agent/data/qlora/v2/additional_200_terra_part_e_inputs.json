@@ -105,8 +105,15 @@
           "old_input_sha256": "b797ea825279bbc051a01ec9917a65ea7fa0d7a246efea6d696ea31625a12d8a",
           "new_input_sha256": "f64df0931542accc6e57761b3044d0bbc46c944735177d7c2f7e25fd178a4d9a",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0449",
@@ -131,10 +138,36 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "constraints.decision_context": {
+            "variable_id": "constraints.decision_context",
+            "state": "known",
+            "value": "new_product_selection",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.spf": {
+            "variable_id": "product.spf",
+            "state": "known",
+            "value": 50,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.uva": {
+            "variable_id": "product.uva",
+            "state": "known",
+            "value": {
+              "broad_spectrum_labeled": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "합성 자외선차단제 새 후보에 SPF 50, 광범위 보호와 내수성 없음이 표시돼 있어요. 야외 수영에 사용할 제품을 고르고 있어요.",
+            "value": {
+              "planned_activity": "outdoor_swimming",
+              "candidate_label_water_resistance": "not_water_resistant"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -164,7 +197,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "b0ce48d6e7ee0e36b17763d0c2dc0b9bf5a5e709e51e8f1bf43ba1213e8a4ff6",
+      "input_sha256": "50af02ef3d4df6a506e6ab097767801ab14e03020c5414c0e64018a6dd3381a3",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -185,7 +218,52 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례의 행동과 한계를 분리하여 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.constraints.decision_context.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 수영에 사용할 제품을 고르고 있어요",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.product.spf.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "SPF 50",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.product.uva.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "광범위 보호",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "내수성 없음이 표시돼 있어요. 야외 수영에 사용할 제품을 고르고 있어요.",
+          "connection": "원문에 명시된 관찰을 해당 슬롯으로 분리"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value.candidate_label_water_resistance",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "내수성 없음이 표시돼 있어요",
+          "connection": "표시의 부재가 아니라 내수성 없음이라는 표시를 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "독립 감사 지적을 원문과 대조해 관찰의 부위·횟수·주체·미상과 판단 경계를 분리해 수정했어요."
+      ]
     },
     {
       "id": "syn-sol-0450",
@@ -210,10 +288,42 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "product.spf": {
+            "variable_id": "product.spf",
+            "state": "known",
+            "value": {
+              "container": 30,
+              "sales_page": 50,
+              "same_version": "unknown"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.uva": {
+            "variable_id": "product.uva",
+            "state": "known",
+            "value": {
+              "container": "광범위 보호 표시"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.water_resistance": {
+            "variable_id": "product.water_resistance",
+            "state": "known",
+            "value": {
+              "container": "표시 읽지 못함"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "야외 등산용 합성 자외선차단제 용기에는 SPF 30과 광범위 보호가 표시돼요. 판매 페이지에는 SPF 50이 적혔지만 같은 버전인지는 모르고 용기 내수성 표시도 읽지 못했어요.",
+            "value": {
+              "product_purpose": "야외 등산용",
+              "actual_hiking": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -243,7 +353,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "ab0b3ac3de93d581e4343d2cfe9bf791f88616084808069fca02cb86eb51d443",
+      "input_sha256": "76583c550b54d7e9093c94cc11714df5a5242bd3b4d81a6ac3dfc8fa6d5a2424",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -264,7 +374,44 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품의 등산용 용도를 실제 등산 사실로 처리하지 않음.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.product.spf.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 등산용 합성 자외선차단제 용기에는 SPF 30과 광범위 보호가 표시돼요. 판매 페이지에는 SPF 50이 적혔지만 같은 버전인지는 모르고 용기 내수성 표시도 읽지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.product.uva.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 등산용 합성 자외선차단제 용기에는 SPF 30과 광범위 보호가 표시돼요. 판매 페이지에는 SPF 50이 적혔지만 같은 버전인지는 모르고 용기 내수성 표시도 읽지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.product.water_resistance.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 등산용 합성 자외선차단제 용기에는 SPF 30과 광범위 보호가 표시돼요. 판매 페이지에는 SPF 50이 적혔지만 같은 버전인지는 모르고 용기 내수성 표시도 읽지 못했어요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 등산용 합성 자외선차단제",
+          "connection": "제품 용도를 실제 야외 활동과 구분"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0451",
@@ -366,7 +513,16 @@
           "old_input_sha256": "153b22a8bbee59a9103fa397e01be28d7fba7052695e1013d4a0c9a962cb1fe9",
           "new_input_sha256": "efbd898b19bd79826cd19c5929f6b74ee31a9687b7869b5e522f379f442225b0",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
       ]
     },
     {
@@ -469,8 +625,15 @@
           "old_input_sha256": "a250b0cc9f70eea747e3cc4f32deaecc6b328c54ff0fc6155b31d20ed334eaca",
           "new_input_sha256": "4dec5ac887c5205421e1930401a14011f9c7ad35ee99db8df7314fc2ea084110",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0453",
@@ -495,10 +658,24 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
             "state": "known",
-            "value": "야외 자전거 타기에 쓸 합성 자외선차단제 후보의 현재 용기 표시가 닳아 SPF를 읽지 못해요. 같은 이름의 예전 용기에는 SPF 50이 있지만 두 버전의 일치 여부는 몰라요.",
+            "value": {
+              "activity": "야외 자전거",
+              "status": "후보"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.spf": {
+            "variable_id": "product.spf",
+            "state": "known",
+            "value": {
+              "current_container": "표시 닳아 읽지 못함",
+              "old_same_name_container": 50,
+              "version_match": "unknown"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -528,7 +705,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "ff265000d86ec5fbf5df9917a5b99d4b1d5beaaa102d4c847b1cb0128feddc88",
+      "input_sha256": "064474f9c6883f5e5f646e1f6e6192ed95c6e91bcabfeb671ae75ae6f60a58b1",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P01",
@@ -549,7 +726,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 구조화하고 확인된 사실과 근거에 맞춰 작성했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.sun.outdoor_time.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 자전거 타기에 쓸 합성 자외선차단제 후보의 현재 용기 표시가 닳아 SPF를 읽지 못해요. 같은 이름의 예전 용기에는 SPF 50이 있지만 두 버전의 일치 여부는 몰라요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.product.spf.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 자전거 타기에 쓸 합성 자외선차단제 후보의 현재 용기 표시가 닳아 SPF를 읽지 못해요. 같은 이름의 예전 용기에는 SPF 50이 있지만 두 버전의 일치 여부는 몰라요.",
+          "connection": "관찰의 주체, 버전 및 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "거절, 미상, 제품 및 주체의 차이를 보존했어요."
     },
     {
       "id": "syn-sol-0454",
@@ -651,7 +853,16 @@
           "old_input_sha256": "728040aacd8239fb78afbb7b671c1ea4906f2cbe370b8a75b3241871e31747a0",
           "new_input_sha256": "8d6a64992dbfa3f9d786be154c226b845a230b9e9cbc8afdf0fcd181bad96e44",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
         }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
       ]
     },
     {
@@ -731,7 +942,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0456",
@@ -754,10 +977,29 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "야외 산책에서 얼굴과 귀에 쓸 수 있다고 표시된 합성 자외선차단제를 얼굴에 바르면서 노출된 귀에는 일부러 바르지 않았어요.",
+            "value": {
+              "activity": "야외 산책",
+              "product_label_sites": [
+                "face",
+                "ears"
+              ],
+              "applied": [
+                "face"
+              ],
+              "intentionally_omitted": [
+                "exposed ears"
+              ]
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -776,7 +1018,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "e886a668dab6869b23d5a5d0ffe2915d1c4c2d2314a73aa0e90bf56c7876abe3",
+      "input_sha256": "594e9b415df7a41e90805da37529e47834d69c3543d66914f94b61561a3d8fb9",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P02",
@@ -810,8 +1052,28 @@
           "old_input_sha256": "6b57a7c60c1209318782343101a20c6d7b0a8c187eff7a6c313406c021f40ea0",
           "new_input_sha256": "e886a668dab6869b23d5a5d0ffe2915d1c4c2d2314a73aa0e90bf56c7876abe3",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.body_site.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 산책에서 얼굴과 귀에 쓸 수 있다고 표시된 합성 자외선차단제를 얼굴에 바르면서 노출된 귀에는 일부러 바르지 않았어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 산책에서 얼굴과 귀에 쓸 수 있다고 표시된 합성 자외선차단제를 얼굴에 바르면서 노출된 귀에는 일부러 바르지 않았어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0457",
@@ -883,7 +1145,19 @@
       "replaced_case": {
         "old_request_sha256": "4b411ea28ff550b70c6f14952727ed15a9baa2eb188128270d88a56e43b3e56e",
         "reason": "원래 합성 입력에 카드 적용에 필요한 실제 야외 사용 또는 시간 맥락이 확인되지 않아 기존 미상을 채우지 않고 새 합성 상황으로 대체했어요."
-      }
+      },
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0458",
@@ -906,10 +1180,40 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "sun.exposed_sites": {
+            "variable_id": "sun.exposed_sites",
+            "state": "known",
+            "value": [
+              "face",
+              "ears"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.coverage_gaps": {
+            "variable_id": "sun.coverage_gaps",
+            "state": "known",
+            "value": [
+              "ears"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.instructions": {
+            "variable_id": "product.instructions",
+            "state": "known",
+            "value": {
+              "excluded_site": "ears"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "야외에서 얼굴과 귀가 노출됐어요. 합성 자외선차단제의 사용 표시가 귀를 제외하므로 귀에는 바르지 않았어요.",
+            "value": {
+              "ear_omission_due_to_label_restriction": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -928,7 +1232,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "c86120155a593eb6279a7d3b16024688c5db0ef6539cef1b49f734ce5856cb4b",
+      "input_sha256": "49b8136470cd0d6db31f5427ffbea4110525165ea59e2d10da497ec0e203ee4b",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P02",
@@ -951,7 +1255,46 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "사례별 사실과 미상을 분리하고 판단에 맞춰 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.sun.exposed_sites.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외에서 얼굴과 귀가 노출됐어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.sun.coverage_gaps.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "귀에는 바르지 않았어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.product.instructions.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "사용 표시가 귀를 제외하므로",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "사용 표시가 귀를 제외하므로 귀에는 바르지 않았어요",
+          "connection": "명시된 원자 관찰과 관계를 보존"
+        }
+      ],
+      "ppo39_fact_preservation_notes": [
+        "원문에서 확인된 부위·제품·시점과 미상을 보존했어요."
+      ]
     },
     {
       "id": "syn-sol-0459",
@@ -1030,8 +1373,15 @@
           "old_input_sha256": "6d9718a548aca7fb127ed3c7f73dab68bfb6bb5b2ddd940b6174da97df22d131",
           "new_input_sha256": "d7bb9752e8602d347ee57e51841aeef0046b07645b7da48ef3ca8e011613336e",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "확인된 사례와 KB 적용 범위를 연결하고 일반 자료의 범위를 구분했어요. 이마를 포함하는 구체적 표시 범위는 미확인이므로 확인 대상으로 표현했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "원래 입력과 미상 상태를 변경하지 않았어요."
     },
     {
       "id": "syn-sol-0460",
@@ -1054,10 +1404,29 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "오늘": "야외",
+              "내일": "야외 계획"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "내일 야외에서 합성 자외선차단제를 고르게 바를 계획이에요. 오늘 야외에서 실제로 바른 부위와 양은 기록하지 않았어요.",
+            "value": {
+              "오늘": {
+                "product": "합성 자외선차단제",
+                "applied_sites": "기록 없음",
+                "amount": "기록 없음"
+              },
+              "내일": {
+                "plan": "고르게 바를 계획"
+              }
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1076,7 +1445,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "e90c4697afe46022eb9e50db86f62f5c6517be598504bd802488f5f6fc97b175",
+      "input_sha256": "cd505f2a256b05775b769bf63cd18f94c61773cd84beb9eb9c09a2e032b833de",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P02",
@@ -1099,7 +1468,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.sun.outdoor_time.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "내일 야외에서 합성 자외선차단제를 고르게 바를 계획이에요. 오늘 야외에서 실제로 바른 부위와 양은 기록하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "내일 야외에서 합성 자외선차단제를 고르게 바를 계획이에요. 오늘 야외에서 실제로 바른 부위와 양은 기록하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0461",
@@ -1167,7 +1561,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0462",
@@ -1234,7 +1642,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 사례이며 실제 사용자나 제품 기록, 엔진 실행 결과가 아니에요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0463",
@@ -1257,10 +1677,22 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
-          "method.current_routine": {
-            "variable_id": "method.current_routine",
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
             "state": "known",
-            "value": "야외에 머무르며 합성 자외선차단제 재도포 알림을 받았어요. 실제로 다시 발랐는지는 기록하지 않았어요.",
+            "value": {
+              "실제": "야외 체류"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.reapplication": {
+            "variable_id": "sun.reapplication",
+            "state": "known",
+            "value": {
+              "reminder": "받음",
+              "actual": "기록 없음"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1279,7 +1711,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "9c61deddd6faab3b38f7c8de69a7ca924ad55834a801c4b069777a8580144bc8",
+      "input_sha256": "674cbc69bf5835dd6d6067680b3bb84361b0fa6132e18fca251c3d3ec03a45cd",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P03",
@@ -1301,7 +1733,32 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.sun.outdoor_time.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외에 머무르며 합성 자외선차단제 재도포 알림을 받았어요. 실제로 다시 발랐는지는 기록하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.sun.reapplication.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외에 머무르며 합성 자외선차단제 재도포 알림을 받았어요. 실제로 다시 발랐는지는 기록하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0464",
@@ -1368,7 +1825,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0465",
@@ -1434,7 +1905,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0466",
@@ -1457,10 +1940,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "activity": "야외 산책"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "야외 산책에서 본인은 합성 자외선차단제를 썼지만 양과 도포 부위는 기억하지 못해요. 친구는 같은 날 자신의 차단제를 극소량 썼다고 말했어요.",
+            "value": {
+              "self": {
+                "product": "합성 자외선차단제",
+                "used": true,
+                "amount": "기억 못함",
+                "sites": "기억 못함"
+              },
+              "friend": {
+                "product": "친구 자신의 차단제",
+                "amount": "극소량",
+                "timing": "같은 날"
+              }
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1479,7 +1983,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "0e6cb35e6c36554bd33916c7414f7897e13ec699349f2ddcdff26648636437c2",
+      "input_sha256": "a80d0ae12c1f2023bfadf88f01cdba9c6959c35dd49c37b236fe57f2502ce00a",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P02",
@@ -1506,7 +2010,32 @@
       "replaced_case": {
         "old_request_sha256": "f4b83cfbf4077b2aadf29b05e16255505339cf4f27df16faa87adc566f95aa9d",
         "reason": "원래 합성 입력에 카드 적용에 필요한 실제 야외 사용 또는 시간 맥락이 확인되지 않아 기존 미상을 채우지 않고 새 합성 상황으로 대체했어요."
-      }
+      },
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰을 등록 슬롯에 나누고 사례별로 안내했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.sun.outdoor_time.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 산책에서 본인은 합성 자외선차단제를 썼지만 양과 도포 부위는 기억하지 못해요. 친구는 같은 날 자신의 차단제를 극소량 썼다고 말했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외 산책에서 본인은 합성 자외선차단제를 썼지만 양과 도포 부위는 기억하지 못해요. 친구는 같은 날 자신의 차단제를 극소량 썼다고 말했어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0467",
@@ -1532,7 +2061,13 @@
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "야외에서 합성 자외선차단제의 사용 범위에 포함되는 목이 노출됐지만 옷에 묻는 것이 싫어 일부러 목에는 바르지 않았어요.",
+            "value": {
+              "context": "야외",
+              "exposed_site": "neck",
+              "label_includes": "neck",
+              "intentionally_omitted": "neck",
+              "reason": "옷에 묻는 것이 싫음"
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1551,7 +2086,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "71ef899369e0532ddead4c0530684511d9c5dd79c74449a15ded24e8f5c27a97",
+      "input_sha256": "35b30d978ec8ea543fd11a96d386a5176800c5583aebafc1456c11d7e218864d",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P02",
@@ -1585,8 +2120,22 @@
           "old_input_sha256": "9b99ac45674bdfb6827f5f2d6e4940d434dada129b082cad74b8aa0f7cdfe644",
           "new_input_sha256": "71ef899369e0532ddead4c0530684511d9c5dd79c74449a15ded24e8f5c27a97",
           "observation_change": "기존 관찰 보존"
+        },
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "비정형 관찰을 사실별 구조로 보존하고 사례별 안내를 작성했어요.",
+          "human_review": "unreviewed"
         }
-      ]
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외에서 합성 자외선차단제의 사용 범위에 포함되는 목이 노출됐지만 옷에 묻는 것이 싫어 일부러 목에는 바르지 않았어요.",
+          "connection": "원문의 대상과 행동을 등록 슬롯에 구조화"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "제품별 상태와 주체·부위 및 미상을 구분했어요."
     },
     {
       "id": "syn-sol-0468",
@@ -1657,7 +2206,21 @@
       "replaced_case": {
         "old_request_sha256": "d0665aacb5a169d653cd32e4a39380f7114cb97acc44186a5fda7677d3f5293a",
         "reason": "원래 합성 입력에 카드 적용에 필요한 실제 야외 사용 또는 시간 맥락이 확인되지 않아 기존 미상을 채우지 않고 새 합성 상황으로 대체했어요."
-      }
+      },
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0469",
@@ -1725,7 +2288,19 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "관찰과 카드의 적용 조건을 사례에 맞게 구분했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": "기존 관찰, 제품별·주체별 관계와 미상 상태를 유지했어요."
     },
     {
       "id": "syn-sol-0470",
@@ -1748,10 +2323,31 @@
       "request": {
         "mode": "solution",
         "confirmed_observations": {
+          "sun.outdoor_time": {
+            "variable_id": "sun.outdoor_time",
+            "state": "known",
+            "value": {
+              "context": "야외"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
           "method.current_routine": {
             "variable_id": "method.current_routine",
             "state": "known",
-            "value": "야외에서 그늘을 이용한 사실은 기억해요. 합성 자외선차단제 사용과 의복의 범위는 기록하지 않았어요.",
+            "value": {
+              "sunscreen_use": "기록 없음",
+              "clothing_coverage": "기록 없음"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.shade_clothing": {
+            "variable_id": "sun.shade_clothing",
+            "state": "known",
+            "value": {
+              "shade_used": true
+            },
             "source": "synthetic_fixture",
             "confirmed_by_user": true
           }
@@ -1770,7 +2366,7 @@
         ],
         "distractor_refs": []
       },
-      "input_sha256": "2fe8d99534c591efc1debe6dd7537df986ce5873ad98efe716819900af9141b9",
+      "input_sha256": "ed03c20741b7961353a0f4873a00c7df5d0481e257c4683b6786f594a7cdb4f3",
       "judgment_basis": {
         "kind": "authored_synthetic_case_against_KB_comparison_spec_not_engine_execution",
         "card_id": "B-P04",
@@ -1791,7 +2387,38 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "실제 그늘 이용을 전용 슬롯으로 분리함.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [
+        {
+          "new_path": "confirmed_observations.sun.outdoor_time.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외에서 그늘을 이용한 사실은 기억해요. 합성 자외선차단제 사용과 의복의 범위는 기록하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.method.current_routine.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외에서 그늘을 이용한 사실은 기억해요. 합성 자외선차단제 사용과 의복의 범위는 기록하지 않았어요.",
+          "connection": "주체·제품·시점별 관찰과 미상을 구조화"
+        },
+        {
+          "new_path": "confirmed_observations.sun.shade_clothing.value",
+          "source_path": "confirmed_observations.method.current_routine.value",
+          "raw_span": "야외에서 그늘을 이용한 사실은 기억해요",
+          "connection": "실제 그늘 이용을 전용 슬롯에 기록"
+        }
+      ],
+      "ppo39_fact_preservation_notes": "계획과 실제, 타인, 제품 및 버전별 미상을 보존했어요."
     },
     {
       "id": "syn-sol-0471",
@@ -1858,7 +2485,21 @@
       "source_scenario_id": null,
       "source_turn_id": null,
       "source_note": "새 합성 개발 후보이며 실제 사용자·제품 기록이나 엔진 실행 결과가 아니에요. 독립 검토와 사람 검토는 아직 이루어지지 않았어요.",
-      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요."
+      "novelty_note": "기존 가족의 조건 변형이며 독립 평가 가족으로 주장하지 않아요.",
+      "original_generator_model": "gpt-6.1-terra",
+      "generator_model": "gpt-6.1-terra",
+      "revision_model": "gpt-6.1-terra",
+      "revision_history": [
+        {
+          "revision": "ppo39-quality-20261124",
+          "reason": "제품별·시점별 사실과 미상에 맞게 설명했어요.",
+          "human_review": "unreviewed"
+        }
+      ],
+      "ppo39_slot_evidence": [],
+      "ppo39_fact_preservation_notes": [
+        "입력 관찰과 판단은 변경하지 않았어요."
+      ]
     },
     {
       "id": "syn-sol-0472",
