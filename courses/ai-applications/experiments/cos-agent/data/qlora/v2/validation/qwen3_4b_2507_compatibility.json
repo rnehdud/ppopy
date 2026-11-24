@@ -1,0 +1,61 @@
+{
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "dataset_sha256": "060b84412498d98affc6c2d15f30d0f6cab161db47344c6e27bb19b1b0a5f9b7",
+  "rows": 24,
+  "library_versions": {
+    "transformers": "5.14.0",
+    "tokenizers": "0.22.2",
+    "huggingface_hub": "1.22.0"
+  },
+  "config_max_position_embeddings": 262144,
+  "eos_token": "<|im_end|>",
+  "eos_token_id": 151645,
+  "native_template_has_generation_blocks": false,
+  "native_template_has_think_literal": false,
+  "total_tokens": {
+    "min": 566,
+    "median": 1174.0,
+    "max": 1654,
+    "sum": 27011
+  },
+  "prompt_tokens": {
+    "min": 439,
+    "median": 926.0,
+    "max": 1361,
+    "sum": 21910
+  },
+  "completion_tokens_with_end": {
+    "min": 126,
+    "median": 230.0,
+    "max": 295,
+    "sum": 5101
+  },
+  "truncation_if_right_truncated": {
+    "1024": {
+      "rows_exceeding": 18,
+      "rows_losing_entire_assistant": 6
+    },
+    "2048": {
+      "rows_exceeding": 0,
+      "rows_losing_entire_assistant": 0
+    },
+    "4096": {
+      "rows_exceeding": 0,
+      "rows_losing_entire_assistant": 0
+    },
+    "8192": {
+      "rows_exceeding": 0,
+      "rows_losing_entire_assistant": 0
+    }
+  },
+  "all_prompt_prefixes_match": true,
+  "all_end_markers_present": true,
+  "content_preserved_in_template": true,
+  "assistant_text_token_roundtrip": true,
+  "duplicate_answers": 0,
+  "training_executed": false,
+  "weights_downloaded": false,
+  "gpu_memory_tested": false,
+  "independent_content_reviewed": false
+}

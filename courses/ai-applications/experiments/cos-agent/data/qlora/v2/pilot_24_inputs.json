@@ -1,0 +1,4210 @@
+{
+  "base_commit": "2b2063c24bfec5f9c63ce84265d8e0189d48fde2",
+  "plan_revision": 3,
+  "mode": "development_preview",
+  "production_enabled": false,
+  "target_training_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "requirements_updated_at": "2026-11-24T15:39:56.847Z",
+  "authoring_note": "사용자 발화와 별도 확인, 가상 카탈로그 근거를 분리한 개정 3이에요. 자연어 발화·추적표는 검토용이고 SLMRequest에는 계약대로 정형 관찰·제품·문헌만 넣어요. 실제 NLU/AFA·제품 조회·사람 승인은 실행하지 않았어요.",
+  "sources": {
+    "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+    "handoff_status": "pilot_sample_not_official_PPO42_pool",
+    "tier2_used": false,
+    "id_notice": "이 ref ID는 파일럿용 결정적 ID이며 공식 PPO-42 변환기의 ID라고 주장하지 않아요.",
+    "sources": {
+      "ref:rc-dd418a3-cleansing-011": {
+        "title": "[cleansing] 손에서 얼굴로 이어지는 일상 세안 순서",
+        "domain": "cleansing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/cleansing.md",
+        "paragraph_ordinal": 11,
+        "file_sha256": "221465fc721c29c6eabd414a44e9989d2eea299435983880f8bf08f4b29246aa",
+        "body_sha256": "11c13c4a404abb42745473687e1a4ef2d5915014e2f585be4ec99f0b547f7b86",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-cleansing-011",
+          "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+          "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+          "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+        }
+      },
+      "ref:rc-dd418a3-moisturizing-010": {
+        "title": "[moisturizing] 세안이나 샤워 뒤 바로 보습하는 이유",
+        "domain": "moisturizing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/moisturizing.md",
+        "paragraph_ordinal": 10,
+        "file_sha256": "b988722be68d2265eb491bd0fdaa897939c15ff621527be20c918c3186de26dc",
+        "body_sha256": "44a8d2597cee0e2a8eef33b385cfd54f76923ca355c49ac6ee9ceeced7e23834",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-moisturizing-010",
+          "text": "얼굴이나 몸을 씻은 뒤에는 다음 단계로 피부에 맞는 보습제를 바르는 습관이 도움이 된다. 질병관리청은 보습제가 피부 표면을 덮어 수분이 유지되고 피부가 부드러운 상태로 느껴지는 데 기여한다고 설명한다. 일상적으로 쓸 제품을 고를 때에는 바른 뒤 자극이나 알레르기 반응이 없는지도 함께 살핀다. 이 안내의 중심은 씻은 뒤 무리 없이 반복할 수 있는 관리이며, 누구에게나 일정한 용량이나 특정 제형을 요구하는 것은 아니다.",
+          "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+          "locator": "건강한 피부 관리 방법, 3) 보습제 사용",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "일상적인 피부관리 안내다. 특정 성분이나 질환에 대한 치료 효과를 비교한 자료는 아니다."
+        }
+      },
+      "ref:rc-dd418a3-moisturizing-006": {
+        "title": "[moisturizing] 로션의 발림성과 용도 확인",
+        "domain": "moisturizing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/moisturizing.md",
+        "paragraph_ordinal": 6,
+        "file_sha256": "b988722be68d2265eb491bd0fdaa897939c15ff621527be20c918c3186de26dc",
+        "body_sha256": "09376fda45738e4cd0fae6f17427b4367c74a38626894685bad24deeacbee9e0",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-moisturizing-006",
+          "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+          "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+          "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+        }
+      },
+      "ref:rc-dd418a3-sun_protection-013": {
+        "title": "[sun_protection] 햇볕을 피하는 시간·의복·차단제의 조합",
+        "domain": "sun_protection",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/sun_protection.md",
+        "paragraph_ordinal": 13,
+        "file_sha256": "b313bd4e4ab599e9c0db335bc849c185fedf8633b379112c9d583653af0c0edf",
+        "body_sha256": "1edc6f554560cccf26e29ffb0c375edc214a9eebf826138b244290d56fd2310c",
+        "tier": "tier1",
+        "origin": "reference_excerpt",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-sun_protection-013",
+          "text": "How you use sunscreens and what other protective measures you take make a difference in how well you are able to protect yourself and your family from sunburn, skin cancer, early skin aging and other risks of overexposure to the sun. Some key sun safety tips include: Limit time in the sun, especially between the hours of 10 a.m. and 2 p.m., when the sun’s rays are most intense. Wear clothing to cover skin exposed to the sun, such as long-sleeved shirts, pants, sunglasses, and broad-brimmed hats. Use broad spectrum sunscreens with sun protection factor (SPF) values of 15 or higher regularly and as directed. Reapply sunscreen at least every two hours, and more often if you're sweating or swimming.",
+          "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+          "locator": "Sun Safety Tips — “How you use sunscreens and what…”",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "미국 FDA의 일반의약품 자외선차단제 안내다. 제품별 사용 방법과 내수성은 해당 판매국의 포장 표시를 확인한다."
+        }
+      },
+      "ref:rc-dd418a3-sun_protection-011": {
+        "title": "[sun_protection] 햇빛이 강한 야외에서 옷·모자·차단제를 함께 쓰는 이유",
+        "domain": "sun_protection",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/sun_protection.md",
+        "paragraph_ordinal": 11,
+        "file_sha256": "b313bd4e4ab599e9c0db335bc849c185fedf8633b379112c9d583653af0c0edf",
+        "body_sha256": "c29ec5d751050513cc836aab6ad54050c982987ad18c875fc7f64c34c4f66958",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-sun_protection-011",
+          "text": "햇빛이 매우 강한 시간에는 가능한 범위에서 야외활동 시간을 조절하는 것이 노출 자체를 줄이는 방법이다. 외출할 때 긴소매 옷과 챙이 넓은 모자, 선글라스를 쓰면 넓은 부위와 눈 주변에 닿는 햇빛을 별도로 줄일 수 있다. 의복으로 덮이지 않은 부위에는 활동에 맞는 차단제를 바른다. 한 가지 제품의 높은 지수를 고르는 것과 햇볕에 노출되는 면적이나 시간을 줄이는 것은 서로 다른 관리 수단이다.",
+          "source_url": "https://www.korea.kr/news/policyNewsView.do?newsId=148965990",
+          "locator": "식약처 2026-06-05 안내, 자외선이 강한 시간대의 야외 활동",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "일반적인 야외 노출에 관한 안내다. 특정 옷감의 차단지수나 개인별 안전 노출시간은 제시하지 않는다."
+        }
+      },
+      "ref:rc-dd418a3-cleansing-004": {
+        "title": "[cleansing] 클렌징 젤의 점도와 제거 방식",
+        "domain": "cleansing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/cleansing.md",
+        "paragraph_ordinal": 4,
+        "file_sha256": "221465fc721c29c6eabd414a44e9989d2eea299435983880f8bf08f4b29246aa",
+        "body_sha256": "144c7ce8e50ce44de87e7a116df20be7ca067f4f410eb8a6adbe133fce6b8b14",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-cleansing-004",
+          "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+          "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+          "locator": "개정 4판 본문 p.99, 클렌징 젤",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+        }
+      },
+      "ref:rc-dd418a3-cleansing-001": {
+        "title": "[cleansing] 물로 잘 지워지지 않는 메이크업의 세정",
+        "domain": "cleansing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/cleansing.md",
+        "paragraph_ordinal": 1,
+        "file_sha256": "221465fc721c29c6eabd414a44e9989d2eea299435983880f8bf08f4b29246aa",
+        "body_sha256": "648cc11e21993f47143430618f9ade3c0d653300230c8e36de2e6be621926c63",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-cleansing-001",
+          "text": "워터프루프 파운데이션이나 유성 마스카라처럼 물을 견디도록 만든 제품은 물에 쉽게 흩어지지 않는다. 메이크업 리무버는 이런 잔여물이 기름 성분에 녹거나 분산되는 성질을 이용해 피부에서 떼어낸다. 일부 자외선차단제도 가이드가 예로 드는 대상에 해당한다. 지울 제품이 어떤 제형인지, 리무버에 닦아내거나 헹구라는 지시가 있는지를 함께 보면 같은 세안법을 모든 제품에 적용하는 일을 피할 수 있다.",
+          "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+          "locator": "개정 4판 본문 p.99, 메이크업 리무버의 사용 목적",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "메이크업 잔여물의 성질을 설명하는 자료다. 모든 자외선차단제에 이중 세안이 필요하다는 시험 결과는 아니다."
+        }
+      },
+      "ref:rc-dd418a3-storage_label-020": {
+        "title": "[storage_label] 사용기한과 개봉 후 사용기간의 기준 날짜",
+        "domain": "storage_label",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/storage_label.md",
+        "paragraph_ordinal": 20,
+        "file_sha256": "f9f3963f835a4a423e18ef1cdc484a63b38c509d1c969da094195d10d6b7c796",
+        "body_sha256": "8ee38ba6c97d5a4dd46448741d6b47f086a1c1ac5b5229447601fa789f0b079c",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-storage_label-020",
+          "text": "사용기한과 개봉 후 사용기간은 모두 제품 포장에서 확인할 수 있는 정보지만 시간을 세는 출발점이 다르다. 개봉 후 사용기간으로 표시하는 경우에는 제조연월일을 함께 표기하도록 화장품법이 정한다. 따라서 제조일만 읽고 그날을 사용자가 개봉한 날짜로 간주하면 실제 남은 기간을 잘못 계산할 수 있다. 표시된 것이 달력상의 기한인지, 개봉한 날부터 세는 기간인지 먼저 구분한 뒤 가지고 있는 제품의 개봉 이력을 대조한다.",
+          "source_url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1028705923",
+          "locator": "화장품법 제10조 제1항 단서 및 제6호, 2026-10-20 시행본",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "한국에서의 포장 표시 기준이다. 특정 제품을 이미 언제 개봉했는지는 사용자 이력이 필요하다."
+        }
+      },
+      "ref:rc-dd418a3-sun_protection-017": {
+        "title": "[sun_protection] 높은 SPF와 허용 노출 시간의 차이",
+        "domain": "sun_protection",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/sun_protection.md",
+        "paragraph_ordinal": 17,
+        "file_sha256": "b313bd4e4ab599e9c0db335bc849c185fedf8633b379112c9d583653af0c0edf",
+        "body_sha256": "1656a067bdc25cb6fc335f86c6b97335cac1ea1e6f475ec378ee94bae99c8fc8",
+        "tier": "tier1",
+        "origin": "reference_excerpt",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-sun_protection-017",
+          "text": "Higher SPF values (up to 50) provide greater sunburn protection. Because SPF values are determined from a test that measures protection against sunburn, SPF values primarily indicate a sunscreen's UVB protection. To get the most protection out of sunscreen, choose a broad-spectrum sunscreen with an SPF of at least 15. Some people incorrectly believe that SPF relates to time of solar exposure. For example, some people believe that, if they normally get sunburned in one hour, then an SPF 15 sunscreen allows them to stay in the sun for 15 hours (e.g., 15 times longer) without getting sunburn. This is not true because SPF is not directly related to time of solar exposure but to amount of solar exposure.",
+          "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+          "locator": "Sun protection factor (SPF) — “Higher SPF values (up to 50)…”",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "미국 FDA의 일반의약품 자외선차단제 안내다. 제품별 사용 방법과 내수성은 해당 판매국의 포장 표시를 확인한다."
+        }
+      },
+      "ref:rc-dd418a3-sun_protection-015": {
+        "title": "[sun_protection] 날씨와 계절에 관계없이 노출되는 자외선",
+        "domain": "sun_protection",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/sun_protection.md",
+        "paragraph_ordinal": 15,
+        "file_sha256": "b313bd4e4ab599e9c0db335bc849c185fedf8633b379112c9d583653af0c0edf",
+        "body_sha256": "7b7667cb6cfd2806e0aaaffdb73b4d625a93b4a8cda8579dc0ba08a7907b6d74",
+        "tier": "tier1",
+        "origin": "reference_excerpt",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-sun_protection-015",
+          "text": "Sun safety is always in season. It’s important to protect your skin from sun damage throughout the year, no matter what the weather. Exposing your skin to the sun year-round means you are exposing it to ultraviolet radiation, which can cause sunburn, early skin aging (such as skin spots, wrinkles, or “leathery skin”), eye damage, and skin cancer, the most common form of cancer in the U.S. Sunscreen is one of several ways to help reduce the risk of skin cancer. The U.S. Food and Drug Administration continues to evaluate sunscreen products to ensure they are safe and effective. Although all sunscreens help protect against sunburn, only broad-spectrum sunscreens with a sun protection factor (SPF) of at least 15 help protect against the UV rays that increase the risk of skin cancer and early skin aging caused by the sun. Broad-spectrum sunscreens protect against both UVA and UVB rays.",
+          "source_url": "https://www.fda.gov/consumers/consumer-updates/tips-stay-safe-sun-sunscreen-sunglasses",
+          "locator": "Consumer article, passage beginning “Sun safety is always in season.…”",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "관할 기관의 소비자 안내다. 실제 제품의 사용법과 내수성 표시를 함께 확인한다."
+        }
+      },
+      "ref:rc-dd418a3-cleansing-012": {
+        "title": "[cleansing] 물로 씻는 항균 비누와 일반 비누의 비교 근거",
+        "domain": "cleansing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/cleansing.md",
+        "paragraph_ordinal": 12,
+        "file_sha256": "221465fc721c29c6eabd414a44e9989d2eea299435983880f8bf08f4b29246aa",
+        "body_sha256": "965c52a7c7be78e8386e84ac4194f44b724ae7cbad3521d37eb7b751f175d508",
+        "tier": "tier1",
+        "origin": "reference_excerpt",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-cleansing-012",
+          "text": "When you buy soaps and body washes, do you reach for products labeled “antibacterial” hoping they’ll keep your family safer? Do you think those products will lower your risk of getting sick, spreading germs or being infected? According to the U.S. Food and Drug Administration, currently there isn’t sufficient evidence to show that over-the-counter (OTC) antibacterial soaps are better at preventing illness than washing with plain soap and water. “Following simple handwashing practices is one of the most effective ways to prevent the spread of many types of infection and illness at home, at school and elsewhere,” says Theresa M. Michele, M.D., of the FDA. “We can’t advise this enough. It’s simple, and it works.” The FDA issued a final rule in 2016 under which 19 active ingredients, including triclosan and triclocarban, can no longer be marketed in nonprescription consumer antiseptic wash products.",
+          "source_url": "https://www.fda.gov/consumers/consumer-updates/skip-antibacterial-soap-use-plain-soap-and-water",
+          "locator": "Consumer article, passage beginning “When you buy soaps and body…”",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "미국 가정용 세정제의 비교 및 표시 범위다. 의료기관용 소독제나 물 없이 쓰는 손 소독제에는 같은 규정을 적용하지 않는다."
+        }
+      },
+      "ref:rc-dd418a3-storage_label-001": {
+        "title": "[storage_label] 집에서 화장품 보관 위치를 정하는 기준",
+        "domain": "storage_label",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/storage_label.md",
+        "paragraph_ordinal": 1,
+        "file_sha256": "f9f3963f835a4a423e18ef1cdc484a63b38c509d1c969da094195d10d6b7c796",
+        "body_sha256": "4c37492f19cf1d59d6206a3e1ec2f3489bd4631f31d7f3bed0f12f0382d2abb7",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-storage_label-001",
+          "text": "화장품을 두는 장소를 정할 때 국내 공통 표시가 제시하는 조건은 어린이의 손이 닿지 않을 것과 직사광선을 피할 것이다. 두 조건은 별개이므로 햇빛을 가린 낮은 선반이나 어린이가 닿지 않지만 햇볕이 드는 창가는 각각 하나만 충족한다. 이 공통 항목에는 특정 냉장 온도나 개봉 후 사용 일수가 제시되지 않는다. 제품 유형이나 실제 용기의 별도 보관 안내가 있다면 일반 보관 안내와 함께 읽는다.",
+          "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=162910527",
+          "locator": "별표 3 제1호 다목 1)·2), 보관 및 취급 시 주의사항",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "국내 공통 표시다. 더 낮은 보관 온도나 별도 폐기 조건이 있는 품목은 제품별 표시도 함께 확인한다."
+        }
+      },
+      "ref:rc-dd418a3-cleansing-002": {
+        "title": "[cleansing] 클렌징 오일을 사용한 뒤 물로 헹구는 이유",
+        "domain": "cleansing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/cleansing.md",
+        "paragraph_ordinal": 2,
+        "file_sha256": "221465fc721c29c6eabd414a44e9989d2eea299435983880f8bf08f4b29246aa",
+        "body_sha256": "a908f04532399f0b98cb580e6f4eac4841f334a1b431f6688769f3b3058ece9c",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-cleansing-002",
+          "text": "클렌징 오일에는 메이크업과 섞이는 유성 성분 외에도 물과 기름을 분산시키는 계면활성제가 들어갈 수 있다. 가이드가 설명하는 헹굼형에서는 물이 닿았을 때 오일이 작은 방울로 물에 퍼지면서 씻겨 나간다. 바를 때의 유성 상태와 헹굴 때의 유화 상태가 서로 다른 것이 이 방식의 특징이다. 같은 오일이라는 이름이라도 완제품의 용도가 클렌징인지 보습인지에 따라 마지막 헹굼 단계가 달라진다.",
+          "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+          "locator": "개정 4판 본문 p.99, 클렌징 오일",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "물로 헹궈내도록 만든 클렌징 오일의 설명이다. 피부에 바르고 두는 오일에는 별도의 사용법이 있다."
+        }
+      },
+      "ref:rc-dd418a3-moisturizing-014": {
+        "title": "[moisturizing] 파라핀 함량과 관계없이 옷·침구에 남을 수 있는 보습제",
+        "domain": "moisturizing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/moisturizing.md",
+        "paragraph_ordinal": 14,
+        "file_sha256": "b988722be68d2265eb491bd0fdaa897939c15ff621527be20c918c3186de26dc",
+        "body_sha256": "49f4f8ab66f7f3c15de2b081f5bb6b4aeadc0277b4a58bdcbb473a7f229ec8f2",
+        "tier": "tier1",
+        "origin": "reference_excerpt",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-moisturizing-014",
+          "text": "Warnings about the risk of severe and fatal burns are being extended to all paraffin-based emollients regardless of paraffin concentration. Data suggest there is also a risk for paraffin-free emollients. Advise patients who use these products not to smoke or go near naked flames, and warn about the easy ignition of clothing, bedding, dressings, and other fabric that have dried residue of an emollient product on them. On 29 July 2020, MHRA, in partnership with the National Fire Chiefs Council, charities, and organisations from across health and social care, launched a campaign to raise awareness of this important risk. A tool kit of resources is available for health and social care professionals to support the safe use of emollients.",
+          "source_url": "https://www.gov.uk/drug-safety-update/emollients-new-information-about-risk-of-severe-and-fatal-burns-with-paraffin-containing-and-paraffin-free-emollients",
+          "locator": "Emollients: new information about risk of severe and fatal burns with paraffin-containing and paraffin-free emollients / Post-publication note — “Warnings about the risk of severe…”",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "크림이 옷이나 침구에 묻은 뒤 불꽃에 가까이 가는 상황에 해당한다. 피부에 보습제를 바르는 것 자체가 점화원이라는 뜻은 아니다."
+        }
+      },
+      "ref:rc-dd418a3-moisturizing-009": {
+        "title": "[moisturizing] 우레아가 든 손발용 크림을 바를 부위",
+        "domain": "moisturizing",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/moisturizing.md",
+        "paragraph_ordinal": 9,
+        "file_sha256": "b988722be68d2265eb491bd0fdaa897939c15ff621527be20c918c3186de26dc",
+        "body_sha256": "c2eb1390a715f057c6149ccafe161ccf98f8885767cf2342f60f390c21ab4f5f",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-moisturizing-009",
+          "text": "국내 주의사항은 우레아를 포함하는 손발용 피부연화 제품의 사용 부위를 따로 다룬다. 이 유형의 핸드크림이나 풋크림을 쓸 때는 눈이나 코, 입 등에 닿지 않도록 주의해야 한다. 여기에 프로필렌글리콜이 실제로 포함되면 해당 성분에 과민하거나 알레르기 병력이 있는 사람이 신중하게 사용하도록 추가 표시한다. 우레아만 보고 두 성분의 주의사항이 모두 적용된다고 판단하면 제품별 차이를 놓치게 된다.",
+          "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=167863671",
+          "locator": "별표 1 제2호 가목 7) 가)·나), 손·발의 피부연화 제품",
+          "checked_on": "2026-11-24",
+          "scope": "general_skincare_practice",
+          "limitations": "우레아를 함유한 핸드크림·풋크림에 적용한다. 모든 요소 함유 화장품의 공통 표시가 아니다."
+        }
+      },
+      "ref:rc-dd418a3-sun_protection-008": {
+        "title": "[sun_protection] 외출 전 노출 부위를 덮고 물놀이 뒤 다시 바르는 법",
+        "domain": "sun_protection",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/sun_protection.md",
+        "paragraph_ordinal": 8,
+        "file_sha256": "b313bd4e4ab599e9c0db335bc849c185fedf8633b379112c9d583653af0c0edf",
+        "body_sha256": "4f7f46ec38cff005e3d769b0e47da026801d1c6abcdcbb35abb619959f7f47fe",
+        "tier": "tier1",
+        "origin": "kb_source_summary",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-sun_protection-008",
+          "text": "차단제는 외출한 뒤 일부만 보충하는 것보다 외출 약 15분 전에 노출될 피부에 충분하고 고르게 바르는 것이 질병관리청의 안내다. 오래 햇볕에 있거나 땀이 나는 상황에서는 처음 바른 층이 계속 유지된다고 가정하지 않고 덧바른다. 물놀이에는 내수성 또는 지속내수성 표시가 있는 제품을 선택하고 약 두 시간마다 다시 바르도록 안내한다. 집에 돌아와서는 차단제가 피부에 남지 않도록 씻는 단계까지 포함한다.",
+          "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+          "locator": "건강한 피부 관리 방법, 1) 자외선 차단",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "국내 일반 생활 안내다. 개별 차단제의 도포량과 재도포 지시도 확인한다."
+        }
+      },
+      "ref:rc-dd418a3-sun_protection-016": {
+        "title": "[sun_protection] 놓치기 쉬운 노출 부위와 물에서 나온 뒤 재도포",
+        "domain": "sun_protection",
+        "corpus_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "file": "courses/ai-applications/experiments/cos-agent/data/rag/corpus/sun_protection.md",
+        "paragraph_ordinal": 16,
+        "file_sha256": "b313bd4e4ab599e9c0db335bc849c185fedf8633b379112c9d583653af0c0edf",
+        "body_sha256": "00577c252abd80ae8982504fb0516b39df75b9ad4cec9c392eb12cf8e1755812",
+        "tier": "tier1",
+        "origin": "reference_excerpt",
+        "chunk": {
+          "evidence_ref": "ref:rc-dd418a3-sun_protection-016",
+          "text": "Sunscreen should be applied to all exposed skin, including the face, neck and ears, and head if you have thinning or no hair, but a wide-brimmed hat is better. Sunscreen needs to be reapplied liberally and frequently, and according to the manufacturer's instructions. This includes applying it straight after you have been in water, even if it's \"water resistant\", and after towel drying, sweating or when it may have rubbed off. It's also recommended to reapply sunscreen every 2 hours, as the sun can dry it off your skin. Water washes sunscreen off, and the cooling effect of the water can make you think you're not getting burned. Water also reflects ultraviolet (UV) rays, increasing your exposure.",
+          "source_url": "https://www.nhs.uk/live-well/seasonal-health/sunscreen-and-sun-safety/",
+          "locator": "How to apply sunscreen / Swimming and sunscreen — “Sunscreen should be applied to all…”",
+          "checked_on": "2026-11-25",
+          "scope": "general_skincare_practice",
+          "limitations": "관할 기관의 소비자 안내다. 실제 제품의 사용법과 내수성 표시를 함께 확인한다."
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "syn-sol-0001",
+      "title": "손끝을 쓰지만 볼을 세게 문지르는 세정",
+      "scenario_raw": "세수할 때 볼을 좀 세게 문지르는 편인데, 이렇게 씻어도 괜찮을까요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0001",
+      "group_id": "rf25-r2-group-syn-sol-0001",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0001",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-cleansing-011": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "hands"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.friction": {
+            "variable_id": "method.friction",
+            "state": "known",
+            "value": {
+              "intensity": "strong",
+              "site": "cheeks"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.water_temperature": {
+            "variable_id": "method.water_temperature",
+            "state": "known",
+            "value": "lukewarm",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "세정 동작 점검"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-cleansing-011",
+            "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+            "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+            "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-cleansing-011"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "e01f821641c4078bae5649cebdcb2d75b364b1a55acc101e8b311792a0c776fe",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-cleansing-011",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "세수할 때 볼을 좀 세게 문지르는 편인데, 이렇게 씻어도 괜찮을까요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "손끝으로 씻고 물은 미지근하게 써요.",
+          "supports": [
+            "method.tools",
+            "method.water_temperature"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 아프거나 불편한 건 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.body_site": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "세수할 때 볼을 좀 세게 문지르는 편인데, 이렇게 씻어도 괜찮을까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.tools": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "손끝으로 씻고 물은 미지근하게 써요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.friction": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "세수할 때 볼을 좀 세게 문지르는 편인데, 이렇게 씻어도 괜찮을까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.water_temperature": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "손끝으로 씻고 물은 미지근하게 써요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "세수할 때 볼을 좀 세게 문지르는 편인데, 이렇게 씻어도 괜찮을까요?"
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0002",
+      "title": "헹군 뒤 수건으로 비비는 동작",
+      "scenario_raw": "얼굴 헹구고 나서 수건으로 빡빡 닦는데, 이건 바꾸는 게 좋을까요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0002",
+      "group_id": "rf25-r2-group-syn-sol-0002",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0002",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-cleansing-011": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.drying": {
+            "variable_id": "method.drying",
+            "state": "known",
+            "value": "vigorous_towel_rubbing",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.cleansing_pressure": {
+            "variable_id": "method.cleansing_pressure",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-cleansing-011",
+            "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+            "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+            "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-cleansing-011"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "2ec69f96ac7b5ff45ff13a55c45f66d6355b9e359cd5593486365ac580acc7b2",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-cleansing-011",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "얼굴 헹구고 나서 수건으로 빡빡 닦는데, 이건 바꾸는 게 좋을까요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "세수할 때 얼마나 힘을 줬는지는 잘 기억 안 나요.",
+          "supports": [
+            "method.cleansing_pressure"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 피부가 아프거나 불편하지는 않아요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.body_site": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "얼굴 헹구고 나서 수건으로 빡빡 닦는데, 이건 바꾸는 게 좋을까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.drying": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "얼굴 헹구고 나서 수건으로 빡빡 닦는데, 이건 바꾸는 게 좋을까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.cleansing_pressure": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "세수할 때 얼마나 힘을 줬는지는 잘 기억 안 나요."
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0003",
+      "title": "샤워 뒤 보습을 한참 미루는 습관",
+      "scenario_raw": "샤워하고 한참 뒤에 보습제를 바르는데, 바로 바르는 게 나을까요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0003",
+      "group_id": "rf25-r2-group-syn-sol-0003",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0003",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-moisturizing-010": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "actual_site": "arms",
+              "moisturizer_used": true,
+              "application_timing": "long_after_shower_when_fully_dry"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "샤워 뒤 보습 순서 점검"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.dryness": {
+            "variable_id": "skin.dryness",
+            "state": "known",
+            "value": "mild",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-moisturizing-010",
+            "text": "얼굴이나 몸을 씻은 뒤에는 다음 단계로 피부에 맞는 보습제를 바르는 습관이 도움이 된다. 질병관리청은 보습제가 피부 표면을 덮어 수분이 유지되고 피부가 부드러운 상태로 느껴지는 데 기여한다고 설명한다. 일상적으로 쓸 제품을 고를 때에는 바른 뒤 자극이나 알레르기 반응이 없는지도 함께 살핀다. 이 안내의 중심은 씻은 뒤 무리 없이 반복할 수 있는 관리이며, 누구에게나 일정한 용량이나 특정 제형을 요구하는 것은 아니다.",
+            "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+            "locator": "건강한 피부 관리 방법, 3) 보습제 사용",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "일상적인 피부관리 안내다. 특정 성분이나 질환에 대한 치료 효과를 비교한 자료는 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-moisturizing-010"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d478614a0c94e5a4e5dc0a83051183090fbec48e2a7e42a2e3b3a74f111f721d",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-moisturizing-010",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "샤워하고 한참 뒤에 보습제를 바르는데, 바로 바르는 게 나을까요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "팔이 완전히 마르고 나서 발라요. 팔이 조금 건조한 편이에요.",
+          "supports": [
+            "method.current_routine",
+            "skin.dryness"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "통증이나 다른 불편은 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "샤워하고 한참 뒤에 보습제를 바르는데, 바로 바르는 게 나을까요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "팔이 완전히 마르고 나서 발라요. 팔이 조금 건조한 편이에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "샤워하고 한참 뒤에 보습제를 바르는데, 바로 바르는 게 나을까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.dryness": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "팔이 완전히 마르고 나서 발라요. 팔이 조금 건조한 편이에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "통증이나 다른 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "통증이나 다른 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0004",
+      "title": "보습 로션을 바른 뒤 다시 씻어내는 행동",
+      "scenario_raw": "로션 바른 다음에 물로 한 번 씻어내는데, 이렇게 쓰는 거 맞아요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0004",
+      "group_id": "rf25-r2-group-syn-sol-0004",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0004",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-moisturizing-006": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "actual_removal": "rinsed_after_application"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "보습 로션의 용도와 실제 사용 대조"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-r2-lotion-04",
+            "version": "fixture-2",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 표시: 피부에 남기는 보습 로션",
+            "evidence_ref": "catalog:rf-r2-lotion-04@fixture-2",
+            "fixture_notice": "실재 상품이 아닌 신규 합성 제품 표시 예시"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-moisturizing-006",
+            "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+            "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+            "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-moisturizing-006",
+          "catalog:rf-r2-lotion-04@fixture-2"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f84d17ee02313985d6d7aa12e733ea5e4cb253cfada2ef4eb0f493b0a3c87547",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-moisturizing-006",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "로션 바른 다음에 물로 한 번 씻어내는데, 이렇게 쓰는 거 맞아요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금 따로 아프거나 불편한 데는 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "로션 바른 다음에 물로 한 번 씻어내는데, 이렇게 쓰는 거 맞아요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "로션 바른 다음에 물로 한 번 씻어내는데, 이렇게 쓰는 거 맞아요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 따로 아프거나 불편한 데는 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 따로 아프거나 불편한 데는 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-r2-lotion-04",
+            "catalog_record_version": "fixture-2",
+            "current_container_match": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 표시: 피부에 남기는 보습 로션",
+            "status": "verified",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0005",
+      "title": "야외 활동 중 땀 이후 재도포 누락",
+      "scenario_raw": "밖에서 땀을 많이 흘렸는데 선크림을 다시 발라야 하나요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0005",
+      "group_id": "rf25-r2-group-syn-sol-0005",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0005",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-sun_protection-013": "reference_excerpt"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.activity": {
+            "variable_id": "sun.activity",
+            "state": "known",
+            "value": {
+              "outdoors": true,
+              "heavy_sweating": true,
+              "sunscreen_applied": true,
+              "reapplied_after_sweating": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.product_water_resistance": {
+            "variable_id": "sun.product_water_resistance",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-013",
+            "text": "How you use sunscreens and what other protective measures you take make a difference in how well you are able to protect yourself and your family from sunburn, skin cancer, early skin aging and other risks of overexposure to the sun. Some key sun safety tips include: Limit time in the sun, especially between the hours of 10 a.m. and 2 p.m., when the sun’s rays are most intense. Wear clothing to cover skin exposed to the sun, such as long-sleeved shirts, pants, sunglasses, and broad-brimmed hats. Use broad spectrum sunscreens with sun protection factor (SPF) values of 15 or higher regularly and as directed. Reapply sunscreen at least every two hours, and more often if you're sweating or swimming.",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips — “How you use sunscreens and what…”",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "미국 FDA의 일반의약품 자외선차단제 안내다. 제품별 사용 방법과 내수성은 해당 판매국의 포장 표시를 확인한다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-sun_protection-013"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "c1d4040ff261ac8cd82b6a6e07a0ebde5330edbe51ecdb10fa6094715b7d25f9",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-sun_protection-013",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "밖에서 땀을 많이 흘렸는데 선크림을 다시 발라야 하나요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "나오기 전에 발랐고 땀 흘린 뒤에는 아직 안 발랐어요.",
+          "supports": [
+            "sun.activity"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "물에 얼마나 견디는 제품인지는 안 봤어요.",
+          "supports": [
+            "sun.product_water_resistance"
+          ]
+        },
+        {
+          "id": "prior-03",
+          "text": "지금 피부 통증이나 불편은 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "sun.activity": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "밖에서 땀을 많이 흘렸는데 선크림을 다시 발라야 하나요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "나오기 전에 발랐고 땀 흘린 뒤에는 아직 안 발랐어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "sun.product_water_resistance": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "물에 얼마나 견디는 제품인지는 안 봤어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0006",
+      "title": "차단제만 바르고 팔을 가리지 않는 야외 생활",
+      "scenario_raw": "선크림 발랐으니까 팔은 안 가려도 된다고 생각했는데, 괜찮나요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0006",
+      "group_id": "rf25-r2-group-syn-sol-0006",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0006",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "normal_guidance",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-sun_protection-011": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.activity": {
+            "variable_id": "sun.activity",
+            "state": "known",
+            "value": {
+              "outdoors": true,
+              "sunscreen_applied": true,
+              "arms_covered": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.protection_belief": {
+            "variable_id": "sun.protection_belief",
+            "state": "known",
+            "value": "sunscreen_alone_sufficient",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-011",
+            "text": "햇빛이 매우 강한 시간에는 가능한 범위에서 야외활동 시간을 조절하는 것이 노출 자체를 줄이는 방법이다. 외출할 때 긴소매 옷과 챙이 넓은 모자, 선글라스를 쓰면 넓은 부위와 눈 주변에 닿는 햇빛을 별도로 줄일 수 있다. 의복으로 덮이지 않은 부위에는 활동에 맞는 차단제를 바른다. 한 가지 제품의 높은 지수를 고르는 것과 햇볕에 노출되는 면적이나 시간을 줄이는 것은 서로 다른 관리 수단이다.",
+            "source_url": "https://www.korea.kr/news/policyNewsView.do?newsId=148965990",
+            "locator": "식약처 2026-06-05 안내, 자외선이 강한 시간대의 야외 활동",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "일반적인 야외 노출에 관한 안내다. 특정 옷감의 차단지수나 개인별 안전 노출시간은 제시하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-sun_protection-011"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f9811231f59e98433323a9f7b663003a75847445fc7a709d5de0e4b80762d7df",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-sun_protection-011",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "선크림 발랐으니까 팔은 안 가려도 된다고 생각했는데, 괜찮나요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금 밖에 있고 팔은 드러나 있어요.",
+          "supports": [
+            "sun.activity"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "피부가 아프거나 불편한 건 아니에요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "sun.activity": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "선크림 발랐으니까 팔은 안 가려도 된다고 생각했는데, 괜찮나요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 밖에 있고 팔은 드러나 있어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "sun.protection_belief": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "선크림 발랐으니까 팔은 안 가려도 된다고 생각했는데, 괜찮나요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "피부가 아프거나 불편한 건 아니에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "피부가 아프거나 불편한 건 아니에요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0007",
+      "title": "세정제 pH 미공개",
+      "scenario_raw": "이 젤 세안제, 약산성인지 알 수 있나요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0007",
+      "group_id": "rf25-r2-group-syn-sol-0007",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0007",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-cleansing-004": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.tools": {
+            "variable_id": "method.tools",
+            "state": "known",
+            "value": [
+              "hands"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "세정제 pH 확인"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "product.ph": {
+            "variable_id": "product.ph",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-r2-gel-07",
+            "version": "fixture-2",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 표시: 젤형 얼굴 세정제. pH 자료 미공개",
+            "evidence_ref": "catalog:rf-r2-gel-07@fixture-2",
+            "fixture_notice": "실재 상품이 아닌 신규 합성 제품 표시 예시"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-cleansing-004",
+            "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+            "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+            "locator": "개정 4판 본문 p.99, 클렌징 젤",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-cleansing-004",
+          "catalog:rf-r2-gel-07@fixture-2"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "f623d86f54307451eb000d36b4209c78cbb9d4cd274b315b3d84ee9de40da741",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-cleansing-004",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "이 젤 세안제, 약산성인지 알 수 있나요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "얼굴 씻을 때 손끝으로 쓰고 있어요.",
+          "supports": [
+            "method.body_site",
+            "method.tools"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 아프거나 불편하지는 않아요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.body_site": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "얼굴 씻을 때 손끝으로 쓰고 있어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.tools": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "얼굴 씻을 때 손끝으로 쓰고 있어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "이 젤 세안제, 약산성인지 알 수 있나요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "product.ph": {
+          "origin": "synthetic_catalog_lookup_fixture",
+          "evidence": [
+            {
+              "product_id": "rf-r2-gel-07",
+              "label_guidance": "현재 버전과 일치하는 합성 표시: 젤형 얼굴 세정제. pH 자료 미공개"
+            }
+          ],
+          "note": "사용자 발화에서 pH를 확정한 것이 아니라 제품 자료에 수치가 없는 상태예요."
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-r2-gel-07",
+            "catalog_record_version": "fixture-2",
+            "current_container_match": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 표시: 젤형 얼굴 세정제. pH 자료 미공개",
+            "status": "verified",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0008",
+      "title": "예전 세정제 표시를 새 버전에 적용할 수 있는지",
+      "scenario_raw": "이 세안제도 물로 헹구면 되는 건가요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0008",
+      "group_id": "rf25-r2-group-syn-sol-0008",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0008",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:rc-dd418a3-cleansing-001": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_removal_instruction": {
+            "variable_id": "method.current_removal_instruction",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-clean-08",
+            "version": "fixture-1",
+            "synthetic_product": true,
+            "status": "usage_held",
+            "label_guidance": "예전 버전에만 확인된 표시: 물로 헹구기",
+            "evidence_ref": "catalog:rf-clean-08@fixture-1",
+            "fixture_notice": "실재 상품이 아닌 신규 합성 제품 표시 예시"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-cleansing-001",
+            "text": "워터프루프 파운데이션이나 유성 마스카라처럼 물을 견디도록 만든 제품은 물에 쉽게 흩어지지 않는다. 메이크업 리무버는 이런 잔여물이 기름 성분에 녹거나 분산되는 성질을 이용해 피부에서 떼어낸다. 일부 자외선차단제도 가이드가 예로 드는 대상에 해당한다. 지울 제품이 어떤 제형인지, 리무버에 닦아내거나 헹구라는 지시가 있는지를 함께 보면 같은 세안법을 모든 제품에 적용하는 일을 피할 수 있다.",
+            "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+            "locator": "개정 4판 본문 p.99, 메이크업 리무버의 사용 목적",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "메이크업 잔여물의 성질을 설명하는 자료다. 모든 자외선차단제에 이중 세안이 필요하다는 시험 결과는 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-cleansing-001"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "577068f69b8fec4ed18a366235d0065617b6e8b3857b887a64eca6cee6676318",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-cleansing-001",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "이 세안제도 물로 헹구면 되는 건가요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "전에 쓰던 건 물로 헹구는 거였어요. 지금 것의 사용법은 아직 못 봤어요.",
+          "supports": [
+            "method.current_removal_instruction"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "현재 피부에 통증이나 불편은 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "현재 피부에 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "현재 피부에 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_removal_instruction": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "이 세안제도 물로 헹구면 되는 건가요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "전에 쓰던 건 물로 헹구는 거였어요. 지금 것의 사용법은 아직 못 봤어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-clean-08",
+            "catalog_record_version": "fixture-1",
+            "current_container_match": "unconfirmed",
+            "label_guidance": "예전 버전에만 확인된 표시: 물로 헹구기",
+            "status": "usage_held",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0009",
+      "title": "로션이라는 이름만으로 용도를 판단하지 않기",
+      "scenario_raw": "여기 로션이라고 써 있는데, 바르고 두는 거예요, 아니면 씻어내는 거예요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0009",
+      "group_id": "rf25-r2-group-syn-sol-0009",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0009",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-moisturizing-006": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "observed_package_word": "로션"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "제품의 표시 용도 확인"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.product_purpose": {
+            "variable_id": "method.product_purpose",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "method.actual_application": {
+            "variable_id": "method.actual_application",
+            "state": "not_asked",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-r2-lotion-09",
+            "version": null,
+            "synthetic_product": true,
+            "status": "unknown",
+            "label_guidance": null,
+            "evidence_ref": null,
+            "fixture_notice": "용도와 버전이 미확인인 합성 제품"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-moisturizing-006",
+            "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+            "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+            "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-moisturizing-006"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "d576a0cbe8506298c6f7e4526e861a49d2a7926032f9e6727ab833c0ddfde034",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-moisturizing-006",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "여기 로션이라고 써 있는데, 바르고 두는 거예요, 아니면 씻어내는 거예요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금 피부가 아프거나 불편한 상태는 아니에요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "여기 로션이라고 써 있는데, 바르고 두는 거예요, 아니면 씻어내는 거예요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "여기 로션이라고 써 있는데, 바르고 두는 거예요, 아니면 씻어내는 거예요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편한 상태는 아니에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편한 상태는 아니에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.product_purpose": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "여기 로션이라고 써 있는데, 바르고 두는 거예요, 아니면 씻어내는 거예요?"
+            }
+          ],
+          "normalized_state": "unknown"
+        },
+        "method.actual_application": {
+          "origin": "not_collected",
+          "evidence": [],
+          "note": "사용자에게서 수집하지 않은 정보이며 없음으로 바꾸지 않아요."
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-r2-lotion-09",
+            "catalog_record_version": null,
+            "current_container_match": "unconfirmed",
+            "label_guidance": null,
+            "status": "unknown",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0010",
+      "title": "개봉 시점과 사용 기한을 모르는 보습제",
+      "scenario_raw": "이 보습제 언제 열었는지 기억이 안 나요. 아직 써도 될까요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0010",
+      "group_id": "rf25-r2-group-syn-sol-0010",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0010",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-storage_label-020": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": false,
+              "separation": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.opened_on": {
+            "variable_id": "storage.opened_on",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "storage.expiry_label": {
+            "variable_id": "storage.expiry_label",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-storage_label-020",
+            "text": "사용기한과 개봉 후 사용기간은 모두 제품 포장에서 확인할 수 있는 정보지만 시간을 세는 출발점이 다르다. 개봉 후 사용기간으로 표시하는 경우에는 제조연월일을 함께 표기하도록 화장품법이 정한다. 따라서 제조일만 읽고 그날을 사용자가 개봉한 날짜로 간주하면 실제 남은 기간을 잘못 계산할 수 있다. 표시된 것이 달력상의 기한인지, 개봉한 날부터 세는 기간인지 먼저 구분한 뒤 가지고 있는 제품의 개봉 이력을 대조한다.",
+            "source_url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1028705923",
+            "locator": "화장품법 제10조 제1항 단서 및 제6호, 2026-10-20 시행본",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "한국에서의 포장 표시 기준이다. 특정 제품을 이미 언제 개봉했는지는 사용자 이력이 필요하다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-storage_label-020"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "14e4eae938ce1ab5827e72f987b00772cff76c995b21a98386d821ee04593dad",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-storage_label-020",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "이 보습제 언제 열었는지 기억이 안 나요. 아직 써도 될까요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "사용기한 표시는 아직 못 읽었어요.",
+          "supports": [
+            "storage.expiry_label"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "색이나 냄새가 바뀌거나 층이 나뉜 건 없어요.",
+          "supports": [
+            "storage.sensory_change"
+          ]
+        },
+        {
+          "id": "prior-03",
+          "text": "피부 통증이나 불편도 없고요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "storage.sensory_change": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "색이나 냄새가 바뀌거나 층이 나뉜 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "피부 통증이나 불편도 없고요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "피부 통증이나 불편도 없고요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "storage.opened_on": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "이 보습제 언제 열었는지 기억이 안 나요. 아직 써도 될까요?"
+            }
+          ],
+          "normalized_state": "unknown"
+        },
+        "storage.expiry_label": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "사용기한 표시는 아직 못 읽었어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0011",
+      "title": "이전 차단제의 차단 지수를 현재 용기에 전이하지 않기",
+      "scenario_raw": "내일 나갈 때 이 선크림 쓰려는데, SPF가 얼마인지 알 수 있어요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0011",
+      "group_id": "rf25-r2-group-syn-sol-0011",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0011",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "version_mismatch_or_unknown",
+      "chunk_origins": {
+        "ref:rc-dd418a3-sun_protection-017": "reference_excerpt"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.activity": {
+            "variable_id": "sun.activity",
+            "state": "known",
+            "value": {
+              "planned_outdoors": true,
+              "currently_outdoors": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.current_product_spf": {
+            "variable_id": "sun.current_product_spf",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-sun-11",
+            "version": "fixture-1",
+            "synthetic_product": true,
+            "status": "usage_held",
+            "label_guidance": "이전 버전에 한정한 합성 표시: SPF 30",
+            "evidence_ref": "catalog:rf-sun-11@fixture-1",
+            "fixture_notice": "실재 상품이 아닌 신규 합성 제품 표시 예시"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-017",
+            "text": "Higher SPF values (up to 50) provide greater sunburn protection. Because SPF values are determined from a test that measures protection against sunburn, SPF values primarily indicate a sunscreen's UVB protection. To get the most protection out of sunscreen, choose a broad-spectrum sunscreen with an SPF of at least 15. Some people incorrectly believe that SPF relates to time of solar exposure. For example, some people believe that, if they normally get sunburned in one hour, then an SPF 15 sunscreen allows them to stay in the sun for 15 hours (e.g., 15 times longer) without getting sunburn. This is not true because SPF is not directly related to time of solar exposure but to amount of solar exposure.",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun protection factor (SPF) — “Higher SPF values (up to 50)…”",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "미국 FDA의 일반의약품 자외선차단제 안내다. 제품별 사용 방법과 내수성은 해당 판매국의 포장 표시를 확인한다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-sun_protection-017"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "3511f76bd5cea72054a8fa65d376d7131957390afe93f96fd80fd0f91b63ef12",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-sun_protection-017",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "내일 나갈 때 이 선크림 쓰려는데, SPF가 얼마인지 알 수 있어요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금은 실내에 있고 아직 나간 건 아니에요.",
+          "supports": [
+            "sun.activity"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 피부가 아프거나 불편한 건 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "sun.activity": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "내일 나갈 때 이 선크림 쓰려는데, SPF가 얼마인지 알 수 있어요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금은 실내에 있고 아직 나간 건 아니에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "sun.current_product_spf": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "내일 나갈 때 이 선크림 쓰려는데, SPF가 얼마인지 알 수 있어요?"
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-sun-11",
+            "catalog_record_version": "fixture-1",
+            "current_container_match": "unconfirmed",
+            "label_guidance": "이전 버전에 한정한 합성 표시: SPF 30",
+            "status": "usage_held",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0012",
+      "title": "선선하고 흐린 날의 산책 계획과 UV 미상",
+      "scenario_raw": "내일 선선하고 흐리다던데, 산책할 때도 자외선 신경 써야 하나요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0012",
+      "group_id": "rf25-r2-group-syn-sol-0012",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0012",
+      "split": "val_internal",
+      "mode": "solution",
+      "pilot_bucket": "unknown_or_version",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {
+        "ref:rc-dd418a3-sun_protection-015": "reference_excerpt"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.activity": {
+            "variable_id": "sun.activity",
+            "state": "known",
+            "value": {
+              "planned_walk": true,
+              "currently_outdoors": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "environment.current_location": {
+            "variable_id": "environment.current_location",
+            "state": "known",
+            "value": "indoors",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.planned_exposure_duration": {
+            "variable_id": "sun.planned_exposure_duration",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "environment.future_uv_index": {
+            "variable_id": "environment.future_uv_index",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          },
+          "environment.forecast": {
+            "variable_id": "environment.forecast",
+            "state": "known",
+            "value": {
+              "for": "planned_walk_day",
+              "temperature_description": "cool",
+              "sky": "cloudy"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-015",
+            "text": "Sun safety is always in season. It’s important to protect your skin from sun damage throughout the year, no matter what the weather. Exposing your skin to the sun year-round means you are exposing it to ultraviolet radiation, which can cause sunburn, early skin aging (such as skin spots, wrinkles, or “leathery skin”), eye damage, and skin cancer, the most common form of cancer in the U.S. Sunscreen is one of several ways to help reduce the risk of skin cancer. The U.S. Food and Drug Administration continues to evaluate sunscreen products to ensure they are safe and effective. Although all sunscreens help protect against sunburn, only broad-spectrum sunscreens with a sun protection factor (SPF) of at least 15 help protect against the UV rays that increase the risk of skin cancer and early skin aging caused by the sun. Broad-spectrum sunscreens protect against both UVA and UVB rays.",
+            "source_url": "https://www.fda.gov/consumers/consumer-updates/tips-stay-safe-sun-sunscreen-sunglasses",
+            "locator": "Consumer article, passage beginning “Sun safety is always in season.…”",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "관할 기관의 소비자 안내다. 실제 제품의 사용법과 내수성 표시를 함께 확인한다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-sun_protection-015"
+        ],
+        "distractor_refs": []
+      },
+      "input_sha256": "b5f82efd8e5e09df59e266952fb7ac688da9d7c7237a3ae89eb2201641c0025a",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-sun_protection-015",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "내일 선선하고 흐리다던데, 산책할 때도 자외선 신경 써야 하나요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "아직 얼마나 걸을지랑 길은 안 정했어요. 자외선 지수도 모르겠어요.",
+          "supports": [
+            "sun.planned_exposure_duration",
+            "environment.future_uv_index"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금은 실내에 있고 피부 통증이나 불편은 없어요.",
+          "supports": [
+            "sun.activity",
+            "environment.current_location",
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "sun.activity": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "내일 선선하고 흐리다던데, 산책할 때도 자외선 신경 써야 하나요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금은 실내에 있고 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "environment.current_location": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금은 실내에 있고 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금은 실내에 있고 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금은 실내에 있고 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "sun.planned_exposure_duration": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "아직 얼마나 걸을지랑 길은 안 정했어요. 자외선 지수도 모르겠어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        },
+        "environment.future_uv_index": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "아직 얼마나 걸을지랑 길은 안 정했어요. 자외선 지수도 모르겠어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        },
+        "environment.forecast": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "내일 선선하고 흐리다던데, 산책할 때도 자외선 신경 써야 하나요?"
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0013",
+      "title": "가정용 항균 비누의 표시를 효과 보증으로 읽지 않기",
+      "scenario_raw": "집에서 손 씻을 비누를 살까 하는데, 항균이라고 쓰인 게 병 예방에 더 좋은가요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0013",
+      "group_id": "rf25-r2-group-syn-sol-0013",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0013",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:rc-dd418a3-cleansing-012": "reference_excerpt",
+        "ref:rc-dd418a3-storage_label-001": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "hands",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "setting": "home",
+              "product_type_under_consideration": "consumer_rinse_off_antibacterial_soap",
+              "purchase_completed": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "항균 표시와 비교 근거 구분"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-cleansing-012",
+            "text": "When you buy soaps and body washes, do you reach for products labeled “antibacterial” hoping they’ll keep your family safer? Do you think those products will lower your risk of getting sick, spreading germs or being infected? According to the U.S. Food and Drug Administration, currently there isn’t sufficient evidence to show that over-the-counter (OTC) antibacterial soaps are better at preventing illness than washing with plain soap and water. “Following simple handwashing practices is one of the most effective ways to prevent the spread of many types of infection and illness at home, at school and elsewhere,” says Theresa M. Michele, M.D., of the FDA. “We can’t advise this enough. It’s simple, and it works.” The FDA issued a final rule in 2016 under which 19 active ingredients, including triclosan and triclocarban, can no longer be marketed in nonprescription consumer antiseptic wash products.",
+            "source_url": "https://www.fda.gov/consumers/consumer-updates/skip-antibacterial-soap-use-plain-soap-and-water",
+            "locator": "Consumer article, passage beginning “When you buy soaps and body…”",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "미국 가정용 세정제의 비교 및 표시 범위다. 의료기관용 소독제나 물 없이 쓰는 손 소독제에는 같은 규정을 적용하지 않는다."
+          },
+          {
+            "evidence_ref": "ref:rc-dd418a3-storage_label-001",
+            "text": "화장품을 두는 장소를 정할 때 국내 공통 표시가 제시하는 조건은 어린이의 손이 닿지 않을 것과 직사광선을 피할 것이다. 두 조건은 별개이므로 햇빛을 가린 낮은 선반이나 어린이가 닿지 않지만 햇볕이 드는 창가는 각각 하나만 충족한다. 이 공통 항목에는 특정 냉장 온도나 개봉 후 사용 일수가 제시되지 않는다. 제품 유형이나 실제 용기의 별도 보관 안내가 있다면 일반 보관 안내와 함께 읽는다.",
+            "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=162910527",
+            "locator": "별표 3 제1호 다목 1)·2), 보관 및 취급 시 주의사항",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "국내 공통 표시다. 더 낮은 보관 온도나 별도 폐기 조건이 있는 품목은 제품별 표시도 함께 확인한다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-cleansing-012"
+        ],
+        "distractor_refs": [
+          "ref:rc-dd418a3-storage_label-001"
+        ]
+      },
+      "input_sha256": "72b84a3ad588d95fc623a3f5e47aa79cfe443ed32fcb19fedaab1ca45a00ae31",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-cleansing-012",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "집에서 손 씻을 비누를 살까 하는데, 항균이라고 쓰인 게 병 예방에 더 좋은가요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "아직 고르는 중이고 산 건 아니에요. 물로 헹궈 쓰는 비누를 보고 있어요.",
+          "supports": [
+            "method.current_routine"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "손이 아프거나 불편한 건 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.body_site": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "집에서 손 씻을 비누를 살까 하는데, 항균이라고 쓰인 게 병 예방에 더 좋은가요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "집에서 손 씻을 비누를 살까 하는데, 항균이라고 쓰인 게 병 예방에 더 좋은가요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "아직 고르는 중이고 산 건 아니에요. 물로 헹궈 쓰는 비누를 보고 있어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "집에서 손 씻을 비누를 살까 하는데, 항균이라고 쓰인 게 병 예방에 더 좋은가요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "손이 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "손이 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0014",
+      "title": "확인된 헹굼 표시와 다른 도포법을 혼동하지 않기",
+      "scenario_raw": "이 세안제 얼굴에 바르고 그냥 두는데, 물로 씻어내야 하나요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0014",
+      "group_id": "rf25-r2-group-syn-sol-0014",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0014",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:rc-dd418a3-cleansing-002": "kb_source_summary",
+        "ref:rc-dd418a3-moisturizing-006": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.body_site": {
+            "variable_id": "method.body_site",
+            "state": "known",
+            "value": "face",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "actual_removal": "left_on"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-clean-14",
+            "version": "fixture-1",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "얼굴 세정 후 물로 헹구는 합성 제품 표시",
+            "evidence_ref": "catalog:rf-clean-14@fixture-1",
+            "fixture_notice": "실재 상품이 아닌 신규 합성 제품 표시 예시"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-cleansing-002",
+            "text": "클렌징 오일에는 메이크업과 섞이는 유성 성분 외에도 물과 기름을 분산시키는 계면활성제가 들어갈 수 있다. 가이드가 설명하는 헹굼형에서는 물이 닿았을 때 오일이 작은 방울로 물에 퍼지면서 씻겨 나간다. 바를 때의 유성 상태와 헹굴 때의 유화 상태가 서로 다른 것이 이 방식의 특징이다. 같은 오일이라는 이름이라도 완제품의 용도가 클렌징인지 보습인지에 따라 마지막 헹굼 단계가 달라진다.",
+            "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+            "locator": "개정 4판 본문 p.99, 클렌징 오일",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "물로 헹궈내도록 만든 클렌징 오일의 설명이다. 피부에 바르고 두는 오일에는 별도의 사용법이 있다."
+          },
+          {
+            "evidence_ref": "ref:rc-dd418a3-moisturizing-006",
+            "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+            "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+            "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-cleansing-002",
+          "catalog:rf-clean-14@fixture-1"
+        ],
+        "distractor_refs": [
+          "ref:rc-dd418a3-moisturizing-006"
+        ]
+      },
+      "input_sha256": "fcdabc720a70b08dac9b306374bacc26575caf91d3a69472a7453aaa734d6c0b",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-cleansing-002",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "이 세안제 얼굴에 바르고 그냥 두는데, 물로 씻어내야 하나요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금 얼굴이 아프거나 불편하지는 않아요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.body_site": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "이 세안제 얼굴에 바르고 그냥 두는데, 물로 씻어내야 하나요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "이 세안제 얼굴에 바르고 그냥 두는데, 물로 씻어내야 하나요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 얼굴이 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 얼굴이 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-clean-14",
+            "catalog_record_version": "fixture-1",
+            "current_container_match": "verified",
+            "label_guidance": "얼굴 세정 후 물로 헹구는 합성 제품 표시",
+            "status": "verified",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0015",
+      "title": "파라핀 무첨가 에몰리언트와 옷의 잔여물·불꽃",
+      "scenario_raw": "보습크림 묻은 소매 그대로 가스불 앞에서 요리해도 괜찮을까요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0015",
+      "group_id": "rf25-r2-group-syn-sol-0015",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0015",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:rc-dd418a3-moisturizing-014": "reference_excerpt",
+        "ref:rc-dd418a3-sun_protection-013": "reference_excerpt"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "dried_residue_on_sleeve": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "environment.flame_exposure": {
+            "variable_id": "environment.flame_exposure",
+            "state": "known",
+            "value": {
+              "planned_near_gas_stove_flame": true,
+              "burn_occurred": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-r2-emollient-15",
+            "version": "fixture-2",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 에몰리언트 표시: 파라핀 무첨가",
+            "evidence_ref": "catalog:rf-r2-emollient-15@fixture-2",
+            "fixture_notice": "실재 상품이 아닌 신규 합성 제품 표시 예시"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-moisturizing-014",
+            "text": "Warnings about the risk of severe and fatal burns are being extended to all paraffin-based emollients regardless of paraffin concentration. Data suggest there is also a risk for paraffin-free emollients. Advise patients who use these products not to smoke or go near naked flames, and warn about the easy ignition of clothing, bedding, dressings, and other fabric that have dried residue of an emollient product on them. On 29 July 2020, MHRA, in partnership with the National Fire Chiefs Council, charities, and organisations from across health and social care, launched a campaign to raise awareness of this important risk. A tool kit of resources is available for health and social care professionals to support the safe use of emollients.",
+            "source_url": "https://www.gov.uk/drug-safety-update/emollients-new-information-about-risk-of-severe-and-fatal-burns-with-paraffin-containing-and-paraffin-free-emollients",
+            "locator": "Emollients: new information about risk of severe and fatal burns with paraffin-containing and paraffin-free emollients / Post-publication note — “Warnings about the risk of severe…”",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "크림이 옷이나 침구에 묻은 뒤 불꽃에 가까이 가는 상황에 해당한다. 피부에 보습제를 바르는 것 자체가 점화원이라는 뜻은 아니다."
+          },
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-013",
+            "text": "How you use sunscreens and what other protective measures you take make a difference in how well you are able to protect yourself and your family from sunburn, skin cancer, early skin aging and other risks of overexposure to the sun. Some key sun safety tips include: Limit time in the sun, especially between the hours of 10 a.m. and 2 p.m., when the sun’s rays are most intense. Wear clothing to cover skin exposed to the sun, such as long-sleeved shirts, pants, sunglasses, and broad-brimmed hats. Use broad spectrum sunscreens with sun protection factor (SPF) values of 15 or higher regularly and as directed. Reapply sunscreen at least every two hours, and more often if you're sweating or swimming.",
+            "source_url": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+            "locator": "Sun Safety Tips — “How you use sunscreens and what…”",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "미국 FDA의 일반의약품 자외선차단제 안내다. 제품별 사용 방법과 내수성은 해당 판매국의 포장 표시를 확인한다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-moisturizing-014",
+          "catalog:rf-r2-emollient-15@fixture-2"
+        ],
+        "distractor_refs": [
+          "ref:rc-dd418a3-sun_protection-013"
+        ]
+      },
+      "input_sha256": "7939cfa77480ceaf0c2bc163f9f5dbfc0721c0277c158b6ac295eeb63704f637",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-moisturizing-014",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "보습크림 묻은 소매 그대로 가스불 앞에서 요리해도 괜찮을까요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "소매에 묻은 건 이미 말랐어요. 불 가까이 가려는 거지, 아직 화상을 입은 건 아니에요.",
+          "supports": [
+            "method.current_routine",
+            "environment.flame_exposure"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 피부 통증이나 불편은 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "보습크림 묻은 소매 그대로 가스불 앞에서 요리해도 괜찮을까요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "소매에 묻은 건 이미 말랐어요. 불 가까이 가려는 거지, 아직 화상을 입은 건 아니에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "environment.flame_exposure": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "보습크림 묻은 소매 그대로 가스불 앞에서 요리해도 괜찮을까요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "소매에 묻은 건 이미 말랐어요. 불 가까이 가려는 거지, 아직 화상을 입은 건 아니에요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-r2-emollient-15",
+            "catalog_record_version": "fixture-2",
+            "current_container_match": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 에몰리언트 표시: 파라핀 무첨가",
+            "status": "verified",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0016",
+      "title": "친구의 성분 알레르기를 본인의 사실로 옮기지 않기",
+      "scenario_raw": "손크림 쓰고 있는데 친구는 이 성분에 알레르기가 있대요. 저도 조심해야 할까요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0016",
+      "group_id": "rf25-r2-group-syn-sol-0016",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0016",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:rc-dd418a3-moisturizing-009": "kb_source_summary",
+        "ref:rc-dd418a3-sun_protection-011": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "actual_site": "hands"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.other_person_report": {
+            "variable_id": "method.other_person_report",
+            "state": "known",
+            "value": {
+              "subject": "friend",
+              "reported_allergen": "propylene_glycol"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.known_allergens": {
+            "variable_id": "skin.known_allergens",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [
+          {
+            "product_id": "rf-r2-hand-16",
+            "version": "fixture-2",
+            "synthetic_product": true,
+            "status": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 표시: 우레아 함유 손발용 크림. 프로필렌글리콜 포함 여부 미확인",
+            "evidence_ref": "catalog:rf-r2-hand-16@fixture-2",
+            "fixture_notice": "실재 상품이 아닌 신규 합성 제품 표시 예시"
+          }
+        ],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-moisturizing-009",
+            "text": "국내 주의사항은 우레아를 포함하는 손발용 피부연화 제품의 사용 부위를 따로 다룬다. 이 유형의 핸드크림이나 풋크림을 쓸 때는 눈이나 코, 입 등에 닿지 않도록 주의해야 한다. 여기에 프로필렌글리콜이 실제로 포함되면 해당 성분에 과민하거나 알레르기 병력이 있는 사람이 신중하게 사용하도록 추가 표시한다. 우레아만 보고 두 성분의 주의사항이 모두 적용된다고 판단하면 제품별 차이를 놓치게 된다.",
+            "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=167863671",
+            "locator": "별표 1 제2호 가목 7) 가)·나), 손·발의 피부연화 제품",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "우레아를 함유한 핸드크림·풋크림에 적용한다. 모든 요소 함유 화장품의 공통 표시가 아니다."
+          },
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-011",
+            "text": "햇빛이 매우 강한 시간에는 가능한 범위에서 야외활동 시간을 조절하는 것이 노출 자체를 줄이는 방법이다. 외출할 때 긴소매 옷과 챙이 넓은 모자, 선글라스를 쓰면 넓은 부위와 눈 주변에 닿는 햇빛을 별도로 줄일 수 있다. 의복으로 덮이지 않은 부위에는 활동에 맞는 차단제를 바른다. 한 가지 제품의 높은 지수를 고르는 것과 햇볕에 노출되는 면적이나 시간을 줄이는 것은 서로 다른 관리 수단이다.",
+            "source_url": "https://www.korea.kr/news/policyNewsView.do?newsId=148965990",
+            "locator": "식약처 2026-06-05 안내, 자외선이 강한 시간대의 야외 활동",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "일반적인 야외 노출에 관한 안내다. 특정 옷감의 차단지수나 개인별 안전 노출시간은 제시하지 않는다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-moisturizing-009",
+          "catalog:rf-r2-hand-16@fixture-2"
+        ],
+        "distractor_refs": [
+          "ref:rc-dd418a3-sun_protection-011"
+        ]
+      },
+      "input_sha256": "585121d8547f96c83553ea47efeda3de3807b89beae291794519a38211c18e05",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-moisturizing-009",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "손크림 쓰고 있는데 친구는 이 성분에 알레르기가 있대요. 저도 조심해야 할까요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "친구가 말한 성분은 프로필렌글리콜이에요. 제 알레르기 이력은 잘 모르겠어요.",
+          "supports": [
+            "method.other_person_report",
+            "skin.known_allergens"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "저는 손에만 바르고 있고, 현재 통증이나 불편은 없어요.",
+          "supports": [
+            "method.current_routine",
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "저는 손에만 바르고 있고, 현재 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.other_person_report": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "손크림 쓰고 있는데 친구는 이 성분에 알레르기가 있대요. 저도 조심해야 할까요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "친구가 말한 성분은 프로필렌글리콜이에요. 제 알레르기 이력은 잘 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "저는 손에만 바르고 있고, 현재 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "저는 손에만 바르고 있고, 현재 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.known_allergens": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "친구가 말한 성분은 프로필렌글리콜이에요. 제 알레르기 이력은 잘 모르겠어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": [
+          {
+            "product_id": "rf-r2-hand-16",
+            "catalog_record_version": "fixture-2",
+            "current_container_match": "verified",
+            "label_guidance": "현재 버전과 일치하는 합성 표시: 우레아 함유 손발용 크림. 프로필렌글리콜 포함 여부 미확인",
+            "status": "verified",
+            "origin": "synthetic_catalog_lookup_fixture",
+            "real_lookup_executed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "syn-sol-0017",
+      "title": "물놀이 중 차단제 재도포 없이 세 시간 경과",
+      "scenario_raw": "물놀이하면서 선크림 바른 지 세 시간 됐는데, 다시 발라야 하나요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0017",
+      "group_id": "rf25-r2-group-syn-sol-0017",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0017",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "rag_distractor_ignore",
+      "chunk_origins": {
+        "ref:rc-dd418a3-sun_protection-008": "kb_source_summary",
+        "ref:rc-dd418a3-moisturizing-006": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "sun.activity": {
+            "variable_id": "sun.activity",
+            "state": "known",
+            "value": {
+              "outdoors": true,
+              "water_play": true,
+              "hours_since_sunscreen_application": 3,
+              "reapplied": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.product_water_resistance": {
+            "variable_id": "sun.product_water_resistance",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-008",
+            "text": "차단제는 외출한 뒤 일부만 보충하는 것보다 외출 약 15분 전에 노출될 피부에 충분하고 고르게 바르는 것이 질병관리청의 안내다. 오래 햇볕에 있거나 땀이 나는 상황에서는 처음 바른 층이 계속 유지된다고 가정하지 않고 덧바른다. 물놀이에는 내수성 또는 지속내수성 표시가 있는 제품을 선택하고 약 두 시간마다 다시 바르도록 안내한다. 집에 돌아와서는 차단제가 피부에 남지 않도록 씻는 단계까지 포함한다.",
+            "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+            "locator": "건강한 피부 관리 방법, 1) 자외선 차단",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "국내 일반 생활 안내다. 개별 차단제의 도포량과 재도포 지시도 확인한다."
+          },
+          {
+            "evidence_ref": "ref:rc-dd418a3-moisturizing-006",
+            "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+            "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+            "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-sun_protection-008"
+        ],
+        "distractor_refs": [
+          "ref:rc-dd418a3-moisturizing-006"
+        ]
+      },
+      "input_sha256": "f394c152735a275b570a441e595502d70ac6a60deecf46c0373267393a9d9a68",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-sun_protection-008",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "물놀이하면서 선크림 바른 지 세 시간 됐는데, 다시 발라야 하나요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금 야외 물놀이 중이고 처음 바른 뒤에는 안 발랐어요.",
+          "supports": [
+            "sun.activity"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "내수성 표시는 아직 확인 안 했어요.",
+          "supports": [
+            "sun.product_water_resistance"
+          ]
+        },
+        {
+          "id": "prior-03",
+          "text": "피부가 아프거나 불편하지는 않아요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "sun.activity": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "물놀이하면서 선크림 바른 지 세 시간 됐는데, 다시 발라야 하나요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 야외 물놀이 중이고 처음 바른 뒤에는 안 발랐어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "피부가 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "피부가 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "sun.product_water_resistance": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "내수성 표시는 아직 확인 안 했어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-sol-0018",
+      "title": "친구의 통증과 본인의 목·귀 도포 누락 구분",
+      "scenario_raw": "친구는 선크림 바르고 아팠다는데, 저는 얼굴에만 발라도 될까요?",
+      "scenario_id": "rf25-r2-scenario-syn-sol-0018",
+      "group_id": "rf25-r2-group-syn-sol-0018",
+      "scenario_family_id": "rf25-r2-family-syn-sol-0018",
+      "split": "train",
+      "mode": "solution",
+      "pilot_bucket": "distractor_or_defense",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [],
+      "is_hard_negative": true,
+      "hard_negative_type": "negation_or_other_subject",
+      "chunk_origins": {
+        "ref:rc-dd418a3-sun_protection-016": "reference_excerpt",
+        "ref:rc-dd418a3-storage_label-001": "kb_source_summary"
+      },
+      "request": {
+        "mode": "solution",
+        "confirmed_observations": {
+          "method.other_person_report": {
+            "variable_id": "method.other_person_report",
+            "state": "known",
+            "value": {
+              "subject": "friend",
+              "pain_after_sunscreen": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "sun.activity": {
+            "variable_id": "sun.activity",
+            "state": "known",
+            "value": {
+              "outdoors": true,
+              "neck_exposed": true,
+              "ears_exposed": true,
+              "sunscreen_applied_sites": [
+                "face"
+              ]
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "도포에서 빠진 노출 부위 점검"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [
+          {
+            "evidence_ref": "ref:rc-dd418a3-sun_protection-016",
+            "text": "Sunscreen should be applied to all exposed skin, including the face, neck and ears, and head if you have thinning or no hair, but a wide-brimmed hat is better. Sunscreen needs to be reapplied liberally and frequently, and according to the manufacturer's instructions. This includes applying it straight after you have been in water, even if it's \"water resistant\", and after towel drying, sweating or when it may have rubbed off. It's also recommended to reapply sunscreen every 2 hours, as the sun can dry it off your skin. Water washes sunscreen off, and the cooling effect of the water can make you think you're not getting burned. Water also reflects ultraviolet (UV) rays, increasing your exposure.",
+            "source_url": "https://www.nhs.uk/live-well/seasonal-health/sunscreen-and-sun-safety/",
+            "locator": "How to apply sunscreen / Swimming and sunscreen — “Sunscreen should be applied to all…”",
+            "checked_on": "2026-11-25",
+            "scope": "general_skincare_practice",
+            "limitations": "관할 기관의 소비자 안내다. 실제 제품의 사용법과 내수성 표시를 함께 확인한다."
+          },
+          {
+            "evidence_ref": "ref:rc-dd418a3-storage_label-001",
+            "text": "화장품을 두는 장소를 정할 때 국내 공통 표시가 제시하는 조건은 어린이의 손이 닿지 않을 것과 직사광선을 피할 것이다. 두 조건은 별개이므로 햇빛을 가린 낮은 선반이나 어린이가 닿지 않지만 햇볕이 드는 창가는 각각 하나만 충족한다. 이 공통 항목에는 특정 냉장 온도나 개봉 후 사용 일수가 제시되지 않는다. 제품 유형이나 실제 용기의 별도 보관 안내가 있다면 일반 보관 안내와 함께 읽는다.",
+            "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=162910527",
+            "locator": "별표 3 제1호 다목 1)·2), 보관 및 취급 시 주의사항",
+            "checked_on": "2026-11-24",
+            "scope": "general_skincare_practice",
+            "limitations": "국내 공통 표시다. 더 낮은 보관 온도나 별도 폐기 조건이 있는 품목은 제품별 표시도 함께 확인한다."
+          }
+        ],
+        "allowed_evidence_refs": [
+          "ref:rc-dd418a3-sun_protection-016"
+        ],
+        "distractor_refs": [
+          "ref:rc-dd418a3-storage_label-001"
+        ]
+      },
+      "input_sha256": "42f2ced1a9c4bcccf5b678decc4e5e7cf79e14f81f58087e9fac3a133cba9f2e",
+      "corpus_link": {
+        "relevant_ref": "ref:rc-dd418a3-sun_protection-016",
+        "source_commit": "dd418a3185aa94bc3eb118af268b53647c9d73e5",
+        "handoff_status": "pilot_sample_not_official_PPO42_pool"
+      },
+      "user_utterance": "친구는 선크림 바르고 아팠다는데, 저는 얼굴에만 발라도 될까요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "저는 지금 통증이나 불편은 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 밖에 있고 목이랑 귀는 드러나 있는데 얼굴에만 발랐어요.",
+          "supports": [
+            "sun.activity"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "method.other_person_report": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "친구는 선크림 바르고 아팠다는데, 저는 얼굴에만 발라도 될까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "sun.activity": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "친구는 선크림 바르고 아팠다는데, 저는 얼굴에만 발라도 될까요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 밖에 있고 목이랑 귀는 드러나 있는데 얼굴에만 발랐어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "친구는 선크림 바르고 아팠다는데, 저는 얼굴에만 발라도 될까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "저는 지금 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "저는 지금 통증이나 불편은 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-hold-0001",
+      "title": "세정 뒤 지금도 계속되는 불편",
+      "scenario_raw": "오늘 세수하고 나서 불편한 게 계속되는데 어떻게 해야 해요?",
+      "scenario_id": "rf25-r2-scenario-syn-hold-0001",
+      "group_id": "rf25-r2-group-syn-hold-0001",
+      "scenario_family_id": "rf25-r2-family-syn-hold-0001",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "persistent",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "mild",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "event": "face_washing",
+              "discomfort_started_after_event": true,
+              "cause_confirmed": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [],
+        "distractor_refs": []
+      },
+      "input_sha256": "b4282a1e8d267e29ed2cb58914ba3548b8ede8be491a9de3e8c554b69586a92d",
+      "user_utterance": "오늘 세수하고 나서 불편한 게 계속되는데 어떻게 해야 해요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금도 계속 불편하고 살짝 아프기도 해요. 뭐 때문인지는 모르겠어요.",
+          "supports": [
+            "skin.current_discomfort",
+            "skin.pain",
+            "method.current_routine"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "오늘 세수하고 나서 불편한 게 계속되는데 어떻게 해야 해요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금도 계속 불편하고 살짝 아프기도 해요. 뭐 때문인지는 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금도 계속 불편하고 살짝 아프기도 해요. 뭐 때문인지는 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "오늘 세수하고 나서 불편한 게 계속되는데 어떻게 해야 해요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금도 계속 불편하고 살짝 아프기도 해요. 뭐 때문인지는 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-hold-0002",
+      "title": "보습 후 보고된 현재 심한 통증",
+      "scenario_raw": "팔에 보습제 바른 뒤로 많이 아픈데 어떡하죠?",
+      "scenario_id": "rf25-r2-scenario-syn-hold-0002",
+      "group_id": "rf25-r2-group-syn-hold-0002",
+      "scenario_family_id": "rf25-r2-family-syn-hold-0002",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "severe",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "event": "moisturizer_application",
+              "actual_site": "arms",
+              "pain_started_after_event": true,
+              "cause_confirmed": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [],
+        "distractor_refs": []
+      },
+      "input_sha256": "fd9d1e51d712cab8bdd5332071173f983ec7c1d57f47d07dd465a67da3fe89dc",
+      "user_utterance": "팔에 보습제 바른 뒤로 많이 아픈데 어떡하죠?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금 통증이 심해요. 어떤 성분 때문인지는 모르겠어요.",
+          "supports": [
+            "skin.pain",
+            "method.current_routine"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "팔에 보습제 바른 뒤로 많이 아픈데 어떡하죠?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 통증이 심해요. 어떤 성분 때문인지는 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "팔에 보습제 바른 뒤로 많이 아픈데 어떡하죠?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 통증이 심해요. 어떤 성분 때문인지는 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-hold-0003",
+      "title": "차단제 용기의 새 냄새 변화",
+      "scenario_raw": "선크림 냄새가 전이랑 달라졌는데, 써도 되는 건가요?",
+      "scenario_id": "rf25-r2-scenario-syn-hold-0003",
+      "group_id": "rf25-r2-group-syn-hold-0003",
+      "scenario_family_id": "rf25-r2-family-syn-hold-0003",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "sun_protection"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": true,
+              "separation": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "storage.change_details": {
+            "variable_id": "storage.change_details",
+            "state": "known",
+            "value": {
+              "odor_changed": true,
+              "color_changed": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "product_type": "sunscreen",
+              "changed_product_used": false
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [],
+        "distractor_refs": []
+      },
+      "input_sha256": "a22ccd20a5d7a37c46c02c906c5520c3d6102ae217ea527baec259a12c884a81",
+      "user_utterance": "선크림 냄새가 전이랑 달라졌는데, 써도 되는 건가요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "색은 그대로고 층이 나뉜 것도 없어요. 냄새가 바뀐 뒤로는 아직 안 발랐어요.",
+          "supports": [
+            "storage.sensory_change",
+            "storage.change_details",
+            "method.current_routine"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 피부가 아프거나 불편한 건 없어요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "storage.sensory_change": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "선크림 냄새가 전이랑 달라졌는데, 써도 되는 건가요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "색은 그대로고 층이 나뉜 것도 없어요. 냄새가 바뀐 뒤로는 아직 안 발랐어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "storage.change_details": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "선크림 냄새가 전이랑 달라졌는데, 써도 되는 건가요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "색은 그대로고 층이 나뉜 것도 없어요. 냄새가 바뀐 뒤로는 아직 안 발랐어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "선크림 냄새가 전이랑 달라졌는데, 써도 되는 건가요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "색은 그대로고 층이 나뉜 것도 없어요. 냄새가 바뀐 뒤로는 아직 안 발랐어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편한 건 없어요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-hold-0004",
+      "title": "의료진의 개별 계획 변경 요청",
+      "scenario_raw": "의사 선생님이 정해 준 관리법이 있는데, 세수 횟수는 좀 바꿔도 될까요?",
+      "scenario_id": "rf25-r2-scenario-syn-hold-0004",
+      "group_id": "rf25-r2-group-syn-hold-0004",
+      "scenario_family_id": "rf25-r2-family-syn-hold-0004",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "cross_domain"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "method.clinician_plan": {
+            "variable_id": "method.clinician_plan",
+            "state": "known",
+            "value": {
+              "active": true,
+              "requested_change": "cleansing_frequency"
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "constraints.goals": {
+            "variable_id": "constraints.goals",
+            "state": "known",
+            "value": [
+              "의료진 계획 변경"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.clinician_plan_details": {
+            "variable_id": "method.clinician_plan_details",
+            "state": "not_asked",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [],
+        "distractor_refs": []
+      },
+      "input_sha256": "3777348bc7107b597c1f89611553b27aa2d1618cf2bc35150face71a2a412681",
+      "user_utterance": "의사 선생님이 정해 준 관리법이 있는데, 세수 횟수는 좀 바꿔도 될까요?",
+      "prior_user_confirmations": [],
+      "observation_trace": {
+        "method.clinician_plan": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "의사 선생님이 정해 준 관리법이 있는데, 세수 횟수는 좀 바꿔도 될까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "constraints.goals": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "의사 선생님이 정해 준 관리법이 있는데, 세수 횟수는 좀 바꿔도 될까요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.clinician_plan_details": {
+          "origin": "not_collected",
+          "evidence": [],
+          "note": "사용자에게서 수집하지 않은 정보이며 없음으로 바꾸지 않아요."
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-hold-0005",
+      "title": "얼굴 세정 뒤 눈 주변의 현재 중간 통증",
+      "scenario_raw": "세수하고 나서 눈 주변이 아픈데 어떻게 해야 하나요?",
+      "scenario_id": "rf25-r2-scenario-syn-hold-0005",
+      "group_id": "rf25-r2-group-syn-hold-0005",
+      "scenario_family_id": "rf25-r2-family-syn-hold-0005",
+      "split": "train",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "cleansing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "moderate",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.distribution": {
+            "variable_id": "skin.distribution",
+            "state": "known",
+            "value": [
+              "periocular"
+            ],
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "event": "face_washing",
+              "pain_started_after_event": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.eye_contact": {
+            "variable_id": "method.eye_contact",
+            "state": "unknown",
+            "value": null,
+            "source": "synthetic_fixture",
+            "confirmed_by_user": false
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [],
+        "distractor_refs": []
+      },
+      "input_sha256": "67a4f87b1ef6ca9f2829f2a1436df32d3e24f0546107557510207f27a6fbeb78",
+      "user_utterance": "세수하고 나서 눈 주변이 아픈데 어떻게 해야 하나요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "지금 중간 정도로 아파요. 제품이 눈 안에 들어갔는지는 잘 모르겠어요.",
+          "supports": [
+            "skin.pain",
+            "method.eye_contact"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 중간 정도로 아파요. 제품이 눈 안에 들어갔는지는 잘 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.distribution": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "세수하고 나서 눈 주변이 아픈데 어떻게 해야 하나요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "세수하고 나서 눈 주변이 아픈데 어떻게 해야 하나요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.eye_contact": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 중간 정도로 아파요. 제품이 눈 안에 들어갔는지는 잘 모르겠어요."
+            }
+          ],
+          "normalized_state": "unknown"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    },
+    {
+      "id": "syn-hold-0006",
+      "title": "보습제의 새 층 분리",
+      "scenario_raw": "보습제가 원래 안 이랬는데 층이 나뉘었어요. 계속 써도 돼요?",
+      "scenario_id": "rf25-r2-scenario-syn-hold-0006",
+      "group_id": "rf25-r2-group-syn-hold-0006",
+      "scenario_family_id": "rf25-r2-family-syn-hold-0006",
+      "split": "val_internal",
+      "mode": "hold",
+      "pilot_bucket": "hold",
+      "domains": [
+        "moisturizing"
+      ],
+      "card_ids": [],
+      "is_hard_negative": false,
+      "hard_negative_type": null,
+      "chunk_origins": {},
+      "request": {
+        "mode": "hold",
+        "confirmed_observations": {
+          "storage.sensory_change": {
+            "variable_id": "storage.sensory_change",
+            "state": "known",
+            "value": {
+              "color_or_odor_change": false,
+              "separation": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "method.current_routine": {
+            "variable_id": "method.current_routine",
+            "state": "known",
+            "value": {
+              "product_type": "moisturizer",
+              "new_separation": true
+            },
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.pain": {
+            "variable_id": "skin.pain",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          },
+          "skin.current_discomfort": {
+            "variable_id": "skin.current_discomfort",
+            "state": "known",
+            "value": "none",
+            "source": "synthetic_fixture",
+            "confirmed_by_user": true
+          }
+        },
+        "product_evidence": [],
+        "rag_chunks": [],
+        "allowed_evidence_refs": [],
+        "distractor_refs": []
+      },
+      "input_sha256": "de0535ec348ac78aa38c16aff57a3d11a93daf8052898f3a5ad0e50453781582",
+      "user_utterance": "보습제가 원래 안 이랬는데 층이 나뉘었어요. 계속 써도 돼요?",
+      "prior_user_confirmations": [
+        {
+          "id": "prior-01",
+          "text": "색이랑 냄새는 그대로예요. 왜 나뉜 건지는 모르겠어요.",
+          "supports": [
+            "storage.sensory_change"
+          ]
+        },
+        {
+          "id": "prior-02",
+          "text": "지금 피부가 아프거나 불편하지는 않아요.",
+          "supports": [
+            "skin.pain",
+            "skin.current_discomfort"
+          ]
+        }
+      ],
+      "observation_trace": {
+        "storage.sensory_change": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "보습제가 원래 안 이랬는데 층이 나뉘었어요. 계속 써도 돼요?"
+            },
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "색이랑 냄새는 그대로예요. 왜 나뉜 건지는 모르겠어요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "method.current_routine": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_initial_utterance",
+              "text": "보습제가 원래 안 이랬는데 층이 나뉘었어요. 계속 써도 돼요?"
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.pain": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        },
+        "skin.current_discomfort": {
+          "origin": "synthetic_user_context",
+          "evidence": [
+            {
+              "origin": "synthetic_prior_confirmation",
+              "text": "지금 피부가 아프거나 불편하지는 않아요."
+            }
+          ],
+          "normalized_state": "known"
+        }
+      },
+      "system_context": {
+        "notice": "실제 카탈로그 조회·AFA 실행 기록이 아니라 합성 입력 제작용 설정이에요.",
+        "product_evidence_source": "synthetic_catalog_lookup_fixture",
+        "product_match_records": []
+      }
+    }
+  ],
+  "initial_base_commit": "5b676849a5662a43a0a4a4d82192c9b6bf4103ba",
+  "revision_output_dir": "outputs/qlora_v3_pilot_20261125/revision_03",
+  "previous_archive": "outputs/qlora_v3_pilot_20261125/revision_03/before"
+}
