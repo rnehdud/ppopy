@@ -1,7 +1,9 @@
 """Wire compatibility and failure handling without a model server."""
 
 import asyncio
+import gzip
 import json
+import zlib
 from pathlib import Path
 
 import httpx
@@ -13,9 +15,10 @@ from beauty_agent.slm import OpenAICompatSLMClient, build_messages
 from beauty_agent.v3_contracts import SLMRequest
 
 
-def _generate(handler, request=None, base_url="http://model.test"):
+def _generate(handler, request=None, base_url="http://model.test", **client_options):
     client = OpenAICompatSLMClient(
         base_url, "test-model", api_key="mock-key", transport=httpx.MockTransport(handler),
+        **client_options,
     )
     return asyncio.run(client.generate(request or SLMRequest(mode="solution")))
 
@@ -31,7 +34,13 @@ def test_wire_payload_and_citations_are_ordered_and_unique():
         assert req.headers["Authorization"] == "Bearer mock-key"
         assert req.extensions["timeout"]["read"] == 15.0
         payload = json.loads(req.content)
-        assert payload == {"model": "test-model", "messages": build_messages(request), "stream": False}
+        assert payload == {
+            "model": "test-model",
+            "messages": build_messages(request),
+            "stream": False,
+            "temperature": 0.0,
+            "max_tokens": 1024,
+        }
         return _completion("확인된 범위에서 설명해요. [ref:two] [ref:one] [ref:two]")
 
     request = SLMRequest(mode="solution", allowed_evidence_refs=["ref:one", "ref:two"])
@@ -39,6 +48,30 @@ def test_wire_payload_and_citations_are_ordered_and_unique():
     assert result.provider == "openai_compat"
     assert result.cited_evidence_refs == ["ref:two", "ref:one"]
     assert not result.fallback_used
+
+
+@pytest.mark.parametrize("max_tokens", [128, None])
+def test_generation_overrides_and_adapter_revision(max_tokens):
+    def handler(req):
+        payload = json.loads(req.content)
+        assert payload["temperature"] == 0.25
+        if max_tokens is None:
+            assert "max_tokens" not in payload
+        else:
+            assert payload["max_tokens"] == max_tokens
+        assert "adapter_revision" not in payload
+        return _completion("안내해요.")
+
+    result = _generate(handler, temperature=0.25, max_tokens=max_tokens, adapter_revision="adapter-v3")
+    assert result.adapter_revision == "adapter-v3"
+
+
+@pytest.mark.parametrize(
+    "options", [{"temperature": float("nan")}, {"temperature": -1}, {"max_tokens": 0}],
+)
+def test_invalid_generation_settings_are_rejected(options):
+    with pytest.raises(ValueError):
+        OpenAICompatSLMClient("http://model.test", "test-model", **options)
 
 
 def test_prompt_matches_stage1_training_messages():
@@ -137,6 +170,69 @@ def test_stream_without_content_length_stops_as_soon_as_limit_is_exceeded():
 def test_per_request_byte_limit_is_honored_even_with_cached_transport_body():
     result = _generate(lambda _: _completion("조금 긴 응답"), SLMRequest(mode="solution", max_response_bytes=24))
     assert result.fallback_used and result.fallback_reason == "response_too_large"
+
+
+@pytest.mark.parametrize(
+    ("encoding", "compress"),
+    [("gzip", gzip.compress), ("deflate", zlib.compress)],
+)
+def test_compressed_stream_uses_decoded_size_at_exact_limit(encoding, compress):
+    body = _completion("짧은 안내 [ref:one]").content
+    encoded = compress(body)
+
+    class SplitStream(httpx.AsyncByteStream):
+        async def __aiter__(self):
+            for offset in range(0, len(encoded), 5):
+                yield encoded[offset : offset + 5]
+
+    def handler(req):
+        assert req.headers["Accept-Encoding"] == "gzip, deflate"
+        return httpx.Response(
+            200,
+            headers={"Content-Encoding": encoding, "Content-Length": str(len(encoded))},
+            stream=SplitStream(),
+        )
+
+    request = SLMRequest(mode="solution", max_response_bytes=len(body))
+    result = _generate(handler, request)
+    assert result.content == "짧은 안내 [ref:one]"
+    assert result.cited_evidence_refs == ["ref:one"]
+
+
+def test_gzip_expansion_over_limit_stops_before_reading_more():
+    compressed = gzip.compress(b"x" * (1024 * 1024))
+
+    class OversizeStream(httpx.AsyncByteStream):
+        closed = False
+
+        async def __aiter__(self):
+            yield compressed
+            pytest.fail("transport consumed another chunk after crossing 64 KiB")
+
+        async def aclose(self):
+            self.closed = True
+
+    stream = OversizeStream()
+    result = _generate(lambda _: httpx.Response(200, headers={"Content-Encoding": "gzip"}, stream=stream))
+    assert result.fallback_reason == "response_too_large"
+    assert stream.closed
+
+
+@pytest.mark.parametrize(
+    ("encoding", "encoded"),
+    [("gzip", b"invalid"), ("gzip", gzip.compress(b"{}")[:-1]), ("br", b"{}")],
+)
+def test_invalid_or_unsupported_compression_falls_back(encoding, encoded):
+    class EncodedStream(httpx.AsyncByteStream):
+        async def __aiter__(self):
+            yield encoded
+
+    result = _generate(
+        lambda _: httpx.Response(200, headers={"Content-Encoding": encoding}, stream=EncodedStream()),
+        adapter_revision="adapter-v3",
+    )
+    assert result.fallback_reason == "invalid_response"
+    assert result.adapter_revision is None
 
 
 def test_guardrail_can_validate_a_model_candidate_and_report_flags():
