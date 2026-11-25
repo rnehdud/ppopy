@@ -38,6 +38,8 @@ python training/qlora_v3/train.py --model-path <로컬 원본 모델 폴더> --o
 bash training/qlora_v3/serve_vllm.sh /mnt/c/.../원본모델 /mnt/c/.../선택한어댑터 8018 0.75
 ```
 
+기존 venv를 재사용하면 `PPOPY_VLLM_ENV=/경로/venv`를 지정해요. vLLM 0.28.0에서는 `vllm-bnb-plugin==0.0.2`를 포함하며 설치된 환경의 CLI·실제 로딩 결과로 호환성을 확인해요.
+
 같은 서버에서 `ppopy-base-nf4`와 `ppopy-qlora-v3`를 요청해요. 127.0.0.1에만 바인딩하고 모델/usage 업로드를 활성화하지 않아요. `benchmark_http.py`는 실제 저장소의 OpenAICompatSLMClient를 통해 15초·64KiB 상한과 fallback을 측정해요. fallback을 모델 성공으로 집계하지 않아요. RAG 동시 상주 시험은 `coload_rag.py`로 실제 두 모델을 유지한 상태에서 별도 수행해요.
 
-참고: [PEFT quantization](https://huggingface.co/docs/peft/developer_guides/quantization), [vLLM bitsandbytes](https://docs.vllm.ai/en/v0.11.2/features/quantization/bnb/), [vLLM LoRA](https://docs.vllm.ai/en/v0.11.2/features/lora/). 실제 실행 결과와 제약은 비교 리포트에 기록하며 미실행 항목을 0/PASS로 채우지 않아요.
+참고: [PEFT quantization](https://huggingface.co/docs/peft/developer_guides/quantization), [vLLM bitsandbytes](https://docs.vllm.ai/en/v0.28.0/features/quantization/bnb/), [vLLM LoRA](https://docs.vllm.ai/en/v0.28.0/features/lora/). 실제 실행 결과와 제약은 비교 리포트에 기록하며 미실행 항목을 0/PASS로 채우지 않아요.

@@ -1,5 +1,5 @@
 """Measure actual localhost completions and the repository's bounded SLM client separately."""
-import argparse,asyncio,json,math,sys,time
+import argparse,asyncio,json,math,statistics,sys,time
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;COS=HERE.parents[1];sys.path.insert(0,str(COS))
 from common import dump,read_rows,deterministic_metrics
@@ -25,8 +25,12 @@ async def run(args):
     summaries={}
     for model in ['ppopy-base-nf4','ppopy-qlora-v3']:
         group=[r for r in records if r['model']==model];lat=sorted(r['latency_s'] for r in group)
-        summaries[model]={'n':len(group),'p50_s':lat[len(lat)//2],'p95_s':lat[math.ceil(len(lat)*.95)-1],
+        successes=sorted(r['latency_s'] for r in group if r['provider']!='rule_baseline_fallback')
+        summaries[model]={'n':len(group),'p50_s':statistics.median(lat),'p95_s':lat[math.ceil(len(lat)*.95)-1],
+            'successful_model_latency_s':{'n':len(successes),'p50':statistics.median(successes) if successes else None,
+                'p95':successes[math.ceil(len(successes)*.95)-1] if successes else None},
             'fallback_count':sum(r['provider']=='rule_baseline_fallback' for r in group),
+            'timeout_count':sum(r['fallback_reason']=='timeout' for r in group),
             'actual_model_response_count':sum(r['provider']!='rule_baseline_fallback' for r in group),
             'all_payloads_within_64KiB':all(r['utf8_bytes']<=65536 for r in group)}
     dump(output/'http_summary.json',{'backend':args.backend,'summaries':summaries,
@@ -35,5 +39,5 @@ async def run(args):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--base-url',default='http://127.0.0.1:8018/v1');p.add_argument('--output',required=True)
-    p.add_argument('--backend',default='vLLM 0.11.2 on WSL2; NF4 base + local LoRA')
+    p.add_argument('--backend',default='vLLM 0.28.0 on WSL2; NF4 base + local LoRA')
     asyncio.run(run(p.parse_args()))

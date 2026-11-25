@@ -1,6 +1,6 @@
 """Local-only Qwen3 NF4 QLoRA; exact assistant masking, fixed 810/90 split."""
 from __future__ import annotations
-import argparse,contextlib,hashlib,json,math,os,random,sys,time
+import argparse,contextlib,hashlib,json,math,os,random,statistics,sys,time
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;COS=HERE.parents[1];ROOT=COS.parents[3]
 sys.path.insert(0,str(COS))
@@ -55,6 +55,7 @@ def validate_loss(model,rows,encoded,dtype):
 
 def evaluate(model,tokenizer,rows,encoded,dtype,cfg,out,tag,base=False):
     import torch
+    evaluation_started_ms=int(time.time()*1000)
     model.eval();out.mkdir(parents=True,exist_ok=True)
     predictions=out/'predictions.jsonl'
     records=read_rows(predictions) if predictions.exists() else []
@@ -74,6 +75,7 @@ def evaluate(model,tokenizer,rows,encoded,dtype,cfg,out,tag,base=False):
                 torch.cuda.synchronize();elapsed=time.perf_counter()-start
                 completion=result[0,len(prefix):];text=tokenizer.decode(completion,skip_special_tokens=True)
                 record={'row_id':row['id'],'mode':row['mode'],'split':row['split'],'text':text,
+                    'timestamp_ms':int(time.time()*1000),
                     'generated_tokens':len(completion),'latency_s':elapsed,'peak_allocated_mib':torch.cuda.max_memory_allocated()/2**20,
                     'peak_reserved_mib':torch.cuda.max_memory_reserved()/2**20,'finished_eos':int(completion[-1])==tokenizer.eos_token_id,
                     'metrics':deterministic_metrics(row,text)}
@@ -85,10 +87,11 @@ def evaluate(model,tokenizer,rows,encoded,dtype,cfg,out,tag,base=False):
     hard=sum(any(r['metrics'][k] for k in keys) or bool(r['metrics']['guardrail_flags']) for r in records)
     lat=sorted(r['latency_s'] for r in records)
     summary={'tag':tag,'rows':len(records),'val_token_loss':val_loss,'counts':counts,'deterministic_flagged_rows':hard,
+        'evaluation_started_ms':evaluation_started_ms,'evaluation_finished_ms':int(time.time()*1000),
         'solution_rows':sum(r['mode']=='solution' for r in rows),'hold_rows':sum(r['mode']=='hold' for r in rows),
         'distractor_rows':sum(bool(r['distractor_refs']) for r in rows),
         'length_limited_rows':sum(not r['finished_eos'] for r in records),
-        'latency_s':{'p50':lat[len(lat)//2],'p95':lat[math.ceil(len(lat)*.95)-1]},
+        'latency_s':{'p50':statistics.median(lat),'p95':lat[math.ceil(len(lat)*.95)-1]},
         'peak_allocated_mib':max(r['peak_allocated_mib'] for r in records),
         'semantic_faithfulness_and_indirect_distractors':'requires actual content review; not certified by regex',
         'generation':{'do_sample':False,'max_new_tokens':cfg['max_new_tokens'],'quantization':'same NF4 backbone'}}
@@ -126,7 +129,10 @@ def main():
         model.train();item=max((encoded[r['id']] for r in train),key=lambda r:len(r['input_ids']))
         ids,labels,mask=tensors(item,model.device);torch.cuda.reset_peak_memory_stats();start=time.perf_counter()
         with torch.autocast('cuda',dtype=dtype):loss,n=masked_loss(model,ids,labels,mask)
-        loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),cfg['gradient_clip_norm']);opt.step();torch.cuda.synchronize()
+        assert torch.isfinite(loss),'nonfinite smoke loss'
+        loss.backward();grad=torch.nn.utils.clip_grad_norm_(model.parameters(),cfg['gradient_clip_norm'])
+        assert torch.isfinite(grad),'nonfinite smoke gradient'
+        opt.step();torch.cuda.synchronize()
         receipt={'row_id':item['id'],'sequence_length':len(item['input_ids']),'assistant_targets':n,'loss':loss.item(),
             'elapsed_s':time.perf_counter()-start,'peak_allocated_mib':torch.cuda.max_memory_allocated()/2**20,
             'peak_reserved_mib':torch.cuda.max_memory_reserved()/2**20,'optimizer_step_executed':True,
