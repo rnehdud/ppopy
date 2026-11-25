@@ -1,0 +1,136 @@
+{
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "dataset_sha256": "23600af503ae1ee4cb177d2646513af5b78ed35d9385a6e88f5308677a7b0b6a",
+  "rows": 900,
+  "libraries": {
+    "transformers": "5.14.0",
+    "tokenizers": "0.22.2",
+    "huggingface_hub": "1.22.0"
+  },
+  "total_tokens": {
+    "min": 463,
+    "p50": 955.0,
+    "p95": 1534,
+    "max": 1800,
+    "sum": 898059
+  },
+  "assistant_tokens_sum": 127232,
+  "all_template_prefixes_match": true,
+  "all_content_preserved": true,
+  "all_end_markers_present": true,
+  "native_template_has_generation_blocks": false,
+  "truncation": {
+    "1024": {
+      "exceeding": 399,
+      "losing_entire_assistant": 272
+    },
+    "2048": {
+      "exceeding": 0,
+      "losing_entire_assistant": 0
+    },
+    "4096": {
+      "exceeding": 0,
+      "losing_entire_assistant": 0
+    },
+    "8192": {
+      "exceeding": 0,
+      "losing_entire_assistant": 0
+    }
+  },
+  "longest_rows": [
+    {
+      "row_id": "syn-sol-0177",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1800,
+      "prompt_tokens": 1602,
+      "assistant_with_end_tokens": 198,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0180",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1796,
+      "prompt_tokens": 1599,
+      "assistant_with_end_tokens": 197,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0174",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1794,
+      "prompt_tokens": 1587,
+      "assistant_with_end_tokens": 207,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0172",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1790,
+      "prompt_tokens": 1598,
+      "assistant_with_end_tokens": 192,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0173",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1785,
+      "prompt_tokens": 1595,
+      "assistant_with_end_tokens": 190,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0176",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1780,
+      "prompt_tokens": 1601,
+      "assistant_with_end_tokens": 179,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0179",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1778,
+      "prompt_tokens": 1597,
+      "assistant_with_end_tokens": 181,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0178",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1777,
+      "prompt_tokens": 1596,
+      "assistant_with_end_tokens": 181,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0064",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1773,
+      "prompt_tokens": 1583,
+      "assistant_with_end_tokens": 190,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0175",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1769,
+      "prompt_tokens": 1598,
+      "assistant_with_end_tokens": 171,
+      "end_marker_present": true
+    }
+  ],
+  "weights_downloaded": false,
+  "training_executed": false,
+  "GPU_memory_tested": false
+}
