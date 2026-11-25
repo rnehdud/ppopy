@@ -1,0 +1,156 @@
+[
+  {
+    "raw_query_record": {
+      "id": "C05",
+      "split": "evaluation",
+      "domain": "cleansing",
+      "query": "드라이 샴푸의 물 헹굼 예외가 눈에 들어갔을 때도 그대로 적용되나요?",
+      "relevant_refs": [
+        "ref:cleansing-008"
+      ],
+      "rationale": "통상 사용 후 헹굼 예외와 눈 노출 지시의 분리"
+    },
+    "threshold": 0.95,
+    "returned": [
+      {
+        "evidence_ref": "ref:cleansing-008",
+        "dense_score": 0.7905442714691162,
+        "rerank_score": 0.999651312828064
+      }
+    ],
+    "raw_top_candidate": {
+      "evidence_ref": "ref:cleansing-008",
+      "dense_score": 0.7905442714691162,
+      "rerank_score": 0.999651312828064
+    },
+    "raw_top_corpus_entry": {
+      "title": "샴푸의 헹굼 주의사항과 드라이 샴푸 예외",
+      "chunk": {
+        "evidence_ref": "ref:cleansing-008",
+        "text": "샴푸의 국내 표시에는 눈에 들어간 경우 즉시 씻어내라는 내용과 머리를 감은 후 물로 헹구라는 내용이 구분되어 있다. 일반적인 샴푸에는 사용 후 씻어내지 않으면 탈모나 탈색의 원인이 될 수 있다는 주의를 표시한다. 드라이 샴푸처럼 바로 물로 씻어내지 않을 수 있는 제품은 두 번째 표시의 예외다. 평소 헹굴 필요가 없는 제품이라도 눈에 들어간 경우의 지시는 따로 읽어야 한다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=167863671",
+        "locator": "별표 1 제2호 가목 4) 가)·나), 샴푸",
+        "checked_on": "2026-11-24",
+        "limitations": "예외는 사용 후 물로 씻어내는 문구에만 해당한다. 개별 제품의 사용법을 확인한다."
+      }
+    }
+  },
+  {
+    "raw_query_record": {
+      "id": "L07",
+      "split": "evaluation",
+      "domain": "storage_label",
+      "query": "보습크림이 말라붙은 옷을 입고 가스불 근처에 가는 게 왜 위험하죠?",
+      "relevant_refs": [
+        "ref:storage_label-025",
+        "ref:moisturizing-014"
+      ],
+      "rationale": "섬유의 마른 잔여물과 불꽃 접촉; 같은 주제는 모두 evaluation 배정"
+    },
+    "threshold": 0.95,
+    "returned": [
+      {
+        "evidence_ref": "ref:storage_label-025",
+        "dense_score": 0.7229021787643433,
+        "rerank_score": 0.9997997879981995
+      },
+      {
+        "evidence_ref": "ref:moisturizing-014",
+        "dense_score": 0.6401909589767456,
+        "rerank_score": 0.9990072846412659
+      },
+      {
+        "evidence_ref": "ref:sun_protection-014",
+        "dense_score": 0.5816561579704285,
+        "rerank_score": 0.9702399373054504
+      },
+      {
+        "evidence_ref": "ref:storage_label-026",
+        "dense_score": 0.5295248031616211,
+        "rerank_score": 0.9674102663993835
+      }
+    ],
+    "raw_top_candidate": {
+      "evidence_ref": "ref:storage_label-025",
+      "dense_score": 0.7229021787643433,
+      "rerank_score": 0.9997997879981995
+    },
+    "raw_top_corpus_entry": {
+      "title": "크림 잔여물이 마른 옷과 불꽃의 접촉",
+      "chunk": {
+        "evidence_ref": "ref:storage_label-025",
+        "text": "Tests and research have shown that the dried-on cream makes the fabric more flammable and the resulting fire burns quickly and intensely, resulting in serious injury or death. It’s important for anyone using these creams to avoid any naked flame. If you use an emollient or skin cream to treat a dry skin condition, please follow this advice. Do not smoke, use naked flames or get near to anything that may cause a fire while wearing clothing or a bandage that has been in contact with skin creams. If this is not possible, you must take steps to ensure you are safe when you smoke or use naked flames. For example, by using a flameless lighter or e-cigarette, and removing long sleeved or baggy clothing before using a gas hob.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://www.gov.uk/guidance/safe-use-of-emollient-skin-creams-to-treat-dry-skin-conditions",
+        "locator": "Safe use of emollients video / Avoid smoking — “Tests and research have shown that…”",
+        "checked_on": "2026-11-25",
+        "limitations": "영국의 섬유 잔여물과 점화원에 관한 안내다. 개별 사용자의 화재 발생 확률로 환산할 수 없다."
+      }
+    }
+  },
+  {
+    "raw_query_record": {
+      "id": "N05",
+      "split": "evaluation",
+      "domain": "negative",
+      "query": "어제 결제한 카드 취소를 처리해 주세요.",
+      "relevant_refs": [],
+      "rationale": "결제 처리 범위 밖"
+    },
+    "threshold": 0.95,
+    "returned": [],
+    "raw_top_candidate": {
+      "evidence_ref": "ref:moisturizing-019",
+      "dense_score": 0.4174184203147888,
+      "rerank_score": 9.063370816875249e-05
+    },
+    "raw_top_corpus_entry": {
+      "title": "도포 중단 뒤 측정한 피부 표면 변화",
+      "chunk": {
+        "evidence_ref": "ref:moisturizing-019",
+        "text": "All moisturizers resulted in a significant decrease in mean K values (a lower K value indicated a greater proportion of light being scattered away from the skin’s surface, implying increased skin translucency [23]) at 4 W, 8 W, and 8 W + 3 D versus the baseline, except Moisturizer L at 4 W (Figure 1E). Moisturizer K significantly decreased the K value at 4 W compared to that at 1 W, and at 8 W + 3 D compared to that at 8 W, indicating that its benefits lasted even after usage was stopped. Furthermore, Moisturizer L showed significantly less improvement than Moisturizer K at 4 W and 8 W + 3 D (Figure 1F).",
+        "scope": "non_clinical_only",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10532330/",
+        "locator": "3.1. Skin Clinical Parameters in Three Moisturizer Groups, paragraph 4",
+        "checked_on": "2026-11-24",
+        "limitations": "상하이 성인 여성과 특정 시험 제형에 한정된 연구다. 실험실 피부 시료와 실제 사용자의 결과를 구분해 해석한다."
+      }
+    }
+  },
+  {
+    "raw_query_record": {
+      "id": "N06",
+      "split": "evaluation",
+      "domain": "negative",
+      "query": "제품 이름도 자료도 없는 지금 내 세안제의 정확한 pH 수치를 알려주세요.",
+      "relevant_refs": [],
+      "rationale": "미확인 특정 제품 pH를 문헌으로 확정할 수 없음"
+    },
+    "threshold": 0.95,
+    "returned": [
+      {
+        "evidence_ref": "ref:cleansing-018",
+        "dense_score": 0.6647540330886841,
+        "rerank_score": 0.9881309270858765
+      }
+    ],
+    "raw_top_candidate": {
+      "evidence_ref": "ref:cleansing-018",
+      "dense_score": 0.6647540330886841,
+      "rerank_score": 0.9881309270858765
+    },
+    "raw_top_corpus_entry": {
+      "title": "제품에 표시된 pH와 실제 측정값",
+      "chunk": {
+        "evidence_ref": "ref:cleansing-018",
+        "text": "Among all the products evaluated, 31 (32.3%) had information about pH on the label. Among the liquid soaps, 18 (42.8%) contained information such as “balanced pH,” “neutral pH,” “physiological pH,” “skin pH,” “balanced pH,” and “ideal pH.” One of them specifically exhibited “pH 7,” with a pH measurement result of 7.39. Among the syndets, 8 (40.0%) mentioned information about pH. Among the bar soaps, three soaps from the same brand had the information “pH neutral” on the package, and two others had “maintains the skin’s natural pH,” totaling 14.7% of the sample.",
+        "scope": "non_clinical_only",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12704940/",
+        "locator": "RESULTS, paragraph 4",
+        "checked_on": "2026-11-24",
+        "limitations": "어린이용으로 판매된 표본의 제품 표시와 실험실 측정을 비교했다. 개별 어린이의 자극이나 장기 사용 결과는 측정하지 않았다."
+      }
+    }
+  }
+]

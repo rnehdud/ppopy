@@ -10,6 +10,9 @@ from beauty_agent.rag.corpus import (
     parse_markdown_corpus_file,
     validate_evidence_ref_not_kb_id,
 )
+from beauty_agent.rag.backends import HashFallback, NoOpReranker
+from beauty_agent.rag.query_builder import build_query
+from beauty_agent.rag.retriever import TwoStageReferenceRetriever
 
 __all__ = [
     "ALLOWED_DOMAINS",
@@ -20,4 +23,8 @@ __all__ = [
     "load_corpus_entries",
     "parse_markdown_corpus_file",
     "validate_evidence_ref_not_kb_id",
+    "HashFallback",
+    "NoOpReranker",
+    "build_query",
+    "TwoStageReferenceRetriever",
 ]
