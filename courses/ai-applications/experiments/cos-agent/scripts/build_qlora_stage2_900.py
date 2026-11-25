@@ -26,6 +26,55 @@ REPLACEMENTS={
 }
 
 def read(path):return [json.loads(l) for l in path.read_text(encoding='utf-8').splitlines() if l.strip()]
+
+def apply_final17(data,rows,before_requests):
+    """과거 500/414 검수 묶음은 보존하고 최종 17건 답변 패치만 적용해요."""
+    reviews=data/'reviews';patch_path=reviews/'stage2_17_answer_revisions.json'
+    if not patch_path.exists():return None
+    edits=json.loads(patch_path.read_text(encoding='utf-8'))['revisions']
+    # 나중에 stage1_critic.jsonl이 실제 재검수 결과로 갱신되어도 수정 이력은 재현해요.
+    baseline_review=reviews/'stage2_900_critic_before_final17.jsonl'
+    critique_rows=read(baseline_review)
+    critiques={r['row_id']:r for r in critique_rows}
+    assert len(critiques)==len(critique_rows)==900
+    expected={r['row_id'] for r in critique_rows if r['decision']=='FAIL'}
+    assert len(edits)==len(expected)==17 and {e['row_id'] for e in edits}==expected
+    before={r['row_id']:r for r in before_requests}
+    for rid,record in before.items():assert critiques[rid]['content_sha256']==record['content_sha256'],rid
+    indexed={r['id']:r for r in rows};audit=[]
+    original_user_messages={rid:r['messages'][1]['content'] for rid,r in indexed.items()}
+    for edit in edits:
+        rid=edit['row_id'];row=indexed[rid]
+        assert row['messages'][2]['content']==edit['before_answer'],rid
+        assert edit['before_answer']!=edit['after_answer'],rid
+        assert hashlib.sha256(row['messages'][1]['content'].encode()).hexdigest()==edit['user_message_sha256'],rid
+        assert edit['original_content_sha256']==before[rid]['content_sha256'],rid
+        row['messages'][2]['content']=edit['after_answer']
+        audit.append({'row_id':rid,'original_critic':critiques[rid],'raw_request':json.loads(row['messages'][1]['content']),
+                      'before_answer':edit['before_answer'],'after_answer':edit['after_answer'],
+                      'before_content_sha256':before[rid]['content_sha256'],'revision_actor':'Codex coordinator',
+                      'user_message_sha256':edit['user_message_sha256'],'status':'awaiting_external_recheck'})
+    assert all(r['messages'][1]['content']==original_user_messages[r['id']] for r in rows)
+    target=data/'qlora_solution_hold_v2.jsonl';jsonl(target,rows)
+    report,requests=inspect(target,COS/'data/rag/chunks.jsonl',900)
+    assert not report['errors'],report['errors']
+    mapping={r['row_id']:r for r in requests}
+    for record in audit:record['after_content_sha256']=mapping[record['row_id']]['content_sha256']
+    unchanged=[r for r in critique_rows if r['row_id'] not in expected]
+    assert len(unchanged)==883
+    for record in unchanged:assert record['decision']=='PASS' and record['content_sha256']==mapping[record['row_id']]['content_sha256'],record['row_id']
+    todo=[r for r in requests if r['row_id'] in expected]
+    for r in todo:r['review_scope']='corrected_fact_distortion_final17';r['previous_critic']=critiques[r['row_id']]
+    jsonl(reviews/'stage2_17_corrections.jsonl',audit)
+    request_path=reviews/'stage2_17_critic_requests.jsonl';jsonl(request_path,todo)
+    write_json(data/'validation/stage2_900_quality.json',report)
+    write_json(reviews/'stage2_17_request_manifest.json',{'status':'awaiting_external_cross_model_recheck','total_rows':900,
+        'current_content_unchanged_PASS':883,'requested_rows':17,'requested_ids':[r['row_id'] for r in todo],
+        'dataset_sha256':report['dataset_sha256'],'pool_sha256':report['pool_sha256'],
+        'request_file':request_path.name,'request_sha256':hashlib.sha256(request_path.read_bytes()).hexdigest(),
+        'input_messages_changed':0,'human_review':'unreviewed','final_training_approved':False,
+        'historical_review_file':baseline_review.name,'historical_review_sha256':hashlib.sha256(baseline_review.read_bytes()).hexdigest()})
+    return report
 def main():
     p=argparse.ArgumentParser();p.add_argument('--shard-root',type=Path);a=p.parse_args()
     data=COS/'data/qlora/v2';reviews=data/'reviews'
@@ -92,5 +141,7 @@ def main():
         'changed_rows':14,'corrected_row_ids':sorted(REPLACEMENTS),'new_rows':400,'requested_rows':414,'dataset_sha256':report['dataset_sha256'],
         'original_500_sha256':old_report['dataset_sha256'],'pool_sha256':report['pool_sha256'],'batches':batches,
         'human_review':'unreviewed','final_training_approved':False})
-    print(json.dumps({'rows':900,'requests':414,'modes':report['modes'],'splits':report['splits'],'errors':report['errors']},ensure_ascii=False))
+    revised=apply_final17(data,rows,list(mapping.values()))
+    if revised:report=revised
+    print(json.dumps({'rows':900,'requests':17 if revised else 414,'modes':report['modes'],'splits':report['splits'],'errors':report['errors']},ensure_ascii=False))
 if __name__=='__main__':main()
