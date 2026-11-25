@@ -2,7 +2,7 @@
 from __future__ import annotations
 import argparse,contextlib,hashlib,json,math,os,random,sys,time
 from pathlib import Path
-HERE=Path(__file__).resolve().parent;COS=HERE.parents[1]
+HERE=Path(__file__).resolve().parent;COS=HERE.parents[1];ROOT=COS.parents[3]
 sys.path.insert(0,str(COS))
 from common import dump,read_rows,split_and_encode,masked_loss,deterministic_metrics
 
@@ -85,6 +85,9 @@ def evaluate(model,tokenizer,rows,encoded,dtype,cfg,out,tag,base=False):
     hard=sum(any(r['metrics'][k] for k in keys) or bool(r['metrics']['guardrail_flags']) for r in records)
     lat=sorted(r['latency_s'] for r in records)
     summary={'tag':tag,'rows':len(records),'val_token_loss':val_loss,'counts':counts,'deterministic_flagged_rows':hard,
+        'solution_rows':sum(r['mode']=='solution' for r in rows),'hold_rows':sum(r['mode']=='hold' for r in rows),
+        'distractor_rows':sum(bool(r['distractor_refs']) for r in rows),
+        'length_limited_rows':sum(not r['finished_eos'] for r in records),
         'latency_s':{'p50':lat[len(lat)//2],'p95':lat[math.ceil(len(lat)*.95)-1]},
         'peak_allocated_mib':max(r['peak_allocated_mib'] for r in records),
         'semantic_faithfulness_and_indirect_distractors':'requires actual content review; not certified by regex',
@@ -100,6 +103,8 @@ def main():
     import torch
     from transformers import AutoTokenizer,get_cosine_schedule_with_warmup
     cfg=json.loads(Path(a.config).read_text(encoding='utf-8'));out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
+    if out.resolve().is_relative_to(ROOT.resolve()):
+        assert out.resolve().is_relative_to((COS/'outputs').resolve()),'model artifacts inside repository must stay under ignored outputs/'
     assert cfg['max_seq_length']>=2048 and cfg['upload_weights'] is False
     random.seed(cfg['seed']);torch.manual_seed(cfg['seed']);torch.set_num_threads(4)
     tokenizer=AutoTokenizer.from_pretrained(a.model_path,local_files_only=True);tokenizer.pad_token=tokenizer.eos_token
@@ -148,6 +153,7 @@ def main():
                 assert torch.isfinite(grad),'nonfinite gradient'
                 opt.step();scheduler.step();opt.zero_grad(set_to_none=True);global_step+=1
                 log={'event':'train','epoch':epoch,'microbatches':index+1,'global_step':global_step,
+                    'timestamp_ms':int(time.time()*1000),
                     'token_loss_so_far':loss_total/tokens,'lr':scheduler.get_last_lr()[0],
                     'elapsed_epoch_s':time.perf_counter()-start_epoch,
                     'peak_allocated_mib':torch.cuda.max_memory_allocated()/2**20,

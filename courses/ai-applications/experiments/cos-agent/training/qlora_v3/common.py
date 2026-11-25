@@ -42,13 +42,14 @@ def masked_loss(model,input_ids,labels,attention_mask):
 def deterministic_metrics(row,text):
     """Deterministic candidates only: absence of flags is NOT semantic fidelity proof."""
     req=json.loads(row['messages'][1]['content'])
-    refs=set(re.findall(r'\[((?:ref|kb|catalog|alternative):[^\]\s]+)\]',text))
+    from beauty_agent.slm._citations import extract_citations
+    refs=set(extract_citations(text))
     allowed=set(req['allowed_evidence_refs']);distractors=set(req['distractor_refs'])
     from beauty_agent.v3_contracts import SLMRequest,SLMResponse
     from beauty_agent.guardrail.hard_guardrail import HardSafetyGuardrail
     response=SLMResponse(mode=row['mode'],content=text or '빈 응답',cited_evidence_refs=sorted(refs))
     flags=HardSafetyGuardrail().validate(SLMRequest.model_validate(req),response).flags
-    return {'invalid_citation':bool(refs-allowed),'kb_citation':any(r.startswith('kb:') for r in refs),
+    return {'invalid_citation':bool(refs-allowed),'kb_citation':any(r.lower().startswith('kb:') for r in refs),
             'distractor_id_citation':bool(refs&distractors),'solution_missing_citation':row['mode']=='solution' and not refs,
             'hold_instruction_candidate':row['mode']=='hold' and 'hold_recommendation' in flags,
             'guardrail_flags':flags,'empty_response':not text.strip(),
