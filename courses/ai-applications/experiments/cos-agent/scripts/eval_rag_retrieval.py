@@ -215,6 +215,15 @@ def main():
             rag._build()
             rag.save(location)
         startup = perf_counter() - start
+        calibration_query = next(
+            r["query"] for r in rows if r["split"] == "calibration"
+        )
+        vector = embed.encode([calibration_query], is_query=True)[0]
+        index_times = []
+        for _ in range(1000):
+            index_start = perf_counter()
+            rag.index.search(vector, 15)
+            index_times.append((perf_counter() - index_start) * 1000)
         startup_allocated = startup_reserved = 0
         if args.device.startswith("cuda"):
             torch.cuda.synchronize()
@@ -237,8 +246,12 @@ def main():
                     "startup_max_reserved_bytes": startup_reserved,
                     "online_max_allocated_bytes": torch.cuda.max_memory_allocated(),
                     "online_max_reserved_bytes": torch.cuda.max_memory_reserved(),
-                    "max_allocated_bytes": max(startup_allocated, torch.cuda.max_memory_allocated()),
-                    "max_reserved_bytes": max(startup_reserved, torch.cuda.max_memory_reserved()),
+                    "max_allocated_bytes": max(
+                        startup_allocated, torch.cuda.max_memory_allocated()
+                    ),
+                    "max_reserved_bytes": max(
+                        startup_reserved, torch.cuda.max_memory_reserved()
+                    ),
                     "total_device_bytes": torch.cuda.get_device_properties(
                         0
                     ).total_memory,
@@ -254,6 +267,12 @@ def main():
             "device": gpu,
             "versions": versions,
             "startup_and_index_seconds": startup,
+            "index_search_only_ms": {
+                "iterations": 1000,
+                "dimensions": len(vector),
+                "p50": percentile(index_times, 0.5),
+                "p95": percentile(index_times, 0.95),
+            },
             "score_semantics": "yes/no softmax; not a calibrated safety probability",
             "embedding_truncated_inputs": embed.truncated_inputs,
             "reranker_truncated_inputs": rank.truncated_inputs,

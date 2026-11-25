@@ -43,14 +43,19 @@ class FaissCosineIndex:
         self._index.add(np.asarray(checked.vectors, dtype="float32"))
 
     def search(self, vector: Sequence[float], k: int) -> list[tuple[int, float]]:
+        import faiss
         import numpy as np
 
-        query = normalize(vector)
-        if len(query) != self.dimensions:
+        # Keep per-query validation/normalization in vectorized native code.
+        # Own the buffer: normalize_L2 must not mutate a caller's ndarray.
+        query = np.array(vector, dtype="float32", copy=True)
+        if query.ndim != 1 or query.size != self.dimensions:
             raise ValueError("query dimension mismatch")
-        scores, ids = self._index.search(
-            np.asarray([query], dtype="float32"), min(k, self._index.ntotal)
-        )
+        if not np.isfinite(query).all():
+            raise ValueError("query embedding must be finite")
+        query = query.reshape(1, -1)
+        faiss.normalize_L2(query)
+        scores, ids = self._index.search(query, min(k, self._index.ntotal))
         return sorted(
             [
                 (int(i), max(-1.0, min(1.0, float(s))))

@@ -1,0 +1,86 @@
+{
+  "development_preview": true,
+  "production_enabled": false,
+  "base_commit": "6b2aae9",
+  "targeted_offline_tests": {
+    "passed": 35,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0,
+    "failure_nodes": []
+  },
+  "default_suite": {
+    "passed": 498,
+    "failed": 9,
+    "errors": 14,
+    "skipped": 0,
+    "xfailed": 0,
+    "failure_nodes": [
+      "tests/afa/core/test_afa_coverage_folds.py::test_fixed_fold_plan_covers_all_families_and_aligned_case",
+      "tests/afa/core/test_afa_coverage_repair.py::test_rebuild_matches_files_and_existing_loader_accepts_new_version",
+      "tests/afa/core/test_afa_coverage_repair.py::test_corrupt_new_partition_file_is_rejected",
+      "tests/afa/core/test_afa_joint_data.py::test_bundle_rebuilds_byte_for_byte_and_all_families_stay_together",
+      "tests/afa/core/test_afa_joint_data.py::test_corrupt_response_file_fails_before_environment_use",
+      "tests/afa/core/test_afa_stage1.py::test_fixed_bundle_reproduces_and_tamper_is_rejected",
+      "tests/afa/core/test_v67_baselines.py::test_policies_use_shared_initial_context_and_comparable_scores",
+      "tests/afa/core/test_v67_fixtures.py::test_bundle_reproduces_and_keeps_provenance_separate_from_public_inputs",
+      "tests/afa/core/test_v67_reward.py::test_actual_paths_expose_gate_allowed_draft_with_different_reference",
+      "tests/afa/core/test_afa_coverage_folds.py::test_reusing_a_held_world_for_fit_is_rejected",
+      "tests/afa/core/test_afa_coverage_folds.py::test_duplicate_held_family_is_rejected",
+      "tests/afa/core/test_afa_coverage_folds.py::test_checkpoint_carryover_is_not_allowed",
+      "tests/afa/core/test_afa_coverage_repair.py::test_original_gap_is_detected_without_hiding_it",
+      "tests/afa/core/test_afa_coverage_repair.py::test_repaired_partition_has_both_structural_types_everywhere",
+      "tests/afa/core/test_afa_coverage_repair.py::test_responses_references_and_roots_are_not_reinvented",
+      "tests/afa/core/test_afa_coverage_repair.py::test_impossible_full_coverage_is_reported_instead_of_duplicating_singleton",
+      "tests/afa/core/test_afa_coverage_repair.py::test_assignment_does_not_depend_on_input_or_dictionary_order",
+      "tests/afa/core/test_afa_coverage_repair.py::test_repair_cannot_claim_policy_scoring_or_independent_evaluation",
+      "tests/afa/core/test_afa_coverage_repair.py::test_changing_declared_quota_requires_new_design",
+      "tests/afa/core/test_v67_runtime.py::test_refusal_reveals_one_slot_and_closes_repeat",
+      "tests/afa/core/test_v67_runtime.py::test_failed_step_keeps_context_and_state_reusable[missing_response]",
+      "tests/afa/core/test_v67_runtime.py::test_failed_step_keeps_context_and_state_reusable[dispatch]",
+      "tests/afa/core/test_v67_runtime.py::test_existing_gate_blocks_draft_until_kb_branch_resolves"
+    ]
+  },
+  "origin_main_default_suite": {
+    "passed": 482,
+    "failed": 9,
+    "errors": 14,
+    "skipped": 0,
+    "xfailed": 0,
+    "failure_nodes": [
+      "tests/afa/core/test_afa_coverage_folds.py::test_fixed_fold_plan_covers_all_families_and_aligned_case",
+      "tests/afa/core/test_afa_coverage_repair.py::test_rebuild_matches_files_and_existing_loader_accepts_new_version",
+      "tests/afa/core/test_afa_coverage_repair.py::test_corrupt_new_partition_file_is_rejected",
+      "tests/afa/core/test_afa_joint_data.py::test_bundle_rebuilds_byte_for_byte_and_all_families_stay_together",
+      "tests/afa/core/test_afa_joint_data.py::test_corrupt_response_file_fails_before_environment_use",
+      "tests/afa/core/test_afa_stage1.py::test_fixed_bundle_reproduces_and_tamper_is_rejected",
+      "tests/afa/core/test_v67_baselines.py::test_policies_use_shared_initial_context_and_comparable_scores",
+      "tests/afa/core/test_v67_fixtures.py::test_bundle_reproduces_and_keeps_provenance_separate_from_public_inputs",
+      "tests/afa/core/test_v67_reward.py::test_actual_paths_expose_gate_allowed_draft_with_different_reference",
+      "tests/afa/core/test_afa_coverage_folds.py::test_reusing_a_held_world_for_fit_is_rejected",
+      "tests/afa/core/test_afa_coverage_folds.py::test_duplicate_held_family_is_rejected",
+      "tests/afa/core/test_afa_coverage_folds.py::test_checkpoint_carryover_is_not_allowed",
+      "tests/afa/core/test_afa_coverage_repair.py::test_original_gap_is_detected_without_hiding_it",
+      "tests/afa/core/test_afa_coverage_repair.py::test_repaired_partition_has_both_structural_types_everywhere",
+      "tests/afa/core/test_afa_coverage_repair.py::test_responses_references_and_roots_are_not_reinvented",
+      "tests/afa/core/test_afa_coverage_repair.py::test_impossible_full_coverage_is_reported_instead_of_duplicating_singleton",
+      "tests/afa/core/test_afa_coverage_repair.py::test_assignment_does_not_depend_on_input_or_dictionary_order",
+      "tests/afa/core/test_afa_coverage_repair.py::test_repair_cannot_claim_policy_scoring_or_independent_evaluation",
+      "tests/afa/core/test_afa_coverage_repair.py::test_changing_declared_quota_requires_new_design",
+      "tests/afa/core/test_v67_runtime.py::test_refusal_reveals_one_slot_and_closes_repeat",
+      "tests/afa/core/test_v67_runtime.py::test_failed_step_keeps_context_and_state_reusable[missing_response]",
+      "tests/afa/core/test_v67_runtime.py::test_failed_step_keeps_context_and_state_reusable[dispatch]",
+      "tests/afa/core/test_v67_runtime.py::test_existing_gate_blocks_draft_until_kb_branch_resolves"
+    ]
+  },
+  "existing_failure_nodes_identical": true,
+  "source_manifest": {
+    "checked": 27,
+    "failed": []
+  },
+  "notes": [
+    "Default suite failures are frozen AFA/v67 bundle/source byte-hash mismatches reproduced from origin/main in a separate worktree; not masked, skipped, or expectation-rewritten.",
+    "Baseline worktree used canonical COS Git bytes, avoiding Windows autocrlf checkout changes. Full optional RL/tracking suites were not run for this RAG change."
+  ]
+}

@@ -101,6 +101,35 @@ def test_empty_and_invalid_top_k_do_not_query_models():
     assert len(rag.embedder.calls) == before
 
 
+def test_solution_request_builds_query_without_mutating_the_request():
+    rag = sample_rag(threshold=0.8)
+    request = SLMRequest(
+        mode="solution",
+        confirmed_observations={
+            "method.body_site": ObservationSlot(
+                variable_id="method.body_site",
+                state="known",
+                value="face",
+                confirmed_by_user=True,
+            ),
+            "skin.dryness": ObservationSlot(
+                variable_id="skin.dryness", state="unknown"
+            ),
+        },
+        product_evidence=[{"status": "verified", "label_guidance": "rinse off"}],
+    )
+    original = request.model_dump()
+    result = rag.retrieve_for_request(request, top_k=3)
+    query_texts, is_query = rag.embedder.calls[-1]
+    assert is_query and len(query_texts) == 1
+    assert all(
+        text in query_texts[0]
+        for text in ["사용 부위", "face", "피부 건조: 미확인", "rinse off"]
+    )
+    assert result.chunks[0].evidence_ref == "ref:cleansing-002"
+    assert request.model_dump() == original
+
+
 def test_bad_scores_and_dimensions_fail_closed():
     rag = sample_rag()
     rag.reranker.score = lambda *args: [float("nan")] * 3
@@ -182,6 +211,7 @@ def test_fallback_save_load_checks_corpus_and_vectors(tmp_path):
     bad = TwoStageReferenceRetriever(
         entries, HashFallback(1024), NoOpReranker(), build=False
     )
+    assert bad.index_version != rag.index_version
     with pytest.raises(ValueError, match="manifest"):
         bad.load(tmp_path)
     changed = [entry(1, "바뀐 본문"), entry(2, "화장품 기한")]

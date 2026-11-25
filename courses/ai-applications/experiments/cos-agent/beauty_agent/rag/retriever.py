@@ -82,7 +82,12 @@ class TwoStageReferenceRetriever:
         self.threshold = threshold
         self.stage1_k = stage1_k
         self.use_faiss = use_faiss
-        self.index_version = "rag-" + corpus_digest(entries)[:16]
+        # Different embedding revisions/configurations must not share the same
+        # audit/cache identifier merely because their source paragraphs match.
+        identity = corpus_digest(entries) + "|" + embedder.signature
+        self.index_version = (
+            "rag-" + hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
+        )
         self._by_ref = {e.chunk.evidence_ref: e for e in entries}
         self.index = None
         if build:
@@ -194,7 +199,7 @@ class TwoStageReferenceRetriever:
             filename = "vectors.faiss"
         else:
             (directory / "vectors.json").write_text(
-                json.dumps(self.index.vectors), encoding="utf-8", newline="\n"
+                json.dumps(self.index.vectors) + "\n", encoding="utf-8", newline="\n"
             )
             filename = "vectors.json"
         manifest = self._manifest()

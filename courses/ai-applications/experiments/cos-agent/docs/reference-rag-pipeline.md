@@ -14,7 +14,7 @@ SOLUTION용 SLMRequest
 
 - 공개 진입점은 `TwoStageReferenceRetriever.retrieve(query, *, top_k=5)`입니다. `v3_contracts.ReferenceRetriever`와 구조적으로 호환됩니다.
 - 요청 단위 진입점 `retrieve_for_request(request)`는 `mode != "solution"`이면 **query builder·embedding·reranker 호출 전에** 빈 결과를 반환합니다. `QUESTION_MODE`는 추가하지 않았습니다. 향후 Control Plane 연결에서도 질문 턴에는 이 검색기를 호출하지 않아야 합니다. 이번 변경 자체가 운영 런타임 통합을 완료했다는 뜻은 아닙니다.
-- `top_k`는 1–5입니다. 임계값 미달을 다른 문서로 채우지 않습니다. `index_version`은 제목·본문·출처 메타데이터를 포함한 코퍼스 SHA-256에서 파생합니다.
+- `top_k`는 1–5입니다. 임계값 미달을 다른 문서로 채우지 않습니다. `index_version`은 제목·본문·출처 메타데이터를 포함한 코퍼스 SHA-256과 임베딩 모델 signature에서 파생합니다.
 - 색인 및 검색 대상은 공식 Markdown 파서가 읽은 151개 `CorpusEntry`입니다. 빌드 시 `chunks.jsonl`과 전체 `ReferenceChunk` 동등성을 확인합니다. 임베딩과 리랭킹에는 `entry.embedding_text`(제목 + 줄바꿈 + 본문)를 사용하고, 반환하는 `chunk.text`는 바꾸지 않습니다.
 - 벡터와 질의를 모두 L2 정규화한 뒤 `IndexFlatIP`로 검색합니다. FAISS는 **CPU**에서 검색하고, 두 Qwen 모델만 GPU에 올립니다.
 - `HashFallback`은 안정적인 해시 기반 단어·문자 bigram 어휘 검색입니다. 의미 기반 다국어 모델이 아니며 Qwen 장애 시 동등한 품질을 보장하지 않습니다. `NoOpReranker`는 기존 cosine 점수만 유지합니다. 계약의 backend enum을 변경하지 않고 이 경로는 `stub`으로 표시합니다.
@@ -56,6 +56,29 @@ outputs/rag_gpu_env/Scripts/python.exe scripts/eval_rag_retrieval.py --backend a
 
 모델별 최대 입력 1,024 토큰, batch=2를 기본으로 하며 잘린 입력 수를 보고합니다. Reranker는 prefix/suffix를 보존하고 최종 토큰 logits만 계산해 불필요한 전체 시퀀스 vocabulary logits 메모리를 피합니다. Softmax 점수는 **관련도 모델 점수이지 안전 확률이 아닙니다**.
 
+인덱스 로드 후 사용하는 예시는 다음과 같습니다. threshold는 기본값을 운영 승인값으로 간주하지 말고, 아래 실험 보고서의 calibration 선택값과 함께 명시적으로 관리합니다.
+
+```python
+import json
+from pathlib import Path
+from beauty_agent.rag import load_corpus_entries, TwoStageReferenceRetriever
+from beauty_agent.rag.qwen import QwenEmbedder, QwenReranker
+
+report = json.loads(Path("data/rag/evaluation/benchmark_report.json").read_text(encoding="utf-8"))
+setting = report["backends"]["qwen_full"]
+embed = QwenEmbedder(revision=json.loads(setting["embedder"])["revision"], local_files_only=True)
+rank = QwenReranker(revision=json.loads(setting["reranker"])["revision"], local_files_only=True)
+rag = TwoStageReferenceRetriever(
+    load_corpus_entries(Path("data/rag/corpus")), embed, rank,
+    threshold=setting["selected_threshold"], use_faiss=True, build=False,
+)
+rag.load(Path("data/rag/index/qwen"))
+result = rag.retrieve("샤워 후 보습제를 사용하는 시점", top_k=3)
+# Control Plane에서는 이미 확정한 SLMRequest에 한해 rag.retrieve_for_request(request).
+```
+
+여기서는 두 RAG 모델만 로드합니다. 4B SLM과의 GPU 동시 상주·학습 메모리까지 검증한 예시가 아닙니다.
+
 ## 인덱스·메타데이터 보관
 
 `data/rag/index/`는 기존 `.gitignore`로 제외되어 있습니다. FAISS 바이너리, 모델 가중치, NumPy 벡터는 커밋하지 않습니다. Python fallback 벡터도 같은 무시 경로에 저장합니다. 매니페스트는 코퍼스 SHA, 순서화된 참조, 모델 signature, 차원·행 수, 벡터 파일 SHA를 확인합니다. 출처가 불명확한 외부 FAISS 바이너리를 로드하는 용도가 아닙니다.
@@ -74,3 +97,35 @@ outputs/rag_gpu_env/Scripts/python.exe scripts/eval_rag_retrieval.py --backend a
 - 평가가 40개(held-out 양성16/음성4)에 불과하므로 임계값의 일반화나 임상/운영 품질을 보장하지 않습니다. 독립 qrel 전수 판정은 추가 평가 범위로 남깁니다.
 
 측정 결과 및 원시 candidate 점수는 같은 디렉터리의 보고 파일과 이 문서의 결과 절에 기록합니다. 결과 파일은 UTF-8(BOM 없음), LF입니다.
+
+## 2026-11-25 측정 결과
+
+RTX 4070 Laptop(8,188MiB), CUDA Torch 2.9.1+cu128, Transformers 4.57.6, FAISS CPU 1.16.0, FP16, batch=2, max_length=1,024 조건입니다. **아래 수치는 held-out 양성 16개·음성 4개 기준**입니다. 각 백엔드의 threshold는 calibration에서 독립 선택했습니다.
+
+| 백엔드 | threshold | Recall@15 | Recall@5 | MRR@5 | nDCG@5 | 음성 차단율 | p50 / p95 ms |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Hash + NoOp | 0.20 | 0.5938 | 0.4375 | 0.4375 | 0.4375 | 75% (3/4) | 3.61 / 3.75 |
+| BM25 | 0.95 | 0.9063 | 0.6563 | 0.5677 | 0.5734 | 25% (1/4) | 0.76 / 1.20 |
+| Qwen dense-only (Stage 1 trace) | 0.50 | 1.0000 | 1.0000 | 0.9688 | 0.9719 | 25% (1/4) | 44.79 / 51.17 |
+| Qwen 2-Stage | 0.95 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 75% (3/4) | 384.03 / 474.32 |
+
+- Query builder 1,000회: p50 **0.0063ms**, p95 **0.0070ms**, LLM 호출 0회.
+- 실제 151×1,024 FAISS 검색만 1,000회: p50 **0.0569ms**, p95 **0.0797ms**. 처음에는 Python 정규화 비용으로 p95 0.2184ms였으며, NumPy 검증·FAISS native L2 정규화로 변경했습니다. 두 실행 모두 보관했습니다. 전체 검색 p95는 첫 실행 416.24ms, 최종 실행 474.32ms로 변동했으므로 **index 최적화가 전체 지연 개선을 입증했다고 주장하지 않습니다**.
+- 두 RAG 모델의 Torch tensor peak **2,448,931,840 bytes (2.449GB)**, allocator reserved peak **2,480,930,816 bytes (2.481GB)**. startup/online 피크를 함께 기록했습니다. 드라이버·다른 앱을 포함한 전체 GPU 점유율이나 4B SLM 동시 상주 검증값은 아닙니다.
+- 최초 코퍼스 색인과 두 평가 실행에서 embedding/reranker 입력 잘림은 **0건**입니다. 모델 revision과 가중치 SHA는 결과 파일에 보관했습니다.
+- Reranker는 dense-only 대비 MRR/nDCG와 음성 차단율을 개선했지만 지연이 증가했습니다. 관련도 정렬 개선과 안전 승인/진단 정확도를 혼동하지 않습니다.
+
+### 남은 한계: N06
+
+`제품 이름도 자료도 없는 지금 내 세안제의 정확한 pH 수치를 알려주세요.`는 정답 참조가 없는 음성 질의입니다. 그런데 `ref:cleansing-018`(제품에 표시된 pH와 실제 측정값)이 **0.9881309271**로 반환됐습니다. 이 문헌은 어린이용 제품 표본의 표시·실험실 측정 비교이지, 질의 속 미확인 세안제의 pH 근거가 아닙니다. **검색 유입 실패**이며, SLM이 실제 pH 숫자를 생성했다는 관측은 아닙니다. raw 질의·점수·본문·한계는 `representative_cases.json`에 함께 있습니다.
+
+threshold 0.99의 held-out 진단값은 음성 차단 100%, Recall@5 0.90625이지만, calibration에서는 Recall@5와 hit rate가 0.8125로 떨어집니다(0.95에서는 각각 0.90625 / 0.9375). 따라서 held-out 결과를 보고 threshold를 0.99로 바꾸지 않았습니다. N06의 관련도/qrel 정의는 팀 검토가 필요하며, 현재 라벨을 PASS로 바꾸거나 특정 질의 키워드를 하드코딩해 실패를 숨기지 않았습니다. 미확인 제품의 수치 확정 금지는 앞단 상태·HOLD와 후단 생성 가드레일에서도 유지해야 합니다. 이번 PR은 그 모듈들을 변경하지 않습니다.
+
+### 검증 상태
+
+- RAG + v3 contracts: **35 PASS**, skip/xfail 0.
+- `verify_source_manifest.py`: **27/27 PASS**. KB 구조 검증도 별도 `outputs/` 보고서로 **95/95 PASS**.
+- 기본 전체 테스트: **498 PASS / 9 FAIL / 14 ERROR**. 별도 `origin/main` 워크트리에서도 동일한 실패 node 23개가 재현됐습니다(482 PASS / 9 FAIL / 14 ERROR). 기존 AFA/v67 bundle/source 바이트 해시 불일치이며 기대값·동결 자료는 수정하지 않았습니다. 전체 저장소 테스트가 100% 통과했다고 보고하지 않습니다.
+- 원문 코퍼스·151개 청크·공용 계약·AFA·KB·source manifest는 변경하지 않았고, PDF/인덱스 바이너리는 제출하지 않습니다.
+
+원시 기록: [평가 산출물 목록](../data/rag/evaluation/README.md).
