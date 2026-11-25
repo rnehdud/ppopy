@@ -1,0 +1,76 @@
+{
+  "task": "PPO-37 Step 2",
+  "checkpoint_rows": 500,
+  "stage2_target_rows": 900,
+  "user_requested_pause_after_checkpoint": true,
+  "base_commit": "6b2aae95ee8d68970a224573ea984b9cf8ce5afb",
+  "branch": "data/qlora-v3-rag-free-step2",
+  "publication_branch": "data/qlora-v4-rag-free",
+  "pool": "data/rag/chunks.jsonl",
+  "pool_rows": 151,
+  "pool_sha256": "29147e4560ca31d532edfdb795773b461043d2c9d60184c78f69cd9d05266001",
+  "target_training_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "generation_model": "gpt-6.2-sol",
+  "generation_host": "Codex",
+  "cross_model_critic_location": "다른 팀원의 디바이스",
+  "local_cross_model_critic": false,
+  "local_human_approval": false,
+  "runtime_invariants": {
+    "mode": "development_preview",
+    "production_enabled": false,
+    "requires_approval": true,
+    "saved": false
+  },
+  "checkpoint_distribution": {
+    "solution": 385,
+    "hold": 115,
+    "train": 455,
+    "val_internal": 45,
+    "english_relevant_solution": 130,
+    "minimum_genuine_hard_negatives": 125
+  },
+  "remaining_after_checkpoint": {
+    "solution": 305,
+    "hold": 95,
+    "total": 400
+  },
+  "shards": [
+    {
+      "owner": "cleansing",
+      "rows": 170,
+      "solution_ranges": [[1, 120], [211, 220]],
+      "hold_ranges": [[1, 40]],
+      "english_relevant_solution": 40,
+      "train": 160,
+      "val_internal": 10
+    },
+    {
+      "owner": "moisturizing",
+      "rows": 165,
+      "solution_ranges": [[231, 350], [441, 450]],
+      "hold_ranges": [[71, 100], [131, 135]],
+      "english_relevant_solution": 50,
+      "train": 150,
+      "val_internal": 15
+    },
+    {
+      "owner": "sun_protection",
+      "rows": 165,
+      "solution_ranges": [[461, 575], [671, 680]],
+      "hold_ranges": [[141, 170], [201, 210]],
+      "english_relevant_solution": 40,
+      "train": 145,
+      "val_internal": 20
+    }
+  ],
+  "notes": [
+    "이 파일은 생성 전 배정 계획이에요. 실제 개수·비율은 생성 후 검사 보고서로 확인해요.",
+    "학습 파일은 500턴 체크포인트로 표시하고 900턴 완료본으로 부르지 않아요.",
+    "기존 v67·구 KB-anchored 자료·파일럿의 질문과 답변을 재가공하지 않아요.",
+    "관련·방해 ref ID와 모든 문헌 필드는 공식 151개 풀에서만 가져와요.",
+    "비교적 짧은 반복 문장을 돌려쓰거나 무관한 nonce를 넣어 개수·중복 검사를 통과하지 않아요.",
+    "자연어 사용자 발화와 별도 확인은 작성 sidecar에 보존하고, 모델에는 정형 계약 입력만 전달해요.",
+    "검수 모델·PASS·사람 승인·학습 성능·실제 실행 결과를 만들지 않아요.",
+    "500턴이 실제로 완성·자동 검사된 뒤 사용자 요청에 따라 goal을 paused로 전환해 외부 검수에 인계해요."
+  ]
+}

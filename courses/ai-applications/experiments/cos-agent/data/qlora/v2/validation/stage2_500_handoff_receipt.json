@@ -1,0 +1,38 @@
+{
+  "checkpoint_rows": 500,
+  "stage2_target_rows": 900,
+  "remaining_rows": 400,
+  "dataset_sha256": "d1135462c3ad95bb42600b29078772f1f63d645e0377035c5f5457dc2c4826ad",
+  "pool_sha256": "29147e4560ca31d532edfdb795773b461043d2c9d60184c78f69cd9d05266001",
+  "generation_model": "gpt-6.2-sol",
+  "cross_model_critic_location": "다른 팀원의 디바이스",
+  "local_cross_model_critic": false,
+  "human_review": "unreviewed",
+  "final_training_approved": false,
+  "modes": {
+    "solution": 385,
+    "hold": 115
+  },
+  "splits": {
+    "train": 455,
+    "val_internal": 45
+  },
+  "shards": [
+    {
+      "owner": "cleansing",
+      "rows": 170,
+      "sha256": "52b939b866995fe01036b3c431652157f54a38695e9fcef586dcd60f7b5fc4e9"
+    },
+    {
+      "owner": "moisturizing",
+      "rows": 165,
+      "sha256": "5787c10668c653cc2bed0b617b02a963bf41775540efa47ea4e4abc7f0c2373d"
+    },
+    {
+      "owner": "sun_protection",
+      "rows": 165,
+      "sha256": "260e316dee094978eac10a19901f9355efa9aedec33da70c0b68726d39579975"
+    }
+  ],
+  "check_scope": "이 조립 명령은 입력·풀 일치 검사예요. 공통 비율 검증과 외부 내용 검수는 별도로 실행해야 해요."
+}
