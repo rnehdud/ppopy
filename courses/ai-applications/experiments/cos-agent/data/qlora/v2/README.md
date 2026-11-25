@@ -26,6 +26,14 @@
 
 현재 브랜치는 **제작·구조 검증 완료 / 외부 Critic·사람 검수 대기** 상태의 인계 자료예요. `reviews/pilot_24_critic.jsonl`은 실제 다른 모델 계열의 검수 전에는 만들지 않아요. 사람이 검수하기 전 `human_review=approved`로 바꾸지 않아요. 구조 통과를 학습 승인이나 병합 승인으로 해석하지 않아요.
 
+### 전달받은 Gemini 검수 피드백 반영 · 2건 재검수 대기
+
+사용자가 전달한 `9edda04` 대상 Gemini 검수 결과는 22/24 PASS, 2건 FAIL이에요. `syn-sol-0014`의 로션 언급과 `syn-sol-0015`의 재도포 간격 언급을 삭제해 방해 문헌 주제를 부정하는 문맥에서도 답변에 남기지 않았어요. 두 행의 assistant 답변만 바꿨으며 입력·청크·분류·분할과 나머지 22행은 동일해요. 제작용 응답 원문·재현 코드·raw 검토 자료도 함께 맞췄어요.
+
+`validation/pilot_24_critic_corrections.json`에 규칙 `R1_CITATION`, 수정 전후 응답 raw, 공통 검증기로 계산한 수정 전후 `content_sha256`을 기록했어요. 이는 **수정·재검수 요청 기록이지 Critic PASS 파일이 아니에요.** 공식 `reviews/pilot_24_critic.jsonl`은 아직 받지 않았고, 수정한 2건의 Gemini 재검수도 대기 중이므로 행의 검수 상태를 임의로 승인하지 않았어요.
+
+Step 2 메모는 별도로 유지해요. 한국어 코퍼스 문단의 `chunk_origins` 정합화, `clinical_restraint` 유형 포함, 최종 PR 전 임시 제작 스크립트 정리는 900턴 설계·최종 제출 단계에서 검토하며 이번 두 행 수정에 섞지 않았어요.
+
 `validation/`에는 현재 JSONL과 해시가 일치하는 구조·코퍼스 추적·Qwen 토큰 실측 보고서 및 결과 receipt를 공유해요. HTML·PNG·ZIP과 이전 버전 전체 보관본은 Git 제외 경로인 `outputs/`에만 있고, 이 브랜치의 push에 포함되지 않아요.
 
 새 clone에서는 로컬 과거 보관본 없이 고정 입력·응답과 공개 변경 이력의 해시를 대조해 재조립할 수 있어요. 코퍼스 추적 검사는 저장소 역사에 있는 `dd418a3`를 읽으므로 shallow clone에 해당 커밋이 없으면 먼저 fetch해야 해요. 선택적인 이미지 생성에는 Pillow와 코드에 지정한 한국어 폰트가, 토큰 재측정에는 보고서에 기록한 Transformers·tokenizers·huggingface_hub가 별도로 필요해요. 기본 구조·코퍼스 검사는 기존 `uv --locked` 환경을 사용해요.

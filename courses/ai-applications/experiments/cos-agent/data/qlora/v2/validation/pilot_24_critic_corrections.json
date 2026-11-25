@@ -1,0 +1,39 @@
+{
+  "based_on_commit": "9edda040dc3530aa03a88940fdd6e2f1eb63a376",
+  "reported_external_critic_family": "Gemini",
+  "source_of_critic_result": "사용자가 전달한 검수 결과. 공식 검수 파일은 아직 미수령이에요.",
+  "reported_previous_result": {
+    "PASS": 22,
+    "FAIL": 2
+  },
+  "correction_scope": "assistant 2행만 수정. 입력·청크·분류·분할·검수 상태 유지.",
+  "changed_rows": 2,
+  "unchanged_rows": 22,
+  "human_review": "unreviewed",
+  "formal_critic_review_file_received": false,
+  "records": [
+    {
+      "row_id": "syn-sol-0014",
+      "rule": "R1_CITATION",
+      "hard_negative_type": "rag_distractor_ignore",
+      "previous_content_sha256": "68bb5407052e3a932798fa49339479dedf3830274d1e6dba3123d19a18cee30f",
+      "content_sha256": "13b98ae55ed27f2c14ea445b44d167f23b86b75961e1a2858c97854682ba3d35",
+      "before_assistant_raw": "### 핵심 안내\n선택하신 세안제는 사용 뒤 물로 헹구는 제품으로 확인돼요. 얼굴에 그대로 남겨 두기보다는 이 제품의 헹굼 지시에 맞춰 씻어내요. [catalog:rf-clean-14@fixture-1]\n\n### 근거 및 이유\n제공된 헹굼형 클렌징 오일 문단은 물이 닿을 때 오일이 분산돼 씻겨 나가는 원리를 설명해요. 문헌만으로 지금 제품을 오일이라고 분류하는 것은 아니며, 실제 제거 지시는 버전이 일치하는 제품 표시에서 확인해요. [ref:rc-dd418a3-cleansing-002]\n\n### 확인이 필요한 한계\n피부에 남기는 다른 로션의 사용법을 이 세안제에 적용하지 않아요. 헹굼 지시가 확인됐다는 사실만으로 제품의 자극 정도나 세정 성능까지 알 수 있는 것은 아니에요.",
+      "after_assistant_raw": "### 핵심 안내\n선택하신 세안제는 사용 뒤 물로 헹구는 제품으로 확인돼요. 얼굴에 그대로 남겨 두기보다는 이 제품의 헹굼 지시에 맞춰 씻어내요. [catalog:rf-clean-14@fixture-1]\n\n### 근거 및 이유\n제공된 헹굼형 클렌징 오일 문단은 물이 닿을 때 오일이 분산돼 씻겨 나가는 원리를 설명해요. 문헌만으로 지금 제품을 오일이라고 분류하는 것은 아니며, 실제 제거 지시는 버전이 일치하는 제품 표시에서 확인해요. [ref:rc-dd418a3-cleansing-002]\n\n### 확인이 필요한 한계\n헹굼 지시가 확인됐다는 사실만으로 제품의 자극 정도나 세정 성능까지 알 수 있는 것은 아니에요.",
+      "input_and_nonassistant_fields_unchanged": true,
+      "recritic_status": "pending"
+    },
+    {
+      "row_id": "syn-sol-0015",
+      "rule": "R1_CITATION",
+      "hard_negative_type": "rag_distractor_ignore",
+      "previous_content_sha256": "c98e7f9d54978c355fca25d6cc45339db01fd4791aa11560b85ea40939751eac",
+      "content_sha256": "021f2ee2342d32480c3f60b1c14d7331d2b8c9869eedd9f9813c3eeedbb90a5f",
+      "before_assistant_raw": "### 핵심 안내\n보습크림이 묻어 마른 소매가 가스레인지 불꽃 가까이 가지 않도록 주의해요. 제품 자료에는 파라핀 무첨가로 되어 있지만, 그 표시만으로 옷에 남은 잔여물의 화재 위험이 없다고 볼 수는 없어요. [catalog:rf-r2-emollient-15@fixture-2]\n\n### 근거 및 이유\nMHRA 문단은 파라핀 함량과 관계없이 에몰리언트가 묻어 마른 의복·침구 등의 점화 위험을 경고하고, 파라핀 무첨가 제품에도 위험이 있을 수 있다고 설명해요. 현재 소매의 잔여물과 계획된 불꽃 접근에 직접 연결돼요. [ref:rc-dd418a3-moisturizing-014]\n\n### 확인이 필요한 한계\n보습제를 피부에 바르는 행위 자체가 점화원이라는 뜻은 아니에요. 아직 화상은 보고되지 않았으며, 개별 제품이나 옷감의 발화 확률을 계산하거나 다른 문헌의 재도포 간격을 화기 안전 기준으로 가져오지 않아요.",
+      "after_assistant_raw": "### 핵심 안내\n보습크림이 묻어 마른 소매가 가스레인지 불꽃 가까이 가지 않도록 주의해요. 제품 자료에는 파라핀 무첨가로 되어 있지만, 그 표시만으로 옷에 남은 잔여물의 화재 위험이 없다고 볼 수는 없어요. [catalog:rf-r2-emollient-15@fixture-2]\n\n### 근거 및 이유\nMHRA 문단은 파라핀 함량과 관계없이 에몰리언트가 묻어 마른 의복·침구 등의 점화 위험을 경고하고, 파라핀 무첨가 제품에도 위험이 있을 수 있다고 설명해요. 현재 소매의 잔여물과 계획된 불꽃 접근에 직접 연결돼요. [ref:rc-dd418a3-moisturizing-014]\n\n### 확인이 필요한 한계\n보습제를 피부에 바르는 행위 자체가 점화원이라는 뜻은 아니에요. 아직 화상은 보고되지 않았으며, 개별 제품이나 옷감의 발화 확률을 계산할 수는 없어요.",
+      "input_and_nonassistant_fields_unchanged": true,
+      "recritic_status": "pending"
+    }
+  ],
+  "dataset_sha256": "627461f4b1fd66a820b1c0dd598057e1588a8933e11c6b8bf04d9a7f072a0780"
+}

@@ -125,19 +125,29 @@
       "id": "syn-sol-0014",
       "before_input_sha256": "46766c7484863eac6c29bbf1b3d99ec84e6b9a77a4b78988f3ee95b1af9f1248",
       "after_input_sha256": "fcdabc720a70b08dac9b306374bacc26575caf91d3a69472a7453aaa734d6c0b",
-      "after_assistant_sha256": "8f77f732459210a52a893fad5a11adde0eb86e6c6fc076aa25b86a518a99b7b7",
+      "after_assistant_sha256": "8491d96669b9b90477ce055a8c46fce991eda194d7497bcf3649ee6127394c5d",
       "input_changed": true,
       "answer_changed": true,
-      "reason": "사용자 발화·확인 관찰·시스템 근거를 분리했어요. RAG 문단과 인용은 보존하고 제품 ID·버전 확인은 카탈로그 근거에 두었어요."
+      "reason": "사용자 발화·확인 관찰·시스템 근거를 분리했어요. RAG 문단과 인용은 보존하고 제품 ID·버전 확인은 카탈로그 근거에 두었어요.",
+      "post_critic_correction": {
+        "rule": "R1_CITATION",
+        "reason": "방해 문헌의 주제는 부정하는 문맥에서도 언급하지 않고 완전히 무시해요.",
+        "recritic_status": "pending"
+      }
     },
     {
       "id": "syn-sol-0015",
       "before_input_sha256": "54c3bdfcd0b893e84e069c2be1e685b3942592c0b9b145245c97c9f7eca680a9",
       "after_input_sha256": "7939cfa77480ceaf0c2bc163f9f5dbfc0721c0277c158b6ac295eeb63704f637",
-      "after_assistant_sha256": "063aad75bf5c4d6b4c0bac77099c8dad57e58d722be2347ce573826bd02aede8",
+      "after_assistant_sha256": "dd06917572e78bc86f00c5ec657d3423d447c5341cacf2057b5fc2894513f5f6",
       "input_changed": true,
       "answer_changed": true,
-      "reason": "사용자 발화·확인 관찰·시스템 근거를 분리했어요. RAG 문단과 인용은 보존하고 제품 ID·버전 확인은 카탈로그 근거에 두었어요."
+      "reason": "사용자 발화·확인 관찰·시스템 근거를 분리했어요. RAG 문단과 인용은 보존하고 제품 ID·버전 확인은 카탈로그 근거에 두었어요.",
+      "post_critic_correction": {
+        "rule": "R1_CITATION",
+        "reason": "방해 문헌의 주제는 부정하는 문맥에서도 언급하지 않고 완전히 무시해요.",
+        "recritic_status": "pending"
+      }
     },
     {
       "id": "syn-sol-0016",
