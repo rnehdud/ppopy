@@ -258,3 +258,123 @@ def test_kb_and_duplicate_refs_rejected():
     bad.chunk.evidence_ref = "ref:U99"
     with pytest.raises(ValueError):
         TwoStageReferenceRetriever([bad], HashFallback(), NoOpReranker())
+
+
+def test_query_builder_supports_kb_and_runtime_prefixes_and_blocks_forbidden():
+    obs = {
+        "moisturizing.timing": ObservationSlot(
+            variable_id="moisturizing.timing",
+            state="known",
+            value="after_shower",
+            confirmed_by_user=True,
+        ),
+        "dose.reapply_interval": ObservationSlot(
+            variable_id="dose.reapply_interval",
+            state="known",
+            value="2h",
+            confirmed_by_user=True,
+        ),
+        "lifestyle.sweat": ObservationSlot(
+            variable_id="lifestyle.sweat",
+            state="known",
+            value="high",
+            confirmed_by_user=True,
+        ),
+        "routine.goal": ObservationSlot(
+            variable_id="routine.goal",
+            state="known",
+            value="보습 순서 확인",
+            confirmed_by_user=True,
+        ),
+        "context.review_goal": ObservationSlot(
+            variable_id="context.review_goal",
+            state="known",
+            value="아침 물 온도",
+            confirmed_by_user=True,
+        ),
+        "constraints.budget": ObservationSlot(
+            variable_id="constraints.budget",
+            state="known",
+            value="기존 보유 제품만",
+            confirmed_by_user=True,
+        ),
+        "eye.visual_symptom_now": ObservationSlot(
+            variable_id="eye.visual_symptom_now",
+            state="known",
+            value="none",
+            confirmed_by_user=True,
+        ),
+        "symptom.other_report": ObservationSlot(
+            variable_id="symptom.other_report",
+            state="known",
+            value="sibling_stinging",
+            confirmed_by_user=True,
+        ),
+        "kb_judgments.guidance": ObservationSlot(
+            variable_id="kb_judgments.guidance",
+            state="known",
+            value="forbidden_kb_judgment",
+            confirmed_by_user=True,
+        ),
+        "kb.card_id": ObservationSlot(
+            variable_id="kb.card_id",
+            state="known",
+            value="forbidden_kb_card",
+            confirmed_by_user=True,
+        ),
+        "product.internal_rank": ObservationSlot(
+            variable_id="product.internal_rank",
+            state="known",
+            value="forbidden_product_rank",
+            confirmed_by_user=True,
+        ),
+        "provenance.source": ObservationSlot(
+            variable_id="provenance.source",
+            state="known",
+            value="forbidden_provenance",
+            confirmed_by_user=True,
+        ),
+        "runtime_invariants.mode": ObservationSlot(
+            variable_id="runtime_invariants.mode",
+            state="known",
+            value="forbidden_invariant",
+            confirmed_by_user=True,
+        ),
+        "commerce.price_tier": ObservationSlot(
+            variable_id="commerce.price_tier",
+            state="known",
+            value="forbidden_commerce",
+            confirmed_by_user=True,
+        ),
+        "regulatory.claim_flag": ObservationSlot(
+            variable_id="regulatory.claim_flag",
+            state="known",
+            value="forbidden_regulatory",
+            confirmed_by_user=True,
+        ),
+    }
+    query = build_query(obs, [])
+    for expected in (
+        "after_shower",
+        "2h",
+        "high",
+        "루틴 목표",
+        "보습 순서 확인",
+        "확인하려는 내용",
+        "아침 물 온도",
+        "기존 보유 제품만",
+        "eye.visual_symptom_now",
+        "sibling_stinging",
+    ):
+        assert expected in query
+    for forbidden in (
+        "forbidden_kb_judgment",
+        "forbidden_kb_card",
+        "forbidden_product_rank",
+        "forbidden_provenance",
+        "forbidden_invariant",
+        "forbidden_commerce",
+        "forbidden_regulatory",
+    ):
+        assert forbidden not in query
+
