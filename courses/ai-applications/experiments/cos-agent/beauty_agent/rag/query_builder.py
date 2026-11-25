@@ -23,14 +23,41 @@ LABELS = {
     "environment.forecast": "날씨 예보",
     "environment.future_uv_index": "자외선 지수",
     "storage.sensory_change": "보관 중 색 냄새 분리 변화",
+    "context.review_goal": "확인하려는 내용",
+    "context.actual_use_sequence": "실제 사용 순서",
+    "context.reported_findings": "보고된 관찰",
+    "context.reported_timing": "보고된 시점",
+    "context.sites_in_review": "검토 부위",
+    "routine.goal": "루틴 목표",
+    "routine.site": "루틴 부위",
+    "routine.current_choice": "현재 선택 제품",
 }
 ALLOWED_PREFIXES = (
     "method.",
     "skin.",
     "sun.",
     "cleansing.",
+    "moisturizing.",
     "environment.",
     "storage.",
+    "dose.",
+    "lifestyle.",
+    "routine.",
+    "constraints.",
+    "makeup.",
+    "shaving.",
+    "hand.",
+    "tool.",
+    "person.",
+    "introduction.",
+    "adjunct.",
+    "context.",
+    "eye.",
+    "symptom.",
+    "weather.",
+    "exposure.",
+    "work.",
+    "history.",
 )
 PRODUCT_FIELDS = (
     "product_type",
@@ -59,7 +86,7 @@ def build_query(
         raise ValueError("max_chars must be in [1, 8000]")
     parts = []
     for key, obs in sorted(confirmed_observations.items()):
-        if key != "constraints.goals" and not key.startswith(ALLOWED_PREFIXES):
+        if not key.startswith(ALLOWED_PREFIXES):
             continue
         label = LABELS.get(key, key)
         if obs.state in {"unknown", "not_asked", "declined", "conflicting"}:
