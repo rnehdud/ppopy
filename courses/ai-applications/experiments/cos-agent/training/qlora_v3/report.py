@@ -10,6 +10,8 @@ def main():
     selected=json.loads((run/'selection.json').read_text(encoding='utf-8'))
     logs=read_rows(run/'training_log.jsonl');cfg=json.loads((run/'config.json').read_text(encoding='utf-8'))
     base=selected['base'];epochs=selected['epochs']
+    for name in ['config.json','environment.json','split_receipt.json','mask_sample.json','training_log.jsonl']:
+        shutil.copyfile(run/name,out/name)
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -41,6 +43,6 @@ def main():
         for name in ['http_records.json','http_summary.json']:shutil.copyfile(http/name,out/name)
         body+='\n## 실제 HTTP 서빙 측정\n\n상세 지연·timeout·fallback 및 백엔드는 `http_summary.json`과 raw 기록을 보세요. 클라이언트 상한은 15초/64KiB이며 fallback을 모델 성공에 포함하지 않아요.\n'
     dump(out/'run_summary.json',selected)
-    dump(out/'artifact_receipts.json',{'files':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in out.iterdir() if p.is_file()},'weights_included':False})
     (out/'README.md').write_text(body,encoding='utf-8',newline='\n')
+    dump(out/'artifact_receipts.json',{'files':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in out.iterdir() if p.is_file() and p.name!='artifact_receipts.json'},'weights_included':False})
 if __name__=='__main__':main()

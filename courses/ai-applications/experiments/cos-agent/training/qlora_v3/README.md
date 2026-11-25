@@ -32,6 +32,8 @@ python training/qlora_v3/train.py --model-path <로컬 원본 모델 폴더> --o
 
 체크포인트 선택은 deterministic 안전/인용 flag 행 수를 우선하고 이후 val token loss를 비교해요. regex·ID 검사만으로 사실 충실성·간접 방해 주제 유출이 없다고 판정하지 않아요. 실제 입력·문헌·응답의 내용 검수는 `review_pack.py`로 묶어 별도로 기록해요. 재실행 시 같은 평가 폴더에 이미 완료된 행은 ID를 대조해 이어가지만, 학습된 체크포인트가 있는 폴더에서 처음부터 다시 학습해 덮어쓰지는 않아요.
 
+`--defer-generation`을 쓰면 Windows에서는 Base·epoch별 assistant-token loss와 학습만 측정해요. 이후 `evaluate_vllm.py --run <실제 학습 폴더>`가 WSL vLLM의 `ppopy-base-nf4`, `ppopy-epoch-1`, `ppopy-epoch-2` 별칭으로 각각 90건을 생성하고 선택 파일을 만들어요. 품질 생성은 120초 상한이고 앱의 15초 SLA 시험과 구분해요. loss는 Transformers NF4 double-quant, 생성은 vLLM inflight NF4이므로 서로 다른 백엔드이며 이를 결과에 명시해요.
+
 ## WSL vLLM
 
 ```bash
@@ -39,6 +41,8 @@ bash training/qlora_v3/serve_vllm.sh /mnt/c/.../원본모델 /mnt/c/.../선택�
 ```
 
 기존 venv를 재사용하면 `PPOPY_VLLM_ENV=/경로/venv`를 지정해요. vLLM 0.28.0에서는 `vllm-bnb-plugin==0.0.2`를 포함하며 설치된 환경의 CLI·실제 로딩 결과로 호환성을 확인해요.
+
+두 epoch 비교는 `PPOPY_ADAPTER_ALIAS=ppopy-epoch-1`을 설정하고 다섯 번째 인자로 epoch-2 경로를 전달해요. 최종 HTTP 시험은 `benchmark_http.py --adapter-model ppopy-epoch-N`으로 선택한 별칭을 지정해요. 임시 환경의 Python 개발 헤더가 필요할 때만 `PPOPY_VLLM_BUILD_ROOT`를 사용해요.
 
 같은 서버에서 `ppopy-base-nf4`와 `ppopy-qlora-v3`를 요청해요. 127.0.0.1에만 바인딩하고 모델/usage 업로드를 활성화하지 않아요. `benchmark_http.py`는 실제 저장소의 OpenAICompatSLMClient를 통해 15초·64KiB 상한과 fallback을 측정해요. fallback을 모델 성공으로 집계하지 않아요. RAG 동시 상주 시험은 `coload_rag.py`로 실제 두 모델을 유지한 상태에서 별도 수행해요.
 

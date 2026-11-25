@@ -12,7 +12,8 @@ async def run(args):
     # Fixed spread across all nine held-out families, never a training row.
     chosen=rows[::10]
     output=Path(args.output);output.mkdir(parents=True,exist_ok=True);records=[]
-    for model in ['ppopy-base-nf4','ppopy-qlora-v3']:
+    models=['ppopy-base-nf4',args.adapter_model]
+    for model in models:
         client=OpenAICompatSLMClient(args.base_url,model,max_tokens=384)
         for row in chosen:
             start=time.perf_counter();response=await client.generate(SLMRequest.model_validate(json.loads(row['messages'][1]['content'])))
@@ -23,7 +24,7 @@ async def run(args):
             records.append(record);dump(output/'http_records.json',records)
             print(json.dumps({k:v for k,v in record.items() if k not in ['content','metrics']}),flush=True)
     summaries={}
-    for model in ['ppopy-base-nf4','ppopy-qlora-v3']:
+    for model in models:
         group=[r for r in records if r['model']==model];lat=sorted(r['latency_s'] for r in group)
         successes=sorted(r['latency_s'] for r in group if r['provider']!='rule_baseline_fallback')
         summaries[model]={'n':len(group),'p50_s':statistics.median(lat),'p95_s':lat[math.ceil(len(lat)*.95)-1],
@@ -40,4 +41,5 @@ async def run(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--base-url',default='http://127.0.0.1:8018/v1');p.add_argument('--output',required=True)
     p.add_argument('--backend',default='vLLM 0.28.0 on WSL2; NF4 base + local LoRA')
+    p.add_argument('--adapter-model',default='ppopy-qlora-v3')
     asyncio.run(run(p.parse_args()))

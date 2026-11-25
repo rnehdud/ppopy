@@ -102,6 +102,7 @@ def main():
     p.add_argument('--output',required=True);p.add_argument('--dataset',default=str(COS/'data/qlora/v2/qlora_solution_hold_v2.jsonl'))
     p.add_argument('--prepare-only',action='store_true');p.add_argument('--smoke',action='store_true')
     p.add_argument('--evaluate-adapter',help='Evaluate an existing local adapter without training or uploading.')
+    p.add_argument('--defer-generation',action='store_true',help='Compute epoch losses here; run all quality generations later on WSL vLLM.')
     a=p.parse_args()
     import torch
     from transformers import AutoTokenizer,get_cosine_schedule_with_warmup
@@ -139,7 +140,11 @@ def main():
             'adapter_saved':False,'full_training_executed':False}
         dump(out/'smoke.json',receipt);print(json.dumps(receipt),flush=True);return
     # Baseline and all epochs see exactly the same 90 development-only rows/settings.
-    baseline=evaluate(model,tokenizer,val,encoded,dtype,cfg,out/'base','base',base=True)
+    if a.defer_generation:
+        with model.disable_adapter():baseline={'tag':'base','rows':90,'val_token_loss':validate_loss(model,val,encoded,dtype)}
+        dump(out/'loss_summaries.json',{'base':baseline,'epochs':[],'generation_backend':'pending WSL vLLM'})
+        print(json.dumps({'event':'base_loss',**baseline}),flush=True)
+    else:baseline=evaluate(model,tokenizer,val,encoded,dtype,cfg,out/'base','base',base=True)
     steps_per_epoch=math.ceil(len(train)/cfg['gradient_accumulation_steps']);steps=steps_per_epoch*cfg['epochs']
     scheduler=get_cosine_schedule_with_warmup(opt,math.ceil(steps*cfg['warmup_ratio']),steps)
     summaries=[];global_step=0
@@ -167,9 +172,15 @@ def main():
                 with (out/'training_log.jsonl').open('a',encoding='utf-8',newline='\n') as f:f.write(json.dumps(log)+'\n')
                 print(json.dumps(log),flush=True)
         checkpoint=out/f'epoch-{epoch}';model.save_pretrained(checkpoint,safe_serialization=True);tokenizer.save_pretrained(checkpoint)
-        summary=evaluate(model,tokenizer,val,encoded,dtype,cfg,checkpoint/'evaluation',f'epoch-{epoch}')
+        summary=({'tag':f'epoch-{epoch}','rows':90,'val_token_loss':validate_loss(model,val,encoded,dtype)} if a.defer_generation
+                 else evaluate(model,tokenizer,val,encoded,dtype,cfg,checkpoint/'evaluation',f'epoch-{epoch}'))
         summary['epoch']=epoch;summary['train_token_loss']=loss_total/tokens;summaries.append(summary)
         dump(out/'epoch_summaries.json',summaries)
+        if a.defer_generation:dump(out/'loss_summaries.json',{'base':baseline,'epochs':summaries,'generation_backend':'pending WSL vLLM'})
+    if a.defer_generation:
+        dump(out/'training_complete.json',{'training_executed':True,'optimizer_steps':global_step,
+            'generation_evaluation_complete':False,'selection_pending':True,'upload_executed':False})
+        print('TRAINING_COMPLETE_GENERATION_PENDING',flush=True);return
     best=min(summaries,key=lambda s:(s['deterministic_flagged_rows'],s['val_token_loss']))
     dump(out/'selection.json',{'checkpoint':f"epoch-{best['epoch']}",'policy':cfg['selection'],'base':baseline,'epochs':summaries,
         'semantic_review_pending':True,'val_internal_used_for_selection':True,'independent_final_test':False,
