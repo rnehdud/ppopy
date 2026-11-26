@@ -6,6 +6,7 @@ TASK_ADAPTER=${2:?Adapter directory required}
 TASK_PORT=${3:-8018}
 TASK_GPU_FRACTION=${4:-0.75}
 TASK_VLLM_ENV=${PPOPY_VLLM_ENV:-"$HOME/.local/share/ppopy-vllm-v3"}
+export PATH="$TASK_VLLM_ENV/bin:$PATH"
 TASK_ALIAS=${PPOPY_ADAPTER_ALIAS:-ppopy-qlora-v3}
 TASK_LORA_ARGS=(--lora-modules "$TASK_ALIAS=$TASK_ADAPTER")
 if [[ -n "${5:-}" ]]; then
@@ -19,6 +20,11 @@ export VLLM_NO_USAGE_STATS=1
 export DO_NOT_TRACK=1
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
+# The v2 runner requires UVA, disabled by default on WSL2. Use the supported
+# legacy runner without modifying vLLM packages or forcing host pinning.
+export VLLM_USE_V2_MODEL_RUNNER=${VLLM_USE_V2_MODEL_RUNNER:-0}
+# Use the supported PyTorch sampler; FlashInfer's optional sampler JIT needs nvcc.
+export VLLM_USE_FLASHINFER_SAMPLER=${VLLM_USE_FLASHINFER_SAMPLER:-0}
 exec "$TASK_VLLM_ENV/bin/vllm" serve "$TASK_MODEL" \
   --host 127.0.0.1 --port "$TASK_PORT" \
   --served-model-name ppopy-base-nf4 \

@@ -15,7 +15,8 @@ def wsl_path(value):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--run',required=True);p.add_argument('--model-path',required=True)
-    p.add_argument('--training-pid',required=True,type=int);p.add_argument('--vllm-env',required=True)
+    p.add_argument('--training-pid',type=int);p.add_argument('--vllm-env',required=True)
+    p.add_argument('--client-in-wsl',action='store_true',help='Measure WSL loopback explicitly, not Windows forwarding.')
     p.add_argument('--vllm-build-root');p.add_argument('--port',type=int,default=8018)
     p.add_argument('--gpu-fraction',type=float,default=.60);p.add_argument('--report',required=True)
     a=p.parse_args();root=Path(a.run).resolve();report=Path(a.report).resolve()
@@ -42,23 +43,27 @@ if p.exists():
 ''',encoding='utf-8',newline='\n')
     try:
         import psutil
-        process=psutil.Process(a.training_pid)
-        assert 'train.py' in ' '.join(process.cmdline()) and str(root.name) in ' '.join(process.cmdline())
-        state('waiting_for_actual_training',training_pid=a.training_pid)
-        while not (root/'training_complete.json').exists():
-            if not process.is_running():raise RuntimeError('training process stopped before completion receipt')
-            time.sleep(5)
+        if not (root/'training_complete.json').exists():
+            assert a.training_pid,'training PID required while training is incomplete'
+            process=psutil.Process(a.training_pid)
+            assert 'train.py' in ' '.join(process.cmdline()) and str(root.name) in ' '.join(process.cmdline())
+            state('waiting_for_actual_training',training_pid=a.training_pid)
+            while not (root/'training_complete.json').exists():
+                if not process.is_running():raise RuntimeError('training process stopped before completion receipt')
+                time.sleep(5)
+            process.wait(timeout=120)
         # Receipt is written only after both saved adapters and validation losses.
         complete=json.loads((root/'training_complete.json').read_text(encoding='utf-8'))
         assert complete['training_executed'] and complete['optimizer_steps']==204
-        process.wait(timeout=120)
+        assert all((root/f'epoch-{i}'/'adapter_model.safetensors').stat().st_size>0 for i in [1,2])
         if pidfile.exists():raise RuntimeError('existing server PID receipt; inspect before starting another server')
         import httpx
         url=f'http://127.0.0.1:{a.port}/v1'
-        try:
-            httpx.get(url+'/models',timeout=2)
-        except httpx.ConnectError:pass
-        else:raise RuntimeError('target port already in use; left existing service untouched')
+        # A firewall can DROP an unused localhost port, causing ConnectTimeout.
+        # Check ownership/listeners instead of treating HTTP timeout as occupancy.
+        assert not any(c.status=='LISTEN' and c.laddr.port==a.port for c in psutil.net_connections(kind='tcp')),'Windows port already listening; left untouched'
+        subprocess.run(['wsl','-d','Ubuntu','--',a.vllm_env+'/bin/python','-c',
+            'import socket,sys; s=socket.socket(); s.bind(("127.0.0.1",int(sys.argv[1]))); s.close()',str(a.port)],check=True)
         env_args=['env','PPOPY_VLLM_ENV='+a.vllm_env,'PPOPY_ADAPTER_ALIAS=ppopy-epoch-1']
         if a.vllm_build_root:env_args+=['PPOPY_VLLM_BUILD_ROOT='+a.vllm_build_root]
         args=env_args+['bash',wsl_path(HERE/'serve_vllm.sh'),wsl_path(a.model_path),
@@ -67,23 +72,33 @@ if p.exists():
         wrapper.write_text('#!/usr/bin/env bash\nset -euo pipefail\necho $$ > '+shlex.quote(wsl_path(pidfile))+'\nexec '+shlex.join(args)+'\n',encoding='utf-8',newline='\n')
         state('starting_actual_wsl_vllm',gpu_fraction=a.gpu_fraction)
         with (root/'vllm_server.log').open('w',encoding='utf-8') as log:
-            server=subprocess.Popen(['wsl','-d','Ubuntu','--','setsid','bash',wsl_path(wrapper)],stdout=log,stderr=subprocess.STDOUT)
+            server=subprocess.Popen(['wsl','-d','Ubuntu','--','setsid','--wait','bash',wsl_path(wrapper)],stdout=log,stderr=subprocess.STDOUT)
             start=time.monotonic()
             while True:
                 if server.poll() is not None:raise RuntimeError('WSL vLLM exited; inspect vllm_server.log')
                 try:
-                    response=httpx.get(url+'/models',timeout=2)
-                    if response.status_code==200:break
+                    if a.client_in_wsl:
+                        probe=subprocess.run(['wsl','-d','Ubuntu','--',a.vllm_env+'/bin/python','-c',
+                            'import httpx,sys; r=httpx.get(sys.argv[1],timeout=2,trust_env=False); r.raise_for_status(); print(r.text)',url+'/models'],capture_output=True,text=True)
+                        if probe.returncode==0:
+                            models=json.loads(probe.stdout);break
+                    else:
+                        response=httpx.get(url+'/models',timeout=2,trust_env=False)
+                        if response.status_code==200:models=response.json();break
                 except httpx.RequestError:pass
                 if time.monotonic()-start>900:raise TimeoutError('WSL vLLM did not become ready within 900s')
                 time.sleep(3)
-            dump(root/'vllm_startup.json',{'elapsed_s':time.monotonic()-start,'models':response.json(),
+            dump(root/'vllm_startup.json',{'elapsed_s':time.monotonic()-start,'models':models,
+                'client_network_path':'WSL loopback' if a.client_in_wsl else 'Windows localhost forwarding',
                 'gpu_fraction':a.gpu_fraction,'startup_is_separate_from_request_latency':True})
-            command('vllm_quality',[sys.executable,str(HERE/'evaluate_vllm.py'),'--run',str(root),'--base-url',url])
+            client_python=(['wsl','-d','Ubuntu','--',a.vllm_env+'/bin/python'] if a.client_in_wsl else [sys.executable])
+            client_path=wsl_path if a.client_in_wsl else str
+            command('vllm_quality',client_python+[client_path(HERE/'evaluate_vllm.py'),'--run',client_path(root),'--base-url',url])
             selection=json.loads((root/'selection.json').read_text(encoding='utf-8'))
             alias='ppopy-'+selection['checkpoint']
-            command('http_benchmark',[sys.executable,str(HERE/'benchmark_http.py'),'--base-url',url,
-                '--output',str(root/'http'),'--adapter-model',alias])
+            command('http_benchmark',client_python+[client_path(HERE/'benchmark_http.py'),'--base-url',url,
+                '--output',client_path(root/'http'),'--adapter-model',alias,'--backend',
+                'WSL vLLM; client network path: '+('WSL loopback' if a.client_in_wsl else 'Windows localhost forwarding')])
             for tag,pred in [('base',root/'base/predictions.jsonl'),('epoch-1',root/'epoch-1/evaluation/predictions.jsonl'),
                     ('epoch-2',root/'epoch-2/evaluation/predictions.jsonl')]:
                 command('review_pack_'+tag,[sys.executable,str(HERE/'review_pack.py'),'--predictions',str(pred),

@@ -44,6 +44,8 @@ bash training/qlora_v3/serve_vllm.sh /mnt/c/.../원본모델 /mnt/c/.../선택�
 
 두 epoch 비교는 `PPOPY_ADAPTER_ALIAS=ppopy-epoch-1`을 설정하고 다섯 번째 인자로 epoch-2 경로를 전달해요. 최종 HTTP 시험은 `benchmark_http.py --adapter-model ppopy-epoch-N`으로 선택한 별칭을 지정해요. 임시 환경의 Python 개발 헤더가 필요할 때만 `PPOPY_VLLM_BUILD_ROOT`를 사용해요.
 
+완료된 학습은 `run_local_pipeline.py`로 평가만 재개할 수 있어요. 이때 `training_complete.json`과 실제 두 어댑터 파일을 확인하며, 종료된 학습 PID를 다시 요구하거나 재학습하지 않아요. WSL2의 UVA 기본 제한 때문에 고정 버전 0.28.0에서는 `VLLM_USE_V2_MODEL_RUNNER=0`으로 model runner를 선택해요(V1 엔진 자체는 그대로예요). 최신 버전 전체에 적용되는 설정으로 일반화하지 않아요. `--client-in-wsl` 측정은 **WSL 내부 loopback** 경로이며 Windows 호스트의 localhost forwarding 성공을 뜻하지 않아요. Windows 연결은 별도 확인해야 해요.
+
 같은 서버에서 `ppopy-base-nf4`와 `ppopy-qlora-v3`를 요청해요. 127.0.0.1에만 바인딩하고 모델/usage 업로드를 활성화하지 않아요. `benchmark_http.py`는 실제 저장소의 OpenAICompatSLMClient를 통해 15초·64KiB 상한과 fallback을 측정해요. fallback을 모델 성공으로 집계하지 않아요. RAG 동시 상주 시험은 `coload_rag.py`로 실제 두 모델을 유지한 상태에서 별도 수행해요.
 
 참고: [PEFT quantization](https://huggingface.co/docs/peft/developer_guides/quantization), [vLLM bitsandbytes](https://docs.vllm.ai/en/v0.28.0/features/quantization/bnb/), [vLLM LoRA](https://docs.vllm.ai/en/v0.28.0/features/lora/). 실제 실행 결과와 제약은 비교 리포트에 기록하며 미실행 항목을 0/PASS로 채우지 않아요.
