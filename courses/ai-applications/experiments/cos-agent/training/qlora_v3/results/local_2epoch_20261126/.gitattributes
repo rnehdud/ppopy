@@ -1,0 +1,5 @@
+# Raw evidence hashes refer to exact bytes, including the original line endings.
+* -text whitespace=trailing-space,space-before-tab,cr-at-eol
+*.png binary
+# Model quotations include original Markdown hard-break spaces; do not rewrite raw text.
+RAW_OUTPUT_PROGRESSION.md -whitespace

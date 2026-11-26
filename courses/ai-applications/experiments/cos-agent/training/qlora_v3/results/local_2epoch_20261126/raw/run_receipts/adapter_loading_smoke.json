@@ -1,0 +1,98 @@
+[
+  {
+    "model": "ppopy-epoch-1",
+    "row_id": "syn-hold-0061",
+    "http_status": 200,
+    "latency_s": 11.42557466300002,
+    "network_path": "WSL loopback",
+    "purpose": "adapter loading smoke; 32-token cap, not full quality review or 15s SLA measurement",
+    "body": {
+      "id": "chatcmpl-94f52b231fafeaa7",
+      "object": "chat.completion",
+      "created": 1795666289,
+      "model": "ppopy-epoch-1",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "### 개별 권고 보류 안내\n어제 붉은 자리가 오늘 통증으로 이어졌고, 같은 자리에 통증이",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "length",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.28.0-fd644a2f",
+      "usage": {
+        "prompt_tokens": 485,
+        "total_tokens": 517,
+        "completion_tokens": 32,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "model": "ppopy-epoch-2",
+    "row_id": "syn-hold-0061",
+    "http_status": 200,
+    "latency_s": 24.336814973999935,
+    "network_path": "WSL loopback",
+    "purpose": "adapter loading smoke; 32-token cap, not full quality review or 15s SLA measurement",
+    "body": {
+      "id": "chatcmpl-b3ea732c56d8f0a0",
+      "object": "chat.completion",
+      "created": 1795666300,
+      "model": "ppopy-epoch-2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "### 개별 권고 보류 안내\n어제 붉은 자리가 오늘 통증으로 이어졌고 지금도 아프다는 점",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "length",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": "vllm-0.28.0-fd644a2f",
+      "usage": {
+        "prompt_tokens": 485,
+        "total_tokens": 517,
+        "completion_tokens": 32,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  }
+]

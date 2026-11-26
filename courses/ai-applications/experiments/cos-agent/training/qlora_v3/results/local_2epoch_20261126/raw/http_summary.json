@@ -1,0 +1,36 @@
+{
+  "backend": "WSL vLLM; server_max_num_seqs=4; benchmark_client_concurrency=1; client network path: WSL loopback",
+  "summaries": {
+    "ppopy-base-nf4": {
+      "n": 9,
+      "p50_s": 15.01349803900007,
+      "p95_s": 15.016769904000057,
+      "successful_model_latency_s": {
+        "n": 0,
+        "p50": null,
+        "p95": null
+      },
+      "fallback_count": 9,
+      "timeout_count": 9,
+      "actual_model_response_count": 0,
+      "all_payloads_within_64KiB": true
+    },
+    "ppopy-epoch-2": {
+      "n": 9,
+      "p50_s": 12.355301935999933,
+      "p95_s": 15.010471395999957,
+      "successful_model_latency_s": {
+        "n": 8,
+        "p50": 11.965004283999974,
+        "p95": 14.056555819999858
+      },
+      "fallback_count": 1,
+      "timeout_count": 1,
+      "actual_model_response_count": 8,
+      "all_payloads_within_64KiB": true
+    }
+  },
+  "measurement": "client-visible latency, including fallback; fallback is not counted as model success",
+  "all_rows": "val_internal",
+  "production_enabled": false
+}

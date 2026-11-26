@@ -1,0 +1,35 @@
+{
+  "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "checkpoints": [
+    {
+      "epoch": 1,
+      "file": "adapter_model.safetensors",
+      "size_bytes": 132187888,
+      "sha256": "d7976cf40a79a54ae57bc6ce79483f0fd706dbea7a08f18beca0a19af11c391b",
+      "weights_in_git": false,
+      "optimizer_state_saved": false,
+      "original_adapter_config_sha256": "c8163730d11c19d492b8ce2cbdf07bbc9f8c2b64d57864fbf9ec20a13e2c0372",
+      "portable_config_changes": [
+        "base_model_name_or_path: absolute local path replaced by official model ID",
+        "revision: null replaced by fixed base revision"
+      ]
+    },
+    {
+      "epoch": 2,
+      "file": "adapter_model.safetensors",
+      "size_bytes": 132187888,
+      "sha256": "c19285fcbe622ae5a7bca5b96294b88954603b04bfab2c65600bfda9a1a9c457",
+      "weights_in_git": false,
+      "optimizer_state_saved": false,
+      "original_adapter_config_sha256": "c8163730d11c19d492b8ce2cbdf07bbc9f8c2b64d57864fbf9ec20a13e2c0372",
+      "portable_config_changes": [
+        "base_model_name_or_path: absolute local path replaced by official model ID",
+        "revision: null replaced by fixed base revision"
+      ]
+    }
+  ],
+  "tokenizers_identical_between_epochs": true,
+  "weights_delivery": "separate user-managed transfer; no URL supplied yet",
+  "full_merged_model_exported": false
+}

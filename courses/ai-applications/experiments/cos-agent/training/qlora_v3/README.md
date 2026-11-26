@@ -4,6 +4,8 @@
 
 **가중치·어댑터는 로컬 `outputs/`에만 저장하고 Hugging Face/Drive/Git에 업로드하지 않아요.** Git에는 코드·설정·검사·비교 리포트만 넣어요. 개발 프리뷰이며 실제 사용자 수집·운영·자동 개선 판정을 활성화하지 않아요.
 
+2026-11-26 팀원 검수용 공유: [로컬 2 epoch 결과 패키지](results/local_2epoch_20261126/README.md)에 전체 270개 생성 답변, 실제 입력·근거, 학습 로그, 그래프와 체크포인트 설정·가중치 해시를 보존했어요. 사용자 최신 지시에 따라 가중치는 Git에 포함하지 않고 별도 전달해요. 모델 출력 의미 전수 검수와 최종 checkpoint 승인은 미완료예요.
+
 ## 실행 환경
 
 - 학습: CUDA PyTorch 2.9.1, Transformers 4.57.3, PEFT 0.17.1, bitsandbytes 0.48.2 (`requirements.txt`). CUDA torch는 공식 cu128 인덱스에서 설치해요. CPU 전용 torch로 실행하지 않아요.

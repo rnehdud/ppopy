@@ -1,0 +1,30 @@
+{
+  "tag": "base",
+  "rows": 90,
+  "val_token_loss": 3.3463581790319865,
+  "counts": {
+    "invalid_citation": 0,
+    "kb_citation": 0,
+    "distractor_id_citation": 0,
+    "solution_missing_citation": 50,
+    "hold_instruction_candidate": 13,
+    "empty_response": 0
+  },
+  "deterministic_flagged_rows": 63,
+  "length_limited_rows": 64,
+  "solution_rows": 60,
+  "hold_rows": 30,
+  "distractor_rows": 20,
+  "latency_s": {
+    "p50": 22.511882036999992,
+    "p95": 25.542709769
+  },
+  "generation_backend": "WSL vLLM; same inflight NF4 backbone for all three aliases",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 384
+  },
+  "evaluation_concurrency": 4,
+  "measurement_note": "quality-run concurrency latency is not the separate single-client 15s SLA benchmark",
+  "semantic_review_status": "pending actual input/reference/candidate review"
+}

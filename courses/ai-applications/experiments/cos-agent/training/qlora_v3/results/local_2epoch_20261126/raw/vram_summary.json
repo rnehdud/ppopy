@@ -1,0 +1,65 @@
+{
+  "measurement_scope": "Entire GPU including desktop/other apps; 2s sampling does not capture every transient peak",
+  "phases": {
+    "training_optimizer_interval": {
+      "sample_count": 6262,
+      "start_ms": 1795616375788,
+      "end_ms": 1795629295692,
+      "whole_gpu_memory_used_mib": {
+        "min": 7539.0,
+        "median": 7648.0,
+        "max": 7830.0
+      },
+      "whole_gpu_util_percent": {
+        "median": 100.0,
+        "max": 100.0
+      }
+    },
+    "throughput_probe": {
+      "sample_count": 23,
+      "start_ms": 1795668232665,
+      "end_ms": 1795668280580,
+      "whole_gpu_memory_used_mib": {
+        "min": 6902.0,
+        "median": 6940.0,
+        "max": 7072.0
+      },
+      "whole_gpu_util_percent": {
+        "median": 93.0,
+        "max": 99.0
+      }
+    },
+    "vllm_quality": {
+      "sample_count": 589,
+      "start_ms": 1795668280580,
+      "end_ms": 1795669497897,
+      "whole_gpu_memory_used_mib": {
+        "min": 6979.0,
+        "median": 7014.0,
+        "max": 7122.0
+      },
+      "whole_gpu_util_percent": {
+        "median": 63.0,
+        "max": 100.0
+      }
+    },
+    "http_benchmark": {
+      "sample_count": 128,
+      "start_ms": 1795669497897,
+      "end_ms": 1795669762003,
+      "whole_gpu_memory_used_mib": {
+        "min": 7030.0,
+        "median": 7043.0,
+        "max": 7179.0
+      },
+      "whole_gpu_util_percent": {
+        "median": 41.0,
+        "max": 59.0
+      }
+    }
+  },
+  "training_torch_peak_allocated_mib": 5261.4921875,
+  "training_torch_peak_reserved_mib": 7566.0,
+  "sampler_sha256": "6e1aa908ffa5f4643d4da1282f207f18e637d3961b00db6f93c16e711b911757",
+  "rag_two_model_coload_measured": false
+}
