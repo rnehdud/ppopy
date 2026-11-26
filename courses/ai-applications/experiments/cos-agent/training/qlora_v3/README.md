@@ -50,6 +50,12 @@ bash training/qlora_v3/serve_vllm.sh /mnt/c/.../원본모델 /mnt/c/.../선택�
 
 `--speed-probe-baseline <보존한 sequential predictions.jsonl>`은 기존 17~24번째의 고정된 8개 입력을 병렬로 재실행해 실제 처리량·raw 출력 차이를 기록해요. 초기 어댑터 로딩 프로브와 겹친 첫 행들은 피하며, 결과가 나올 때까지 배속을 확정하지 않아요. 이 실험은 서로 다른 시간의 공유 PC 측정이므로 통제된 하드웨어 벤치마크는 아니에요. 전체 평가 처리량과 앱의 단일 요청 15초 SLA는 별개이며 후자는 `benchmark_http.py`로 1건씩 별도 측정해요.
 
+## 실제 내용 검수·메모리·로컬 기록
+
+`compile_semantic_review.py`는 사람이 승인한 것으로 표시하지 않으며, Codex가 실제 읽고 작성한 `manual_review_notes.jsonl`만 raw 요청·응답 해시에 묶어요. 후보 문구와 근거 문구가 원문에 있는지도 대조해요. 검토하지 않은 행에 PASS를 채우지 않고 고유 상황 수와 모델 응답 수를 따로 집계해요. `summarize_vram.py`는 실제 구간 timestamp와 GPU CSV 표본을 연결해요. PyTorch allocated/reserved와 다른 앱까지 포함한 GPU 전체 점유를 구분하며, RAG 동시 상주는 직접 시험하지 않았다면 미실시로 남겨요.
+
+실측 결과를 로컬 MLflow에 가져올 때의 검증된 명령은 `uv run --locked --group tracking --with "SQLAlchemy==2.0.44" python training/qlora_v3/log_mlflow.py --run <실제 실행 폴더> --report <실제 보고서 폴더>`예요. 현재 lock의 SQLAlchemy 2.1.9는 MLflow 3.6.0의 `FallbackAsyncAdaptedQueuePool` import와 맞지 않아, lock·코어 변경 없이 호환 버전을 임시 overlay로 사용했어요. 이 명령은 이미 끝난 측정의 사후 등록이지 새 학습이 아니며 가중치는 기록·업로드하지 않아요. `outputs/afa-mlflow/`의 로컬 SQLite·artifact만 사용해요.
+
 같은 서버에서 `ppopy-base-nf4`와 `ppopy-qlora-v3`를 요청해요. 127.0.0.1에만 바인딩하고 모델/usage 업로드를 활성화하지 않아요. `benchmark_http.py`는 실제 저장소의 OpenAICompatSLMClient를 통해 15초·64KiB 상한과 fallback을 측정해요. fallback을 모델 성공으로 집계하지 않아요. RAG 동시 상주 시험은 `coload_rag.py`로 실제 두 모델을 유지한 상태에서 별도 수행해요.
 
 참고: [PEFT quantization](https://huggingface.co/docs/peft/developer_guides/quantization), [vLLM bitsandbytes](https://docs.vllm.ai/en/v0.28.0/features/quantization/bnb/), [vLLM LoRA](https://docs.vllm.ai/en/v0.28.0/features/lora/). 실제 실행 결과와 제약은 비교 리포트에 기록하며 미실행 항목을 0/PASS로 채우지 않아요.
