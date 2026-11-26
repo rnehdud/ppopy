@@ -12,6 +12,8 @@ def main():
     base=selected['base'];epochs=selected['epochs']
     for name in ['config.json','environment.json','split_receipt.json','mask_sample.json','training_log.jsonl']:
         shutil.copyfile(run/name,out/name)
+    for name in ['throughput_probe.json','windows_host_connectivity.json','vllm_startup.json']:
+        if (run/name).exists():shutil.copyfile(run/name,out/name)
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt

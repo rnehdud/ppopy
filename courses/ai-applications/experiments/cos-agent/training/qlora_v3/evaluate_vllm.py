@@ -3,7 +3,7 @@
 Quality evaluation uses a separate 120s ceiling, not the application's 15s SLA.
 Application latency/fallback is measured separately by benchmark_http.py.
 """
-import argparse,asyncio,hashlib,json,math,statistics,time,sys
+import argparse,asyncio,hashlib,json,math,statistics,time,sys,os
 from pathlib import Path
 from common import read_rows,dump,deterministic_metrics
 HERE=Path(__file__).resolve().parent;COS=HERE.parents[1];sys.path.insert(0,str(COS))
@@ -15,16 +15,22 @@ async def run(a):
     rows=[r for r in read_rows(COS/'data/qlora/v2/qlora_solution_hold_v2.jsonl') if r['split']=='val_internal']
     assert len(rows)==90
     results=[]
-    async with httpx.AsyncClient(timeout=120) as client:
+    assert 1<=a.concurrency<=4
+    async with httpx.AsyncClient(timeout=120,trust_env=False) as client:
         models=(await client.get(a.base_url+'/models')).raise_for_status().json()
         dump(root/'vllm_model_inventory.json',models)
         for model,loss,directory in [('ppopy-base-nf4',losses['base'],root/'base'),
                 *[(f"ppopy-epoch-{e['epoch']}",e,root/f"epoch-{e['epoch']}"/'evaluation') for e in losses['epochs']]]:
             directory.mkdir(parents=True,exist_ok=True);path=directory/'predictions.jsonl'
             records=read_rows(path) if path.exists() else []
-            assert [r['row_id'] for r in records]==[r['id'] for r in rows[:len(records)]]
-            for index,row in enumerate(rows):
-                if index<len(records):continue
+            assert len({r['row_id'] for r in records})==len(records)
+            expected={r['id']:i for i,r in enumerate(rows)}
+            assert all(r['row_id'] in expected and r['model']==model and r.get('evaluation_concurrency',1)==a.concurrency for r in records)
+            completed={expected[r['row_id']]:r for r in records}
+            semaphore=asyncio.Semaphore(a.concurrency);write_lock=asyncio.Lock()
+            started_batch=time.perf_counter()
+            async def generate_one(index,row):
+              async with semaphore:
                 started=time.perf_counter()
                 response=await client.post(a.base_url+'/chat/completions',json={
                     'model':model,'messages':row['messages'][:-1],'temperature':0.,
@@ -37,11 +43,22 @@ async def run(a):
                     'generated_tokens':payload.get('usage',{}).get('completion_tokens'),
                     'finish_reason':choice['finish_reason'],'finished_eos':choice['finish_reason']=='stop',
                     'http_status':response.status_code,'http_quality_timeout_s':120,
+                    'evaluation_concurrency':a.concurrency,
                     'usage':payload.get('usage'),'metrics':deterministic_metrics(row,text)}
-                with path.open('a',encoding='utf-8',newline='\n') as f:f.write(json.dumps(record,ensure_ascii=False)+'\n')
-                records.append(record)
-                print(json.dumps({'event':'vllm_quality','model':model,'done':index+1,'total':90,
+                async with write_lock:
+                    completed[index]=record
+                    # Completion can be out of order; atomic sorted checkpoints
+                    # preserve every finished row and permit resume with gaps.
+                    temporary=path.with_suffix('.jsonl.tmp')
+                    with temporary.open('w',encoding='utf-8',newline='\n') as f:
+                        for i in sorted(completed):f.write(json.dumps(completed[i],ensure_ascii=False)+'\n')
+                    os.replace(temporary,path)
+                print(json.dumps({'event':'vllm_quality','model':model,'row_index':index+1,'done':len(completed),'total':90,
+                    'completed_rows':len(completed),'concurrency':a.concurrency,
+                    'elapsed_batch_s':round(time.perf_counter()-started_batch,2),
                     'latency_s':round(record['latency_s'],2)}),flush=True)
+            await asyncio.gather(*(generate_one(i,row) for i,row in enumerate(rows) if i not in completed))
+            records=[completed[i] for i in range(len(rows))]
             keys=['invalid_citation','kb_citation','distractor_id_citation','solution_missing_citation','hold_instruction_candidate','empty_response']
             lat=sorted(r['latency_s'] for r in records)
             summary={**loss,'counts':{k:sum(r['metrics'][k] for r in records) for k in keys},
@@ -51,6 +68,8 @@ async def run(a):
                 'latency_s':{'p50':statistics.median(lat),'p95':lat[math.ceil(len(lat)*.95)-1]},
                 'generation_backend':'WSL vLLM; same inflight NF4 backbone for all three aliases',
                 'generation':{'do_sample':False,'max_new_tokens':cfg['max_new_tokens']},
+                'evaluation_concurrency':a.concurrency,
+                'measurement_note':'quality-run concurrency latency is not the separate single-client 15s SLA benchmark',
                 'semantic_review_status':'pending actual input/reference/candidate review'}
             dump(directory/'summary.json',summary);results.append(summary)
     best=min(results[1:],key=lambda s:(s['deterministic_flagged_rows'],s['val_token_loss']))
@@ -59,9 +78,11 @@ async def run(a):
         'val_internal_used_for_selection':True,'independent_final_test':False,
         'upload_executed':False,'training_executed':True,
         'loss_backend':'Windows Transformers NF4 double quantization',
+        'generation_evaluation_concurrency':a.concurrency,
         'generation_backend':'WSL vLLM inflight NF4; generation backend is distinct from loss backend'})
     print('QUALITY_EVALUATION_COMPLETE',json.dumps({'checkpoint':f"epoch-{best['epoch']}"}),flush=True)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--run',required=True);p.add_argument('--base-url',default='http://127.0.0.1:8018/v1')
+    p.add_argument('--concurrency',type=int,default=1)
     asyncio.run(run(p.parse_args()))

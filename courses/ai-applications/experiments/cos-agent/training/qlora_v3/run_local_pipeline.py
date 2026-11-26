@@ -19,6 +19,8 @@ def main():
     p.add_argument('--client-in-wsl',action='store_true',help='Measure WSL loopback explicitly, not Windows forwarding.')
     p.add_argument('--vllm-build-root');p.add_argument('--port',type=int,default=8018)
     p.add_argument('--gpu-fraction',type=float,default=.60);p.add_argument('--report',required=True)
+    p.add_argument('--concurrency',type=int,default=1)
+    p.add_argument('--speed-probe-baseline')
     a=p.parse_args();root=Path(a.run).resolve();report=Path(a.report).resolve()
     status=root/'pipeline_status.json';server=None
     def state(stage,**extra):
@@ -64,13 +66,15 @@ if p.exists():
         assert not any(c.status=='LISTEN' and c.laddr.port==a.port for c in psutil.net_connections(kind='tcp')),'Windows port already listening; left untouched'
         subprocess.run(['wsl','-d','Ubuntu','--',a.vllm_env+'/bin/python','-c',
             'import socket,sys; s=socket.socket(); s.bind(("127.0.0.1",int(sys.argv[1]))); s.close()',str(a.port)],check=True)
-        env_args=['env','PPOPY_VLLM_ENV='+a.vllm_env,'PPOPY_ADAPTER_ALIAS=ppopy-epoch-1']
+        assert 1<=a.concurrency<=4,'measured local profiles are limited to 1..4'
+        env_args=['env','PPOPY_VLLM_ENV='+a.vllm_env,'PPOPY_ADAPTER_ALIAS=ppopy-epoch-1',
+            'PPOPY_MAX_NUM_SEQS='+str(a.concurrency)]
         if a.vllm_build_root:env_args+=['PPOPY_VLLM_BUILD_ROOT='+a.vllm_build_root]
         args=env_args+['bash',wsl_path(HERE/'serve_vllm.sh'),wsl_path(a.model_path),
             wsl_path(root/'epoch-1'),str(a.port),str(a.gpu_fraction),wsl_path(root/'epoch-2')]
         wrapper=root/'start_own_vllm.sh'
         wrapper.write_text('#!/usr/bin/env bash\nset -euo pipefail\necho $$ > '+shlex.quote(wsl_path(pidfile))+'\nexec '+shlex.join(args)+'\n',encoding='utf-8',newline='\n')
-        state('starting_actual_wsl_vllm',gpu_fraction=a.gpu_fraction)
+        state('starting_actual_wsl_vllm',gpu_fraction=a.gpu_fraction,concurrency=a.concurrency)
         with (root/'vllm_server.log').open('w',encoding='utf-8') as log:
             server=subprocess.Popen(['wsl','-d','Ubuntu','--','setsid','--wait','bash',wsl_path(wrapper)],stdout=log,stderr=subprocess.STDOUT)
             start=time.monotonic()
@@ -90,15 +94,20 @@ if p.exists():
                 time.sleep(3)
             dump(root/'vllm_startup.json',{'elapsed_s':time.monotonic()-start,'models':models,
                 'client_network_path':'WSL loopback' if a.client_in_wsl else 'Windows localhost forwarding',
+                'server_max_num_seqs':a.concurrency,
                 'gpu_fraction':a.gpu_fraction,'startup_is_separate_from_request_latency':True})
             client_python=(['wsl','-d','Ubuntu','--',a.vllm_env+'/bin/python'] if a.client_in_wsl else [sys.executable])
             client_path=wsl_path if a.client_in_wsl else str
-            command('vllm_quality',client_python+[client_path(HERE/'evaluate_vllm.py'),'--run',client_path(root),'--base-url',url])
+            if a.speed_probe_baseline:
+                command('throughput_probe',client_python+[client_path(HERE/'benchmark_throughput.py'),
+                    '--baseline',client_path(a.speed_probe_baseline),'--output',client_path(root/'throughput_probe.json'),
+                    '--concurrency',str(a.concurrency),'--base-url',url])
+            command('vllm_quality',client_python+[client_path(HERE/'evaluate_vllm.py'),'--run',client_path(root),'--base-url',url,'--concurrency',str(a.concurrency)])
             selection=json.loads((root/'selection.json').read_text(encoding='utf-8'))
             alias='ppopy-'+selection['checkpoint']
             command('http_benchmark',client_python+[client_path(HERE/'benchmark_http.py'),'--base-url',url,
                 '--output',client_path(root/'http'),'--adapter-model',alias,'--backend',
-                'WSL vLLM; client network path: '+('WSL loopback' if a.client_in_wsl else 'Windows localhost forwarding')])
+                'WSL vLLM; server_max_num_seqs='+str(a.concurrency)+'; benchmark_client_concurrency=1; client network path: '+('WSL loopback' if a.client_in_wsl else 'Windows localhost forwarding')])
             for tag,pred in [('base',root/'base/predictions.jsonl'),('epoch-1',root/'epoch-1/evaluation/predictions.jsonl'),
                     ('epoch-2',root/'epoch-2/evaluation/predictions.jsonl')]:
                 command('review_pack_'+tag,[sys.executable,str(HERE/'review_pack.py'),'--predictions',str(pred),

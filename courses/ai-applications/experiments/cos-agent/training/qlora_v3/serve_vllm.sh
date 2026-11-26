@@ -5,6 +5,7 @@ TASK_MODEL=${1:?Usage: serve_vllm.sh MODEL_DIR ADAPTER_DIR [PORT] [GPU_FRACTION]
 TASK_ADAPTER=${2:?Adapter directory required}
 TASK_PORT=${3:-8018}
 TASK_GPU_FRACTION=${4:-0.75}
+TASK_MAX_NUM_SEQS=${PPOPY_MAX_NUM_SEQS:-1}
 TASK_VLLM_ENV=${PPOPY_VLLM_ENV:-"$HOME/.local/share/ppopy-vllm-v3"}
 export PATH="$TASK_VLLM_ENV/bin:$PATH"
 TASK_ALIAS=${PPOPY_ADAPTER_ALIAS:-ppopy-qlora-v3}
@@ -30,6 +31,6 @@ exec "$TASK_VLLM_ENV/bin/vllm" serve "$TASK_MODEL" \
   --served-model-name ppopy-base-nf4 \
   --quantization bitsandbytes --load-format bitsandbytes --dtype bfloat16 \
   --enable-lora --max-lora-rank 16 "${TASK_LORA_ARGS[@]}" \
-  --max-model-len 2304 --max-num-seqs 1 --max-num-batched-tokens 2304 \
+  --max-model-len 2304 --max-num-seqs "$TASK_MAX_NUM_SEQS" --max-num-batched-tokens 2304 \
   --gpu-memory-utilization "$TASK_GPU_FRACTION" --enforce-eager \
   --generation-config vllm --no-enable-log-requests

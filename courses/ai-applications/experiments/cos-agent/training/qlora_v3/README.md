@@ -46,6 +46,10 @@ bash training/qlora_v3/serve_vllm.sh /mnt/c/.../원본모델 /mnt/c/.../선택�
 
 완료된 학습은 `run_local_pipeline.py`로 평가만 재개할 수 있어요. 이때 `training_complete.json`과 실제 두 어댑터 파일을 확인하며, 종료된 학습 PID를 다시 요구하거나 재학습하지 않아요. WSL2의 UVA 기본 제한 때문에 고정 버전 0.28.0에서는 `VLLM_USE_V2_MODEL_RUNNER=0`으로 model runner를 선택해요(V1 엔진 자체는 그대로예요). 최신 버전 전체에 적용되는 설정으로 일반화하지 않아요. `--client-in-wsl` 측정은 **WSL 내부 loopback** 경로이며 Windows 호스트의 localhost forwarding 성공을 뜻하지 않아요. Windows 연결은 별도 확인해야 해요.
 
+평가 일괄 처리에는 `--concurrency 4`를 사용할 수 있어요. 서버도 `max_num_seqs=4`로 시작하고 클라이언트는 최대 네 요청을 동시에 보내요. 입력·문헌·384토큰 상한은 줄이지 않아요. 1건씩 처리한 이전 결과는 별도 archive로 보존하고, 세 모델은 같은 새 프로파일로 평가해요. batch 수치 연산에 따라 greedy 출력도 달라질 수 있어 동일 출력을 보장하지 않아요. 각 응답에 실제 concurrency를 기록하고 완료 순서가 달라도 원래 ID 순서로 원자적 저장·재개해요.
+
+`--speed-probe-baseline <보존한 sequential predictions.jsonl>`은 기존 17~24번째의 고정된 8개 입력을 병렬로 재실행해 실제 처리량·raw 출력 차이를 기록해요. 초기 어댑터 로딩 프로브와 겹친 첫 행들은 피하며, 결과가 나올 때까지 배속을 확정하지 않아요. 이 실험은 서로 다른 시간의 공유 PC 측정이므로 통제된 하드웨어 벤치마크는 아니에요. 전체 평가 처리량과 앱의 단일 요청 15초 SLA는 별개이며 후자는 `benchmark_http.py`로 1건씩 별도 측정해요.
+
 같은 서버에서 `ppopy-base-nf4`와 `ppopy-qlora-v3`를 요청해요. 127.0.0.1에만 바인딩하고 모델/usage 업로드를 활성화하지 않아요. `benchmark_http.py`는 실제 저장소의 OpenAICompatSLMClient를 통해 15초·64KiB 상한과 fallback을 측정해요. fallback을 모델 성공으로 집계하지 않아요. RAG 동시 상주 시험은 `coload_rag.py`로 실제 두 모델을 유지한 상태에서 별도 수행해요.
 
 참고: [PEFT quantization](https://huggingface.co/docs/peft/developer_guides/quantization), [vLLM bitsandbytes](https://docs.vllm.ai/en/v0.28.0/features/quantization/bnb/), [vLLM LoRA](https://docs.vllm.ai/en/v0.28.0/features/lora/). 실제 실행 결과와 제약은 비교 리포트에 기록하며 미실행 항목을 0/PASS로 채우지 않아요.
