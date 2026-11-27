@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "scope": "49행 구조·범위·원문 대조 및 해시 검사. 독립 의미 검수나 모델 성능 측정이 아니에요.",
+  "rows": 49,
+  "primary_buckets": {
+    "turn1_utterance": 7,
+    "turn2_followup": 7,
+    "denied_polarity": 7,
+    "other_subject": 7,
+    "high_risk_symptom": 7,
+    "product_mention": 7,
+    "no_signal_noise": 7
+  },
+  "splits": {
+    "train": 44,
+    "val_internal": 5
+  },
+  "unique_families": 36,
+  "cross_split_family_leakage": 0,
+  "normalized_source_duplicates": 0,
+  "exact_runtime_wire_messages": 49,
+  "whitelisted_variables": 163,
+  "common_allowed_variables": 34,
+  "emitted_slot_ids": {
+    "method.body_site": 2,
+    "method.tools": 5,
+    "method.water_temperature": 5,
+    "moisturizing.after_wash_delay": 1,
+    "cleansing.steps": 2,
+    "sun.water_contact": 2,
+    "sun.sweat": 2,
+    "sun.shade_clothing": 2,
+    "moisturizing.comfort": 1,
+    "moisturizing.dryness_return": 1,
+    "storage.opened_at": 2,
+    "storage.light_air": 1,
+    "method.friction": 2,
+    "method.drying": 2,
+    "method.sequence": 1,
+    "moisturizing.coverage": 2,
+    "sun.outdoor_time": 3,
+    "method.current_routine": 1,
+    "storage.decanting": 1
+  },
+  "symptoms": {
+    "dryness": 3,
+    "eye_stinging": 2,
+    "stinging": 2,
+    "itching": 3,
+    "redness": 1,
+    "pain": 1,
+    "burning": 1,
+    "swelling": 1,
+    "peeling": 1,
+    "tightness": 1,
+    "breakout": 1
+  },
+  "persistence": {
+    "repeated": 6,
+    "unknown": 5,
+    "recent": 3,
+    "persistent": 3
+  },
+  "product_usage": {
+    "using": 9,
+    "other_person": 5,
+    "considering": 2,
+    "stopped": 1,
+    "unknown": 1
+  },
+  "prefix_collision_checks": [
+    {
+      "row_id": "nlu-pilot-0038",
+      "raw_text": "Lotion AB",
+      "matched_catalog_hint": null
+    },
+    {
+      "row_id": "nlu-pilot-0042",
+      "raw_text": "로션 MN",
+      "matched_catalog_hint": null
+    }
+  ],
+  "review_request_hashes_verified": 49,
+  "dataset_sha256": "0c4c7877c9d26dbb4d7daf09f2a00e30df9eeb479413809919cd374263e1f1e7",
+  "cross_model_critic_performed": false,
+  "base_zero_shot_executed": false,
+  "human_approved": false
+}

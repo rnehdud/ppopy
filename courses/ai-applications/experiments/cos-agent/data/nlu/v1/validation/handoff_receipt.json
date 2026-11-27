@@ -1,0 +1,42 @@
+{
+  "base_commit": "1fe228e6f8addadd369e820d938dbfefa99c2838",
+  "branch": "data/nlu-v1-pilot",
+  "rows": 49,
+  "primary_bucket_counts": {
+    "turn1_utterance": 7,
+    "turn2_followup": 7,
+    "denied_polarity": 7,
+    "other_subject": 7,
+    "high_risk_symptom": 7,
+    "product_mention": 7,
+    "no_signal_noise": 7
+  },
+  "split_counts": {
+    "train": 44,
+    "val_internal": 5
+  },
+  "dataset_sha256": "0c4c7877c9d26dbb4d7daf09f2a00e30df9eeb479413809919cd374263e1f1e7",
+  "review_request_rows": 49,
+  "review_requests_sha256": "cabdbe92f6eb94293dc0d798018e97a3e1d7188b73c43c8439ad0b72ef92f4d3",
+  "validator_error_count": 0,
+  "exact_wire_rows": 49,
+  "source_manifest": {
+    "checked": 27,
+    "failed": []
+  },
+  "tests_passed": 11,
+  "cross_model_critic_performed": false,
+  "human_review_performed": false,
+  "base_zero_shot_executed": false,
+  "QLoRA_training_executed": false,
+  "source_code_sha256": {
+    "build_nlu_v1_pilot.py": "327f8159ef066e37cd566eb5b1c8105bdbb35f7061f7742a21937e5d2411f6c9",
+    "check_nlu_v1_pilot.py": "5883c062f3d01a72cabddd4686b67be71f3fdec462d8a8f87a76496b8d873739"
+  },
+  "contract_sha256": {
+    "beauty_agent\\v3_contracts.py": "1273f5276760f76539bb9a4207518696fbbe8c43b8152a2e1c9ef6fde9bc63fe",
+    "beauty_agent\\nlu_schema.py": "5b025de9d8ba8cc9e3d6646c642701f28991daa1997a39bcce337791c4dd4b60",
+    "beauty_agent\\slm\\prompt_builder.py": "e402ccb66c9c60a445da820b4d3755b46bca8fadfec7740699026ef092ca7fd5",
+    "scripts\\validate_nlu_dataset.py": "8a31beb3adccab61b0c813b6aeddb88be5a7f048848bd219254ff563f68371e1"
+  }
+}
