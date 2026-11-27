@@ -1,0 +1,208 @@
+{
+  "index": 2,
+  "row_id": "syn-sol-0212",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "cleansing.steps": {
+        "variable_id": "cleansing.steps",
+        "state": "known",
+        "value": 1,
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손가락",
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "반죽 뒤 손을 털기만 함",
+          "가루가 남은 손으로 얼굴에서 비비기"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "반죽 정리 후"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "손가락에 가루",
+          "따가움과 통증 없음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "묻은 가루와 손 세정 순서",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-011",
+        "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+        "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+        "checked_on": "2026-11-25",
+        "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-011"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n반죽 가루가 남은 손은 털기만 하지 말고 얼굴에 닿기 전에 먼저 씻어 보세요. 거품이 필요한 세안제는 손에서 준비하고 얼굴을 가볍게 씻어요.\n\n### 근거 및 이유\n손 오염을 먼저 씻고 손바닥에서 거품을 내는 것이 일반 세안 순서에 포함돼요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n가루가 닿았다고 해서 피부에 문제가 생겼다는 뜻은 아니에요. 지금 따가움이나 통증이 없다는 점은 그대로예요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0212",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "손가락에 가루가 묻어 있는 상황에서 얼굴을 씻기 전에 손을 철저히 세정하는 것이 중요해요. 현재 사용 중인 방법은 \"반죽 뒤 손을 털기만 함\"과 \"가루가 남은 손으로 얼굴에서 비비기\"인데, 이는 피부에 직접적인 마찰이나 오염물이 남을 수 있어 피부 자극을 유발할 위험이 있어요.\n\n정확한 세안 순서를 따르면, 먼저 손에 묻은 오염물을 제거하고, 그 후에 얼굴을 세우는 것이 더 안전하고 효과적이에요. 건강한 피부 관리에 따르면, 얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고, 미지근한 물로 얼굴을 적신 뒤 거품을 내서 부드럽게 씻는 것이 권장돼요. 특히 피지가 많은 이마와 코 부터 시작해 부드럽게 문질러 닦는 것이 피부에 가해지는 마찰을 줄이는 데 도움이 돼요.\n\n이 순서는 오염물을 제거하면서 피부에 자극을 최소화하는 데 초점을 둔 것이에요. 손에 가루가 남아 있는 상태에서 얼굴을 닦는 것은 오히려 피부에 불필요한 마찰과 오염을 초래할 수 있으므로, 손을 먼저 철저히 세정한 뒤에 얼굴을 씻는 것이 더 적절해요.\n\n👉 **추천 순서**:\n1. 손을 먼저 물로 씻고, 필요시 세안제로 세정  \n2. 손이 깨끗해지면, 얼굴에 미지근한 물을 적신 후  \n3. 거품을 내서 부드럽게 얼굴을 씻고, 가볍게 눌러 닦는 것\n\n이렇게 하면 손에 묻은 가루와 오염물이 피부에 전이되지 않아요. 또한, 피부 자극이나 따가움이 없도록 마찰을 최소화할 수 있어요.\n\n> 참고: [질병관리청, 건강한 피부 관리 방법](https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72) (ref:cleansing-011)  \n> ⚠️ 제한 사항: 이는 일반적인 얼굴 세안 순서이며, 개인의 피부 타입이나 하루 세안 횟수는 상황에 따라 달라질 수 있습니다.",
+      "content_sha256": "a98569d566df80582b9b05aefaa6544f1a2e4587ca64e99b10fbf651ee2f6aa2",
+      "prompt_ids_sha256": "d5b7f76c4491ff238e4c76e8cc37353c09114cf2996c81a2de911f6ed90ac345",
+      "prompt_tokens": 912,
+      "generated_tokens": 634,
+      "finish_reason": "stop",
+      "latency_s": 11.98951434899999,
+      "timestamp_ms": 1795749019594,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0212",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n반죽 뒤 손을 털고 가루가 남은 손으로 얼굴을 비비는 순서는 바꾸지 않아요. 손에 묻은 가루를 먼저 씻고 얼굴을 씻는 순서로 바꿔 보세요.\n\n### 근거 및 이유\n손에 묻은 오염물을 제거하는 것은 얼굴을 씻는 단계의 일부예요. 손을 씻고 얼굴을 씻는 순서로 바꾸면 손에 남은 가루를 얼굴에 옮기지 않아요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n가루가 손에 남았다는 사실만으로 손가락에 남은 양이나 얼굴에 남은 양을 정할 수 없어요.",
+      "content_sha256": "56a4420c57c81148c92bff9ca7b6523157ea4dfea453a2144b628cc66f7157a7",
+      "prompt_ids_sha256": "d5b7f76c4491ff238e4c76e8cc37353c09114cf2996c81a2de911f6ed90ac345",
+      "prompt_tokens": 912,
+      "generated_tokens": 198,
+      "finish_reason": "stop",
+      "latency_s": 4.878252024999995,
+      "timestamp_ms": 1795749024474,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0212",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n손가락에 묻은 가루를 얼굴에서 비비기 전에 손을 먼저 씻어 보세요. 반죽 뒤 손을 털고 얼굴을 비비는 순서를 바꾸는 것부터 시작해요.\n\n### 근거 및 이유\n손에 묻은 오염물을 제거하는 것은 얼굴을 씻는 과정의 일부예요 [ref:cleansing-011]. 가루가 손에 남았다는 사실만으로 얼굴에 문제가 생겼다고 보지는 않아요.\n\n### 확인이 필요한 한계\n가루가 얼굴에 남았는지 확인되지 않았어요. 손에 묻은 가루를 얼굴에 다시 묻게 되면 그 결과는 별도로 따로 봐요.",
+      "content_sha256": "a0ca8f83ca329bdac158b08a2c252a93c9c422126f583e24cef96c0924c77eee",
+      "prompt_ids_sha256": "d5b7f76c4491ff238e4c76e8cc37353c09114cf2996c81a2de911f6ed90ac345",
+      "prompt_tokens": 912,
+      "generated_tokens": 190,
+      "finish_reason": "stop",
+      "latency_s": 4.462554304000008,
+      "timestamp_ms": 1795749028938,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0212",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n반죽 뒤 손을 털고 가루가 남은 손으로 얼굴을 비비는 순서는 바꿔 보세요. 손에 묻은 가루를 먼저 제거하는 쪽이 일반적인 얼굴 세안과 맞아요.\n\n### 근거 및 이유\n손에 묻은 물을 먼저 씻고 얼굴을 부드럽게 씻는 방법이 일반 안내의 기본이에요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n가루가 손에 묻었다는 사실만으로 이 제품의 제거 성능이나 반복 횟수를 판단할 수 없어요.",
+      "content_sha256": "136143151515eca0dadb0aed1686503ef78756ab549feb9c65221c2eb4130b8a",
+      "prompt_ids_sha256": "d5b7f76c4491ff238e4c76e8cc37353c09114cf2996c81a2de911f6ed90ac345",
+      "prompt_tokens": 912,
+      "generated_tokens": 161,
+      "finish_reason": "stop",
+      "latency_s": 3.9041335290000063,
+      "timestamp_ms": 1795749032844,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0212",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n반죽 뒤 손을 털고 가루가 남은 손으로 얼굴을 비비는 순서를 바꿔 보세요. 손에 묻은 가루를 먼저 제거하는 쪽이 일반적인 얼굴 세안과 맞아요.\n\n### 근거 및 이유\n손에 묻은 물을 씻고 얼굴을 미지근한 물로 적시는 순서는 피부에 가하는 마찰을 줄이는 데 초점을 둬요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n가루가 손에 묻은 뒤 얼굴에 다시 묻는 상황은 근거에 그대로 설명하지 않아요. 손가락에 가루가 남았다는 사실만으로 피부에 문제가 생겼다고 보지 않아요.",
+      "content_sha256": "6b2fc10a7f9bc888a8d804e99e957f7d352f8cc21f58b6a2f34f9e48acf1be92",
+      "prompt_ids_sha256": "d5b7f76c4491ff238e4c76e8cc37353c09114cf2996c81a2de911f6ed90ac345",
+      "prompt_tokens": 912,
+      "generated_tokens": 201,
+      "finish_reason": "stop",
+      "latency_s": 4.740664822000014,
+      "timestamp_ms": 1795749042057,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

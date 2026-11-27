@@ -1,0 +1,198 @@
+{
+  "index": 23,
+  "row_id": "syn-sol-0443",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "routine.actual": {
+        "variable_id": "routine.actual",
+        "state": "known",
+        "value": "보습 토너로 색조 화장을 닦음",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "routine.goal": {
+        "variable_id": "routine.goal",
+        "state": "known",
+        "value": "보습 화장수의 세정 대체 가능성",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "syn-s2-m-0443",
+        "version": "fixture-1",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "합성 제품 자료: 유연화장수, 세안 후 얼굴 피부에 사용. 메이크업 제거 표시 없음."
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:moisturizing-006",
+        "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+        "checked_on": "2026-11-24",
+        "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+      },
+      {
+        "evidence_ref": "ref:moisturizing-008",
+        "text": "얼굴에 쓰는 화장수는 외관이나 묽기보다 사용 목적에서 차이가 난다. 유연화장수는 각질층에 수분과 보습 성분을 공급해 부드러운 사용감을 주는 목적으로 설명된다. 반면 세정용 화장수는 가벼운 화장이나 오염물을 제거하기 위한 제품이며 계면활성제 등이 쓰일 수 있다. 화장수가 투명한지 불투명한지로 역할을 추측하기보다 제품에 적힌 용도를 확인해야 세정 단계와 보습 단계를 구분할 수 있다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 pp.99–100, 화장수의 세부 유형",
+        "checked_on": "2026-11-24",
+        "limitations": "화장수의 용도를 구분하기 위한 설명이다. 표시된 사용 목적을 먼저 확인한다."
+      },
+      {
+        "evidence_ref": "ref:storage_label-006",
+        "text": "혼합이 끝난 염모액에서는 가스가 발생할 수 있어 뚜껑을 닫아 두면 용기 안의 압력이 올라가 파손될 수 있다. 남은 혼합액은 바로 버리고 용기를 버릴 때도 뚜껑을 열어 두라는 지시가 이 상황에 해당한다. 반면 아직 혼합하지 않은 액은 공기와의 접촉 및 직사광선을 피하고 서늘한 곳에 보관하도록 표시한다. 같은 염모제라도 혼합 전후에는 보관 행동이 정반대가 될 수 있어 남은 액의 상태를 먼저 구분해야 한다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=167863671",
+        "locator": "별표 1 제2호 가목 11) 마) (1)~(3), 염모제 보관 및 취급",
+        "checked_on": "2026-11-24",
+        "limitations": "산화·비산화 염모제의 국내 표시다. 두 액이 이미 섞였는지 확인해야 한다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:moisturizing-006",
+      "ref:moisturizing-008"
+    ],
+    "distractor_refs": [
+      "ref:storage_label-006"
+    ]
+  },
+  "reference_teacher_answer": "### 핵심 안내\n화장솜에 잘 묻는다고 보습 토너를 색조 제거용으로 판단하지 않아요. 표시상 보습 단계에 해당해요.\n\n### 근거 및 이유\n유연화장수는 피부에 수분과 보습 성분을 공급하는 목적이고 세정용 화장수는 가벼운 화장 등을 지우는 목적이에요 [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 토너가 색조를 얼마나 제거하는지는 표시나 외관으로 확인되지 않았어요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0443",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "보습 토너로 색조 화장을 닦는 루틴을 현재 사용하고 있으며, 이는 보습 화장수로 세정 단계를 대체할 수 있는지에 대한 관심이 있습니다.  \n\n제품 정보에 따르면, 사용 중인 제품은 **유연화장수**로, 세안 후 피부에 바르는 보습용 제품으로 설명됩니다. 이는 메이크업 제거 기능이 명시되어 있지 않으며, 주된 목적은 피부에 수분과 보습 성분을 공급하여 부드러운 사용감을 주는 것입니다.  \n\n문헌 근거를 종합하면, 화장수의 역할은 **사용 목적**에 따라 달라질 수 있습니다.  \n- **유연화장수**는 보습을 목적으로 하며, 피부에 수분을 공급하는 데 초점이 있습니다.  \n- 반면, **세정용 화장수**는 오염물 제거를 목적으로 하며, 계면활성제 등이 포함될 수 있습니다.  \n\n따라서 보습 토너가 메이크업을 제거하는 역할을 할 수 있는지 여부는 **제품 포장에 명시된 용도**를 확인해야 합니다. 현재 사용 중인 제품은 메이크업 제거를 위한 용도가 명시되어 있지 않으며, 보습용으로만 기능한다고 보는 것이 적절합니다.  \n\n결론적으로, **보습 토너는 메이크업 제거를 위한 세정 제품이 아닙니다**.  \n화장품을 제거하기 위해 사용하려면, 제품에 **\"메이크업 리무버\" 또는 \"세정용\"** 과 같은 용도가 명시되어 있어야 하며, 그에 따라 성분이나 텍스처를 판단해야 합니다.  \n\n👉 **추천**: 현재 보습 토너를 사용 중인 상태에서 메이크업을 제거하고자 한다면, **메이크업 제거용 토너나 세안 제품**을 별도로 사용하는 것이 더 적절합니다.  \n\n> 참고: [ref:moisturizing-006] | [ref:moisturizing-008]  \n> (용도를 확인하는 것이 핵심이며, 토너의 유형만으로는 역할을 판단할 수 없습니다.)",
+      "content_sha256": "d8718601e3f9211cc17d8505ce486cff56cc4a69347f5b643a8a7f7d77dbfdd1",
+      "prompt_ids_sha256": "b641cc2352ae34211164eaa0a8bd6e328a28fa7cb543364c8649be4e5e5f0542",
+      "prompt_tokens": 1389,
+      "generated_tokens": 547,
+      "finish_reason": "stop",
+      "latency_s": 8.795432993999952,
+      "timestamp_ms": 1795751142842,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0443",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n보습 토너로 색조를 닦는 건 아니에요. 색조를 닦는 데 쓸 수 있는 제품은 따로 확인해요.\n\n### 근거 및 이유\n유화물로 만든 보습 화장수와 세정용 화장수는 같은 형태일 수 있지만 용도가 달라요 [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 제품은 색조를 닦는 데 쓸 수 있는지 확인된 자료는 아니에요.",
+      "content_sha256": "99b7c6a9202fe5a3690bbb11c2c85037953d7bc40754307f96786f0adb5c49df",
+      "prompt_ids_sha256": "b641cc2352ae34211164eaa0a8bd6e328a28fa7cb543364c8649be4e5e5f0542",
+      "prompt_tokens": 1389,
+      "generated_tokens": 136,
+      "finish_reason": "stop",
+      "latency_s": 2.946981648000019,
+      "timestamp_ms": 1795751145791,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0443",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n보습 토너로 색조를 닦는 것은 그 제품의 용도를 바꾸는 일이에요. 씻은 뒤 쓰는 유연화장수와 같은 제품으로 대체하지 않아요.\n\n### 근거 및 이유\n유화물로 만든 로션은 보습용과 세정용 모두 쓰일 수 있어 이름만으로 역할을 정하지 않아요 [ref:moisturizing-006] [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 제품은 색조를 닦는 표시가 없어요. 얼굴에 남은 화장의 제거 정도나 이 제품의 세정 성능은 확인되지 않았어요.",
+      "content_sha256": "c9a870236c719844004c94f91a2cf444de1eb64d2409b95e13aacafe9b16752d",
+      "prompt_ids_sha256": "b641cc2352ae34211164eaa0a8bd6e328a28fa7cb543364c8649be4e5e5f0542",
+      "prompt_tokens": 1389,
+      "generated_tokens": 178,
+      "finish_reason": "stop",
+      "latency_s": 3.72427299900005,
+      "timestamp_ms": 1795751149517,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0443",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n보습 로션을 색조 화장을 닦는 데 쓰는 제품으로 바꾸면 안 되는지 확인해요. 포장에 표시된 용도를 기준으로 봐요.\n\n### 근거 및 이유\n유화형 화장수는 보습이나 세정 등 여러 용도로 쓰일 수 있어 이름만으로 역할을 정하지 않아요 [ref:moisturizing-006] [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 로션의 세정 대체 가능 여부는 확인되지 않았어요.",
+      "content_sha256": "49c6ce379329a9fd3173256ac52a33b4596573d9ce5933d49bcf0f2f654e63d2",
+      "prompt_ids_sha256": "b641cc2352ae34211164eaa0a8bd6e328a28fa7cb543364c8649be4e5e5f0542",
+      "prompt_tokens": 1389,
+      "generated_tokens": 150,
+      "finish_reason": "stop",
+      "latency_s": 3.2784360520000746,
+      "timestamp_ms": 1795751152797,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0443",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n보습 로션을 색조 화장수로 쓰는 대신, 색조를 지운 뒤 제품 표시에 맞춰 챙겨요.\n\n### 근거 및 이유\n유화형 화장수는 보습이나 세정 등 여러 용도로 쓰일 수 있어 이름만으로 역할을 바꿔석 않아요 [ref:moisturizing-006] [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 로션은 세안 후 사용으로 확인됐고 색조 제거 표시는 확인되지 않았어요.",
+      "content_sha256": "dd6bb16cf0765473716fdf446b2a6bc12c04b6bc3533ffaae9447633b6a6a0f1",
+      "prompt_ids_sha256": "b641cc2352ae34211164eaa0a8bd6e328a28fa7cb543364c8649be4e5e5f0542",
+      "prompt_tokens": 1389,
+      "generated_tokens": 149,
+      "finish_reason": "stop",
+      "latency_s": 3.3022890890000554,
+      "timestamp_ms": 1795751156101,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

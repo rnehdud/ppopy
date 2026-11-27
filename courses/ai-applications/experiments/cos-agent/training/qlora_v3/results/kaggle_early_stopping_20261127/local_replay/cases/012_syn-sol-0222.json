@@ -1,0 +1,208 @@
+{
+  "index": 12,
+  "row_id": "syn-sol-0222",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손등",
+          "얼굴 검토"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "손등에만 덜어봄"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "샤워 후, 얼굴 사용 전"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "맑은 젤로 보임"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "젤 외관으로 얼굴 세정 목적인지 판단",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-transparent-moist",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 얼굴에 바르고 두는 보습용 젤. 세정 용도 없음.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-transparent-moist@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n손등에 덜어 본 맑은 젤은 가상 표시에 얼굴에 바르고 두는 보습용이에요. 클렌징 목적으로 씻어내는 젤과는 구분해요.\n\n### 근거 및 이유\n젤처럼 보이는 세정제도 여러 제형으로 만들어져, 실제 용도와 헹굼 지시가 외관보다 중요한 단서예요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n손등에 덜어 본 일이 얼굴에서 사용한 경험은 아니에요. 얼굴에서의 감촉이나 세정 효과는 확인되지 않았어요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0222",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "손등과 얼굴에 사용한 제품은 손등에만 덜어보는 것으로 확인되었고, 사용 시점은 샤워 후 얼굴 세정 전입니다. 제품 외관은 맑은 젤로 보이며, 현재는 얼굴 세정 목적인지 판단하는 데 초점을 맞추고 있습니다.\n\n제품 정보에 따르면, 이 젤은 **\"얼굴에 바르고 두는 보습용 젤\"** 이며, **세정 용도가 없습니다**. 따라서 외관이 젤처럼 보이더라도, 제품의 라벨 가이드에 명시된 용도는 보습이며 세정은 아닙니다.\n\n참고 문헌에 따르면, 젤처럼 보이는 클렌저도 다양한 방식으로 점도를 형성할 수 있습니다. 예를 들어 수용성 고분자나 계면활성제를 사용하거나, 기름 성분을 많이 담아 유화 구조를 만드는 경우도 있습니다. 하지만 이러한 제품도 대부분 **사용 후 물로 헹구는 방식**으로 설계되어 있으며, **외관만으로는 세정 기능을 판단하기 어렵습니다**. 특히, 점도가 높은 젤이 오일 기반일 수 있으므로, 제거 대상과 헹굼 지시가 사용법을 이해하는 데 더 중요합니다.\n\n결론적으로, 현재 사용된 제품은 **세정용이 아니며**, 외관만으로는 세정 기능을 판단할 수 없습니다. 얼굴 세정을 목적으로 사용하려면, 제품 라벨에 **세정 용도**와 **제거 대상**, **사용 후 헹굼 지시**가 명확히 기재되어 있어야 하며, 이는 현재 제품의 경우에 해당하지 않습니다.\n\n따라서, **이 제품은 얼굴 세정 목적으로 사용하는 데 적합하지 않으며**, 얼굴 세정을 원한다면 **세정 용도를 명시하고, 사용 후 물로 헹구는 지침이 있는 제품**을 선택해 주시기 바랍니다.",
+      "content_sha256": "2f88a0635ba56678db91a51fd5b9cb067da453451f7b7477bdd4cfeeb3ce92ab",
+      "prompt_ids_sha256": "adb9f062927626a8f2d5c86e735551516b060b5c4a0aca82ac0e81f16b2965ac",
+      "prompt_tokens": 906,
+      "generated_tokens": 476,
+      "finish_reason": "stop",
+      "latency_s": 10.796376322000015,
+      "timestamp_ms": 1795749342404,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0222",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n손등에 덜어 보인 젤이 얼굴에 쓸 수 있는지는 확인되지 않았어요. 얼굴에 쓰는 제품의 표시를 보세요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 수용성 고분자나 기름 성분을 담아 만든 경우가 있어요. 외관보다 제거 대상과 헹굼 지시를 확인해야 해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n손등에 덜어 보인 젤의 얼굴 세정 성능은 확인되지 않았어요. 점도가 높다는 사실만으로 얼굴에 쓸 수 있다고 판단하지 않아요.",
+      "content_sha256": "411eba3930ce88034a56eb2b023fd349d07a832ce13412ae47aa75713d9d36f0",
+      "prompt_ids_sha256": "adb9f062927626a8f2d5c86e735551516b060b5c4a0aca82ac0e81f16b2965ac",
+      "prompt_tokens": 906,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 4.654326632000107,
+      "timestamp_ms": 1795749347060,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0222",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n샤워 후 얼굴에 쓰는 제품인지 따로 확인해요. 손등에 덜어 본 젤의 외관으로 얼굴 세정 목적이 있다고 결론 내리지 않아요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 세정용과 보습용이 있을 수 있고, 점도는 제형을 설명하는 것이지 세정력을 비교하는 지표는 아니에요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n얼굴에 쓰는 제품인지 확인되지 않았어요. 점도나 색만으로 얼굴 세정 지시를 대신하지 않아요.",
+      "content_sha256": "3660a79f90faae788af51ed17ba12d88c60b550c13bf5110ad0fe532b2dc4f54",
+      "prompt_ids_sha256": "adb9f062927626a8f2d5c86e735551516b060b5c4a0aca82ac0e81f16b2965ac",
+      "prompt_tokens": 906,
+      "generated_tokens": 158,
+      "finish_reason": "stop",
+      "latency_s": 4.2821264809999775,
+      "timestamp_ms": 1795749351344,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0222",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n젤처럼 보인다는 사실로 얼굴에 쓸 수 있다고 보지 않아요. 확인된 가상 표시에는 손등에 바르고 두는 보습용으로만 기록돼 있어요.\n\n### 근거 및 이유\n젤 형태의 클렌징 제품도 수용성 성분이나 기름 성분을 쓰는 방식으로 다양해요 [ref:cleansing-004]. 외관이 같은 제품이 세정용인지 보습용인지만으로 구분되지는 않아요.\n\n### 확인이 필요한 한계\n샤워 뒤 얼굴에 쓰는지와 사용 뒤 헹구는지까지 확인된 것은 아니에요. 점도나 외관으로 얼굴 세정 성능을 추정하지 않아요.",
+      "content_sha256": "c0f73bd59fde65bc71c86a34470395fe26cb8abb2c4dcab46017e300166b9553",
+      "prompt_ids_sha256": "adb9f062927626a8f2d5c86e735551516b060b5c4a0aca82ac0e81f16b2965ac",
+      "prompt_tokens": 906,
+      "generated_tokens": 189,
+      "finish_reason": "stop",
+      "latency_s": 5.10319028899994,
+      "timestamp_ms": 1795749359393,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0222",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n젤처럼 보인다는 점만 보고 얼굴에 쓸 이유를 붙이지 않아요. 확인된 가상 표시에는 손등에 바르고 두는 보습용으로 분류돼요.\n\n### 근거 및 이유\n젤이 보인다는 이유만으로 세정용으로 바꿔 해석할 수는 없어요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n샤워 뒤 얼굴에 쓴다는 사용 경험은 없어요. 점도나 외관으로 얼굴 세정 성능도 판단하지 않아요.",
+      "content_sha256": "1b01592d051dd53c430ac8ba0e15834646e7818a61ed2121119f33a9ec91b30b",
+      "prompt_ids_sha256": "adb9f062927626a8f2d5c86e735551516b060b5c4a0aca82ac0e81f16b2965ac",
+      "prompt_tokens": 906,
+      "generated_tokens": 144,
+      "finish_reason": "stop",
+      "latency_s": 3.994410079999966,
+      "timestamp_ms": 1795749363389,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

@@ -1,0 +1,207 @@
+{
+  "index": 14,
+  "row_id": "syn-sol-0224",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "색조 제거에 젤 리무버 사용"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "두 젤을 겹쳐 쓸지 고민 중"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "아직 같이 쓰지 않음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "헹굼과 보습 단계를 분리",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-pair",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 첫 가상 젤은 얼굴용 리무버로 사용 뒤 물로 헹굼. 별도 가상 젤은 세안 뒤 얼굴에 바르고 둠.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-pair@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n얼굴에서 색조를 푸는 리무버 젤은 물로 헹군 뒤 마쳐요. 별도의 보습 젤은 확인된 가상 표시대로 그 뒤에 바르고 남기는 단계로 나눠요.\n\n### 근거 및 이유\n젤은 질감이 비슷해도 제거 대상과 헹굼 표시로 실제 사용법을 구분할 수 있어요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n현재 두 젤을 겹쳐 쓴 것은 아니고, 함께 썼을 때 어떤 반응이 생기는지 알려진 바 없어요. 둘 다 젤 제형이라고 해서 두 제품을 한데 써도 된다는 뜻은 아니에요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0224",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "안녕하세요, 피부 관리에 도움이 되는 정보를 제공해 드릴게요.  \n\n현재 확인된 맥락을 바탕으로, 사용자가 **얼굴을 대상으로 리무버와 세안을 겹쳐 쓰지 않으며, 헹굼과 보습 단계를 분리하고자** 한다는 점을 고려해 보았습니다. 또한 사용자가 **색조 제거에 젤 리무버를 사용하고 있으며**, 그 후 물로 헹굼을 하며, 별도의 보습 젤을 세안 후에 바르는 방식을 고려 중이라고 알려주셨습니다.\n\n제품 정보에 따르면, 가상 제품 **\"s2-cleansing-fixture-r-gel-pair\"** 는 다음과 같은 사용법을 제시하고 있습니다:  \n- 리무버로 사용한 젤은 리무버 후 물로 헹굼  \n- 별도의 젤은 세안 후 얼굴에 바르고 둠 (즉, 보습 단계를 따로 적용)\n\n이에 따라, 사용자가 헹굼과 보습을 분리하고자 하는 목표를 충족할 수 있도록 아래와 같은 루틴을 추천드립니다:\n\n---\n\n### ✅ 추천 스킨케어 루틴 (리무버 → 헹굼 → 보습)\n\n1. **리무버 젤**  \n   - 색조 제거를 위해 사용  \n   - 리무버 후 **물로 헹굼** (리무버 제품의 사용법에 명시된 방식)\n\n2. **물로 헹굼**  \n   - 리무버 후 반드시 수행  \n   - 피부에 남은 성분을 제거하고, 다음 단계를 위한 깨끗한 상태를 만듦\n\n3. **보습 젤 (별도 젤)**  \n   - 세안 후에 바르고 둠  \n   - 헹굼과 보습을 분리하여 피부의 수분 보존과 장벽 기능을 지키는 데 도움\n\n---\n\n### 💡 참고 정보\n- 젤 형태의 클렌저는 점도나 외관보다는 **제품의 제거 대상과 헹굼 지시**가 더 중요합니다. (참고: ref:cleansing-004)  \n- 위의 루틴은 사용자가 헹굼과 보습을 분리하고자 하는 **목적**에 부합하며, 제품의 사용법과 일치합니다.\n\n---\n\n이 루틴은 현재 사용 중인 제품과 사용 목적에 부합하는 것으로 보이며, 피부 상태에 따라 조정이 가능합니다.  \n필요하시면, 보습 젤의 종류나 피부 타입에 맞는 대체 후보도 추천해 드릴 수 있어요.  \n\n필요하신 점이 더 있으시면 언제든지 말씀해 주세요! 😊",
+      "content_sha256": "aac546a137a2b2cb89bde3f9d0c48f87db0b356568d3b13e09420fa5973273a8",
+      "prompt_ids_sha256": "583549feff803de55b6c0f08cb9d79cd5fd311e83d32c5a8273562efc2da3d96",
+      "prompt_tokens": 931,
+      "generated_tokens": 663,
+      "finish_reason": "stop",
+      "latency_s": 14.536962316999961,
+      "timestamp_ms": 1795749415588,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0224",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n두 젤을 겹쳐 쓰지 않아도 돼요. 색조 제거한 뒤 물로 헹구고, 별도 젤은 세안 뒤 얼굴에 바르고 둘 수 있어요.\n\n### 근거 및 이유\n젤형 클렌저는 사용 뒤 물로 헹구도록 되어 있어요 [ref:cleansing-004]. 점도만으로 두 제품을 겹쳐 쓰는 것이 맞는지는 판단하지 않아요.\n\n### 확인이 필요한 한계\n두 젤을 겹쳐 쓰는 경우의 제거 성능이나 피부 반응은 확인되지 않았어요.",
+      "content_sha256": "4a23d549d765c4832b8e31452403da47147bbb5e7c632f63d4e812ec8c49c5c2",
+      "prompt_ids_sha256": "583549feff803de55b6c0f08cb9d79cd5fd311e83d32c5a8273562efc2da3d96",
+      "prompt_tokens": 931,
+      "generated_tokens": 166,
+      "finish_reason": "stop",
+      "latency_s": 4.4677160749999985,
+      "timestamp_ms": 1795749420058,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0224",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n색조 제거에 쓰는 젤과 세안 뒤 바르는 젤은 다른 제품으로 구분해요. 두 젤을 겹쳐 쓰지 않아도 됩니다.\n\n### 근거 및 이유\n젤은 점도를 내는 방식이 다양해요. 제거 대상과 헹굼 지시를 함께 살펴야 해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n두 젤을 겹쳐 쓰면 어떤 결과가 나올지는 확인되지 않았어요.",
+      "content_sha256": "11c333b10b5812b5346938be1f27793ad11898324b274c51efa50c31d7dc4fa6",
+      "prompt_ids_sha256": "583549feff803de55b6c0f08cb9d79cd5fd311e83d32c5a8273562efc2da3d96",
+      "prompt_tokens": 931,
+      "generated_tokens": 136,
+      "finish_reason": "stop",
+      "latency_s": 3.7472263949999842,
+      "timestamp_ms": 1795749426744,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0224",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n색조 제거에 쓰는 젤과 세안 뒤 바르는 젤은 다른 가상 제품이에요. 두 제품을 겹쳐 쓰는 단계는 아직 확인되지 않았어요.\n\n### 근거 및 이유\n젤은 제형이 다양할 수 있지만, 사용 뒤 물로 헹구는 제품이 많아요 [ref:cleansing-004]. 이 안내는 두 가상 제품의 표시를 기준으로 해요.\n\n### 확인이 필요한 한계\n두 젤을 함께 쓴 경험은 없어요. 겹쳐 쓴 경우의 제거 성능이나 피부 반응은 미상이에요.",
+      "content_sha256": "c3a13bf9ccfa5774a9ce186b4118aca01e7a9599b72f6168f23ea1555a5a9cc2",
+      "prompt_ids_sha256": "583549feff803de55b6c0f08cb9d79cd5fd311e83d32c5a8273562efc2da3d96",
+      "prompt_tokens": 931,
+      "generated_tokens": 164,
+      "finish_reason": "stop",
+      "latency_s": 4.435430805999999,
+      "timestamp_ms": 1795749431181,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0224",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n색조 제거에 쓰는 젤과 세안 뒤 바르는 젤은 다른 가상 제품이에요. 두 제품을 겹쳐 쓰는 단계는 아직 확인되지 않았어요.\n\n### 근거 및 이유\n젤 제형은 여러 가지로 구성될 수 있지만, 사용 뒤 물로 헹구는 제품과 둘 이상의 사용 뒤 남기는 제품을 구분해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n두 젤을 같이 쓴 경험은 없어요. 겹쳐 쓴 경우의 제거 성능이나 피부 반응은 미상이에요.",
+      "content_sha256": "f29e01e855252165b63657ab27309fbc494b1cbd6c12c03aaaff483487f0f6f3",
+      "prompt_ids_sha256": "583549feff803de55b6c0f08cb9d79cd5fd311e83d32c5a8273562efc2da3d96",
+      "prompt_tokens": 931,
+      "generated_tokens": 162,
+      "finish_reason": "stop",
+      "latency_s": 4.367590418000077,
+      "timestamp_ms": 1795749435550,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

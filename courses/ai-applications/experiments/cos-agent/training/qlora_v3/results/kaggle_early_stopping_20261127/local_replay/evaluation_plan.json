@@ -1,0 +1,44 @@
+{
+  "dataset_sha256": "99182590f83bc3dad9e3cb71c9153f418642b6aaf7d97ebcc728ac68d0425cac",
+  "Kaggle_kernel": "linawf/5epoch-qlora/2",
+  "checkpoint_file_hashes_verified": {
+    "epoch-1/adapter_model.safetensors": "cf1f0cd91b56b8a114a55e70029a521365378401696a2251b93b2caef8c70fcb",
+    "epoch-1/adapter_config.json": "ac99786aaa820fc5f7e2684b6f01119311c98fb96aeb4f8163b92975b38daea8",
+    "epoch-2/adapter_model.safetensors": "abaf78028e14359cba369f609c5706c1e0395693cce0464380a8761f02677596",
+    "epoch-2/adapter_config.json": "ac99786aaa820fc5f7e2684b6f01119311c98fb96aeb4f8163b92975b38daea8",
+    "epoch-3/adapter_model.safetensors": "69e8a329e07d2bfb58eced35c12e66340706a5636959ca1a31fa64aec94f0bf4",
+    "epoch-3/adapter_config.json": "ac99786aaa820fc5f7e2684b6f01119311c98fb96aeb4f8163b92975b38daea8",
+    "epoch-4/adapter_model.safetensors": "6fbb89220566c9522d782c3a57690759ac176cf20fac9e8c7bed84c6a87f5887",
+    "epoch-4/adapter_config.json": "ac99786aaa820fc5f7e2684b6f01119311c98fb96aeb4f8163b92975b38daea8"
+  },
+  "validation_cases": 90,
+  "conditions": [
+    "kaggle-base",
+    "kaggle-epoch-1",
+    "kaggle-epoch-2",
+    "kaggle-epoch-3",
+    "kaggle-epoch-4"
+  ],
+  "target_raw_answers": 450,
+  "training_performed": false,
+  "generation": {
+    "max_tokens": 768,
+    "temperature": 0,
+    "seed": 20261127,
+    "concurrency": 1,
+    "max_model_len": 3072,
+    "NF4": true,
+    "compute_dtype": "bfloat16",
+    "KV_bytes": 536870912
+  },
+  "generation_backend": "WSL vLLM same frozen backbone for all conditions; distinct from Kaggle training CE backend",
+  "semantic_review": "pending; no automatic approval",
+  "human_approved": false,
+  "production_enabled": false,
+  "packages": {
+    "torch": "2.13.0",
+    "transformers": "5.23.0",
+    "vllm": "0.28.0",
+    "bitsandbytes": "0.50.2"
+  }
+}

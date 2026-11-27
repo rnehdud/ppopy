@@ -1,0 +1,215 @@
+{
+  "index": 10,
+  "row_id": "syn-sol-0220",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "skin.current_discomfort": {
+        "variable_id": "skin.current_discomfort",
+        "state": "known",
+        "value": "none",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "cleansing.steps": {
+        "variable_id": "cleansing.steps",
+        "state": "known",
+        "value": 1,
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손",
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "장 보고 손을 잠깐 물에 담금",
+          "같은 물을 떠서 얼굴 적심"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "외출 귀가 후 첫물"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "손과 얼굴에 같은 물 사용",
+          "현재 불편 없음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "손을 적신 물과 얼굴 첫물 분리",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-011",
+        "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+        "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+        "checked_on": "2026-11-25",
+        "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-011"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n손을 물에 잠깐 담그고 같은 물을 얼굴에 쓰는 것보다, 먼저 손을 따로 씻은 뒤 얼굴에 쓸 물을 받는 쪽으로 나눠 보세요.\n\n### 근거 및 이유\n일반 얼굴 세안은 손 씻기와 미지근한 물로 얼굴을 적시는 동작을 순서대로 설명해요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n같은 물을 이용했을 때 실제로 무엇이 얼마나 옮는지 측정한 경우는 아니에요. 세안제를 바꿔야 한다는 근거도 아니에요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0220",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "손과 얼굴을 같은 물로 세우고 있는 상황에서, 손과 얼굴에 오염물이 남아 있을 경우 피부에 가해지는 마찰을 줄이기 위해 미지근한 물을 사용하는 것이 중요해요. 현재 불편이 없고, 오염물 제거를 위한 세안 단계는 1회로 설정되어 있어요.\n\n질병관리청의 안내에 따르면, 얼굴을 씻을 때는 먼저 손에 묻은 오염물을 제거하고, 미지근한 물로 얼굴을 적신 후 거품을 내서 부드럽게 씻는 것이 권장돼요. 특히 피지가 많은 이마와 코 부터 시작해 부드럽게 문질러 닦는 것이 피부에 자극을 최소화하는 데 도움이 돼요. 헹굴 후에는 물기가 남아 있을 경우 수건으로 문지르기보다는 가볍게 눌러 닦는 것이 더 좋습니다.\n\n현재 손과 얼굴을 같은 물로 세우고 있는 점에서, 손에 묻은 오염물이 얼굴에 전이되지 않도록 하기 위해 손을 먼저 세운 후, 얼굴은 별도의 물을 적신 상태에서 세우는 것이 더 적절해요. 이는 손에 묻은 오염물이 얼굴에 전이되지 않도록 하며, 피부에 직접적인 마찰이나 자극을 줄이는 데 도움이 돼요.\n\n따라서 추천하는 루틴은 다음과 같아요:\n\n1. 손을 먼저 미지근한 물로 적신 후, 오염물을 제거하고 손을 건조시킵니다.  \n2. 손을 건조한 상태에서 얼굴을 미지근한 물로 적신 후, 거품을 내서 부드럽게 씻습니다.  \n3. 헹굴 후에는 가볍게 눌러 닦는 방식으로 피부를 마무리합니다.\n\n이 순서는 피부에 가해지는 마찰을 최소화하고, 오염물 제거를 효과적으로 수행하는 데 초점을 둔 일반적인 세안 방법이에요. 하루 세안 횟수나 특정 제품의 사용법은 개인의 피부 상태에 따라 달라질 수 있으니, 필요 시 피부 전문가와 상담하는 것이 좋습니다.",
+      "content_sha256": "8574750229ed0fa1c4a9b5113a59e4ec78f33660cba2af4bc7396d0578fe24ec",
+      "prompt_ids_sha256": "bb054f74d59c8635e9323a2b14687b57226bb431ef33a7d80209507e91fddc02",
+      "prompt_tokens": 947,
+      "generated_tokens": 550,
+      "finish_reason": "stop",
+      "latency_s": 12.442526619000034,
+      "timestamp_ms": 1795749281320,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0220",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n손을 잠깐 물에 담긴 건 손을 씻는 과정이고, 같은 물을 얼굴에 적신 건 얼굴을 씻는 과정이에요. 두 과정을 같은 물로 연결하지 않아요.\n\n### 근거 및 이유\n얼굴을 씻을 때는 손에 묻은 오염물을 먼저 제거하고, 미지근한 물로 얼굴을 적신 뒤에 씻는 순서를 살펴요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손을 잠깐 물에 담긴 시간과 얼굴에 적신 물의 온도는 확인되지 않았어요.",
+      "content_sha256": "2a4a3540cc36d37926d91d602bf70dc1d243d6d919803d9fc18c20b37f86a681",
+      "prompt_ids_sha256": "bb054f74d59c8635e9323a2b14687b57226bb431ef33a7d80209507e91fddc02",
+      "prompt_tokens": 947,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 4.626999971999965,
+      "timestamp_ms": 1795749288904,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0220",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n손을 잠깐 물에 담은 것과 얼굴을 적신 것은 같은 물이었어요. 손을 적신 물과 얼굴을 적신 첫물은 나눠서 보세요.\n\n### 근거 및 이유\n얼굴을 씻을 때는 손에 묻은 오염물을 먼저 씻고 미지근한 물로 얼굴을 적셔요 [ref:cleansing-011]. 물을 공유한 상황을 그대로 두지 않아도 돼요.\n\n### 확인이 필요한 한계\n손에 닿은 물의 온도나 얼굴에 남은 물의 양은 확인되지 않았어요. 손을 잠깐 담았다는 이유로 얼굴에 문제가 생겼다고 볼 수는 없어요.",
+      "content_sha256": "fbe26d7db54f54e7539cc1b26449c028aa1985f96cbbffbec4b8b294c9d3d633",
+      "prompt_ids_sha256": "bb054f74d59c8635e9323a2b14687b57226bb431ef33a7d80209507e91fddc02",
+      "prompt_tokens": 947,
+      "generated_tokens": 185,
+      "finish_reason": "stop",
+      "latency_s": 5.078262468999981,
+      "timestamp_ms": 1795749293984,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0220",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n손을 잠깐 물에 담은 것과 얼굴을 먼저 적신 것은 같은 물이었지만, 두 곳의 사용 순서를 나눠 적어 보세요. 손에 닿은 물을 얼굴에 쓴 것은 그대로 두지 않아요.\n\n### 근거 및 이유\n얼굴을 적실 때는 손에 묻은 오염물을 먼저 씻고 얼굴을 미지근한 물로 적시는 일반적인 방법이에요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 닿은 물의 온도나 얼굴에 남은 양은 확인되지 않았어요. 같은 물을 쓴다는 사실만으로 손과 얼굴의 불편을 비교할 수 없어요.",
+      "content_sha256": "23989f1f10064659d2e283be20168b647d138375d2fe7511bc33f6bf18ce8529",
+      "prompt_ids_sha256": "bb054f74d59c8635e9323a2b14687b57226bb431ef33a7d80209507e91fddc02",
+      "prompt_tokens": 947,
+      "generated_tokens": 184,
+      "finish_reason": "stop",
+      "latency_s": 4.875161101999993,
+      "timestamp_ms": 1795749298861,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0220",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n손을 잠깐 물에 담은 것과 얼굴을 먼저 적신 것은 같은 일이라도 나눠 적어 보세요. 손에 묻은 물을 얼굴에 쓴 것은 두 곳의 사용을 뜻하는 말이에요.\n\n### 근거 및 이유\n물로 얼굴을 적실 때는 손에 묻은 오염물을 먼저 씻는 흐름을 살펴요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 담은 물이 얼굴에 쓰인다는 뜻으로 두 곳의 세정 효과를 비교할 수는 없어요.",
+      "content_sha256": "614bfec4c4a8763ab6897e8f4cc72cdd69c3fcf22e7c308568ac443abe2c1049",
+      "prompt_ids_sha256": "bb054f74d59c8635e9323a2b14687b57226bb431ef33a7d80209507e91fddc02",
+      "prompt_tokens": 947,
+      "generated_tokens": 158,
+      "finish_reason": "stop",
+      "latency_s": 4.26931026799997,
+      "timestamp_ms": 1795749303133,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

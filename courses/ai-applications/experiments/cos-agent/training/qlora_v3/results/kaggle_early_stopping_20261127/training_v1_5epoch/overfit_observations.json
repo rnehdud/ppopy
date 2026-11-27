@@ -1,0 +1,21 @@
+{
+  "hypothesis": "epoch > 3 may overfit; not an established fact",
+  "delta_threshold": 0.01,
+  "comparisons": [
+    {
+      "epoch": 4,
+      "val_loss_change_vs_epoch3": 0.0683621519641262,
+      "train_eval_loss_change_vs_epoch3": -0.10889088383321277,
+      "heuristic_signal": true
+    },
+    {
+      "epoch": 5,
+      "val_loss_change_vs_epoch3": 0.12247146466249093,
+      "train_eval_loss_change_vs_epoch3": -0.13317601740273377,
+      "heuristic_signal": true
+    }
+  ],
+  "statistical_test_performed": false,
+  "validation_reused_for_selection": true,
+  "independent_test": false
+}

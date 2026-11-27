@@ -1,0 +1,208 @@
+{
+  "index": 18,
+  "row_id": "syn-sol-0228",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "팔",
+          "얼굴 검토"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "팔에 제품 사용 후 물로 헹굼"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "현재 팔에만 사용"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "얼굴 색조 제거는 시험 전"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "몸용 표시와 얼굴 색조 제거를 구별",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-body-use",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 몸에 사용하는 세정 젤, 물 헹굼 지시 확인. 얼굴과 색조 제거 표시는 없음.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-body-use@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n팔에 쓰고 물로 헹궜다는 경험은 그대로 보되 얼굴 색조 제거에 옮기지 않아요. 확인된 가상 표시에선 몸 세정용이고 얼굴이나 색조 제거 지시는 없어요.\n\n### 근거 및 이유\n젤 제형에서는 어떤 오염물을 제거하려는지와 헹굼 지시를 함께 보는 편이 실제 용도를 구분하는 데 도움이 돼요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n팔에서 씻어냈다는 사실로 얼굴 색조가 지워진다고 볼 수 없어요. 아직 얼굴에서 써 본 것도 아니에요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0228",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "팔에 사용한 제품은 몸에 사용하는 세정 젤로, 물로 헹굼을 권장하고 있습니다. 이 제품은 얼굴에 사용하거나 색조 제거를 위한 표시는 없습니다.  \n\n사용 후 물로 헹굼이 지시된 젤 제품은 일반적으로 피부 표면에 남은 오일이나 먼지를 제거하기 위해 설계되어 있으며, 얼굴이나 몸에 사용하는 데는 차이가 없음을 참고해보세요.  \n\n현재 팔에만 사용하고 있으며, 얼굴 색조 제거는 시험 전에 발생하지 않았습니다. 따라서 현재까지는 피부 색조 변화나 제거 효과는 관찰되지 않았습니다.  \n\n제품의 외관이나 점도는 사용 목적과 헹굼 지시를 확인하는 데 도움이 되지만, 점도만으로는 세정 효과를 판단하기 어렵습니다.  \n\n결론적으로, 현재 사용하는 제품은 몸에 사용하는 세정 젤이며, 얼굴에 사용하거나 색조 제거를 위한 제품이 아닙니다. 얼굴 색조 제거를 원한다면, 해당 제품에 대한 표시나 성분 정보가 명확히 기재된 제품을 사용하는 것이 필요합니다.  \n\n추가로, 피부 상태나 색조 변화에 대한 정확한 평가를 원하신다면, 피부 전문가와 상담하는 것이 좋습니다.",
+      "content_sha256": "ee211a7713e7980a08c11468dcf7869017154307c3cb77dbbbfa1752e60ca3c8",
+      "prompt_ids_sha256": "eb6b5043d3bc0cc8e4cf6107c5486ca056d2ec9505f59d72571dbfc5b5b9eed9",
+      "prompt_tokens": 920,
+      "generated_tokens": 322,
+      "finish_reason": "stop",
+      "latency_s": 7.4771550819999675,
+      "timestamp_ms": 1795749539910,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0228",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n팔에 쓴 제품은 몸용으로 물로 헹구는 지시가 있고, 얼굴 색조를 제거하는 표시는 없어요.\n\n### 근거 및 이유\n젤 형태의 클렌저는 사용 뒤 물로 헹구는 경우가 많아요 [ref:cleansing-004]. 제거 대상과 헹굼 지시를 함께 보는 게 맞아요.\n\n### 확인이 필요한 한계\n얼굴에 쓴다면 색조 제거를 보장하지는 않아요. 팔에 쓴 제품이 얼굴에 쓸 수 있는지는 확인되지 않았어요.",
+      "content_sha256": "5e4fb192affb152394ecbb04ffabdb956e00c1c66dac3d3b39feb7194d21a9c4",
+      "prompt_ids_sha256": "eb6b5043d3bc0cc8e4cf6107c5486ca056d2ec9505f59d72571dbfc5b5b9eed9",
+      "prompt_tokens": 920,
+      "generated_tokens": 157,
+      "finish_reason": "stop",
+      "latency_s": 4.460613911999985,
+      "timestamp_ms": 1795749544373,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0228",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n팔에 쓴 젤은 몸용 표시로 확인됐어요. 얼굴 색조를 지우는 표시는 아직 없어요.\n\n### 근거 및 이유\n젤의 점도와 제형은 제거 대상과 헹굼 지시를 함께 살펴야 해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n팔에서의 사용 경험을 얼굴 색조 제거 표시로 이어지지 않아요.",
+      "content_sha256": "59153483ec8d345b4123c17780d3d7c8b1cd5d9f8f83caf56e8ad3358ee17fe1",
+      "prompt_ids_sha256": "eb6b5043d3bc0cc8e4cf6107c5486ca056d2ec9505f59d72571dbfc5b5b9eed9",
+      "prompt_tokens": 920,
+      "generated_tokens": 118,
+      "finish_reason": "stop",
+      "latency_s": 3.4482188410000845,
+      "timestamp_ms": 1795749547823,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0228",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n팔에 쓴 가상 젤은 확인된 몸용 표시로 물 헹굼 지시가 있어요. 얼굴 색조 제거 표시는 아직 확인되지 않았어요.\n\n### 근거 및 이유\n젤의 점도와 외관은 제형 예시일 뿐, 사용 뒤 물로 헹구는 제품이면 제거 대상까지 함께 봐야 해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n팔에서의 사용 경험만으로 얼굴 색조 제거 성능을 판단할 수 없어요. 얼굴에 사용하려는 경우는 표시를 따로 확인해요.",
+      "content_sha256": "29cf7dfbc5ba43eb9eac0ded6c4f12540fb4b007ca66ffac053b65c9598abd66",
+      "prompt_ids_sha256": "eb6b5043d3bc0cc8e4cf6107c5486ca056d2ec9505f59d72571dbfc5b5b9eed9",
+      "prompt_tokens": 920,
+      "generated_tokens": 164,
+      "finish_reason": "stop",
+      "latency_s": 4.526085823000017,
+      "timestamp_ms": 1795749552351,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0228",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n현재 확인된 가상 젤은 팔에 쓰고 물로 헹구는 몸용 제품이에요. 얼굴 색조를 지울 수 있다는 표시는 아직 확인되지 않았어요.\n\n### 근거 및 이유\n젤의 점도는 제형 예시일 뿐, 사용 뒤 물로 헹구는 지시와 제거 대상은 별도로 봐야 해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n팔에서의 사용과 얼굴에서의 제거 성능은 다른 상황이에요. 얼굴 색조 제거를 시험한 결과로 보지 않아요.",
+      "content_sha256": "ca586b0ddbd0119a6cc11d3d28a357049bc54468c2e9430096629528c50adb2a",
+      "prompt_ids_sha256": "eb6b5043d3bc0cc8e4cf6107c5486ca056d2ec9505f59d72571dbfc5b5b9eed9",
+      "prompt_tokens": 920,
+      "generated_tokens": 167,
+      "finish_reason": "stop",
+      "latency_s": 8.471831084999963,
+      "timestamp_ms": 1795749560826,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

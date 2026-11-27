@@ -1,0 +1,208 @@
+{
+  "index": 20,
+  "row_id": "syn-sol-0230",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "코",
+          "얼굴 검토"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "얼굴 사용 전"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "처음 쓰기 전"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "코 번들거림이 신경 쓰임"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "젤 외관만으로 얼굴 세정 범위 판단",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-makeup-not-oil",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 물로 헹구는 얼굴용 리무버 젤. 가벼운 색조 제거 표시가 있고 피지 제거력은 확인되지 않음.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-makeup-not-oil@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n가상 표시에서 확인된 용도는 가벼운 얼굴 색조를 지우고 물로 헹구는 것이에요. 젤이라는 이유만으로 코의 번들거림에 더 알맞은 제품이라고 정하지 않아요.\n\n### 근거 및 이유\n젤처럼 보이는 제형을 구분할 때는 제거하려는 대상과 적힌 마무리를 살피는 게 좋아요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n아직 얼굴에 사용하지 않았고 코의 피지 제거력은 확인되지 않았어요. 한 가지 용도 표시로 얼굴 모든 부위에서의 성능을 보장하지 않아요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0230",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "코 번들거림이 신경 쓰이시는 상황에서, 현재 사용 중인 제품은 **젤처럼 보이는 리무버 젤**이며, 피지 제거력이나 색조 제거 효과는 확인되지 않았습니다. 또한, 사용 후 물로 헹구는 방식으로 설계된 제품입니다.\n\n제품 외관(젤처럼 보임)만으로는 피지 제거 효과나 코 번들거림 완화 여부를 판단하기 어렵습니다.  \n예를 들어, 젤 형태의 클렌저는 수용성 고분자나 계면활성제를 사용해 점도를 조절할 수 있지만, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있습니다. 이 경우 점도가 높아 보일 수 있으나, 외관보다는 **제품의 제거 대상**(예: 오일, 피지, 메이크업)과 **사용법**(물로 헹구는지, 헹구기 전에 사용하는지)을 살펴보는 것이 중요합니다.\n\n현재 사용 중인 제품은 메이크업 제거를 위한 리무버로 표시되어 있으나, 피지 제거력이나 코의 번들거림을 완화하는 효과는 **확인되지 않았습니다**. 따라서 코 번들거림이 심해지지 않도록 하기 위해서는, 피지 제거를 목적으로 하는 클렌저나, 피부의 수분 보호와 함께 코 주변을 관리할 수 있는 제품을 고려해 보시는 것이 좋습니다.\n\n👉 **추천 조치**:  \n- 현재 사용 중인 제품의 제거 대상과 사용법을 다시 확인해 보세요.  \n- 피지 제거를 목적으로 하는 클렌저(예: 피지 제거, 코 주변 세정)를 별도로 사용해 보는 것도 고려해 보시는 것이 좋습니다.  \n- 코 주변의 건조나 번들거림이 지속된다면, 피부 전문가와 상담을 받는 것이 좋습니다.\n\n> 참고: [ref:cleansing-004] - 젤 형태의 클렌저는 외관만으로는 제거 효과를 판단하기 어렵고, 제거 대상과 사용법이 핵심입니다.",
+      "content_sha256": "ee1e5756acc829932709edd7168e944e3decd98bb36283fdde8bf79289be7701",
+      "prompt_ids_sha256": "7ed5f6e6f8276c8513a719dbbbe1b33a1113a7f58e97f218db1165525723bc33",
+      "prompt_tokens": 925,
+      "generated_tokens": 530,
+      "finish_reason": "stop",
+      "latency_s": 11.433613235000053,
+      "timestamp_ms": 1795751069994,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0230",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n젤로 보이지만 얼굴에 쓰기 전에 코가 번들거리는 느낌이 있다면, 얼굴용으로 쓰는 범위를 먼저 살펴보세요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 점도를 내는 방식이 다양해요. 외관만으로 제거 대상과 사용법을 정할 수는 없어요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n제품의 피지 제거력은 확인되지 않았고, 코에서의 사용 반응은 확인된 점도가 아니에요.",
+      "content_sha256": "f567fd4b532cb29ad000ad3bba9b9162e6e30f6457703f31cd4ac8eb557bdc42",
+      "prompt_ids_sha256": "7ed5f6e6f8276c8513a719dbbbe1b33a1113a7f58e97f218db1165525723bc33",
+      "prompt_tokens": 925,
+      "generated_tokens": 147,
+      "finish_reason": "stop",
+      "latency_s": 3.83956333499998,
+      "timestamp_ms": 1795751073837,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0230",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n젤로 보이지만 얼굴에 쓰기 전에는 코 번들거림이 신경 쓰여요. 얼굴 표시를 확인한 뒤 코에 쓰는지와 코의 느낌을 나눠 보세요.\n\n### 근거 및 이유\n젤은 점도를 내는 방식이 다양해요. 외관이 젤처럼 보인다는 이유로 얼굴용인지, 피지 제거력이 있는지, 코에 쓸 수 있는지까지 확정하지 않아요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n이 제품의 얼굴 제거 범위는 확인되지 않았어요. 코에서 느낀 번들거림은 이 제품의 성능을 판단하는 자료로 삼지 않아요.",
+      "content_sha256": "e5ba020b58d57b35f5040c988e3787daf23457825342da456a2e743aea5720d7",
+      "prompt_ids_sha256": "7ed5f6e6f8276c8513a719dbbbe1b33a1113a7f58e97f218db1165525723bc33",
+      "prompt_tokens": 925,
+      "generated_tokens": 192,
+      "finish_reason": "stop",
+      "latency_s": 4.9288171429999466,
+      "timestamp_ms": 1795751078770,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0230",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n젤 외관만으로 얼굴에 쓰는지, 피지 제거력이 있는지 확정하지 않아요. 확인된 표시는 색조 제거용이에요.\n\n### 근거 및 이유\n젤은 수용성 고분자나 계면활성제 등 여러 방식으로 만들어질 수 있어요 [ref:cleansing-004]. 사용 뒤 헹구는 젤이면 제거 대상과 지시를 함께 확인해요.\n\n### 확인이 필요한 한계\n코에서의 번들거림은 확인되지 않았어요. 이 제품의 피지 제거력도 미상이에요.",
+      "content_sha256": "4c6ad6dd0ede4bf886cd90556f8f270202b04ccce32ed96b4e8b3f78a0834f74",
+      "prompt_ids_sha256": "7ed5f6e6f8276c8513a719dbbbe1b33a1113a7f58e97f218db1165525723bc33",
+      "prompt_tokens": 925,
+      "generated_tokens": 156,
+      "finish_reason": "stop",
+      "latency_s": 4.238767737999979,
+      "timestamp_ms": 1795751083012,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0230",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n젤 외관만 보고 얼굴에 쓴다면 색조 제거 표시는 확인됐지만 피지 제거력은 미상으로 두세요. 코가 번들거렸던 일은 그 제거력에 관한 관찰이 아니에요.\n\n### 근거 및 이유\n젤은 수용성 고분자나 계면활성제 등 여러 방식으로 만들어질 수 있고 점도가 높다고 오일 기반이라는 뜻도 아니에요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n이 제품의 피지 제거력은 확인되지 않았어요. 코에서 느낀 느낌만으로 피지 제거 성능을 판단하지 않아요.",
+      "content_sha256": "62d872e49b299a75fce32b0d1b8b4896390c6aaf277851e1e6939537261c7c4a",
+      "prompt_ids_sha256": "7ed5f6e6f8276c8513a719dbbbe1b33a1113a7f58e97f218db1165525723bc33",
+      "prompt_tokens": 925,
+      "generated_tokens": 171,
+      "finish_reason": "stop",
+      "latency_s": 4.624318073999916,
+      "timestamp_ms": 1795751087641,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

@@ -1,0 +1,208 @@
+{
+  "index": 11,
+  "row_id": "syn-sol-0221",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "얼굴 세안",
+          "되직한 젤을 발라 남김"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "세안 뒤 마지막 단계"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "점도 높게 느낌"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "점도로 보습용 여부 판단",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-thick-cleanse",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 얼굴 색조 제거용 젤. 사용 후 물로 헹굼.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-thick-cleanse@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n세안 마지막에 얼굴에 남겼던 제품은 가상 표시상 리무버 젤이에요. 되직한 느낌을 보습용으로 해석하지 말고 색조 제거 뒤 물로 헹구는 표시를 기준으로 해요.\n\n### 근거 및 이유\n젤은 점도를 만드는 방식이 여러 가지라 외관이나 질감만으로 제거 방법을 정하기 어려워요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n얼굴에 남겨 썼을 때의 반응은 확인되지 않았어요. 다른 젤도 모두 헹구는 제품이라고 일반화하지 않아요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0221",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "세안 후 젤을 발라 남김으로 인해 점도가 높은 느낌을 받고 있으며, 이는 사용 후 물로 헹구는 루틴의 마지막 단계로 진행되고 있습니다.  \n\n제품은 \"가상 제품\"으로, 얼굴 색조 제거용 젤로, 사용 후 물로 헹구는 방식으로 설계되어 있습니다. 점도가 높은 젤은 오일 기반의 구조를 가질 수도 있으나, 외관만으로는 세정력이나 보습 효과를 판단하기 어렵습니다.  \n\n따라서 점도가 높다고 느껴지는 젤은 보습용으로 보는 데는 한계가 있으며, **제품의 제거 대상과 헹굼 지시**가 더 중요한 요소로 작용합니다.  \n\n이 경우, 사용 후 물로 헹구는 젤이므로, 보습 효과를 기대하기보다는 **피부 표면의 오일과 색조 제거**에 초점을 맞추는 것이 적절합니다.  \n\n👉 **결론**: 점도가 높은 젤은 보습용으로 판단하기 어렵고, 제거 기능과 헹굼 지시를 기반으로 평가해야 합니다. 보습 효과를 기대하려면 보습 제품을 별도로 도입하는 것이 좋습니다.  \n\n> 참고: [ref:cleansing-004] – 젤의 점도는 외관만으로는 제한적이고, 제거 대상과 헹굼 지시가 핵심입니다.",
+      "content_sha256": "1e7c7c83e6212cae127edd045bc1098f952781fb6223303c90b01a9c76717efc",
+      "prompt_ids_sha256": "9773858e212c83269e526547491e724258f3bee457844de85234c37c65ccf8dc",
+      "prompt_tokens": 902,
+      "generated_tokens": 369,
+      "finish_reason": "stop",
+      "latency_s": 8.542087637000009,
+      "timestamp_ms": 1795749311692,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0221",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n점도가 높다고 해서 보습용이 아니라는 뜻은 아니에요. 가상 제품은 색조 제거용 젤로 표시돼요.\n\n### 근거 및 이유\n젤처럼 보이는 젤은 점도를 내는 방식이 다양해요. 점도가 높다고 해서 제거 대상이나 사용법을 정할 수는 없어요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n점도가 높다고 보습 성능이 낮다는 근거는 아니에요. 제품의 보습 성능은 확인되지 않았어요.",
+      "content_sha256": "9464e254b9a284b5b258ab0e04d6c92c8289720d5c537aea7f6ca23dea60cf02",
+      "prompt_ids_sha256": "9773858e212c83269e526547491e724258f3bee457844de85234c37c65ccf8dc",
+      "prompt_tokens": 902,
+      "generated_tokens": 153,
+      "finish_reason": "stop",
+      "latency_s": 4.270895579000012,
+      "timestamp_ms": 1795749315965,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0221",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n점도가 높다는 이유로 이 젤을 보습용으로 바꿔 쓰지 않아요. 얼굴 색조 제거용으로 확인된 젤이에요.\n\n### 근거 및 이유\n젤의 점도는 제형을 만드는 방식과 관련될 수 있지만, 점도 자체로 보습용인지 판단하지는 않아요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n이 제품의 보습 성능은 확인되지 않았어요. 점도가 낮은 보습용 젤과 같은 제품도 아니에요.",
+      "content_sha256": "a4aac40983cd47c15e973f7575af68c32fe7e3ba48ea30407046aa7c4b16a9ce",
+      "prompt_ids_sha256": "9773858e212c83269e526547491e724258f3bee457844de85234c37c65ccf8dc",
+      "prompt_tokens": 902,
+      "generated_tokens": 145,
+      "finish_reason": "stop",
+      "latency_s": 4.064434656000003,
+      "timestamp_ms": 1795749322982,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0221",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n점도가 높다는 사실만으로 보습용으로 바꿔 쓸 수 있다고 보지 않아요. 확인된 가상 제품은 얼굴 색조 제거용 젤이에요.\n\n### 근거 및 이유\n젤의 점도는 제형 구성에 따라 달라질 수 있고, 교육 자료의 예시도 사용 뒤 물로 헹구도록 표시해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n현재 표시는 제거용으로 확인됐고, 점도만으로 보습 성능을 알 수 없어요.",
+      "content_sha256": "b0aa6779d0ee79ca10c90253e40fdf15da7ea8744a48cb163acacd86645ddc7d",
+      "prompt_ids_sha256": "9773858e212c83269e526547491e724258f3bee457844de85234c37c65ccf8dc",
+      "prompt_tokens": 902,
+      "generated_tokens": 149,
+      "finish_reason": "stop",
+      "latency_s": 4.158625401000052,
+      "timestamp_ms": 1795749327143,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0221",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n점도가 높다는 사실로 가상 젤의 보습용으로 바꿀 수는 없어요. 확인된 용도와 헹굼 지시를 기준으로 둘지어요.\n\n### 근거 및 이유\n젤의 점도는 제형 구성에 따라 달라질 수 있고, 교육 자료의 예시도 사용 뒤 물로 헹구도록 설계한 경우예요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n사용한 젤은 색조 제거용이에요. 점도만으로 보습 성능이나 다른 용도를 판단할 수 없어요.",
+      "content_sha256": "fb2ae0eff5a98acda0c7aaf668ec65077748199f533c8e27e6e05589b88e7bb9",
+      "prompt_ids_sha256": "9773858e212c83269e526547491e724258f3bee457844de85234c37c65ccf8dc",
+      "prompt_tokens": 902,
+      "generated_tokens": 161,
+      "finish_reason": "stop",
+      "latency_s": 4.446681919000014,
+      "timestamp_ms": 1795749331592,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

@@ -1,0 +1,191 @@
+{
+  "index": 25,
+  "row_id": "syn-sol-0445",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "routine.goal": {
+        "variable_id": "routine.goal",
+        "state": "known",
+        "value": "닦아내기와 씻어내기를 별개로 확인",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "syn-s2-m-0445",
+        "version": "fixture-1",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "합성 제품 자료: 클렌징 로션, 화장솜으로 닦아내기만 표시. 물 헹굼 단계는 기재되지 않음."
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:moisturizing-006",
+        "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+        "checked_on": "2026-11-24",
+        "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+      },
+      {
+        "evidence_ref": "ref:moisturizing-008",
+        "text": "얼굴에 쓰는 화장수는 외관이나 묽기보다 사용 목적에서 차이가 난다. 유연화장수는 각질층에 수분과 보습 성분을 공급해 부드러운 사용감을 주는 목적으로 설명된다. 반면 세정용 화장수는 가벼운 화장이나 오염물을 제거하기 위한 제품이며 계면활성제 등이 쓰일 수 있다. 화장수가 투명한지 불투명한지로 역할을 추측하기보다 제품에 적힌 용도를 확인해야 세정 단계와 보습 단계를 구분할 수 있다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 pp.99–100, 화장수의 세부 유형",
+        "checked_on": "2026-11-24",
+        "limitations": "화장수의 용도를 구분하기 위한 설명이다. 표시된 사용 목적을 먼저 확인한다."
+      },
+      {
+        "evidence_ref": "ref:storage_label-006",
+        "text": "혼합이 끝난 염모액에서는 가스가 발생할 수 있어 뚜껑을 닫아 두면 용기 안의 압력이 올라가 파손될 수 있다. 남은 혼합액은 바로 버리고 용기를 버릴 때도 뚜껑을 열어 두라는 지시가 이 상황에 해당한다. 반면 아직 혼합하지 않은 액은 공기와의 접촉 및 직사광선을 피하고 서늘한 곳에 보관하도록 표시한다. 같은 염모제라도 혼합 전후에는 보관 행동이 정반대가 될 수 있어 남은 액의 상태를 먼저 구분해야 한다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=167863671",
+        "locator": "별표 1 제2호 가목 11) 마) (1)~(3), 염모제 보관 및 취급",
+        "checked_on": "2026-11-24",
+        "limitations": "산화·비산화 염모제의 국내 표시다. 두 액이 이미 섞였는지 확인해야 한다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:moisturizing-006",
+      "ref:moisturizing-008"
+    ],
+    "distractor_refs": [
+      "ref:storage_label-006"
+    ]
+  },
+  "reference_teacher_answer": "### 핵심 안내\n‘화장솜으로 닦아내기’는 확인된 지시예요. ‘바르고 두기’로 바꾸거나 물 헹굼까지 자동으로 추가하지 않아요.\n\n### 근거 및 이유\n세정용 로션인지 남기는 로션인지, 그리고 어떤 방식으로 제거하는지를 포장 용법으로 판단해요 [ref:moisturizing-006].\n\n### 확인이 필요한 한계\n자료에는 물로 헹구라는 단계가 확인되지 않았어요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0445",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "물론입니다. 아래는 근거 기반으로 작성된, 사용자 맥락과 제품 정보, 참고 문헌을 종합한 자연스럽고 친절한 스킨케어 안내입니다.\n\n---\n\n안녕하세요, 스킨케어 루틴에 도움이 되는 정보를 드립니다.\n\n당신이 현재 확인하고 있는 목표는 **\"닦아내기와 씻어내기를 별개로 확인\"** 이라고 말씀하셨고, 이에 따라 제품의 용도를 정확히 파악하는 것이 중요해요.\n\n현재 확인된 제품은 **클렌징 로션**이며, 이는 **화장솜으로 닦아내기만을 위한 제품**으로 표시되어 있습니다. 물 헹굼 단계는 기재되지 않았습니다.\n\n이런 상황에서 다음을 참고해 보세요:\n\n- 로션은 보습용이든 세정용이든, 원료는 비슷할 수 있지만 **용도와 사용 목적**이 달라요.  \n  예를 들어, **세정용 로션**은 오염물이나 메이크업을 제거하기 위한 목적을 가지고 있으며, 계면활성제가 포함될 수 있습니다. 반면, **보습용 로션**은 피부에 수분과 보습 성분을 공급하는 데 초점을 맞춥니다.  \n  따라서 **제품 포장에 적힌 용도**를 반드시 확인해 주세요.\n\n- 현재 사용 중인 제품은 \"클렌징 로션\"으로, **화장솜으로 닦아내기만을 위한 제품**이므로, **물로 씻는 단계는 포함되지 않습니다**.  \n  즉, 오염물을 닦아내는 단계는 로션을 사용하는 것이고, 그 이후에 물로 헹구는 단계는 따로 존재하지 않는다는 뜻이에요.\n\n👉 따라서, 이 제품을 사용할 때는 **화장솜으로 닦아내는 단계만 수행**하고, **물로 씻는 단계는 생략**하는 것이 맞습니다.\n\n이처럼 **용도를 포장에 명시된 정보로 판단**하는 것이 중요해요.  \n제품이 \"세정용\"인지, \"보습용\"인지, \"오염물 제거용\"인지 등을 확인하면, 닦아내기와 씻어내기의 구분이 명확해집니다.\n\n---\n\n📌 참고 문헌:  \n- [ref:moisturizing-006] – 로션의 용도와 유형에 대한 설명  \n- [ref:moisturizing-008] – 화장수의 세부 유형과 사용 목적을 구분하는 방법  \n\n> 💡 팁: 화장수의 투명도나 질감만으로 용도를 판단하기보다는, **제품 포장에 적힌 용도**를 첫 번째로 확인해 주세요.\n\n---\n\n이제까지의 정보는 **용도를 기반으로 한 정확한 사용 방식**을 도와주는 데 초점을 맞추고 있습니다.  \n다음 단계에 대한 질문이나, 다른 제품에 대한 확인이 필요하시면 언제든지 말씀해 주세요! 😊\n\n--- \n\n(※ 보관 관련 문헌은 이 루틴과 직접적인 관련이 없으므로, 사용하지 않음)",
+      "content_sha256": "8f1e738356abdb902a1f1b03b8155d8a162de25a89cc6df3f624a3a4a54e18b3",
+      "prompt_ids_sha256": "120cd83d3efd0af695066cd379b688f6bc14bba47b1bb9a64ab3808fd00b9c4b",
+      "prompt_tokens": 1356,
+      "generated_tokens": 760,
+      "finish_reason": "stop",
+      "latency_s": 47.767126683000015,
+      "timestamp_ms": 1795751238251,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0445",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n화장솜으로 닦아내는 로션은 물로 씻는 단계가 아니에요. 로션의 용도를 확인해 두 단계를 나눠 보세요.\n\n### 근거 및 이유\n로션은 보습용과 세정용으로 구분할 수 있어 포장에 적힌 용도를 함께 살펴야 해요 [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 로션의 사용 목적은 확인됐지만 물로 씻는지 여부는 미상이에요.",
+      "content_sha256": "114098e6532bae0ebfc194653fd82fd7607c8994d17d036a166fc4ef5a232ea6",
+      "prompt_ids_sha256": "120cd83d3efd0af695066cd379b688f6bc14bba47b1bb9a64ab3808fd00b9c4b",
+      "prompt_tokens": 1356,
+      "generated_tokens": 134,
+      "finish_reason": "stop",
+      "latency_s": 3.1140718310000466,
+      "timestamp_ms": 1795751241367,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0445",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n화장솜으로 닦아내는 로션과 물로 헹구는 로션은 별개로 봐요. 이 로션의 표시는 닦아내기 단계예요.\n\n### 근거 및 이유\n로션은 보습용과 세정용으로 목적을 나눌 수 있고, 같은 이름이 다른 용도를 가질 수 있어요 [ref:moisturizing-006] [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n물로 헹구는 단계는 이 자료에 확인되지 않았어요. 로션의 유형이나 제거 여부를 추정하지 않아요.",
+      "content_sha256": "5add6ef8fd5167ab0723c993afc4974decce9bf84178c1620752618e05fcd77d",
+      "prompt_ids_sha256": "120cd83d3efd0af695066cd379b688f6bc14bba47b1bb9a64ab3808fd00b9c4b",
+      "prompt_tokens": 1356,
+      "generated_tokens": 162,
+      "finish_reason": "stop",
+      "latency_s": 6.180279196000015,
+      "timestamp_ms": 1795751247549,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0445",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n화장솜으로 닦아내는 것과 물로 헹구는 것은 달라요. 로션 표시에서 닦아내기만 확인됐다면 헹굼은 따로 보지 않아요.\n\n### 근거 및 이유\n로션은 보습용과 세정용으로 목적을 나눌 수 있고, 닦아내는 것과 헹구는 것은 다른 사용 방식이에요 [ref:moisturizing-006] [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 로션의 물 헹굼 단계는 확인되지 않았어요. 헹구는 것이 필요하다는 뜻은 아니에요.",
+      "content_sha256": "b5e54798d7ae4e956c2faba9072895530c828062275f025703bdd0f699b88821",
+      "prompt_ids_sha256": "120cd83d3efd0af695066cd379b688f6bc14bba47b1bb9a64ab3808fd00b9c4b",
+      "prompt_tokens": 1356,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 3.839277518000017,
+      "timestamp_ms": 1795751251390,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0445",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n화장솜으로 닦아내는 것과 물로 헹구는 것은 별개의 표시를 확인하는 단계예요. 로션의 사용 지시를 기준으로 둬요.\n\n### 근거 및 이유\n로션은 보습용과 세정용으로 목적도 달라지며, 제품마다 닦아내고 헹구는 방법이 다를 수 있어요 [ref:moisturizing-006] [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 로션에는 물 헹굼이 필요하다는 표시가 확인되지 않았어요. 헹굼이 필요하다는 결론은 내리지 않아요.",
+      "content_sha256": "44c733d695e73ea6bacf60a04eebd7e804c4ff295b882d53bd4da901627d8fa6",
+      "prompt_ids_sha256": "120cd83d3efd0af695066cd379b688f6bc14bba47b1bb9a64ab3808fd00b9c4b",
+      "prompt_tokens": 1356,
+      "generated_tokens": 171,
+      "finish_reason": "stop",
+      "latency_s": 6.328135416999999,
+      "timestamp_ms": 1795751257720,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

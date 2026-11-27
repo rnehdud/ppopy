@@ -1,0 +1,208 @@
+{
+  "index": 3,
+  "row_id": "syn-sol-0213",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "cleansing.steps": {
+        "variable_id": "cleansing.steps",
+        "state": "known",
+        "value": 0,
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손",
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "손등 크림을 손바닥으로 펴 바름",
+          "손을 헹구지 않고 얼굴 적심"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "핸드크림 직후"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "현재 불편 없음",
+          "물세수만 함"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "손에 크림이 남은 경우",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-011",
+        "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+        "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+        "checked_on": "2026-11-25",
+        "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-011"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n손바닥에 크림을 펴 바른 직후라면, 그 손으로 얼굴에 물을 대기 전에 손을 먼저 씻는 쪽으로 나눠 보세요. 얼굴에 세안제를 꼭 추가하라는 뜻은 아니에요.\n\n### 근거 및 이유\n손에 묻은 것을 먼저 씻고 난 뒤 얼굴을 적시는 순서를 일반 안내에서 제시해요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손의 크림이 얼굴에 얼마나 옮겨갔는지는 확인되지 않았어요. 크림이 남았다는 사실만으로 얼굴 상태를 판정하지 않아요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0213",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "손등 크림을 손바닥으로 펴 바른 후 얼굴을 세우기 전에 손을 헹구지 않은 상태에서 얼굴 적심을 사용하고 있다는 점을 고려해보면, 피부에 남은 오염물이나 크림 성분이 얼굴에 전이될 수 있습니다.  \n\n현재는 물세수만을 하고 있으며, 손에 크림이 남아 있는 경우를 목표로 하고 있으므로, 손을 헹구고 다시 손을 씻은 후에 얼굴을 세우는 것이 피부에 더 건강한 환경을 제공할 수 있습니다.  \n\n질병관리청의 안내에 따르면, 얼굴을 씻을 때는 먼저 손에 묻은 오염물을 제거하고, 미지근한 물로 얼굴을 적신 후 거품을 내서 부드럽게 씻는 것이 권장됩니다. 이 과정은 피부에 마찰을 줄이고 오염물을 효과적으로 제거하는 데 초점을 둡니다.  \n\n따라서, 다음 순서를 추천드립니다:  \n1. 손을 헹구고, 손바닥에 크림을 펴 바른 후 손을 다시 씻습니다.  \n2. 손을 씻은 후, 미지근한 물로 얼굴을 적신 다음, 거품을 내서 부드럽게 씻습니다.  \n3. 물기가 남으면 가볍게 눌러 닦는 것이 좋습니다.  \n\n이렇게 하면 손에 남은 크림 성분이 얼굴에 전이되지 않으며, 피부에 가해지는 마찰도 최소화됩니다.  \n\n> 참고: [질병관리청, 건강한 피부 관리 방법](https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72) (2026-11-25)  \n> ※ 이 안내는 일반적인 얼굴 세안을 위한 권고이며, 개인의 피부 상태나 사용 제품에 따라 조정이 필요할 수 있습니다.  \n\n필요 시 피부 전문가와 상담을 권장합니다.",
+      "content_sha256": "a5fd7b21b64e3c06b4445678bad14e3422dab50d5f386c4d73228cd93112e202",
+      "prompt_ids_sha256": "ead67f26f7528c6cd5703480b212e3f1410a5296c1abf0087f78b541c52d65b3",
+      "prompt_tokens": 904,
+      "generated_tokens": 522,
+      "finish_reason": "stop",
+      "latency_s": 10.615132071000005,
+      "timestamp_ms": 1795749052690,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0213",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n손등 크림을 바른 뒤 손을 헹구지 않고 얼굴을 씻는다면, 손에 남은 크림이 얼굴에 묻는 것과는 별도로 봐요.\n\n### 근거 및 이유\n손에 묻은 오염물을 제거하는 방법은 손을 씻는 것과 얼굴을 씻는 것에서 다를 수 있어요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 남은 크림이 얼굴에 묻는지는 확인되지 않았어요. 손을 헹구지 않아도 얼굴에 남는다는 근거는 없어요.",
+      "content_sha256": "f43867bb88ee80197c14079bf65062aa001997785d296bef32e400757953c711",
+      "prompt_ids_sha256": "ead67f26f7528c6cd5703480b212e3f1410a5296c1abf0087f78b541c52d65b3",
+      "prompt_tokens": 904,
+      "generated_tokens": 166,
+      "finish_reason": "stop",
+      "latency_s": 4.0230002879999915,
+      "timestamp_ms": 1795749056715,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0213",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n손등 크림을 바른 뒤 얼굴을 헹군 것은 그대로 두고, 손에 남은 크림이 얼굴에 이어졌다고 보지는 않아요. 손에 남은 크림이 얼굴에 이어졌다는 근거는 없어요.\n\n### 근거 및 이유\n손에 묻은 오염물을 얼굴에 이어지지 않게 하려는 일반 세안 안내예요 [ref:cleansing-011]. 손에 남은 크림이 얼굴에 이어졌다는 증거는 따로 확인되지 않았어요.\n\n### 확인이 필요한 한계\n손에 남은 크림이 얼굴에 이어졌다는 근거는 없어요. 손에 남은 크림이 얼굴에 이어졌다는 증거는 없어요.",
+      "content_sha256": "50eb977346ac0945085d14d7068062b737da3b92f50e122c6ce7eb5175d12c6b",
+      "prompt_ids_sha256": "ead67f26f7528c6cd5703480b212e3f1410a5296c1abf0087f78b541c52d65b3",
+      "prompt_tokens": 904,
+      "generated_tokens": 195,
+      "finish_reason": "stop",
+      "latency_s": 4.675454655999971,
+      "timestamp_ms": 1795749061392,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0213",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n손등 크림을 바른 뒤 얼굴에 남기는 크림을 구분해요. 손에 남기는 양이 많아지면 손을 헹구는 단계를 볼 수 있어요.\n\n### 근거 및 이유\n손으로 얼굴을 씻을 때는 손에 묻은 물을 먼저 제거하는 방식이 일반 안내예요 [ref:cleansing-011]. 손에 남기는 양은 별도로 봐요.\n\n### 확인이 필요한 한계\n손에 남은 양을 확인할 자료가 없으니 그 양이 얼굴에 이어갔다고 보지 않아요. 현재 불편하지 않다는 점도 그대로 봐요.",
+      "content_sha256": "00b172cb5fe1562118abe10e045f14bb8587a161ce300bc9e9c3d109af875723",
+      "prompt_ids_sha256": "ead67f26f7528c6cd5703480b212e3f1410a5296c1abf0087f78b541c52d65b3",
+      "prompt_tokens": 904,
+      "generated_tokens": 181,
+      "finish_reason": "stop",
+      "latency_s": 4.16175128499998,
+      "timestamp_ms": 1795749065556,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0213",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n손등 크림을 손바닥으로 펴 발랐고 얼굴 적심을 햇갈렸다고 하셨어요. 손에 남은 크림이 얼굴에 닿은 것이 아니라는 점은 그대로 봐요.\n\n### 근거 및 이유\n일반적인 얼굴 세안은 손에 묻은 것을 제거하고 미지근한 물로 헹구는 방식이에요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 남은 양과 얼굴에 닿은 양은 구분돼요. 크림이 얼굴에 남았는지까지는 확인되지 않았어요.",
+      "content_sha256": "920ba5a011060216105311b499cbd43edfa5832f91259ad3bc5c5669d402aab7",
+      "prompt_ids_sha256": "ead67f26f7528c6cd5703480b212e3f1410a5296c1abf0087f78b541c52d65b3",
+      "prompt_tokens": 904,
+      "generated_tokens": 163,
+      "finish_reason": "stop",
+      "latency_s": 4.128877887000044,
+      "timestamp_ms": 1795749069687,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

@@ -1,0 +1,233 @@
+{
+  "status": "INCOMPLETE — no final sweet spot conclusion",
+  "reviewed_answers": 133,
+  "target_answers": 450,
+  "paired_cases_generated": 27,
+  "review_scope": "Local WSL vLLM NF4/BF16 replay of actual Kaggle v2 weights; NOT Kaggle T4 output review",
+  "fully_paired_cases_reviewed": 26,
+  "partial_cases": 1,
+  "actual_semantic_reader": "Codex direct raw reading, not human or cross-model approval",
+  "source_manifest": {
+    "checked": 27,
+    "failed": []
+  },
+  "human_approved": false,
+  "loss_best_epoch": 2,
+  "caveats": [
+    "Same 90 validation cases are used for model selection; not independent test results.",
+    "Epochs 1–4 are actual Kaggle v2 adapters; epoch 5 was not trained in this run.",
+    "Newly replayed outputs on WSL vLLM NF4/BF16, not original Kaggle FP16 generation logs.",
+    "All conditions use the same serving profile; this does not isolate quantization/precision effects.",
+    "Cases are clustered in scenario families; row counts are not independent scenario counts.",
+    "PASS means no issue found under the recorded rubric, not proof of safety or human approval.",
+    "FAIL includes separately reported utility and citation-format defects, not only logical contradictions."
+  ],
+  "per_model": [
+    {
+      "model": "kaggle-base",
+      "reviewed": 27,
+      "PASS": 2,
+      "FAIL": 25,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 23,
+      "utility_or_format_only_FAIL": 2,
+      "categories": {
+        "unsupported_guarantee": 2,
+        "citation_format": 2,
+        "unsupported_action": 4,
+        "citation_missing": 13,
+        "unsupported_mechanism": 1,
+        "input_reversal": 2,
+        "fact_distortion": 7,
+        "contradictory_guidance": 1,
+        "label_reversal": 2,
+        "source_distortion": 1,
+        "source_overgeneralization": 3,
+        "unsupported_normality": 1,
+        "invented_duration": 1,
+        "unsupported_equivalence": 1,
+        "known_label_ignored": 1,
+        "unknown_to_absent": 1,
+        "distractor_mention": 1,
+        "intent_to_actual": 1
+      },
+      "modes": {
+        "solution": {
+          "PASS": 2,
+          "FAIL": 25
+        },
+        "hold": {}
+      }
+    },
+    {
+      "model": "kaggle-epoch-1",
+      "reviewed": 27,
+      "PASS": 8,
+      "FAIL": 19,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 16,
+      "utility_or_format_only_FAIL": 3,
+      "categories": {
+        "fact_distortion": 3,
+        "incoherent_guidance": 1,
+        "internal_contradiction": 1,
+        "missing_required_guidance": 4,
+        "source_mismatch": 2,
+        "contradictory_guidance": 2,
+        "known_to_unknown": 2,
+        "source_overgeneralization": 3,
+        "known_label_ignored": 1,
+        "citation_scope_mismatch": 2,
+        "source_distortion": 1
+      },
+      "modes": {
+        "solution": {
+          "FAIL": 19,
+          "PASS": 8
+        },
+        "hold": {}
+      }
+    },
+    {
+      "model": "kaggle-epoch-2",
+      "reviewed": 27,
+      "PASS": 15,
+      "FAIL": 12,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 11,
+      "utility_or_format_only_FAIL": 1,
+      "categories": {
+        "fact_distortion": 2,
+        "incoherent_guidance": 1,
+        "missing_required_guidance": 4,
+        "repetition": 1,
+        "source_mismatch": 1,
+        "known_to_unknown": 5,
+        "contradictory_guidance": 1,
+        "incoherence": 1,
+        "invented_comparison": 1,
+        "internal_contradiction": 1
+      },
+      "modes": {
+        "solution": {
+          "FAIL": 12,
+          "PASS": 15
+        },
+        "hold": {}
+      }
+    },
+    {
+      "model": "kaggle-epoch-3",
+      "reviewed": 26,
+      "PASS": 12,
+      "FAIL": 14,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 13,
+      "utility_or_format_only_FAIL": 1,
+      "categories": {
+        "fact_distortion": 2,
+        "contradictory_guidance": 1,
+        "invented_product": 1,
+        "source_distortion": 4,
+        "invented_context": 1,
+        "source_mismatch": 1,
+        "incoherence": 1,
+        "wrong_sequence": 1,
+        "label_site_distortion": 1,
+        "missing_required_guidance": 2,
+        "unsupported_action": 1,
+        "source_overgeneralization": 1,
+        "known_to_unknown": 2,
+        "citation_scope_mismatch": 1,
+        "product_type_distortion": 1,
+        "internal_contradiction": 1
+      },
+      "modes": {
+        "solution": {
+          "FAIL": 14,
+          "PASS": 12
+        },
+        "hold": {}
+      }
+    },
+    {
+      "model": "kaggle-epoch-4",
+      "reviewed": 26,
+      "PASS": 11,
+      "FAIL": 14,
+      "UNCERTAIN": 1,
+      "logical_or_source_FAIL": 12,
+      "utility_or_format_only_FAIL": 2,
+      "categories": {
+        "missing_required_guidance": 4,
+        "source_distortion": 1,
+        "unknown_to_absent": 1,
+        "fact_distortion": 2,
+        "internal_contradiction": 2,
+        "known_to_unknown": 1,
+        "ambiguous_sequence": 1,
+        "contradictory_guidance": 2,
+        "label_site_distortion": 1,
+        "source_mismatch": 1,
+        "invented_product_identity": 1,
+        "label_purpose_reversal": 1,
+        "product_type_distortion": 1
+      },
+      "modes": {
+        "solution": {
+          "FAIL": 14,
+          "PASS": 11,
+          "UNCERTAIN": 1
+        },
+        "hold": {}
+      }
+    }
+  ],
+  "balanced_per_model": [
+    {
+      "model": "kaggle-base",
+      "cases": 26,
+      "PASS": 2,
+      "FAIL": 24,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 22,
+      "utility_or_format_only_FAIL": 2
+    },
+    {
+      "model": "kaggle-epoch-1",
+      "cases": 26,
+      "PASS": 7,
+      "FAIL": 19,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 16,
+      "utility_or_format_only_FAIL": 3
+    },
+    {
+      "model": "kaggle-epoch-2",
+      "cases": 26,
+      "PASS": 14,
+      "FAIL": 12,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 11,
+      "utility_or_format_only_FAIL": 1
+    },
+    {
+      "model": "kaggle-epoch-3",
+      "cases": 26,
+      "PASS": 12,
+      "FAIL": 14,
+      "UNCERTAIN": 0,
+      "logical_or_source_FAIL": 13,
+      "utility_or_format_only_FAIL": 1
+    },
+    {
+      "model": "kaggle-epoch-4",
+      "cases": 26,
+      "PASS": 11,
+      "FAIL": 14,
+      "UNCERTAIN": 1,
+      "logical_or_source_FAIL": 12,
+      "utility_or_format_only_FAIL": 2
+    }
+  ]
+}

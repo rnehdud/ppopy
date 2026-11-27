@@ -1,0 +1,215 @@
+{
+  "index": 4,
+  "row_id": "syn-sol-0214",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "skin.current_discomfort": {
+        "variable_id": "skin.current_discomfort",
+        "state": "known",
+        "value": "none",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "cleansing.steps": {
+        "variable_id": "cleansing.steps",
+        "state": "known",
+        "value": 0,
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손",
+          "이마"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "헤어 왁스 정리",
+          "왁스 묻은 손으로 이마부터 헹굼"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "헤어 손질 직후"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "손에 왁스",
+          "지금 피부 불편 없음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "이마를 씻기 전 손 세정",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-011",
+        "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+        "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+        "checked_on": "2026-11-25",
+        "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-011"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n왁스를 만진 직후엔 손부터 씻고 나서 그 손으로 이마를 헹궈 보세요. 머리 손질에서 얼굴 씻기로 넘어가는 시점에 순서를 바꾸면 돼요.\n\n### 근거 및 이유\n일상 세안은 손에 묻은 물질을 먼저 씻는 과정에서 시작해요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n왁스가 이마에 실제 얼마나 묻었는지나 개인 반응은 확인되지 않았어요. 세안 단계 수를 늘려야 한다는 근거도 아니에요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0214",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "손에 왁스가 묻어 있는 상황에서 이마를 씻기 전 손을 세정하는 데는 다음과 같은 점을 참고해보세요.\n\n먼저, 손에 묻은 왁스를 제거하기 전에 손을 세정하는 것이 중요해요. 왁스는 피부에 직접적으로 닿을 경우 피부 표면의 오염물과 함께 피지, 먼지 등을 함께 제거하는 데 도움이 되며, 이로 인해 피부에 마찰이나 자극이 줄어들 수 있어요.  \n\n이마를 씻기 전에 손을 세우는 순서는 다음과 같아요:  \n1. 손에 묻은 왁스를 먼저 제거합니다.  \n2. 손을 미지근한 물로 적신 후, 피지가 많은 이마와 코 부근부터 부드럽게 씻는 방식으로 세안을 진행합니다.  \n3. 세안 후에는 물기가 남아 있을 경우, 수건으로 문지르기보다는 가볍게 눌러 닦는 것이 피부에 가해지는 마찰을 줄이는 데 도움이 됩니다.  \n\n이 순서는 피부를 세게 문질러 닦는 것이 아니라, 오염물 제거와 피부 자극을 최소화하는 데 초점을 둔 일반적인 세안 방법이에요.  \n\n현재 피부 불편이 없고, 이마를 씻기 전 손을 세정하는 것이 목표라면, 위의 절차를 따르시면 피부에 부담을 줄일 수 있어요.  \n\n※ 참고: 질병관리청의 안내(https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72)에 따르면, 이 방법은 일반적인 얼굴 세안을 위한 가이드라인으로, 하루 세안 횟수나 특정 제품의 사용법은 개인 상황에 따라 달라질 수 있다는 점을 참고해주세요.",
+      "content_sha256": "b463c016960d94f05bcef3d8d03243a4d955128e2aa581491e7b9adb36de5621",
+      "prompt_ids_sha256": "3f6801eb4fe4dfede3642beb0009475e2ee276a7d478e50c858e1ca795a89fe0",
+      "prompt_tokens": 939,
+      "generated_tokens": 489,
+      "finish_reason": "stop",
+      "latency_s": 10.092639755999983,
+      "timestamp_ms": 1795749082751,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0214",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n손에 남은 왁스를 먼저 씻고, 이마를 씻기 전에 손을 적신 뒤 이마를 씻는 순서로 바꿔 보세요.\n\n### 근거 및 이유\n손에 묻은 오염물은 먼저 제거하고 얼굴을 씻는 데 필요한 물을 준비하는 것이 일반적인 방법이에요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n이마를 씻기 전에 손을 씻는 것이 이마의 피부 상태를 개선한다는 근거는 아니에요.",
+      "content_sha256": "8dee58ff9cb17b5e22e4534f927e8e0b9dfff260678bcff576daddb88db1df98",
+      "prompt_ids_sha256": "3f6801eb4fe4dfede3642beb0009475e2ee276a7d478e50c858e1ca795a89fe0",
+      "prompt_tokens": 939,
+      "generated_tokens": 148,
+      "finish_reason": "stop",
+      "latency_s": 3.7535058879999497,
+      "timestamp_ms": 1795749086506,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0214",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n손에 왁스가 묻어 있는 상황은 이마를 씻기 전에 손을 먼저 씻는 쪽이 맞아요. 헹굼 직후의 불편이 없었다는 점은 그대로 봐요.\n\n### 근거 및 이유\n손에 오염이 남아 있을 때 얼굴을 씻는 순서는 얼굴에 먼저 닿는 부위를 살피는 게 맞아요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n이마에 왁스가 묻었는지, 손에 남은 양이 얼굴에 미친 영향이 있는지는 확인되지 않았어요.",
+      "content_sha256": "11968d38117fab3152b6c425e70bf00d3ff75bafdde5799c5268c7e350fe93a0",
+      "prompt_ids_sha256": "3f6801eb4fe4dfede3642beb0009475e2ee276a7d478e50c858e1ca795a89fe0",
+      "prompt_tokens": 939,
+      "generated_tokens": 166,
+      "finish_reason": "stop",
+      "latency_s": 4.2105688849999865,
+      "timestamp_ms": 1795749090719,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0214",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n손에 왁스가 남아 있어도 지금 이마는 씻기 전에 손을 먼저 씻는 쪽이 맞아요. 이마를 씻기 전에 손을 닦는 단계를 넣어 보세요.\n\n### 근거 및 이유\n얼굴을 씻을 때는 손에 묻은 물을 먼저 제거하고 얼굴을 미지근한 물로 적시는 것이 일반적인 방법이에요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n이마에 왁스가 묻었는지와 손에 남은 양은 확인되지 않았어요. 얼굴에 남은 양을 기준으로 이마의 세정 방법을 정하지 않아요.",
+      "content_sha256": "e79f983c0a4d808418086290107e5e2be5a549bad9e34c24fafa742fa47d95a7",
+      "prompt_ids_sha256": "3f6801eb4fe4dfede3642beb0009475e2ee276a7d478e50c858e1ca795a89fe0",
+      "prompt_tokens": 939,
+      "generated_tokens": 183,
+      "finish_reason": "stop",
+      "latency_s": 4.564489729999991,
+      "timestamp_ms": 1795749095285,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0214",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n손에 왁스가 남아 있어도 이마를 씻기 전에 손을 먼저 씻는 쪽이 맞아요. 손에서 흘러내린 왁스가 이마에 남았다는 뜻은 아니에요.\n\n### 근거 및 이유\n얼굴을 씻기 전에 손을 씻는 것은 오염물이 피부에 이어지지 않게 하려는 일반적인 순서예요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n이마에 왁스가 묻었는지는 확인되지 않았어요. 손에서 흘러내린 양이나 이마의 상태까지는 알 수 없어요.",
+      "content_sha256": "ccc0273dc42055aeab69b1ba524603782ee1f915106c8e406d48b4732ee328a4",
+      "prompt_ids_sha256": "3f6801eb4fe4dfede3642beb0009475e2ee276a7d478e50c858e1ca795a89fe0",
+      "prompt_tokens": 939,
+      "generated_tokens": 174,
+      "finish_reason": "stop",
+      "latency_s": 4.360961615999997,
+      "timestamp_ms": 1795749099648,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

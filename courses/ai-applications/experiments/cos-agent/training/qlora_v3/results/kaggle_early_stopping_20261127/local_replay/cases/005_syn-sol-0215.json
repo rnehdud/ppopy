@@ -1,0 +1,208 @@
+{
+  "index": 5,
+  "row_id": "syn-sol-0215",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "cleansing.steps": {
+        "variable_id": "cleansing.steps",
+        "state": "known",
+        "value": 0,
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손",
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "먼지 묻은 손으로 물을 받음",
+          "물을 바로 얼굴에 댐"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "외출 중"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "물세수만 함",
+          "현재 따가움 없음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "가시적 먼지와 물세수 순서",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-011",
+        "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+        "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+        "checked_on": "2026-11-25",
+        "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-011"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n얼굴에 세안제를 쓰지 않는 날에도, 눈에 띄는 먼지가 있는 손은 먼저 씻은 뒤 얼굴 헹굼으로 넘어가 보세요. 손과 얼굴에 같은 동작을 한 번에 할 필요는 없어요.\n\n### 근거 및 이유\n얼굴을 적시기 전에 손에 묻은 것을 씻는 게 일반적인 얼굴 세안 안내예요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n어떤 먼지였는지나 얼마나 얼굴에 옮겨갔는지는 알 수 없어요. 이 안내가 외출 중 얼굴을 몇 번 씻어야 하는지 정하진 않아요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0215",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "물론입니다. 아래는 근거 기반으로 작성된 스킨케어 루틴 안내입니다.\n\n---\n\n안녕하세요, 피부 관리에 도움이 되시길 바랍니다.\n\n현재 사용 중인 세안 루틴을 살펴보니, 손에 묻은 오염물을 먼저 제거하고, 그 후 얼굴에 물을 적신 뒤 세안하는 순서를 따르고 계시네요. 이는 피부에 가해지는 마찰을 최소화하고, 오염물 제거를 효과적으로 수행하는 데 도움이 되는 방법입니다.\n\n질병관리청의 안내에 따르면, 얼굴을 씻을 때는 다음과 같은 순서를 권장합니다:\n\n1. **손에 묻은 먼지나 오염물을 먼저 제거**합니다.  \n2. **미지근한 물로 얼굴을 적신 후**, 거품을 내는 세안제를 사용할 경우 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 좋습니다.  \n3. 헹굴 때는 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는 것이 피부를 보호하는 데 유리합니다.\n\n이 순서는 오염물을 효과적으로 제거하면서 피부에 자극을 최소화하는 데 초점을 둔 일반적인 세안 방법입니다. 하루 세안 횟수나 특정 제품의 사용법은 개인의 피부 상태와 환경에 따라 달라질 수 있으니, 필요시에는 피부 전문가와 상담하시는 것이 좋습니다.\n\n현재는 따가움이 없고, 물세수만을 하고 있는 상황이므로, 위 순서를 따르는 것이 피부를 보호하는 데 도움이 될 수 있습니다. 추가적인 피부 문제나 변화가 생기시면, 전문가와 상담해 보시는 것도 추천합니다.\n\n감사합니다. 😊\n\n--- \n\n※ 참고: [ref:cleansing-011] (질병관리청, 건강한 피부 관리 방법)  \n→ 이 문헌은 일반적인 세안 순서에 대한 안내이며, 특정 제품이나 피부 질환에 대한 치료는 포함되지 않습니다.",
+      "content_sha256": "9a1c79141f590fa338beb32282d5d34fee62b86cbcfa33b42e6a1a3ad09904b8",
+      "prompt_ids_sha256": "8b00cf25fe1630c75ea227a0ff6368d9c06e880af92164037984f5ab87ccd991",
+      "prompt_tokens": 897,
+      "generated_tokens": 535,
+      "finish_reason": "stop",
+      "latency_s": 11.349775053999963,
+      "timestamp_ms": 1795749113958,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0215",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n먼지가 묻은 손으로 물을 받은 뒤 얼굴에 물을 챙기는 순서는 바꾸지 않아요. 손에 묻은 먼지는 물을 받은 뒤에 얼굴에 쓰지 않아요.\n\n### 근거 및 이유\n얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 묻은 먼지의 양이나 물을 얼굴에 챙긴 뒤의 느낌은 확인되지 않았어요.",
+      "content_sha256": "a3eb7458dc24479980bc18d7479d42df8d3f79843f68abc6ded5269d5be7e239",
+      "prompt_ids_sha256": "8b00cf25fe1630c75ea227a0ff6368d9c06e880af92164037984f5ab87ccd991",
+      "prompt_tokens": 897,
+      "generated_tokens": 161,
+      "finish_reason": "stop",
+      "latency_s": 4.156758459000002,
+      "timestamp_ms": 1795749118117,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0215",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n먼지가 묻은 손으로 물을 받은 뒤 얼굴에 물을 대는 순서는 따로 봐요. 손에 묻은 먼지가 얼굴에 닿았는지부터 살펴보세요.\n\n### 근거 및 이유\n얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 얼굴을 적시는 단계를 구분해요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 묻은 먼지가 얼굴에 닿았는지 확인되지 않았어요. 물을 받은 때와 얼굴에 물을 대는 때를 나눠 보는 것만으로 현재 따가움이 있었는지는 알 수 없어요.",
+      "content_sha256": "c362e71190226639c146e924495a632f6064af18f021c1e579e7154abd968ae8",
+      "prompt_ids_sha256": "8b00cf25fe1630c75ea227a0ff6368d9c06e880af92164037984f5ab87ccd991",
+      "prompt_tokens": 897,
+      "generated_tokens": 181,
+      "finish_reason": "stop",
+      "latency_s": 4.652304823000009,
+      "timestamp_ms": 1795749122771,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0215",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n먼지가 묻은 손으로 물을 받은 뒤 얼굴에 물을 대는 순서는 따로 봐요. 손에 묻은 먼지는 손을 먼저 씻는 단계로 둘 수 있어요.\n\n### 근거 및 이유\n얼굴을 씻을 때는 손에 묻은 오염물을 제거한 뒤 얼굴을 미지근한 물로 적시는 방식이 일반 안내에 나와 있어요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 묻은 먼지의 종류나 얼굴에 닿은 물의 온도는 확인되지 않았어요. 현재 따갑지 않다는 점만으로 이 순서가 더 적합하다고 보지 않아요.",
+      "content_sha256": "dd03e3f71e2b2725e5c0e3a9019fd27e7c01bdee9d4a019dd3a15878e91203d7",
+      "prompt_ids_sha256": "8b00cf25fe1630c75ea227a0ff6368d9c06e880af92164037984f5ab87ccd991",
+      "prompt_tokens": 897,
+      "generated_tokens": 192,
+      "finish_reason": "stop",
+      "latency_s": 4.901589630999979,
+      "timestamp_ms": 1795749127674,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0215",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n손에 먼지가 묻어 있어도 손을 먼저 씻는 단계는 생략할 수 없어요. 물을 받은 뒤 얼굴에 바로 닿게 되는 순서는 피부에 가하는 힘을 줄이는 쪽으로 바꿔요.\n\n### 근거 및 이유\n일반 얼굴 세안은 손에 묻은 오염물을 먼저 제거하고 얼굴을 미지근한 물로 적시는 방식이에요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 묻은 먼지의 종류나 현재 느끼는 감각을 확인할 자료는 없어요. 따가움이 없다는 점도 손을 먼저 씻는지에 대한 판단을 대신하지 않아요.",
+      "content_sha256": "889a5b278984c67ea98e3fb4283ec15eaa197ac2bc61ff3ed3938ec5f79de9e8",
+      "prompt_ids_sha256": "8b00cf25fe1630c75ea227a0ff6368d9c06e880af92164037984f5ab87ccd991",
+      "prompt_tokens": 897,
+      "generated_tokens": 192,
+      "finish_reason": "stop",
+      "latency_s": 4.884581706999995,
+      "timestamp_ms": 1795749132561,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

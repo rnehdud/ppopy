@@ -1,0 +1,198 @@
+{
+  "index": 24,
+  "row_id": "syn-sol-0444",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "routine.actual": {
+        "variable_id": "routine.actual",
+        "state": "known",
+        "value": "화장 유무와 무관하게 저녁에 세정 화장수를 보습처럼 바름",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "routine.goal": {
+        "variable_id": "routine.goal",
+        "state": "known",
+        "value": "화장하지 않은 날 단계의 역할",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "syn-s2-m-0444",
+        "version": "fixture-1",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "합성 제품 자료: 가벼운 메이크업 제거용 화장수. 후속 헹굼 지시는 자료에 없음."
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:moisturizing-006",
+        "text": "로션은 크림과 비슷한 원료를 사용해도 배합 비율을 달리해 흐르거나 펴 바르기 쉬운 유화물로 만들 수 있다. 수중유형과 유중수형이 모두 가능해 로션이라는 이름만으로 바깥상이나 유분의 비율을 특정하기는 어렵다. 보습 외에도 세정제, 메이크업 리무버, 자외선차단제에 로션 형태가 쓰인다. 따라서 씻은 뒤 바르고 둘 제품인지, 오염물을 지운 다음 제거해야 하는 제품인지는 포장에 표시된 용도를 함께 살펴야 한다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.100, 로션의 세부 유형·사용 목적",
+        "checked_on": "2026-11-24",
+        "limitations": "유동성과 용도에 대한 설명이다. 모든 로션이 같은 보습력을 갖는다는 비교 자료는 아니다."
+      },
+      {
+        "evidence_ref": "ref:moisturizing-008",
+        "text": "얼굴에 쓰는 화장수는 외관이나 묽기보다 사용 목적에서 차이가 난다. 유연화장수는 각질층에 수분과 보습 성분을 공급해 부드러운 사용감을 주는 목적으로 설명된다. 반면 세정용 화장수는 가벼운 화장이나 오염물을 제거하기 위한 제품이며 계면활성제 등이 쓰일 수 있다. 화장수가 투명한지 불투명한지로 역할을 추측하기보다 제품에 적힌 용도를 확인해야 세정 단계와 보습 단계를 구분할 수 있다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 pp.99–100, 화장수의 세부 유형",
+        "checked_on": "2026-11-24",
+        "limitations": "화장수의 용도를 구분하기 위한 설명이다. 표시된 사용 목적을 먼저 확인한다."
+      },
+      {
+        "evidence_ref": "ref:storage_label-006",
+        "text": "혼합이 끝난 염모액에서는 가스가 발생할 수 있어 뚜껑을 닫아 두면 용기 안의 압력이 올라가 파손될 수 있다. 남은 혼합액은 바로 버리고 용기를 버릴 때도 뚜껑을 열어 두라는 지시가 이 상황에 해당한다. 반면 아직 혼합하지 않은 액은 공기와의 접촉 및 직사광선을 피하고 서늘한 곳에 보관하도록 표시한다. 같은 염모제라도 혼합 전후에는 보관 행동이 정반대가 될 수 있어 남은 액의 상태를 먼저 구분해야 한다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=167863671",
+        "locator": "별표 1 제2호 가목 11) 마) (1)~(3), 염모제 보관 및 취급",
+        "checked_on": "2026-11-24",
+        "limitations": "산화·비산화 염모제의 국내 표시다. 두 액이 이미 섞였는지 확인해야 한다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:moisturizing-006",
+      "ref:moisturizing-008"
+    ],
+    "distractor_refs": [
+      "ref:storage_label-006"
+    ]
+  },
+  "reference_teacher_answer": "### 핵심 안내\n화장하지 않은 저녁에까지 가벼운 메이크업 제거용 화장수를 보습처럼 넣을 필요는 없어요.\n\n### 근거 및 이유\n둘 다 화장수로 불려도 세정용과 보습용의 목적은 달라요 [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 제품의 뒤이은 헹굼 지시는 확보된 자료에 없어 임의로 덧붙이지 않아요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0444",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "저녁에 화장하지 않은 날에도 세정 후 보습을 위해 화장수를 바르는 루틴을 유지하고 계시네요. 이 경우, 제품의 용도를 확인하는 것이 중요해요.  \n\n제품이 **보습용 화장수**인지, **세정용 화장수**인지 구분하는 데는 포장에 표시된 용도를 반드시 확인해야 해요.  \n\n예를 들어,  \n- **보습용 화장수**는 각질층에 수분과 보습 성분을 공급해 피부를 부드럽게 만드는 목적을 가지고 있어요.  \n- **세정용 화장수**는 가벼운 메이크업이나 오염물을 제거하기 위한 용도로, 계면활성제가 포함될 수 있어요.  \n\n로션은 보통 유분과 수분의 비율에 따라 흐르거나 펴 바르기 쉬운 형태로 만들어지며, 보습력이나 사용 목적을 단순히 '로션'이라는 이름만으로 판단하기는 어렵습니다. 따라서 **용도를 확인하는 것**이 가장 핵심이에요.  \n\n현재 사용 중인 제품은 \"가벼운 메이크업 제거용 화장수\"로, 후속 헹굼 지시가 자료에 없으므로, **오염물을 제거하는 세정용 제품**으로 간주됩니다.  \n\n따라서, 화장 없이 저녁에 바르는 경우, 이 제품은 **세정 단계 후 보습을 위한 제품이 아니라, 오염물 제거를 위한 세정용 제품**으로 간주되어야 해요.  \n\n👉 **추천 조치**:  \n- 현재 사용 중인 제품이 **세정용**이라면, 세정 후에는 보습용 화장수를 별도로 바르는 것이 더 적절해요.  \n- 보습을 위해 바르고 싶다면, **용도가 '보습' 또는 '보습용'** 인 제품을 선택해 주세요.  \n\n용도를 확인하고, 제품의 포장에 적힌 **사용 목적**을 철저히 살펴보시면, 피부에 맞는 루틴을 더욱 정확하게 구성할 수 있어요.  \n\n필요하시면, 보습용 화장수 추천도 도와드릴 수 있어요.",
+      "content_sha256": "f379a787733cdd56e4c0e2ffdd30f2a701b0164a2812260a2ccad9b814971555",
+      "prompt_ids_sha256": "9422807336ad4759cb020ff4ee0e6b4fd70c0ad483147c2c67d77d0dae2a1fb7",
+      "prompt_tokens": 1398,
+      "generated_tokens": 547,
+      "finish_reason": "stop",
+      "latency_s": 9.391800500000045,
+      "timestamp_ms": 1795751170032,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0444",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n화장하지 않은 날에도 저녁에 쓰는 것은 같은 제품이에요. 가벼운 메이크업 제거용이라는 용도를 확인하고, 헹굼이 필요한지 보습처럼 남기는지 구분해요.\n\n### 근거 및 이유\n화장수는 보습용과 세정용으로 구분할 수 있어요. 용도를 확인해야 어떤 단계에 쓰는지 알 수 있어요 [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n자료에는 헹굼 지시가 없어 남은 제품의 사용 방법을 정하지 않아요. 화장하지 않은 날의 역할은 확인된 용도로 정해요.",
+      "content_sha256": "dc401094aec4c25e50192e4290f3d1ac2e7299d9748fda03884cfd3c8cfa4f63",
+      "prompt_ids_sha256": "9422807336ad4759cb020ff4ee0e6b4fd70c0ad483147c2c67d77d0dae2a1fb7",
+      "prompt_tokens": 1398,
+      "generated_tokens": 175,
+      "finish_reason": "stop",
+      "latency_s": 3.9212797169999476,
+      "timestamp_ms": 1795751173954,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0444",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n화장하지 않은 날 저녁에 쓴 것은 가벼운 메이크업 제거용 화장수예요. 보습을 대신하는 단계로 기록하지 않아요.\n\n### 근거 및 이유\n화장수는 세정용과 보습용으로 구분돼요 [ref:moisturizing-008]. 제품에 적힌 용도를 먼저 확인해야 그 역할을 정할 수 있어요.\n\n### 확인이 필요한 한계\n이 제품의 후속 헹굼 지시는 확인되지 않았어요. 화장하지 않은 날에도 같은 사용법을 적용할지는 미상이에요.",
+      "content_sha256": "f04c3e7b17cee0ff3773d9f97fdc2c080c48155af71d9b0e2e91be1759311c03",
+      "prompt_ids_sha256": "9422807336ad4759cb020ff4ee0e6b4fd70c0ad483147c2c67d77d0dae2a1fb7",
+      "prompt_tokens": 1398,
+      "generated_tokens": 155,
+      "finish_reason": "stop",
+      "latency_s": 3.533845842000005,
+      "timestamp_ms": 1795751177490,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0444",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n화장하지 않은 날에도 저녁에 같은 화장수를 쓴다면, 그 제품의 표시를 기준으로 세정 단계로 기록해요.\n\n### 근거 및 이유\n화장수는 보습용과 세정용으로 목적을 구분할 수 있어요 [ref:moisturizing-008]. 사용하지 않은 날에 같은 제품을 쓴다는 사실만으로 역할을 바꾸지는 않아요.\n\n### 확인이 필요한 한계\n이 자료는 사용한 날의 역할을 정하지 않아요. 저녁에 쓰는 제품의 후속 헹굼 지시는 확인되지 않았어요.",
+      "content_sha256": "adb3149f8e105054dc2afc61244a3c99bd5147334991706a94376c0475c8d8f1",
+      "prompt_ids_sha256": "9422807336ad4759cb020ff4ee0e6b4fd70c0ad483147c2c67d77d0dae2a1fb7",
+      "prompt_tokens": 1398,
+      "generated_tokens": 161,
+      "finish_reason": "stop",
+      "latency_s": 3.678650626999911,
+      "timestamp_ms": 1795751181170,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0444",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n화장하지 않은 저녁에도 같은 화장수를 쓴다면, 보습 단계로 기록하지 말고 제품 포장의 용도를 기준으로 쓰는 날과 쓰지 않는 날을 나눠요.\n\n### 근거 및 이유\n화장수는 세정용과 보습용으로 목적을 구분할 수 있어요 [ref:moisturizing-008].\n\n### 확인이 필요한 한계\n이 제품의 후속 헹굼 지시는 확인되지 않았어요. 화장 여부를 기준으로 역할을 정하지 않아요.",
+      "content_sha256": "0d089deaa8254d43e28d56ac2e74472936704d7db6297f9c47a83fdfe71928d2",
+      "prompt_ids_sha256": "9422807336ad4759cb020ff4ee0e6b4fd70c0ad483147c2c67d77d0dae2a1fb7",
+      "prompt_tokens": 1398,
+      "generated_tokens": 147,
+      "finish_reason": "stop",
+      "latency_s": 3.405563112999971,
+      "timestamp_ms": 1795751184578,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

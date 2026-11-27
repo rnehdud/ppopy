@@ -1,0 +1,208 @@
+{
+  "index": 6,
+  "row_id": "syn-sol-0216",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "cleansing.steps": {
+        "variable_id": "cleansing.steps",
+        "state": "known",
+        "value": 2,
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "볼",
+          "손가락"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "손으로 볼 색조를 풀어 헹굼",
+          "손가락에 색이 남은 채 다음 거품을 준비"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "리무버 뒤 두 번째 세안 전"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "손가락에 색조",
+          "통증 없음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "세안 두 단계 사이 손 세정",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-011",
+        "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+        "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+        "checked_on": "2026-11-25",
+        "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-011"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n손가락에 색조가 남은 상태라면 다음 얼굴 거품을 준비하기 전에 손을 따로 씻어 보세요. 새 세안 단계를 추가하기보다는 두 단계 사이에 손을 정리하는 방법이에요.\n\n### 근거 및 이유\n세안 순서에서 손에 묻은 것을 먼저 씻은 뒤 손바닥에서 얼굴에 쓸 거품을 준비하도록 안내해요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n얼굴에 남은 색조가 얼마나 있는지는 손가락에 묻은 색으로 알 수 없어요. 두 단계 자체의 필요성은 사용 제품에 맞춰 따로 봐요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0216",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "세안 두 단계 사이 손 세정을 목표로 하시는 상황에서, 다음과 같은 방법을 추천해요.\n\n먼저 손에 묻은 오염물을 제거하고, 미지근한 물로 손바닥과 손가락을 적신 후에 손바닥에서 거품을 만드는 것이 좋습니다. 이때는 손가락에 색조가 남아 있는 상태에서 다음 거품을 준비하는 상황을 고려해, 손을 먼저 청결하게 유지하는 것이 중요해요.  \n\n이후, 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 피부에 가해지는 마찰을 줄이고 오염물을 효과적으로 제거하는 데 도움이 돼요. 헹굼 시에도 미지근한 물을 사용하고, 물기가 남아 있을 경우 수건으로 문지르기보다는 가볍게 눌러 닦는 것이 피부를 보호하는 데 유리해요.\n\n이 순서는 얼굴을 세게 문질러 닦는 방식이 아니라, 오염물 제거와 피부 보호를 중점으로 설계된 방법이에요. 하루 세안 횟수나 특정 제품의 사용법은 개인의 피부 상태와 상황에 따라 달라질 수 있으니, 필요시에는 피부 전문가와 상담하는 것이 좋습니다.  \n\n손가락에 색조가 남아 있는 상황에서 다음 거품을 준비하는 점은 현재 사용 중인 순서와 일치하므로, 이 점을 고려해 손을 청결하게 유지하는 데 초점을 맞추는 것이 적절해요.",
+      "content_sha256": "15d20e6c9099f2129a286009def44e032cf9f472b9f9b6ccec760d86afbfedb2",
+      "prompt_ids_sha256": "0926132ea2f1a4b47ce380a2f39ce258d112da0d64a9dd3ac70a7f7b3d9e8276",
+      "prompt_tokens": 919,
+      "generated_tokens": 394,
+      "finish_reason": "stop",
+      "latency_s": 8.822068909999984,
+      "timestamp_ms": 1795749141396,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0216",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n손가락에 색조가 남았다는 사실을 기록하고, 볼을 씻은 뒤 손을 다시 씻는 단계를 별도로 봐요.\n\n### 근거 및 이유\n손에 묻은 오염물을 제거하는 일반적인 방법은 손바닥에서 거품을 만든 뒤 얼굴을 씻는 순서예요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손가락에 남은 색조가 볼 색조를 완전히 제거했는지는 확인되지 않았어요.",
+      "content_sha256": "959df0c4fed67c687b3eb4efbb230374d783f24148864ef40cc592b6be2442c6",
+      "prompt_ids_sha256": "0926132ea2f1a4b47ce380a2f39ce258d112da0d64a9dd3ac70a7f7b3d9e8276",
+      "prompt_tokens": 919,
+      "generated_tokens": 149,
+      "finish_reason": "stop",
+      "latency_s": 3.9539258319999817,
+      "timestamp_ms": 1795749148285,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0216",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n리무버를 헹군 뒤 손가락에 색조가 남았다는 점은 별도로 봐요. 다음 거품을 준비하기 전에 손을 먼저 씻어 보세요.\n\n### 근거 및 이유\n손에 묻은 오염물을 제거하는 것은 얼굴을 씻는 과정의 일부예요 [ref:cleansing-011]. 손가락에 색조가 남았다는 사실만으로 이 거품의 사용법을 정하지는 않아요.\n\n### 확인이 필요한 한계\n손에 남은 색조가 이 거품의 제거 성능을 높이는지는 확인되지 않았어요.",
+      "content_sha256": "d00b5b39cd7eeba790e0f8301e1b74b7f25d3f774e1cc9577e206da28142c488",
+      "prompt_ids_sha256": "0926132ea2f1a4b47ce380a2f39ce258d112da0d64a9dd3ac70a7f7b3d9e8276",
+      "prompt_tokens": 919,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 4.374997486999973,
+      "timestamp_ms": 1795749152662,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0216",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n리무버를 헹군 뒤 손가락에 남은 색조를 먼저 닦아 보세요. 다음 거품을 준비하기 전에 손을 씻는 단계를 넣어 보세요.\n\n### 근거 및 이유\n손에 묻은 오염물을 제거하는 것이 일반적인 얼굴 세안의 첫 단계예요 [ref:cleansing-011]. 이 순서는 얼굴을 세게 문지르는 방식과 달라요.\n\n### 확인이 필요한 한계\n손에 남은 색조의 양이나 제거 상태는 확인되지 않았어요. 두 단계를 모두 해야 한다는 뜻은 아니에요.",
+      "content_sha256": "a2f9004c456edfd4c4df5f948632ceee35f47fd116a8e6bdcdb7d1dc1f5f123c",
+      "prompt_ids_sha256": "0926132ea2f1a4b47ce380a2f39ce258d112da0d64a9dd3ac70a7f7b3d9e8276",
+      "prompt_tokens": 919,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 4.434868853000012,
+      "timestamp_ms": 1795749157099,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0216",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n리무버를 헹군 뒤 손가락에 아직 색조가 남았다면 손을 먼저 씻어 보세요. 볼을 다시 씻는 단계와 병행할 수 있어요.\n\n### 근거 및 이유\n손에서 거품을 내고 얼굴을 씻는 순서는 손에 묻은 오염물을 제거하는 데 초점을 둬요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n손에 남은 색조의 양과 볼에 남은 양은 확인되지 않았어요. 손을 씻는 것만으로 리무버의 제거 성능을 비교할 수는 없어요.",
+      "content_sha256": "8f6a9138190a5cff97adcf1e77ea08fed15a2033e0276f3b3caddd8820b98510",
+      "prompt_ids_sha256": "0926132ea2f1a4b47ce380a2f39ce258d112da0d64a9dd3ac70a7f7b3d9e8276",
+      "prompt_tokens": 919,
+      "generated_tokens": 174,
+      "finish_reason": "stop",
+      "latency_s": 4.585098315999971,
+      "timestamp_ms": 1795749161686,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

@@ -1,0 +1,208 @@
+{
+  "index": 16,
+  "row_id": "syn-sol-0226",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손",
+          "얼굴 검토"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "손에 덜어 물을 묻힘"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "얼굴 사용 전"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "물에 잘 녹는 듯하지 않다고 느낌"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "물에서의 모습으로 보습용 여부 판단",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-oil-cleanse",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 얼굴 색조 제거용 젤. 표시상 물로 헹구는 형태.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-oil-cleanse@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n손에서 물과 만났을 때 잘 녹는 듯하지 않았다는 감각만으로 보습용이라고 정하지 않아요. 이 가상 젤은 얼굴 색조 제거용이고 사용 후 물로 헹구도록 표시돼요.\n\n### 근거 및 이유\n젤형 세정제는 겉모습이나 물에 닿았을 때의 모습만으로 제품의 용도를 판단하기 어려워요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n아직 얼굴에 남겨 사용하는 방법을 시험한 것이 아니에요. 손에서 본 모양으로 실제 색조 제거 정도나 보습 효과를 예측할 수 없어요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0226",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "손과 얼굴을 검토하며, 손에 덜어 물을 묻히는 방식으로 사용하고 있으며, 얼굴 사용 전에 사용하는 것으로 알려져 있습니다. 사용 후 물로 헹구는 형태로 제시된 제품은 젤 형태로 보이지만, 점도나 외관만으로는 제거 효과나 사용법을 판단하기 어렵습니다.\n\n제품은 \"얼굴 색조 제거용 젤\"로, 물로 헹구는 형태로 설계되어 있습니다. 이는 젤 형태의 클렌저일 수 있지만, 점도가 높은 젤이 오일 기반일 수도 있으므로, 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 이해하는 데 더 중요합니다.\n\n현재 사용하는 제품은 물에 잘 녹는 듯하지 않다는 느낌을 주고 있으며, 이는 물로 헹구는 방식의 클렌저에서 일반적으로 나타날 수 있는 현상입니다. 특히 젤 형태의 제품이 물에 잘 녹지 않는 경우, 제품 내부의 성분 구조(예: 수용성 고분자, 계면활성제, 기름 성분 등)에 따라 점도나 흐름이 달라질 수 있습니다.\n\n**결론적으로**,  \n- 물에 잘 녹는 듯하지 않다는 느낌은 일반적인 젤 클렌저에서 나타날 수 있는 현상이며, 이는 제품의 외관만으로 판단하기보다는 **제품의 제거 대상과 헹굼 지시**를 중심으로 평가하는 것이 중요합니다.  \n- 현재 사용 중인 제품은 물로 헹구는 형태로 설계되어 있으나, 점도나 외관만으로는 보습 효과나 피부에 미치는 영향을 판단하기 어렵습니다.  \n- 보습용 여부는 피부의 상태와 사용 후 피부 반응을 직접적으로 평가해야 하며, 현재 정보에서는 보습 효과에 대한 직접적인 근거가 없습니다.\n\n따라서, **물에 잘 녹지 않는 느낌은 사용법상 정상적인 현상으로 간주할 수 있으며, 보습용 여부를 판단하기 위해서는 추가적인 피부 반응 관찰이나, 사용 후 피부의 수분 보존 상태를 확인하는 것이 필요합니다**.",
+      "content_sha256": "5c780bff33ef8f005e38153069b6dda07bb712199cc9713e0001079d1e17fe1e",
+      "prompt_ids_sha256": "c0409045620b55980383eebb754aa9330301b0b752c03a48dd2d92749b0bb8c5",
+      "prompt_tokens": 907,
+      "generated_tokens": 534,
+      "finish_reason": "stop",
+      "latency_s": 11.736856619000037,
+      "timestamp_ms": 1795749478933,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0226",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n손에 덜어 보았을 때 물에 잘 녹는 듯하지 않다고 느껴도 얼굴 색조 제거용 젤이라면 물로 헹구는 형태로 보세요.\n\n### 근거 및 이유\n젤처럼 보이는 클렌저도 수용성 고분자와 계면활성제로 형태를 잡을 수 있고, 기름 성분을 많이 담아 유화 구조를 형성할 수도 있어요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n손에 덜어 보았을 때의 녹는 느낌은 물에 잘 녹는지라는 사실을 확인한 것이 아니에요.",
+      "content_sha256": "ce5d3e962b2522d9989b00762beba42d0825acbde9f718e7ee0c5e6e0aa98d6c",
+      "prompt_ids_sha256": "c0409045620b55980383eebb754aa9330301b0b752c03a48dd2d92749b0bb8c5",
+      "prompt_tokens": 907,
+      "generated_tokens": 161,
+      "finish_reason": "stop",
+      "latency_s": 4.3446752989999595,
+      "timestamp_ms": 1795749483280,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0226",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n손에 덜어 물에 잘 녹는 듯하지 않다는 느낌은 얼굴 색조 제거용 젤의 보습용 여부를 판단하지 않아요.\n\n### 근거 및 이유\n젤은 수용성 고분자나 기름 성분을 담아 형태를 잡을 수 있어요 [ref:cleansing-004]. 물로 헹구는 형태의 젤은 제거 대상과 지시를 확인해야 해요.\n\n### 확인이 필요한 한계\n손에 덜어 본 점도와 얼굴에서의 사용감은 다른 정보예요. 얼굴에서의 사용법은 표시상 물로 헹구는 형태로 확인돼요.",
+      "content_sha256": "740669e13999c2bb1aac06df1f142efadf7eea243f9a297f27b725a3f86f6208",
+      "prompt_ids_sha256": "c0409045620b55980383eebb754aa9330301b0b752c03a48dd2d92749b0bb8c5",
+      "prompt_tokens": 907,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 4.515712254999926,
+      "timestamp_ms": 1795749487797,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0226",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n손에 덜어 물에 잘 녹는 듯하지 않았어도, 얼굴에 쓰는 가상 젤의 표시상 헹굼 방식은 물로 해요. 물에서 보이는 모습으로 보습용인지 판단하지 않아요.\n\n### 근거 및 이유\n젤은 수용성 고분자나 계면활성제 등 여러 방식으로 점도를 낼 수 있고, 물로 헹구는 형태도 다양해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n얼굴에서의 사용감이나 제거 성능은 아직 확인되지 않았어요. 물에서의 모습만으로 보습용으로 분류하지 않아요.",
+      "content_sha256": "8c8381766993c6fabd05fd316837bdd410a4de700ba61c89fb54368df349231c",
+      "prompt_ids_sha256": "c0409045620b55980383eebb754aa9330301b0b752c03a48dd2d92749b0bb8c5",
+      "prompt_tokens": 907,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 4.542746126999987,
+      "timestamp_ms": 1795749492342,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0226",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n손에 덜어 물에 잘 녹는 듯하지 않았어도 얼굴에 쓰는 제품으로 보지는 않아요. 가상 표시상 얼굴 색조 제거용 젤이에요.\n\n### 근거 및 이유\n젤은 수용성 성분과 기름 성분으로 구조가 달라질 수 있고, 점도가 높은 젤도 물로 헹구도록 설계될 수 있어요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n손에 덜어 보인 점도는 얼굴에서의 사용감이나 보습 효과를 확인한 것이 아니에요.",
+      "content_sha256": "ba90971f1cd9519209905d52e9b1e4499c119badd27b38aa81c4cdeacd71d071",
+      "prompt_ids_sha256": "c0409045620b55980383eebb754aa9330301b0b752c03a48dd2d92749b0bb8c5",
+      "prompt_tokens": 907,
+      "generated_tokens": 160,
+      "finish_reason": "stop",
+      "latency_s": 4.310568832999934,
+      "timestamp_ms": 1795749499554,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

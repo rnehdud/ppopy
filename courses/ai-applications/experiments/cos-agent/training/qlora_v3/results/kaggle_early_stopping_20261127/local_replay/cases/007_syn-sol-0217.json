@@ -1,0 +1,214 @@
+{
+  "index": 7,
+  "row_id": "syn-sol-0217",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "skin.current_discomfort": {
+        "variable_id": "skin.current_discomfort",
+        "state": "known",
+        "value": "none",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "cleansing.steps": {
+        "variable_id": "cleansing.steps",
+        "state": "known",
+        "value": 1,
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "손",
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "땀 묻은 손에 거품을 내 얼굴로 가져감"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "운동 직후"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "손에 땀이 묻음",
+          "얼굴과 손 불편 없음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "땀 묻은 손과 얼굴 세정 분리",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-011",
+        "text": "얼굴을 씻을 때는 먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다. 거품을 내서 쓰는 세안제라면 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 질병관리청의 안내다. 헹굴 때도 미지근한 물을 사용하고, 물기가 남으면 수건으로 문지르기보다 가볍게 눌러 닦는다. 이 순서는 얼굴을 세게 문질러 닦는 방법이 아니라 오염물을 제거하면서 피부에 가해지는 마찰을 줄이는 데 초점을 둔다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://health.kdca.go.kr/healthinfo/biz/health/ntcnInfo/healthSourc/thtimtCntnts/thtimtCntntsView.do?thtimt_cntnts_sn=72",
+        "locator": "건강한 피부 관리 방법, 2) 올바른 세안",
+        "checked_on": "2026-11-25",
+        "limitations": "일반적인 얼굴 세안 예시다. 하루 세안 횟수와 특정 제품의 사용법은 개인의 상황에 따라 달라질 수 있다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-011"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n운동한 뒤 땀이 묻은 손으로 바로 얼굴에 거품을 가져가기보다 손부터 따로 씻어 보세요. 그 다음 손바닥에서 얼굴에 올릴 거품을 준비할 수 있어요.\n\n### 근거 및 이유\n손에 묻은 물질을 먼저 씻고 얼굴을 적신 뒤 손바닥의 거품으로 부드럽게 씻는 순서가 제시돼요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n땀을 얼마나 제거했는지나 특정 세정제가 필요한지는 이 안내만으로 판단할 수 없어요. 별다른 불편을 보고한 상황도 아니에요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0217",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "운동 직후 손에 땀이 묻은 상태에서 얼굴과 손을 분리하여 세정하고자 하는 요청을 고려해보았습니다. 현재 피부 불편이 없으며, 세안 단계는 1회로 확인된 상태입니다.\n\n손에 땀이 묻은 경우, 먼저 손에 묻은 오염물을 제거하고, 이후 얼굴은 미지근한 물로 적신 후 거품을 내서 부드럽게 씻는 것이 좋습니다. 이는 피부에 마찰을 최소화하면서 오염물을 효과적으로 제거하는 데 도움이 됩니다.  \n\n현재 사용 중인 제품 정보는 제공되지 않았으며, 세안제의 성분이나 pH 등은 확인되지 않았습니다. 다만, 질병관리청의 안내에 따르면, 거품을 내는 세안제를 사용할 경우 손바닥에서 거품을 만든 뒤 피지가 많은 이마와 코부터 부드럽게 씻는 것이 권장됩니다.  \n\n이 순서는 피부를 세게 문질러 닦는 것이 아니라, 오염물 제거와 피부 자극을 줄이는 데 초점을 둔 일반적인 세안 방법입니다. 하루 세안 횟수나 특정 제품의 사용법은 개인의 피부 상태와 환경에 따라 달라질 수 있으므로, 필요 시 전문가(예: 피부과 전문의)와 상담하는 것이 좋습니다.\n\n현재 피부 불편이 없고, 손과 얼굴을 분리하여 세정하는 방식이 피부에 부담을 주지 않는다고 보고 있으므로, 위의 방법을 따르는 것이 적절합니다.  \n\n👉 **추천 세안 순서 요약**:\n1. 손에 묻은 땀을 먼저 제거 (물로 헹구거나 손을 닦아주세요)\n2. 손을 씻은 후, 얼굴은 미지근한 물로 적신 상태에서 거품을 내서 부드럽게 씻습니다.\n3. 헹굴 후 가볍게 눌러 닦는 것이 좋으며, 수건으로 문질러 닦는 것은 피합니다.\n\n이 방법은 현재 피부 상태와 사용 조건에 부합하며, 피부 자극을 최소화하는 데 초점을 둔 일반적인 안내입니다.  \n\n필요 시, 피부과 전문의와 상담을 통해 개인 맞춤형 세안 루틴을 조정하는 것도 추천합니다.",
+      "content_sha256": "ff7531af9ef1bdc4714ebe7af7692945890329cec84daf0f94343a9a6d4026bd",
+      "prompt_ids_sha256": "1200de0ea9a2aebfe50eb2e52080a0d8e71eb364e131f8f19c55233e8364b036",
+      "prompt_tokens": 934,
+      "generated_tokens": 579,
+      "finish_reason": "stop",
+      "latency_s": 13.041032368000003,
+      "timestamp_ms": 1795749174741,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": true,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0217",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n땀이 묻은 손에 거품을 내 얼굴로 가져가는 것은 피부를 씻는 순서가 아니에요. 손에 묻은 땀을 먼저 씻고 얼굴을 씻는 순서로 바꿔 보세요.\n\n### 근거 및 이유\n손에 묻은 오염물을 제거하는 것은 얼굴을 씻는 과정의 일부예요. 거품을 내는 과정을 얼굴에 직접 옮기기보다는 손에 묻은 땀을 먼저 제거하는 방식으로 바꿔 보세요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n땀이 묻은 손에 거품을 내 얼굴에 가져가는 방식이 얼굴에 어떤 영향을 줄지는 확인되지 않았어요.",
+      "content_sha256": "5082c738324f7af241617de9742793716bfb8a08bf073ca2ca2424dd5e1d9f54",
+      "prompt_ids_sha256": "1200de0ea9a2aebfe50eb2e52080a0d8e71eb364e131f8f19c55233e8364b036",
+      "prompt_tokens": 934,
+      "generated_tokens": 197,
+      "finish_reason": "stop",
+      "latency_s": 5.132269309000037,
+      "timestamp_ms": 1795749182822,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0217",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n땀이 묻은 손에 거품을 내 얼굴에 가져가는 것은 따로 봐요. 손에 묻은 땀을 씻고 얼굴을 따로 씻는 순서로 바꿔 보세요.\n\n### 근거 및 이유\n손에서 거품을 만든 뒤 얼굴을 부드럽게 씻는 방법은 얼굴 세안에 관한 일반 안내예요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n땀이 묻은 손에 거품을 내 얼굴에 가져갔을 때의 결과는 확인되지 않았어요.",
+      "content_sha256": "2d7bf016e5c9a418d5db7257599107fc602ccd87aa1dbd425060f4844b31036a",
+      "prompt_ids_sha256": "1200de0ea9a2aebfe50eb2e52080a0d8e71eb364e131f8f19c55233e8364b036",
+      "prompt_tokens": 934,
+      "generated_tokens": 150,
+      "finish_reason": "stop",
+      "latency_s": 4.03739327400001,
+      "timestamp_ms": 1795749186862,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0217",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n땀이 묻은 손에 거품을 내 얼굴에 가져갔다면, 손에 묻은 땀과 얼굴을 씻는 동작을 나눠 보세요. 손에 묻은 땀을 먼저 제거하는 것이 일반적인 얼굴 세안의 첫 단계예요.\n\n### 근거 및 이유\n손에서 거품을 내 얼굴에 가져가는 방식은 얼굴을 씻는 동작과 별개예요. 얼굴을 씻을 때는 손에 묻은 오염물을 먼저 씻고 얼굴을 부드럽게 씻는 방법이 안내돼요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n땀이 묻은 손에 얼굴을 닿게 했을 때의 피부 반응은 확인되지 않았어요. 손에 묻은 땀을 제거하라는 안내가 얼굴에 그대로 적용된다는 뜻도 아니에요.",
+      "content_sha256": "ccdd104111def5ab03daf739c4391f9801d8cfec05bcac671d23138ad9122d64",
+      "prompt_ids_sha256": "1200de0ea9a2aebfe50eb2e52080a0d8e71eb364e131f8f19c55233e8364b036",
+      "prompt_tokens": 934,
+      "generated_tokens": 239,
+      "finish_reason": "stop",
+      "latency_s": 6.2491326980000395,
+      "timestamp_ms": 1795749193113,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0217",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n땀이 묻은 손에 거품을 내 얼굴에 가져갔다면, 손에 묻은 땀과 얼굴을 씻는 동작을 나눠 보세요. 손에 묻은 땀을 먼저 씻는 것이 일반적인 얼굴 세안의 순서예요.\n\n### 근거 및 이유\n손에서 거품을 내고 얼굴을 부드럽게 씻는 건 얼굴 세안의 일반적인 방법이에요 [ref:cleansing-011].\n\n### 확인이 필요한 한계\n땀이 묻은 손에 거품을 내는 것 자체가 불편하거나 피부에 문제가 생긴다는 근거는 없어요. 손에 남은 땀의 양이나 얼굴에 닿은 횟수도 확인되지 않았어요.",
+      "content_sha256": "2872e0b75a931596adf94b15aa81599629fdef604ed1845a816099d1e4635a31",
+      "prompt_ids_sha256": "1200de0ea9a2aebfe50eb2e52080a0d8e71eb364e131f8f19c55233e8364b036",
+      "prompt_tokens": 934,
+      "generated_tokens": 195,
+      "finish_reason": "stop",
+      "latency_s": 5.1588653029999705,
+      "timestamp_ms": 1795749198275,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

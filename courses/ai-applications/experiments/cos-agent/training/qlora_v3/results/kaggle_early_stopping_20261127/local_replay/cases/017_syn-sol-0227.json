@@ -1,0 +1,207 @@
+{
+  "index": 17,
+  "row_id": "syn-sol-0227",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "이전 젤을 바르고 남김"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "새 제품 사용 전"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "새 제품도 같은 단계로 검토"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "이전 젤의 방법을 확인된 새 젤로 옮김",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-switch-purpose",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 새 가상 제품은 얼굴을 씻는 헹굼형 젤. 새 제품 용도와 물 마무리 확인.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-switch-purpose@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n기존에 얼굴에 남겨 쓰던 젤과 새 젤의 순서를 같게 보지 않아요. 새 가상 제품은 씻고 나서 남기는 보습용이 아니라 물로 마치는 얼굴용 세정제로 확인돼요.\n\n### 근거 및 이유\n같은 젤처럼 보여도 제거 목적과 헹굼 지시가 실제 사용법을 가르는 단서예요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n새 제품은 아직 얼굴에 쓰지 않았어요. 이전 젤의 사용감이나 반응을 새 젤에 그대로 예상하지 않아요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0227",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "사용자께서는 현재 얼굴을 대상으로 하는 스킨케어 루틴에서 **이전 젤을 바르고 남김**으로 사용하고 있으며, 그 사용 방식을 **새로운 젤로 옮기기**를 목적으로 하고 있습니다.  \n\n새로운 제품은 **가상 제품**이며, **헤링엄형 젤**(헤링엄형 = 헹굼형)으로, 얼굴을 씻는 데 사용되며, 사용 후 물로 헹구는 방식이 명시되어 있습니다.  \n\n이에 따라, 근거 기반으로 판단하면:\n\n- 젤처럼 보이는 클렌저는 점도를 조절하는 방식이 다양할 수 있지만, **사용 후 물로 헹구는 방식**이 일반적인 설계입니다.  \n- 이 경우, 제품의 외관(예: 젤처럼 보이는 것)보다는 **제품의 제거 대상과 헹굼 지시**가 더 중요합니다.  \n- 사용자께서는 이전 젤과 동일한 단계(바르고 남김 → 물로 헹구기)를 유지하고자 하며, 새 제품도 동일한 방식으로 사용할 것을 확인하셨습니다.  \n\n따라서, 새 제품은 **이전 젤과 동일한 사용법**으로, **바르고 남기고 물로 헹구는 방식**으로 사용해도 되며, 이는 제품의 설계 목적과 일치합니다.  \n\n👉 **추천 사용 방법**:  \n새 제품을 얼굴에 바르고, 1~2분 정도 기다린 후 물로 헹구는 방식으로 사용해 주세요.  \n\n이러한 절차는 제품의 용도(청소)와 사용 지침(물로 헹구기)에 부합하며, 사용자 맥락과 일치합니다.  \n\n> 참고: [ref:cleansing-004] - 젤형 클렌저는 수용성 고분자나 기름 성분을 기반으로 하며, 대부분 사용 후 물로 헹구는 방식으로 설계됨. 외관보다는 제거 대상과 헹굼 지시가 핵심 요소임.  \n\n※ 제품의 성분, pH, 효과, 피부 반응 등은 확인되지 않아 미상입니다.",
+      "content_sha256": "8a162532405e73b0293ad1fb684cd629d43dc9f366ba6e3e7c939fc6ea6d6ef0",
+      "prompt_ids_sha256": "55d69d3e89802acc59506a4850c24c28f87b60cb85acebc03fe8fbb7bb658ad1",
+      "prompt_tokens": 910,
+      "generated_tokens": 538,
+      "finish_reason": "stop",
+      "latency_s": 11.834190188999969,
+      "timestamp_ms": 1795749511401,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0227",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n이전 젤을 남겨 두고 헹구는 방법을 새 제품의 용도와 마무리 지시로 옮기지 않아요.\n\n### 근거 및 이유\n젤형 클렌저의 점도는 제형의 일부일 뿐, 사용 뒤 물로 헹구는 지시가 있는 제품이라도 제거 대상과 사용법을 확인해야 해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n새 제품의 제거 성능이나 이전 젤의 남김 정도는 확인되지 않았어요.",
+      "content_sha256": "f8782df5de19346451479742cf3eb4410def0607c3e5501771786143d4bf6fb3",
+      "prompt_ids_sha256": "55d69d3e89802acc59506a4850c24c28f87b60cb85acebc03fe8fbb7bb658ad1",
+      "prompt_tokens": 910,
+      "generated_tokens": 141,
+      "finish_reason": "stop",
+      "latency_s": 3.848768560000053,
+      "timestamp_ms": 1795749515252,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0227",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n이전 젤을 남겨 두었다는 점은 새 제품의 사용법을 그대로 옮기지 않아요. 새 제품은 얼굴에 쓰고 물로 마무리하는 젤이에요.\n\n### 근거 및 이유\n젤처럼 보이는 제품은 수용성 고분자나 유화 구조 등 여러 방식으로 만들어져요 [ref:cleansing-004]. 같은 젤이었다고 해서 사용 뒤 마무리가 같다고 보장하지 않아요.\n\n### 확인이 필요한 한계\n새 제품의 제거 대상이나 사용 뒤 물 마무리 지시를 확인한 것은 아니에요. 이전 젤의 사용 경험을 그대로 옮기지 않아요.",
+      "content_sha256": "303e4ee94350f2cac004570d78454a200158094e788a4dabae7c957cadc6d786",
+      "prompt_ids_sha256": "55d69d3e89802acc59506a4850c24c28f87b60cb85acebc03fe8fbb7bb658ad1",
+      "prompt_tokens": 910,
+      "generated_tokens": 178,
+      "finish_reason": "stop",
+      "latency_s": 4.737873193000041,
+      "timestamp_ms": 1795749519991,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0227",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n이전 젤을 남겨 썼던 방법을 새 젤에 그대로 옮기지 않아요. 새 제품은 얼굴에 쓰고 물로 마무리하라는 표시를 확인했어요.\n\n### 근거 및 이유\n젤 형태의 클렌저는 수용성 고분자나 계면활성제 등 여러 방식으로 만들어져요 [ref:cleansing-004]. 외관보다 제거 대상과 마무리 지시를 기준으로 보는 게 맞아요.\n\n### 확인이 필요한 한계\n이전 젤의 사용감이나 제거 정도를 새 제품에 이어갈 수 없어요. 두 제품의 성능을 비교한 자료도 아니에요.",
+      "content_sha256": "57d33d5831cbe806af9a62d06386390fc2a1e55eed3480df414fdfb215e872b0",
+      "prompt_ids_sha256": "55d69d3e89802acc59506a4850c24c28f87b60cb85acebc03fe8fbb7bb658ad1",
+      "prompt_tokens": 910,
+      "generated_tokens": 173,
+      "finish_reason": "stop",
+      "latency_s": 4.8089929040000925,
+      "timestamp_ms": 1795749524802,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0227",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n이전 젤을 남겨 썼던 점은 그 제품에 관한 관찰이에요. 새 제품은 얼굴 세정용 젤이고 가상 표시상 마무리는 물로 헹구므로 이전 젤의 방법을 그대로 옮기지 않아요.\n\n### 근거 및 이유\n젤의 점도가 높다고 해서 오일 기반이라는 뜻은 아니고, 여러 젤은 사용 뒤 물로 헹구도록 설계될 수 있어요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n새 제품의 제거 정도나 개인별 반응은 이전 젤의 사용 경험으로 판단할 수 없어요.",
+      "content_sha256": "0c4c8d14e26505648b355de70b40e4aa9d4796f08a00159d0a5a3dae955119ca",
+      "prompt_ids_sha256": "55d69d3e89802acc59506a4850c24c28f87b60cb85acebc03fe8fbb7bb658ad1",
+      "prompt_tokens": 910,
+      "generated_tokens": 171,
+      "finish_reason": "stop",
+      "latency_s": 4.6104922590000115,
+      "timestamp_ms": 1795749529414,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

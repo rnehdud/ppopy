@@ -1,0 +1,208 @@
+{
+  "index": 13,
+  "row_id": "syn-sol-0223",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "젤 사용",
+          "티슈로만 제거"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "사용 뒤"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "물로 헹구지 않음"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "티슈 닦기가 표시의 헹굼을 대신하는가",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-thin-wash",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 얼굴용 헹굼 젤 세정제. 색조 제거 후 물로 헹굼.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-thin-wash@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n티슈로만 닦았더라도 개별 표시의 물 헹굼과는 달라요. 이 가상 젤은 색조 제거 후에 물로 헹구는 제품으로 안내돼요.\n\n### 근거 및 이유\n젤의 점도는 여러 방식으로 정해져 있으므로 외관이나 질감만으로 제형의 마무리를 판단하기 어려워요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n티슈로 닦은 뒤 무엇이 남았는지는 알 수 없어요. 모든 젤이 아니라 이 가상 제품의 마무리 표시에 한정해요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0223",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "안녕하세요, 피부 관리에 도움이 되는 정보를 제공해 드릴게요.\n\n당신이 현재 사용하고 있는 제품은 **젤처럼 보이는 헹굼 젤 세정제**로, 사용 후 **티슈로만 제거**하고 있으며, **물로 헹구지 않음**이라고 말씀하셨습니다. 또한, 이 제품이 **색조 제거 후 물로 헹구도록 설계**된 제품이라는 점을 확인했습니다.\n\n### 🔍 핵심 요약:\n- 사용 후 물로 헹구지 않음 → 티슈로만 제거하는 상황\n- 제품의 외관(젤)은 사용 후 헹굼 지시를 반영한 설계일 수 있음\n- 그러나 젤 형태의 제품이 모두 물로 헹구도록 설계된 것은 아니며, 일부는 오일 기반으로 점도를 높여 **물로 헹구지 않도록 설계**될 수도 있음\n\n### ✅ 안내:\n제품의 **제거 방식과 헹굼 지시**는 제품의 성분과 제형 설계에 따라 달라질 수 있습니다.  \n현재 사용 중인 제품이 **물로 헹구지 않도록 설계**되었고, 티슈로만 제거하는 경우라면, 이는 **제품 라벨에 명시된 사용법**에 따라 맞는 것으로 보입니다.\n\n> 📌 참고: [ref:cleansing-004]에 따르면, 젤 형태의 클렌저는 수용성 고분자나 기름 성분을 기반으로 하며, 점도만으로는 세정력이나 헹굼 필요성을 판단하기 어렵습니다. 따라서 **제품 라벨에 명시된 제거 방식과 헹굼 지시**를 반드시 확인해 주시기 바랍니다.\n\n### ✅ 추천:\n- 제품 라벨에 **\"사용 후 물로 헹구세요\"** 또는 **\"티슈로 제거\"** 라는 문구가 명시되어 있는지 확인해 주세요.\n- 만약 라벨에 **물로 헹구지 않음**이 명시되어 있다면, 티슈로 제거하는 것이 정상적인 사용법으로 간주됩니다.\n- 다만, **피부에 남은 오일이나 잔여물이 제거되지 않아 피부가 건조하거나 자극을 느끼는 경우**는, 물로 헹구는 것이 더 효과적일 수 있으므로, 사용 후 피부 반응을 관찰해 보시는 것도 좋습니다.\n\n---\n\n📌 **결론**:  \n현재 사용 중인 젤 세정제가 **티슈로만 제거**되고, **물로 헹구지 않음**이라고 알려주셨다면, 이는 제품의 설계에 따라 정상적인 사용법일 수 있습니다. 다만, **제품 라벨에 명시된 사용법을 반드시 확인**해 주시고, 피부 반응을 기록해 보시는 것이 좋습니다.\n\n필요하시면, 다른 제품이나 사용 순서에 대한 조언도 도와드릴 수 있어요! 😊",
+      "content_sha256": "a6d1e15cfd52165e340d87ba5f7028614efac7d035c3ad7aace9b1f796ee2813",
+      "prompt_ids_sha256": "1ec3967f8363cf1b2657578bc107d552c848ce26f5977183b746527e26adc773",
+      "prompt_tokens": 909,
+      "generated_tokens": 723,
+      "finish_reason": "stop",
+      "latency_s": 16.279973265999956,
+      "timestamp_ms": 1795749379684,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0223",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n티슈로만 닦는 것은 표시의 헹굼을 대신하지 않아요. 색조 제거 후 물로 헹구는 지시를 따르세요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 점도를 내는 방식이 다양해요. 표시에 나온 제거 대상과 헹굼 지시를 함께 살펴요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n티슈로 닦아도 제거되는지, 물로 헹구면 얼마나 잘 씻어지는지는 확인되지 않았어요.",
+      "content_sha256": "068145be6416418a8fafdf03e08f1c3d0ce4b4de8b4780eaa9decf4d9f076995",
+      "prompt_ids_sha256": "1ec3967f8363cf1b2657578bc107d552c848ce26f5977183b746527e26adc773",
+      "prompt_tokens": 909,
+      "generated_tokens": 148,
+      "finish_reason": "stop",
+      "latency_s": 4.127977946999977,
+      "timestamp_ms": 1795749383814,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0223",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n티슈로만 닦았다는 사실은 표시의 헹굼을 대신한 것과 별개예요. 얼굴용 젤 세정제라면 색조 제거 후 물로 헹구는 방법을 확인해요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 수용성 고분자나 기름 성분을 쓰는 방식이 있어요 [ref:cleansing-004]. 표시에 따라 헹굼을 해야 하는 제품이에요.\n\n### 확인이 필요한 한계\n티슈로 닦았다는 관찰만으로 이 가상 제품의 제거 성능이나 헹굼이 필요한 이유를 판단하지 않아요.",
+      "content_sha256": "bc4ebeed276b417caa10510a500ff64ccc50d270c90452c3125d1cbf49c12827",
+      "prompt_ids_sha256": "1ec3967f8363cf1b2657578bc107d552c848ce26f5977183b746527e26adc773",
+      "prompt_tokens": 909,
+      "generated_tokens": 169,
+      "finish_reason": "stop",
+      "latency_s": 4.542950541999971,
+      "timestamp_ms": 1795749388358,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0223",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n티슈로만 닦는 것과 표시대로 물로 헹구는 것은 같은 사용법으로 보지 않아요. 가상 젤의 표시는 색조 제거 뒤 물로 헹구는 방법이에요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 수용성 고분자나 계면활성제 등 여러 방식으로 만들어져요 [ref:cleansing-004]. 일반적인 사용법은 점도보다 제거 대상과 헹굼 지시를 살펴보는 거예요.\n\n### 확인이 필요한 한계\n티슈로 닦았다는 사실만으로 제거 정도나 표시의 적절성을 확인할 수 없어요. 이 제품의 제거 성능은 확인되지 않았어요.",
+      "content_sha256": "ecbb1b9436f423b396e2c5b0e9a8c765855f4f12f39265270d60ca12a3373e9b",
+      "prompt_ids_sha256": "1ec3967f8363cf1b2657578bc107d552c848ce26f5977183b746527e26adc773",
+      "prompt_tokens": 909,
+      "generated_tokens": 185,
+      "finish_reason": "stop",
+      "latency_s": 5.038795328999981,
+      "timestamp_ms": 1795749396329,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0223",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n티슈로만 닦는 것과 물로 헹구는 것은 같은 방법이 아니에요. 가상 젤 세정제는 색조 제거 뒤 물로 헹구는 방법을 표시해요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 점도를 내는 방식이 다양할 수 있어요. 사용 뒤 물로 헹구도록 표시된 제품은 그 지시를 따라야 해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n티슈로 닦아도 제거가 되는지와 표시의 헹굼이 필요한 이유를 확인할 수는 없어요. 제품의 제거 대상도 확인된 상태예요.",
+      "content_sha256": "2406e3b3f55981a4a3af1bd338752c8dde3c7adf269b8f991d12c917b596b2e0",
+      "prompt_ids_sha256": "1ec3967f8363cf1b2657578bc107d552c848ce26f5977183b746527e26adc773",
+      "prompt_tokens": 909,
+      "generated_tokens": 177,
+      "finish_reason": "stop",
+      "latency_s": 4.705920226999979,
+      "timestamp_ms": 1795749401037,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}

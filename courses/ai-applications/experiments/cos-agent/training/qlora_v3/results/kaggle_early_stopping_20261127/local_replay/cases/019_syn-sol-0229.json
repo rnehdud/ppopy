@@ -1,0 +1,208 @@
+{
+  "index": 19,
+  "row_id": "syn-sol-0229",
+  "mode": "solution",
+  "request": {
+    "mode": "solution",
+    "confirmed_observations": {
+      "context.sites_in_review": {
+        "variable_id": "context.sites_in_review",
+        "state": "known",
+        "value": [
+          "얼굴"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.actual_use_sequence": {
+        "variable_id": "context.actual_use_sequence",
+        "state": "known",
+        "value": [
+          "얼굴 세안",
+          "젤을 바르고 남김"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_timing": {
+        "variable_id": "context.reported_timing",
+        "state": "known",
+        "value": [
+          "세안 뒤"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.reported_findings": {
+        "variable_id": "context.reported_findings",
+        "state": "known",
+        "value": [
+          "남겼을 때 끈적한 감촉"
+        ],
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      },
+      "context.review_goal": {
+        "variable_id": "context.review_goal",
+        "state": "known",
+        "value": "끈적함과 헹굼형 구분",
+        "source": "synthetic_fixture",
+        "confirmed_by_user": true
+      }
+    },
+    "product_evidence": [
+      {
+        "product_id": "s2-cleansing-fixture-r-gel-sticky-leave",
+        "version": "1.0",
+        "synthetic_product": true,
+        "status": "verified",
+        "label_guidance": "가상 제품 표시 자료: 세안 뒤 얼굴에 바르고 남기는 가상 보습 젤.",
+        "evidence_ref": "catalog:s2-cleansing-fixture-r-gel-sticky-leave@1.0"
+      }
+    ],
+    "rag_chunks": [
+      {
+        "evidence_ref": "ref:cleansing-004",
+        "text": "젤처럼 보이는 클렌저도 점도를 내는 방식은 여러 가지다. 수용성 고분자와 계면활성제로 형태를 잡은 젤이 있고, 기름 성분을 많이 담아 유화 구조를 형성한 제품도 있다. 가이드에 나온 두 유형은 모두 사용 뒤 물로 헹구도록 설계한 경우다. 점도가 높은 젤이 오일을 기반으로 할 수도 있으므로 외관보다는 제품의 제거 대상과 헹굼 지시가 사용법을 알아보는 데 도움이 된다.",
+        "scope": "general_skincare_practice",
+        "source_url": "https://license.korcham.net/co/examguide04Sub.do?cd=0202&mm=34&no=306583&pg=1",
+        "locator": "개정 4판 본문 p.99, 클렌징 젤",
+        "checked_on": "2026-11-24",
+        "limitations": "교육자료의 제형 예시다. 점도만으로 개별 완제품의 세정력을 비교할 수 없다."
+      }
+    ],
+    "allowed_evidence_refs": [
+      "ref:cleansing-004"
+    ],
+    "distractor_refs": []
+  },
+  "reference_teacher_answer": "### 핵심 안내\n세안 뒤 젤을 남길 때 끈적했다는 감촉이 그대로 물로 헹구라는 의미는 아니에요. 이 가상 제품은 세안 후 얼굴에 바르고 두는 보습용으로 확인돼요.\n\n### 근거 및 이유\n젤의 점도와 외관은 여러 구성에서 가능하고, 사용 마무리는 제형 이름보다 표시를 볼 때 분명해요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n이번 감촉만으로 헹굼 방향이나 개인별 적합성을 바꾸지 않아요. 끈적함이 얼마나 이어졌는지도 알려지지 않았어요.",
+  "answers": [
+    {
+      "row_id": "syn-sol-0229",
+      "mode": "solution",
+      "model": "kaggle-base",
+      "text": "세안 후 얼굴에 바르고 남기는 젤 제품을 사용하고 계시며, 그 제품을 사용할 때 **끈적한 감촉**을 경험하고 계시는 것으로 보입니다.  \n\n이 경우, 제품의 외관(젤처럼 보인다)보다는 **사용법과 제거 방식**이 더 중요합니다.  \n참고 문헌에 따르면, 젤처럼 보이는 클렌저는 수용성 고분자나 계면활성제를 사용하여 점도를 조절할 수 있으며, 기름 성분을 많이 담아 유화 구조를 형성하는 경우도 있습니다. 이러한 제품들은 대부분 **사용 후 물로 헹구도록 설계**되어 있습니다.  \n\n현재 사용 중인 제품은 **세안 뒤에 바르고 남김**으로 사용되고 있으며, 이는 헹굼형 제품이 아니라 **남김형 보습제**로 분류됩니다. 따라서 외관이나 점도만으로는 감촉을 판단하기 어렵고, **제품의 사용 지침과 제거 방식**을 확인하는 것이 핵심입니다.  \n\n현재 사용 중인 제품은 \"세안 뒤에 바르고 남김\"으로 명시되어 있으므로, **끈적함이 감촉으로 인식되는 것은 정상적인 현상**일 수 있습니다. 다만, 이 감촉이 피부에 자극을 주거나 불편함을 유발한다면, 다음을 고려해 보시는 것이 좋습니다:  \n- 제품의 성분이 피부에 자극을 주는지 여부 (예: 알코올, 유화 성분 등)  \n- 피부의 수분 보유 능력과 보습 필요도를 평가  \n\n이제까지의 정보는 **제품의 사용 방식과 감촉을 설명하는 데만 기반**을 두고 있으며, 피부 질환 진단이나 치료 효과에 대한 근거는 없습니다.  \n\n따라서, 현재 사용 중인 제품이 **끈적함을 유발하는 감촉**을 주는 것으로 보이면, 다음을 추천드립니다:  \n1. 제품의 사용 지침을 다시 확인하여 **제거 방식이 물로 헹구는지, 남김형인지** 명확히 파악  \n2. 피부에 자극이 없고, 수분 보유가 잘 되는지 확인  \n3. 필요 시, 피부 전문가와 상담하여 보습 루틴의 적절성에 대해 조언을 받는 것도 좋습니다.  \n\n> 참고: [ref:cleansing-004] – 젤형 클렌저의 점도와 제거 방식은 외관보다는 사용법과 제거 지침을 기반으로 판단해야 합니다.  \n\n이제까지의 정보는 사용법과 감촉에 대한 설명을 중심으로 하며, 피부 상태의 정확한 진단이나 개선 효과는 포함되지 않습니다.",
+      "content_sha256": "cb82a6b61cea0bf6a40ed1df1fe0e1491071bc28094609cbf0202e35a42ed60d",
+      "prompt_ids_sha256": "922067ca7a9e99bc35709789c662a6d078dd640ec0bfe4022a29fc877e91a925",
+      "prompt_tokens": 902,
+      "generated_tokens": 662,
+      "finish_reason": "stop",
+      "latency_s": 16.627243988999908,
+      "timestamp_ms": 1795751032963,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0229",
+      "mode": "solution",
+      "model": "kaggle-epoch-1",
+      "text": "### 핵심 안내\n젤을 바른 뒤 남기는 젤이에요. 남겨도 괜찮다고 보는 건 아니에요. 끈적한 느낌이 있다면 헹굼 지시를 확인해요.\n\n### 근거 및 이유\n젤처럼 보이는 제품도 점도를 내는 방식이 다양해요. 사용 뒤 물로 헹구도록 지시한 제품이 많아요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n끈적함이 남기는 것과 헹굼 지시를 둘 다 확인한 결과는 아니에요. 점도만으로 제거 성능을 비교하지 않아요.",
+      "content_sha256": "24ccc11994a5713d629b3257a4009bc45857003ca3f4b8f8106d91bb0461b148",
+      "prompt_ids_sha256": "922067ca7a9e99bc35709789c662a6d078dd640ec0bfe4022a29fc877e91a925",
+      "prompt_tokens": 902,
+      "generated_tokens": 164,
+      "finish_reason": "stop",
+      "latency_s": 4.372171626000068,
+      "timestamp_ms": 1795751037339,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0229",
+      "mode": "solution",
+      "model": "kaggle-epoch-2",
+      "text": "### 핵심 안내\n세안 뒤 남기는 젤의 끈적임을 헹굼형 젤의 감촉으로 보지 않아요. 남긴 상태에서 느낀 감각을 따로 기록해요.\n\n### 근거 및 이유\n젤은 점도를 내는 방식이 다양해요. 외관이 높다고 헹굼이 필요하지 않다는 뜻은 아니에요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n끈적임이 원인인지, 이 제품의 제거 대상과 관련이 있는지는 확인되지 않았어요.",
+      "content_sha256": "ea54bae18d732a3c3ebeecf5be12a33d738c7a29f9a606f20d458d7f671f2c62",
+      "prompt_ids_sha256": "922067ca7a9e99bc35709789c662a6d078dd640ec0bfe4022a29fc877e91a925",
+      "prompt_tokens": 902,
+      "generated_tokens": 146,
+      "finish_reason": "stop",
+      "latency_s": 3.91605829599996,
+      "timestamp_ms": 1795751041258,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0229",
+      "mode": "solution",
+      "model": "kaggle-epoch-3",
+      "text": "### 핵심 안내\n끈적한 감촉을 보습 젤의 일반적인 느낌으로 보지 않아요. 얼굴에 남기고 나서 느낀 감촉이에요.\n\n### 근거 및 이유\n젤은 제형이 다양해도 사용 뒤 헹구는 방식으로 설계되는 경우가 많아요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n남긴 상태의 감촉만으로 이 가상 젤의 제거 성능이나 필요한 재도포 횟수는 정할 수 없어요.",
+      "content_sha256": "9e3bc96b973d656d2827cc9cfeb689a022f92b3557ff846e0b6089b0929dfe55",
+      "prompt_ids_sha256": "922067ca7a9e99bc35709789c662a6d078dd640ec0bfe4022a29fc877e91a925",
+      "prompt_tokens": 902,
+      "generated_tokens": 131,
+      "finish_reason": "stop",
+      "latency_s": 3.5231572299999243,
+      "timestamp_ms": 1795751044785,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    },
+    {
+      "row_id": "syn-sol-0229",
+      "mode": "solution",
+      "model": "kaggle-epoch-4",
+      "text": "### 핵심 안내\n끈적한 감촉을 남겨도 괜찮다고 해석하지 말고, 가상 젤의 표시에서 헹굼 지시를 확인해요. 얼굴에 남기는 젤과 세안 뒤에 남기는 젤은 같은 제품으로 보지 않아요.\n\n### 근거 및 이유\n젤은 여러 제형으로 만들 수 있고, 점도가 높다고 해서 세정 제품이어야 하지는 않아요 [ref:cleansing-004].\n\n### 확인이 필요한 한계\n끈적함을 원인으로 설명할 근거는 없어요. 이 제품의 사용감은 확인된 점도나 제형도 아니에요.",
+      "content_sha256": "06baf3bf6efe97c7d7340012a874d9718b8bf0cac7f0befb7817ecdcd16a626b",
+      "prompt_ids_sha256": "922067ca7a9e99bc35709789c662a6d078dd640ec0bfe4022a29fc877e91a925",
+      "prompt_tokens": 902,
+      "generated_tokens": 165,
+      "finish_reason": "stop",
+      "latency_s": 4.307021959999929,
+      "timestamp_ms": 1795751049096,
+      "automatic_candidates": {
+        "invalid_citation": false,
+        "kb_citation": false,
+        "distractor_id_citation": false,
+        "solution_missing_citation": false,
+        "hold_instruction_candidate": false,
+        "guardrail_flags": [],
+        "empty_response": false,
+        "semantic_review_status": "pending; ID/regex checks cannot exclude indirect distractor leakage or fact invention"
+      },
+      "semantic_review": "pending",
+      "human_approved": false
+    }
+  ],
+  "review_state": "pending; request evidence is authority, teacher answer is not an independent oracle"
+}
