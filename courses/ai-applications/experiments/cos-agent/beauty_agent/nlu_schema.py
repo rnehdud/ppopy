@@ -39,6 +39,15 @@ ENUM_SLOT_VALUES: dict[str, frozenset[str]] = {
     "sun.sweat": frozenset({"yes", "no"}),
 }
 
+# Canonical symbolic strings used by executable KB preview rules (e.g. B-I01:2)
+# alongside numeric counts for integer-typed KB variables.
+CANONICAL_RULE_SLOT_STRINGS: dict[str, frozenset[str]] = {
+    "cleansing.steps": frozenset({
+        "repeated_only_because_water_resistant",
+        "according_to_product_removal_instructions",
+    }),
+}
+
 ALLOWED_SYMPTOMS: dict[str, str] = {
     "dryness": "건조함",
     "breakout": "트러블",
@@ -121,8 +130,15 @@ def _validate_non_enum_value(variable_id: str, value: Any, value_type: str) -> N
         if not isinstance(value, str) or not value.strip():
             raise ValueError(f"slot {variable_id!r} ({value_type}) requires a non-empty string value, got {value!r}")
     elif value_type == "integer":
+        canonical_strings = CANONICAL_RULE_SLOT_STRINGS.get(variable_id, frozenset())
+        if isinstance(value, str) and value in canonical_strings:
+            return
         if isinstance(value, bool) or not isinstance(value, int):
-            raise ValueError(f"slot {variable_id!r} (integer) requires an int value, got {value!r}")
+            raise ValueError(
+                f"slot {variable_id!r} (integer) requires an int"
+                + (f" or one of {sorted(canonical_strings)}" if canonical_strings else "")
+                + f", got {value!r}"
+            )
     elif value_type == "quantity":
         if isinstance(value, bool) or not isinstance(value, (int, float, str)):
             raise ValueError(f"slot {variable_id!r} (quantity) requires a number or string value, got {value!r}")
@@ -130,7 +146,6 @@ def _validate_non_enum_value(variable_id: str, value: Any, value_type: str) -> N
         if not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
             raise ValueError(f"slot {variable_id!r} (array) requires list[str], got {value!r}")
     else:
-        # structured / derived / latent: allow non-empty string, bool, or list[str]; reject bare numbers unless quantity/integer
         if isinstance(value, str):
             if not value.strip():
                 raise ValueError(f"slot {variable_id!r} string value must not be blank")
@@ -148,36 +163,37 @@ def _validate_non_enum_value(variable_id: str, value: Any, value_type: str) -> N
 def verify_nlu_extraction(
     result: NLUExtractionResult,
     *,
-    request: NLURequest | None = None,
+    request: NLURequest,
     whitelist: NLUWhitelist | None = None,
     strict_enum_values: bool = True,
 ) -> NLUExtractionResult:
     """Stage 3 deterministic whitelist, value-type, catalog-hint & source-span verifier."""
+    if not isinstance(request, NLURequest):
+        raise ValueError("Stage 3 verification requires the original NLURequest")
+
     wl = whitelist if whitelist is not None else load_nlu_whitelist()
     if result.confirmed_by_user is not False:
         raise ValueError("NLUExtractionResult.confirmed_by_user must remain False")
 
-    if request is not None:
-        if request.source_text != result.source_text:
-            raise ValueError("NLUExtractionResult.source_text does not match NLURequest.source_text")
-        if request.target_slot_id is not None and request.target_slot_id not in wl.variable_ids:
-            raise ValueError(f"request target_slot_id not in KB v0.6.1 whitelist: {request.target_slot_id!r}")
-        req_allowed_vars = set(request.allowed_variable_ids)
-        req_allowed_symptoms = set(request.allowed_symptoms)
-        req_allowed_topics = set(request.allowed_topics)
-        for vid in req_allowed_vars:
-            if vid not in wl.variable_ids:
-                raise ValueError(f"request allowed_variable_ids contains unknown variable: {vid!r}")
-        for sym in req_allowed_symptoms:
-            if sym not in wl.symptoms:
-                raise ValueError(f"request allowed_symptoms contains unknown symptom: {sym!r}")
-        for top in req_allowed_topics:
-            if top not in wl.topics:
-                raise ValueError(f"request allowed_topics contains unknown topic: {top!r}")
-    else:
-        req_allowed_vars = set()
-        req_allowed_symptoms = set()
-        req_allowed_topics = set()
+    if request.source_text != result.source_text:
+        raise ValueError("NLUExtractionResult.source_text does not match NLURequest.source_text")
+    if request.target_slot_id is not None and request.target_slot_id not in wl.variable_ids:
+        raise ValueError(f"request target_slot_id not in KB v0.6.1 whitelist: {request.target_slot_id!r}")
+
+    req_allowed_vars = set(request.allowed_variable_ids)
+    req_allowed_symptoms = set(request.allowed_symptoms)
+    req_allowed_topics = set(request.allowed_topics)
+    for vid in req_allowed_vars:
+        if vid not in wl.variable_ids:
+            raise ValueError(f"request allowed_variable_ids contains unknown variable: {vid!r}")
+    for sym in req_allowed_symptoms:
+        if sym not in wl.symptoms:
+            raise ValueError(f"request allowed_symptoms contains unknown symptom: {sym!r}")
+    for top in req_allowed_topics:
+        if top not in wl.topics:
+            raise ValueError(f"request allowed_topics contains unknown topic: {top!r}")
+
+    source_text = request.source_text
 
     for topic in result.topics:
         if topic not in wl.topics:
@@ -190,7 +206,9 @@ def verify_nlu_extraction(
             raise ValueError(f"slot variable_id not in KB v0.6.1 NLU whitelist: {slot.variable_id!r}")
         if req_allowed_vars and slot.variable_id not in req_allowed_vars:
             raise ValueError(f"slot variable_id {slot.variable_id!r} not in request.allowed_variable_ids")
-        if slot.evidence_span not in result.source_text:
+        if not slot.evidence_span.strip():
+            raise ValueError("slot evidence_span must not be whitespace-only")
+        if slot.evidence_span not in source_text:
             raise ValueError(f"slot evidence_span not in source_text: {slot.evidence_span!r}")
 
         if slot.polarity == "unknown":
@@ -214,22 +232,26 @@ def verify_nlu_extraction(
             raise ValueError(f"symptom not in allowed NLU symptoms: {symptom.symptom!r}")
         if req_allowed_symptoms and symptom.symptom not in req_allowed_symptoms:
             raise ValueError(f"symptom {symptom.symptom!r} not in request.allowed_symptoms")
-        if symptom.evidence_span not in result.source_text:
+        if not symptom.evidence_span.strip():
+            raise ValueError("symptom evidence_span must not be whitespace-only")
+        if symptom.evidence_span not in source_text:
             raise ValueError(f"symptom evidence_span not in source_text: {symptom.evidence_span!r}")
 
     for mention in result.product_mentions:
-        if mention.raw_text not in result.source_text:
+        if not mention.raw_text.strip():
+            raise ValueError("product mention raw_text must not be whitespace-only")
+        if mention.raw_text not in source_text:
             raise ValueError(f"product mention raw_text not in source_text: {mention.raw_text!r}")
-        if request is not None and mention.matched_catalog_hint is not None:
+        if mention.matched_catalog_hint is not None:
             matched = any(
                 hint.matched_catalog_hint == mention.matched_catalog_hint
-                and (hint.raw_span in mention.raw_text or mention.raw_text in hint.raw_span)
+                and hint.raw_span.strip() == mention.raw_text.strip()
                 for hint in request.catalog_hints
             )
             if not matched:
                 raise ValueError(
                     f"product mention matched_catalog_hint {mention.matched_catalog_hint!r} "
-                    f"for {mention.raw_text!r} is not grounded in request.catalog_hints"
+                    f"for {mention.raw_text!r} is not grounded in an exact matching request.catalog_hints span"
                 )
 
     return result

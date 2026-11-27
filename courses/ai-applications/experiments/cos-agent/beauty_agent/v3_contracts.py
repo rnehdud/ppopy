@@ -86,10 +86,10 @@ class NLUExtractionResult(Contract):
     @model_validator(mode="after")
     def verify_evidence_spans_in_source(self) -> NLUExtractionResult:
         for slot in self.slot_candidates:
-            if slot.evidence_span not in self.source_text:
+            if not slot.evidence_span.strip() or slot.evidence_span not in self.source_text:
                 raise ValueError(f"slot evidence_span not found in source_text: {slot.evidence_span!r}")
         for symptom in self.symptom_candidates:
-            if symptom.evidence_span not in self.source_text:
+            if not symptom.evidence_span.strip() or symptom.evidence_span not in self.source_text:
                 raise ValueError(f"symptom evidence_span not found in source_text: {symptom.evidence_span!r}")
         return self
 
@@ -121,7 +121,7 @@ class NLURequest(Contract):
         if self.target_slot_id is not None and self.target_slot_id.startswith("product."):
             raise ValueError("NLU target_slot_id must not target product.* catalog fields")
         for hint in self.catalog_hints:
-            if hint.raw_span not in self.source_text:
+            if not hint.raw_span.strip() or hint.raw_span not in self.source_text:
                 raise ValueError(f"catalog_hint raw_span not found in source_text: {hint.raw_span!r}")
         return self
 

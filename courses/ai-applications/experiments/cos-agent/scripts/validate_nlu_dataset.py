@@ -6,6 +6,7 @@ import argparse
 from collections import Counter
 import json
 from pathlib import Path
+import re
 import sys
 from typing import Any
 
@@ -18,6 +19,11 @@ from beauty_agent.slm.prompt_builder import SYSTEM_PROMPT_NLU, build_nlu_message
 from beauty_agent.v3_contracts import NLUExtractionResult, NLURequest
 
 ALLOWED_SPLITS = frozenset({"train", "val_internal"})
+_WS_RE = re.compile(r"\s+")
+
+
+def _normalize_utterance_key(text: str) -> str:
+    return _WS_RE.sub(" ", text).strip()
 
 
 def validate_nlu_jsonl(
@@ -41,6 +47,7 @@ def validate_nlu_jsonl(
     raw_bytes = input_path.read_bytes()
     if raw_bytes.startswith(b"\xef\xbb\xbf"):
         errors.append(f"{input_path}: UTF-8 BOM is not allowed")
+        raw_bytes = raw_bytes[3:]
 
     whitelist = load_nlu_whitelist(kb_seed_path)
     split_counts: Counter[str] = Counter()
@@ -50,12 +57,21 @@ def validate_nlu_jsonl(
     split_families: dict[str, set[str]] = {"train": set(), "val_internal": set()}
     total_rows = 0
 
-    for line_no, raw_line in enumerate(raw_bytes.decode("utf-8").splitlines(), start=1):
-        line = raw_line.strip()
-        if not line:
+    # Split strictly on LF byte boundaries so U+2028/U+2029 inside JSON strings
+    # are not misread as line breaks, and decode each line independently.
+    for line_no, raw_line_bytes in enumerate(raw_bytes.split(b"\n"), start=1):
+        if raw_line_bytes.endswith(b"\r"):
+            raw_line_bytes = raw_line_bytes[:-1]
+        if not raw_line_bytes.strip():
             continue
         total_rows += 1
         loc = f"{input_path.name}:{line_no}"
+        try:
+            line = raw_line_bytes.decode("utf-8").strip()
+        except UnicodeDecodeError as exc:
+            errors.append(f"{loc}: invalid UTF-8 bytes: {exc}")
+            continue
+
         try:
             row = json.loads(line)
         except Exception as exc:
@@ -80,6 +96,9 @@ def validate_nlu_jsonl(
             family_id = None
 
         split = row.get("split")
+        if not isinstance(split, str):
+            errors.append(f"{loc}: split must be a string, got {type(split).__name__}")
+            continue
         if split == "test_internal":
             errors.append(f"{loc}: forbidden split 'test_internal' in training dataset")
             continue
@@ -146,7 +165,7 @@ def validate_nlu_jsonl(
         except ValueError as exc:
             errors.append(f"{loc}: Stage 3 NLU verification failed: {exc}")
 
-        split_source_texts[split].add(req.source_text)
+        split_source_texts[split].add(_normalize_utterance_key(req.source_text))
 
         # Coverage bucket accounting
         if req.previous_question:

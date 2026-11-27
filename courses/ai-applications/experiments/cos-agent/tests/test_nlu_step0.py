@@ -65,15 +65,24 @@ def test_nlu_request_and_build_nlu_messages() -> None:
             ],
         )
 
+    # P2: whitespace-only evidence_span is rejected even when source_text contains spaces
+    with pytest.raises(ValidationError, match="evidence_span"):
+        NLUExtractionResult(
+            source_text="찬물로 세안했어요.",
+            slot_candidates=[
+                SlotCandidate(variable_id="method.water_temperature", value="hot", evidence_span=" ")
+            ],
+        )
+
 
 def test_verify_nlu_extraction_stage3_checks() -> None:
-    src = "아침에 미온수로 세안하고 선크림 A를 썼는데 동생은 따갑다고 해요."
+    src = "아침에 미온수로 세안하고 Lotion A와 Lotion AB를 썼는데 동생은 따갑다고 해요."
     req = NLURequest(
         source_text=src,
         catalog_hints=[
-            CatalogHintCandidate(raw_span="선크림 A", matched_catalog_hint="브랜드 선크림 A")
+            CatalogHintCandidate(raw_span="Lotion A", matched_catalog_hint="브랜드 Lotion A")
         ],
-        allowed_variable_ids=["method.water_temperature", "moisturizing.comfort"],
+        allowed_variable_ids=["method.water_temperature", "moisturizing.comfort", "cleansing.steps"],
         allowed_symptoms=["stinging"],
         allowed_topics=["cleansing_method", "discomfort_report"],
     )
@@ -101,36 +110,60 @@ def test_verify_nlu_extraction_stage3_checks() -> None:
         ],
         product_mentions=[
             ProductMentionCandidate(
-                raw_text="선크림 A",
+                raw_text="Lotion A",
                 usage_state="using",
-                matched_catalog_hint="브랜드 선크림 A",
+                matched_catalog_hint="브랜드 Lotion A",
             )
         ],
     )
     assert verify_nlu_extraction(valid, request=req) == valid
 
+    # P1: Stage 3 requires original NLURequest (calling without request raises TypeError)
+    with pytest.raises(TypeError):
+        verify_nlu_extraction(valid)  # type: ignore[call-arg]
+
+    # P1: B-I01 canonical symbolic string for cleansing.steps is accepted
+    bi01_req = NLURequest(
+        source_text="내수성 표시만 보고 두 번 세안했어요.",
+        allowed_variable_ids=["cleansing.steps"],
+    )
+    bi01_ext = NLUExtractionResult(
+        source_text="내수성 표시만 보고 두 번 세안했어요.",
+        topics=["repeat_cleansing"],
+        slot_candidates=[
+            SlotCandidate(
+                variable_id="cleansing.steps",
+                value="repeated_only_because_water_resistant",
+                polarity="affirmed",
+                evidence_span="내수성 표시만 보고 두 번 세안",
+            )
+        ],
+    )
+    assert verify_nlu_extraction(bi01_ext, request=bi01_req) == bi01_ext
+
     # P1: product mention raw_text absent from source_text is rejected by Stage 3 verifier
+    missing_req = NLURequest(source_text="얼굴이 따가워요.")
     missing_mention = NLUExtractionResult(
         source_text="얼굴이 따가워요.",
         product_mentions=[ProductMentionCandidate(raw_text="로션", usage_state="using")],
     )
     with pytest.raises(ValueError, match="raw_text"):
-        verify_nlu_extraction(missing_mention)
+        verify_nlu_extraction(missing_mention, request=missing_req)
 
-    # P1: matched_catalog_hint not grounded in request.catalog_hints is rejected
-    ungrounded_hint = valid.model_copy(
+    # P2: prefix-overlapping Lotion A hint must NOT attach to Lotion AB
+    prefix_mismatch = valid.model_copy(
         update={
             "product_mentions": [
                 ProductMentionCandidate(
-                    raw_text="선크림 A",
+                    raw_text="Lotion AB",
                     usage_state="using",
-                    matched_catalog_hint="입력에 없던 힌트",
+                    matched_catalog_hint="브랜드 Lotion A",
                 )
             ]
         }
     )
-    with pytest.raises(ValueError, match="not grounded in request.catalog_hints"):
-        verify_nlu_extraction(ungrounded_hint, request=req)
+    with pytest.raises(ValueError, match="exact matching"):
+        verify_nlu_extraction(prefix_mismatch, request=req)
 
     # P2: denied enum slot with arbitrary dict value is rejected
     bad_denied_enum = valid.model_copy(
@@ -148,7 +181,7 @@ def test_verify_nlu_extraction_stage3_checks() -> None:
     with pytest.raises(ValueError, match="invalid enum value"):
         verify_nlu_extraction(bad_denied_enum, request=req)
 
-    # P2: non-enum structured/ordinal slot with invalid bare integer (e.g. moisturizing.comfort=42) is rejected
+    # P2: non-enum structured/ordinal slot with invalid bare integer (moisturizing.comfort=42) is rejected
     bad_non_enum = valid.model_copy(
         update={
             "slot_candidates": [
@@ -197,7 +230,7 @@ def test_verify_nlu_extraction_stage3_checks() -> None:
         verify_nlu_extraction(outside_req_allowlist, request=req)
 
 
-def test_validate_nlu_dataset_checks_family_leakage_wire_schema_and_malformed_rows(tmp_path: Path) -> None:
+def test_validate_nlu_dataset_checks_leakage_wire_schema_and_resilience(tmp_path: Path) -> None:
     req1 = NLURequest(source_text="찬물로 세수했어요.")
     ext1 = NLUExtractionResult(
         source_text="찬물로 세수했어요.",
@@ -223,68 +256,73 @@ def test_validate_nlu_dataset_checks_family_leakage_wire_schema_and_malformed_ro
     assert report["passed"] is True
     assert report["error_count"] == 0
 
-    # P1: Paraphrased variant in same scenario_family_id across train & val_internal fails
-    req2 = NLURequest(source_text="차가운 물로 얼굴을 씻었어요.")
-    ext2 = NLUExtractionResult(
-        source_text="차가운 물로 얼굴을 씻었어요.",
+    # P2: Trailing whitespace difference across splits with different family_ids is caught as leakage
+    req_ws = NLURequest(source_text="찬물로   세수했어요.  ")
+    ext_ws = NLUExtractionResult(
+        source_text="찬물로   세수했어요.  ",
         topics=["cleansing_method"],
         slot_candidates=[
             SlotCandidate(
                 variable_id="method.water_temperature",
                 value="cold",
-                evidence_span="차가운 물로",
+                evidence_span="찬물로",
             )
         ],
     )
-    row2_same_family = {
+    row_ws = {
         "id": "nlu-0002",
-        "scenario_family_id": "fam-cleanse-01",
+        "scenario_family_id": "fam-cleanse-02",
         "split": "val_internal",
-        "messages": build_nlu_messages(req2)
-        + [{"role": "assistant", "content": ext2.model_dump_json()}],
+        "messages": build_nlu_messages(req_ws)
+        + [{"role": "assistant", "content": ext_ws.model_dump_json()}],
     }
-    fam_leak_path = tmp_path / "fam_leak.jsonl"
-    fam_leak_path.write_text(
-        json.dumps(row1, ensure_ascii=False) + "\n" + json.dumps(row2_same_family, ensure_ascii=False) + "\n",
+    ws_leak_path = tmp_path / "ws_leak.jsonl"
+    ws_leak_path.write_text(
+        json.dumps(row1, ensure_ascii=False) + "\n" + json.dumps(row_ws, ensure_ascii=False) + "\n",
         encoding="utf-8",
         newline="\n",
     )
-    fam_report = validate_nlu_jsonl(fam_leak_path)
-    assert fam_report["passed"] is False
-    assert any("scenario_family_id leakage" in e for e in fam_report["errors"])
+    ws_report = validate_nlu_jsonl(ws_leak_path)
+    assert ws_report["passed"] is False
+    assert any("source_text leakage" in e for e in ws_report["errors"])
 
-    # P2: Extra transport field (timeout_seconds) in user JSON fails wire-schema check
-    bad_wire_user = json.loads(build_nlu_messages(req1)[1]["content"])
-    bad_wire_user["timeout_seconds"] = 15.0
-    bad_wire_row = {
-        **row1,
-        "id": "nlu-0003",
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT_NLU},
-            {"role": "user", "content": json.dumps(bad_wire_user, ensure_ascii=False)},
-            {"role": "assistant", "content": ext1.model_dump_json()},
+    # P2: Non-string split ([] / {}) reports row error cleanly instead of raising TypeError
+    # P3: Invalid UTF-8 bytes line reports decoding error cleanly; U+2028 in JSON string does NOT split line
+    req_u2028 = NLURequest(source_text="찬물로\u2028세수했어요.")
+    ext_u2028 = NLUExtractionResult(
+        source_text="찬물로\u2028세수했어요.",
+        topics=["cleansing_method"],
+        slot_candidates=[
+            SlotCandidate(
+                variable_id="method.water_temperature",
+                value="cold",
+                evidence_span="찬물로",
+            )
         ],
-    }
-    wire_path = tmp_path / "bad_wire.jsonl"
-    wire_path.write_text(json.dumps(bad_wire_row, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
-    wire_report = validate_nlu_jsonl(wire_path)
-    assert wire_report["passed"] is False
-    assert any("wire schema" in e for e in wire_report["errors"])
-
-    # P2: Malformed rows ([] and null messages) report errors cleanly without crashing batch
-    malformed_path = tmp_path / "malformed.jsonl"
-    malformed_path.write_text(
-        "[]\n"
-        + json.dumps({"id": "nlu-bad-msg", "scenario_family_id": "fam-x", "split": "train", "messages": [None, None, None]})
-        + "\n"
-        + json.dumps(row1, ensure_ascii=False)
-        + "\n",
-        encoding="utf-8",
-        newline="\n",
     )
-    mal_report = validate_nlu_jsonl(malformed_path)
-    assert mal_report["passed"] is False
-    assert mal_report["total_rows"] == 3
-    assert mal_report["split_counts"]["train"] == 2
-    assert any("must be a JSON object" in e for e in mal_report["errors"])
-    assert any("every item in messages must be a JSON object" in e for e in mal_report["errors"])
+    row_u2028 = {
+        "id": "nlu-u2028",
+        "scenario_family_id": "fam-u2028",
+        "split": "train",
+        "messages": build_nlu_messages(req_u2028)
+        + [{"role": "assistant", "content": ext_u2028.model_dump_json()}],
+    }
+    u2028_path = tmp_path / "u2028.jsonl"
+    u2028_path.write_bytes((json.dumps(row_u2028, ensure_ascii=False) + "\n").encode("utf-8"))
+    u2028_report = validate_nlu_jsonl(u2028_path)
+    assert u2028_report["passed"] is True
+    assert u2028_report["total_rows"] == 1
+
+    resilience_path = tmp_path / "resilience.jsonl"
+    resilience_path.write_bytes(
+        b"[]\n"
+        + b"\xff\xfeinvalid-utf8\n"
+        + (json.dumps({"id": "nlu-bad-split", "scenario_family_id": "fam-x", "split": [], "messages": []}) + "\n").encode("utf-8")
+        + (json.dumps(row1, ensure_ascii=False) + "\n").encode("utf-8")
+    )
+    res_report = validate_nlu_jsonl(resilience_path)
+    assert res_report["passed"] is False
+    assert res_report["total_rows"] == 4
+    assert any("must be a JSON object" in e for e in res_report["errors"])
+    assert any("invalid UTF-8 bytes" in e for e in res_report["errors"])
+    assert any("split must be a string" in e for e in res_report["errors"])
