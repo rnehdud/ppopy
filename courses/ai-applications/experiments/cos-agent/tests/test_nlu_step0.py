@@ -326,3 +326,49 @@ def test_validate_nlu_dataset_checks_leakage_wire_schema_and_resilience(tmp_path
     assert any("must be a JSON object" in e for e in res_report["errors"])
     assert any("invalid UTF-8 bytes" in e for e in res_report["errors"])
     assert any("split must be a string" in e for e in res_report["errors"])
+
+
+def test_all_executable_kb_rules_values_pass_stage3_verifier() -> None:
+    """Every non-product consumer-questionable value in skin_engine/kb_preview/rules.json must pass Stage 3."""
+    wl = load_nlu_whitelist()
+    repo_root = next(
+        p for p in Path(__file__).resolve().parents if (p / "skin_engine" / "kb_preview" / "rules.json").is_file()
+    )
+    rules = json.loads((repo_root / "skin_engine" / "kb_preview" / "rules.json").read_text(encoding="utf-8"))
+
+    pairs: set[tuple[str, str]] = set()
+
+    def _walk(obj: object) -> None:
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if k in ("equals", "in", "not_in", "contains", "any_of", "all_of", "when", "conditions") and isinstance(v, dict):
+                    for var_id, expected in v.items():
+                        if var_id in wl.variable_ids:
+                            vals = expected if isinstance(expected, list) else [expected]
+                            for val in vals:
+                                pairs.add((var_id, json.dumps(val, ensure_ascii=False)))
+                elif k in wl.variable_ids:
+                    vals = v if isinstance(v, list) else [v]
+                    for val in vals:
+                        pairs.add((k, json.dumps(val, ensure_ascii=False)))
+                _walk(v)
+        elif isinstance(obj, list):
+            for item in obj:
+                _walk(item)
+
+    _walk(rules)
+    assert len(pairs) >= 200
+
+    req = NLURequest(source_text="테스트 발화")
+    for var_id, val_json in sorted(pairs):
+        val = json.loads(val_json)
+        if val is None or isinstance(val, dict):
+            continue
+        ext = NLUExtractionResult(
+            source_text="테스트 발화",
+            slot_candidates=[
+                SlotCandidate(variable_id=var_id, value=val, polarity="affirmed", evidence_span="테스트")
+            ],
+        )
+        verify_nlu_extraction(ext, request=req, whitelist=wl)
+

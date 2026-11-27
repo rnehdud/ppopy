@@ -35,8 +35,8 @@ ENUM_SLOT_VALUES: dict[str, frozenset[str]] = {
         "habitual_without_reason",
     }),
     "sun.outdoor_time": frozenset({"none", "prolonged"}),
-    "sun.water_contact": frozenset({"yes", "no"}),
-    "sun.sweat": frozenset({"yes", "no"}),
+    "sun.water_contact": frozenset({"yes", "no", "none"}),
+    "sun.sweat": frozenset({"yes", "no", "none"}),
 }
 
 # Canonical symbolic strings used by executable KB preview rules (e.g. B-I01:2)
@@ -143,8 +143,13 @@ def _validate_non_enum_value(variable_id: str, value: Any, value_type: str) -> N
         if isinstance(value, bool) or not isinstance(value, (int, float, str)):
             raise ValueError(f"slot {variable_id!r} (quantity) requires a number or string value, got {value!r}")
     elif value_type == "array":
-        if not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
-            raise ValueError(f"slot {variable_id!r} (array) requires list[str], got {value!r}")
+        # PreviewEngine matches scalar symbolic strings (e.g. sun.coverage_gaps="none")
+        # as well as list[str] for array-typed KB variables.
+        if isinstance(value, str):
+            if not value.strip():
+                raise ValueError(f"slot {variable_id!r} (array) string value must not be blank")
+        elif not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
+            raise ValueError(f"slot {variable_id!r} (array) requires a non-empty string or list[str], got {value!r}")
     else:
         if isinstance(value, str):
             if not value.strip():
