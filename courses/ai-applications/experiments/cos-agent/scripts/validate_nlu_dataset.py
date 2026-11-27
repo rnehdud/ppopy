@@ -1,0 +1,190 @@
+"""Offline validator for Ppopy v3 3-Stage NLU SFT datasets."""
+
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+import json
+from pathlib import Path
+import sys
+from typing import Any
+
+REPO_EXP_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_EXP_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_EXP_ROOT))
+
+from beauty_agent.nlu_schema import DEFAULT_KB_SEED_PATH, load_nlu_whitelist, verify_nlu_extraction
+from beauty_agent.slm.prompt_builder import SYSTEM_PROMPT_NLU
+from beauty_agent.v3_contracts import NLUExtractionResult, NLURequest
+
+ALLOWED_SPLITS = frozenset({"train", "val_internal"})
+
+
+def validate_nlu_jsonl(
+    input_path: Path,
+    *,
+    kb_seed_path: Path = DEFAULT_KB_SEED_PATH,
+    min_rows: int = 1,
+    enforce_buckets: bool = False,
+) -> dict[str, Any]:
+    errors: list[str] = []
+    warnings: list[str] = []
+
+    if not input_path.is_file():
+        return {
+            "passed": False,
+            "error_count": 1,
+            "errors": [f"Input file not found: {input_path}"],
+            "warnings": [],
+        }
+
+    raw_bytes = input_path.read_bytes()
+    if raw_bytes.startswith(b"\xef\xbb\xbf"):
+        errors.append(f"{input_path}: UTF-8 BOM is not allowed")
+
+    whitelist = load_nlu_whitelist(kb_seed_path)
+    split_counts: Counter[str] = Counter()
+    bucket_counts: Counter[str] = Counter()
+    seen_ids: set[str] = set()
+    split_source_texts: dict[str, set[str]] = {"train": set(), "val_internal": set()}
+    total_rows = 0
+
+    for line_no, raw_line in enumerate(raw_bytes.decode("utf-8").splitlines(), start=1):
+        line = raw_line.strip()
+        if not line:
+            continue
+        total_rows += 1
+        loc = f"{input_path.name}:{line_no}"
+        try:
+            row = json.loads(line)
+        except Exception as exc:
+            errors.append(f"{loc}: invalid JSON: {exc}")
+            continue
+
+        row_id = row.get("id")
+        if not isinstance(row_id, str) or not row_id.strip():
+            errors.append(f"{loc}: missing non-empty 'id'")
+        elif row_id in seen_ids:
+            errors.append(f"{loc}: duplicate id {row_id!r}")
+        else:
+            seen_ids.add(row_id)
+
+        split = row.get("split")
+        if split == "test_internal":
+            errors.append(f"{loc}: forbidden split 'test_internal' in training dataset")
+            continue
+        if split not in ALLOWED_SPLITS:
+            errors.append(f"{loc}: invalid split {split!r}; expected one of {sorted(ALLOWED_SPLITS)}")
+            continue
+        split_counts[split] += 1
+
+        messages = row.get("messages")
+        if not isinstance(messages, list) or len(messages) != 3:
+            errors.append(f"{loc}: messages must have 3 items [system, user, assistant]")
+            continue
+
+        sys_msg, user_msg, asst_msg = messages
+        if sys_msg.get("role") != "system" or sys_msg.get("content") != SYSTEM_PROMPT_NLU:
+            errors.append(f"{loc}: system prompt mismatch with SYSTEM_PROMPT_NLU")
+        if user_msg.get("role") != "user" or asst_msg.get("role") != "assistant":
+            errors.append(f"{loc}: invalid message roles")
+            continue
+
+        try:
+            req = NLURequest.model_validate_json(user_msg["content"])
+        except Exception as exc:
+            errors.append(f"{loc}: NLURequest validation failed: {exc}")
+            continue
+
+        try:
+            ext = NLUExtractionResult.model_validate_json(asst_msg["content"])
+        except Exception as exc:
+            errors.append(f"{loc}: NLUExtractionResult validation failed: {exc}")
+            continue
+
+        if req.source_text != ext.source_text:
+            errors.append(f"{loc}: req.source_text != assistant.source_text")
+
+        try:
+            verify_nlu_extraction(ext, whitelist=whitelist)
+        except ValueError as exc:
+            errors.append(f"{loc}: Stage 3 NLU verification failed: {exc}")
+
+        split_source_texts[split].add(req.source_text)
+
+        # Coverage bucket accounting
+        if req.previous_question:
+            bucket_counts["turn2_followup"] += 1
+        else:
+            bucket_counts["turn1_utterance"] += 1
+        if any(s.polarity == "denied" for s in ext.slot_candidates) or any(
+            s.polarity == "denied" for s in ext.symptom_candidates
+        ):
+            bucket_counts["denied_polarity"] += 1
+        if any(s.subject == "other" for s in ext.slot_candidates) or any(
+            s.subject == "other" for s in ext.symptom_candidates
+        ):
+            bucket_counts["other_subject"] += 1
+        if ext.symptom_candidates:
+            bucket_counts["high_risk_symptom"] += 1
+        if ext.product_mentions:
+            bucket_counts["product_mention"] += 1
+        if not ext.slot_candidates and not ext.symptom_candidates and not ext.product_mentions:
+            bucket_counts["no_signal_noise"] += 1
+
+    if total_rows < min_rows:
+        errors.append(f"total_rows {total_rows} < min_rows {min_rows}")
+
+    overlap = split_source_texts["train"] & split_source_texts["val_internal"]
+    if overlap:
+        errors.append(f"train/val_internal source_text leakage: {len(overlap)} shared utterance(s)")
+
+    if enforce_buckets:
+        for required_bucket in (
+            "turn2_followup",
+            "denied_polarity",
+            "other_subject",
+            "high_risk_symptom",
+            "product_mention",
+            "no_signal_noise",
+        ):
+            if bucket_counts[required_bucket] == 0:
+                errors.append(f"missing required NLU coverage bucket: {required_bucket}")
+
+    return {
+        "passed": len(errors) == 0,
+        "input": str(input_path),
+        "total_rows": total_rows,
+        "split_counts": dict(sorted(split_counts.items())),
+        "bucket_counts": dict(sorted(bucket_counts.items())),
+        "error_count": len(errors),
+        "errors": errors,
+        "warnings": warnings,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Validate Ppopy v3 NLU SFT JSONL dataset.")
+    parser.add_argument("--input", type=Path, required=True, help="Path to NLU SFT JSONL.")
+    parser.add_argument("--kb-seed", type=Path, default=DEFAULT_KB_SEED_PATH)
+    parser.add_argument("--min-rows", type=int, default=1)
+    parser.add_argument("--enforce-buckets", action="store_true")
+    parser.add_argument("--report", type=Path, default=None)
+    args = parser.parse_args()
+
+    result = validate_nlu_jsonl(
+        args.input,
+        kb_seed_path=args.kb_seed,
+        min_rows=args.min_rows,
+        enforce_buckets=args.enforce_buckets,
+    )
+    rendered = json.dumps(result, ensure_ascii=False, indent=2)
+    if args.report is not None:
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(rendered + "\n", encoding="utf-8", newline="\n")
+    print(rendered)
+    return 0 if result["passed"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

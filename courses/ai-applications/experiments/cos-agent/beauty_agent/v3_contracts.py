@@ -94,6 +94,35 @@ class NLUExtractionResult(Contract):
         return self
 
 
+class CatalogHintCandidate(Contract):
+    """Stage 1 offline catalog match hint passed into Stage 2 NLU."""
+
+    raw_span: str = Field(min_length=1, max_length=200)
+    matched_catalog_hint: str = Field(min_length=1, max_length=150)
+    match_score: float = Field(default=1.0, ge=0.0, le=1.0)
+
+
+class NLURequest(Contract):
+    """Structured input contract for Stage 2 Schema-Constrained NLU SLM."""
+
+    schema_version: Literal["v3.0"] = V3_CONTRACT_VERSION
+    source_text: str = Field(min_length=1, max_length=4000)
+    catalog_hints: list[CatalogHintCandidate] = Field(default_factory=list)
+    previous_question: str | None = Field(default=None, max_length=500)
+    target_slot_id: str | None = Field(default=None, min_length=1, max_length=120)
+    allowed_variable_ids: list[str] = Field(default_factory=list)
+    allowed_symptoms: list[str] = Field(default_factory=list)
+    allowed_topics: list[str] = Field(default_factory=list)
+    timeout_seconds: float = Field(default=DEFAULT_SLM_TIMEOUT_SECONDS, gt=0.0, le=60.0)
+    max_response_bytes: int = Field(default=MAX_SLM_RESPONSE_BYTES, gt=0, le=MAX_SLM_RESPONSE_BYTES)
+
+    @model_validator(mode="after")
+    def reject_product_target_slot(self) -> NLURequest:
+        if self.target_slot_id is not None and self.target_slot_id.startswith("product."):
+            raise ValueError("NLU target_slot_id must not target product.* catalog fields")
+        return self
+
+
 # ---------------------------------------------------------------------------
 # 2. AFA Policy Contracts (Myopic 1-Step Lookahead VOI)
 # ---------------------------------------------------------------------------
