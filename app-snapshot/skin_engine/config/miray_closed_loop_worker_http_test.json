@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0-test-worker-http-review-20261008",
+  "scope": "aws_test_candidate_not_applied",
+  "runtime_enabled": false,
+  "runtime_registered": false,
+  "required_environment": {"APP_LOOP_WORKER_HTTP_TEST_ENABLED": "true"},
+  "contract_environment_variable": "APP_LOOP_WORKER_HTTP_TEST_CONTRACT_SHA256",
+  "purpose": "miray_original_loop_worker_http",
+  "routes": {
+    "read": {"method": "GET", "path": "/api/v1/app/loop/test-worker"},
+    "submit": {"method": "POST", "path": "/api/v1/app/loop/test-worker"}
+  },
+  "max_request_bytes": 65536,
+  "max_response_bytes": 262144,
+  "max_target_events": 160,
+  "max_quota_rows": 160,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "registration_confirms_actual_use": false,
+  "approval_requirements": [
+    "Server-selected original snapshot/decision lineage and separate original TEST storage/worker grants",
+    "Exact endpoint/runtime and same member notices, KMS and iPhone validation before operating registration",
+    "Initial snapshot, terminal fresh intake and normal AppAuth/native UI composition remain separate required work"
+  ]
+}

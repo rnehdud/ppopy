@@ -1,0 +1,141 @@
+{
+  "version": "1.0.0-local-review",
+  "scope": "synthetic_review_only",
+  "flags": {
+    "closed_loop_history_enabled": false,
+    "actual_action_tracking_enabled": false,
+    "followup_episode_enabled": false,
+    "trajectory_context_enabled": false,
+    "trajectory_ui_enabled": false
+  },
+  "max_context_episodes": 3,
+  "default_context_episodes": 1,
+  "max_payload_bytes": 65536,
+  "max_envelope_bytes": 66048,
+  "max_ciphertext_bytes": 131072,
+  "max_context_bytes": 262144,
+  "max_recommendations": 40,
+  "max_actual_actions": 40,
+  "max_episode_events": 160,
+  "default_followup_offset_days": null,
+  "comparison_question_enabled": false,
+  "free_text_enabled": false,
+  "categories": {
+    "snapshot": "current_sensitive_profile",
+    "decision": "personalized_result",
+    "recommendation_response": "product_usage_feedback",
+    "actual_use_response": "product_usage_feedback",
+    "actual_action": "product_usage_feedback",
+    "followup": "checkin"
+  },
+  "recommendation_namespaces": {
+    "routine": [
+      "KEEP",
+      "REDUCE",
+      "PAUSE",
+      "ABSTAIN",
+      "ROUTINE_SIMPLIFY",
+      "FOLLOW_UP",
+      "DEFER"
+    ],
+    "replenishment": [
+      "REPURCHASE_SAME",
+      "REPLACE",
+      "DO_NOT_REPURCHASE",
+      "DEFER"
+    ]
+  },
+  "actual_action_types": [
+    "kept",
+    "frequency_changed",
+    "product_paused",
+    "product_resumed",
+    "product_added",
+    "product_removed",
+    "product_replaced",
+    "repurchased_same",
+    "not_repurchased"
+  ],
+  "snapshot_sources": [
+    "onboarding",
+    "checkin",
+    "manual_update",
+    "followup",
+    "terminal_fresh"
+  ],
+  "reentry_snapshot_contract": {
+    "parent_field": "previous_snapshot_ref",
+    "sources": [
+      "checkin",
+      "terminal_fresh"
+    ],
+    "preserved_fields": [
+      "portfolio_revision",
+      "portfolio",
+      "usage_instances"
+    ]
+  },
+  "other_change_states": [
+    "none_reported",
+    "reported",
+    "unknown",
+    "user_refused",
+    "not_asked"
+  ],
+  "unconfirmed_use_responses": [
+    "unknown",
+    "user_refused"
+  ],
+  "followup_questions": {
+    "core": [
+      "current_discomfort",
+      "current_concern"
+    ],
+    "actual_use_decisions": {
+      "routine": [
+        "KEEP",
+        "REDUCE",
+        "PAUSE"
+      ],
+      "replenishment": [
+        "REPURCHASE_SAME",
+        "REPLACE",
+        "DO_NOT_REPURCHASE"
+      ]
+    },
+    "optional_context": [
+      "other_changes"
+    ],
+    "unasked_other_changes": "not_asked"
+  },
+  "legacy_engine_action_mapping": {
+    "keep": "KEEP",
+    "adjust": "DEFER",
+    "review_required": "DEFER"
+  },
+  "next_decision_deferral_confounds": [
+    "unexplained_portfolio_change"
+  ],
+  "frequency_values": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "unknown",
+    "user_refused",
+    "user_does_not_remember"
+  ],
+  "activation_requirements": [
+    "reviewed_account_bound_server_adapter",
+    "separate_versioned_history_consent_and_notice",
+    "reviewed_ciphertext_read_permissions_and_crypto_context",
+    "append_only_parent_link_migration_and_retention_integration",
+    "withdrawal_backup_restore_repurge",
+    "approved_followup_timing_if_scheduled",
+    "real_member_device_end_to_end_verification"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "version": "1.2.0-approved-20261011",
+  "status": "approved_development_contract",
+  "runtime_enabled": false,
+  "public_enabled": false,
+  "real_charge_enabled": false,
+  "price_krw": 7900,
+  "introductory_trial": false,
+  "period": "plan_specific",
+  "timezone": "Asia/Seoul",
+  "usage_shared_across_plan_changes": false,
+  "carry_over": false,
+  "quota_unit": "completed_workflow",
+  "purchase_eligibility": {
+    "minimum_account_age_years": 14,
+    "adult_age_years": 19,
+    "exact_birth_date_collection_allowed": false,
+    "age_bands": [
+      "adult_19_or_over",
+      "minor_14_to_18"
+    ],
+    "minor_guardian_consent_verification_required": true,
+    "client_boolean_can_authorize_purchase": false,
+    "server_context_max_age_seconds": 300,
+    "maximum_future_skew_seconds": 30
+  },
+  "plans": {
+    "free": {
+      "label": "무료",
+      "ai_product_lookup": 15,
+      "routine_review": 3,
+      "period": "calendar_month"
+    },
+    "plus": {
+      "label": "플러스",
+      "ai_product_lookup": 30,
+      "routine_review": null,
+      "period": "verified_paid_transaction"
+    }
+  },
+  "features": {
+    "catalog_search": {
+      "label": "제품명 검색·직접 입력",
+      "access": "all"
+    },
+    "ingredient_evidence": {
+      "label": "확인된 전성분·출처 보기",
+      "access": "all"
+    },
+    "product_list": {
+      "label": "내 제품 등록·수정",
+      "access": "all"
+    },
+    "ai_product_lookup": {
+      "label": "AI 제품 찾기",
+      "access": "metered"
+    },
+    "routine_review": {
+      "label": "전체 루틴 점검",
+      "access": "metered"
+    },
+    "routine_comparison": {
+      "label": "제품 변경 전후 루틴 비교",
+      "access": "plus"
+    },
+    "checkin_guidance": {
+      "label": "정기 체크인·다음 관리 안내",
+      "access": "plus"
+    },
+    "safety_guidance": {
+      "label": "안전 안내·불편 신고",
+      "access": "all"
+    },
+    "saved_result_read": {
+      "label": "보관 중인 내 결과 다시 보기",
+      "access": "all"
+    },
+    "data_controls": {
+      "label": "정보 삭제·동의 철회·구독 관리",
+      "access": "all"
+    }
+  },
+  "workflow": {
+    "ai_product_lookup": [
+      "photo_identity_optional",
+      "catalog",
+      "web_product_if_missing",
+      "ingredients_if_needed"
+    ],
+    "one_workflow_one_unit": true,
+    "cache_replay_consumes_unit": false,
+    "failed_or_cancelled_consumes_unit": false,
+    "unknown_outcome_keeps_reservation": true,
+    "provider_cost_ledger_separate": true,
+    "automatic_paid_retry": false,
+    "unlimited_review_max_concurrent": 1
+  },
+  "retention": {
+    "extends_sensitive_ttl": false,
+    "historical_results_remain_readable_until_expiry": true
+  },
+  "safety": {
+    "paywall_allowed": false,
+    "free_analysis_truncated": false,
+    "unverified_ingredients_allowed": false,
+    "affiliate_ranking_weight": 0
+  },
+  "copy": {
+    "lookup_detail": "사진 인식부터 필요한 인터넷·전성분 조회까지 이어지는 한 번의 찾기를 1회로 계산해요.",
+    "reset_detail": "무료는 매월 1일 한국 시간에 AI 제품 찾기 15회·전체 루틴 점검 3회를 제공해요. 플러스는 첫 결제와 확인된 결제 갱신마다 AI 제품 찾기 30회를 제공해요. 복원으로 충전되지 않고 남은 횟수는 이월되지 않아요.",
+    "fallback_detail": "제품명으로 DB를 검색하거나 직접 입력하는 것은 횟수 제한 없이 이용할 수 있어요.",
+    "retention_detail": "동의한 이력은 서비스 이용 중 보관하며 직접 삭제하거나 동의를 철회할 수 있어요. 구독 해지만으로 기록이 삭제되지는 않아요. 기존 기록의 보관 동의는 별도로 적용돼요.",
+    "minor_purchase_detail": "만 14~18세 이용자의 플러스 구독에는 법정대리인 동의 확인이 필요해요. 확인되지 않으면 무료 기능은 계속 이용할 수 있지만 구매는 시작되지 않아요."
+  },
+  "allocation_identity_version": "1.1.0-approved-20260915",
+  "compatible_free_allocation_limits": {
+    "ai_product_lookup": 5,
+    "routine_review": 1
+  }
+}

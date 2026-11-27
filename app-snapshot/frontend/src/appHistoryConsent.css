@@ -1,0 +1,80 @@
+.app-history-consent {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #dfe5ec;
+  border-radius: 1.25rem;
+  color: #202832;
+  background: #fff;
+  font-size: 1rem;
+}
+.app-history-consent h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  line-height: 1.45;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.app-history-consent p { margin: 0; line-height: 1.65; overflow-wrap: anywhere; }
+.app-history-consent-notice { display: grid; gap: .875rem; }
+.app-history-consent .app-history-consent-notice p { color: #52606d; font-size: .9375rem; }
+.app-history-consent .app-history-consent-status {
+  padding: 14px;
+  border-radius: .875rem;
+  color: #394959;
+  background: #f3f5f8;
+  font-size: .9375rem;
+  font-weight: 650;
+}
+.app-history-consent .app-history-consent-status-consented { color: #155b50; background: #e8f4f0; }
+.app-history-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px;
+  border: 1px solid #dfe5ec;
+  border-radius: .875rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.app-history-consent input[type="checkbox"] {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  min-height: 22px;
+  padding: 0;
+  margin: 3px 0 0;
+  accent-color: #2458e5;
+}
+.app-history-consent button {
+  min-height: 48px;
+  width: 100%;
+  padding: .875rem;
+  border: 1px solid #cad2dc;
+  border-radius: .875rem;
+  color: #2458e5;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.app-history-consent button.app-history-consent-primary { color: #fff; border-color: #2458e5; background: #2458e5; }
+.app-history-consent button.app-history-consent-danger { border-color: #b42318; background: #b42318; }
+.app-history-consent button:disabled { color: #687582; border-color: #e1e6ec; background: #f3f5f7; }
+.app-history-consent [role="group"] { display: grid; gap: .75rem; }
+.app-history-consent [role="alert"] {
+  padding: .875rem;
+  border-radius: .875rem;
+  color: #a6231b;
+  background: #fff0ee;
+  font-size: .9375rem;
+}
+.app-history-consent :focus-visible { outline: 3px solid #2458e5; outline-offset: 3px; }
+@media (max-width: 360px) {
+  .app-history-consent { padding: 12px; }
+  .app-history-consent label { gap: 6px; padding: 8px; }
+}

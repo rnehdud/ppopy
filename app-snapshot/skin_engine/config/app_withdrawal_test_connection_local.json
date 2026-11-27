@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0-local-20261017",
+  "scope": "explicit_TEST_native_withdrawal_connection",
+  "runtime_registered": false,
+  "public_enabled": false,
+  "native_reply_deadline_ms": 65000,
+  "status_reply_deadline_ms": 25000,
+  "maximum_original_session_requests": 3,
+  "maximum_original_status_requests": 1,
+  "completion_margin_ms": 5000,
+  "deadline_basis": "sequential_native_HTTPS_request_budgets_plus_completion_margin",
+  "automatic_retry": false,
+  "expiry_outcome": "unconfirmed_keep_attempt_latch_ignore_late_reply"
+}

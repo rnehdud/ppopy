@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "scope": "isolated_local_review",
+  "runtime_registered": false,
+  "public_enabled": false,
+  "native_connection_enabled": false,
+  "automatic_poll_or_retry": false,
+  "request_key_persistence_enabled": false,
+  "response_cache_enabled": false,
+  "owner": "original_member_connection_in_one_js_runtime",
+  "view": "exclusive_revocable_lease",
+  "background": "abort_local_transport_preserve_original_client",
+  "foreground": "recheck_session_no_http",
+  "retirement": "clear_client_ids_no_server_cancel",
+  "unsettled_transport": "hold_until_original_transport_settles",
+  "recovery": "explicit_original_request_only"
+}

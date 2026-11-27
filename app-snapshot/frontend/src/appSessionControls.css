@@ -1,0 +1,105 @@
+.app-session-controls {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  color: #202832;
+  font-size: 1rem;
+}
+.app-session-controls h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  line-height: 1.45;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.app-session-controls h3,
+.app-session-controls h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.app-session-controls .app-session-control-row {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.125rem;
+  border: 1px solid #dfe5ec;
+  border-radius: 1.25rem;
+  background: #fff;
+}
+.app-session-controls .app-session-control-row p {
+  margin: .375rem 0 0;
+  color: #52606d;
+  font-size: .9375rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.app-session-controls button {
+  min-height: 48px;
+  width: 100%;
+  padding: .875rem;
+  border: 1px solid #cad2dc;
+  border-radius: .875rem;
+  color: #202832;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.app-session-controls .app-session-danger > button {
+  color: #b42318;
+  border-color: #efc0bc;
+}
+.app-session-controls .app-session-confirm {
+  display: grid;
+  gap: .75rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid #efc0bc;
+  border-radius: 1rem;
+  background: #fff8f7;
+}
+.app-session-controls .app-session-confirm > p {
+  margin: 0;
+  color: #7a332d;
+}
+.app-session-controls .app-session-confirm button.app-session-final-action {
+  color: #fff;
+  border-color: #b42318;
+  background: #b42318;
+}
+.app-session-controls button:disabled {
+  color: #52606d;
+  border-color: #dfe5ec;
+  background: #edf0f3;
+}
+.app-session-controls .app-session-confirm button.app-session-final-action:disabled {
+  color: #52606d;
+  border-color: #dfe5ec;
+  background: #edf0f3;
+}
+.app-session-controls :focus-visible { outline: 3px solid #2458e5; outline-offset: 3px; }
+.app-session-controls .app-session-notice {
+  display: grid;
+  gap: .375rem;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: #24574b;
+  background: #eff8f4;
+}
+.app-session-controls .app-session-notice p {
+  margin: 0;
+  font-size: .9375rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.app-session-controls .app-session-notice-error { color: #8f261e; background: #fff1f0; }
+@media (max-width: 360px) {
+  .app-session-controls .app-session-control-row { padding: .75rem; }
+  .app-session-controls .app-session-confirm { padding: .75rem; }
+}

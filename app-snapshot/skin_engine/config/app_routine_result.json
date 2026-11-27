@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0-local-review-20260928",
+  "runtime_enabled": false,
+  "scope": "synthetic_test_only",
+  "category": "personalized_result",
+  "purpose": "app_routine_result_delivery",
+  "max_plaintext_bytes": 65536,
+  "max_ciphertext_bytes": 131072,
+  "history_storage_optional": true,
+  "automatic_recompute": false,
+  "automatic_pending_refund": false,
+  "http": {
+    "runtime_enabled": false,
+    "path": "/api/v1/app/routine-result/latest",
+    "method": "GET",
+    "authorization_scheme": "Bearer"
+  }
+}

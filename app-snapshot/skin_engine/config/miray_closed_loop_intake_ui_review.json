@@ -1,0 +1,332 @@
+{
+  "version": "1.0.0-next-intake-ui-local-review",
+  "enabled": false,
+  "registered": false,
+  "deployment_context": "synthetic_test",
+  "evaluation_scope": "synthetic_local_review_only",
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "real_user_question_exposure_enabled": false,
+  "max_request_bytes": 65536,
+  "max_response_bytes": 65536,
+  "routes": {
+    "read": {
+      "method": "GET",
+      "path": "/app/review/loop-next-intake"
+    },
+    "save": {
+      "method": "POST",
+      "path": "/app/review/loop-next-intake"
+    }
+  },
+  "stop_on_missing_answer": true,
+  "reuse_policy": "same_current_target_confirmed_ciphertext_only",
+  "steps": [
+    {
+      "id": "products",
+      "title": "지금 사용하는 제품을 모두 등록했나요?",
+      "decision": "등록 범위를 확인해 확인하지 못한 제품과 성분의 빈틈을 남겨요.",
+      "fields": [
+        "product_context_status"
+      ],
+      "kind": "single",
+      "choices": [
+        {
+          "label": "모두 등록했어요",
+          "answers": {
+            "product_context_status": {
+              "state": "reported",
+              "value": "registered"
+            }
+          }
+        },
+        {
+          "label": "일부만 등록했어요",
+          "answers": {
+            "product_context_status": {
+              "state": "reported",
+              "value": "partial"
+            }
+          }
+        },
+        {
+          "label": "아직 등록하지 않았어요",
+          "answers": {
+            "product_context_status": {
+              "state": "reported",
+              "value": "unregistered"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "priorities",
+      "title": "이번 루틴 점검에서 신경 쓰이는 부분은 무엇인가요?",
+      "decision": "전체 6성분 구성에서 관리 방향을 정해요. 현재 트러블 여부를 대신 판단하지 않아요.",
+      "fields": [
+        "care_priorities"
+      ],
+      "kind": "multi",
+      "items": [
+        {
+          "value": "texture_congestion_tendency",
+          "label": "피부결과 오돌토돌함"
+        },
+        {
+          "value": "redness_tendency",
+          "label": "붉게 느껴지는 상태"
+        },
+        {
+          "value": "surface_oil_tendency",
+          "label": "겉도는 유분"
+        }
+      ]
+    },
+    {
+      "id": "habits",
+      "title": "현재 세안이나 피부 접촉에서 해당하는 항목이 있나요?",
+      "decision": "성분 추가에 앞서 조정할 수 있는 세안·접촉 습관을 확인해요. 피부 상태의 원인으로 단정하지 않아요.",
+      "fields": [
+        "aggravating_answers"
+      ],
+      "kind": "multi",
+      "items": [
+        {
+          "value": "frequent_cleansing",
+          "label": "세안을 자주 해요"
+        },
+        {
+          "value": "post_cleanse_tightness",
+          "label": "세안 뒤 당김이 있어요"
+        },
+        {
+          "value": "frequent_physical_scrub",
+          "label": "물리적 스크럽을 자주 해요"
+        },
+        {
+          "value": "long_mask_contact",
+          "label": "마스크가 오래 닿아요"
+        },
+        {
+          "value": "frequent_face_touching",
+          "label": "얼굴을 자주 만져요"
+        },
+        {
+          "value": "repeated_equipment_pressure",
+          "label": "장비가 반복해서 닿거나 눌려요"
+        },
+        {
+          "value": "shaving_irritation",
+          "label": "면도·제모 뒤 불편감이 있어요"
+        },
+        {
+          "value": "hair_product_face_contact",
+          "label": "헤어 제품이 얼굴에 닿아요"
+        },
+        {
+          "value": "waterproof_residue_concern",
+          "label": "잘 지워지지 않는 제품의 잔여물이 신경 쓰여요"
+        },
+        {
+          "value": "makeup_residue_concern",
+          "label": "메이크업 잔여물이 신경 쓰여요"
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "title": "예전에 화장품 사용 후 불편해진 적이 있나요?",
+      "decision": "현재 사용 중 불편감과 별도로, 기존 안전 점검의 자극 부담을 확인해요.",
+      "fields": [
+        "irritation_history"
+      ],
+      "kind": "single",
+      "choices": [
+        {
+          "label": "있어요",
+          "answers": {
+            "irritation_history": {
+              "state": "reported",
+              "value": true
+            }
+          }
+        },
+        {
+          "label": "없어요",
+          "answers": {
+            "irritation_history": {
+              "state": "reported",
+              "value": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "actives",
+      "title": "현재 레티노이드나 산 성분 제품을 사용하나요?",
+      "decision": "활성 성분 중첩과 레티노이드 사용의 안전 부담을 한 답변으로 확인해요. 제품 목록만으로 실제 사용을 추정하지 않아요.",
+      "fields": [
+        "current_actives",
+        "retinoid_in_use"
+      ],
+      "kind": "single",
+      "choices": [
+        {
+          "label": "둘 다 사용하지 않아요",
+          "answers": {
+            "current_actives": {
+              "state": "none_reported",
+              "value": []
+            },
+            "retinoid_in_use": {
+              "state": "reported",
+              "value": false
+            }
+          }
+        },
+        {
+          "label": "레티노이드만 사용해요",
+          "answers": {
+            "current_actives": {
+              "state": "reported",
+              "value": [
+                "retinoid"
+              ]
+            },
+            "retinoid_in_use": {
+              "state": "reported",
+              "value": true
+            }
+          }
+        },
+        {
+          "label": "산 성분만 사용해요",
+          "answers": {
+            "current_actives": {
+              "state": "reported",
+              "value": [
+                "acid"
+              ]
+            },
+            "retinoid_in_use": {
+              "state": "reported",
+              "value": false
+            }
+          }
+        },
+        {
+          "label": "둘 다 사용해요",
+          "answers": {
+            "current_actives": {
+              "state": "reported",
+              "value": [
+                "retinoid",
+                "acid"
+              ]
+            },
+            "retinoid_in_use": {
+              "state": "reported",
+              "value": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "treatment",
+      "title": "현재 피부과 치료를 받고 있나요?",
+      "decision": "치료 중이거나 여부가 확실하지 않으면 기존 규칙에 따라 자극 가능 성분을 제한해요. 약명·질환명은 묻지 않아요.",
+      "fields": [
+        "dermatology_treatment_status"
+      ],
+      "kind": "single",
+      "choices": [
+        {
+          "label": "받지 않아요",
+          "answers": {
+            "dermatology_treatment_status": {
+              "state": "reported",
+              "value": "none"
+            }
+          }
+        },
+        {
+          "label": "받고 있어요",
+          "answers": {
+            "dermatology_treatment_status": {
+              "state": "reported",
+              "value": "in_use"
+            }
+          }
+        },
+        {
+          "label": "치료 여부가 확실하지 않아요 — 제한된 구성으로 확인",
+          "answers": {
+            "dermatology_treatment_status": {
+              "state": "reported",
+              "value": "unknown"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tightness",
+      "title": "현재 당김이나 건조감을 얼마나 느끼나요?",
+      "decision": "기존 안전 규칙의 당김·건조 부담을 확인해요. 상태가 심하다고 강한 성분을 늘리지 않아요.",
+      "fields": [
+        "tightness_dryness_score"
+      ],
+      "kind": "single",
+      "choices": [
+        {
+          "label": "0 — 느끼지 않아요",
+          "answers": {
+            "tightness_dryness_score": {
+              "state": "reported",
+              "value": 0
+            }
+          }
+        },
+        {
+          "label": "1 — 조금 느껴요",
+          "answers": {
+            "tightness_dryness_score": {
+              "state": "reported",
+              "value": 1
+            }
+          }
+        },
+        {
+          "label": "2 — 어느 정도 느껴요",
+          "answers": {
+            "tightness_dryness_score": {
+              "state": "reported",
+              "value": 2
+            }
+          }
+        },
+        {
+          "label": "3 — 많이 느껴요",
+          "answers": {
+            "tightness_dryness_score": {
+              "state": "reported",
+              "value": 3
+            }
+          }
+        },
+        {
+          "label": "4 — 매우 많이 느껴요",
+          "answers": {
+            "tightness_dryness_score": {
+              "state": "reported",
+              "value": 4
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

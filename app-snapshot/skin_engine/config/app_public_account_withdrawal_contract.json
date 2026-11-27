@@ -1,0 +1,6 @@
+{
+  "version": "1.0.0-public-account-withdrawal-20261020",
+  "scope": "ordinary_public_account_closure_acceptance_not_erasure_receipt",
+  "http": {"path": "/api/v1/app/account/withdrawal", "method": "DELETE", "authorization_scheme": "Bearer"},
+  "response_fields": ["schema_version", "account_closed", "history_deletion_scheduled", "deletion_completed"]
+}

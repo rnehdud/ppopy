@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0-frequency-http-local-review",
+  "deployment_context": "synthetic_test",
+  "enabled": false,
+  "registered": false,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "max_request_bytes": 4096,
+  "max_response_bytes": 65536,
+  "routes": {
+    "read": {"method": "GET", "path": "/app/review/loop-frequency/current"},
+    "confirm": {"method": "POST", "path": "/app/review/loop-frequency/confirm"}
+  }
+}

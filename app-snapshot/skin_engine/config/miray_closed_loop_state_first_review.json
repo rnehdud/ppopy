@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0-state-first-local-review",
+  "enabled": false,
+  "registered": false,
+  "real_user_question_exposure_enabled": false,
+  "deployment_context": "synthetic_test",
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "question_profile": "routine_state_and_safety",
+  "profile_fields": ["concern_presence", "discomfort_presence", "discomfort_types"],
+  "core_fields_in_engine_order": ["discomfort_presence", "concern_presence"],
+  "known_core_values": ["reported", "none_reported"],
+  "missing_core_values": ["not_asked", "unknown", "user_refused"],
+  "uncollected_discomfort_context": ["timing", "ongoing", "duration", "other_recent_changes", "application_site", "amount"],
+  "complete_engine_intake_required": true,
+  "partial_state_storage_enabled": false,
+  "early_abstention_creates_decision": false,
+  "evaluation_scope": "synthetic_local_review_only"
+}

@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-terminal-fresh-input-local-review",
+  "enabled": false,
+  "registered": false,
+  "deployment_context": "synthetic_test",
+  "purpose": "miray_terminal_next_explicit_fresh_input",
+  "category": "questionnaire",
+  "encryption_key_ref": "synthetic:local-review-terminal-fresh-aead-v1",
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "real_user_question_exposure_enabled": false,
+  "dispatch_enabled": false,
+  "state_record_is_loop_event": false,
+  "registration_confirms_actual_use": false,
+  "partial_input_storage_enabled": false,
+  "permitted_terminal_statuses": ["failed", "cancelled", "cached"],
+  "max_metadata_rows": 256,
+  "max_request_bytes": 65536,
+  "max_response_bytes": 65536,
+  "max_plaintext_bytes": 2097152,
+  "max_ciphertext_bytes": 2097216,
+  "evaluation_scope": "synthetic_local_review_only",
+  "routes": {
+    "read": {"method": "POST", "path": "/app/review/loop-next/fresh-input/read"},
+    "precheck": {"method": "POST", "path": "/app/review/loop-next/fresh-input/precheck"},
+    "save": {"method": "POST", "path": "/app/review/loop-next/fresh-input/save"}
+  }
+}

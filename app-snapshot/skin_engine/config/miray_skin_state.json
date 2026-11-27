@@ -1,0 +1,115 @@
+{
+  "version": "1.0.0",
+  "status": "prepared_disabled",
+  "runtime_enabled": false,
+  "http": {
+    "path": "/api/v1/app/skin-state",
+    "method": "POST",
+    "max_request_bytes": 8192,
+    "authorization_scheme": "Bearer",
+    "runtime_enabled": false
+  },
+  "purpose": "사용자가 직접 보고한 현재 상태와 화장품 사용 후 불편 반응을 구분해 루틴 점검에 사용",
+  "storage": {
+    "sensitive": true,
+    "history_policy": "launch_sensitive_service_v2",
+    "separate_history_consent_required": true,
+    "categories": {
+      "baseline": "current_sensitive_profile",
+      "checkin": "checkin"
+    },
+    "free_text_allowed": false
+  },
+  "encryption": {
+    "key_environment_variable": "APPLICATION_DATA_KEY_ARN",
+    "max_plaintext_bytes": 4096,
+    "algorithm": "SYMMETRIC_DEFAULT",
+    "context": {
+      "project": "SkinAnalysis",
+      "purpose": "miray-skin-state-v1"
+    }
+  },
+  "record_kinds": [
+    "baseline",
+    "checkin"
+  ],
+  "missing_states": [
+    "unknown",
+    "not_asked",
+    "user_refused"
+  ],
+  "fields": {
+    "concern_presence": [
+      "reported",
+      "none_reported",
+      "unknown",
+      "not_asked",
+      "user_refused"
+    ],
+    "persistence": [
+      "recent",
+      "recurring",
+      "persistent",
+      "not_applicable",
+      "unknown",
+      "not_asked",
+      "user_refused"
+    ],
+    "recent_change": [
+      "better",
+      "worse",
+      "unchanged",
+      "fluctuating",
+      "not_applicable",
+      "unknown",
+      "not_asked",
+      "user_refused"
+    ],
+    "discomfort_presence": [
+      "reported",
+      "none_reported",
+      "unknown",
+      "not_asked",
+      "user_refused"
+    ],
+    "discomfort_types": [
+      "stinging",
+      "burning",
+      "itching",
+      "tightness",
+      "increased_scaling",
+      "redness_tendency",
+      "other_no_free_text"
+    ],
+    "sensitivity_history": [
+      "reported",
+      "none_reported",
+      "unknown",
+      "not_asked",
+      "user_refused"
+    ]
+  },
+  "interpretation": {
+    "discomfort_none_does_not_mean_skin_clear": true,
+    "no_diagnosis_or_cause_inference": true,
+    "safety_precedes_adherence_and_effect": true,
+    "automatic_improvement_judgment": false
+  },
+  "home_tasks": {
+    "templates": {
+      "reported_discomfort": {
+        "id": "reported-discomfort",
+        "kind": "safety",
+        "title": "불편 반응이 있어 사용 중단 여부와 다음 행동을 확인해요",
+        "route": "routine"
+      },
+      "reported_skin_change": {
+        "id": "reported-skin-change",
+        "kind": "skin_change",
+        "title": "최근 달라졌다고 답한 상태를 다시 확인해요",
+        "route": "home"
+      }
+    },
+    "max_response_tasks": 1
+  }
+}

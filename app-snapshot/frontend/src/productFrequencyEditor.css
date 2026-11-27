@@ -1,0 +1,11 @@
+.miray-main .product-frequency-editor > button { display:flex; align-items:center; justify-content:space-between; gap:.75rem; width:100%; min-height:3rem; margin-top:.75rem; text-align:left; color:#192622; font-size:1rem; font-weight:650; }
+.product-frequency-editor fieldset { min-width:0; margin:.75rem 0 0; padding:12px; border:1px solid #c8d0dc; border-radius:12px; }
+.product-frequency-editor legend { padding:0 .25rem; font-size:1rem; font-weight:650; }
+.product-frequency-editor fieldset > p { margin:.25rem 0 .75rem; font-size:.875rem; line-height:1.6; }
+.product-frequency-options { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,7rem),1fr)); gap:8px; }
+.miray-main .product-frequency-options label { display:flex; align-items:center; gap:8px; min-height:3rem; padding:8px; border:1px solid #d3dbe5; border-radius:10px; cursor:pointer; overflow-wrap:anywhere; font-weight:600; line-height:1.5; }
+.miray-main .product-frequency-options input { flex:0 0 22px; width:22px; height:22px; min-width:22px; min-height:0; max-width:22px; padding:0; margin:0; accent-color:#265be8; }
+.product-frequency-options label:has(input:checked) { border-color:#265be8; background:#edf2ff; }
+.product-frequency-editor :is(button,input):focus-visible { outline:3px solid #729dfa; outline-offset:3px; }
+.miray-main .product-frequency-editor fieldset > button { margin-top:.75rem; width:100%; }
+@media(max-width:359px) { .product-frequency-options { grid-template-columns:1fr; } }

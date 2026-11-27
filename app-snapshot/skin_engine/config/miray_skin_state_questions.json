@@ -1,0 +1,207 @@
+{
+  "version": "1.1.1",
+  "purpose": "self_report_question_presentation_only_not_a_validated_clinical_scale",
+  "order": [
+    "concern_presence",
+    "persistence",
+    "recent_change",
+    "discomfort_presence",
+    "discomfort_types",
+    "sensitivity_history"
+  ],
+  "questions": {
+    "concern_presence": {
+      "title": "지금 트러블 등 신경 쓰이는 피부 상태가 있나요?",
+      "accessibility_label": "피부 상태 여부",
+      "options": [
+        {
+          "value": "reported",
+          "label": "있어요"
+        },
+        {
+          "value": "none_reported",
+          "label": "없어요"
+        },
+        {
+          "value": "unknown",
+          "label": "잘 모르겠어요"
+        },
+        {
+          "value": "user_refused",
+          "label": "답하지 않을게요"
+        }
+      ]
+    },
+    "persistence": {
+      "title": "신경 쓰이는 상태가 어떻게 이어지고 있나요?",
+      "accessibility_label": "지속 양상",
+      "show_when": {
+        "field": "concern_presence",
+        "value": "reported"
+      },
+      "options": [
+        {
+          "value": "recent",
+          "label": "최근 생겼어요"
+        },
+        {
+          "value": "recurring",
+          "label": "생겼다 사라지기를 반복해요"
+        },
+        {
+          "value": "persistent",
+          "label": "계속 이어지고 있어요"
+        },
+        {
+          "value": "unknown",
+          "label": "잘 모르겠어요"
+        },
+        {
+          "value": "user_refused",
+          "label": "답하지 않을게요"
+        }
+      ]
+    },
+    "recent_change": {
+      "title": "신경 쓰이는 상태는 최근 어떻게 느껴지나요?",
+      "accessibility_label": "최근 변화",
+      "show_when": {
+        "field": "concern_presence",
+        "value": "reported"
+      },
+      "options": [
+        {
+          "value": "better",
+          "label": "나아진 편이에요"
+        },
+        {
+          "value": "worse",
+          "label": "불편이 커진 편이에요"
+        },
+        {
+          "value": "unchanged",
+          "label": "비슷해요"
+        },
+        {
+          "value": "fluctuating",
+          "label": "오르내려요"
+        },
+        {
+          "value": "unknown",
+          "label": "잘 모르겠어요"
+        },
+        {
+          "value": "user_refused",
+          "label": "답하지 않을게요"
+        }
+      ]
+    },
+    "discomfort_presence": {
+      "title": "제품이나 루틴을 사용하며 불편감이 있었나요?",
+      "accessibility_label": "사용 후 불편감",
+      "options": [
+        {
+          "value": "reported",
+          "label": "있었어요"
+        },
+        {
+          "value": "none_reported",
+          "label": "없었어요"
+        },
+        {
+          "value": "unknown",
+          "label": "잘 모르겠어요"
+        },
+        {
+          "value": "user_refused",
+          "label": "답하지 않을게요"
+        }
+      ]
+    },
+    "discomfort_types": {
+      "title": "어떤 불편감이 있었나요?",
+      "accessibility_label": "불편감 종류",
+      "multiple": true,
+      "show_when": {
+        "field": "discomfort_presence",
+        "value": "reported"
+      },
+      "options": [
+        {
+          "value": "stinging",
+          "label": "따가움"
+        },
+        {
+          "value": "burning",
+          "label": "화끈거림"
+        },
+        {
+          "value": "itching",
+          "label": "가려움"
+        },
+        {
+          "value": "tightness",
+          "label": "당김"
+        },
+        {
+          "value": "increased_scaling",
+          "label": "각질이 늘어남"
+        },
+        {
+          "value": "redness_tendency",
+          "label": "붉어지는 느낌"
+        },
+        {
+          "value": "other_no_free_text",
+          "label": "그 밖의 불편"
+        }
+      ]
+    },
+    "sensitivity_history": {
+      "title": "예전에도 화장품 사용 후 쉽게 불편해진 적이 있나요?",
+      "accessibility_label": "민감 경험",
+      "options": [
+        {
+          "value": "reported",
+          "label": "있어요"
+        },
+        {
+          "value": "none_reported",
+          "label": "없어요"
+        },
+        {
+          "value": "unknown",
+          "label": "잘 모르겠어요"
+        },
+        {
+          "value": "user_refused",
+          "label": "답하지 않을게요"
+        }
+      ]
+    }
+  },
+  "default_profile": "routine_state_and_safety",
+  "profiles": {
+    "state_context": [
+      "concern_presence",
+      "persistence",
+      "recent_change",
+      "discomfort_presence",
+      "discomfort_types",
+      "sensitivity_history"
+    ],
+    "routine_state_and_safety": [
+      "concern_presence",
+      "discomfort_presence",
+      "discomfort_types"
+    ]
+  },
+  "question_value": {
+    "discomfort_presence": "기존 Q04 안전 분기 / 모름 보존",
+    "discomfort_types": "기존 안전 상세 계약; 불편감이 있다고 답한 경우만",
+    "concern_presence": "현재 상태/조정 목적의 기본 관측; 사용 후 불편감과 독립. 있음만으로 성분/빈도 조정 확정 금지",
+    "persistence": "deferred: no current decision consumer",
+    "recent_change": "deferred: neutral home-task context only",
+    "sensitivity_history": "deferred: no current decision consumer"
+  }
+}

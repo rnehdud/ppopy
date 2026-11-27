@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-public-session-vault-review-20261021",
+  "scope": "public_device_session_only_not_TEST_or_research",
+  "keychain_service": "com.miraylab.poppy.public-session-vault",
+  "key": "poppy.public.session.v1",
+  "contract_versions": {
+    "plain": "1.0.0-public-session",
+    "google": "1.0.0-public-google-session",
+    "kakao": "1.0.0-public-kakao-session"
+  },
+  "maximum_vault_bytes": 4096,
+  "maximum_sdk_archive_bytes": 65536,
+  "maximum_clock_skew_milliseconds": 30000,
+  "maximum_session_days": 56,
+  "keychain_synchronizable": false,
+  "this_device_only": true,
+  "access_group": null,
+  "owner_bindings": null,
+  "TEST_migration": false
+}

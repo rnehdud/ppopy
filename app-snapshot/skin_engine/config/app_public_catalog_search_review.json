@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0-public-catalog-search-20261021",
+  "scope": "member_public_catalog_candidates_not_confirmation_or_recommendation",
+  "routes": {"search": {"method": "POST", "path": "/api/v1/app/products/search"}},
+  "max_request_bytes": 1024,
+  "max_response_bytes": 65536,
+  "maximum_query_characters": 200,
+  "maximum_candidates": 5,
+  "automatic_retry": false,
+  "automatic_confirmation": false,
+  "query_persistence": false,
+  "provider_calls": false,
+  "recommendation_bonus_from_search": false
+}

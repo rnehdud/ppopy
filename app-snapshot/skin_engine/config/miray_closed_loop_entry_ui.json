@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0-entry-ui-local-review",
+  "enabled": false,
+  "evaluation_scope": "synthetic_local_review_only",
+  "question_profile": "routine_state_and_safety",
+  "max_response_bytes": 262144,
+  "max_request_bytes": 65536,
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "statuses": ["ready", "pending", "completed", "deferred", "terminal_without_result", "blocked"],
+  "blocked_reasons": ["full_intake_required", "existing_episode", "portfolio_changed", "authority_unavailable", "saved_input_requires_recovery", "quota_unavailable"]
+}

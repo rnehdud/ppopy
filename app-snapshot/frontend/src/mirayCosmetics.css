@@ -1,0 +1,21 @@
+.miray-cosmetics { min-width: 0; }
+.miray-main .miray-cosmetics h1 { margin: 0 0 .75rem; font-size: 1.75rem; line-height: 1.35; }
+.miray-cosmetics > p { font-size: .9375rem; line-height: 1.65; color: #596572; }
+.miray-main .miray-cosmetics > button { min-height: 3rem; margin: .75rem 0 1rem; padding: .875rem 1rem; font-size: 1rem; line-height: 1.5; }
+.miray-cosmetics .miray-card { margin: .875rem 0; padding: 18px 20px; border-radius: 18px; }
+.miray-main .miray-cosmetics-product h2 { margin: 0 0 .625rem; font-size: 1rem; line-height: 1.5; font-weight: 650; overflow-wrap: anywhere; }
+.miray-cosmetics-product > p { font-size: .875rem; line-height: 1.65; color: #596572; overflow-wrap: anywhere; }
+.miray-cosmetics-product a { overflow-wrap: anywhere; }
+.miray-cosmetics .miray-sale-name summary, .miray-cosmetics-details > summary { display: flex; align-items: center; min-height: 3rem; font-size: .9375rem; line-height: 1.5; }
+.miray-cosmetics .miray-sale-name p { font-size: .875rem; line-height: 1.65; overflow-wrap: anywhere; }
+.miray-cosmetics-details { margin-top: .875rem; border-top: 1px solid #e8ecf1; }
+.miray-cosmetics-details > label { display: block; margin-top: .75rem; font-size: .9375rem; line-height: 1.5; }
+.miray-main .miray-cosmetics-details select { height: 3rem; min-height: 3rem; box-sizing: border-box; margin-top: .75rem; font-size: 1rem; line-height: 1.5; padding: .75rem; }
+.miray-cosmetics-details > p { font-size: .875rem; line-height: 1.65; color: #596572; }
+.miray-main .miray-cosmetics-remove { min-height: 3rem; margin-top: 1rem; padding: .75rem 1rem; font-size: .9375rem; line-height: 1.5; color: #b32b24; border-color: #e2bcb9; }
+.miray-cosmetics-remove-confirm { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e8ecf1; }
+.miray-cosmetics-remove-confirm > p { flex-basis: 100%; margin: 0 0 .5rem; font-size: .9375rem; line-height: 1.65; }
+.miray-main .miray-cosmetics-remove-confirm button { flex: 1; min-height: 3rem; font-size: 1rem; line-height: 1.5; padding: .75rem; }
+.miray-main .miray-cosmetics-remove-confirm button:first-of-type { color: #b32b24; border-color: #e2bcb9; }
+.miray-cosmetics button:focus-visible, .miray-cosmetics select:focus-visible, .miray-cosmetics summary:focus-visible { outline: 3px solid #729dfa; outline-offset: 3px; }
+@media (max-width: 360px) { .miray-cosmetics .miray-card { padding: 16px; } }

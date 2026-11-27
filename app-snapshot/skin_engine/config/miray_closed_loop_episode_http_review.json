@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-episode-http-local-review",
+  "enabled": false,
+  "registered": false,
+  "deployment_context": "synthetic_test",
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "max_request_bytes": 65536,
+  "max_response_bytes": 65536,
+  "routes": {
+    "read": {"method": "GET", "path": "/app/review/loop-episode/current"},
+    "actual": {"method": "POST", "path": "/app/review/loop-episode/actual"},
+    "followup": {"method": "POST", "path": "/app/review/loop-episode/followup"},
+    "changes": {"method": "GET", "path": "/app/review/loop-episode/product-changes"},
+    "change": {"method": "POST", "path": "/app/review/loop-episode/product-change"}
+  }
+}

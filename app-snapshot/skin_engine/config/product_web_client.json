@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0-owner-test-disabled",
+  "enabled": false,
+  "environment": "test",
+  "maximum_query_characters": 200,
+  "maximum_candidates": 5,
+  "maximum_response_bytes": 65536,
+  "timeout_milliseconds": 25000,
+  "disclosure": "DB에 없는 제품명은 OpenAI로 보내 인터넷에서 제품 후보를 찾습니다. 전성분은 별도로 확인합니다.",
+  "session_cache": {
+    "ttl_milliseconds": 600000,
+    "maximum_entries": 20
+  }
+}

@@ -1,0 +1,71 @@
+main.miray-state-checkin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 1rem;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+.miray-state-checkin > button:first-child { justify-self: start; }
+main.miray-state-checkin > h1 { margin: 0; font-size: 1.5rem; line-height: 1.4; }
+.miray-state-checkin > p { margin: 0; }
+.miray-state-checkin > .miray-eyebrow { margin-top: .5rem; font-size: .875rem; font-weight: 650; }
+.miray-state-checkin > .miray-state-progress { display: grid; gap: 8px; min-height: 48px; font-size: 1rem; }
+.miray-state-progress > progress { width: 100%; height: 6px; margin: 0; }
+.miray-state-checkin .miray-card { margin: 0; padding: 20px; }
+.miray-state-checkin .miray-state-question { min-height: 0; }
+.miray-state-checkin .miray-state-question h2,
+.miray-state-checkin .miray-state-review h2 { font-size: 1.375rem; line-height: 1.45; }
+.miray-state-checkin .miray-card > p { color: #596572; font-size: .9375rem; }
+.miray-state-checkin select {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 3rem;
+  padding: 12px 32px 12px 12px;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  line-height: 1.5;
+  background-image: linear-gradient(45deg, transparent 50%, #596572 50%), linear-gradient(135deg, #596572 50%, transparent 50%);
+  background-position: right 16px top 50%, right 12px top 50%;
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+}
+.miray-state-checkin .miray-state-question fieldset { display: grid; gap: 8px; min-width: 0; padding: 12px; }
+.miray-state-checkin .miray-state-question label {
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 3rem;
+  padding: 12px;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid #d3dbe5;
+  border-radius: .75rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.miray-state-checkin .miray-state-question label:has(input:checked) { border-color: #265be8; background: #edf2ff; }
+.miray-state-checkin .miray-state-question label input {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  min-height: 0;
+  padding: 0;
+  margin: 2px 0 0;
+  accent-color: #265be8;
+}
+.miray-state-checkin .miray-state-review dl { display: grid; gap: 1rem; margin: 1rem 0; }
+.miray-state-checkin .miray-state-review dl > div + div { margin-top: 0; padding-top: 1rem; border-top: 1px solid #e1e5eb; }
+.miray-state-checkin .miray-state-review dt { font-size: .9375rem; }
+.miray-state-checkin .miray-state-review dd { margin-top: .5rem; font-size: 1.125rem; line-height: 1.5; }
+.miray-state-checkin > p[role="note"] { color: #596572; font-size: .875rem; line-height: 1.65; }
+.miray-state-checkin .miray-state-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+.miray-state-checkin .miray-state-actions button { width: 100%; min-height: 3rem; line-height: 1.5; padding: .75rem 1rem; }
+@media (max-width: 360px) {
+  main.miray-state-checkin { padding: 16px; }
+  .miray-state-checkin .miray-card { padding: 16px; }
+}

@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0-test-20260928",
+  "runtime_enabled": false,
+  "public_enabled": false,
+  "deployment_context": "synthetic_test",
+  "http": {
+    "path": "/api/v1/app/account/withdrawal",
+    "method": "DELETE",
+    "authorization_scheme": "Bearer"
+  },
+  "response_fields": ["schema_version", "account_closed", "history_deletion_scheduled", "deletion_completed"]
+}

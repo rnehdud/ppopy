@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-entry-intake-http-local-review",
+  "enabled": false,
+  "registered": false,
+  "deployment_context": "synthetic_test",
+  "evaluation_scope": "synthetic_local_review_only",
+  "automatic_retry": false,
+  "automatic_poll": false,
+  "real_user_question_exposure_enabled": false,
+  "max_request_bytes": 65536,
+  "max_response_bytes": 65536,
+  "routes": {
+    "read": {
+      "method": "GET",
+      "path": "/app/review/loop-entry-intake"
+    },
+    "fresh": {
+      "method": "POST",
+      "path": "/app/review/loop-entry-intake/fresh"
+    },
+    "save": {
+      "method": "POST",
+      "path": "/app/review/loop-entry-intake"
+    }
+  },
+  "stop_on_missing_answer": true,
+  "reuse_policy": "same_current_entry_target_confirmed_ciphertext_only",
+  "question_contract": "miray_closed_loop_intake_ui_review"
+}

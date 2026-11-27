@@ -1,0 +1,87 @@
+.miray-workspace{min-height:100dvh;background:#f7f8fa;color:#202832;font-family:system-ui,sans-serif;padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+.miray-workspace [hidden]{display:none!important}.miray-header,.miray-main{max-width:600px;margin:auto;padding:24px}.miray-header{display:grid;gap:8px;padding-top:calc(20px + env(safe-area-inset-top))}.miray-header strong{font-size:24px}.miray-header small{color:#596572}.miray-main h1{font-size:28px;letter-spacing:-.04em}.miray-main h2{font-size:18px}.miray-main p{line-height:1.65}.miray-eyebrow{color:#315ad6}.miray-card{display:block;background:#fff;border:1px solid #e1e5eb;border-radius:20px;padding:20px;margin:16px 0;width:100%;box-sizing:border-box}.miray-card h2{margin-top:0}.miray-workspace button,.miray-workspace select{min-height:48px;font:inherit;cursor:pointer}.miray-main button{border:1px solid #d3dbe5;border-radius:14px;padding:12px 16px;background:#fff;color:#254fbc}.miray-main .miray-primary{background:#265be8;color:white;border:0;width:100%}.miray-main .miray-task{text-align:left;min-height:76px}.miray-main select{display:block;width:100%;margin-top:12px;border:1px solid #c8d0dc;border-radius:10px;background:white;padding:8px}.miray-tabs{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #dde3eb;z-index:10}.miray-tabs button{flex:1;max-width:120px;border:0;background:none;color:#5c6673}.miray-tabs button[aria-current]{color:#2459d9;font-weight:750;background:#edf2ff;border-radius:12px}.miray-workspace button:focus-visible,.miray-workspace select:focus-visible{outline:3px solid #729dfa;outline-offset:3px}
+.miray-tabs button{white-space:nowrap;padding:8px 4px;font-size:14px}.miray-main input{display:block;box-sizing:border-box;width:100%;min-height:48px;border:1px solid #c8d0dc;border-radius:12px;padding:10px;font:inherit;margin:8px 0}.miray-main summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
+.miray-state-checkin fieldset{border:0}.miray-state-checkin legend{font-weight:800;margin-bottom:12px}.miray-state-checkin select{margin:6px 0}.miray-state-checkin label{display:inline-flex;align-items:center;gap:7px;margin:7px 14px 7px 0}.miray-state-checkin label input{width:auto;min-height:auto;margin:0}
+
+.miray-sale-name{margin:8px 0}.miray-sale-name p{font-size:14px;color:#596572}
+.miray-order-help{font-size:13px;color:#596572;margin:0 0 12px}
+.miray-order-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.miray-order-row{position:relative;display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:64px;padding:6px 0;background:#fff;box-sizing:border-box;transition:transform .12s ease;line-height:1.5}
+.miray-order-row.dragging{z-index:2;box-shadow:0 4px 18px #22396625;border-radius:12px;transition:none;background:#f0f4ff}
+.miray-order-number{color:#687684;font-size:13px;text-align:center}
+.miray-main .miray-order-handle{display:grid;place-items:center;width:48px;height:48px;padding:0;border:0;background:#f2f5f9;color:#526581;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.miray-main .miray-order-handle:active{cursor:grabbing}
+@media(prefers-reduced-motion:reduce){.miray-order-row{transition:none}}
+
+.miray-routine-group + .miray-routine-group { margin-top: 24px; padding-top: 20px; border-top: 1px solid #e3e7ee; }
+.miray-routine-group h3 { margin: 0 0 12px; font-size: 1rem; }
+
+.miray-state-progress { margin-bottom: 6px; color: #596572; font-weight: 600; }
+.miray-state-checkin progress { display: block; width: 100%; height: 6px; border: 0; border-radius: 8px; accent-color: #265be8; }
+.miray-state-checkin progress::-webkit-progress-bar { background: #e3e7ee; border-radius: 8px; }
+.miray-state-checkin progress::-webkit-progress-value { background: #265be8; border-radius: 8px; }
+.miray-state-checkin progress::-moz-progress-bar { background: #265be8; border-radius: 8px; }
+.miray-state-question h2, .miray-state-review h2 { font-size: 22px; line-height: 1.4; }
+.miray-state-question h2:focus, .miray-state-review h2:focus { outline: none; }
+.miray-state-question { min-height: 210px; }
+.miray-state-question fieldset { padding: 0; margin: 0; }
+.miray-state-question label { display: flex; min-height: 44px; margin: 4px 0; }
+.miray-state-actions { display: flex; gap: 12px; align-items: stretch; }
+.miray-state-actions > button:first-child:not(.miray-primary) { flex-shrink: 0; }
+.miray-state-actions button:disabled { opacity: .45; cursor: default; }
+.miray-state-review dl > div + div { margin-top: 16px; }
+.miray-state-review dt { color: #596572; line-height: 1.5; }
+.miray-state-review dd { margin: 4px 0 0; font-weight: 600; }
+
+.miray-loop-panel h1:focus { outline: none; }
+.miray-loop-panel button:disabled { opacity: .45; cursor: default; }
+.miray-loop-panel label { display: block; margin-top: 12px; }
+.miray-loop-panel .miray-primary { margin-top: 12px; }
+.miray-loop-entry-panel h1:focus { outline: none; }
+.miray-loop-entry-panel button:disabled { opacity: .45; cursor: default; }
+.miray-loop-entry-panel .miray-primary { margin-top: 12px; }
+.miray-loop-entry-panel .care-result { overflow-wrap: anywhere; }
+.miray-loop-panel .miray-product-change-confirmation { display: flex; align-items: flex-start; gap: 10px; }
+.miray-loop-panel .miray-product-change-confirmation input[type="checkbox"] { width: 22px; height: 22px; flex: 0 0 22px; padding: 0; margin: 0; }
+
+.miray-added-product-panel { overflow-wrap: anywhere; }
+.miray-added-product-panel h2:focus { outline: none; }
+.miray-added-product-panel > label { display: block; margin: 20px 0; line-height: 1.5; }
+.miray-main .miray-added-product-panel select,
+.miray-main .miray-added-product-panel input:not([type="checkbox"]) { min-height: 3rem; min-width: 0; width: 100%; font: inherit; }
+.miray-main .miray-added-product-panel select { height: 3rem; box-sizing: border-box; }
+.miray-main .miray-added-product-panel .miray-added-product-confirmation { display: flex; align-items: flex-start; gap: 10px; min-height: 3rem; }
+.miray-main .miray-added-product-panel input[type="checkbox"] { width: 22px; height: 22px; min-height: 22px; flex: 0 0 22px; padding: 0; margin: 1px 0 0; }
+.miray-main .miray-added-product-panel button { width: 100%; min-height: 3rem; line-height: 1.5; }
+.miray-added-product-panel button:disabled { opacity: .45; cursor: default; }
+
+.miray-home { display: grid; gap: 24px; }
+.miray-home-heading .miray-eyebrow { margin: 0 0 8px; font-size: 14px; font-weight: 650; }
+.miray-home-heading h1 { margin: 0; line-height: 1.35; }
+.miray-home-heading > p:last-child { margin: 10px 0 0; color: #596572; font-size: 15px; }
+.miray-home .miray-card { margin: 0; }
+.miray-home-tasks { display: grid; gap: 10px; }
+.miray-home-tasks h2 { margin: 0 0 2px; }
+.miray-home-tasks .miray-task { min-height: 56px; line-height: 1.5; }
+.miray-home-check { display: grid; gap: 12px; }
+.miray-home-check h2, .miray-home-check p { margin: 0; }
+.miray-home-check p { color: #596572; font-size: 15px; }
+.miray-main .miray-home-followup { border: 0; padding: 10px 0; text-align: left; line-height: 1.5; }
+.miray-home-summary { display: grid; gap: 12px; }
+.miray-home-summary .miray-card { padding: 18px 20px; }
+.miray-home-summary h2 { margin: 0; }
+.miray-home-summary p { margin: 6px 0 10px; font-size: 15px; color: #596572; }
+.miray-home-summary button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; }
+.miray-home button { overflow-wrap: anywhere; }
+
+/* Relative text sizing keeps the workspace readable when the base text grows. */
+.miray-header strong { font-size: 1.5rem; }
+.miray-header { padding-bottom: 8px; }
+.miray-portfolio-status { display:flex; align-items:center; min-height:48px; max-width:600px; margin:0 auto; padding:8px 24px 12px; color:#596572; font-size:.875rem; line-height:1.5; }
+.miray-main h1 { font-size: 1.75rem; }
+.miray-main h2 { font-size: 1.125rem; }
+.miray-home-heading .miray-eyebrow { font-size: .875rem; }
+.miray-home-heading > p:last-child, .miray-home-check p, .miray-home-summary p { font-size: .9375rem; }
+.miray-workspace { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+.miray-tabs { justify-content:flex-start; overflow-x:auto; }
+.miray-tabs button { flex:1 0 auto; max-width:none; font-size:.875rem; line-height:1.35; min-height:3rem; min-width:48px; padding:8px; white-space:nowrap; }

@@ -1,0 +1,145 @@
+{
+  "version": "1.2.0-public-auth-route-contract-20261021",
+  "scope": "reviewed_auth_member_and_loop_routes_not_gateway_registration",
+  "independent_activation_gate": false,
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/api/v1/app/auth/protection-session",
+      "operation": "new_login"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/auth/google",
+      "operation": "new_login"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/auth/apple",
+      "operation": "new_login"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/auth/kakao",
+      "operation": "new_login"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/auth/apple/challenge",
+      "operation": "new_login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/auth/session",
+      "operation": "member_read"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/app/auth/session",
+      "operation": "member_logout"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/portfolio",
+      "operation": "member_read"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/app/portfolio",
+      "operation": "member_intake"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/saved-candidates",
+      "operation": "member_read"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/app/saved-candidates",
+      "operation": "member_intake"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/skin-state",
+      "operation": "member_intake"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/history-consent",
+      "operation": "member_read"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/history-consent",
+      "operation": "history_choice"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/quota-status",
+      "operation": "member_read"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/app/account/withdrawal",
+      "operation": "account_withdrawal"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/loop/state",
+      "operation": "member_read"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/loop/state/registration",
+      "operation": "member_intake"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/loop/state/actual",
+      "operation": "member_intake"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/loop/state/followup",
+      "operation": "member_intake"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/loop/review",
+      "operation": "member_read"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/loop/review",
+      "operation": "member_intake"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/app/loop/frequency",
+      "operation": "member_read"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/loop/frequency",
+      "operation": "member_intake"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/products/search",
+      "operation": "member_read"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/app/products/web-candidates",
+      "operation": "member_intake"
+    }
+  ],
+  "excluded": [
+    "naver_login",
+    "email_login",
+    "TEST_bridge_namespace",
+    "TEST_loop_namespaces",
+    "diagnostic_and_scheduled_worker_entry"
+  ],
+  "core_and_input_lambda_routes": "separate_composition_required"
+}
