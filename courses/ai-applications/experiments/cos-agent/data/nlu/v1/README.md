@@ -1,5 +1,19 @@
 # PPO-46 Step 1 — 채팅 자유 입력 NLU SFT 파일럿 49건
 
+## 팀원·후속 AI: 여기부터 읽어 주세요
+
+공유 브랜치는 `data/nlu-v1-pilot-critic`이에요. 원본 49건은 수정하지 않았어요.
+별도 Codex 에이전트가 전행을 읽은 결과 **PASS 46 / FAIL 0 / REVIEW 3**이에요.
+이는 **동일 모델 계열 내부 검수**이며 다른 계열 Cross-Model Critic이나 사람 승인을 대체하지 않아요.
+
+1. [팀원 전달 요약 및 판단 요청](reviews/codex_critic_20261127/TEAM_HANDOFF.md)을 먼저 읽어 주세요.
+2. [3건 상세 설명·raw 근거](reviews/codex_critic_20261127/summary.md)를 계약과 대조해 주세요.
+3. [49건 전행 raw 검수](reviews/codex_critic_20261127/critic_raw.jsonl)에는 원문·실제 예상 출력·판단 이유·행 해시가 있어요.
+4. [원본·인용 무결성 확인](reviews/codex_critic_20261127/review_integrity.json)은 내용 정확성 판정과 구분해 주세요.
+
+`REVIEW`는 확정 오류가 아니라 추출 정책 확인 요청이에요. 기준을 결정하기 전에 임의로 PASS/FAIL이나 사람 승인으로 바꾸지 마세요.
+검수 당시 로컬 전용·push 없음 기록은 당시 사실로 보존했으며, 이번 공유 승인은 아래 전달 요약에 별도로 기록했어요.
+
 최신 `origin/main`의 `1fe228e6f8addadd369e820d938dbfefa99c2838`에서 `data/nlu-v1-pilot` 브랜치를 만들었어요.
 PPO-46·PPO-40과 최신 계약·화이트리스트·Wire 빌더·검증기를 읽고 작성한 **신규 합성 자료**예요.
 기존 SOLUTION/HOLD 1,800턴과는 별도 데이터셋이며 기존 자료·KB·코어 코드는 수정하지 않았어요.

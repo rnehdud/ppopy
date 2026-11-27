@@ -1,0 +1,40 @@
+{
+  "dataset_sha256": "0c4c7877c9d26dbb4d7daf09f2a00e30df9eeb479413809919cd374263e1f1e7",
+  "rows_reviewed_manually": 49,
+  "decision_counts": {
+    "PASS": 46,
+    "REVIEW": 3,
+    "FAIL": 0
+  },
+  "review_row_ids": [
+    "nlu-pilot-0009",
+    "nlu-pilot-0014",
+    "nlu-pilot-0036"
+  ],
+  "rubric": [
+    "질문과 target 정합성",
+    "근거 없는 사실·누락·부정 범위·자타 주체",
+    "11 증상과 4 persistence 시간 범위",
+    "5 usage·정확한 전체 제품 span과 힌트",
+    "unknown/null·typed slot과 enum·자동 확인 금지",
+    "가족 분리와 표본 범위"
+  ],
+  "blindness": {
+    "author_rationale_read": false,
+    "pilot_review_read": false,
+    "generation_script_read": false,
+    "judgments_based_on": "요청·정답 JSON과 계약·화이트리스트·KB 변수 정의만"
+  },
+  "model_identity": {
+    "critic": "Codex separate-agent internal review",
+    "model_family": "GPT-6",
+    "variant": "unknown",
+    "same_family_review": true,
+    "cross_model_critic_pass": false,
+    "human_approved": false
+  },
+  "interpretation": "PASS는 명백한 행 의미 오류를 발견하지 않았다는 뜻이며 사람 승인·임상 검증·최종 골드 확정이 아니다. REVIEW는 명세 불확실성이며 확정 오류가 아니다.",
+  "family_separation": "32 train 가족과 4 val_internal 가족은 구체적 장면도 분리된다. 다만 증상·노이즈라는 상위 기제는 train에도 있어 독립 도메인 일반화 증거가 아니다. val 표본은 5행으로 작다.",
+  "coverage": "11 증상·4 persistence·5 usage를 포함한다. 34 허용 변수 전체를 다루지는 않으며 subject unknown, 진짜 이중 부정, 질문-target 불일치 반례는 현 pilot에서 검증하지 않는다. 이는 확장 제안이지 행 FAIL 요건이 아니다.",
+  "files_changed": "검토 산출물만 작성; 데이터·코드·KB·프로버넌스 미수정; commit·push·Linear 작업 없음"
+}
