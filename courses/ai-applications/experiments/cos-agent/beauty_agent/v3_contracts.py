@@ -9,9 +9,12 @@ Defines strict inter-module I/O boundaries across:
 """
 from __future__ import annotations
 
-from typing import Literal, Protocol
+from datetime import date
+from hashlib import sha256
+from typing import Annotated, Literal, Protocol
+from urllib.parse import urlparse
 
-from pydantic import Field, JsonValue, model_validator
+from pydantic import Field, JsonValue, model_serializer, model_validator
 
 from .contracts import Contract, ObservationSlot, OwnedProduct, Profile, Question
 
@@ -175,6 +178,53 @@ class AFAStepDecision(Contract):
 # ---------------------------------------------------------------------------
 # 3. Reference Literature Vector RAG Contracts (SOLUTION_MODE only)
 # ---------------------------------------------------------------------------
+NonemptyReferenceValue = Annotated[str, Field(min_length=1, max_length=2000)]
+
+
+class Layer2Metadata(Contract):
+    """Version-bounded evidence, not an assertion of current product compliance.
+
+    Unknown conditions stay verbatim. Only the audited ready export is accepted.
+    Sidecar locator/limitations are retained alongside the paragraph's own fields.
+    """
+
+    unit_id: str = Field(pattern=r"^L2U-\d{4}$")
+    source_id: NonemptyReferenceValue
+    topic: Literal["regulatory", "safety_method"]
+    language: NonemptyReferenceValue
+    text_type: Literal["independently_worded_summary"]
+    source_url: NonemptyReferenceValue
+    locator: NonemptyReferenceValue
+    document_version: NonemptyReferenceValue
+    source_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    checked_on: NonemptyReferenceValue
+    as_of: NonemptyReferenceValue
+    jurisdiction: NonemptyReferenceValue
+    scope: ReferenceScope
+    limitations: NonemptyReferenceValue
+    subject_identity: NonemptyReferenceValue
+    product_type: NonemptyReferenceValue
+    concentration_basis: NonemptyReferenceValue
+    exposure_route: NonemptyReferenceValue
+    population: NonemptyReferenceValue
+    version_status: NonemptyReferenceValue
+    effective_period: NonemptyReferenceValue
+    verification_status: Literal["ready"]
+    use_basis: NonemptyReferenceValue
+    section_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    body_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    permitted_use: Literal["source_explanation_only"] = "source_explanation_only"
+
+    @model_validator(mode="after")
+    def validate_provenance(self) -> Layer2Metadata:
+        if any(isinstance(v, str) and not v.strip() for v in self.model_dump().values()):
+            raise ValueError("layer2 metadata must not be blank")
+        if urlparse(self.source_url).scheme != "https" or not urlparse(self.source_url).netloc:
+            raise ValueError("layer2 source must be an HTTPS URL")
+        date.fromisoformat(self.checked_on)
+        return self
+
+
 class ReferenceChunk(Contract):
     """Single non-clinical literature/guideline chunk returned by Vector RAG."""
 
@@ -186,10 +236,31 @@ class ReferenceChunk(Contract):
     checked_on: str = Field(min_length=1, max_length=40)
     limitations: str = Field(min_length=1, max_length=500)
 
+    layer2: Layer2Metadata | None = None
+
+    @model_serializer(mode="wrap")
+    def preserve_layer1_wire(self, handler):
+        data = handler(self)
+        if self.layer2 is None:
+            data.pop("layer2", None)
+        return data
+
     @model_validator(mode="after")
     def validate_ref_prefix(self) -> ReferenceChunk:
         if not self.evidence_ref.startswith("ref:"):
             raise ValueError("ReferenceChunk evidence_ref must start with 'ref:'")
+        is_layer2_ref = self.evidence_ref.startswith(("ref:regulatory-", "ref:safety_method-"))
+        if self.layer2 is not None:
+            meta = self.layer2
+            if self.evidence_ref != f"ref:{meta.topic}-{meta.unit_id}":
+                raise ValueError("layer2 stable evidence_ref mismatch")
+            if any(getattr(self, key) != getattr(meta, key)
+                   for key in ("source_url", "checked_on", "scope")):
+                raise ValueError("layer2 provenance mismatch")
+            if sha256(self.text.encode()).hexdigest() != meta.body_sha256:
+                raise ValueError("layer2 body checksum mismatch")
+        elif is_layer2_ref:
+            raise ValueError("layer2 evidence requires audited metadata")
         return self
 
 

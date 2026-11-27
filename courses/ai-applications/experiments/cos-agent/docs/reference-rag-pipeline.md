@@ -129,3 +129,7 @@ threshold 0.99의 held-out 진단값은 음성 차단 100%, Recall@5 0.90625이�
 - 원문 코퍼스·151개 청크·공용 계약·AFA·KB·source manifest는 변경하지 않았고, PDF/인덱스 바이너리는 제출하지 않습니다.
 
 원시 기록: [평가 산출물 목록](../data/rag/evaluation/README.md).
+
+## 2계층 호환성 추가 (2026-11-27)
+
+`regulatory` 76문단과 `safety_method` 16문단의 명시적 판본 선택 검색을 지원한다. 기존 기본값과 151문단 평가 자료는 유지한다. [2계층 실행 가이드](../data/rag/layer2/README.md) 및 [호환성 검사](reference-rag-layer2-compatibility.md)를 따른다. 위 기존 평가 수치는 2계층 추가 코퍼스의 평가 결과가 아니다.

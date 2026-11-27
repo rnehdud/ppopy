@@ -1,23 +1,24 @@
 """Build/reuse a local index; index binaries remain outside Git."""
-# ruff: noqa: E402 -- Standalone CLI bootstraps the project import path.
+
 
 from __future__ import annotations
+
 import argparse
-from collections import Counter
 import json
-from pathlib import Path
 import sys
+from collections import Counter
+from pathlib import Path
 from time import perf_counter
 
 COS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(COS))
-from beauty_agent.rag.corpus import load_corpus_entries, load_chunks_jsonl
 from beauty_agent.rag.backends import HashFallback, NoOpReranker
+from beauty_agent.rag.corpus import load_chunks_jsonl, load_corpus_entries
 from beauty_agent.rag.retriever import TwoStageReferenceRetriever
 
 
-def checked_entries(corpus: Path, chunks: Path):
-    entries = load_corpus_entries(corpus)
+def checked_entries(corpus: Path, chunks: Path, additional_corpus_dirs=()):
+    entries = load_corpus_entries(corpus, additional_corpus_dirs=additional_corpus_dirs)
     pool = load_chunks_jsonl(chunks)
     if [e.chunk for e in entries] != pool:
         raise ValueError(
@@ -63,8 +64,9 @@ def main():
     p.add_argument("--batch-size", type=int, default=2)
     p.add_argument("--max-length", type=int, default=1024)
     p.add_argument("--local-files-only", action="store_true")
+    p.add_argument("--additional-corpus", type=Path, action="append", default=[])
     args = p.parse_args()
-    entries = checked_entries(args.corpus, args.chunks)
+    entries = checked_entries(args.corpus, args.chunks, args.additional_corpus)
     start = perf_counter()
     embed, rank = make_backends(
         args.backend,

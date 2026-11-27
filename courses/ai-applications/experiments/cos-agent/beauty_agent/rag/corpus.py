@@ -2,15 +2,21 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import json
-from pathlib import Path
 import re
-from typing import Sequence
+from collections.abc import Sequence
+from dataclasses import dataclass
+from hashlib import sha256
+from pathlib import Path
 
 from beauty_agent.v3_contracts import ReferenceChunk
 
-ALLOWED_DOMAINS = frozenset({"cleansing", "moisturizing", "sun_protection", "storage_label"})
+from .layer2 import LAYER2_DOMAINS, load_layer2_bindings
+
+ALLOWED_DOMAINS = (
+    frozenset({"cleansing", "moisturizing", "sun_protection", "storage_label"})
+    | LAYER2_DOMAINS
+)
 REQUIRED_META_KEYS = ("source_url", "locator", "checked_on", "scope", "limitations")
 FORBIDDEN_KB_ID_PREFIXES = ("U", "D", "F01", "F02", "S30", "S31")
 FORBIDDEN_KB_ID_RE = re.compile(r"^(?:[UD]\d+|F0[12]|S3[01])(?:$|[-_:])", re.IGNORECASE)
@@ -91,6 +97,11 @@ def parse_markdown_corpus_file(
     if not sections:
         raise ValueError(f"No '## [domain] Title' sections found in {path}")
 
+    has_sidecars = any(
+        (path.parent.parent / name).exists()
+        for name in ("CORPUS_MANIFEST.md", "METADATA.md")
+    )
+    bindings = load_layer2_bindings(path.parent) if has_sidecars else None
     entries: list[CorpusEntry] = []
     for section_idx, section_lines in enumerate(sections, start=1):
         heading = section_lines[0].strip()
@@ -147,8 +158,18 @@ def parse_markdown_corpus_file(
                 f"{path.name} section {section_idx} ({title!r}): empty paragraph body"
             )
 
-        counters[domain] = counters.get(domain, 0) + 1
-        evidence_ref = f"ref:{domain}-{counters[domain]:03d}"
+        layer2 = None
+        if domain in LAYER2_DOMAINS or bindings is not None:
+            if bindings is None:
+                bindings = load_layer2_bindings(path.parent)
+            section_hash = sha256("\n".join(section_lines).strip().encode()).hexdigest()
+            layer2 = bindings.get(section_hash)
+            if layer2 is None or layer2.topic != domain:
+                raise ValueError("layer2 section has no matching audited metadata")
+            evidence_ref = f"ref:{domain}-{layer2.unit_id}"
+        else:
+            counters[domain] = counters.get(domain, 0) + 1
+            evidence_ref = f"ref:{domain}-{counters[domain]:03d}"
         validate_evidence_ref_not_kb_id(evidence_ref)
 
         chunk = ReferenceChunk(
@@ -159,6 +180,7 @@ def parse_markdown_corpus_file(
             locator=meta["locator"],
             checked_on=meta["checked_on"],
             limitations=meta["limitations"],
+            layer2=layer2,
         )
         entries.append(
             CorpusEntry(
@@ -172,7 +194,9 @@ def parse_markdown_corpus_file(
     return entries
 
 
-def load_corpus_entries(corpus_dir: Path) -> list[CorpusEntry]:
+def load_corpus_entries(
+    corpus_dir: Path, *, additional_corpus_dirs: Sequence[Path] = ()
+) -> list[CorpusEntry]:
     """Load and validate all sorted Markdown files in corpus_dir."""
     if not corpus_dir.is_dir():
         raise FileNotFoundError(f"Corpus directory not found: {corpus_dir}")
@@ -186,7 +210,9 @@ def load_corpus_entries(corpus_dir: Path) -> list[CorpusEntry]:
     seen_refs: set[str] = set()
 
     for md_path in md_files:
-        file_entries = parse_markdown_corpus_file(md_path, domain_counters=domain_counters)
+        file_entries = parse_markdown_corpus_file(
+            md_path, domain_counters=domain_counters
+        )
         for entry in file_entries:
             ref = entry.chunk.evidence_ref
             if ref in seen_refs:
@@ -194,6 +220,14 @@ def load_corpus_entries(corpus_dir: Path) -> list[CorpusEntry]:
             seen_refs.add(ref)
             entries.append(entry)
 
+    for extra in additional_corpus_dirs:
+        for entry in load_corpus_entries(extra):
+            if entry.chunk.evidence_ref in seen_refs:
+                raise ValueError(
+                    f"Duplicate evidence_ref across corpus: {entry.chunk.evidence_ref!r}"
+                )
+            seen_refs.add(entry.chunk.evidence_ref)
+            entries.append(entry)
     return entries
 
 
@@ -201,7 +235,9 @@ def export_chunks_jsonl(entries: Sequence[CorpusEntry], output_path: Path) -> in
     """Write ReferenceChunk JSONL (UTF-8 without BOM, LF line endings)."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        json.dumps(entry.chunk.model_dump(mode="json"), ensure_ascii=False)
+        json.dumps(
+            entry.chunk.model_dump(mode="json", exclude_none=True), ensure_ascii=False
+        )
         for entry in entries
     ]
     payload = "\n".join(lines) + ("\n" if lines else "")
@@ -228,10 +264,14 @@ def load_chunks_jsonl(path: Path) -> list[ReferenceChunk]:
         try:
             chunk = ReferenceChunk.model_validate_json(line)
         except Exception as exc:
-            raise ValueError(f"{path}:{line_no}: invalid ReferenceChunk JSON: {exc}") from exc
+            raise ValueError(
+                f"{path}:{line_no}: invalid ReferenceChunk JSON: {exc}"
+            ) from exc
         validate_evidence_ref_not_kb_id(chunk.evidence_ref)
         if chunk.evidence_ref in seen_refs:
-            raise ValueError(f"{path}:{line_no}: duplicate evidence_ref {chunk.evidence_ref!r}")
+            raise ValueError(
+                f"{path}:{line_no}: duplicate evidence_ref {chunk.evidence_ref!r}"
+            )
         seen_refs.add(chunk.evidence_ref)
         chunks.append(chunk)
 
