@@ -1,0 +1,253 @@
+{
+  "status": "generator_self_check_only",
+  "formal_cross_model_critic": "team_handoff_pending",
+  "human_review": "unreviewed",
+  "rows": 300,
+  "solution": 230,
+  "hold": 70,
+  "splits": {
+    "train": 270,
+    "val_internal": 30
+  },
+  "hard_negative_types": {
+    "rag_distractor_ignore": 114,
+    "version_mismatch_or_unknown": 19,
+    "clinical_restraint": 35
+  },
+  "english_supported_solution_rows": 80,
+  "families": 60,
+  "group_split_leakage": 0,
+  "chunk_objects_exact_pool_match": true,
+  "runtime_invariants_preserved": true,
+  "bom_free_utf8_lf": true,
+  "input_duplicate_count": 0,
+  "individual_case_specific_reason_sentences": 230,
+  "existing_dataset_unchanged": true,
+  "batch_checks": [
+    {
+      "batch": "sun_storage_01.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_01.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_01_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_02.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_02.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_02_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_03.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_03.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_03_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_04.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_04.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_04_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_05.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_05.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_05_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_06.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_06.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_06_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_07.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_07.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_07_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_08.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_08.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_08_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_09.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_09.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_09_structure.json"
+      ]
+    },
+    {
+      "batch": "sun_storage_10.jsonl",
+      "exit_code": 0,
+      "error_count": 0,
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_qlora_dataset.py",
+        "--profile",
+        "rag-free",
+        "--input",
+        "data\\qlora\\v2\\additional_900_20261126\\batches\\sun_storage_10.jsonl",
+        "--report",
+        "outputs\\additional900_sun_storage\\sun_storage_10_structure.json"
+      ]
+    }
+  ],
+  "batch_sha256": {
+    "sun_storage_01.jsonl": "6fd2e6e4a439aa87ecf66f24bd9c8a83e639f6f9ccb9914afa9d13051db24420",
+    "sun_storage_02.jsonl": "6a0e1cf5dcf2c53f6786fa491a38f079a0e9c11b45ea350f988a734cbcb9af04",
+    "sun_storage_03.jsonl": "c6df6a3c9ce9705b02a8f12fa57ad6debe6fb2ea353beea3fcdf76002653d14b",
+    "sun_storage_04.jsonl": "7084edb49573dead89981e29a7a9c204097921f376da6370b2dc82ee0fe265bf",
+    "sun_storage_05.jsonl": "6a5c67a2587eaa33a27d3b144d1ae4a0fe28b44c633546fa7b55e72cb3f86a26",
+    "sun_storage_06.jsonl": "3632e201a82a4a5024b2d8a5045ce80c558f0225f4c5d6c81354a2484f679672",
+    "sun_storage_07.jsonl": "c84a834587a5f5be4a80447fd853c0ef419697f75aa4839b753d0dc1ca7d53b2",
+    "sun_storage_08.jsonl": "751537d64125d3ee0abf2c0e63ee867e18c248084501f2c22e3c46acd3b6cc91",
+    "sun_storage_09.jsonl": "d0cee6ee6a7221299a5486ed1cbc7cbbc8004df45160d5aa41dbcdaa5e30a5b0",
+    "sun_storage_10.jsonl": "f2e0299eccfc497bfb392fe8241d659df95fa31c0fa18f47c675cc9f10590766"
+  },
+  "authoring_sha256": {
+    "sun_storage_build.py": "9e2c2001a9bb0aaf6182f6d30d951da5a38623615561f4a1990e3c946ef3f3dc",
+    "sun_storage_case_reasons.py": "217e12059f09424a0eb7fc9317e8bbf4fd1e784a74a47b729663bc5752720151",
+    "sun_storage_fact_trace.jsonl": "df66e8806b2d38d98ccac151dca82b81a7f7838406399f63fabaad35a441221b",
+    "sun_storage_finalize_receipt.py": "86230c5dfa4fd795e44871c17ca4198f48f28f833b762bb23049372852201b60",
+    "sun_storage_materialize.py": "0da017a69a84e50cee0e55638a315cf8a9577b615aae2088ec53de0c6bb6aed4"
+  },
+  "limitations": [
+    "독립 Cross-Model Critic과 사람 검수는 수행하지 않았어요.",
+    "가족 분할은 기존 flame-warning/uncovered-gap/packaging-breach/clinician-conflict의 validation 역할을 참고한 개발 분할이며, 독립 최종 test라는 뜻이 아니에요.",
+    "동일 문헌의 일반 규칙을 다루는 새 사례라 기존 자료와 넓은 주제 중첩은 남아요. 의미적 독립성은 입력 해시 중복 0건만으로 증명되지 않아요.",
+    "일부 정형 입력은 실제 사용자 발화가 아니라 가상의 표시 해석 질문이에요. 합성 제품 정보는 실제 상용품 사실이 아니에요."
+  ]
+}

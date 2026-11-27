@@ -1,0 +1,15 @@
+{
+  "validator_regression_tests": {
+    "command": "python -m uv run --locked pytest -q tests/test_validate_qlora_dataset.py",
+    "passed": 31,
+    "exit_code": 0
+  },
+  "source_manifest": {
+    "checked": 27,
+    "failed": []
+  },
+  "original_dataset_preserved": true,
+  "new_model_training": false,
+  "cross_model_critic_performed": false,
+  "human_review_performed": false
+}

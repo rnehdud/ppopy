@@ -1,0 +1,136 @@
+{
+  "model": "C:\\Users\\ling\\.cache\\huggingface\\hub\\models--Qwen--Qwen3-4B-Instruct-2507\\snapshots\\cdbee75f17c01a7cc42f958dc650907174af0554",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "dataset_sha256": "368698b17925edaeb3c43f6c6fb95bf6c13203038f207c29dcf7e4539a20ad35",
+  "rows": 900,
+  "libraries": {
+    "transformers": "4.57.3",
+    "tokenizers": "0.22.2",
+    "huggingface_hub": "0.36.0"
+  },
+  "total_tokens": {
+    "min": 451,
+    "p50": 938.5,
+    "p95": 1299,
+    "max": 1533,
+    "sum": 819044
+  },
+  "assistant_tokens_sum": 97042,
+  "all_template_prefixes_match": true,
+  "all_content_preserved": true,
+  "all_end_markers_present": true,
+  "native_template_has_generation_blocks": false,
+  "truncation": {
+    "1024": {
+      "exceeding": 236,
+      "losing_entire_assistant": 195
+    },
+    "2048": {
+      "exceeding": 0,
+      "losing_entire_assistant": 0
+    },
+    "4096": {
+      "exceeding": 0,
+      "losing_entire_assistant": 0
+    },
+    "8192": {
+      "exceeding": 0,
+      "losing_entire_assistant": 0
+    }
+  },
+  "longest_rows": [
+    {
+      "row_id": "syn-sol-1152",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1533,
+      "prompt_tokens": 1390,
+      "assistant_with_end_tokens": 143,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-1155",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1512,
+      "prompt_tokens": 1354,
+      "assistant_with_end_tokens": 158,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-1151",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1504,
+      "prompt_tokens": 1332,
+      "assistant_with_end_tokens": 172,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-1216",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1457,
+      "prompt_tokens": 1293,
+      "assistant_with_end_tokens": 164,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-1217",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1429,
+      "prompt_tokens": 1267,
+      "assistant_with_end_tokens": 162,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-1173",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1411,
+      "prompt_tokens": 1220,
+      "assistant_with_end_tokens": 191,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0861",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1393,
+      "prompt_tokens": 1276,
+      "assistant_with_end_tokens": 117,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-0722",
+      "mode": "solution",
+      "split": "val_internal",
+      "total_tokens": 1374,
+      "prompt_tokens": 1259,
+      "assistant_with_end_tokens": 115,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-1157",
+      "mode": "solution",
+      "split": "val_internal",
+      "total_tokens": 1373,
+      "prompt_tokens": 1179,
+      "assistant_with_end_tokens": 194,
+      "end_marker_present": true
+    },
+    {
+      "row_id": "syn-sol-1321",
+      "mode": "solution",
+      "split": "train",
+      "total_tokens": 1368,
+      "prompt_tokens": 1219,
+      "assistant_with_end_tokens": 149,
+      "end_marker_present": true
+    }
+  ],
+  "weights_downloaded": false,
+  "training_executed": false,
+  "GPU_memory_tested": false
+}

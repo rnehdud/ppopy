@@ -1,0 +1,35 @@
+{
+  "rows": 300,
+  "batches": 10,
+  "batch_size": 30,
+  "split_counts": {
+    "train": 266,
+    "val_internal": 34
+  },
+  "source_origin": "new_synthetic",
+  "input_first": true,
+  "human_review": "unreviewed",
+  "external_critic_executed": false,
+  "model_identity_note": "GPT-6 기반 Codex 작성이에요. 세부 런타임 변형명은 공개되지 않아 임의의 변형명을 기록하지 않았어요.",
+  "source_pool_sha256": "29147e4560ca31d532edfdb795773b461043d2c9d60184c78f69cd9d05266001",
+  "family_split_rationale": {
+    "s2-cleansing-sol22": "기존 검증 가족과 같은 손 먼저 씻기·얼굴 적심 순서 결정은 새 ID여도 모두 val_internal에 배정해요.",
+    "s2-cleansing-sol23": "외관·제형명·점도를 제거 대상·마무리·사용 부위·접촉 방식으로 대입하는 행은 기존 검증 가족에 배정해요.",
+    "s2-cleansing-hold07": "눈에 보이는 피부 변화와 같은/인접 부위 현재 통증이 함께 있는 행은 기존 검증 가족에 배정해요.",
+    "syn-sol-0748_vs_syn-sol-0755": "0748은 크림이라는 분류를 헹굼 불가로 바꾸는 사용법 추정이라 검증 가족이에요. 0755는 크림에 물이 있을 수 없다는 조성 지식의 오해라 train이에요. 같은 청크 공유만으로 두 결정을 같다고 보지 않아요.",
+    "syn-sol-0793_and_syn-sol-0781": "점도·외관을 세정 성능의 우열·동일성으로 바꾸는 행은 성능 추론 가족이에요. 세정용/피부에 두는 용도나 실제 마무리 결정과 구분해 train에 둬요."
+  },
+  "validation_note": "배치 구조 검사는 독립 Critic 또는 사람 승인과 구분해요. 전체 추가 900턴의 비율·가족 검사는 Coordinator가 별도 실행해요.",
+  "batch_sha256": {
+    "cleansing_01.jsonl": "4fb5346a6a2dc52650bd42747cbb0ffd37f5ceca59c21c287f06423e0943c634",
+    "cleansing_02.jsonl": "65e0b59c88ab34a8e5a2fd544eb7f29a5d44266138f51dc84d6333182e79a053",
+    "cleansing_03.jsonl": "054089809901e491a0b1a7c29dba4df08f91182c5be2e9482b4f0af8ad935494",
+    "cleansing_04.jsonl": "1853b8618a80cebfd1be4c1f8b968d19d34178e141c6cbc561861fcabd4c6829",
+    "cleansing_05.jsonl": "88a1cb4b89d4e025d5a48ab6afe8003b457e706e144543dd3925ee48fbfa28a2",
+    "cleansing_06.jsonl": "7ef49ca51c1030dd64fd364f40c349d22f1834f9c7920b25a5f5cfa4464af080",
+    "cleansing_07.jsonl": "1f13ba2d1fff5da99840959d2abf9ddb9a294e4509134927a364303b902c7094",
+    "cleansing_08.jsonl": "b835f9fe38092d0231f5e3956fc28120b0771af49dc11317374b6265be48d58e",
+    "cleansing_09.jsonl": "aae38eaed97de1a0355a26c0055131c7e56c1bb92378dcf4e4afb3e64240a6d1",
+    "cleansing_10.jsonl": "fe23c701498cb821e4b0400f52ef2452caf8dcc5bb334fe970f0401482e393bd"
+  }
+}

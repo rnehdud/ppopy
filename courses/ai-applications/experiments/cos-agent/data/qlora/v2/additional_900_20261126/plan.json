@@ -1,0 +1,103 @@
+{
+  "task": "PPO-37 additional 900 turns, separate from existing approved 900",
+  "base_commit": "dbef37463a63e5c38c1f4b4737b3c7378d9b8cb0",
+  "branch": "data/qlora-additional-900-20261126",
+  "original_dataset_sha256": "99182590f83bc3dad9e3cb71c9153f418642b6aaf7d97ebcc728ac68d0425cac",
+  "pool_sha256_checked_out": "29147e4560ca31d532edfdb795773b461043d2c9d60184c78f69cd9d05266001",
+  "pool_rows": 151,
+  "pool_domains": {
+    "cleansing": 39,
+    "moisturizing": 38,
+    "storage_label": 43,
+    "sun_protection": 31
+  },
+  "target_rows": 900,
+  "solution": 690,
+  "hold": 210,
+  "train": 810,
+  "val_internal": 90,
+  "english_relevant_solution": 240,
+  "minimum_hard_negatives": 270,
+  "batch_rows": 30,
+  "batches": 30,
+  "all_new_synthetic": true,
+  "human_review": "unreviewed",
+  "original_dataset_read_only": true,
+  "cross_model_critic_status": "delegated_to_teammate_by_user",
+  "generator_model": "gpt-6",
+  "generator_model_note": "Codex, GPT-6 family per runtime instructions; exact hosted variant not exposed, not claimed as independently verified",
+  "assignments": [
+    {
+      "owner": "cleansing",
+      "solution_ids": [
+        691,
+        920
+      ],
+      "hold_ids": [
+        211,
+        280
+      ]
+    },
+    {
+      "owner": "moisturizing",
+      "solution_ids": [
+        921,
+        1150
+      ],
+      "hold_ids": [
+        281,
+        350
+      ]
+    },
+    {
+      "owner": "sun_storage",
+      "solution_ids": [
+        1151,
+        1380
+      ],
+      "hold_ids": [
+        351,
+        420
+      ]
+    }
+  ],
+  "unavailable_review_probes": {
+    "gemini": "CLI0.39.1 started interactive authentication; cancelled without login",
+    "claude": "CLI2.1.332 probe returned OAuth session expired; API calls0"
+  },
+  "prohibited_changes": [
+    "KB/",
+    "docs/source-manifest.json",
+    "beauty_agent/",
+    "scripts/validate_qlora_dataset.py"
+  ],
+  "planned_gates": [
+    "schema_and_ratios",
+    "exact_reference_pool",
+    "original_and_new_identity_blind_duplicates",
+    "cross_split_semantic_nearest_candidates",
+    "cross_model_critic_all_900",
+    "high_risk_human_review_at_least_10_percent",
+    "source_manifest_27",
+    "Korean_PR_and_PPO37_archive_after_gates"
+  ],
+  "current_task_scope": "Generate additional 900, verify structure/ratios/pool/duplicates, prepare critic handoff. User explicitly deferred cross-model review; no PR or Linear completion publication in this phase.",
+  "scope_clarification": "사용자: cross model check은 팀원이 할거라서 안해도 돼요. 900개만 일단 만들면 되요",
+  "planned_gates_current_phase": [
+    "schema_and_ratios",
+    "exact_reference_pool",
+    "original_and_new_identity_blind_duplicates",
+    "cross_split_semantic_nearest_candidates",
+    "source_manifest_27",
+    "critic_handoff_not_results"
+  ],
+  "actual_distribution": {
+    "solution": 690,
+    "hold": 210,
+    "train": 806,
+    "val_internal": 94,
+    "hard_negative": 402,
+    "english_supported_solution": 240
+  },
+  "split_adjustment": "Keep existing validation concepts out of training; 94/900=10.44% within documented 7-13% interval. Do not move two/four arbitrary cases only to meet nominal90/10."
+}
