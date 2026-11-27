@@ -65,16 +65,14 @@ def main():
         args.max_length,
         local_files_only=args.local_files_only,
     )
-    rag = TwoStageReferenceRetriever(
+    rag = TwoStageReferenceRetriever.from_index(
+        args.index,
         entries,
         embed,
         rank,
-        build=False,
-        use_faiss=args.backend == "qwen",
         threshold=args.threshold,
         layer2_selections=selections,
     )
-    rag.load(args.index)
     print(
         json.dumps(
             {

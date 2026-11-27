@@ -11,8 +11,13 @@ from .selection import Layer2Selection
 
 @dataclass(frozen=True)
 class PreparedRAGInput:
-    request: SLMRequest
+    request: SLMRequest | None
     retrieval: RetrievalResult
+
+    @property
+    def source_miss(self) -> bool:
+        """The selected document supplied no usable evidence; skip the SLM call."""
+        return self.request is None
 
 
 def prepare_rag_input(
@@ -23,7 +28,7 @@ def prepare_rag_input(
     source_scope: Sequence[Layer2Selection] = (),
     top_k: int = 5,
 ) -> PreparedRAGInput:
-    """Use Tier 1 by default. An explicit document question uses its Tier 2 scope."""
+    """Prepare a model request, or return no request for an unmatched Tier 2 question."""
     if retriever.layer2_selections:
         raise ValueError("pass a default retriever and select the source on each request")
     if source_question is not None and not source_question.strip():
@@ -44,6 +49,10 @@ def prepare_rag_input(
 
     distractors = set(request.distractor_refs)
     chunks = [chunk for chunk in result.chunks if chunk.evidence_ref not in distractors]
+    filtered_result = result.model_copy(update={"chunks": chunks})
+    if source_question is not None and not chunks:
+        return PreparedRAGInput(None, filtered_result)
+
     allowed = [
         ref for ref in request.allowed_evidence_refs
         if ref.startswith(("catalog:", "alternative:"))
@@ -53,4 +62,4 @@ def prepare_rag_input(
     data["allowed_evidence_refs"] = list(dict.fromkeys(allowed + [c.evidence_ref for c in chunks]))
     data["reference_question"] = source_question
     prepared = SLMRequest.model_validate(data)
-    return PreparedRAGInput(prepared, result.model_copy(update={"chunks": chunks}))
+    return PreparedRAGInput(prepared, filtered_result)

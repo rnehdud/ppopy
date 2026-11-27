@@ -9,6 +9,7 @@ from beauty_agent.rag.backends import HashFallback, NoOpReranker
 from beauty_agent.rag.corpus import load_corpus_entries
 from beauty_agent.rag.handoff import prepare_rag_input
 from beauty_agent.rag.retriever import TwoStageReferenceRetriever
+from beauty_agent.rag.selection import Layer2Selection
 from beauty_agent.slm import build_messages
 from beauty_agent.v3_contracts import SLMRequest
 from scripts.export_rag_contexts import SourceQuestion, export_rows
@@ -84,8 +85,16 @@ def test_document_miss_does_not_export_a_prompt(rag):
         "document": SourceQuestion(question="unrelated query xyz", source_unit="L2U-0001"),
     })
     assert result["retrieval"]["chunks"] == []
+    assert result["source_miss"] is True
     assert result["model_messages"] is None
     assert result["requires_target_review"]
+    scope = Layer2Selection.model_validate(result["source_scope"])
+    prepared = prepare_rag_input(
+        SLMRequest(mode="solution"), strict,
+        source_question="unrelated query xyz", source_scope=[scope],
+    )
+    assert prepared.source_miss
+    assert prepared.request is None
 
 
 def test_blank_document_question_is_rejected(rag):
@@ -99,3 +108,15 @@ def test_blank_document_question_is_rejected(rag):
 def test_source_explanation_scope_is_required(rag):
     with pytest.raises(ValueError, match="explicit"):
         prepare_rag_input(SLMRequest(mode="solution"), rag, source_question="SCCS")
+
+
+def test_index_auto_load_preserves_storage_and_validates_embedding(rag, tmp_path):
+    rag.save(tmp_path)
+    restored = TwoStageReferenceRetriever.from_index(
+        tmp_path, rag.entries, HashFallback(), NoOpReranker(), threshold=rag.threshold,
+    )
+    assert restored.retrieve("cleansing") == rag.retrieve("cleansing")
+    with pytest.raises(ValueError, match="embedding configuration"):
+        TwoStageReferenceRetriever.from_index(
+            tmp_path, rag.entries, HashFallback(dimensions=64), NoOpReranker(),
+        )

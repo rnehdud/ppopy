@@ -69,11 +69,11 @@ def export_rows(dataset, retriever, source_questions, *, top_k=5):
             source_scope=[scope] if scope is not None else (),
             top_k=top_k,
         )
-        chunks = prepared.retrieval.chunks
+        model_request = prepared.request
+        allowed_refs = set(model_request.allowed_evidence_refs) if model_request is not None else set()
         missing = sorted(
-            set(extract_citations(assistant["content"])) - set(prepared.request.allowed_evidence_refs)
+            set(extract_citations(assistant["content"])) - allowed_refs
         )
-        source_miss = scope is not None and not chunks
         results.append({
             "id": row_id,
             "split": row["split"],
@@ -81,7 +81,8 @@ def export_rows(dataset, retriever, source_questions, *, top_k=5):
             "source_question": source_question,
             "source_scope": scope.model_dump() if scope is not None else None,
             "retrieval": prepared.retrieval.model_dump(mode="json", exclude_none=True),
-            "model_messages": None if source_miss else build_messages(prepared.request),
+            "source_miss": prepared.source_miss,
+            "model_messages": build_messages(model_request) if model_request is not None else None,
             "missing_target_refs": missing,
             "requires_target_review": bool(missing or scope is not None),
         })
@@ -124,11 +125,9 @@ def main():
         args.backend, args.device, args.dtype, args.batch_size, args.max_length,
         local_files_only=args.local_files_only,
     )
-    rag = TwoStageReferenceRetriever(
-        entries, embed, rank, build=False, use_faiss=args.backend == "qwen",
-        threshold=args.threshold,
+    rag = TwoStageReferenceRetriever.from_index(
+        args.index, entries, embed, rank, threshold=args.threshold,
     )
-    rag.load(args.index)
     with args.input.open(encoding="utf-8") as source:
         rows = export_rows(
             (json.loads(line) for line in source if line.strip()), rag, source_questions,
@@ -141,12 +140,13 @@ def main():
     print(json.dumps({
         "rows": len(rows),
         "backend": args.backend,
+        "index_backend": "faiss" if rag.use_faiss else "stub",
         "embedding_signature": embed.signature,
         "reranking_signature": rank.signature,
         "threshold": args.threshold,
         "top_k": args.top_k,
         "tier2_requests": sum(row["source_scope"] is not None for row in rows),
-        "tier2_no_match": sum(row["model_messages"] is None for row in rows),
+        "tier2_no_match": sum(row["source_miss"] for row in rows),
         "target_review_rows": sum(row["requires_target_review"] for row in rows),
         "output": str(args.output),
     }, ensure_ascii=False, indent=2))

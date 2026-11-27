@@ -56,6 +56,7 @@ def make_backends(
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--backend", choices=["hash", "qwen"], default="hash")
+    p.add_argument("--index-backend", choices=["python", "faiss"])
     p.add_argument("--corpus", type=Path, default=COS / "data/rag/corpus")
     p.add_argument("--chunks", type=Path, default=COS / "data/rag/chunks.jsonl")
     p.add_argument("--output", type=Path, default=COS / "data/rag/index")
@@ -77,14 +78,14 @@ def main():
         with_reranker=False,
         local_files_only=args.local_files_only,
     )
-    rag = TwoStageReferenceRetriever(
-        entries, embed, rank, use_faiss=args.backend == "qwen"
-    )
+    index_backend = args.index_backend or ("faiss" if args.backend == "qwen" else "python")
+    rag = TwoStageReferenceRetriever(entries, embed, rank, use_faiss=index_backend == "faiss")
     rag.save(args.output)
     print(
         json.dumps(
             {
                 "backend": args.backend,
+                "index_backend": index_backend,
                 "count": len(entries),
                 "domains": dict(Counter(e.domain for e in entries)),
                 "index_version": rag.index_version,

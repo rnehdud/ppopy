@@ -275,8 +275,34 @@ class TwoStageReferenceRetriever:
             newline="\n",
         )
 
+    @classmethod
+    def from_index(
+        cls,
+        directory: Path,
+        entries: Sequence[CorpusEntry],
+        embedder: Embedder,
+        reranker: Reranker,
+        *,
+        threshold: float = 0.5,
+        layer2_selections: Sequence[Layer2Selection] = (),
+    ) -> TwoStageReferenceRetriever:
+        """Open a saved index using its storage backend and verify its provenance."""
+        manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
+        backend = manifest.get("backend")
+        if backend not in ("faiss", "stub"):
+            raise ValueError(f"unsupported index manifest backend: {backend!r}")
+        retriever = cls(
+            entries, embedder, reranker, threshold=threshold, build=False,
+            use_faiss=backend == "faiss", layer2_selections=layer2_selections,
+        )
+        retriever._load(directory, manifest)
+        return retriever
+
     def load(self, directory: Path) -> None:
         manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
+        self._load(directory, manifest)
+
+    def _load(self, directory: Path, manifest: dict) -> None:
         expected = {
             "format_version": 1,
             "corpus_sha256": corpus_digest(self.entries),
