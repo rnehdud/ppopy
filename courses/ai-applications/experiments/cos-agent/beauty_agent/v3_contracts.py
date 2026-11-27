@@ -117,9 +117,12 @@ class NLURequest(Contract):
     max_response_bytes: int = Field(default=MAX_SLM_RESPONSE_BYTES, gt=0, le=MAX_SLM_RESPONSE_BYTES)
 
     @model_validator(mode="after")
-    def reject_product_target_slot(self) -> NLURequest:
+    def validate_request_invariants(self) -> NLURequest:
         if self.target_slot_id is not None and self.target_slot_id.startswith("product."):
             raise ValueError("NLU target_slot_id must not target product.* catalog fields")
+        for hint in self.catalog_hints:
+            if hint.raw_span not in self.source_text:
+                raise ValueError(f"catalog_hint raw_span not found in source_text: {hint.raw_span!r}")
         return self
 
 
