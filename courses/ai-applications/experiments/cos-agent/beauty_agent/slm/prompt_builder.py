@@ -1,6 +1,6 @@
 """Build the wire prompt without transporting serving limits or KB judgments."""
 
-from beauty_agent.v3_contracts import SLMRequest
+from beauty_agent.v3_contracts import NLURequest, SLMRequest
 
 SYSTEM_PROMPT_SOLUTION_HOLD = (
     "당신은 근거 기반 스킨케어 루틴 지원 AI 'Ppopy'입니다. "
@@ -18,6 +18,13 @@ _NLU_SYSTEM_PROMPT = (
     "입력 JSON에 제공된 정보만 구조화하세요. 알 수 없는 정보나 사용자 확인을 새로 만들지 마세요. "
     "질문, 진단, 제품 사용법 및 추천을 생성하지 마세요."
 )
+SYSTEM_PROMPT_NLU = (
+    "당신은 스킨케어 자유 발화에서 구조화된 관찰 후보만 추출하는 NLU 파서입니다. "
+    "입력 JSON의 source_text, catalog_hints, previous_question, target_slot_id만 근거로 "
+    "NLUExtractionResult JSON만 출력하세요. "
+    "evidence_span은 반드시 source_text의 정확한 부분 문자열이어야 하며, confirmed_by_user는 항상 false로 두세요. "
+    "부정 표현은 polarity='denied', 타인 경험은 subject='other', product.* 슬롯 추출 및 질문·진단·추천 생성은 금지합니다."
+)
 # Transport limits stay in the HTTP client. Some older training rows carry those defaults.
 _INPUT_FIELDS = {
     "mode",
@@ -27,6 +34,23 @@ _INPUT_FIELDS = {
     "allowed_evidence_refs",
     "distractor_refs",
 }
+_NLU_INPUT_FIELDS = {
+    "source_text",
+    "catalog_hints",
+    "previous_question",
+    "target_slot_id",
+    "allowed_variable_ids",
+    "allowed_symptoms",
+    "allowed_topics",
+}
+
+
+def build_nlu_messages(request: NLURequest) -> list[dict[str, str]]:
+    """Serialize NLURequest without transport limits for Stage 2 NLU SLM."""
+    return [
+        {"role": "system", "content": SYSTEM_PROMPT_NLU},
+        {"role": "user", "content": request.model_dump_json(include=_NLU_INPUT_FIELDS)},
+    ]
 
 
 def build_messages(request: SLMRequest) -> list[dict[str, str]]:
