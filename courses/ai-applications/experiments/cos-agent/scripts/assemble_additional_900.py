@@ -346,9 +346,22 @@ def main():
     original = COS / "data/qlora/v2/qlora_solution_hold_v2.jsonl"
     plan = json.loads((BASE / "plan.json").read_text(encoding="utf-8"))
     if sha(original) != plan["original_dataset_sha256"]:
-        raise ValueError(
-            "기존 승인 데이터가 작업 도중 변경됐어요. 덮어쓰지 말고 재확인하세요."
+        receipt_path = BASE / "validation/remediation_18_receipt.json"
+        receipt = (
+            json.loads(receipt_path.read_text(encoding="utf-8"))
+            if receipt_path.exists()
+            else {}
         )
+        if not (
+            receipt.get("before_original_dataset_sha256")
+            == plan["original_dataset_sha256"]
+            and receipt.get("after_original_dataset_sha256") == sha(original)
+            and receipt.get("original_900_canonical_content_unchanged") is True
+            and receipt.get("original_900_answers_and_approvals_unchanged") is True
+        ):
+            raise ValueError(
+                "기존 승인 데이터의 예상 밖 변경이에요. 덮어쓰지 말고 재확인하세요."
+            )
     pool = {c["evidence_ref"]: c for c in read_rows(COS / "data/rag/chunks.jsonl")}
     old = read_rows(original)
     rows.sort(key=lambda r: (r["mode"] != "solution", r["id"]))

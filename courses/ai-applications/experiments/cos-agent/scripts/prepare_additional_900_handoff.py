@@ -21,6 +21,10 @@ def write_json(path, obj):
 
 
 def main():
+    if (BASE / "validation/remediation_18_receipt.json").exists():
+        raise RuntimeError(
+            "초기 생성 단계 인계 도구예요. 수정 후 인계는 RECHECK_18_HANDOFF_KO.md를 보세요."
+        )
     report = json.loads((BASE / "validation/quality.json").read_text(encoding="utf-8"))
     validation = json.loads(
         (BASE / "validation/structure.json").read_text(encoding="utf-8")

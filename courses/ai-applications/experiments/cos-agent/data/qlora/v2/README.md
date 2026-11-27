@@ -1,5 +1,7 @@
 # PPO-37 Step 2 — RAG-free QLoRA 신규 합성 900턴 최종 제출
 
+> **Wire 입력 정리 후속 기록**: 추가 900턴 Critic 후속 작업에서 기존 900턴의 300행에서도 `timeout_seconds`, `max_response_bytes`만 제거했어요. 기존 900행의 정규화 내용 해시·답변·사람 승인 메타데이터는 모두 같아요. 파일 바이트 SHA-256만 `1b1d6b3102b77b7ecb82ea431e454d7cab82898f8454d5882437fc5b311197de`로 바뀌었어요. 아래 `991825...` 해시와 과거 리포트는 정리 전 기록이며, [후속 변경·검수 인계](additional_900_20261126/RECHECK_18_HANDOFF_KO.md)에서 현재 근거를 확인해요.
+
 브랜치: `data/qlora-v4-rag-free` · 개인 진행·raw 기록: [PPO-45](https://linear.app/ppopy/issue/PPO-45).
 
 ## 최신 검수 상태
