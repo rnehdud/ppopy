@@ -68,7 +68,13 @@ def build_messages(request: SLMRequest) -> list[dict[str, str]]:
             "exposure_route, population, effective_period를 함께 보존하세요. "
             "unknown을 추정하지 말고, 현재 법적 적합성·개별 제품 안전성·개인별 사용 지시로 확장하지 마세요."
         )
+    fields = _INPUT_FIELDS
+    if request.reference_question is not None:
+        if not request.rag_chunks or any(c.layer2 is None for c in request.rag_chunks):
+            raise ValueError("reference questions require retrieved Tier 2 evidence")
+        system += " reference_question에 담긴 질문에 대해 제공된 문헌의 내용만 설명하세요."
+        fields = _INPUT_FIELDS | {"reference_question"}
     return [
         {"role": "system", "content": system},
-        {"role": "user", "content": request.model_dump_json(include=_INPUT_FIELDS)},
+        {"role": "user", "content": request.model_dump_json(include=fields)},
     ]

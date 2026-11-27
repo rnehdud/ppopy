@@ -7,6 +7,7 @@ import json
 import math
 import re
 from collections.abc import Sequence
+from copy import copy
 from dataclasses import dataclass
 from pathlib import Path
 from time import perf_counter
@@ -93,9 +94,6 @@ class TwoStageReferenceRetriever:
             e.chunk.layer2 and e.chunk.layer2.topic != e.domain for e in self.entries
         ):
             raise ValueError("layer2 topic mismatch")
-        self.layer2_selections = tuple(
-            Layer2Selection.model_validate(s.model_dump()) for s in layer2_selections
-        )
         self.embedder = embedder
         self.reranker = reranker
         self.threshold = threshold
@@ -103,22 +101,40 @@ class TwoStageReferenceRetriever:
         self.use_faiss = use_faiss
         # Different embedding revisions/configurations must not share the same
         # audit/cache identifier merely because their source paragraphs match.
-        identity = corpus_digest(self.entries) + "|" + embedder.signature
-        if self.layer2_selections:
-            identity += "|" + json.dumps(
-                [s.model_dump() for s in self.layer2_selections], sort_keys=True
-            )
-        self.index_version = (
-            "rag-" + hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
-        )
+        self._index_identity = corpus_digest(self.entries) + "|" + embedder.signature
+        self._source_only = False
+        self._set_source_scope(layer2_selections)
         self._by_ref = {e.chunk.evidence_ref: e for e in self.entries}
         self.index = None
         if build:
             self._build()
 
+    def _set_source_scope(self, selections: Sequence[Layer2Selection]) -> None:
+        self.layer2_selections = tuple(
+            Layer2Selection.model_validate(selection.model_dump()) for selection in selections
+        )
+        identity = self._index_identity
+        if self.layer2_selections:
+            identity += "|" + json.dumps(
+                [selection.model_dump() for selection in self.layer2_selections], sort_keys=True
+            )
+        self.index_version = "rag-" + hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
+
+    def for_sources(self, selections: Sequence[Layer2Selection]) -> TwoStageReferenceRetriever:
+        """Search only the selected sources using the existing index and models."""
+        if self.index is None:
+            raise RuntimeError("build or load the index before selecting a source scope")
+        if not selections:
+            raise ValueError("at least one explicit source selection is required")
+        scoped = copy(self)
+        scoped._source_only = True
+        scoped._set_source_scope(selections)
+        scoped.index_version += "-source-only"
+        return scoped
+
     def _eligible(self, entry: CorpusEntry) -> bool:
         if entry.chunk.layer2 is None:
-            return True
+            return not self._source_only
         return any(s.matches(entry.chunk) for s in self.layer2_selections)
 
     def _build(self):

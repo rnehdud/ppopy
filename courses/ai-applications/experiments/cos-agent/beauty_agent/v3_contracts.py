@@ -293,11 +293,16 @@ class SLMRequest(Contract):
     rag_chunks: list[ReferenceChunk] = Field(default_factory=list)
     allowed_evidence_refs: list[str] = Field(default_factory=list)
     distractor_refs: list[str] = Field(default_factory=list)
+    reference_question: str | None = Field(default=None, min_length=1, max_length=4000)
     timeout_seconds: float = Field(default=DEFAULT_SLM_TIMEOUT_SECONDS, gt=0.0, le=60.0)
     max_response_bytes: int = Field(default=MAX_SLM_RESPONSE_BYTES, gt=0, le=MAX_SLM_RESPONSE_BYTES)
 
     @model_validator(mode="after")
     def validate_mode_and_refs(self) -> SLMRequest:
+        if self.reference_question is not None and (
+            self.mode != "solution" or not self.reference_question.strip()
+        ):
+            raise ValueError("a non-blank reference question requires solution mode")
         if self.mode != "solution" and self.rag_chunks:
             raise ValueError("rag_chunks are only permitted in 'solution' mode")
         overlap = set(self.allowed_evidence_refs) & set(self.distractor_refs)
