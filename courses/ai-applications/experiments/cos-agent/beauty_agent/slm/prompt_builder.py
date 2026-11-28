@@ -61,6 +61,13 @@ def build_messages(request: SLMRequest) -> list[dict[str, str]]:
         raise ValueError("RAG chunks require solution mode")
 
     system = _NLU_SYSTEM_PROMPT if request.mode == "nlu" else SYSTEM_PROMPT_SOLUTION_HOLD
+    if any(c.layer2 is not None for c in request.rag_chunks):
+        system += (
+            " 2계층 layer2 근거는 지정된 관할·판본·as_of의 내용 설명에만 사용하세요. "
+            "본문과 layer2의 limitations, subject_identity, product_type, concentration_basis, "
+            "exposure_route, population, effective_period를 함께 보존하세요. "
+            "unknown을 추정하지 말고, 현재 법적 적합성·개별 제품 안전성·개인별 사용 지시로 확장하지 마세요."
+        )
     return [
         {"role": "system", "content": system},
         {"role": "user", "content": request.model_dump_json(include=_INPUT_FIELDS)},

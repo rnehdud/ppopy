@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import argparse
-from collections import Counter
 import hashlib
 import json
-from pathlib import Path
 import sys
+from collections import Counter
+from pathlib import Path
 
 REPO_EXP_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_EXP_ROOT) not in sys.path:
@@ -39,9 +39,18 @@ def main() -> int:
         default=DEFAULT_OUTPUT_PATH,
         help="Output JSONL path for ReferenceChunk records.",
     )
+    parser.add_argument(
+        "--additional-corpus",
+        type=Path,
+        action="append",
+        default=[],
+        help="Additional audited corpus directory (repeatable).",
+    )
     args = parser.parse_args()
 
-    entries = load_corpus_entries(args.corpus_dir)
+    entries = load_corpus_entries(
+        args.corpus_dir, additional_corpus_dirs=args.additional_corpus
+    )
     written = export_chunks_jsonl(entries, args.output)
     reloaded = load_chunks_jsonl(args.output)
     if len(reloaded) != written or reloaded != [entry.chunk for entry in entries]:

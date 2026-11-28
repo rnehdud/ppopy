@@ -2,20 +2,22 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
 import json
 import math
-from pathlib import Path
 import re
+from collections.abc import Sequence
+from dataclasses import dataclass
+from pathlib import Path
 from time import perf_counter
-from typing import Sequence
 
 from beauty_agent.v3_contracts import RetrievalResult, SLMRequest
+
 from .backends import Embedder, Reranker
 from .corpus import CorpusEntry
-from .index import PythonCosineIndex, FaissCosineIndex
+from .index import FaissCosineIndex, PythonCosineIndex
 from .query_builder import build_query
+from .selection import Layer2Selection
 
 
 @dataclass(frozen=True)
@@ -40,7 +42,7 @@ def corpus_digest(entries: Sequence[CorpusEntry]) -> str:
             {
                 "title": e.title,
                 "domain": e.domain,
-                "chunk": e.chunk.model_dump(mode="json"),
+                "chunk": e.chunk.model_dump(mode="json", exclude_none=True),
             }
             for e in entries
         ],
@@ -61,12 +63,13 @@ class TwoStageReferenceRetriever:
         stage1_k: int = 15,
         use_faiss: bool = False,
         build: bool = True,
+        layer2_selections: Sequence[Layer2Selection] = (),
     ):
         if not entries or len({e.chunk.evidence_ref for e in entries}) != len(entries):
             raise ValueError("corpus must be nonempty with unique refs")
         if any(
             not re.fullmatch(
-                r"ref:(?:cleansing|moisturizing|sun_protection|storage_label)-\d{3}",
+                r"ref:(?:(?:cleansing|moisturizing|sun_protection|storage_label)-\d{3}|(?:regulatory|safety_method)-L2U-\d{4})",
                 e.chunk.evidence_ref,
             )
             for e in entries
@@ -76,7 +79,23 @@ class TwoStageReferenceRetriever:
             raise ValueError("threshold must be finite and in [-1, 1]")
         if stage1_k < 5:
             raise ValueError("stage1_k must be >=5")
-        self.entries = tuple(entries)
+        # Revalidate mutable Pydantic inputs; model_copy can bypass validation.
+        self.entries = tuple(
+            CorpusEntry(
+                e.domain,
+                e.title,
+                e.source_file,
+                type(e.chunk).model_validate(e.chunk.model_dump()),
+            )
+            for e in entries
+        )
+        if any(
+            e.chunk.layer2 and e.chunk.layer2.topic != e.domain for e in self.entries
+        ):
+            raise ValueError("layer2 topic mismatch")
+        self.layer2_selections = tuple(
+            Layer2Selection.model_validate(s.model_dump()) for s in layer2_selections
+        )
         self.embedder = embedder
         self.reranker = reranker
         self.threshold = threshold
@@ -84,14 +103,23 @@ class TwoStageReferenceRetriever:
         self.use_faiss = use_faiss
         # Different embedding revisions/configurations must not share the same
         # audit/cache identifier merely because their source paragraphs match.
-        identity = corpus_digest(entries) + "|" + embedder.signature
+        identity = corpus_digest(self.entries) + "|" + embedder.signature
+        if self.layer2_selections:
+            identity += "|" + json.dumps(
+                [s.model_dump() for s in self.layer2_selections], sort_keys=True
+            )
         self.index_version = (
             "rag-" + hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
         )
-        self._by_ref = {e.chunk.evidence_ref: e for e in entries}
+        self._by_ref = {e.chunk.evidence_ref: e for e in self.entries}
         self.index = None
         if build:
             self._build()
+
+    def _eligible(self, entry: CorpusEntry) -> bool:
+        if entry.chunk.layer2 is None:
+            return True
+        return any(s.matches(entry.chunk) for s in self.layer2_selections)
 
     def _build(self):
         vectors = self.embedder.encode([e.embedding_text for e in self.entries])
@@ -117,7 +145,26 @@ class TwoStageReferenceRetriever:
                 0,
                 (perf_counter() - start) * 1000,
             )
-        candidates = self.index.search(encoded[0], self.stage1_k)
+        # Filter before truncating to stage1_k: an out-of-scope dense hit must
+        # not crowd out eligible evidence or reach the reranker.
+        search_k = (
+            len(self.entries)
+            if any(e.chunk.layer2 for e in self.entries)
+            else self.stage1_k
+        )
+        candidates = [
+            (i, score)
+            for i, score in self.index.search(encoded[0], search_k)
+            if self._eligible(self.entries[i])
+        ][: self.stage1_k]
+        if not candidates:
+            return RetrievalTrace(
+                (),
+                0,
+                (perf_counter() - start) * 1000,
+                0,
+                (perf_counter() - start) * 1000,
+            )
         dense_end = perf_counter()
         docs = [self.entries[i].embedding_text for i, _ in candidates]
         scores = self.reranker.score(query, docs, [s for _, s in candidates])
@@ -151,7 +198,7 @@ class TwoStageReferenceRetriever:
         chunks = [
             self._by_ref[c.evidence_ref].chunk.model_copy(deep=True)
             for c in ordered
-            if c.rerank_score >= cutoff
+            if c.rerank_score >= cutoff and self._eligible(self._by_ref[c.evidence_ref])
         ][:top_k]
         return RetrievalResult(
             chunks=chunks,
