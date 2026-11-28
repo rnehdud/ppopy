@@ -1,0 +1,39 @@
+{
+  "기록일": "2026-11-28",
+  "범위": "최종 980턴 생성 후 실제 실행한 필수 명령 결과. 의미적 Cross-Model 검수 또는 사람 승인이 아니에요.",
+  "base_commit": "d1e9cbecad9741ed014013876c3fc4a8c8472a67",
+  "dataset_sha256": "1963d90139f10e7849200ebaef7c7b8f4e9f242c9af700daf2e3c56503b8bfe2",
+  "commands": [
+    {
+      "cwd": "courses/ai-applications/experiments/cos-agent",
+      "command": "python -m uv run --locked python scripts/validate_nlu_dataset.py --input data/nlu/v1/nlu_sft_v1.jsonl --min-rows 800 --enforce-buckets --report data/nlu/v1/validation/step2_structure.json",
+      "exit_code": 0,
+      "passed": true,
+      "error_count": 0,
+      "total_rows": 980
+    },
+    {
+      "cwd": "courses/ai-applications/experiments/cos-agent",
+      "command": "python -m uv run --locked pytest -q tests/test_nlu_step0.py tests/test_v3_contracts.py",
+      "exit_code": 0,
+      "stdout_summary": "11 passed in 0.31s"
+    },
+    {
+      "cwd": "저장소 루트",
+      "command": "python tools/verify_source_manifest.py",
+      "exit_code": 0,
+      "stdout": {"checked": 27, "failed": []}
+    },
+    {
+      "cwd": "courses/ai-applications/experiments/cos-agent",
+      "command": "python -m uv run --locked python scripts/audit_nlu_v1_step2.py",
+      "exit_code": 0,
+      "passed": true,
+      "report": "data/nlu/v1/validation/step2_audit.json"
+    }
+  ],
+  "cross_model_critic_performed": false,
+  "human_approved": false,
+  "base_zero_shot_executed": false,
+  "training_executed": false
+}

@@ -1,5 +1,9 @@
 # PPO-46 Step 1 — 채팅 자유 입력 NLU SFT 파일럿 49건
 
+## Step 2 신규 작업 · 2026-11-28
+
+`d1e9cbe` 확정 정책을 기준으로 별도 `data/nlu-v1-step2` 브랜치에 **신규 합성 980턴(train882 / val98)**을 작성했어요. 파일럿49건과 아래 Step 1 이력은 보존했어요. [Step 2 안내](STEP2_README.md)와 [Cross-Model 검수 요청](reviews/STEP2_CROSS_MODEL_HANDOFF.md)을 확인해 주세요. Step 2 독립 Critic·사람 승인·학습은 아직 미실행이에요.
+
 ## 팀원·후속 AI: 여기부터 읽어 주세요
 
 공유 브랜치는 `data/nlu-v1-pilot-critic`이에요.
