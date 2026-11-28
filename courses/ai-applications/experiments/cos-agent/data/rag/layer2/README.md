@@ -49,3 +49,22 @@ SCCS 성분별 31개·CIR 58개·EU 향료 81개 등 전체 로드맵의 검증 
 ## 검증
 
 [실제 검사 결과 및 재현 명령](../../../docs/reference-rag-layer2-compatibility.md)을 참고한다. 모델 평가는 팀원이 별도로 수행한다. 서비스 배포·KB 판단 결합·개인 데이터 입력을 수행하지 않았다.
+
+## SLM 팀에 넘길 검색 입력 만들기
+
+위 변환·색인 명령을 그대로 실행하면 Hash 연결 검사용으로 사용할 수 있다. 실제 모델 실험에는 [Qwen 설치와 GPU 환경](../../../docs/reference-rag-pipeline.md)의 모델 의존성을 설치하고, 색인 생성과 아래 명령 모두 같은 임베딩 설정으로 실행한다. 다음 명령은 COS 디렉터리 기준이며, Qwen 인덱스는 Hash 인덱스와 별도 경로를 사용한다.
+
+```powershell
+python scripts/build_rag_index.py --additional-corpus data/rag/layer2/corpus --chunks outputs/rag-layer2/chunks.jsonl --output outputs/rag-layer2/qwen-index --backend qwen
+python scripts/export_rag_contexts.py --input data/qlora/v2/qlora_solution_hold_v2.jsonl --chunks outputs/rag-layer2/chunks.jsonl --index outputs/rag-layer2/qwen-index --output outputs/rag-layer2/slm-contexts.jsonl --backend qwen --threshold 0.95
+```
+
+`0.95`는 기존 Tier 1 실험의 시작점이다. 합친 코퍼스에서 관련도와 범위 이탈을 평가하고, 임계값은 별도 보정 분할에서 결정한다. Hash 연결 검사는 기존 Hash 색인과 `--backend hash --threshold=-1`로 실행한다.
+
+`--backend`는 임베딩·리랭킹 모델을 지정한다. 기본 저장 형식은 Qwen이면 FAISS, Hash면 Python 인덱스다. 색인 생성 시 `--index-backend faiss` 또는 `--index-backend python`으로 이를 바꿀 수 있다. 조회와 내보내기는 매니페스트에 기록된 저장 형식을 사용하고 모델 서명도 비교한다.
+
+- 산출물은 기존 데이터셋의 `id`와 `split`을 유지한 별도 JSONL이다. `model_messages`에 모델에 보낼 system/user 메시지만, `retrieval`에 청크·출처·색인 버전을 기록한다. 원본 assistant 정답은 그대로 보관한다.
+- 기존 답변이 인용한 문헌이 실제로 검색되지 않으면 `missing_target_refs`에 기록한다. `requires_target_review=true`인 행은 답변을 그대로 붙여 학습시키기 전에 검수한다. 인용이 모두 있어도 문헌이 답변의 주장을 지원하는지는 확인해야 한다.
+- 일반 SOLUTION은 Tier 1만 검색한다. Tier 2 문서 설명 샘플은 `--source-questions <file.json>`으로 허용된 샘플 ID와 문서 범위를 명시한다. `{"sample-id":{"question":"SCCS 12판은 노출량을 어떻게 평가하나요?","source_unit":"L2U-0001"}}` 형태다. 해당 단위와 같은 출처·관할·판본·기준 시점의 문단만 검색하며 문서 설명 행은 항상 정답 검수 대상으로 표시한다. 근거가 없으면 `source_miss=true`, `model_messages=null`로 남긴다. HOLD에는 검색 근거를 추가하지 않는다.
+- 순수 SFT에는 기존 검수 데이터셋을 사용할 수 있다. 이 출력은 실제 검색 입력으로 하는 생성 평가 또는 검색 결과에 맞춰 정답을 검수한 뒤 사용하는 증강 SFT의 재료다.
+- 런타임에서는 `beauty_agent.rag.handoff.prepare_rag_input`을 호출해 같은 범위와 인용 규칙을 적용한다. 결과의 `request`가 `None`이면 `source_miss`이고, SLM을 호출하지 않고 지정 문서에서 근거를 찾지 못했다고 안내한다. `request`가 있으면 기존 생성·검증 경로로 전달한다.
