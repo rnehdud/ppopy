@@ -31,12 +31,13 @@ def main():
         assert set(req.allowed_symptoms)==set(ALLOWED_SYMPTOMS) and set(req.allowed_topics)==set(ALLOWED_TOPICS)
         assert ext.confirmed_by_user is False
         assert row['provenance']['source_origin']=='new_synthetic'
-        assert row['provenance']['human_review']==row['provenance']['critic_status']=='unreviewed'
+        assert row['provenance']['critic_status'] in {'unreviewed','passed'}
+        assert row['provenance']['human_review'] in {'unreviewed','approved'}
         assert row['runtime_invariants']==dict(mode='development_preview',production_enabled=False,requires_approval=True,saved=False)
         review=byid[rid]
         assert content_hash(row)==review['content_sha256']
         assert review['request']==json.loads(row['messages'][1]['content']) and review['expected']==ext.model_dump(mode='json')
-        assert review['critic_status']==review['human_review']=='unreviewed'
+        assert review['critic_status'] in {'unreviewed','passed'} and review['human_review'] in {'unreviewed','approved'}
         buckets[row['primary_bucket']]+=1;split_buckets[row['split']][row['primary_bucket']]+=1
         families[row['scenario_family_id']].add(row['split'])
         texts[row['split']].add(re.sub(r'\s+',' ',req.source_text).strip())
@@ -116,7 +117,9 @@ def main():
       all_whitespace_removed_duplicates=0,pilot_source_overlap=0,pilot_sha256=pilot_sha,slot_counts=dict(slot_counts),
       slot_counts_by_split={k:dict(v) for k,v in slot_splits.items()},symptoms=dict(syms),persistence=dict(persistence),product_usage=dict(usage),topics=dict(topics),
       complex_candidate_rows=complex_rows,ending_typo_rows=typo_rows,mixed_self_other_rows=mixed_subjects,policy_boundaries=dict(policy),
-      dataset_sha256=hashlib.sha256(raw).hexdigest(),request_hashes_verified=980,cross_model_critic_performed=False,human_approved=False)
+      dataset_sha256=hashlib.sha256(raw).hexdigest(),request_hashes_verified=980,
+      cross_model_critic_performed=all(r['provenance']['critic_status']=='passed' for r in rows),
+      human_approved=all(r['provenance']['human_review']=='approved' for r in rows))
     (H/'validation/step2_audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     # 외부 검수자는 각 배치에서 모든 입력/예상값/작성 근거를 읽을 수 있어요.
     out=H/'reviews/step2_batches';out.mkdir(exist_ok=True)
