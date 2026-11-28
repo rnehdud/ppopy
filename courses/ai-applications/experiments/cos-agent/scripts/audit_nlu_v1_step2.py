@@ -65,6 +65,18 @@ def main():
         if 'both_steps' in atoms:
             assert [s.value for s in ext.slot_candidates if s.variable_id=='cleansing.steps']==[2]
             policy['explicit_count_over_label']+=1
+        if 'gaps' in atoms:
+            subject=next(s.subject for s in ext.slot_candidates if s.variable_id=='sun.coverage_gaps')
+            expected_usage='other_person' if subject=='other' else 'using'
+            assert [m.usage_state for m in ext.product_mentions if m.raw_text=='차단제']==[expected_usage]
+            policy['coverage_gap_actual_usage']+=1
+        if 'mix' in atoms:
+            mixing=[s for s in ext.slot_candidates if s.variable_id=='method.mixing']
+            assert mixing and all('손바닥' in s.evidence_span for s in mixing)
+            policy['mixing_palm_span_aligned']+=1
+        if 'no_sun' in atoms:
+            assert [m.usage_state for m in ext.product_mentions if m.raw_text=='선크림']==['unknown']
+            policy['single_nonapplication_unknown']+=1
         for key in ['one','two']:
             if key in atoms:
                 assert any(s.variable_id=='cleansing.steps' and s.value=={'one':1,'two':2}[key] and type(s.value) is int for s in ext.slot_candidates)

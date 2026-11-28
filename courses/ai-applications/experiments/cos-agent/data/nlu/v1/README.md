@@ -2,7 +2,7 @@
 
 ## Step 2 신규 작업 · 2026-11-28
 
-`d1e9cbe` 확정 정책을 기준으로 별도 `data/nlu-v1-step2` 브랜치에 **신규 합성 980턴(train882 / val98)**을 작성했어요. 파일럿49건과 아래 Step 1 이력은 보존했어요. [Step 2 안내](STEP2_README.md)와 [Cross-Model 검수 요청](reviews/STEP2_CROSS_MODEL_HANDOFF.md)을 확인해 주세요. Step 2 독립 Critic·사람 승인·학습은 아직 미실행이에요.
+`d1e9cbe` 확정 정책을 기준으로 별도 `data/nlu-v1-step2` 브랜치에 **신규 합성 980턴(train882 / val98)**을 작성했어요. 파일럿49건과 아래 Step 1 이력은 보존했어요. 초기 Gemini 전수 검수(936 PASS / 9 FAIL / 35 REVIEW) 지적을 반영했고 **변경된26행(핵심23+공통 atom 추가3) 재검수 대기**예요. [Step 2 안내](STEP2_README.md), [수정 내역](reviews/STEP2_CORRECTIONS.md), [재검수 요청](reviews/STEP2_CROSS_MODEL_HANDOFF.md)을 확인해 주세요. 사람 승인·학습은 아직 미실행이에요.
 
 ## 팀원·후속 AI: 여기부터 읽어 주세요
 

@@ -2328,7 +2328,7 @@
 
 ### 원문 raw
 
-피부가 마른 상태로 씻기 시작해요 / 두 세정제를 손에서 혼합해요
+피부가 마른 상태로 씻기 시작해요 / 두 세정제를 손바닥에서 혼합해요
 
 직전 질문: None
 질문 대상: None
@@ -2338,7 +2338,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "피부가 마른 상태로 씻기 시작해요 / 두 세정제를 손에서 혼합해요",
+  "source_text": "피부가 마른 상태로 씻기 시작해요 / 두 세정제를 손바닥에서 혼합해요",
   "topics": [
     "cleansing_method"
   ],
@@ -2357,7 +2357,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "두 세정제를 손에서 혼합해요"
+      "evidence_span": "두 세정제를 손바닥에서 혼합해요"
     }
   ],
   "symptom_candidates": [],
@@ -2376,7 +2376,7 @@
 
 원문에 명시된 의미만 후보로 남겨요.
 
-내용 SHA-256: `fc29c31b3a8af7e025e2180b63ea49ad81d3b441070fe77703c28a367c0e8a4d`
+내용 SHA-256: `3a27efeb7085c84e1ea820576403424240c4ad75ee0a6e13075b65f880642e38`
 
 ## nlu-step2-0043 · turn1_utterance · train
 
@@ -5686,7 +5686,7 @@
 
 ### 원문 raw
 
-귀랑 목은 차단제 안 발랐어요. 차단제는 2시간마다 덧발라요. 그늘에서 있었어요
+차단제 바를 때 귀랑 목은 빼먹었어요. 차단제는 2시간마다 덧발라요. 그늘에서 있었어요
 
 직전 질문: None
 질문 대상: None
@@ -5696,7 +5696,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "귀랑 목은 차단제 안 발랐어요. 차단제는 2시간마다 덧발라요. 그늘에서 있었어요",
+  "source_text": "차단제 바를 때 귀랑 목은 빼먹었어요. 차단제는 2시간마다 덧발라요. 그늘에서 있었어요",
   "topics": [
     "outdoor_sun"
   ],
@@ -5710,7 +5710,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     },
     {
       "variable_id": "sun.reapplication",
@@ -5753,7 +5753,7 @@
 
 원문에 명시된 의미만 후보로 남겨요.
 
-내용 SHA-256: `5e4a7c215d82266a49020bbc68ea3f36081f07974ca76ce3bc6b6f2f0c0a6153`
+내용 SHA-256: `9add62d9428e57ba2ab9403ba8de3d5c106d9238f10d92b7cf6111ae6aa155b9`
 
 ## nlu-step2-0100 · turn1_utterance · train
 
@@ -5913,7 +5913,7 @@
 
 ### 원문 raw
 
-귀랑 목은 차단제 안 발랐어요. 차단제 덧바르는 간격은 두 시간이에요. 그늘에 있었음
+차단제 바를 때 귀랑 목은 빼먹었어요. 차단제 덧바르는 간격은 두 시간이에요. 그늘에 있었음
 
 직전 질문: None
 질문 대상: None
@@ -5923,7 +5923,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "귀랑 목은 차단제 안 발랐어요. 차단제 덧바르는 간격은 두 시간이에요. 그늘에 있었음",
+  "source_text": "차단제 바를 때 귀랑 목은 빼먹었어요. 차단제 덧바르는 간격은 두 시간이에요. 그늘에 있었음",
   "topics": [
     "outdoor_sun"
   ],
@@ -5937,7 +5937,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     },
     {
       "variable_id": "sun.reapplication",
@@ -5980,7 +5980,7 @@
 
 원문에 명시된 의미만 후보로 남겨요.
 
-내용 SHA-256: `b7621a3bb5123fbb311e22c73df5a0b9f56e3a4bcba594980035883ee70de2d2`
+내용 SHA-256: `8b5285c01fae4774fa53a9cf202a0923fff552dacffef595a3352c751c594219`
 
 ## nlu-step2-0103 · turn1_utterance · train
 
@@ -6138,7 +6138,7 @@
 
 ### 원문 raw
 
-귀랑 목은 차단제 안 발랐어요 / 차단제 두 시간 간격으로 덧바름 / 그늘에 머물렀어요
+차단제 바를 때 귀랑 목은 빼먹었어요 / 차단제 두 시간 간격으로 덧바름 / 그늘에 머물렀어요
 
 직전 질문: None
 질문 대상: None
@@ -6148,7 +6148,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "귀랑 목은 차단제 안 발랐어요 / 차단제 두 시간 간격으로 덧바름 / 그늘에 머물렀어요",
+  "source_text": "차단제 바를 때 귀랑 목은 빼먹었어요 / 차단제 두 시간 간격으로 덧바름 / 그늘에 머물렀어요",
   "topics": [
     "outdoor_sun"
   ],
@@ -6162,7 +6162,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     },
     {
       "variable_id": "sun.reapplication",
@@ -6205,7 +6205,7 @@
 
 원문에 명시된 의미만 후보로 남겨요.
 
-내용 SHA-256: `e4f9e16815aa056ead806d1a147bd5921b6ef05972160f5fbbe592e62915f3f3`
+내용 SHA-256: `9e5d55009b91266e9b22f9a23eb4e8dcae9764ef5a209bcf8f91c823c84af4c0`
 
 ## nlu-step2-0106 · turn1_utterance · train
 
@@ -20977,7 +20977,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -20989,7 +20989,7 @@
 
 부정된 사실의 범위를 유지해요. 물·땀 부정은 yes/denied이며 반대 상태를 추가하지 않아요.
 
-내용 SHA-256: `2912ecc3bcd707ca3882c90474d69bce345f2eac20961eb60c77b7892ce77182`
+내용 SHA-256: `41138a98ec169a72e07c1d0210c8ab7eeed837504517b27b6c0c2f83aafc3544`
 
 ## nlu-step2-0415 · denied_polarity · val_internal
 
@@ -21050,7 +21050,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -21062,7 +21062,7 @@
 
 부정된 사실의 범위를 유지해요. 물·땀 부정은 yes/denied이며 반대 상태를 추가하지 않아요.
 
-내용 SHA-256: `b8f01c4adc37f22402cdd7524170041313c32e78df79feb0311c9eaad756c388`
+내용 SHA-256: `4ab404739b7bc061d81bb5a538abcac94a0c468d344203a31fe7f89ee9511409`
 
 ## nlu-step2-0416 · denied_polarity · val_internal
 
@@ -21125,7 +21125,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -21137,7 +21137,7 @@
 
 부정된 사실의 범위를 유지해요. 물·땀 부정은 yes/denied이며 반대 상태를 추가하지 않아요.
 
-내용 SHA-256: `35d8163d742416f444d42210fa65a17ea3a4da0b036812e13c8dddb8b126badd`
+내용 SHA-256: `d4bbb06edc007818786b64b6baf38d38e6391f95b37660c7607bc8031b8c3c2b`
 
 ## nlu-step2-0417 · denied_polarity · val_internal
 
@@ -21198,7 +21198,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -21210,7 +21210,7 @@
 
 부정된 사실의 범위를 유지해요. 물·땀 부정은 yes/denied이며 반대 상태를 추가하지 않아요.
 
-내용 SHA-256: `4a041e019b3cbd036cd461a566b9ec45a83b9bb4570a3e0a2ad36783c12975de`
+내용 SHA-256: `27daef6fe4b8da39b8660e2bc66354eaa82308fd7ece7a8ae1d89947dde53aa7`
 
 ## nlu-step2-0418 · denied_polarity · val_internal
 
@@ -21271,7 +21271,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -21283,7 +21283,7 @@
 
 부정된 사실의 범위를 유지해요. 물·땀 부정은 yes/denied이며 반대 상태를 추가하지 않아요.
 
-내용 SHA-256: `7fe779a45e2e1e5e00e33e2e4bfb039c6963984da8b600c4e0a091d811f92b74`
+내용 SHA-256: `f98ac3329c753b452da7a5c44d3cfe183d9e7c7c9187f29f34c8e1e557808f46`
 
 ## nlu-step2-0419 · denied_polarity · val_internal
 
@@ -21344,7 +21344,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -21356,7 +21356,7 @@
 
 부정된 사실의 범위를 유지해요. 물·땀 부정은 yes/denied이며 반대 상태를 추가하지 않아요.
 
-내용 SHA-256: `012cb000a4b526566fc97339e60766291faa391aa38c5528220af5d2a3348b27`
+내용 SHA-256: `9027db0e6f0a9a65bacacb5c99b65cd7abd54cb46de9228abc63d360510aead4`
 
 ## nlu-step2-0420 · denied_polarity · val_internal
 
@@ -21364,7 +21364,7 @@
 
 ### 원문 raw
 
-물이 닿지는 않았어요 / 아침과 저녁에 젤 세정제 씀 / 귀랑 목은 차단제 안 발랐어요
+물이 닿지는 않았어요 / 아침과 저녁에 젤 세정제 씀 / 차단제 바를 때 귀랑 목은 빼먹었어요
 
 직전 질문: None
 질문 대상: None
@@ -21374,7 +21374,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "물이 닿지는 않았어요 / 아침과 저녁에 젤 세정제 씀 / 귀랑 목은 차단제 안 발랐어요",
+  "source_text": "물이 닿지는 않았어요 / 아침과 저녁에 젤 세정제 씀 / 차단제 바를 때 귀랑 목은 빼먹었어요",
   "topics": [
     "outdoor_sun",
     "cleansing_method"
@@ -21405,7 +21405,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     }
   ],
   "symptom_candidates": [],
@@ -21417,7 +21417,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -21429,7 +21429,7 @@
 
 부정된 사실의 범위를 유지해요. 물·땀 부정은 yes/denied이며 반대 상태를 추가하지 않아요.
 
-내용 SHA-256: `00fc4eedd24e96b0a2297d2ca80115b75247cec4363cb98b690f39e70089b315`
+내용 SHA-256: `57c1e2d7df543eff481c7cf2fab7fd551f8a739fbc371eb7ebc6013f0a6b2f98`
 
 ## nlu-step2-0421 · other_subject · train
 
@@ -25660,7 +25660,7 @@
 
 ### 원문 raw
 
-친구 얘기예요. 땀이 흐를 때마다 눈이 시려요. 귀랑 목은 차단제 안 발랐어요
+친구 얘기예요. 땀이 흐를 때마다 눈이 시려요. 차단제 바를 때 귀랑 목은 빼먹었어요
 
 직전 질문: None
 질문 대상: None
@@ -25670,7 +25670,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "친구 얘기예요. 땀이 흐를 때마다 눈이 시려요. 귀랑 목은 차단제 안 발랐어요",
+  "source_text": "친구 얘기예요. 땀이 흐를 때마다 눈이 시려요. 차단제 바를 때 귀랑 목은 빼먹었어요",
   "topics": [
     "discomfort_report",
     "outdoor_sun"
@@ -25693,7 +25693,7 @@
       "polarity": "affirmed",
       "subject": "other",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     }
   ],
   "symptom_candidates": [
@@ -25708,7 +25708,7 @@
   "product_mentions": [
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "other_person",
       "matched_catalog_hint": null
     }
   ],
@@ -25720,7 +25720,7 @@
 
 주체를 절별로 보존해요. 자기/타인 혼합 발화도 있으며 타인의 실제 제품 사용은 other_person이에요. 구매 고려는 실제 사용으로 바꾸지 않아요. 표시 준수의 대상은 후속 질문으로 한정해요.
 
-내용 SHA-256: `3f7b28be99ba999d1ba6b35df854911adce6e6001869725659a60158130579a9`
+내용 SHA-256: `b1e2c1784dd7520b10c3fdd32d019e581aa888ae9960299e35f062fe781d674f`
 
 ## nlu-step2-0492 · other_subject · train
 
@@ -25728,7 +25728,7 @@
 
 ### 원문 raw
 
-친구 얘기예요. 땀 흐르면 매번 눈따가움, 귀랑 목은 차단제 안 발랐어요
+친구 얘기예요. 땀 흐르면 매번 눈따가움, 차단제 바를 때 귀랑 목은 빼먹었어요
 
 직전 질문: None
 질문 대상: None
@@ -25738,7 +25738,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "친구 얘기예요. 땀 흐르면 매번 눈따가움, 귀랑 목은 차단제 안 발랐어요",
+  "source_text": "친구 얘기예요. 땀 흐르면 매번 눈따가움, 차단제 바를 때 귀랑 목은 빼먹었어요",
   "topics": [
     "discomfort_report",
     "outdoor_sun"
@@ -25761,7 +25761,7 @@
       "polarity": "affirmed",
       "subject": "other",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     }
   ],
   "symptom_candidates": [
@@ -25776,7 +25776,7 @@
   "product_mentions": [
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "other_person",
       "matched_catalog_hint": null
     }
   ],
@@ -25788,7 +25788,7 @@
 
 주체를 절별로 보존해요. 자기/타인 혼합 발화도 있으며 타인의 실제 제품 사용은 other_person이에요. 구매 고려는 실제 사용으로 바꾸지 않아요. 표시 준수의 대상은 후속 질문으로 한정해요.
 
-내용 SHA-256: `62a045771f162e87b5eb3b926859cb9b2f14b25a3731a99a0293629475093e48`
+내용 SHA-256: `c9856f6eeb83ac2b7686ada43e13c97c00cd4775fcb9e4c470666ce309182de1`
 
 ## nlu-step2-0493 · other_subject · train
 
@@ -25797,7 +25797,7 @@
 ### 원문 raw
 
 친구 얘기예요. 땀이 흘러내릴 때마다 눈이 따가워요
-귀랑 목은 차단제 안 발랐어요
+차단제 바를 때 귀랑 목은 빼먹었어요
 
 직전 질문: None
 질문 대상: None
@@ -25807,7 +25807,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "친구 얘기예요. 땀이 흘러내릴 때마다 눈이 따가워요\n귀랑 목은 차단제 안 발랐어요",
+  "source_text": "친구 얘기예요. 땀이 흘러내릴 때마다 눈이 따가워요\n차단제 바를 때 귀랑 목은 빼먹었어요",
   "topics": [
     "discomfort_report",
     "outdoor_sun"
@@ -25830,7 +25830,7 @@
       "polarity": "affirmed",
       "subject": "other",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     }
   ],
   "symptom_candidates": [
@@ -25845,7 +25845,7 @@
   "product_mentions": [
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "other_person",
       "matched_catalog_hint": null
     }
   ],
@@ -25857,7 +25857,7 @@
 
 주체를 절별로 보존해요. 자기/타인 혼합 발화도 있으며 타인의 실제 제품 사용은 other_person이에요. 구매 고려는 실제 사용으로 바꾸지 않아요. 표시 준수의 대상은 후속 질문으로 한정해요.
 
-내용 SHA-256: `6ed03a1c2ad63a2c4db232b3d1d3bafe736aba47001afbf59bf179f5de4556fb`
+내용 SHA-256: `b3415e57c95736f36e8e7ce555e677e19cf29264408aae20fc37c33e0593118a`
 
 ## nlu-step2-0494 · other_subject · train
 
@@ -25913,7 +25913,7 @@
   "product_mentions": [
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "other_person",
       "matched_catalog_hint": null
     }
   ],
@@ -25925,7 +25925,7 @@
 
 주체를 절별로 보존해요. 자기/타인 혼합 발화도 있으며 타인의 실제 제품 사용은 other_person이에요. 구매 고려는 실제 사용으로 바꾸지 않아요. 표시 준수의 대상은 후속 질문으로 한정해요.
 
-내용 SHA-256: `432b4f00ccc2590f5c443d86e2c173653a0650fb1dcf8a9739be26980c6026dd`
+내용 SHA-256: `7c667c74ad8581bfc9deec2a989d2358ef559591cc8e49a35db7e3d7704f2bc2`
 
 ## nlu-step2-0495 · other_subject · train
 
@@ -25981,7 +25981,7 @@
   "product_mentions": [
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "other_person",
       "matched_catalog_hint": null
     }
   ],
@@ -25993,7 +25993,7 @@
 
 주체를 절별로 보존해요. 자기/타인 혼합 발화도 있으며 타인의 실제 제품 사용은 other_person이에요. 구매 고려는 실제 사용으로 바꾸지 않아요. 표시 준수의 대상은 후속 질문으로 한정해요.
 
-내용 SHA-256: `292d6bd81f238a916210f1016069b869feb8a473ba41db8c108339d9a9c37b2f`
+내용 SHA-256: `546c56f9e25dd0685ca933404c6e4db1e437b77175c37309c6a14bc153823ec9`
 
 ## nlu-step2-0496 · other_subject · train
 
@@ -26049,7 +26049,7 @@
   "product_mentions": [
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "other_person",
       "matched_catalog_hint": null
     }
   ],
@@ -26061,7 +26061,7 @@
 
 주체를 절별로 보존해요. 자기/타인 혼합 발화도 있으며 타인의 실제 제품 사용은 other_person이에요. 구매 고려는 실제 사용으로 바꾸지 않아요. 표시 준수의 대상은 후속 질문으로 한정해요.
 
-내용 SHA-256: `0e51ab58e3b32a1d4beabadc76b0c327cad6df401fdeae1d7a7e669b20a91371`
+내용 SHA-256: `8769182b960eec4e370684c3c886a2f77d006e69f4c4501aa10db55397558c98`
 
 ## nlu-step2-0497 · other_subject · train
 
@@ -26117,7 +26117,7 @@
   "product_mentions": [
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "other_person",
       "matched_catalog_hint": null
     }
   ],
@@ -26129,7 +26129,7 @@
 
 주체를 절별로 보존해요. 자기/타인 혼합 발화도 있으며 타인의 실제 제품 사용은 other_person이에요. 구매 고려는 실제 사용으로 바꾸지 않아요. 표시 준수의 대상은 후속 질문으로 한정해요.
 
-내용 SHA-256: `de0759b607b130f6f4615f81dc3d9426ecedfda1710a39b4e1731af8ca1256f0`
+내용 SHA-256: `4ab13a952367d2a7e6189bb2b0b5b80d731e1a94a5704e03f2c0553267357cdf`
 
 ## nlu-step2-0498 · other_subject · train
 
@@ -39426,7 +39426,7 @@
 
 ### 원문 raw
 
-매일 로션을 써요. 귀랑 목은 차단제 안 발랐어요
+매일 로션을 써요. 차단제 바를 때 귀랑 목은 빼먹었어요
 
 직전 질문: None
 질문 대상: None
@@ -39436,7 +39436,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "매일 로션을 써요. 귀랑 목은 차단제 안 발랐어요",
+  "source_text": "매일 로션을 써요. 차단제 바를 때 귀랑 목은 빼먹었어요",
   "topics": [
     "moisturizing",
     "outdoor_sun"
@@ -39459,7 +39459,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     }
   ],
   "symptom_candidates": [],
@@ -39471,7 +39471,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -39483,7 +39483,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `23f608b2e2a268b04758dc045656644caa2e8ab3fd81a8acf3eee43253279daf`
+내용 SHA-256: `e30f552e5914befa106db8ed34c3361f06f15434daa1d7be00595e83b53d639e`
 
 ## nlu-step2-0758 · product_mention · train
 
@@ -39491,7 +39491,7 @@
 
 ### 원문 raw
 
-로션은 매일 발라요, 귀랑 목은 차단제 안 발랐어요
+로션은 매일 발라요, 차단제 바를 때 귀랑 목은 빼먹었어요
 
 직전 질문: None
 질문 대상: None
@@ -39501,7 +39501,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "로션은 매일 발라요, 귀랑 목은 차단제 안 발랐어요",
+  "source_text": "로션은 매일 발라요, 차단제 바를 때 귀랑 목은 빼먹었어요",
   "topics": [
     "moisturizing",
     "outdoor_sun"
@@ -39524,7 +39524,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     }
   ],
   "symptom_candidates": [],
@@ -39536,7 +39536,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -39548,7 +39548,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `10f86e06050c6d972c1d714cf16b27f86882aa39686665731c71b35f6a57afd6`
+내용 SHA-256: `fa3e5668ae9fca34160dd8d9ef4d60ae6fa45a2dd875485867bb4d63c0d53bc5`
 
 ## nlu-step2-0759 · product_mention · train
 
@@ -39557,7 +39557,7 @@
 ### 원문 raw
 
 매일 로션 바름
-귀랑 목은 차단제 안 발랐어요
+차단제 바를 때 귀랑 목은 빼먹었어요
 
 직전 질문: None
 질문 대상: None
@@ -39567,7 +39567,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "매일 로션 바름\n귀랑 목은 차단제 안 발랐어요",
+  "source_text": "매일 로션 바름\n차단제 바를 때 귀랑 목은 빼먹었어요",
   "topics": [
     "moisturizing",
     "outdoor_sun"
@@ -39590,7 +39590,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "귀랑 목은 차단제 안 발랐어요"
+      "evidence_span": "차단제 바를 때 귀랑 목은 빼먹었어요"
     }
   ],
   "symptom_candidates": [],
@@ -39602,7 +39602,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -39614,7 +39614,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `f7c11fb55fd20d2424fdb5105aa9fd94715fc01a8f8d271cfce59584ff4fc33e`
+내용 SHA-256: `845fb14b58501e79646d36bc17d4f83c9c47db6a13fc703309c6a2e1db8db4f0`
 
 ## nlu-step2-0760 · product_mention · train
 
@@ -39667,7 +39667,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -39679,7 +39679,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `150fd64f8025e9981948f7cce1ba5d094d5614422d04ad4345f0242f26dc5455`
+내용 SHA-256: `d3a790b286f77f34ea5db4436c0c6a6a1642df257f5d5ff8118a326d49cc8f9a`
 
 ## nlu-step2-0761 · product_mention · train
 
@@ -39732,7 +39732,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -39744,7 +39744,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `cc5b7c5049ccf6f8d976b36d3015e9cb6cfa4fbcd7eecfcecc0327d8f958a95e`
+내용 SHA-256: `3ba473841975ec561b58804d3068807de78113f1221ec58c117d670b91b49671`
 
 ## nlu-step2-0762 · product_mention · train
 
@@ -39797,7 +39797,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -39809,7 +39809,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `4fd1f4016a01c87c37181ee387fe109e0cf3b0c0fd4dc8de13bb5b0de0095532`
+내용 SHA-256: `0b29d79f83a9c06f38675ee368ad38811b2b6cd3085087c75bbbb4bb7836d443`
 
 ## nlu-step2-0763 · product_mention · train
 
@@ -39862,7 +39862,7 @@
     },
     {
       "raw_text": "차단제",
-      "usage_state": "unknown",
+      "usage_state": "using",
       "matched_catalog_hint": null
     }
   ],
@@ -39874,7 +39874,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `9cc781dd7869f377c46e34fb5eb82f8822ccff685db0b25e8e46cbff89a70148`
+내용 SHA-256: `1dabde08250f2c4561781228a18cbae452ea9ad2f81205910960f37514cc271b`
 
 ## nlu-step2-0764 · product_mention · train
 
@@ -41531,7 +41531,7 @@
 
 ### 원문 raw
 
-저녁마다 로션 다음 선크림 발라요 / 두 세정제를 손에서 혼합해요
+저녁마다 로션 다음 선크림 발라요 / 두 세정제를 손바닥에서 혼합해요
 
 직전 질문: None
 질문 대상: None
@@ -41541,7 +41541,7 @@
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "저녁마다 로션 다음 선크림 발라요 / 두 세정제를 손에서 혼합해요",
+  "source_text": "저녁마다 로션 다음 선크림 발라요 / 두 세정제를 손바닥에서 혼합해요",
   "topics": [
     "routine_conflict",
     "moisturizing",
@@ -41571,7 +41571,7 @@
       "polarity": "affirmed",
       "subject": "self",
       "confidence": "high",
-      "evidence_span": "두 세정제를 손에서 혼합해요"
+      "evidence_span": "두 세정제를 손바닥에서 혼합해요"
     }
   ],
   "symptom_candidates": [],
@@ -41600,7 +41600,7 @@
 
 제품명 전체 span과 실제 사용 상태만 추출해요. 빈도 없는 사용은 current_routine을 만들지 않고, 명시적 빈도·시간대 사용은 함께 추출해요. 부분 힌트는 null이에요.
 
-내용 SHA-256: `9ac42e9858a2754df6fb22d4a6423bb3280d8abf7b4f1cdb4a89ba3d62b9a9c9`
+내용 SHA-256: `5afe7d196d54fdd0667873e42ac7dfbc7235b2bcd80e1ca06e9c5c920975ee6a`
 
 ## nlu-step2-0792 · product_mention · train
 

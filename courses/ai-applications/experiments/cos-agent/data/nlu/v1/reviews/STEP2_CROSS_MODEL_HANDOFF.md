@@ -1,12 +1,18 @@
 # Cross-Model 검수 요청 — PPO-46 NLU Step 2 980턴
 
+## 최신 요청 — 수정 후26행만 새 해시로 재검수
+
+초기 전수 검수는 `3b8e4ca`에 수신했고 기존 `step2_cross_model_critic.jsonl`은 이전 해시의 원본 이력으로 보존했어요. 이번에는 [step2_recheck_requests.jsonl](step2_recheck_requests.jsonl)의 **26행**을 검수해 주세요. [핵심23행](step2_recheck_core23.jsonl)과 [공통 atom 정렬로 바뀐 기존 PASS 3행](step2_recheck_additional3.jsonl)을 구분해 두었어요. 변경 행은 이전 판정과 관계없이 모두 새 해시로 검수해야 해요.
+
+반환 결과는 **`step2_cross_model_recheck.jsonl`** 같은 새 파일에 기록해 주세요. 기존980행 결과를 덮어쓰거나 변경 전 PASS를 변경 후 해시에 복사하지 마세요. [수정 전후 raw](step2_corrections_raw.jsonl)와 [수정 설명](STEP2_CORRECTIONS.md)을 함께 확인해 주세요. 아래 초기980행 인계 절차는 이력과 전체 계약 참조용이에요.
+
 ## 대상과 상태
 
 - 작업 브랜치: `data/nlu-v1-step2`.
 - 기준: `origin/data/nlu-v1-pilot-critic@d1e9cbe`의 확정 정책.
 - 대상: `data/nlu/v1/nlu_sft_v1.jsonl`, **980턴**, train882 / val98.
 - 요청: `step2_critic_requests.jsonl` 또는 `step2_batches/batch_01.jsonl`~`batch_14.jsonl` (각70행).
-- 상태: 독립 교차 검수 미실행, 사람 미승인. `confirmed_by_user=false`, `human_review=unreviewed`.
+- 초기 상태 이력: 작성 당시 독립 교차 검수 미실행이었어요. 현재 초기980행 검수는 수신했고 변경26행 재검수 대기·사람 미승인이에요. `confirmed_by_user=false`, `human_review=unreviewed`.
 - 표본만 보지 말고980행 전부 검수해 주세요. 배치마다 같은 가족의7개 변형이 함께 있어 어미·축약 변경에 라벨이 흔들렸는지도 볼 수 있어요.
 
 ## 검수 프롬프트
@@ -21,8 +27,8 @@
 
 ## 특별히 확인할 해석 경계
 
-1. `선크림 안바름`은 단발 비도포와 과거 사용 중단을 구별해 제품 usage_state=`unknown`으로 작성했어요. 명시적인 사용 중단만 `stopped`예요. 이 해석을 기존 정책에 비추어 검토해 주세요.
-2. 타인이 명시적으로 사용을 중단/고려한 경우 `stopped`/`considering`을 보존했고, 실제 사용인 경우 `other_person`이에요. 제품 후보에는 별도 subject 필드가 없다는 계약상의 한계를 고려해 주세요.
+1. **확정:** `선크림 안바름`은 단발 비도포와 과거 사용 중단을 구별해 제품 usage_state=`unknown`을 유지해요. 명시적인 사용 중단만 `stopped`예요. 해당7행은 입력·출력을 변경하지 않았어요.
+2. **확정:** 타인이 명시적으로 사용을 중단/고려한 경우 `stopped`/`considering`, 실제 사용인 경우 `other_person`이에요. 별도 product subject 필드가 없는 현 계약에서 비사용 상태를 보존해요. 해당14행은 입력·출력을 변경하지 않았어요.
 3. 공통 슬롯 어휘/의미 단위는 train/val에서 공유될 수 있지만 동일 조합의7개 변형은 한 분할에만 있어요. 가족140개·검증 가족14개인 통제된 조합 합성으로,980개의 독립 사용자 사례라고 평가하지 말아 주세요.
 
 ## 반환 JSONL 형식
@@ -33,4 +39,4 @@
 {"row_id":"nlu-step2-0001","content_sha256":"<요청에 기록된 실제 SHA-256>","reviewer_model":"<실제 실행 모델/버전>","verdict":"<PASS|FAIL|REVIEW>","source_quotes":[],"candidate_quotes":[],"reason":"<원문과 판정의 연결>","suggested_fix":null,"human_approved":false}
 ```
 
-권장 결과 위치: `reviews/step2_cross_model_critic.jsonl`. 검수 후 후보 내용이 바뀌면 생성기의 `content_hash(row)`와 요청 해시를 재계산하고 변경 행을 다시 검수해 주세요. 이전 해시의 PASS를 변경 후 행에 재사용하면 안 돼요. 실제 사용자 승인과 학습 실행 여부는 검수 결과와 별도로 기록해 주세요.
+초기 결과는 `reviews/step2_cross_model_critic.jsonl`에 보존돼 있어요. **이번 반환 위치는 `reviews/step2_cross_model_recheck.jsonl`을 권장해요.** 검수 후 후보 내용이 바뀌면 생성기의 `content_hash(row)`와 요청 해시를 재계산하고 변경 행을 다시 검수해 주세요. 이전 해시의 PASS를 변경 후 행에 재사용하면 안 돼요. 실제 사용자 승인과 학습 실행 여부는 검수 결과와 별도로 기록해 주세요.

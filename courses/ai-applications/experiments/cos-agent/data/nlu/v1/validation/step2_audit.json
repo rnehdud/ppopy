@@ -148,11 +148,11 @@
     "persistent": 77
   },
   "product_usage": {
-    "using": 175,
+    "using": 189,
     "stopped": 28,
     "considering": 42,
-    "unknown": 49,
-    "other_person": 63
+    "unknown": 28,
+    "other_person": 70
   },
   "topics": {
     "cleansing_method": 203,
@@ -168,20 +168,27 @@
   "ending_typo_rows": 81,
   "mixed_self_other_rows": 14,
   "policy_boundaries": {
+    "mixing_palm_span_aligned": 14,
     "pure_count": 21,
     "frequency_routine_paired": 112,
+    "coverage_gap_actual_usage": 28,
     "label_only": 14,
     "explicit_count_over_label": 7,
     "yes_denied": 77,
     "followup_non_target_answer": 42,
     "eye_context_paired": 70,
     "followup_refusal_or_drift_empty": 21,
+    "single_nonapplication_unknown": 7,
     "partial_hint_blocked": 35,
     "no_frequency_no_routine": 63,
     "exact_hint": 21
   },
-  "dataset_sha256": "1963d90139f10e7849200ebaef7c7b8f4e9f242c9af700daf2e3c56503b8bfe2",
+  "dataset_sha256": "af5fffc0e2c1bbaf49a4c6633581f6992e11c42bbd6704a3f221adb861d160af",
   "request_hashes_verified": 980,
   "cross_model_critic_performed": false,
-  "human_approved": false
+  "human_approved": false,
+  "cross_model_critic_scope": "현재 데이터 버전의 전수 재검수 완료 여부",
+  "prior_version_cross_model_critic_received": true,
+  "current_changed_rows_pending_recheck": 26,
+  "correction_manifest": "step2_correction_manifest.json"
 }

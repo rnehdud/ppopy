@@ -4,13 +4,15 @@
 
 `origin/data/nlu-v1-pilot-critic`의 `d1e9cbecad9741ed014013876c3fc4a8c8472a67`에서 새 `data/nlu-v1-step2` 브랜치를 만들었어요. 확정 라벨링 정책과 요청/출력 계약·화이트리스트·실제 Wire 빌더를 적용했어요.
 
-**생성과 구조·분포 검증까지 완료한 학습 후보예요. 외부 Cross-Model Critic 및 사람 승인은 아직 없어요.** Base Zero-Shot 측정·학습·모델 배포는 실행하지 않았어요. 모든 행의 `confirmed_by_user=false`, `critic_status=unreviewed`, `human_review=unreviewed`를 유지했어요.
+**초기 980턴은 외부 Gemini 전수 검수를 받았고(936 PASS / 9 FAIL / 35 REVIEW), 지적 사항 수정 후 새 해시 26행의 재검수를 기다리는 학습 후보예요.** 요청한 23행과 공통 atom 원문 정렬로 함께 바뀐 기존 PASS 3행을 모두 재검수 대상으로 분리했어요. 변경하지 않은 REVIEW 21행은 전달받은 확정 정책에 따라 현행 유지/PASS 수용으로 기록했으며, 원본 Gemini 판정 파일을 수정하지 않았어요. 사람 승인·Base Zero-Shot 측정·학습·모델 배포는 실행하지 않았어요. 모든 행의 `confirmed_by_user=false`, `critic_status=unreviewed`, `human_review=unreviewed`는 유지했어요.
 
 ## 파일과 재현
 
 - [신규 데이터셋](nlu_sft_v1.jsonl): system/user/assistant 메시지 980행. Wire는 `build_nlu_messages(NLURequest)`로 만들었어요.
 - [전체 교차 검수 요청](reviews/step2_critic_requests.jsonl): 원본 입력·예상 출력·작성 근거·내용 해시 980개예요.
 - [검수 인계](reviews/STEP2_CROSS_MODEL_HANDOFF.md): 외부 검수 방법·집중 확인 사항이에요.
+- [수정 내역과 재검수 범위](reviews/STEP2_CORRECTIONS.md), [전체 26행 새 해시 요청](reviews/step2_recheck_requests.jsonl), [핵심23행](reviews/step2_recheck_core23.jsonl), [추가3행](reviews/step2_recheck_additional3.jsonl).
+- [수정 전후 raw](reviews/step2_corrections_raw.jsonl), [확정 경계21행 현행 유지 기록](reviews/step2_policy_acceptance.jsonl), [해시·범위 대조](validation/step2_correction_manifest.json).
 - [분할 배치](reviews/step2_batches): 70개씩 14개 배치예요. 같은 의미 가족은 배치 경계에서도 쪼개지지 않아요.
 - [분포/정책 경계 감사](validation/step2_audit.json), [공식 구조 검증](validation/step2_structure.json), [생성 원천·행별 해시](validation/step2_generation_manifest.json).
 - [원문·예상 후보 대조표](step2_review.md): 각 행의 원문과 후보, 작성 근거를 펼쳐 볼 수 있어요.
@@ -21,6 +23,7 @@ cos-agent에서 실행해요. `uv`가 PATH에 없다면 아래처럼 `python -m 
 ```powershell
 python -m uv run --locked python scripts/validate_nlu_dataset.py --input data/nlu/v1/nlu_sft_v1.jsonl --min-rows 800 --enforce-buckets --report data/nlu/v1/validation/step2_structure.json
 python -m uv run --locked python scripts/audit_nlu_v1_step2.py
+python -m uv run --locked python scripts/prepare_nlu_v1_step2_recheck.py
 python -m uv run --locked pytest -q tests/test_nlu_step0.py tests/test_v3_contracts.py
 ```
 
@@ -68,8 +71,9 @@ python tools/verify_source_manifest.py
 - 문헌/성분 효능을 생성하는 자료가 아니라 발화의 관찰 후보를 추출하는 자료예요. 진단·추천·추가 질문을 예상 출력에 쓰지 않아요.
 - 젤 제품명만으로 세정 용도를 만들지 않았어요. 이름만 들은 제품의 사용 여부도 추정하지 않아요.
 - 차단제 덧바름에 명시된 주기에서도 루틴을 병행하도록 보강했어요. 같은 제품명에 실제 사용이 확인되면 단순 언급의 `unknown`을 별도 중복 후보로 남기지 않아요.
-- `선크림 안바름`은 단일 비도포 보고로는 과거 사용 중단 여부를 알 수 없어 제품명은 남기고 사용 상태를 `unknown`으로 뒀어요. `stopped`는 명시적인 중단 표현에만 사용해요. **이는 새로운 확정 팀 정책이 아니라 외부 Critic에게 명시적으로 확인 요청하는 해석 경계예요.**
-- 타인의 제품 사용은 `other_person`으로 남기되, 타인의 명시적 사용 중단/구매 고려는 각각 `stopped`/`considering`으로 보존했어요. 출력 계약에는 제품 후보의 별도 subject 필드가 없어 원문 주체와 함께 읽어야 해요. 이 경계도 검수 요청에 포함했어요.
+- **확정 경계1:** `선크림 안바름`은 단일 비도포 보고로는 과거 사용 중단 여부를 알 수 없어 제품명은 남기고 사용 상태를 `unknown`으로 유지해요. `stopped`는 명시적인 중단 표현에만 사용해요. `0407..0413`은 데이터·내용 해시 변경 없이 PASS 수용이 확정됐어요. 이는 행 데이터의 사람 승인과는 달라요.
+- **확정 경계2:** 타인의 실제 제품 사용은 `other_person`, 명시적 사용 중단/구매 고려는 각각 `stopped`/`considering`을 보존해요. 별도 product subject 필드가 없는 현 계약에서 비사용 상태를 현재 사용으로 바꾸지 않아요. `0533..0546`도 데이터·내용 해시 변경 없이 PASS 수용이 확정됐어요.
+- `coverage_gaps`는 도포 중 일부 부위 누락으로 통일했고, 본인은 `using`, 타인은 `other_person`이에요. 단발 비도포 경계1과 구분해요. `method.mixing`의 모든 변형 원문에는 값과 같은 `손바닥` 부위를 명시했어요.
 - 가족별 표현 변형은 독립 사례 수를 늘리지 않아요. 같은 작성자와 통제된 표현의 편향이 있으므로 구조 검사 합격을 의미적 정답 보장이나 학습 성능으로 취급하지 않아요.
 
 파일럿 SHA-256: `c5f96332f52c6ad5e5a5e36e0a1249c55cc04f3818f352fd42388cb4ef443cbe` 그대로 보존했어요. 원본 파일럿 Critic PASS는 이번 980턴의 PASS가 아니에요.

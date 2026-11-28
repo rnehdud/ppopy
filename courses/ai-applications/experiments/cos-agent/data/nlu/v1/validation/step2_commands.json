@@ -1,39 +1,90 @@
 {
   "기록일": "2026-11-28",
-  "범위": "최종 980턴 생성 후 실제 실행한 필수 명령 결과. 의미적 Cross-Model 검수 또는 사람 승인이 아니에요.",
-  "base_commit": "d1e9cbecad9741ed014013876c3fc4a8c8472a67",
-  "dataset_sha256": "1963d90139f10e7849200ebaef7c7b8f4e9f242c9af700daf2e3c56503b8bfe2",
+  "범위": "Gemini 초기 전수 검수 지적 수정 후 실제 실행. 변경26행의 외부 재검수는 미실행.",
+  "base_commit": "3b8e4ca76ba30d8586c0829b5fba0f60e94f0d2a",
+  "dataset_sha256": "af5fffc0e2c1bbaf49a4c6633581f6992e11c42bbd6704a3f221adb861d160af",
   "commands": [
     {
       "cwd": "courses/ai-applications/experiments/cos-agent",
-      "command": "python -m uv run --locked python scripts/validate_nlu_dataset.py --input data/nlu/v1/nlu_sft_v1.jsonl --min-rows 800 --enforce-buckets --report data/nlu/v1/validation/step2_structure.json",
+      "command": [
+        "python",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/validate_nlu_dataset.py",
+        "--input",
+        "data/nlu/v1/nlu_sft_v1.jsonl",
+        "--min-rows",
+        "800",
+        "--enforce-buckets",
+        "--report",
+        "data/nlu/v1/validation/step2_structure.json"
+      ],
       "exit_code": 0,
-      "passed": true,
-      "error_count": 0,
-      "total_rows": 980
+      "stdout": "{\n  \"passed\": true,\n  \"input\": \"data\\\\nlu\\\\v1\\\\nlu_sft_v1.jsonl\",\n  \"total_rows\": 980,\n  \"split_counts\": {\n    \"train\": 882,\n    \"val_internal\": 98\n  },\n  \"bucket_counts\": {\n    \"denied_polarity\": 252,\n    \"high_risk_symptom\": 315,\n    \"no_signal_noise\": 161,\n    \"other_subject\": 161,\n    \"product_mention\": 280,\n    \"turn1_utterance\": 833,\n    \"turn2_followup\": 147\n  },\n  \"error_count\": 0,\n  \"errors\": [],\n  \"warnings\": []\n}\n",
+      "stderr": ""
     },
     {
       "cwd": "courses/ai-applications/experiments/cos-agent",
-      "command": "python -m uv run --locked pytest -q tests/test_nlu_step0.py tests/test_v3_contracts.py",
+      "command": [
+        "python",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/audit_nlu_v1_step2.py"
+      ],
       "exit_code": 0,
-      "stdout_summary": "11 passed in 0.31s"
-    },
-    {
-      "cwd": "저장소 루트",
-      "command": "python tools/verify_source_manifest.py",
-      "exit_code": 0,
-      "stdout": {"checked": 27, "failed": []}
+      "stdout": "{\n  \"passed\": true,\n  \"scope\": \"구조·분포·원문 span·작성 정책 경계 검사이며 독립 의미 검수/모델 성능 검사가 아니에요.\",\n  \"rows\": 980,\n  \"splits\": {\n    \"train\": 882,\n    \"val_internal\": 98\n  },\n  \"primary_buckets\": {\n    \"turn1_utterance\": 140,\n    \"turn2_followup\": 140,\n    \"denied_polarity\": 140,\n    \"other_subject\": 140,\n    \"high_risk_symptom\": 140,\n    \"product_mention\": 140,\n    \"no_signal_noise\": 140\n  },\n  \"primary_buckets_by_split\": {\n    \"train\": {\n      \"turn1_utterance\": 126,\n      \"turn2_followup\": 126,\n      \"denied_polarity\": 126,\n      \"other_subject\": 126,\n      \"high_risk_symptom\": 126,\n      \"product_mention\": 126,\n      \"no_signal_noise\": 126\n    },\n    \"val_internal\": {\n      \"turn1_utterance\": 14,\n      \"turn2_followup\": 14,\n      \"denied_polarity\": 14,\n      \"other_subject\": 14,\n      \"high_risk_symptom\": 14,\n      \"product_mention\": 14,\n      \"no_signal_noise\": 14\n    }\n  },\n  \"semantic_families\": 140,\n  \"variants_per_family\": 7,\n  \"family_leakage\": 0,\n  \"normalized_utterance_leakage\": 0,\n  \"all_whitespace_removed_leakage\": 0,\n  \"all_whitespace_removed_duplicates\": 0,\n  \"pilot_source_overlap\": 0,\n  \"pilot_sha256\": \"c5f96332f52c6ad5e5a5e36e0a1249c55cc04f3818f352fd42388cb4ef443cbe\",\n  \"symptoms\": {\n    \"dryness\": 49,\n    \"itching\": 49,\n    \"pain\": 56,\n    \"eye_stinging\": 91,\n    \"redness\": 49,\n    \"tightness\": 49,\n    \"stinging\": 28,\n    \"burning\": 35,\n    \"swelling\": 42,\n    \"breakout\": 28,\n    \"peeling\": 35\n  },\n  \"persistence\": {\n    \"unknown\": 231,\n    \"recent\": 77,\n    \"repeated\": 126,\n    \"persistent\": 77\n  },\n  \"product_usage\": {\n    \"using\": 189,\n    \"stopped\": 28,\n    \"considering\": 42,\n    \"unknown\": 28,\n    \"other_person\": 70\n  },\n  \"topics\": {\n    \"cleansing_method\": 203,\n    \"repeat_cleansing\": 70,\n    \"moisturizing\": 168,\n    \"discomfort_report\": 315,\n    \"outdoor_sun\": 175,\n    \"storage_label\": 126,\n    \"other\": 77,\n    \"routine_conflict\": 14\n  },\n  \"complex_candidate_rows\": 784,\n  \"ending_typo_rows\": 81,\n  \"mixed_self_other_rows\": 14,\n  \"policy_boundaries\": {\n    \"mixing_palm_span_aligned\": 14,\n    \"pure_count\": 21,\n    \"frequency_routine_paired\": 112,\n    \"coverage_gap_actual_usage\": 28,\n    \"label_only\": 14,\n    \"explicit_count_over_label\": 7,\n    \"yes_denied\": 77,\n    \"followup_non_target_answer\": 42,\n    \"eye_context_paired\": 70,\n    \"followup_refusal_or_drift_empty\": 21,\n    \"single_nonapplication_unknown\": 7,\n    \"partial_hint_blocked\": 35,\n    \"no_frequency_no_routine\": 63,\n    \"exact_hint\": 21\n  },\n  \"dataset_sha256\": \"af5fffc0e2c1bbaf49a4c6633581f6992e11c42bbd6704a3f221adb861d160af\",\n  \"request_hashes_verified\": 980,\n  \"cross_model_critic_performed\": false,\n  \"human_approved\": false\n}\n",
+      "stderr": ""
     },
     {
       "cwd": "courses/ai-applications/experiments/cos-agent",
-      "command": "python -m uv run --locked python scripts/audit_nlu_v1_step2.py",
+      "command": [
+        "python",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/prepare_nlu_v1_step2_recheck.py"
+      ],
       "exit_code": 0,
-      "passed": true,
-      "report": "data/nlu/v1/validation/step2_audit.json"
+      "stdout": "{\n  \"base_commit\": \"3b8e4ca76ba30d8586c0829b5fba0f60e94f0d2a\",\n  \"previous_critic_counts\": {\n    \"PASS\": 936,\n    \"REVIEW\": 35,\n    \"FAIL\": 9\n  },\n  \"previous_critic_file_sha256\": \"c0bf4415bdd152ae8c61338d1412b3f0b0e34007a0d1de60c39df147faf370af\",\n  \"previous_critic_file_preserved\": true,\n  \"dataset_sha256\": \"af5fffc0e2c1bbaf49a4c6633581f6992e11c42bbd6704a3f221adb861d160af\",\n  \"total_rows\": 980,\n  \"changed_rows\": 26,\n  \"requested_core_rows\": 23,\n  \"additional_shared_atom_rows\": 3,\n  \"unchanged_rows\": 954,\n  \"unchanged_prior_pass_hash_matches\": 933,\n  \"unchanged_review_rows_accepted_by_user_policy\": 21,\n  \"changed_rows_pending_recheck\": 26,\n  \"changed_rows_inheriting_previous_pass\": 0,\n  \"core_changed_ids\": [\n    \"nlu-step2-0042\",\n    \"nlu-step2-0414\",\n    \"nlu-step2-0415\",\n    \"nlu-step2-0416\",\n    \"nlu-step2-0417\",\n    \"nlu-step2-0418\",\n    \"nlu-step2-0419\",\n    \"nlu-step2-0420\",\n    \"nlu-step2-0491\",\n    \"nlu-step2-0492\",\n    \"nlu-step2-0493\",\n    \"nlu-step2-0494\",\n    \"nlu-step2-0495\",\n    \"nlu-step2-0496\",\n    \"nlu-step2-0497\",\n    \"nlu-step2-0757\",\n    \"nlu-step2-0758\",\n    \"nlu-step2-0759\",\n    \"nlu-step2-0760\",\n    \"nlu-step2-0761\",\n    \"nlu-step2-0762\",\n    \"nlu-step2-0763\",\n    \"nlu-step2-0791\"\n  ],\n  \"additional_changed_ids\": [\n    \"nlu-step2-0099\",\n    \"nlu-step2-0102\",\n    \"nlu-step2-0105\"\n  ],\n  \"policy_accepted_unchanged_ids\": [\n    \"nlu-step2-0407\",\n    \"nlu-step2-0408\",\n    \"nlu-step2-0409\",\n    \"nlu-step2-0410\",\n    \"nlu-step2-0411\",\n    \"nlu-step2-0412\",\n    \"nlu-step2-0413\",\n    \"nlu-step2-0533\",\n    \"nlu-step2-0534\",\n    \"nlu-step2-0535\",\n    \"nlu-step2-0536\",\n    \"nlu-step2-0537\",\n    \"nlu-step2-0538\",\n    \"nlu-step2-0539\",\n    \"nlu-step2-0540\",\n    \"nlu-step2-0541\",\n    \"nlu-step2-0542\",\n    \"nlu-step2-0543\",\n    \"nlu-step2-0544\",\n    \"nlu-step2-0545\",\n    \"nlu-step2-0546\"\n  ],\n  \"current_version_cross_model_recheck_complete\": false,\n  \"human_approved\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "courses/ai-applications/experiments/cos-agent",
+      "command": [
+        "python",
+        "-m",
+        "uv",
+        "run",
+        "--locked",
+        "pytest",
+        "-q",
+        "tests/test_nlu_step0.py",
+        "tests/test_v3_contracts.py"
+      ],
+      "exit_code": 0,
+      "stdout": "...........                                                              [100%]\n11 passed in 0.32s\n",
+      "stderr": ""
+    },
+    {
+      "cwd": ".",
+      "command": [
+        "python",
+        "tools/verify_source_manifest.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"checked\": 27, \"failed\": []}\n",
+      "stderr": ""
     }
   ],
-  "cross_model_critic_performed": false,
+  "current_version_cross_model_recheck_complete": false,
   "human_approved": false,
-  "base_zero_shot_executed": false,
   "training_executed": false
 }

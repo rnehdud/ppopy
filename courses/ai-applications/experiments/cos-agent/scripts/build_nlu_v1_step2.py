@@ -47,7 +47,7 @@ sa('rub','method.drying','rubbing_strongly','물기는 수건으로 세게 비�
 sa('wet','method.skin_wetness','젖은 상태','씻기 전에 피부를 물로 적셔요|씻기 전 피부가 젖어 있어요|피부를 적신 상태에서 씻어요','cleansing_method')
 sa('dry_skin','method.skin_wetness','마른 상태','피부가 마른 상태로 씻기 시작해요|씻기 시작할 때 피부는 말라 있어요|물 적시기 전에 씻기 시작해요','cleansing_method')
 sa('rinse','method.rinse','물로 헹굼','마무리는 물로 헹궈요|마지막에 물로 씻어내요|끝에는 물 헹굼 해요','cleansing_method')
-sa('mix','method.mixing','두 세정제를 손바닥에서 섞음','세정제 둘을 손바닥에서 섞어요|손바닥에 세정제 두 개 섞어서 써요|두 세정제를 손에서 혼합해요','cleansing_method')
+sa('mix','method.mixing','두 세정제를 손바닥에서 섞음','세정제 둘을 손바닥에서 섞어요|손바닥에 세정제 두 개 섞어서 써요|두 세정제를 손바닥에서 혼합해요','cleansing_method')
 sa('makeup','cleansing.target_load','makeup_requires_removal','지워야 할 색조 화장이 있어요|제거할 메이크업이 남아 있어요|세정 대상은 색조 화장이에요','repeat_cleansing')
 sa('soil','cleansing.target_load','heavy_soiling','피부에 흙이 많이 묻었어요|피부에 묻은 흙이 많아요|흙이 잔뜩 피부에 묻음','repeat_cleansing')
 sa('no_load','cleansing.target_load','no_additional_removal_need','추가로 지울 건 없어요|더 제거할 것은 없어요|따로 더 지울 게 없음','repeat_cleansing')
@@ -75,7 +75,7 @@ sa('water','sun.water_contact','yes','물에 들어갔어요|수영했어요|물
 sa('no_water','sun.water_contact','yes','물이 닿지는 않았어요|물 접촉은 없었어요|물에 닿은 적 없음','outdoor_sun','denied')
 sa('sweat','sun.sweat','yes','땀이 났어요|땀 흘렸어요|땀이 많이 남','outdoor_sun')
 sa('no_sweat','sun.sweat','yes','땀은 안 났어요|땀 안 흘렸어요|땀난 건 아니에요','outdoor_sun','denied')
-sa('gaps','sun.coverage_gaps',['귀','목'],'귀랑 목은 차단제 안 발랐어요|귀와 목을 차단제 바를 때 빼먹었어요|귀 목은 차단제 누락했어요','outdoor_sun')
+sa('gaps','sun.coverage_gaps',['귀','목'],'차단제 바를 때 귀랑 목은 빼먹었어요|귀와 목을 차단제 바를 때 빼먹었어요|귀 목은 차단제 누락했어요','outdoor_sun')
 sa('exposed','sun.exposed_sites',['손등','팔'],'노출된 곳은 손등과 팔이에요|손등이랑 팔이 드러나 있어요|손등 팔이 노출됐어요','outdoor_sun')
 sa('hat','sun.shade_clothing','모자 착용','모자를 썼어요|모자 쓰고 있었어요|모자 착용했어요','outdoor_sun')
 sa('shade','sun.shade_clothing','그늘에 머묾','그늘에 머물렀어요|그늘에서 있었어요|그늘에 있었음','outdoor_sun')
@@ -173,7 +173,8 @@ A['matched']['slots'].append(('cleansing.target_load','makeup_requires_removal',
 A['mix']['products']=[('세정제','using',None)]
 A['sun_reapply']['products']=[('차단제','using',None)]
 A['sun_reapply']['slots'].append(('method.current_routine','차단제 2시간마다 덧바름','affirmed'))
-A['gaps']['products']=[('차단제','unknown',None)]
+# 도포 중 일부 부위 누락으로 통일해 실제 사용을 보존해요. 타인은 render에서 other_person이에요.
+A['gaps']['products']=[('차단제','using',None)]
 # 비도포는 단발 행위일 수 있어 stopped로 바꾸지 않아요. 사용 상태는 unknown이에요.
 A['no_sun']['products']=[('선크림','unknown',None)]
 A['no_sun']['forms'][1]='선크림은 안 바른 상태예요'
