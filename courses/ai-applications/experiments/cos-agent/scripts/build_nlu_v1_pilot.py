@@ -216,10 +216,15 @@ case(
             "method.sequence",
             "보습제 다음 차단제",
             "보습제를 먼저 바르고 그다음 차단제를 발라요",
-        )
+        ),
+        slot(
+            "method.current_routine",
+            "저녁 보습제 후 차단제 사용",
+            "저녁에는 보습제를 먼저 바르고 그다음 차단제를 발라요",
+        ),
     ],
     products=[product("보습제", "using"), product("차단제", "using")],
-    why="질문의 정답을 설명하지 않고 실제로 보고한 순서만 후보로 남겨요.",
+    why="질문의 정답을 설명하지 않고 실제 보고한 순서(method.sequence)와 시간대('저녁에는')가 명시된 사용 루틴(method.current_routine)을 함께 후보로 남겨요.",
 )
 
 # 2. 자유 타이핑 후속 발화: 근거 구절은 반드시 현재 source_text 안에 있어요.
@@ -239,12 +244,12 @@ case(
 case(
     "turn2_followup",
     "removal_steps",
-    "제품 표시대로 한 번만 해요.",
+    "한 번만 해요.",
     ["repeat_cleansing"],
     previous="한 번 씻을 때 세정 단계를 몇 번 거치나요?",
     target="cleansing.steps",
     slots=[slot("cleansing.steps", 1, "한 번만 해요")],
-    why="질문에 대한 실제 횟수 1을 정수로 추출해요. 제품 자체의 제거 성능은 만들지 않아요.",
+    why="질문에 대한 순수 횟수 응답 1을 정수로 추출해요. 표시 준수 심볼(according_to_product_removal_instructions)과 모호하게 겹치지 않도록 분리하고 제품 자체의 제거 성능은 만들지 않아요.",
 )
 case(
     "turn2_followup",
@@ -310,10 +315,11 @@ case(
     ["discomfort_report"],
     previous="눈이 시린 증상은 한 번 있었나요, 반복되나요?",
     target="skin.eye_symptom_context",
+    slots=[slot("skin.eye_symptom_context", "씻을 때마다", "씻을 때마다")],
     symptoms=[
         symptom("eye_stinging", "씻을 때마다 눈이 시려요", persistence="repeated")
     ],
-    why="반복되는 눈 시림만 추출해요. 눈에 제품이 직접 들어갔다거나 눈 질환이라고 단정하지 않아요.",
+    why="반복되는 눈 시림(eye_stinging)과 발화에 명시된 발생 상황('씻을 때마다', skin.eye_symptom_context)을 함께 추출해요. 눈에 제품이 직접 들어갔다거나 눈 질환이라고 단정하지 않아요.",
 )
 
 # 3. 명시적 부정: enum 값 자체를 임의의 반대값으로 치환하지 않아요.
@@ -496,12 +502,15 @@ case(
     "eye_stinging_context",
     "언니는 선크림을 쓰고 눈이 시리대요. 저는 오늘 실내에서만 지냈어요.",
     ["discomfort_report", "outdoor_sun"],
-    slots=[slot("sun.outdoor_time", "none", "저는 오늘 실내에서만 지냈어요")],
+    slots=[
+        slot("sun.outdoor_time", "none", "저는 오늘 실내에서만 지냈어요"),
+        slot("skin.eye_symptom_context", "선크림을 쓰고", "선크림을 쓰고", subject="other"),
+    ],
     symptoms=[
         symptom("eye_stinging", "언니는 선크림을 쓰고 눈이 시리대요", subject="other")
     ],
     products=[product("선크림", "other_person")],
-    why="타인의 눈 시림과 본인의 실내 체류를 서로 다른 주어로 유지해요.",
+    why="타인의 눈 시림 및 명시된 발생 상황('선크림을 쓰고', skin.eye_symptom_context/other)과 본인의 실내 체류를 서로 다른 주어로 일관되게 유지해요.",
 )
 
 # 5. 증상 후보: 11종 어휘와 지속성은 원문 수준에서만 정해요.
@@ -600,9 +609,16 @@ case(
     "known_lotion_using",
     "라임 로션 A를 요즘 매일 쓰고 있어요.",
     ["moisturizing"],
+    slots=[
+        slot(
+            "method.current_routine",
+            "라임 로션 A 매일 사용",
+            "라임 로션 A를 요즘 매일 쓰고 있어요",
+        )
+    ],
     products=[product("라임 로션 A", "using", "syn-catalog:lime-lotion-a@v1")],
     hints=[hint("라임 로션 A", "syn-catalog:lime-lotion-a@v1")],
-    why="정확히 같은 raw span의 가상 카탈로그 힌트만 연결해요. 이름으로 농도·효능을 추출하지 않아요.",
+    why="정확히 같은 raw span의 가상 카탈로그 힌트만 연결하고, 빈도('매일')가 명시된 실제 사용이므로 method.current_routine도 0026과 동일하게 병행 추출해요. 이름으로 농도·효능을 추출하지 않아요.",
 )
 case(
     "product_mention",

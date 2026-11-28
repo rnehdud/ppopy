@@ -390,6 +390,14 @@ B-I01의 원인 조건인 내수성만을 이유로 한 반복을 표준 문자�
       "subject": "self",
       "confidence": "high",
       "evidence_span": "보습제를 먼저 바르고 그다음 차단제를 발라요"
+    },
+    {
+      "variable_id": "method.current_routine",
+      "value": "저녁 보습제 후 차단제 사용",
+      "polarity": "affirmed",
+      "subject": "self",
+      "confidence": "high",
+      "evidence_span": "저녁에는 보습제를 먼저 바르고 그다음 차단제를 발라요"
     }
   ],
   "symptom_candidates": [],
@@ -411,9 +419,9 @@ B-I01의 원인 조건인 내수성만을 이유로 한 반복을 표준 문자�
 
 ### 원문과 판단의 연결
 
-질문의 정답을 설명하지 않고 실제로 보고한 순서만 후보로 남겨요.
+질문의 정답을 설명하지 않고 실제 보고한 순서(method.sequence)와 시간대('저녁에는')가 명시된 사용 루틴(method.current_routine)을 함께 후보로 남겨요.
 
-내용 SHA-256: `fbcc796673dad0afa13ae6b2989529957d00921b10e8c8ba08a6ca03b8a61581`
+내용 SHA-256: `20b1cc60f3d4296c82b1dbc0ecb1011e604e58c8e76a8b321214b57ef9ef9607`
 
 ## nlu-pilot-0008 · turn2_followup · train
 
@@ -471,7 +479,7 @@ B-I01의 원인 조건인 내수성만을 이유로 한 반복을 표준 문자�
 
 ### 실제 자유 발화
 
-제품 표시대로 한 번만 해요.
+한 번만 해요.
 
 직전 질문: 한 번 씻을 때 세정 단계를 몇 번 거치나요?
 대상 슬롯: cleansing.steps
@@ -481,7 +489,7 @@ B-I01의 원인 조건인 내수성만을 이유로 한 반복을 표준 문자�
 ```json
 {
   "schema_version": "v3.0",
-  "source_text": "제품 표시대로 한 번만 해요.",
+  "source_text": "한 번만 해요.",
   "topics": [
     "repeat_cleansing"
   ],
@@ -503,9 +511,9 @@ B-I01의 원인 조건인 내수성만을 이유로 한 반복을 표준 문자�
 
 ### 원문과 판단의 연결
 
-질문에 대한 실제 횟수 1을 정수로 추출해요. 제품 자체의 제거 성능은 만들지 않아요.
+질문에 대한 순수 횟수 응답 1을 정수로 추출해요. 표시 준수 심볼(according_to_product_removal_instructions)과 모호하게 겹치지 않도록 분리하고 제품 자체의 제거 성능은 만들지 않아요.
 
-내용 SHA-256: `198c0e9201f3b941d50ed11124c5976e98d671d50db3db08f43bdec3baa254ce`
+내용 SHA-256: `60020ca5cb404ee78484f5d1c4716168ebdfc26322fd574c368d1fae46a1453b`
 
 ## nlu-pilot-0010 · turn2_followup · train
 
@@ -715,7 +723,16 @@ B-I01의 원인 조건인 내수성만을 이유로 한 반복을 표준 문자�
   "topics": [
     "discomfort_report"
   ],
-  "slot_candidates": [],
+  "slot_candidates": [
+    {
+      "variable_id": "skin.eye_symptom_context",
+      "value": "씻을 때마다",
+      "polarity": "affirmed",
+      "subject": "self",
+      "confidence": "high",
+      "evidence_span": "씻을 때마다"
+    }
+  ],
   "symptom_candidates": [
     {
       "symptom": "eye_stinging",
@@ -732,9 +749,9 @@ B-I01의 원인 조건인 내수성만을 이유로 한 반복을 표준 문자�
 
 ### 원문과 판단의 연결
 
-반복되는 눈 시림만 추출해요. 눈에 제품이 직접 들어갔다거나 눈 질환이라고 단정하지 않아요.
+반복되는 눈 시림(eye_stinging)과 발화에 명시된 발생 상황('씻을 때마다', skin.eye_symptom_context)을 함께 추출해요. 눈에 제품이 직접 들어갔다거나 눈 질환이라고 단정하지 않아요.
 
-내용 SHA-256: `d9cc131d4292cd725c9303b4e9b4b4172ee9753d4b44db7c0317321c0661790f`
+내용 SHA-256: `7016235d71edad7acd14707bd6fb224688a40da3f2ece1c574465da404c05610`
 
 ## nlu-pilot-0015 · denied_polarity · train
 
@@ -1350,6 +1367,14 @@ hot을 부정할 뿐 cold 또는 lukewarm을 긍정하지 않아요.
       "subject": "self",
       "confidence": "high",
       "evidence_span": "저는 오늘 실내에서만 지냈어요"
+    },
+    {
+      "variable_id": "skin.eye_symptom_context",
+      "value": "선크림을 쓰고",
+      "polarity": "affirmed",
+      "subject": "other",
+      "confidence": "high",
+      "evidence_span": "선크림을 쓰고"
     }
   ],
   "symptom_candidates": [
@@ -1374,9 +1399,9 @@ hot을 부정할 뿐 cold 또는 lukewarm을 긍정하지 않아요.
 
 ### 원문과 판단의 연결
 
-타인의 눈 시림과 본인의 실내 체류를 서로 다른 주어로 유지해요.
+타인의 눈 시림 및 명시된 발생 상황('선크림을 쓰고', skin.eye_symptom_context/other)과 본인의 실내 체류를 서로 다른 주어로 일관되게 유지해요.
 
-내용 SHA-256: `eff151dc9f6cbdd17a978268d25369092c874ff2bf91c3dbeda092c64bea38a8`
+내용 SHA-256: `53e05a6ab0515581dc5cda5fa43956272518d610515d34d3cdc08e5ce7c01318`
 
 ## nlu-pilot-0029 · high_risk_symptom · train
 
@@ -1706,7 +1731,16 @@ hot을 부정할 뿐 cold 또는 lukewarm을 긍정하지 않아요.
   "topics": [
     "moisturizing"
   ],
-  "slot_candidates": [],
+  "slot_candidates": [
+    {
+      "variable_id": "method.current_routine",
+      "value": "라임 로션 A 매일 사용",
+      "polarity": "affirmed",
+      "subject": "self",
+      "confidence": "high",
+      "evidence_span": "라임 로션 A를 요즘 매일 쓰고 있어요"
+    }
+  ],
   "symptom_candidates": [],
   "product_mentions": [
     {
@@ -1721,9 +1755,9 @@ hot을 부정할 뿐 cold 또는 lukewarm을 긍정하지 않아요.
 
 ### 원문과 판단의 연결
 
-정확히 같은 raw span의 가상 카탈로그 힌트만 연결해요. 이름으로 농도·효능을 추출하지 않아요.
+정확히 같은 raw span의 가상 카탈로그 힌트만 연결하고, 빈도('매일')가 명시된 실제 사용이므로 method.current_routine도 0026과 동일하게 병행 추출해요. 이름으로 농도·효능을 추출하지 않아요.
 
-내용 SHA-256: `14e495a1a91383d182609aa778f738c10b5dfa00d1689ff51b7a3e3d68457989`
+내용 SHA-256: `e5ae69ccebecb22ac17a5749e34f10ee274c25a385be8dcd3e4ed20b3bbf16a9`
 
 ## nlu-pilot-0037 · product_mention · train
 

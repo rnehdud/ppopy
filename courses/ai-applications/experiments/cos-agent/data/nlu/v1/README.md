@@ -2,14 +2,14 @@
 
 ## 팀원·후속 AI: 여기부터 읽어 주세요
 
-공유 브랜치는 `data/nlu-v1-pilot-critic`이에요. 원본 49건은 수정하지 않았어요.
-별도 Codex 에이전트가 전행을 읽은 결과 **PASS 46 / FAIL 0 / REVIEW 3**이에요.
-이는 **동일 모델 계열 내부 검수**이며 다른 계열 Cross-Model Critic이나 사람 승인을 대체하지 않아요.
+공유 브랜치는 `data/nlu-v1-pilot-critic`이에요.
+- 초기 Codex 내부 검수(`5aab0a7`): **PASS 46 / FAIL 0 / REVIEW 3** ([TEAM_HANDOFF.md](reviews/codex_critic_20261127/TEAM_HANDOFF.md), [summary.md](reviews/codex_critic_20261127/summary.md)).
+- **확정 정책 반영 및 Cross-Model(Gemini) 전수 검수(2026-11-28)**: 위 3건 및 연관 행(`0007`·`0009`·`0014`·`0028`·`0036`)에 확정 정책을 일관 반영해 재생성했고, **49/49 Cross-Model PASS**를 확인했어요 ([gemini_cross_model_20261128.md](reviews/gemini_cross_model_20261128.md)).
+- `confirmed_by_user=false`, `human_review="unreviewed"`, `base_zero_shot_executed=false`, `training_executed=false`는 그대로 유지돼 있어요.
 
-1. [팀원 전달 요약 및 판단 요청](reviews/codex_critic_20261127/TEAM_HANDOFF.md)을 먼저 읽어 주세요.
-2. [3건 상세 설명·raw 근거](reviews/codex_critic_20261127/summary.md)를 계약과 대조해 주세요.
-3. [49건 전행 raw 검수](reviews/codex_critic_20261127/critic_raw.jsonl)에는 원문·실제 예상 출력·판단 이유·행 해시가 있어요.
-4. [원본·인용 무결성 확인](reviews/codex_critic_20261127/review_integrity.json)은 내용 정확성 판정과 구분해 주세요.
+1. [확정 정책 및 Cross-Model 검수 기록 (2026-11-28)](reviews/gemini_cross_model_20261128.md)을 먼저 확인해 주세요.
+2. [초기 팀원 전달 요약 (5aab0a7)](reviews/codex_critic_20261127/TEAM_HANDOFF.md)과 [3건 상세 설명·raw 근거](reviews/codex_critic_20261127/summary.md)는 수정 전 해시(`0c4c7877...`) 기준 이력으로 보존돼 있어요.
+3. [49건 전행 raw 검수 (5aab0a7)](reviews/codex_critic_20261127/critic_raw.jsonl) 및 [무결성 확인](reviews/codex_critic_20261127/review_integrity.json)도 수정 전 이력으로 유지돼 있어요.
 
 `REVIEW`는 확정 오류가 아니라 추출 정책 확인 요청이에요. 기준을 결정하기 전에 임의로 PASS/FAIL이나 사람 승인으로 바꾸지 마세요.
 검수 당시 로컬 전용·push 없음 기록은 당시 사실로 보존했으며, 이번 공유 승인은 아래 전달 요약에 별도로 기록했어요.
