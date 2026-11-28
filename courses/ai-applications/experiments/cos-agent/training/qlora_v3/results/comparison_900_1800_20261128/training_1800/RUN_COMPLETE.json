@@ -1,0 +1,24 @@
+{
+  "epochs": 5,
+  "early_stopping": {
+    "enabled": true,
+    "monitor": "val_token_loss",
+    "mode": "min",
+    "patience": 2,
+    "min_delta": 0.0,
+    "bad_epochs": 2,
+    "best_epoch": 3,
+    "best_val_loss": 0.9877520854747801,
+    "best_checkpoint": "checkpoints/epoch-03",
+    "reference_best_loss": 0.9877520854747801,
+    "last_epoch": 5,
+    "stopped": true,
+    "stopped_epoch": 5
+  },
+  "raw_rows": 920,
+  "all_saved_epochs_have_raw": true,
+  "semantic_review_complete": false,
+  "human_approved": false,
+  "production_enabled": false,
+  "full_backbone_included": false
+}

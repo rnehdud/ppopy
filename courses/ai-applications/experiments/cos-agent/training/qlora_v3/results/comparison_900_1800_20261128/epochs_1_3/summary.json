@@ -1,0 +1,65 @@
+{
+  "scope": "Same 60 exact-input cases from 1800 run; 180 answers; not all validation cases",
+  "new_direct_reviews": 120,
+  "preserved_exact_content_epoch3_reviews": 60,
+  "counts": {
+    "1": {
+      "PASS": 24,
+      "FAIL": 12,
+      "WARN": 24
+    },
+    "2": {
+      "PASS": 19,
+      "FAIL": 17,
+      "WARN": 24
+    },
+    "3": {
+      "WARN": 29,
+      "FAIL": 13,
+      "PASS": 18
+    }
+  },
+  "transitions": {
+    "1_to_2": {
+      "PASS → PASS": 9,
+      "FAIL → FAIL": 4,
+      "PASS → WARN": 7,
+      "PASS → FAIL": 8,
+      "FAIL → WARN": 4,
+      "FAIL → PASS": 4,
+      "WARN → FAIL": 5,
+      "WARN → WARN": 13,
+      "WARN → PASS": 6
+    },
+    "2_to_3": {
+      "PASS → WARN": 10,
+      "FAIL → FAIL": 9,
+      "PASS → PASS": 8,
+      "WARN → FAIL": 3,
+      "FAIL → PASS": 4,
+      "WARN → PASS": 6,
+      "WARN → WARN": 15,
+      "FAIL → WARN": 4,
+      "PASS → FAIL": 1
+    },
+    "1_to_3": {
+      "PASS → WARN": 10,
+      "FAIL → FAIL": 2,
+      "PASS → PASS": 10,
+      "PASS → FAIL": 4,
+      "FAIL → PASS": 2,
+      "WARN → FAIL": 7,
+      "WARN → PASS": 6,
+      "WARN → WARN": 11,
+      "FAIL → WARN": 8
+    }
+  },
+  "validation_loss_epochs_1_2_3": [
+    1.0537188550960817,
+    0.9893467762190546,
+    0.9877520854747801
+  ],
+  "human_approved": false,
+  "cross_model_critic": false,
+  "method": "Single Codex reviewer directly read inputs, product evidence, RAG and raw answers. Hash/quote assertions are integrity checks, not semantic grading."
+}

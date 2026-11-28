@@ -1,0 +1,57 @@
+{
+  "reviewed_pairs": 60,
+  "actual_answers_read": 120,
+  "comparison": "900 E2 vs 1800 E3",
+  "exact_input_match": true,
+  "old_ratings": {
+    "PASS": 29,
+    "FAIL": 17,
+    "WARN": 14
+  },
+  "new_ratings": {
+    "WARN": 29,
+    "FAIL": 13,
+    "PASS": 18
+  },
+  "comparative_judgments": {
+    "regression": 23,
+    "improvement": 17,
+    "unchanged": 17,
+    "mixed": 3
+  },
+  "rating_transition": {
+    "PASS->PASS": 10,
+    "PASS->WARN": 15,
+    "PASS->FAIL": 4,
+    "WARN->PASS": 5,
+    "WARN->WARN": 5,
+    "WARN->FAIL": 4,
+    "FAIL->PASS": 3,
+    "FAIL->WARN": 9,
+    "FAIL->FAIL": 5
+  },
+  "new_fail_ids": [
+    "syn-hold-0062",
+    "syn-hold-0064",
+    "syn-hold-0070",
+    "syn-hold-0133",
+    "syn-hold-0134",
+    "syn-hold-0135",
+    "syn-sol-0212",
+    "syn-sol-0220",
+    "syn-sol-0224",
+    "syn-sol-0230",
+    "syn-sol-0443",
+    "syn-sol-0445",
+    "syn-sol-0449"
+  ],
+  "reviewer": "Codex direct reading, one reviewer; not independent cross-model or human approval",
+  "sampling": "All 60 byte-identical shared inputs. Cleansing/moisturizing and two HOLD families; not random or representative.",
+  "excluded_shared_rows": 30,
+  "excluded_reason": "Transport fields differ; same task facts, different token input. Not silently mixed.",
+  "new_epoch3_unreviewed_rows": 124,
+  "new_other_epochs_semantic_review": "not performed in this 60-pair audit",
+  "interpretation": "Fewer clear FAILs but fewer issue-free PASSs and more WARNs. No unqualified superiority or accuracy claim.",
+  "human_approved": false,
+  "checked_utc": "2026-11-28T07:47:11.546421+00:00"
+}

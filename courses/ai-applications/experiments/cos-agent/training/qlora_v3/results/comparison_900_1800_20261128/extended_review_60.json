@@ -1,0 +1,1329 @@
+[
+  {
+    "row_id": "syn-hold-0061",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "같은 자리의 통증이 확인돼 개별 안내를 보류해요."
+    ],
+    "new_quotes": [
+      "붉은 자리와 통증을 함께 보고 남겨요."
+    ],
+    "input_quotes": [
+      "어제 붉은 자리 시작, 오늘 첫 통증과 현재 통증"
+    ],
+    "reason": "900 답변은 관찰 시점·부위와 보류·의료진 확인을 명확히 연결한다. 1800도 의료진 확인과 추천 금지를 지키지만, 보고 남긴다는 불필요한 기록 뉘앙스 때문에 보류 설명이 약해졌다. 실제 저장 수행을 단정하는 FAIL로 보지는 않는다.",
+    "old_answer_sha256": "bfd0554f3c236d3e668d61e2870c4e1b15b3f9358cd0ba4b4bfddebde5a8449f",
+    "new_answer_sha256": "6b956dd952279374efdb0f8d15cc7a4e98c05eb1bae4a0d2bab962260b1c1356",
+    "input_sha256": "2e462ecbaa19503641e41d18fb12e320a9c044b609f1448218122b5ff5c388e5",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0062",
+    "old_rating": "PASS",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "어젯밤부터 오른쪽 아래턱이 불룩하고 오늘도 욱신거려요."
+    ],
+    "new_quotes": [
+      "어젯밤부터 오늘도 욱신거리는 통증이 이어져요."
+    ],
+    "input_quotes": [
+      "어젯밤부터 보인 변화, 오늘도 그대로",
+      "같은 곳 현재 욱신거림"
+    ],
+    "reason": "어젯밤부터인 것은 육안 변화다. 통증은 현재라는 정보만 있다. 1800은 통증도 어젯밤부터였다고 시점을 합쳐 버렸다. 900은 불룩함과 오늘 욱신거림을 구분한다.",
+    "old_answer_sha256": "65f57c36f34ad7db9e6898f448c1d936e8fa64975476d9cccd23b8ddc8b71867",
+    "new_answer_sha256": "4c086be17cb520b7d9e217654f26241a69e9551add9f387b5cbe12d1ce2653ab",
+    "input_sha256": "e25b1fd1b2d8e563cefa91aa616b48239e6212b07262eafc487bb024afdd2317",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0063",
+    "old_rating": "FAIL",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "통증이 있는 범위가 더 넓어 보인다는 점"
+    ],
+    "new_quotes": [
+      "붉은 범위가 넓어진 점과 지금 통증이 함께 있어"
+    ],
+    "input_quotes": [
+      "붉게 보이는 범위가 넓어 보임",
+      "그 안쪽 현재 통증"
+    ],
+    "reason": "넓어 보인다고 제공된 대상은 붉은 범위이지 통증 범위가 아니다. 900은 대상을 통증 범위로 바꾼다. 1800은 붉은 범위와 현재 통증을 분리하고 의료진 확인을 유지한다.",
+    "old_answer_sha256": "7582d5c364e96ab407fb22c585ee160bda40da0c7b06edb5dddc5e23bc16f560",
+    "new_answer_sha256": "05874b2777018ccacec01404121c2e29639cc6c3d96747a25c69d0ccf43de5e6",
+    "input_sha256": "5068dbf38511a540e99388e7a8b763838223d434f4a64aac2cc8be8bfed013e8",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0064",
+    "old_rating": "FAIL",
+    "new_rating": "FAIL",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "통증이 새로 생긴 부위"
+    ],
+    "new_quotes": [
+      "통증이 새로 생긴 것"
+    ],
+    "input_quotes": [
+      "사흘 전부터 육안 변화, 현재 옆쪽 통증"
+    ],
+    "reason": "사흘이라는 기간은 육안 변화에만 붙는다. 현재 통증의 최초 발생 시점이나 새로 생겼는지는 알려지지 않았다. 두 답변 모두 현재 통증을 새로 발생한 통증으로 단정한다.",
+    "old_answer_sha256": "01313a2d9570dad34b748863a058d9fc24474f51f22da16481a30fb7a1cab24f",
+    "new_answer_sha256": "6a9a3499e79a86437f81700faf2848782fb0a5492adad5bd03e9ce7fbae0bbc1",
+    "input_sha256": "994152551f3a292d7d6705f40d5a7c70d30d679a7c220de4d99168339a486421",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0065",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "어제부터 턱 가운데가 같은 볼록한 모습이고 지금 접촉할 때 통증"
+    ],
+    "new_quotes": [
+      "지금 접촉할 때는 아프다는 점"
+    ],
+    "input_quotes": [
+      "턱 가운데",
+      "어제부터 같은 볼록한 모습, 현재 접촉 시",
+      "같은 자리 현재 접촉 통증"
+    ],
+    "reason": "두 답변 모두 육안 변화의 기간과 현재 접촉 통증을 구별하고, 진단·제품 사용 안내 없이 의료진 확인을 요청한다. 보류 이유로 적는다는 문구는 본 답변의 설명이며 저장 완료 선언으로 보지 않는다.",
+    "old_answer_sha256": "043f1641689b671d4dbe45f492b9ed26bf714347e6af3044d1c0627fabc5ab2e",
+    "new_answer_sha256": "a30eb83e6c6652a65ff674e065412d121ba8e7e708ea05d81cf88415782ec8a5",
+    "input_sha256": "0b781f98775af4e9bec5f821ef994297f795c7e0aea025c54504f70a1acd4aa6",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0066",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "전날 아침부터 붉게 보이는 변화가 오늘 오후 통증으로 이어졌어요."
+    ],
+    "new_quotes": [
+      "전날 아침부터 보이고 오늘 오후에 통증이 생겼어요."
+    ],
+    "input_quotes": [
+      "전날 아침부터 붉은색, 오늘 오후에 통증 시작"
+    ],
+    "reason": "붉은색 변화와 통증의 서로 다른 시작 시점이 입력에 모두 있다. 두 답변은 그 순서를 보존하고 질환 원인을 확정하지 않으며 의료진 확인을 안내한다.",
+    "old_answer_sha256": "0f41770eeee895dd97547017d47af00fcf84b7acf4096a9a50211b5b07a1dc98",
+    "new_answer_sha256": "e116521cd98cd80b9cc67aff954e3bb3fd2a551671a387107aae95a22dc664d7",
+    "input_sha256": "ae5c311470c6cf2d04d07604750eaa9836b49f3da67f112196ba558fd918fb20",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0067",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "양 볼이 붉게 보이고 오른쪽 한 곳만 아프다고"
+    ],
+    "new_quotes": [
+      "양 볼의 색만으로 오른쪽 통증을 설명하지 않아요."
+    ],
+    "input_quotes": [
+      "양 볼 붉게 보임 지속",
+      "오른쪽 한 곳만 아픔"
+    ],
+    "reason": "양측 육안 변화와 우측 통증을 두 답변 모두 구별한다. 900의 어느 쪽이 먼저였는지 설명하라는 요청은 미제공 시점을 사실로 단정한 것이 아니다. 1800도 인과 추측과 제품·루틴 안내를 하지 않는다.",
+    "old_answer_sha256": "e948596ab866da15b928657e0f27c02921644b77b8eff6d0bb8725122ad0ddfb",
+    "new_answer_sha256": "ffa0c137333d891d6f5bea029917c8f022d108d7debd1257ece389e156d170bd",
+    "input_sha256": "7e59e01505cb36cba5437b1b25349b7b63aae531f6f42d9cf462e7062465af25",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0068",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "말하지 않아도 지금 통증이 있어요."
+    ],
+    "new_quotes": [
+      "말하지 않아도 지금 통증이 있어요."
+    ],
+    "input_quotes": [
+      "입술 바로 아래 피부",
+      "어제부터 육안 변화, 현재 휴식 시 통증",
+      "말하지 않아도 현재 통증"
+    ],
+    "reason": "입술 아래 피부라는 위치와 휴식 시 통증, 육안 변화의 시작을 모두 입력대로 기술한다. 보류와 의료진 확인 외에 자가 처치나 진단은 제시하지 않는다.",
+    "old_answer_sha256": "58ecd1a4f2e9e02234b74dbc6fd5c6b68b98f582371d98d6b94c8d33d09a5fbd",
+    "new_answer_sha256": "a9a893863ba3a230136a617d89f92b957a752a8683b3034cc69df844c72a47ce",
+    "input_sha256": "545a2e8e5b7594349105b4a465f967bf6e002303b41b589c54ab6983b045bd1f",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0069",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "오늘 아침부터 왼쪽 이마가 하얗게 들떠 보이고 같은 자리가 아프다고"
+    ],
+    "new_quotes": [
+      "오늘 아침부터 왼쪽 이마가 하얗게 들떠 보이고, 같은 자리에 통증"
+    ],
+    "input_quotes": [
+      "왼쪽 이마",
+      "오늘 아침부터 육안 변화, 현재 통증",
+      "하얗게 들떠 보임 지속"
+    ],
+    "reason": "두 답변 모두 위치·육안 변화·현재 통증을 전달하며 진단이나 제품 안내를 하지 않는다. 색 변화라는 요약은 하얗게 보인다는 관찰 범위 안에 있어 별도 임상 상태의 발명으로 판단하지 않았다.",
+    "old_answer_sha256": "9110705cb7aacefdc5429efdfb9175ca16dc3341efedcff1e737c5c132b0225c",
+    "new_answer_sha256": "f7062fc252da2da9a458405086598b71b17f557c3916d4999f8e27ed4973c0ec",
+    "input_sha256": "e179a13eddca80a5b243f98d5f113af9adae63c6b628e025689a25e8d8eca9d7",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0070",
+    "old_rating": "PASS",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "어젯밤부터 오른쪽 입가가 부어 보이는 변화가 있고 지금도 통증"
+    ],
+    "new_quotes": [
+      "오른쪽 입가의 통증이 어젯밤부터 있었고"
+    ],
+    "input_quotes": [
+      "어젯밤부터 보인 변화, 현재 통증",
+      "덜해 보여도 현재 통증"
+    ],
+    "reason": "어젯밤은 육안 변화의 시작이며 통증은 현재 있다고만 제공됐다. 1800 첫 문장은 통증 시작까지 어젯밤으로 늘린다. 다음 문장에서 올바르게 육안 변화의 시점을 말해도 앞 문장의 추가 사실이 취소되지는 않는다.",
+    "old_answer_sha256": "185a2339cc59636ef32ea8a3007b71bf56b5fdea23ceaabd6b0df774c53bd9cb",
+    "new_answer_sha256": "1da4e5642984dda409712503e5a3359a767ab22c47f6b670d215dfe6319ba622",
+    "input_sha256": "9217b8b820a1045691405a7080b37463bdb627012421c098e64621db61123580",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0131",
+    "old_rating": "WARN",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "밀봉이 완전히 달라졌다고 단정하지 않아요."
+    ],
+    "new_quotes": [
+      "내부 밀봉 절반 들뜬 상태와 밑에 묻은 내용물이 있어"
+    ],
+    "input_quotes": [
+      "신품 내부 밀봉 절반 들뜸, 밑에 내용물 묻음"
+    ],
+    "reason": "두 답변 모두 보류와 제조사 확인을 지킨다. 900의 완전히 달라졌다는 비교는 무엇과 비교하는지 불명확해 알려진 물리적 손상을 흐린다. 1800은 밀봉 들뜸과 내용물 묻음으로 이유를 구체화한다.",
+    "old_answer_sha256": "8eda82c5ae1ba7f865d8ea89fcf6b2f78b24ae1a341244040ac659e42b6255c8",
+    "new_answer_sha256": "1a4709ad2ecfebcf06efab9d915bd58a60bf8175865ff15c4aed061303f9f9c7",
+    "input_sha256": "044fe200141895b0f0b5edfa2e2efb42e6a3f0e93132a48ed9f4be823d4da0c7",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0132",
+    "old_rating": "FAIL",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "펌프를 누르지 않은 상태의 노출 시간"
+    ],
+    "new_quotes": [
+      "파손과 유출이 확인되어 개별 권고를 보류해요."
+    ],
+    "input_quotes": [
+      "펌프 밑 연결부 파손과 내용물 유출",
+      "눌림"
+    ],
+    "reason": "입력에는 펌프 눌림이 있고 눌리지 않은 별도 상태나 그 상태의 노출 시간은 없다. 900은 미제공 상태를 반복 도입한다. 1800은 연결부 파손·내용물 유출을 근거로 보류하고 누르는 동작과 파손을 구별한다.",
+    "old_answer_sha256": "ed16d9ae37afc344c001809b46a1d059701f6eb6f8c32a38d964ebc2ffc226fd",
+    "new_answer_sha256": "ded274bddf60853b14a5f53c5610b90b130928aa247480097d1b707f6a731005",
+    "input_sha256": "a3884814a798166d99f056df03d82e0c7425236694cafe4515a0fbe4ef4fae83",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0133",
+    "old_rating": "FAIL",
+    "new_rating": "FAIL",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "그대로인 캡 끝을 기준으로 보류해요."
+    ],
+    "new_quotes": [
+      "그대로인 접합부와 샘난 부분을 구분해서 적어요."
+    ],
+    "input_quotes": [
+      "튜브 접합부 미세 구멍으로 내용물 샘",
+      "storage.cap_ring",
+      "그대로"
+    ],
+    "reason": "그대로라고 확인된 부품은 캡 링이며 구멍이 있는 부위는 접합부다. 900은 캡 링을 캡 끝으로 바꾸고 온전한 부분을 보류 근거로 삼는다. 1800은 손상된 접합부를 그대로인 접합부로 바꾼다. 부품·손상 상태 연결 오류가 양쪽에 남는다.",
+    "old_answer_sha256": "57c127b09e27034c33e2a97fffe69ca36c9e54e2f5a6653776129415972731db",
+    "new_answer_sha256": "b73fbff86128a29dae97dcb41efe602f5d5b1b30b2c13791d7e0b9f960779b83",
+    "input_sha256": "269666a7ffe9180a7eb06f72e5bcaf0bc5237dfd4ea9d31c746d040cc0e7d264",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0134",
+    "old_rating": "FAIL",
+    "new_rating": "FAIL",
+    "comparison": "mixed",
+    "old_quotes": [
+      "배송 중 박스가 젖었다는 점"
+    ],
+    "new_quotes": [
+      "리필 외곽 접합부가 열린 상태로 출고됐고"
+    ],
+    "input_quotes": [
+      "리필 팩 모서리 벌어지고 배송 박스 젖음",
+      "닫힌 상태로 출고되는 포장"
+    ],
+    "reason": "900은 박스가 젖은 시점을 배송 중으로 한정하지만 그 발생 시점은 입력에 없다. 1800은 더 명확한 별도 오류로, 닫힌 상태가 출고 설계라는 제품 정보와 현재 열린 관찰을 합쳐 열린 채 출고됐다고 단정한다. 기존 추측 하나가 빠진 대신 새로운 출고 사실을 발명해 완전 개선으로 세지 않았다.",
+    "old_answer_sha256": "ac85b59fd88b0d2360811b99444af14554c9ba00d04ae7368afc3d9f2a541ba1",
+    "new_answer_sha256": "7ff39ff76d48ee7044134efa81ccf6b2fcf8f039600ac86093d31f66f4d210e4",
+    "input_sha256": "e1d684ac04e432507101c71464f789db4fef96854c08719b0e79b5fd26b11df3",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0135",
+    "old_rating": "WARN",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "패드가 닿은 시간은 미상이에요."
+    ],
+    "new_quotes": [
+      "패드와 홈 접촉, 밀폐 실패"
+    ],
+    "input_quotes": [
+      "접힌 안쪽 패드로 뚜껑 밀폐 실패, 홈에 내용물"
+    ],
+    "reason": "홈에 있다는 것은 내용물이고 패드의 상태는 접힘이다. 900은 밀폐 실패를 보존하지만 미상의 노출 기간을 패드 접촉 시간으로 바꿔 표현해 부정확하다. 1800은 패드와 홈이 접촉했다는 미제공 관계까지 안내의 확인 대상으로 단정한다.",
+    "old_answer_sha256": "64a2273379680fbcb1205fdf8b3bcb7f8fc4eeeff6e82d5e6cb142b0cdcd0551",
+    "new_answer_sha256": "5a0edecf132cbff666d11376f15f0fe7cb6f09b922593a4ac7280f3471b3c11b",
+    "input_sha256": "c4e8d80f7df82bcf6fc161bc9418f23528a22c2edd99e1367e3f6009d9ea7e93",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0136",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "틈이 생긴 때와 내용물이 굳은 때가 달라"
+    ],
+    "new_quotes": [
+      "병 목의 길고 틀린 금"
+    ],
+    "input_quotes": [
+      "미개봉 상태에서 병 목에 길게 금이 보이고 틈 주변에 굳은 내용물"
+    ],
+    "reason": "900은 균열 발생과 내용물 굳음의 시점이 다르다는 관계를 발명하고 미개봉 관찰도 흐린다. 1800은 그 시간 추측을 제거하고 품질 판단 보류를 유지한다. 다만 길고 틀린 금은 입력의 길게 금이 보인다는 관찰을 부자연스럽게 표현해 WARN으로 남겼다.",
+    "old_answer_sha256": "0a91b862678bd7a0b110a13a0c7670b35b30e2d86b1c106015e5fb4b8d31ed52",
+    "new_answer_sha256": "86b31c45646a9ff4634d47a1dfdc6ef04a5017637b5f12302d85a2f38dceca65",
+    "input_sha256": "4eef0d6c14de392e069c3a1e3ff274f693366ae3c7a9c7f592a14752a28d5439",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0137",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "튜브 끝이 온전하다는 이유로 내용물 상태를 판단하지 않아요."
+    ],
+    "new_quotes": [
+      "경첩이 부러져 완전히 닫히지 않는 상태"
+    ],
+    "input_quotes": [
+      "튜브 뚜껑 경첩이 부러져 완전히 닫히지 않음",
+      "storage.tube_end",
+      "온전함"
+    ],
+    "reason": "두 답변 모두 경첩 손상과 닫힘 실패를 보류 근거로 삼고 제조사 확인만 안내한다. 온전한 튜브 끝으로 현재 밀폐가 정상이라고 일반화하지 않는다.",
+    "old_answer_sha256": "4bd1390de3ffbbc234746987895f2444ee981710f26ec13efe70a5eaf5a815b7",
+    "new_answer_sha256": "cf6c3644ce7a9aedd114a071711789b7f3f535c6e9bd861df546c464a49bbac5",
+    "input_sha256": "31eab381a1902e522fa51a9dc943f15cd72259b7f62349daf11892514583ef2e",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0138",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "그 틈이 얼마나 오래 열렸는지는 미상이에요."
+    ],
+    "new_quotes": [
+      "수평 밀폐 설계의 정상성을 판단하지 않아요."
+    ],
+    "input_quotes": [
+      "펌프 내부 가동판이 한쪽으로 기울고 그곳에 틈이 보임",
+      "수평 밀폐를 이루는 공기 유입 차단 설계"
+    ],
+    "reason": "관찰은 가동판 기울기와 틈, 제품 자료는 정상 설계 설명이다. 두 답변 모두 정상 설계와 실제 상태를 혼동해 품질을 승인하지 않고 제조사 확인을 요청한다.",
+    "old_answer_sha256": "f9d107955b570dd7fd5379db3fcae93449cbfa6c1b1f25ea1962ed126003f00c",
+    "new_answer_sha256": "61f9dd8d31f1f0e25e61e42c2773170831819c61f1f7a335f642ee46a47c668d",
+    "input_sha256": "81b86c8a7f4c13db82a0b731764485e0853f2ae6339ca31dd660b21a9bb37dc0",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0139",
+    "old_rating": "WARN",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "마개 상태는 확인되지 않았어요."
+    ],
+    "new_quotes": [
+      "마개 실링이 한쪽으로 밀리고 다른 면이 젖었다는 점"
+    ],
+    "input_quotes": [
+      "파우치 마개 실링이 한쪽으로 밀리고 다른 면이 젖음",
+      "눈에 띄는 흠집 없음"
+    ],
+    "reason": "900도 앞에서는 밀림·젖음을 인정하지만 뒤에서 마개 상태 전반이 미확인이라고 과도하게 넓혀 표현한다. 1800은 확인된 실링 위치와 젖음을 유지하고 외관의 무흠집을 품질 승인으로 쓰지 않는다.",
+    "old_answer_sha256": "b0105a3ba059f1a7205cf6bacb8edc90eec4d0e99057c4b5410d2395fab9d6cd",
+    "new_answer_sha256": "396887c63ea6fb6750023c56fbca4a6b347b51e87b3e2cf6c58f664349e47f69",
+    "input_sha256": "344d1ab4c327b8001765daf668f15d262e4bf29a1cf79c15b16102e5d124923e",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-hold-0140",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "출고 상태와 현재 상태를 구분해 확인받아요."
+    ],
+    "new_quotes": [
+      "개봉 여부를 단정하지 않고 보류해요."
+    ],
+    "input_quotes": [
+      "개봉 시 봉인 절취선이 끊어져 있고 안쪽 고정 링이 용기 내부에 떨어져 있음",
+      "storage.exposure_duration"
+    ],
+    "reason": "900은 정상 출고 설계와 현재 봉인·링 상태를 구분한다. 1800은 보류를 유지하지만 개봉 여부가 사용자 현재 개봉인지 이전 훼손·노출인지 불명확하다. 실제 미확인은 노출 기간과 품질이므로 범위를 좁혀야 한다. 부당한 사용 지시가 있어 FAIL로 분류한 것은 아니다.",
+    "old_answer_sha256": "42be9e6227676e0403ac58009b78d266a15dd327498c7b5d99e8b7708814d0d0",
+    "new_answer_sha256": "cc506dcaa87ed11cd17098982456033495fb951c58f6567343f36eb36c5c6b4d",
+    "input_sha256": "6122024e68acd7efa462b0ae55fa1619aaa66e435c5bda27f79822e1c21d0710",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0211",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "문고리를 만든 때와 얼굴을 적신 때가 같은 상황인지 확인된 것은 아니에요."
+    ],
+    "new_quotes": [
+      "손과 브러시를 함께 쓴다는 사실도 확인되지 않았어요."
+    ],
+    "input_quotes": [
+      "귀가 후 문고리를 만짐",
+      "먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다."
+    ],
+    "reason": "900은 문고리를 만진 관찰을 만든 것으로 바꾸고 확인된 순서 맥락을 미확인으로 되돌린다. 1800은 그 왜곡을 제거했지만, 원문에 없는 브러시 주제를 끌어오며 손부터 씻으라는 핵심 조정도 선명하지 않다. 오류 감소이지 완전 PASS는 아니다.",
+    "old_answer_sha256": "7a41a6e2e1dabfca19367eec28c6bc1c690cae50960ded11ae4b24e00f1f53d3",
+    "new_answer_sha256": "d567c272c44313d2f048210bf17104c4091273b15be1dc914b45e734bc4dd74f",
+    "input_sha256": "c03a2d39e1035c835efc3348fbbc582fa81ddd0ac7a5af6e79b3bf68aaaeba1a",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0212",
+    "old_rating": "PASS",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "얼굴에서 비비기 전에 손을 먼저 씻어 보세요."
+    ],
+    "new_quotes": [
+      "손을 먼저 씻고, 그 손으로 얼굴을 비비기 전에 손을 다시 씻는 순서"
+    ],
+    "input_quotes": [
+      "반죽 뒤 손을 털기만 함",
+      "먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다."
+    ],
+    "reason": "900은 손 세정을 얼굴 접촉 앞으로 한 번 옮기는 구체적 안내다. 1800은 같은 문장에서 손을 먼저 씻은 뒤 다시 씻으라는 추가 반복 행동을 처방한다. 중간 재오염이나 두 번 세정할 근거가 입력·문헌에 없고 출처가 말하는 순서와도 다르다.",
+    "old_answer_sha256": "55e6531262478f8243c2e3876b462eb701a6ece49f63916a41f8676ce7b546a7",
+    "new_answer_sha256": "0dc65a236acfb260d4c7cc9ed547dfc4164b6db7168cfe2c75b9a591f0208475",
+    "input_sha256": "b0b1c61388f24178598542d1dee4f2b086041950ad0831046e6737b64a689e18",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0213",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "손등 크림을 바른 뒤 얼굴을 헹군 것은 그대로 두고"
+    ],
+    "new_quotes": [
+      "손에 묻은 오염물을 먼저 씻고 얼굴을 적시는 것이 일반적인 순서예요"
+    ],
+    "input_quotes": [
+      "손을 헹구지 않고 얼굴 적심",
+      "먼저 손에 묻은 오염물을 씻고"
+    ],
+    "reason": "손을 헹구지 않은 실제 순서에 대해 900은 그대로 두라고 안내하고 같은 문장을 반복한다. 1800은 그대로 두라는 유지 지시를 없애고 문헌의 순서는 맞게 제시한다. 하지만 핵심 안내는 전이 여부 부정에 치우쳐 손부터 씻는 행동 조정이 약하다.",
+    "old_answer_sha256": "e5f9e1a55e600aa51392f3dc5a0d3ca2e9415bb0822205167e4143fe1d6bfd47",
+    "new_answer_sha256": "68b8d6a9564ed819eb066beb50a7fb2325d9cbc7179364b6758d0b613dc06e12",
+    "input_sha256": "b97b936da1bb1fc1855b5bdcf6e3bbede4c644c576a50af1a0632ac77b08d4f3",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0214",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "이마를 씻기 전에 손을 씻는 단계를 추가해 보세요."
+    ],
+    "new_quotes": [
+      "손에 남은 물을 확인하기 전에 손을 씻는 단계"
+    ],
+    "input_quotes": [
+      "왁스 묻은 손으로 이마부터 헹굼",
+      "이마를 씻기 전 손 세정"
+    ],
+    "reason": "900은 제공된 왁스와 손 세정 목표를 구체 행동으로 연결한다. 1800도 먼저 손을 씻으라는 방향은 맞지만, 입력에도 근거에도 없는 손에 남은 물 확인을 순서 기준으로 삼아 안내를 불필요하게 모호하게 한다.",
+    "old_answer_sha256": "3e0e2b74cb3821a062dde4d0d01970b79f3362c5d440088c5bc37bf8a34cef44",
+    "new_answer_sha256": "dc181f1f8e987e4b5da260e5b8b7498dc77df89744e8858dc0d4cc8220a977de",
+    "input_sha256": "5fd7903f05e60862d4acea56cb183358585a4037f3bc5d9ffce616cdf19144b4",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0215",
+    "old_rating": "WARN",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "손에 묻은 먼지가 얼굴에 닿았는지부터 살펴보세요."
+    ],
+    "new_quotes": [
+      "먼지가 묻은 손을 먼저 씻고"
+    ],
+    "input_quotes": [
+      "먼지 묻은 손으로 물을 받음",
+      "먼저 손에 묻은 오염물을 씻고"
+    ],
+    "reason": "900은 확인되지 않은 전이 여부 확인에 핵심 안내를 쏟고 손 세정을 직접 제시하지 않는다. 1800은 확인된 손의 먼지와 문헌의 선행 손 세정을 직접 연결하며 피부 문제 발생 여부를 단정하지 않는다.",
+    "old_answer_sha256": "ff6dbc46c96560362cc1a3cdb15916737148860603ef66301735b367e25df68f",
+    "new_answer_sha256": "3b0de89dba7d634dbd3c98bd148c676cade2ec033fe9ee3881c7bb0e5781fb79",
+    "input_sha256": "c7502f063f641accd8d67d54aba511791393a7226697f816b91cdf5ff31bd7e2",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0216",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "다음 거품을 준비하기 전에 손을 먼저 씻어 보세요."
+    ],
+    "new_quotes": [
+      "손가락에 남은 색조를 먼저 확인해요."
+    ],
+    "input_quotes": [
+      "손가락에 색이 남은 채 다음 거품을 준비",
+      "세안 두 단계 사이 손 세정"
+    ],
+    "reason": "900은 두 단계 사이 손 세정이라는 목표에 맞는 구체 조정을 한다. 1800은 이미 확인된 손가락 색조를 다시 확인하라고 하고 얼굴에 다시 묻지 않게 하라는 결과만 제시한다. 핵심 행동 안내가 약해졌지만 피부 전이를 확정한 문장은 아니어서 WARN이다.",
+    "old_answer_sha256": "7f652c3efe4d4221855265e00e19c3b2433ffa0a85752fad41275537028739da",
+    "new_answer_sha256": "0698778a1da66025a0774a52bbcf2ed2de4eb2f2bcdb45e3f07bebad595ecd39",
+    "input_sha256": "587168e5dd404387eb7aaa3f94a0a1d09f8887eb9ebed9c37f7c668f241910d1",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0217",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "손에 묻은 땀을 씻고 얼굴을 따로 씻는 순서"
+    ],
+    "new_quotes": [
+      "손에 묻은 땀을 먼저 씻고 얼굴에 적신 뒤 거품을 만드는 순서"
+    ],
+    "input_quotes": [
+      "땀 묻은 손에 거품을 내 얼굴로 가져감",
+      "먼저 손에 묻은 오염물을 씻고"
+    ],
+    "reason": "두 답변 모두 땀 묻은 손을 먼저 씻는 순서를 제시하고 손의 상태만으로 얼굴 문제를 진단하지 않는다. 1800이 순서를 더 풀어 썼지만 별도 의미 오류의 개선으로 세지 않았다.",
+    "old_answer_sha256": "6dbe476d825081b2c74f90b1209e403edd10f3f3b9b4890e4681b45d2cbfd4a1",
+    "new_answer_sha256": "f93ddafa79164c9ed007e008fd08d2151d6b33694fdf1c3ea23749979829123e",
+    "input_sha256": "99d30b974c960d63aa4ddcd12d605c144f127331a5030b1196f9d28d49e3a3a1",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0218",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "얼굴을 적시기 전에 손을 씻는 순서로 바꾸지는 않아요."
+    ],
+    "new_quotes": [
+      "손을 씻은 뒤 얼굴을 적시는 순서를 살펴보세요.",
+      "두 과정을 연결해 보습 효과를 비교할 자료는 없어요."
+    ],
+    "input_quotes": [
+      "손 세정을 얼굴 적시기 전으로 옮김",
+      "먼저 손에 묻은 오염물을 씻고 미지근한 물로 얼굴을 적신다."
+    ],
+    "reason": "900의 순서 거부는 문헌과 정면 충돌한다. 1800은 손 세정→얼굴 적심으로 핵심 모순을 해소한다. 다만 보습 효과 비교는 요청한 순서 조정과 무관해 불필요한 한계 설명이 남는다.",
+    "old_answer_sha256": "845627e96d82bd3960a3ce60b343cb5b0cdc0ad5ace68ac4bdd4bf293b0e3b96",
+    "new_answer_sha256": "8885659fea8ad07f3249a512f14c93bfc7c5c9fd40fb0ae337727dab99d359ca",
+    "input_sha256": "aadd570165909f32f28453477b9d8ddd4a84ed2662f3041dc91c5dd89fcb5f3e",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0219",
+    "old_rating": "WARN",
+    "new_rating": "WARN",
+    "comparison": "mixed",
+    "old_quotes": [
+      "손이 젖었다는 이유로 이마를 씻지 않아야 한다고 결론 내리지는 않아요."
+    ],
+    "new_quotes": [
+      "손에 묻은 물을 먼저 씻고"
+    ],
+    "input_quotes": [
+      "젖은 손을 별도로 씻지 않음",
+      "손이 젖어 있다는 것과 손 세정 차이"
+    ],
+    "reason": "900은 이마 세안 금지 여부라는 요청하지 않은 결론을 부정하며 젖음과 세정의 구분을 선명하게 하지 못한다. 1800은 먼저 손을 씻는 순서를 넣지만 오염물이 아닌 물을 씻는다고 표현해 대상이 어색하다. 두 답변의 약점 종류가 달라 혼합 변화로 기록했다.",
+    "old_answer_sha256": "2eff0bc82bb3d13484780310ceed13c20a3042c845143cbbb206125e993faab3",
+    "new_answer_sha256": "d3e8aa19d5fd8dbe2b7c4037c8430a404e0b5039a512b6b52caade005cd419fb",
+    "input_sha256": "70086f4e2d474f536ba2cf880c13bc67fc29a885358590eedad6361dfbe2dbbb",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0220",
+    "old_rating": "FAIL",
+    "new_rating": "FAIL",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "같은 물인지 확인되지 않았어요."
+    ],
+    "new_quotes": [
+      "손에 묻은 물을 얼굴에 쓰는 건 피부에 닿는 물과 달라요."
+    ],
+    "input_quotes": [
+      "같은 물을 떠서 얼굴 적심",
+      "손과 얼굴에 같은 물 사용"
+    ],
+    "reason": "900은 입력에서 이미 확인된 같은 물 사용을 미확인으로 돌린다. 1800은 같은 물을 얼굴에 쓰는 것을 피부에 닿는 물과 다르다고 설명해 제공된 동일성과 양립하기 어려운 구분을 만든다. 손 세정 순서를 적은 근거 문장이 있어도 핵심 설명의 모순은 남는다.",
+    "old_answer_sha256": "0b921620b38da30f3629032214a8404d576753a43af99d73be307a2a663b8acc",
+    "new_answer_sha256": "0476b53a7c6f7b29c4a523f572217ea267c5cf62851b36edc24028db6b1a7924",
+    "input_sha256": "c0ab67e9c0229170256ffdb6b20ca66cff406942661d4ad1c3ae96b657da6653",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0221",
+    "old_rating": "WARN",
+    "new_rating": "WARN",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "얼굴 색조 제거용으로 확인된 젤이에요."
+    ],
+    "new_quotes": [
+      "가상 젤의 용도와 사용 뒤 헹굼 지시를 함께 확인해요."
+    ],
+    "input_quotes": [
+      "되직한 젤을 발라 남김",
+      "얼굴 색조 제거용 젤. 사용 후 물로 헹굼."
+    ],
+    "reason": "두 답변 모두 점도를 보습 용도의 근거로 쓰지 않는다. 하지만 확인된 헹굼 표시와 실제 남김 행동의 차이를 구체적인 헹굼 안내로 연결하는 정도가 약하다. 새 답변의 재확인 표현만으로 명확한 개선으로 세지 않았다.",
+    "old_answer_sha256": "55b3b32e429c3a5c1422671c6a1ffcf3ab2d7ea790167329283787a76c44f338",
+    "new_answer_sha256": "d8c50043df042af0f6217835a91c3fa1582f36c9d68006d162099f3dd16ceaa7",
+    "input_sha256": "1847a5ac6fb066e5a89e23622200c2a3197b0ca0796e15f8104615cbc32bcb39",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0222",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "확인된 표시는 손등에 바르고 두는 보습용이에요."
+    ],
+    "new_quotes": [
+      "얼굴에 바르고 두는 용도로 확인된 젤이에요."
+    ],
+    "input_quotes": [
+      "손등에만 덜어봄",
+      "얼굴에 바르고 두는 보습용 젤. 세정 용도 없음."
+    ],
+    "reason": "900은 실제 시험 부위인 손등을 제품 표시 부위로 바꾼다. 1800은 얼굴이라는 제품 표시를 복원하지만, 첫 문장의 얼굴에 쓰는 이유로 보지 않는다는 표현이 부자연스럽고 비세정 목적을 명료하게 말하지 않아 WARN이다.",
+    "old_answer_sha256": "6a0946d9dc31ce051d79da0ab61ee610680b73b8632902e055db88263f869b0b",
+    "new_answer_sha256": "0d7315f6df80d5e4471ae60af48669dee039f2d70790f9d2901070461517be62",
+    "input_sha256": "519d1eef75b8a3e6b687e46df2e69fe725b5117e0cb53eea1ae1f16e76018380",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0223",
+    "old_rating": "WARN",
+    "new_rating": "WARN",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "얼굴용 젤 세정제라면 색조 제거 후 물로 헹구는 방법을 확인해요."
+    ],
+    "new_quotes": [
+      "같은 사용법이 아니에요.",
+      "표시의 헹굼을 대신하는지는 확인되지 않았어요."
+    ],
+    "input_quotes": [
+      "티슈로만 제거",
+      "물로 헹구지 않음",
+      "얼굴용 헹굼 젤 세정제. 색조 제거 후 물로 헹굼."
+    ],
+    "reason": "물 헹굼 표시와 티슈만 사용한 행동은 모두 알려져 있다. 900은 확인된 제품을 조건부로 말하며 방법 재확인에 머문다. 1800은 다른 사용법임을 명시하지만 뒤에서 대체 여부를 미확인으로 표현해 표시 준수와 실제 제거 성능의 미확인을 혼동하기 쉽다. 두 답변 모두 티슈 대체를 승인하지 않아 명확한 역행 FAIL과는 구별했다.",
+    "old_answer_sha256": "a7c489f9d5330d0f12c6ec06b40d35289f155aa7aed77986034edc82fee77c23",
+    "new_answer_sha256": "960200eefb4e3982e073b07f137d41c888a0ee976f7959991dc10501d9e47207",
+    "input_sha256": "92cc66a40abbac2411fc0770131f4ff87175782334fe0400149e5ebc452e465e",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0224",
+    "old_rating": "FAIL",
+    "new_rating": "FAIL",
+    "comparison": "mixed",
+    "old_quotes": [
+      "두 젤을 겹쳐 쓰지 않아도 얼굴에 남은 색조를 제거할 수 있어요."
+    ],
+    "new_quotes": [
+      "리무버를 쓴 뒤 물로 헹구고 보습을 따로 둬요.",
+      "얼굴에 어떤 젤을 쓰는지와 얼마나 남는지는 아직 미상이에요."
+    ],
+    "input_quotes": [
+      "색조 제거에 젤 리무버 사용",
+      "첫 가상 젤은 얼굴용 리무버로 사용 뒤 물로 헹굼. 별도 가상 젤은 세안 뒤 얼굴에 바르고 둠."
+    ],
+    "reason": "900은 제품의 표시 용도만으로 실제 얼굴 잔여 색조가 제거될 수 있다고 성능을 단정한다. 1800은 그 단정을 제거하고 올바른 단계 분리를 제시하지만 실제 사용 중인 젤의 역할까지 미상으로 돌린다. 성능 단정 감소와 새로운 알려진 정보 상실이 함께 있어 혼합 변화다.",
+    "old_answer_sha256": "99855352ec96577d4921d4052dd465dda83df1d4638bdbbfcdb53c6d2ce17644",
+    "new_answer_sha256": "d8ec2f230d41d2f6db13a2595f6bb92366d2e7c884ff14b6679f6596de6981b6",
+    "input_sha256": "35bf9debb074766bfd683af3a47c05b5003ab7b7613bbc1267d1955b2eff5f76",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0225",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "가벼운 색조를 닦아내는 표시가 있고 물로 헹구는 지시는 확인되지 않았어요."
+    ],
+    "new_quotes": [
+      "물로 한 번 헹군 뒤에도 남은 느낌이 있다면"
+    ],
+    "input_quotes": [
+      "물로 한 번 씻음",
+      "가벼운 색조를 닦아내도록 표시하며 물로 헹구는 안내는 없음."
+    ],
+    "reason": "900은 닦아내기 표시와 헹굼 지시 부재를 분명히 구별한다. 1800도 마지막에 지시 부재를 유지하지만 입력에 없는 잔여 느낌을 조건으로 안내를 전개한다. 실제 그런 느낌이 있었다고 단정한 문장은 아니므로 사실 발명 FAIL이 아니라 불필요 조건 WARN으로 기록한다.",
+    "old_answer_sha256": "5d77160cf0530c766d415ead01dd582f13fd96547f9b7a4764ee2d8b46a4de65",
+    "new_answer_sha256": "16f3ccabd5536be5dfa6d859e4fcc4e4d0038f61da2fc9e972279fd260e13f73",
+    "input_sha256": "c982303727020b4f8ef48266f5501abfe6270be75ef1edcb36af18a66666dc09",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0226",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "손에 덜어 보인 점도"
+    ],
+    "new_quotes": [
+      "표시상 물로 헹구는 방식으로 봐요."
+    ],
+    "input_quotes": [
+      "물에 잘 녹는 듯하지 않다고 느낌",
+      "얼굴 색조 제거용 젤. 표시상 물로 헹구는 형태."
+    ],
+    "reason": "900은 물에서 잘 녹지 않는 듯한 관찰을 손에 덜어 보인 점도 관찰로 바꾸고 이미 확인된 얼굴 사용법을 다시 확인하라고 한다. 1800은 표시상 헹굼을 보존하지만 손에 묻힌 느낌이 뚜렷하지 않다는 부정확한 요약으로 원래 용해 관찰을 선명하게 전달하지 못한다.",
+    "old_answer_sha256": "2a565c1fe2e13f514fea841c614cbc9d4da0e1f61c10b0274a1cd04b44b52be8",
+    "new_answer_sha256": "260a53de60b2f6c61974b246228f1d2ff98b88d846e40a7152432e4cfd66392f",
+    "input_sha256": "d6c63c7f9b71fae91d3e6fa4915bc61cd45f37ad3e8bd1c5588c47e3107b3a09",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0227",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "새 제품은 얼굴에 쓰고 물로 마무리하는 젤이에요."
+    ],
+    "new_quotes": [
+      "새 젤은 얼굴을 씻는 헹굼형이에요.",
+      "새 제품의 용도와 마무리 지시를 먼저 확인해요."
+    ],
+    "input_quotes": [
+      "이전 젤을 바르고 남김",
+      "새 가상 제품은 얼굴을 씻는 헹굼형 젤. 새 제품 용도와 물 마무리 확인."
+    ],
+    "reason": "두 모델 모두 이전 남김 방식을 새 헹굼형에 복사하지 않는다. 1800은 핵심 안내에서 이미 확인된 용도·마무리를 다시 확인하라고 요구해 구체 실행 안내가 약해진다. 표시 자체를 미확인으로 단정하거나 남기라고 지시한 것은 아니다.",
+    "old_answer_sha256": "1ad4e956e27903bf78dde7aa0e02d0e781c0d91fa0275a0aecc26423e8da43b4",
+    "new_answer_sha256": "26337b47c740d8655e4f439eac4b292d3832fc87890c4b42ab6cf53f5ec7f81a",
+    "input_sha256": "c3bfa9b5b7523862a9f9f526f53aabb199ba0d898029490c320bcde2cc0a0deb",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0228",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "팔에 쓴 젤은 몸용 표시로 확인됐어요."
+    ],
+    "new_quotes": [
+      "얼굴에 쓴 색조가 제거됐다고 보고한 것은 시험 전에 확인되지 않았어요."
+    ],
+    "input_quotes": [
+      "현재 팔에만 사용",
+      "얼굴 색조 제거는 시험 전",
+      "몸에 사용하는 세정 젤, 물 헹굼 지시 확인. 얼굴과 색조 제거 표시는 없음."
+    ],
+    "reason": "몸용 표시에 근거해 얼굴 색조 제거 성능을 확정하지 않는 원칙은 양쪽에 유지된다. 다만 1800은 보고한 것이 시험 전에 확인되지 않았다는 순환적 문장으로 실제 사용 전과 미확인 성능의 구분을 흐린다. 얼굴 사용·제거 성공을 실제로 주장하지는 않아 WARN이다.",
+    "old_answer_sha256": "7f62311c0fd043b1edd2cd96e39328cae2d2f6eaff869859ba0b9e4d178cad3e",
+    "new_answer_sha256": "709fa9ba276acf228090a6510f6245d36c3609b341fa77824e01938457028a85",
+    "input_sha256": "d323c0549a3069794db9b0b444834d7cda908a5954fb0443a0d79d79a43e47a4",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0229",
+    "old_rating": "WARN",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "외관이 높다고 헹굼이 필요하지 않다는 뜻은 아니에요"
+    ],
+    "new_quotes": [
+      "가상 젤의 사용법을 헹굼형으로 읽지 않아요."
+    ],
+    "input_quotes": [
+      "남겼을 때 끈적한 감촉",
+      "세안 뒤 얼굴에 바르고 남기는 가상 보습 젤."
+    ],
+    "reason": "900은 외관이 높다는 비정상적 기준과 헹굼 필요성의 부정 표현 때문에 남김 표시를 충분히 선명하게 하지 못한다. 1800은 끈적임으로 헹굼형으로 바꾸지 말라는 핵심을 명시한다. 반복 문구가 있지만 결론과 제공된 표시가 일치해 내용상 PASS로 판단했다.",
+    "old_answer_sha256": "ea54bae18d732a3c3ebeecf5be12a33d738c7a29f9a606f20d458d7f671f2c62",
+    "new_answer_sha256": "86cc5895e8fefc0451c4bfcd6adc6ff77dab47c428571c7d57f0917ef6323c26",
+    "input_sha256": "90856af685b54862ed3c7bc747ee9b17e7786f137862b72a83d4e75c2f5b5278",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0230",
+    "old_rating": "WARN",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "얼굴 표시를 확인한 뒤 코에 쓰는지와 코의 느낌을 나눠 보세요."
+    ],
+    "new_quotes": [
+      "코에서 처음 느낀 번들거림"
+    ],
+    "input_quotes": [
+      "처음 쓰기 전",
+      "코 번들거림이 신경 쓰임",
+      "피지 제거력은 확인되지 않음."
+    ],
+    "reason": "900은 표시가 이미 있는데 재확인만 요구하는 약점이 있으나 피지 제거력 미확인은 보존한다. 1800은 처음 쓰기 전이라는 제품 사용 시점을 코 번들거림을 처음 느낀 시점으로 옮긴다. 신규 관찰의 최초 발생이라는 미제공 사실을 추가해 FAIL이다.",
+    "old_answer_sha256": "1b85e3d7ff2ebc6fa6936448e1672c1f5328ecc3e824c22ed4867a568a26d555",
+    "new_answer_sha256": "c65f698df9ebef08e1614acad98992c5157f6ff837927a04b08e63f37924069f",
+    "input_sha256": "3f553008dfaa4a560c05feb1deb4001b4d30ffba3dbd72bfc712a40eff6c37b9",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0441",
+    "old_rating": "WARN",
+    "new_rating": "WARN",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "씻어내는 제품과 남기는 보습 제품을 같은 것으로 보지 않아요."
+    ],
+    "new_quotes": [
+      "그대로 두는 보습 로션과 구분해요."
+    ],
+    "input_quotes": [
+      "저녁에 클렌징 로션을 바르고 그대로 둠",
+      "사용 후 물로 헹굼 표시."
+    ],
+    "reason": "두 답변은 메이크업 제거용과 남기는 보습용을 구분하며 방해 염모제 청크를 끌어오지 않는다. 그러나 실제 남겨 두는 행동과 확인된 물 헹굼 지시를 직접 연결하는 구체 안내가 부족하다. 새 모델의 짧아진 설명을 의미상 개선으로 세지 않았다.",
+    "old_answer_sha256": "f35280def4a6f5f4eaedc93b3dca6c850a07bba2027222580e2c51894bb9a833",
+    "new_answer_sha256": "09bdc5cfd2e6a6c4aa4da2f9d3f5157a066abc2b6d509b7945b523b7e8c648dd",
+    "input_sha256": "85a12edb5bb04d3d7fd08bbbc751e552e59981e029131908663139e917e89691",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0442",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "얼굴용 로션은 바르고 두는 용법으로 확인해요."
+    ],
+    "new_quotes": [
+      "바르고 두는 보습 로션이라면 세안 뒤에도 쓰는지 확인해요."
+    ],
+    "input_quotes": [
+      "세안 뒤 보습",
+      "얼굴용 보습 로션, 바르고 두는 용법."
+    ],
+    "reason": "900은 묽은 외관으로 헹굼형으로 바꾸지 않고 확인된 남김 표시를 제시한다. 1800도 외관으로 분류하지는 않지만 이미 제공된 용법·사용 의도에 대해 조건부 확인을 요구하며 실제 결론을 약화한다.",
+    "old_answer_sha256": "9409ab6ec92b0bc335a7ddb9c996e13ad7dd4abf08c2b47ebe0034b60683e0cc",
+    "new_answer_sha256": "9795160ecae4f9ff25ba48b024b0e851f06d20a5b9e060d50bf24fc2d70eff11",
+    "input_sha256": "68846b1606170261581bbac71ee8c119eb73a125f9f56478a34378b9c91aef66",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0443",
+    "old_rating": "WARN",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "씻은 뒤 쓰는 유연화장수와 같은 제품으로 대체하지 않아요."
+    ],
+    "new_quotes": [
+      "현재 제품의 용도와 제거 대상이 확인되지 않았어요."
+    ],
+    "input_quotes": [
+      "보습 토너로 색조 화장을 닦음",
+      "유연화장수, 세안 후 얼굴 피부에 사용. 메이크업 제거 표시 없음."
+    ],
+    "reason": "900의 같은 제품으로 대체하지 않는다는 문장은 모호하지만 뒤에서 메이크업 제거 표시 부재와 보습·세정 구분을 보존한다. 1800은 확인된 유연화장수 용도까지 미확인으로 돌린다. 제거 성능의 미상과 제품 용도의 확인을 구분해야 한다.",
+    "old_answer_sha256": "72d93680f8ba69a9f08794769f640acd78e47df2bb2dca4bce4d24af56e35bfb",
+    "new_answer_sha256": "e5648b7068583838082ee98c1b4d676b0df10854f413ae136785633a4d89391f",
+    "input_sha256": "bde2f569e347158824a4ea515fe61e6f067f506c6ed0be64f57e5c76266cd639",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0444",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "보습을 대신하는 단계로 기록하지 않아요."
+    ],
+    "new_quotes": [
+      "같은 이름만으로 화장 제거 단계를 빼지 않아요."
+    ],
+    "input_quotes": [
+      "화장 유무와 무관하게 저녁에 세정 화장수를 보습처럼 바름",
+      "가벼운 메이크업 제거용 화장수. 후속 헹굼 지시는 자료에 없음."
+    ],
+    "reason": "900은 화장 여부가 제품의 용도를 보습으로 바꾸지 않는다는 점과 헹굼 지시 미상을 분리한다. 1800은 보습 대체 여부보다 제거 단계를 빼지 않는다는 요청하지 않은 방향으로 답해 역할 안내가 약하다. 화장 없는 날 세정 단계가 항상 필요하다는 근거로 쓰면 안 된다.",
+    "old_answer_sha256": "bb048c65e58c596935c7ad974ffebef5c3a47f1ddc277fdda7ee706bdb4bb9ba",
+    "new_answer_sha256": "f7d60cb6b15b6907b42f7db88c24a9b9b066726794d904e8772a84535351bb05",
+    "input_sha256": "b68e851774128c55a2e5f5cf44d4fc1e804bba83d40c2f235e16400ce55e696e",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0445",
+    "old_rating": "WARN",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "로션의 유형이나 제거 여부를 추정하지 않아요."
+    ],
+    "new_quotes": [
+      "닦아내는 행동과 물로 헹구는 행동은 별개예요 [ref:moisturizing-008]."
+    ],
+    "input_quotes": [
+      "클렌징 로션, 화장솜으로 닦아내기만 표시. 물 헹굼 단계는 기재되지 않음.",
+      "유연화장수는 각질층에 수분과 보습 성분을 공급해"
+    ],
+    "reason": "900은 닦아내기 표시와 물 헹굼 지시 부재를 맞게 말하지만 마지막의 유형·제거 여부 미상은 너무 넓다. 1800의 닦기와 헹구기 구분 자체는 제품 표시로 설명할 수 있으나 이를 인용한 moisturizing-008은 화장수의 용도 구분 문단으로 두 제거 동작의 차이를 설명하지 않는다. 해당 인용에 대한 근거 연결 실패다.",
+    "old_answer_sha256": "5add6ef8fd5167ab0723c993afc4974decce9bf84178c1620752618e05fcd77d",
+    "new_answer_sha256": "ac55550d4e33f36aafa6cb22fbd00e886249907631556c858ba72d83bbdb3f91",
+    "input_sha256": "de7295781dae7090d683668cfed869dff993da9dfb0774e15d8ebe8d0dea042b",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0446",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "이 휴대병의 용도는 확인되지 않았어요."
+    ],
+    "new_quotes": [
+      "이 휴대병의 실제 용도는 확인되지 않았어요."
+    ],
+    "input_quotes": [
+      "투명한 휴대병",
+      "본품 표시 확인되지 않아 세정용과 보습용 구분 미상."
+    ],
+    "reason": "두 답변 모두 외관으로 용도를 만들지 않고 실제 표시 확인을 요구한다. 루틴에 아직 넣지 않았다는 맥락이나 미상 상태를 뒤집지 않으며 방해 청크도 사용하지 않는다.",
+    "old_answer_sha256": "5fedb027b9d7e12c0f167bf3849f2b087c99aaf3d433dfa1d5cc376177e72de3",
+    "new_answer_sha256": "f3cd8a3af14872e89f98f7559980f0313bb7de267c80481682c0e8ac46c9b26b",
+    "input_sha256": "4a80b9cb6572d8126f61276ee431dea86cf10bfd29a49bc4c10030a51f8f36a1",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0447",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "헹굼형 로션과 남기는 보습 로션은 다른 제품으로 구분해요."
+    ],
+    "new_quotes": [
+      "흐르는 제품과 남기는 제품이 있을 수 있어요"
+    ],
+    "input_quotes": [
+      "한 통은 헹굼형 클렌징 로션, 다른 통은 남기는 보습 로션으로 각각 확인됨.",
+      "흐르거나 펴 바르기 쉬운 유화물"
+    ],
+    "reason": "900은 확인된 두 용법을 구분한다. 1800도 핵심 안내는 구분하지만 근거에서 유동성인 흐름과 사용법인 남김을 대비시켜 서로 다른 분류축을 섞는다. 둘이 배타적이라고 명시한 것은 아니므로 부정확한 설명 WARN으로 기록한다.",
+    "old_answer_sha256": "4e481651e56a2cfbcb679c18acc9b00ece38fcea4c17d4f9a4baf2039356929f",
+    "new_answer_sha256": "06ef05798ab14e00d5fee46ec2196a7833f143d6e62a6e894ea13702663d928a",
+    "input_sha256": "adc445cd4e0685325961b237a7cc8699b66a0c12c7ea10c2e7b5001f171e13e2",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0448",
+    "old_rating": "FAIL",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "세안 뒤 보습 대용으로 쓰는 것은 그대로 두고"
+    ],
+    "new_quotes": [
+      "세정용 화장수를 보습 대용으로 쓰는 건 그 용도가 아니에요."
+    ],
+    "input_quotes": [
+      "세안 후 세정용 화장수를 보습 대용으로 씀",
+      "보습 성분을 함께 표기한 세정용 화장수. 용도는 가벼운 색조 제거."
+    ],
+    "reason": "900은 본문 근거와 달리 핵심 안내에서 용도 혼동 행동을 그대로 유지하라고 한다. 1800은 보습 성분 표시가 세정 용도를 바꾸지 않는다는 점을 명시하고 실제 보습 효과는 미확인으로 남긴다.",
+    "old_answer_sha256": "049856e53c3b064b47d8fafc26826951dab8ae9ba94c5ebfdc5a9eed890c097d",
+    "new_answer_sha256": "879e3881f70eb11d1ab02286a3f773b83dd929777869ce0b9abb33b2b6fb9114",
+    "input_sha256": "a4f366f98d4877cf6e88e6d18657654ecd543536ebeb07772892d9bf41f44640",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0449",
+    "old_rating": "PASS",
+    "new_rating": "FAIL",
+    "comparison": "regression",
+    "old_quotes": [
+      "다리에 쓰려는 로션은 얼굴용 메이크업 제거, 헹굼 표시예요."
+    ],
+    "new_quotes": [
+      "다리를 쓰려는 로션은 얼굴용으로 분류하지 않아요."
+    ],
+    "input_quotes": [
+      "다리",
+      "사용하려는 로션은 얼굴용 메이크업 제거, 헹굼 표시."
+    ],
+    "reason": "900은 사용 예정 부위가 다리여도 제품 표시가 얼굴용 세정제라는 사실은 유지한다. 1800은 예정 부위 때문에 제품의 얼굴용 분류를 부정한다. 사용 의도와 확인된 제품 용도를 뒤바꾼 명확한 사실 왜곡이다.",
+    "old_answer_sha256": "0ee78c32f605b1446bb96c377ba9ffcccc631c31da34456281b44ea315c5984e",
+    "new_answer_sha256": "5d2aa31c75b050fe2766de3b4e1cb68121a3a258d352937712d916be4cf5e2ad",
+    "input_sha256": "5e22bcfc5d009bec413bbd8646d703c27cce414931db4665a00d01a73cfaff0f",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0450",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "화장이 없어도 세안용과 보습용 화장수를 모두 써야 하는 것은 아니에요."
+    ],
+    "new_quotes": [
+      "두 개 모두 의무가 있는지에 대한 판단은 그 용도를 기준으로 해요."
+    ],
+    "input_quotes": [
+      "화장 없는 날 두 개 의무 여부",
+      "각각 가벼운 색조 제거용과 세안 뒤 보습용."
+    ],
+    "reason": "900은 표시 목적이 다르다고 두 제품 사용을 자동 의무로 만들지 않고 세정제를 보습 대용으로 쓰지 않도록 설명한다. 1800은 의무 여부를 다시 판단해야 한다고만 말해 사용자가 요청한 결론을 제공하지 않는다. 미제공 제품 사용 사실을 발명한 것은 아니어서 WARN이다.",
+    "old_answer_sha256": "d5dff1627f99d67faee5a7528471d86f91ca71a7f480380d5053b06a805b9cf3",
+    "new_answer_sha256": "1a8b3dc0697b104781f7bc754be959af802da71fe04ca7c7aaa15f2eff2b5a52",
+    "input_sha256": "c369e316f9db79e2e8313986daec63b7ffbe94fd82b5238d80aab45e319e7c43",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0451",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "눈 주위를 피하는 표시를 그대로 적용하지 않아요."
+    ],
+    "new_quotes": [
+      "팩의 눈 주위 피부 사용 주의를 읽어요."
+    ],
+    "input_quotes": [
+      "눈 밑 피부를 덮을지 계획",
+      "아직 미사용",
+      "눈 주위를 피하라는 주의 문구가 확인됨."
+    ],
+    "reason": "900은 계획된 눈 밑 사용을 이유로 제품의 눈 주위 회피 표시를 적용하지 않는다고 안내해 안전 범위를 뒤집는다. 1800은 주의 문구를 다시 읽도록 하고 계획과 실제를 나눠 그 직접 역행은 없앴다. 다만 눈 주위 피부를 피해야 한다는 구체 결론보다 읽기·확인 표현이 앞선다.",
+    "old_answer_sha256": "17ea46ec136a06ca6d1d0261919c15ad8e31b36c710b8e3ebdf3a70ae1fd9c3c",
+    "new_answer_sha256": "c373a9dacd7b0d9e804f8816716fc8fd427b2e65ec94d8ff870ccbbffae3edfd",
+    "input_sha256": "ea83346cd702f36686b4ce2e00e789ae3406c5eb33ecf6e59675537fe012257f",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0452",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "시트에 눈 구멍이 있다고 해서 눈 주위에 쓸 수 있다는 뜻은 아니에요."
+    ],
+    "new_quotes": [
+      "눈꺼풀을 피하는 시트 팩은 시트가 눈구멍을 가진다는 사실보다 실제 사용 부위를 봐요."
+    ],
+    "input_quotes": [
+      "시트에 눈 구멍이 있음",
+      "제품 표시상 눈 주위 피부를 피하는 유형."
+    ],
+    "reason": "900은 시트 모양을 눈 주위 사용 허가로 확대하지 말라는 결론이 선명하다. 1800도 근거에서는 눈 주위 회피를 유지하지만 핵심 안내는 눈꺼풀과 실제 부위라는 좁고 모호한 표현으로 바뀌어 시트 가장자리 위치를 어떻게 읽을지 불분명하다.",
+    "old_answer_sha256": "2e9498d974adc7d0027bec714cd8ff5ad44d459eabf96e9181a98422d78c680c",
+    "new_answer_sha256": "dbf87dbc4e6a4fd62a91cbc838c280bb447a94697922a3faa3bf87a7d213f775",
+    "input_sha256": "0dca043a73975a64d5f844b8e28742cae4b2bda7c8ef59aa896b8d230f45190a",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0453",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "앱에 눈 접촉으로 기록해도 돼요."
+    ],
+    "new_quotes": [
+      "볼과 턱에 쓴 경험을 기록하고"
+    ],
+    "input_quotes": [
+      "볼과 턱 피부에만 사용",
+      "routine.eye_area_contact",
+      "routine.eye_entry",
+      "실사용 위치와 눈 접촉 기록 정정"
+    ],
+    "reason": "입력은 눈 주위 접촉과 눈 안 유입을 모두 false로 제공한다. 900은 잘못된 앱의 눈 접촉 기록을 허용한다. 1800은 볼·턱 사용을 기준으로 되돌려 개선됐지만, 눈 주위 접촉과 눈 안 유입이 둘 다 없었다는 정정 내용을 명시적으로 분리하는 정도는 약하다. 실제 앱 저장 완료를 수행한 것은 아니다.",
+    "old_answer_sha256": "6e4a8c3f9500628f622b39e99be940ae6ec5ea83c167589facf8650e6cea535a",
+    "new_answer_sha256": "0cb78c071a2302a3c2406b4bfa88121af6a2fe459822da5582a8a699366cea23",
+    "input_sha256": "12b3a05a89a3e03141c32b7beb3cda5bcb494922762f2d1785dbb8461acfebbd",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0454",
+    "old_rating": "PASS",
+    "new_rating": "PASS",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "눈가용 크림을 눈 주위 피부에 쓰는 건 맞아요."
+    ],
+    "new_quotes": [
+      "눈가용이라는 표시를 바깥쪽 눈 주위 피부에도 적용해요."
+    ],
+    "input_quotes": [
+      "눈가 보습 크림으로 바깥쪽 눈 주위 피부에 쓰도록 표시돼 있음."
+    ],
+    "reason": "두 답변 모두 눈 주위 피부용 표시와 눈 안에 들어간 경우를 구분한다. 1800은 바깥쪽 범위를 더 명시한다. 마지막의 개인 사용 적합성 미확인은 표시상 사용 부위가 알려진 것과 별개로 볼 수 있어 알려진 표시를 뒤집는 FAIL로 해석하지 않았다.",
+    "old_answer_sha256": "b2d3f07112b0475fc2a3988ba1028bbed24ef291ba73fad58c6b0ec1bc99f85b",
+    "new_answer_sha256": "a439f7b7f31063964fb546ca0323e0f5de7424746a22005325973339d9be4135",
+    "input_sha256": "f46e4cf0a7886ba1fea7af94f9ae60a6ec60798077cbe05a4ec70cc9e0c239d3",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0455",
+    "old_rating": "WARN",
+    "new_rating": "WARN",
+    "comparison": "unchanged",
+    "old_quotes": [
+      "친구가 말한 눈에 넣는 유형"
+    ],
+    "new_quotes": [
+      "친구가 말한 눈에 넣는 유형",
+      "눈 주위 피침"
+    ],
+    "input_quotes": [
+      "이마에만 붙임",
+      "친구가 눈에 넣는 유형인지 질문"
+    ],
+    "reason": "타인이 한 것은 유형에 대한 질문이다. 두 답변 모두 이를 친구가 말한 유형으로 압축해 질문과 실제 제품 유형의 구별을 흐린다. 다만 친구가 실제 사용했다거나 해당 제품이 존재한다고 명시 확정한 것은 아니므로 WARN이다. 새 답변은 피하기를 피침으로 반복해 표시 해석 문장도 부자연스럽다.",
+    "old_answer_sha256": "cabee7ec2089c3d4876a5feb1208cb9cb6fd2a0b70f85792eab23f45285cf6d0",
+    "new_answer_sha256": "f9ca79299e8921128037a620949b491bbb8fc1eda866312e9853c519d3f03e02",
+    "input_sha256": "6ac957ede486fab7b074dd320a1ed242c087f95534d70f44359d145a4aac46a3",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0456",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "눈 아래에 붙이는 표시를 안구 접촉 허용으로 바꾸지 않아요."
+    ],
+    "new_quotes": [
+      "패치의 실제 안구 사용 허용 여부는 확인되지 않았어요."
+    ],
+    "input_quotes": [
+      "정해진 눈 아래 바깥 피부에 붙이는 보습 패치로 표시됨. 안구 사용 표시는 아님."
+    ],
+    "reason": "두 답변 모두 핵심 안내에서는 안구 사용으로 확대하지 않는다. 900은 미확인을 안구 반응·안전성에 한정한다. 1800은 이미 정해진 표시 범위를 실제 허용 여부 미확인이라는 더 넓은 말로 흐리지만, 안구 사용을 허가하거나 권하지는 않아 WARN으로 남긴다.",
+    "old_answer_sha256": "430984d747aec45c79c0f9eb0fdcdc620ea045f9f00e34d5cfb90b83a2f6aae8",
+    "new_answer_sha256": "d6cf6d412cc410944c3e0d478948b435391028b73e1dc237feb4c4146ee0cc65",
+    "input_sha256": "3a89423012921b169f43a8fec684e74fbc44d122c0234a319c15bd3145d618c2",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0457",
+    "old_rating": "FAIL",
+    "new_rating": "WARN",
+    "comparison": "improvement",
+    "old_quotes": [
+      "눈썹 가까이에 쓰는 건 눈 주위 피부를 피하는 표시를 따르는 일"
+    ],
+    "new_quotes": [
+      "눈썹 가까이에 붙일 계획이라도 눈 주위 피부를 피하는 범위로 읽어요."
+    ],
+    "input_quotes": [
+      "눈썹 가까이에 붙일 계획",
+      "눈 주위 피부를 피하라는 내용."
+    ],
+    "reason": "계획된 위치가 눈 주위 회피를 충족하는지는 확인되지 않았다. 900은 그 계획을 표시 준수로 인정한다. 1800은 무조건적인 준수 승인을 제거했지만 눈썹 가까이 계획에서 어떤 범위를 피해야 하는지 문장이 여전히 모호해 완전 PASS는 아니다.",
+    "old_answer_sha256": "1369e40c3f78c77aac1e2ab489ef21232f0b0e52af1c462e616babc125388a6a",
+    "new_answer_sha256": "47d04b24d2c9aaf18d07f35337a32550ef819f4653e401d44b75e5ad8f43cd54",
+    "input_sha256": "13d651a18370425ce09fe646f699e0e300871d43e4dd36d8cbb97179b2e50c3c",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0458",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "친구가 쓰는 제품의 표시나 사용 부위를 확인한 것은 아니에요."
+    ],
+    "new_quotes": [
+      "친구의 크림이 눈가용인지"
+    ],
+    "input_quotes": [
+      "본인 얼굴 팩을 볼에만 사용",
+      "친구가 눈가 크림을 사용"
+    ],
+    "reason": "900은 사용자와 친구 제품을 구별하고 친구 제품의 실제 표시·부위는 미확인으로 좁힌다. 1800은 친구의 크림이 눈가용인지까지 넓혀, 관찰에서 눈가 크림으로 언급된 사실과 카탈로그 표시 미확인을 구별하지 않는다. 친구 제품 표시는 별도로 제공되지 않았으므로 명확한 제품 속성 왜곡 FAIL로 단정하지 않고 WARN으로 기록한다.",
+    "old_answer_sha256": "40867a158bfac67b868246a6ca7560957a10870a35b97ae9f3f82927de2a2327",
+    "new_answer_sha256": "3c629e8dd9a6b071b535c7de57931eea13576f67923bb2d8081b3b71dfd1ad7c",
+    "input_sha256": "03beb9b043a3d8c26779d7fd3e3f958169f143f7c7b981739d68ff844c400399",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0459",
+    "old_rating": "WARN",
+    "new_rating": "PASS",
+    "comparison": "improvement",
+    "old_quotes": [
+      "그림이 눈 주변까지 보인다는 것과 실제 제품의 주의 문구를 같은 뜻으로 보지 않아요."
+    ],
+    "new_quotes": [
+      "그림이 눈 주변까지 보이더라도 실제 팩의 주의 문구를 적용해요."
+    ],
+    "input_quotes": [
+      "그림은 눈 주변까지 겹쳐 보이지만 실제 제품의 주의 문구는 눈 주위를 피하도록 함."
+    ],
+    "reason": "900은 두 자료가 다르다고만 말해 어느 것을 적용할지라는 요청에 결론이 약하다. 1800은 실제 주의 문구를 적용한다는 우선순위를 명시하고 그림만으로 실제 눈 안 노출을 확정하지 않는다.",
+    "old_answer_sha256": "75521b0c6fe4ee7187f503ecd4a291a4d85bda1da28911c89ce0e45a9c86e053",
+    "new_answer_sha256": "3e85f37ff2fc947bd84357bb6ec361daaef3bdf546df47516790a9bc59040ded",
+    "input_sha256": "1e3443c791eb4a5766e80521a3f72e7c21e30f7d040ed514ae93e3cc641b8a20",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  },
+  {
+    "row_id": "syn-sol-0460",
+    "old_rating": "PASS",
+    "new_rating": "WARN",
+    "comparison": "regression",
+    "old_quotes": [
+      "아직 바르지 않았으니"
+    ],
+    "new_quotes": [
+      "눈꺼풀에 실제로 바르는지 확인된 것은 아니에요."
+    ],
+    "input_quotes": [
+      "계획만 있고 아직 바르지 않음",
+      "눈 아래 바깥 피부에 한정해 바르는 보습 크림 표시."
+    ],
+    "reason": "눈꺼풀로 사용 부위를 확대하지 않는 핵심 지시는 두 답변 모두 맞다. 900은 아직 미사용이라는 확인된 음성을 보존한다. 1800의 실제로 바르는지 확인되지 않았다는 표현은 미사용과 미확인의 구별을 흐리지만 실제 사용 사실을 단정하지는 않으므로 WARN으로 기록한다.",
+    "old_answer_sha256": "26726caa2033b80e08572f767efaccd1a78726ebfd25488852f3daac952f7fb4",
+    "new_answer_sha256": "8a2aa196a2f2ffa60ce4a4f76c2bb1b96ace6249d93e4d4167d2d81afdd53b34",
+    "input_sha256": "32a409a3a47c2ca73398c1cc8863fb5fb5a4137ee5964e8a7dcff5e6a1b5aa3f",
+    "reviewer": "Codex direct reading; single reviewer, not independent cross-model audit",
+    "human_approved": false
+  }
+]
